@@ -1,9 +1,9 @@
 // water_splash.c.inc
 
-struct WaterSplashParams D_8032FDAC = {2 ,MODEL_SMALL_SNOW_BALL,bhvWaterDrops,0,0,5.0f,3.0f,30.0f,20.0f,0.5f,1.0f};
-struct WaterSplashParams D_8032FDD0 = {34,MODEL_SMALL_SNOW_BALL,bhvWaterDrops,0,0,2.0f,3.0f,20.0f,20.0f,0.5f,1.0f};
+struct WaterSplashParams D_8032FDAC = {2 ,MODEL_WHITE_PARTICLE_SMALL,bhvWaterDrops,0,0,5.0f,3.0f,30.0f,20.0f,0.5f,1.0f};
+struct WaterSplashParams D_8032FDD0 = {34,MODEL_WHITE_PARTICLE_SMALL,bhvWaterDrops,0,0,2.0f,3.0f,20.0f,20.0f,0.5f,1.0f};
 struct WaterSplashParams D_8032FDF4 = {34,MODEL_FISH,bhvWaterDrops,0,0,2.0f,3.0f,20.0f,20.0f,1.0f,0.0f};
-struct WaterSplashParams D_8032FE18 = {98,MODEL_SMALL_SNOW_BALL,bhvWaterDrops,0x6000,0,2.0f,8.0f,10.0f,10.0f,0.5f,1.0f};
+struct WaterSplashParams D_8032FE18 = {98,MODEL_WHITE_PARTICLE_SMALL,bhvWaterDrops,0x6000,0,2.0f,8.0f,10.0f,10.0f,0.5f,1.0f};
 
 void bhv_water_splash_loop(void)
 {

@@ -102,7 +102,7 @@ glabel eyerok_geo_0002AC # 0x0C0002AC
    geo_close_node
    geo_return
 
-glabel eyerok_geo # 0x0C0005A8
+glabel eyerok_left_hand_geo # 0x0C0005A8
    geo_shadow SHADOW_SQUARE_SCALABLE, 0xB4, 300
    geo_open_node
       geo_scale 0x00, 16384
@@ -114,7 +114,7 @@ glabel eyerok_geo # 0x0C0005A8
    geo_close_node
    geo_end
 
-glabel eyerok2_geo # 0x0C0005E4
+glabel eyerok_right_hand_geo # 0x0C0005E4
    geo_shadow SHADOW_SQUARE_SCALABLE, 0xB4, 300
    geo_open_node
       geo_scale 0x00, 16384

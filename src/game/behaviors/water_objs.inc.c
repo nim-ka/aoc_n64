@@ -120,13 +120,13 @@ void bhv_fish_group_loop(void)
 {
     if(gMarioCurrentRoom == 15 || gMarioCurrentRoom == 7)
         if(gGlobalTimer & 1)
-            spawn_object(o,MODEL_SMALL_SNOW_BALL,bhvSmallParticleBubbles);
+            spawn_object(o,MODEL_WHITE_PARTICLE_SMALL,bhvSmallParticleBubbles);
 }
 
 void bhv_water_waves_init(void)
 {
     s32 sp1C;
     for(sp1C=0;sp1C<3;sp1C++)
-        spawn_object(o,MODEL_SMALL_SNOW_BALL,bhvSmallParticle);
+        spawn_object(o,MODEL_WHITE_PARTICLE_SMALL,bhvSmallParticle);
 
 }

@@ -1,4 +1,4 @@
-glabel water_waves2_geo # 0x17000124
+glabel water_waves_surface_geo # 0x17000124
    geo_switch_case 6, geo_switch_anim_state
    geo_open_node
       geo_display_list LAYER_TRANSPARENT, water_waves_seg4_dl_040273F0

@@ -476,7 +476,7 @@ wiggler_seg5_anim_0500C760: # 0x0500C760
 # to show this. One possibility is that wiggler_head
 # does not have a Bin ID, but it would require more
 # cross-actor references with the textures.
-actorgeo wiggler_body
+actorgeo wiggler_body_part
 
 glabel wiggler_seg5_anims_0500C874 # 0x0500C874
 .word wiggler_seg5_anim_0500C760

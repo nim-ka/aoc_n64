@@ -90,7 +90,7 @@ void func_802AFAFC(void)
     func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,bhvWfSolidTowerPlatform);
     func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,bhvWfSlidingTowerPlatform);
     func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,bhvWfSolidTowerPlatform);
-    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM_FRAME2,bhvWfElevatorTowerPlatform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM_ELEVATOR,bhvWfElevatorTowerPlatform);
 }
 
 void bhv_tower_platform_group_loop(void)

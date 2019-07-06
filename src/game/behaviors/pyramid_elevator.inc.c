@@ -6,7 +6,7 @@ void bhv_pyramid_elevator_init(void) {
 
     for (sp1C = 0; sp1C < 10; sp1C++)
     {
-        sp18 = spawn_object(o, MODEL_BOWLING_BALL_2, bhvPyramidElevatorMetalBalls);
+        sp18 = spawn_object(o, MODEL_BOWLING_BALL_TRACK, bhvPyramidElevatorMetalBalls);
         sp18->oPosY = 4600 - sp1C * 460;
     }
 }

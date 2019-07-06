@@ -1,5 +1,4 @@
-# TODO: how is this different than wiggler_geo?
-glabel wiggler2_geo # 0x0500C778
+glabel wiggler_body_part_geo # 0x0500C778
     geo_shadow SHADOW_CIRCLE_4_VERTS, 0x96, 0x64
     geo_open_node
       geo_scale 0, 16384

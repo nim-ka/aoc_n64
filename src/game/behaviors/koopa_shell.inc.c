@@ -20,7 +20,7 @@ void func_802BCA8C(void)
     spawn_object(o,MODEL_WATER_WAVES,bhvWaterType);
     if(gMarioStates->forwardVel > 10.0f)
     {
-        drop = spawn_object_with_scale(o,MODEL_SMALL_SNOW_BALL,bhvWaterDrops,1.5f);
+        drop = spawn_object_with_scale(o,MODEL_WHITE_PARTICLE_SMALL,bhvWaterDrops,1.5f);
         drop->oVelY = RandomFloat() * 30.0f;
         translate_object_xz_random(drop,110.0f);
     }

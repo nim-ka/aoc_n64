@@ -1,6 +1,6 @@
 .balign 4 # 0x0700FA2E - 0x0700FA30
 
-sl_modtext_snowman_water_data: # 0x0700FA30 - 0x0700FA50
+sl_movtex_snowman_water_data: # 0x0700FA30 - 0x0700FA50
 movTexInitLoad     1
 movTexRotSpeed     8
 movTexRotScale    10
@@ -13,7 +13,7 @@ movTexAlpha    0x96
 movTexDefine   TEXTURE_WATER
 movTexEnd
 
-sl_modtext_ice_bully_water_data: # 0x0700FA50 - 0x0700FA70
+sl_movtex_ice_bully_water_data: # 0x0700FA50 - 0x0700FA70
 movTexInitLoad     1
 movTexRotSpeed     8
 movTexRotScale    10
@@ -26,8 +26,8 @@ movTexAlpha    0x96
 movTexDefine   TEXTURE_WATER
 movTexEnd
 
-glabel sl_modtext_water # 0x0700FA70 - 0x0700FA88
-movTexJump 0, sl_modtext_snowman_water_data
-movTexJump 1, sl_modtext_ice_bully_water_data
+glabel sl_movtex_water # 0x0700FA70 - 0x0700FA88
+movTexJump 0, sl_movtex_snowman_water_data
+movTexJump 1, sl_movtex_ice_bully_water_data
 movTexEndLoad
 movTexEndJump

@@ -16,7 +16,7 @@ struct SpawnParticlesInfo D_80331A00 =
 {
     /* behParam:        */ 0,
     /* count:           */ 6,
-    /* model:           */ MODEL_SNOWMAN_SNOW_BALL,
+    /* model:           */ MODEL_WHITE_PARTICLE,
     /* offsetY:         */ 0,
     /* forwardVelBase:  */ 5,
     /* forwardVelRange: */ 5,
@@ -79,7 +79,7 @@ static void func_8030702C(void)
     if (o->oMrBlizzardUnkF8 == NULL && func_802F92EC(0, 5))
     {
         o->oMrBlizzardUnkF8 = spawn_object_relative(
-            0, -70, (s32)(o->oMrBlizzardUnk10C + 153.0f), 0, o, MODEL_SNOWMAN_SNOW_BALL, bhvMrBlizzardSnowball);
+            0, -70, (s32)(o->oMrBlizzardUnk10C + 153.0f), 0, o, MODEL_WHITE_PARTICLE, bhvMrBlizzardSnowball);
     }
     else if (obj_check_anim_frame(10))
     {

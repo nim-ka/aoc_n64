@@ -40,8 +40,8 @@ static void eyerok_boss_act_sleep(void)
 {
     if (o->oTimer == 0)
     {
-        eyerok_spawn_hand(-1, 0x58, bhvEyerokHand);
-        eyerok_spawn_hand(1, 0x59, bhvEyerokHand);
+        eyerok_spawn_hand(-1, MODEL_EYEROK_LEFT_HAND, bhvEyerokHand);
+        eyerok_spawn_hand(1, MODEL_EYEROK_RIGHT_HAND, bhvEyerokHand);
     }
     else if (o->oDistanceToMario < 500.0f)
     {

@@ -46,34 +46,34 @@
 #define MODEL_COURTYARD_SPIKY_TREE             0x18        // spiky_tree_geo
 #define MODEL_CCM_SNOW_TREE                    0x19        // snow_tree_geo
 #define MODEL_SL_SNOW_TREE                     0x19        // snow_tree_geo
-// find me
+#define MODEL_UNKNOWN_TREE_1A                  0x1A        // referenced in special presets, undefined
 #define MODEL_SSL_PALM_TREE                    0x1B        // palm_tree_geo
-#define MODEL_CASTLE_CASTLE_DOOR2              0x1C        // castle_door_geo
-#define MODEL_CASTLE_WOODEN_DOOR2              0x1D        // wooden_door_geo
+#define MODEL_CASTLE_CASTLE_DOOR_UNUSED        0x1C        // castle_door_geo - unused, original id
+#define MODEL_CASTLE_WOODEN_DOOR_UNUSED        0x1D        // wooden_door_geo - unused, original id
 #define MODEL_BBH_HAUNTED_DOOR                 0x1D        // haunted_door_geo
 #define MODEL_HMC_WOODEN_DOOR                  0x1D        // wooden_door_geo
-// find me
+#define MODEL_UNKNOWN_DOOR_1E                  0x1E        // referenced in special presets, undefined
 #define MODEL_HMC_METAL_DOOR                   0x1F        // metal_door_geo
 #define MODEL_HMC_HAZY_MAZE_DOOR               0x20        // hazy_maze_door_geo
-// find me
+#define MODEL_UNKNOWN_DOOR_21                  0x21        // referenced in special presets, undefined
 #define MODEL_CASTLE_DOOR_0_STARS              0x22        // castle_door_0_star_geo
 #define MODEL_CASTLE_DOOR_1_STAR               0x23        // castle_door_1_star_geo
 #define MODEL_CASTLE_DOOR_3_STARS              0x24        // castle_door_3_stars_geo
 #define MODEL_CASTLE_KEY_DOOR                  0x25        // key_door_geo
-#define MODEL_CASTLE_CASTLE_DOOR               0x26        // castle_door_geo
-#define MODEL_CASTLE_GROUNDS_CASTLE_DOOR       0x26        // castle_door_geo
+#define MODEL_CASTLE_CASTLE_DOOR               0x26        // castle_door_geo - used duplicate
+#define MODEL_CASTLE_GROUNDS_CASTLE_DOOR       0x26        // castle_door_geo - used duplicate
 #define MODEL_CASTLE_WOODEN_DOOR               0x27        // wooden_door_geo
 #define MODEL_COURTYARD_WOODEN_DOOR            0x27        // wooden_door_geo
 #define MODEL_CCM_CABIN_DOOR                   0x27        // cabin_door_geo
-// find me
+#define MODEL_UNKNOWN_DOOR_28                  0x28        // referenced in special presets, undefined
 #define MODEL_CASTLE_METAL_DOOR                0x29        // metal_door_geo
 #define MODEL_CASTLE_GROUNDS_METAL_DOOR        0x29        // metal_door_geo
-// find me
-// find me
-#define MODEL_WF_TOWER_TRAPEZOID_PLATORM       0x2C        // wf_geo_000AF8
+#define MODEL_UNKNOWN_DOOR_2A                  0x2A        // referenced in special presets, undefined
+#define MODEL_UNKNOWN_DOOR_2B                  0x2B        // referenced in special presets, undefined
+#define MODEL_WF_TOWER_TRAPEZOID_PLATORM       0x2C        // wf_geo_000AF8 - unused
 #define MODEL_WF_TOWER_SQUARE_PLATORM          0x2D        // wf_geo_000B10
-#define MODEL_WF_TOWER_SQUARE_PLATORM_FRAME1   0x2E        // wf_geo_000B38
-#define MODEL_WF_TOWER_SQUARE_PLATORM_FRAME2   0x2F        // wf_geo_000B60
+#define MODEL_WF_TOWER_SQUARE_PLATORM_UNUSED   0x2E        // wf_geo_000B38 - unused & duplicated
+#define MODEL_WF_TOWER_SQUARE_PLATORM_ELEVATOR 0x2F        // wf_geo_000B60 - elevator platorm
 
 // Level model IDs
 
@@ -103,8 +103,8 @@
 #define MODEL_HMC_METAL_ARROW_PLATFORM         0x37        // hmc_geo_0005B8
 #define MODEL_HMC_ELEVATOR_PLATFORM            0x38        // hmc_geo_0005D0
 #define MODEL_HMC_ROLLING_ROCK                 0x39        // hmc_geo_000548
-#define MODEL_HMC_ROCK_PIECE                   0x3A        // hmc_geo_000570
-#define MODEL_HMC_ROCK_SMALL_PIECE             0x3B        // hmc_geo_000588
+#define MODEL_HMC_ROCK_PIECE                   0x3A        // hmc_geo_000570 - unused
+#define MODEL_HMC_ROCK_SMALL_PIECE             0x3B        // hmc_geo_000588 - unused
 #define MODEL_HMC_RED_GRILLS                   0x3C        // hmc_geo_000530
 
 // ssl
@@ -121,8 +121,8 @@
 
 // sl
 #define MODEL_SL_SNOW_TRIANGLE                 0x36        // sl_geo_000390
-#define MODEL_SL_CRACKED_ICE                   0x37        // sl_geo_000360
-#define MODEL_SL_CRACKED_ICE_CHUNK             0x38        // sl_geo_000378
+#define MODEL_SL_CRACKED_ICE                   0x37        // sl_geo_000360 - unused
+#define MODEL_SL_CRACKED_ICE_CHUNK             0x38        // sl_geo_000378 - unused
 
 // wdw
 #define MODEL_WDW_SQUARE_FLOATING_PLATFORM        0x36        // wdw_geo_000580
@@ -159,8 +159,8 @@
 #define MODEL_TTC_PUSH_BLOCK                      0x3B        // ttc_geo_0002C8
 #define MODEL_TTC_ROTATING_HEXAGON                0x3C        // ttc_geo_0002E0
 #define MODEL_TTC_ROTATING_TRIANGLE               0x3D        // ttc_geo_0002F8
-#define MODEL_TTC_PIT_BLOCK                       0x3E        // ttc_geo_000310
-#define MODEL_TTC_PIT_BLOCK_2                     0x3F        // ttc_geo_000328
+#define MODEL_TTC_PIT_BLOCK                       0x3E        // ttc_geo_000310 - has 2 vertical stripes
+#define MODEL_TTC_PIT_BLOCK_UNUSED                0x3F        // ttc_geo_000328 - has 3 vertical stripes, unused
 #define MODEL_TTC_ELEVATOR_PLATFORM               0x40        // ttc_geo_000340
 #define MODEL_TTC_CLOCK_HAND                      0x41        // ttc_geo_000358
 #define MODEL_TTC_SPINNER                         0x42        // ttc_geo_000370
@@ -172,10 +172,10 @@
 #define MODEL_RR_FLYING_CARPET                    0x37        // rr_geo_000848
 #define MODEL_RR_OCTAGONAL_PLATFORM               0x38        // rr_geo_0008A8
 #define MODEL_RR_ROTATING_BRIDGE_PLATFORM         0x39        // rr_geo_000878
-#define MODEL_RR_TRIANGLE_PLATFORM                0x3A        // rr_geo_0008D8
+#define MODEL_RR_TRIANGLE_PLATFORM                0x3A        // rr_geo_0008D8 - unused
 #define MODEL_RR_CRUISER_WING                     0x3B        // rr_geo_000890
 #define MODEL_RR_SEESAW_PLATFORM                  0x3C        // rr_geo_000908
-#define MODEL_RR_L_SHAPED_PLATFORM                0x3D        // rr_geo_000940
+#define MODEL_RR_L_SHAPED_PLATFORM                0x3D        // rr_geo_000940 - unused
 #define MODEL_RR_SWINGING_PLATFORM                0x3E        // rr_geo_000860
 #define MODEL_RR_DONUT_PLATFORM                   0x3F        // rr_geo_000920
 #define MODEL_RR_ELEVATOR_PLATFORM                0x40        // rr_geo_0008F0
@@ -201,7 +201,9 @@
 
 // vcutm
 #define MODEL_VCUTM_SEESAW_PLATFORM               0x36        // vcutm_geo_0001F0
-#define MODEL_VCUTM_CHECKERBOARD_PLATFORM_SPAWNER 0x37        //! @bug this object doesn't have a geo associated with it, yet is placed in vcutm. This causes a crash when the player quickly looks towards the checkerboard platforms after spawning but before it is unloaded.
+#define MODEL_VCUTM_CHECKERBOARD_PLATFORM_SPAWNER 0x37        //! @bug this object doesn't have a geo associated with it, yet is placed in vcutm. 
+                                                              //  This causes a crash when the player quickly looks towards the 
+                                                              //  checkerboard platforms after spawning but before it is unloaded.
 
 // bitfs
 #define MODEL_BITFS_PLATFORM_ON_TRACK             0x36        // bitfs_geo_000758
@@ -350,8 +352,8 @@
 #define MODEL_POKEY_BODY_PART             0x55        // pokey_body_part_geo
 #define MODEL_TORNADO                     0x56        // tornado_seg5_geo_05014630
 #define MODEL_KLEPTO                      0x57        // klepto_geo
-#define MODEL_EYEROK                      0x58        // eyerok_geo
-#define MODEL_EYEROK_2                    0x59        // eyerok2_geo
+#define MODEL_EYEROK_LEFT_HAND            0x58        // eyerok_left_hand_geo
+#define MODEL_EYEROK_RIGHT_HAND           0x59        // eyerok_right_hand_geo
 
 // group 6
 #define MODEL_DL_MONTY_MOLE_HOLE          0x54        // monty_mole_hole_seg5_dl_05000840
@@ -388,7 +390,7 @@
 #define MODEL_SPINY_BALL                  0x55        // spiny_ball_geo
 #define MODEL_SPINY                       0x56        // spiny_geo
 #define MODEL_WIGGLER                     0x57        // wiggler_geo
-#define MODEL_WIGGLER_BODY_PART           0x58        // wiggler2_geo
+#define MODEL_WIGGLER_BODY_PART           0x58        // wiggler_body_part_geo
 #define MODEL_BUBBA                       0x59        // bubba_geo
 
 // referenced in macro presets. Unknown usage.
@@ -397,12 +399,12 @@
 
 // second set of actor bins, (0x64-0x73)
 // group 12
-#define MODEL_BOWSER                      0x64        // bowser_geo
-#define MODEL_BOWSER_BOMB2                0x65        // bowser_bomb_geo
+#define MODEL_BOWSER                      0x64        // bowser_geo - 2nd geo loaded is bowser_geo_000424, starts with shadow command
+#define MODEL_BOWSER_BOMB_CHILD_OBJ       0x65        // bowser_bomb_geo - Spawns as a chill object in bowser's behavior command, causing an explosion if it touches a bomb
 #define MODEL_BOWSER_SMOKE                0x66        // bowser_impact_smoke_geo
 #define MODEL_BOWSER_FLAMES               0x67        // bowser_flames_geo
 #define MODEL_BOWSER_WAVE                 0x68        // invisible_bowser_accessory_geo
-#define MODEL_BOWSER2                     0x69        // bowser2_geo
+#define MODEL_BOWSER2                     0x69        // bowser2_geo - 2nd geo loaded is bowser_geo_000770, starts with node command, only difference
 
 // group 13
 #define MODEL_BUB                         0x64        // cheep_cheep_geo
@@ -427,8 +429,8 @@
 #define MODEL_LAKITU                      0x66        // lakitu_geo
 
 // group 16
-#define MODEL_CHILL_BULLY                 0x64        // chilly_chief_seg6_geo
-#define MODEL_BIG_CHILL_BULLY             0x65        // chilly_chief_seg6_geo2
+#define MODEL_CHILL_BULLY                 0x64        // chilly_chief_geo
+#define MODEL_BIG_CHILL_BULLY             0x65        // chilly_chief_big_geo
 #define MODEL_MONEYBAG                    0x66        // moneybag_geo
 
 // group 17
@@ -448,7 +450,7 @@
 #define MODEL_STAR                        0x7A        // star_geo
 #define MODEL_TTM_SLIDE_EXIT_PODIUM       0x7B        // ttm_geo_000DF4
 #define MODEL_WOODEN_SIGNPOST             0x7C        // wooden_signpost_geo
-// find me
+#define MODEL_UNKNOWN_7D                  0x7D        // referenced in macro presets. Unknown usage
 // find me
 #define MODEL_CANNON_BARREL               0x7F        // cannon_barrel_geo
 #define MODEL_CANNON_BASE                 0x80        // cannon_base_geo
@@ -479,23 +481,23 @@
 // find me
 // find me
 // find me
-#define MODEL_BURN_SMOKE_                 0x9C        // burn_smoke_geo
+#define MODEL_BURN_SMOKE_UNUSED           0x9C        // burn_smoke_geo - unused & duplicated
 // find me
-#define MODEL_SNOWMAN_SNOW_BALL_DL        0x9E        // snowman_snow_ball_dl
+#define MODEL_WHITE_PARTICLE_DL           0x9E        // white_particle_dl
 #define MODEL_SAND_DUST                   0x9F        // sand_seg3_dl_0302BCD0
-#define MODEL_SNOWMAN_SNOW_BALL           0xA0        // snowman_snow_ball_geo
+#define MODEL_WHITE_PARTICLE              0xA0        // white_particle_dl
 #define MODEL_PEBBLE                      0xA1        // pebble_seg3_dl_0301CB00
 #define MODEL_LEAVES                      0xA2        // leaves_geo
 #define MODEL_WATER_WAVES                 0xA3        // water_waves_geo
-#define MODEL_SMALL_SNOW_BALL             0xA4        // small_snow_ball_dlo (TODO: This isnt a snow ball?)
+#define MODEL_WHITE_PARTICLE_SMALL        0xA4        // white_particle_small_dl
 #define MODEL_SPOT_ON_GROUND              0xA5        // spot_on_ground_geo
-#define MODEL_WATER_WAVES_2               0xA6        // water_waves2_geo
+#define MODEL_WATER_WAVES_SURF            0xA6        // water_waves_surface_geo
 #define MODEL_WATER_SPLASH                0xA7        // water_splash_geo
 #define MODEL_BUBBLE                      0xA8        // bubble_geo
 // find me
 #define MODEL_PURPLE_MARBLE               0xAA        // purple_marble_geo
 // find me
-// find me
+#define MODEL_UNKNOWN_AC                  0xAC        // according to an special preset, it was the original id of the castle floor trap
 #define MODEL_WF_SLIDING_PLATFORM         0xAD        // wf_geo_000A98
 #define MODEL_WF_SMALL_BOMP               0xAE        // wf_geo_000A00
 #define MODEL_WF_ROTATING_WOODEN_PLATFORM 0xAF        // wf_geo_000A58
@@ -505,12 +507,12 @@
 #define MODEL_BOWSER_BOMB                 0xB3        // bowser_bomb_geo
 #define MODEL_WATER_MINE                  0xB3        // water_mine_geo
 #define MODEL_BOWLING_BALL                0xB4        // bowling_ball_geo
-#define MODEL_TRAMPOLINE                  0xB5        // unused
-#define MODEL_TRAMPOLINE_CENTER           0xB6        // unused
-#define MODEL_TRAMPOLINE_BASE             0xB7        // unused
-// find me
-#define MODEL_FISH                        0xB9        // fish_geo
-#define MODEL_FISH_2                      0xBA        // fish2_geo
+#define MODEL_TRAMPOLINE                  0xB5        // unused & undefined in level scripts, referenced in beta_trampoline.inc.c
+#define MODEL_TRAMPOLINE_CENTER           0xB6        // unused & undefined in level scripts, referenced in beta_trampoline.inc.c
+#define MODEL_TRAMPOLINE_BASE             0xB7        // unused & undefined in level scripts, referenced in beta_trampoline.inc.c
+#define MODEL_UNKNOWN_B8                  0xB8        // referenced in special presets as a static object. Unknown usage
+#define MODEL_FISH                        0xB9        // fish_geo - fish without shadow, used
+#define MODEL_FISH_SHADOW                 0xBA        // fish_shadow_geo - fish with shadow, unused
 #define MODEL_BUTTERFLY                   0xBB        // butterfly_geo
 #define MODEL_BLACK_BOBOMB                0xBC        // black_bobomb_geo
 // find me
@@ -549,7 +551,7 @@
 #define MODEL_PEACH                       0xDE        // peach_geo
 #define MODEL_CHUCKYA                     0xDF        // chuckya_geo
 #define MODEL_WHITE_PUFF                  0xE0        // white_puff_geo
-#define MODEL_BOWLING_BALL_2              0xE1        // bowling_ball2_geo
+#define MODEL_BOWLING_BALL_TRACK          0xE1        // bowling_ball_track_geo - duplicate used in SSL Pyramid small sized and as a track ball
 
 // Menu Models (overwrites Level Geometry IDs)
 #define MODEL_MAIN_MENU_MARIO_SAVE_BUTTON         MODEL_LEVEL_GEOMETRY_03   // main_menu_geo_0001D0

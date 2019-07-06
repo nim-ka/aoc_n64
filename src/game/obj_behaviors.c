@@ -331,11 +331,11 @@ void ObjSplash(s32 waterY, s32 objY)
     u32 globalTimer = gGlobalTimer;
     if ((f32)(waterY + 30) > o->oPosY && o->oPosY > (f32)(waterY - 30))
     {
-        spawn_object(o, MODEL_WATER_WAVES_2, bhvObjectWaterWave);
+        spawn_object(o, MODEL_WATER_WAVES_SURF, bhvObjectWaterWave);
         if (o->oVelY < -20.0f) PlaySound2(SOUND_OBJECT_DIVINGINTOWATER);
     }
     
-    if ((objY + 50) < waterY && (globalTimer & 0x1F) == 0) spawn_object(o, MODEL_SMALL_SNOW_BALL, bhvObjectBubble); /* 0x1F is bits 4-0 */
+    if ((objY + 50) < waterY && (globalTimer & 0x1F) == 0) spawn_object(o, MODEL_WHITE_PARTICLE_SMALL, bhvObjectBubble); /* 0x1F is bits 4-0 */
 }
 
 //sp3c = objX

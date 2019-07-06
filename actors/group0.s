@@ -10,8 +10,8 @@ rawactor bubble
 rawactor walk_smoke
 rawactor burn_smoke
 rawactor stomp_smoke
-rawactor water_wave
+rawactor water_waves
 rawactor sparkle
 rawactor water_splash
-rawactor snowball2
+rawactor white_particle_small
 rawactor sparkle_animation

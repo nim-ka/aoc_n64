@@ -1,4 +1,4 @@
-glabel fish2_geo # 0x16000BEC
+glabel fish_shadow_geo # 0x16000BEC
    geo_shadow SHADOW_CIRCLE_4_VERTS, 0x9B, 50
    geo_open_node
       geo_scale 0x00, 16384

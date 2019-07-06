@@ -214,8 +214,8 @@ glabel level_castle_entry
     load_model_from_geo /*model*/ MODEL_CASTLE_CASTLE_DOOR,        /*geo*/ castle_door_geo
     load_model_from_geo /*model*/ MODEL_CASTLE_WOODEN_DOOR,        /*geo*/ wooden_door_geo
     load_model_from_geo /*model*/ MODEL_CASTLE_METAL_DOOR,         /*geo*/ metal_door_geo
-    load_model_from_geo /*model*/ MODEL_CASTLE_CASTLE_DOOR2,       /*geo*/ castle_door_geo
-    load_model_from_geo /*model*/ MODEL_CASTLE_WOODEN_DOOR2,       /*geo*/ wooden_door_geo
+    load_model_from_geo /*model*/ MODEL_CASTLE_CASTLE_DOOR_UNUSED, /*geo*/ castle_door_geo
+    load_model_from_geo /*model*/ MODEL_CASTLE_WOODEN_DOOR_UNUSED, /*geo*/ wooden_door_geo
     load_model_from_geo /*model*/ MODEL_CASTLE_DOOR_0_STARS,       /*geo*/ castle_door_0_star_geo
     load_model_from_geo /*model*/ MODEL_CASTLE_DOOR_1_STAR,        /*geo*/ castle_door_1_star_geo
     load_model_from_geo /*model*/ MODEL_CASTLE_DOOR_3_STARS,       /*geo*/ castle_door_3_stars_geo

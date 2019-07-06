@@ -191,15 +191,15 @@ Gfx *Geo18_802D01E0(s32 run, UNUSED struct GraphNode *node, UNUSED f32 mtx[4][4]
 void vertex_control_movtext(Vtx *verts, s32 n, s16 x, s16 y, s16 z, s16 f, s16 g,
     f32 h, u8 alpha)
 {
-    s16 tx = 32.0 * (32.0 * h - 1.0) * sins(f + g);
-    s16 ty = 32.0 * (32.0 * h - 1.0) * coss(f + g);
+    s16 s = 32.0 * (32.0 * h - 1.0) * sins(f + g);
+    s16 t = 32.0 * (32.0 * h - 1.0) * coss(f + g);
 
     if (gMovTextVtxColor == MOVTEXT_VTX_COLOR_YELLOW)
-        make_vertex(verts, n, x, y, z, tx, ty, 255, 255, 0, alpha);
+        make_vertex(verts, n, x, y, z, s, t, 255, 255, 0, alpha);
     else if (gMovTextVtxColor == MOVTEXT_VTX_COLOR_RED)
-        make_vertex(verts, n, x, y, z, tx, ty, 255, 0, 0, alpha);
+        make_vertex(verts, n, x, y, z, s, t, 255, 0, 0, alpha);
     else
-        make_vertex(verts, n, x, y, z, tx, ty, 255, 255, 255, alpha);
+        make_vertex(verts, n, x, y, z, s, t, 255, 255, 255, alpha);
 }
 
 struct MovingTexureQuadBox
@@ -354,7 +354,7 @@ extern u8 hmc_movtex_dorrie_pool_water[];
 extern u8 hmc_movtex_toxic_maze_mist[];
 extern u8 ssl_movtex_puddle_water[];
 extern u8 ssl_movtex_toxbox_quicksand_mist[];
-extern u8 sl_modtext_water[];
+extern u8 sl_movtex_water[];
 extern u8 wdw_movtex_area1_water[];
 extern u8 wdw_movtex_area2_water[];
 extern u8 jrb_movtex_water[];
@@ -383,7 +383,7 @@ void *load_moving_texture_box(u32 a)
     case 0x0702: return hmc_movtex_toxic_maze_mist;
     case 0x0801: return ssl_movtex_puddle_water;
     case 0x0851: return ssl_movtex_toxbox_quicksand_mist;
-    case 0x1001: return sl_modtext_water;
+    case 0x1001: return sl_movtex_water;
     case 0x1101: return wdw_movtex_area1_water;
     case 0x1102: return wdw_movtex_area2_water;
     case 0x1201: return jrb_movtex_water;
@@ -515,8 +515,8 @@ void func_802D08EC(Vtx *vtx, s16 *b, struct MovingTextureGeoList *c, s8 d)
     s8 r2;
     s8 g2;
     s8 b2;
-    s16 tx;
-    s16 ty;
+    s16 s;
+    s16 t;
 
     switch (d)
     {
@@ -524,17 +524,17 @@ void func_802D08EC(Vtx *vtx, s16 *b, struct MovingTextureGeoList *c, s8 d)
         r1 = c->r;
         g1 = c->g;
         b1 = c->b;
-        tx = b[4];
-        ty = b[5];
-        make_vertex(vtx, 0, x, y, z, tx, ty, r1, g1, b1, alpha);
+        s = b[4];
+        t = b[5];
+        make_vertex(vtx, 0, x, y, z, s, t, r1, g1, b1, alpha);
         break;
     case 1:
         r2 = b[4];
         g2 = b[5];
         b2 = b[6];
-        tx = b[7];
-        ty = b[8];
-        make_vertex(vtx, 0, x, y, z, tx, ty, r2, g2, b2, alpha);
+        s = b[7];
+        t = b[8];
+        make_vertex(vtx, 0, x, y, z, s, t, r2, g2, b2, alpha);
         break;
     }
 }
@@ -547,8 +547,8 @@ void func_802D0A94(Vtx *verts, s32 n, s16 *c, struct MovingTextureGeoList *d, s8
     s16 z;
     s16 sp56;
     s16 sp54;
-    s16 tx;
-    s16 ty;
+    s16 s;
+    s16 t;
     s16 sp4E;
     s16 sp4C;
     u8 r1;
@@ -568,12 +568,12 @@ void func_802D0A94(Vtx *verts, s32 n, s16 *c, struct MovingTextureGeoList *d, s8
         sp54 = c[5];
         sp4E = c[n * 5 + 4];
         sp4C = c[n * 5 + 5];
-        tx = sp56 + ((sp4E * 32) * 32U);
-        ty = sp54 + ((sp4C * 32) * 32U);
+        s = sp56 + ((sp4E * 32) * 32U);
+        t = sp54 + ((sp4C * 32) * 32U);
         r1 = d->r;
         g1 = d->g;
         b1 = d->b;
-        make_vertex(verts, n, x, y, z, tx, ty, r1, g1, b1, alpha);
+        make_vertex(verts, n, x, y, z, s, t, r1, g1, b1, alpha);
         break;
     case 1:
         x = c[n * 8 + 1];
@@ -583,12 +583,12 @@ void func_802D0A94(Vtx *verts, s32 n, s16 *c, struct MovingTextureGeoList *d, s8
         sp54 = c[8];
         sp4E = c[n * 8 + 7];
         sp4C = c[n * 8 + 8];
-        tx = sp56 + ((sp4E * 32) * 32U);
-        ty = sp54 + ((sp4C * 32) * 32U);
+        s = sp56 + ((sp4E * 32) * 32U);
+        t = sp54 + ((sp4C * 32) * 32U);
         r2 = c[n * 8 + 4];
         g2 = c[n * 8 + 5];
         b2 = c[n * 8 + 6];
-        make_vertex(verts, n, x, y, z, tx, ty, r2, g2, b2, alpha);
+        make_vertex(verts, n, x, y, z, s, t, r2, g2, b2, alpha);
         break;
     }
 }

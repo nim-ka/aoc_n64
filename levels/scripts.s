@@ -16,30 +16,30 @@ glabel level_main_scripts_entry
     load_model_from_geo /*model*/ MODEL_SPARKLES,                /*geo*/ sparkles_geo
     load_model_from_geo /*model*/ MODEL_BUBBLE,                  /*geo*/ bubble_geo
     load_model_from_geo /*model*/ MODEL_SPOT_ON_GROUND,          /*geo*/ spot_on_ground_geo
-    load_model_from_geo /*model*/ MODEL_WATER_WAVES_2,           /*geo*/ water_waves2_geo
+    load_model_from_geo /*model*/ MODEL_WATER_WAVES_SURF,        /*geo*/ water_waves_surface_geo
     load_model_from_geo /*model*/ MODEL_WATER_SPLASH,            /*geo*/ water_splash_geo
     load_model_from_geo /*model*/ MODEL_WATER_WAVES,             /*geo*/ water_waves_geo
     load_model_from_geo /*model*/ MODEL_YELLOW_COIN,             /*geo*/ yellow_coin_geo
     load_model_from_geo /*model*/ MODEL_STAR,                    /*geo*/ star_geo
     load_model_from_geo /*model*/ MODEL_TRANSPARENT_STAR,        /*geo*/ transparent_star_geo
     load_model_from_geo /*model*/ MODEL_WOODEN_SIGNPOST,         /*geo*/ wooden_signpost_geo
-    load_model_from_dl  /*model*/ MODEL_SMALL_SNOW_BALL,         /*dl*/  small_snow_ball_dl,          /*layer*/ LAYER_ALPHA
+    load_model_from_dl  /*model*/ MODEL_WHITE_PARTICLE_SMALL,    /*dl*/  white_particle_small_dl,     /*layer*/ LAYER_ALPHA
     load_model_from_geo /*model*/ MODEL_RED_FLAME,               /*geo*/ red_flame_geo
     load_model_from_geo /*model*/ MODEL_BLUE_FLAME,              /*geo*/ blue_flame_geo
     load_model_from_geo /*model*/ MODEL_BURN_SMOKE,              /*geo*/ burn_smoke_geo
     load_model_from_geo /*model*/ MODEL_LEAVES,                  /*geo*/ leaves_geo
     load_model_from_geo /*model*/ MODEL_PURPLE_MARBLE,           /*geo*/ purple_marble_geo
     load_model_from_geo /*model*/ MODEL_FISH,                    /*geo*/ fish_geo
-    load_model_from_geo /*model*/ MODEL_FISH_2,                  /*geo*/ fish2_geo
+    load_model_from_geo /*model*/ MODEL_FISH_SHADOW,             /*geo*/ fish_shadow_geo
     load_model_from_geo /*model*/ MODEL_SPARKLES_ANIMATION,      /*geo*/ sparkles_animation_geo
     load_model_from_dl  /*model*/ MODEL_SAND_DUST,               /*dl*/  sand_seg3_dl_0302BCD0,       /*layer*/ LAYER_ALPHA
     load_model_from_geo /*model*/ MODEL_BUTTERFLY,               /*geo*/ butterfly_geo
-    load_model_from_geo /*model*/ MODEL_BURN_SMOKE_COPY,         /*geo*/ burn_smoke_geo
+    load_model_from_geo /*model*/ MODEL_BURN_SMOKE_UNUSED,       /*geo*/ burn_smoke_geo
     load_model_from_dl  /*model*/ MODEL_PEBBLE,                  /*dl*/  pebble_seg3_dl_0301CB00,     /*layer*/ LAYER_ALPHA
     load_model_from_geo /*model*/ MODEL_MIST,                    /*geo*/ mist_geo
     load_model_from_geo /*model*/ MODEL_WHITE_PUFF,              /*geo*/ white_puff_geo
-    load_model_from_dl  /*model*/ MODEL_SNOWMAN_SNOW_BALL_DL,    /*dl*/  snowman_snow_ball_dl,        /*layer*/ LAYER_ALPHA
-    load_model_from_geo /*model*/ MODEL_SNOWMAN_SNOW_BALL,       /*geo*/ snowman_snow_ball_geo
+    load_model_from_dl  /*model*/ MODEL_WHITE_PARTICLE_DL,       /*dl*/  white_particle_dl,           /*layer*/ LAYER_ALPHA
+    load_model_from_geo /*model*/ MODEL_WHITE_PARTICLE,          /*geo*/ white_particle_geo
     load_model_from_geo /*model*/ MODEL_YELLOW_COIN_NO_SHADOW,   /*geo*/ yellow_coin_no_shadow_geo
     load_model_from_geo /*model*/ MODEL_BLUE_COIN,               /*geo*/ blue_coin_geo
     load_model_from_geo /*model*/ MODEL_BLUE_COIN_NO_SHADOW,     /*geo*/ blue_coin_no_shadow_geo
@@ -267,7 +267,7 @@ glabel script_func_global_1
     load_model_from_geo /*model*/ MODEL_HEART,                   /*geo*/ heart_geo
     load_model_from_geo /*model*/ MODEL_FLYGUY,                  /*geo*/ flyguy_geo
     load_model_from_geo /*model*/ MODEL_CHUCKYA,                 /*geo*/ chuckya_geo
-    load_model_from_geo /*model*/ MODEL_BOWLING_BALL_2,          /*geo*/ bowling_ball2_geo
+    load_model_from_geo /*model*/ MODEL_BOWLING_BALL_TRACK,      /*geo*/ bowling_ball_track_geo
     return
 
 glabel script_func_global_2
@@ -304,8 +304,8 @@ glabel script_func_global_6
     load_model_from_geo /*model*/ MODEL_POKEY_BODY_PART,         /*geo*/ pokey_body_part_geo
     load_model_from_geo /*model*/ MODEL_TORNADO,                 /*geo*/ tornado_seg5_geo_05014630
     load_model_from_geo /*model*/ MODEL_KLEPTO,                  /*geo*/ klepto_geo
-    load_model_from_geo /*model*/ MODEL_EYEROK,                  /*geo*/ eyerok_geo
-    load_model_from_geo /*model*/ MODEL_EYEROK_2,                /*geo*/ eyerok2_geo
+    load_model_from_geo /*model*/ MODEL_EYEROK_LEFT_HAND,        /*geo*/ eyerok_left_hand_geo
+    load_model_from_geo /*model*/ MODEL_EYEROK_RIGHT_HAND,       /*geo*/ eyerok_right_hand_geo
     return
 
 glabel script_func_global_7
@@ -349,13 +349,13 @@ glabel script_func_global_12
     load_model_from_geo /*model*/ MODEL_SPINY_BALL,              /*geo*/ spiny_ball_geo
     load_model_from_geo /*model*/ MODEL_SPINY,                   /*geo*/ spiny_geo
     load_model_from_geo /*model*/ MODEL_WIGGLER,                 /*geo*/ wiggler_geo
-    load_model_from_geo /*model*/ MODEL_WIGGLER_BODY_PART,       /*geo*/ wiggler2_geo
+    load_model_from_geo /*model*/ MODEL_WIGGLER_BODY_PART,       /*geo*/ wiggler_body_part_geo
     load_model_from_geo /*model*/ MODEL_BUBBA,                   /*geo*/ bubba_geo
     return
 
 glabel script_func_global_13
     load_model_from_geo /*model*/ MODEL_BOWSER,                  /*geo*/ bowser_geo
-    load_model_from_geo /*model*/ MODEL_BOWSER_BOMB2,            /*geo*/ bowser_bomb_geo
+    load_model_from_geo /*model*/ MODEL_BOWSER_BOMB_CHILD_OBJ,   /*geo*/ bowser_bomb_geo
     load_model_from_geo /*model*/ MODEL_BOWSER_BOMB,             /*geo*/ bowser_bomb_geo
     load_model_from_geo /*model*/ MODEL_BOWSER_SMOKE,            /*geo*/ bowser_impact_smoke_geo
     load_model_from_geo /*model*/ MODEL_BOWSER_FLAMES,           /*geo*/ bowser_flames_geo
@@ -393,8 +393,8 @@ glabel script_func_global_16
     return
 
 glabel script_func_global_17
-    load_model_from_geo /*model*/ MODEL_CHILL_BULLY,             /*geo*/ chilly_chief_seg6_geo
-    load_model_from_geo /*model*/ MODEL_BIG_CHILL_BULLY,         /*geo*/ chilly_chief_seg6_geo2
+    load_model_from_geo /*model*/ MODEL_CHILL_BULLY,             /*geo*/ chilly_chief_geo
+    load_model_from_geo /*model*/ MODEL_BIG_CHILL_BULLY,         /*geo*/ chilly_chief_big_geo
     load_model_from_geo /*model*/ MODEL_MONEYBAG,                /*geo*/ moneybag_geo
     return
 

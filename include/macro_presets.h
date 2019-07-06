@@ -53,8 +53,8 @@ struct MacroPreset MacroObjectPresets[] = {
     {bhvGoomba, MODEL_GOOMBA, 0},
     {bhvAmpHoming, MODEL_AMP, 0},
     {bhvAmpCircling, MODEL_AMP, 0},
-    {bhvCarrySomething1, 0x007D, 0}, // unused
-    {bhvBetaTrampoline, 0x00B5, 0}, // unused
+    {bhvCarrySomething1, MODEL_UNKNOWN_7D, 0}, // unused
+    {bhvBetaTrampoline, MODEL_TRAMPOLINE, 0}, // unused
     {bhvFreeBowlingBall, MODEL_BOWLING_BALL, 0}, // unused
     {bhvSnufit, MODEL_SNUFIT, 0},
     {bhvRecoveryHeart, MODEL_HEART, 0},
@@ -335,7 +335,7 @@ struct MacroPreset MacroObjectPresets[] = {
     {bhvTTCCog, MODEL_TTC_ROTATING_HEXAGON, 0},
     {bhvTTCCog, MODEL_TTC_ROTATING_TRIANGLE, 2},
     {bhvTTCPitBlock, MODEL_TTC_PIT_BLOCK, 0},
-    {bhvTTCPitBlock, MODEL_TTC_PIT_BLOCK_2, 1}, // unused
+    {bhvTTCPitBlock, MODEL_TTC_PIT_BLOCK_UNUSED, 1}, // unused
     {bhvTTCElevator, MODEL_TTC_ELEVATOR_PLATFORM, 0},
     {bhvTTC2DRotator, MODEL_TTC_CLOCK_HAND, 0},
     {bhvTTCSpinner, MODEL_TTC_SPINNER, 0},
@@ -365,7 +365,7 @@ struct MacroPreset MacroObjectPresets[] = {
     {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
     {bhvSlidingPlatform2, MODEL_BITS_SLIDING_PLATFORM, 0}, // unused
     {bhvSlidingPlatform2, MODEL_BITS_TWIN_SLIDING_PLATFORMS, 0}, // unused
-    {bhvAnotherTiltingPlatform, 0x0038, 0}, // unused
+    {bhvAnotherTiltingPlatform, MODEL_BITDW_SLIDING_PLATFORM, 0}, // unused
     {bhvOctagonalPlatformRotating, MODEL_BITS_OCTAGONAL_PLATFORM, 0}, // unused
     {bhvAnimatesOnFloorSwitchPress, MODEL_BITS_STAIRCASE, 0}, // unused
     {bhvYellowCoin, MODEL_YELLOW_COIN, 0},

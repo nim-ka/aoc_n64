@@ -49,7 +49,7 @@ void bhv_snow_leaf_particle_spawn_init(void)
     {
         if(RandomFloat() < 0.5)
         {
-            obj = spawn_object(o,MODEL_SNOWMAN_SNOW_BALL_DL,bhvTreeSnow);
+            obj = spawn_object(o,MODEL_WHITE_PARTICLE_DL,bhvTreeSnow);
             scale = RandomFloat();
             scale_object_xyz(obj,scale,scale,scale);
             obj->oMoveAngleYaw = RandomU16();

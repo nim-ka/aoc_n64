@@ -63,34 +63,34 @@
 .set MODEL_COURTYARD_SPIKY_TREE,                0x18        # spiky_tree_geo
 .set MODEL_CCM_SNOW_TREE,                       0x19        # snow_tree_geo
 .set MODEL_SL_SNOW_TREE,                        0x19        # snow_tree_geo
-# find me
+.set MODEL_UNKNOWN_TREE_1A,                     0x1A        # referenced in special presets, undefined
 .set MODEL_SSL_PALM_TREE,                       0x1B        # palm_tree_geo
-.set MODEL_CASTLE_CASTLE_DOOR2,                 0x1C        # castle_door_geo # unused
-.set MODEL_CASTLE_WOODEN_DOOR2,                 0x1D        # wooden_door_geo # unused
+.set MODEL_CASTLE_CASTLE_DOOR_UNUSED,           0x1C        # castle_door_geo - unused, original id
+.set MODEL_CASTLE_WOODEN_DOOR_UNUSED,           0x1D        # wooden_door_geo - unused, original id
 .set MODEL_BBH_HAUNTED_DOOR,                    0x1D        # haunted_door_geo
 .set MODEL_HMC_WOODEN_DOOR,                     0x1D        # wooden_door_geo
-# find me
+.set MODEL_UNKNOWN_DOOR_1E,                     0x1E        # referenced in special presets, undefined
 .set MODEL_HMC_METAL_DOOR,                      0x1F        # metal_door_geo
 .set MODEL_HMC_HAZY_MAZE_DOOR,                  0x20        # hazy_maze_door_geo
-# find me
+.set MODEL_UNKNOWN_DOOR_21,                     0x21        # referenced in special presets, undefined
 .set MODEL_CASTLE_DOOR_0_STARS,                 0x22        # castle_door_0_star_geo
 .set MODEL_CASTLE_DOOR_1_STAR,                  0x23        # castle_door_1_star_geo
 .set MODEL_CASTLE_DOOR_3_STARS,                 0x24        # castle_door_3_stars_geo
 .set MODEL_CASTLE_KEY_DOOR,                     0x25        # key_door_geo
-.set MODEL_CASTLE_CASTLE_DOOR,                  0x26        # castle_door_geo
-.set MODEL_CASTLE_GROUNDS_CASTLE_DOOR,          0x26        # castle_door_geo
+.set MODEL_CASTLE_CASTLE_DOOR,                  0x26        # castle_door_geo - used duplicate
+.set MODEL_CASTLE_GROUNDS_CASTLE_DOOR,          0x26        # castle_door_geo - used duplicate
 .set MODEL_CASTLE_WOODEN_DOOR,                  0x27        # wooden_door_geo
 .set MODEL_COURTYARD_WOODEN_DOOR,               0x27        # wooden_door_geo
 .set MODEL_CCM_CABIN_DOOR,                      0x27        # cabin_door_geo
-# find me
+.set MODEL_UNKNOWN_DOOR_28,                     0x28        # referenced in special presets, undefined
 .set MODEL_CASTLE_METAL_DOOR,                   0x29        # metal_door_geo
 .set MODEL_CASTLE_GROUNDS_METAL_DOOR,           0x29        # metal_door_geo
-# find me
-# find me
-.set MODEL_WF_TOWER_TRAPEZOID_PLATORM,          0x2C        # wf_geo_000AF8 # unused
+.set MODEL_UNKNOWN_DOOR_2A,                     0x2A        # referenced in special presets, undefined
+.set MODEL_UNKNOWN_DOOR_2B,                     0x2B        # referenced in special presets, undefined
+.set MODEL_WF_TOWER_TRAPEZOID_PLATORM,          0x2C        # wf_geo_000AF8 - unused
 .set MODEL_WF_TOWER_SQUARE_PLATORM,             0x2D        # wf_geo_000B10
-.set MODEL_WF_TOWER_SQUARE_PLATORM_FRAME1,      0x2E        # wf_geo_000B38 # elevator platorm
-.set MODEL_WF_TOWER_SQUARE_PLATORM_FRAME2,      0x2F        # wf_geo_000B60 # elevator platorm
+.set MODEL_WF_TOWER_SQUARE_PLATORM_UNUSED,      0x2E        # wf_geo_000B38 - unused & duplicated
+.set MODEL_WF_TOWER_SQUARE_PLATORM_ELEVATOR,    0x2F        # wf_geo_000B60 - elevator platorm
 
 # level model IDs
 
@@ -104,7 +104,7 @@
 .set MODEL_BBH_MERRY_GO_ROUND,                  0x3B        # geo_bbh_000640
 .set MODEL_BBH_WOODEN_TOMB,                     0x3C        # geo_bbh_000658
 
-# ccm                                           
+# ccm
 .set MODEL_CCM_ROPEWAY_LIFT,                    0x36        # ccm_geo_0003D0
 .set MODEL_CCM_SNOWMAN_HEAD,                    0x37        # ccm_geo_00040C
 
@@ -115,31 +115,31 @@
 .set MODEL_CASTLE_CLOCK_HOUR_HAND,              0x38        # castle_geo_001548
 .set MODEL_CASTLE_CLOCK_PENDULUM,               0x39        # castle_geo_001518
 
-# hmc                                           
+# hmc
 .set MODEL_HMC_METAL_PLATFORM,                  0x36        # hmc_geo_0005A0
 .set MODEL_HMC_METAL_ARROW_PLATFORM,            0x37        # hmc_geo_0005B8
 .set MODEL_HMC_ELEVATOR_PLATFORM,               0x38        # hmc_geo_0005D0
 .set MODEL_HMC_ROLLING_ROCK,                    0x39        # hmc_geo_000548
-.set MODEL_HMC_ROCK_PIECE,                      0x3A        # hmc_geo_000570 # unused
-.set MODEL_HMC_ROCK_SMALL_PIECE,                0x3B        # hmc_geo_000588 # unused
+.set MODEL_HMC_ROCK_PIECE,                      0x3A        # hmc_geo_000570 - unused
+.set MODEL_HMC_ROCK_SMALL_PIECE,                0x3B        # hmc_geo_000588 - unused
 .set MODEL_HMC_RED_GRILLS,                      0x3C        # hmc_geo_000530
 
-# ssl                                           
+# ssl
 .set MODEL_SSL_PYRAMID_TOP,                     0x3A        # ssl_geo_000618
 .set MODEL_SSL_GRINDEL,                         0x36        # ssl_geo_000734
 .set MODEL_SSL_SPINDEL,                         0x37        # ssl_geo_000764
 .set MODEL_SSL_MOVING_PYRAMID_WALL,             0x38        # ssl_geo_000794
 .set MODEL_SSL_PYRAMID_ELEVATOR,                0x39        # ssl_geo_0007AC
 
-# bob                                           
+# bob
 .set MODEL_BOB_CHAIN_CHOMP_GATE,                0x36        # bob_geo_000440
 .set MODEL_BOB_SEESAW_PLATFORM,                 0x37        # bob_geo_000458
 .set MODEL_BOB_BARS_GRILLS,                     0x38        # bob_geo_000470
 
-# sl                                            
+# sl
 .set MODEL_SL_SNOW_TRIANGLE,                    0x36        # sl_geo_000390
-.set MODEL_SL_CRACKED_ICE,                      0x37        # sl_geo_000360 # unused
-.set MODEL_SL_CRACKED_ICE_CHUNK,                0x38        # sl_geo_000378 # unused
+.set MODEL_SL_CRACKED_ICE,                      0x37        # sl_geo_000360 - unused
+.set MODEL_SL_CRACKED_ICE_CHUNK,                0x38        # sl_geo_000378 - unused
 
 # wdw
 .set MODEL_WDW_SQUARE_FLOATING_PLATFORM,        0x36        # wdw_geo_000580
@@ -176,8 +176,8 @@
 .set MODEL_TTC_PUSH_BLOCK,                      0x3B        # ttc_geo_0002C8
 .set MODEL_TTC_ROTATING_HEXAGON,                0x3C        # ttc_geo_0002E0
 .set MODEL_TTC_ROTATING_TRIANGLE,               0x3D        # ttc_geo_0002F8
-.set MODEL_TTC_PIT_BLOCK,                       0x3E        # ttc_geo_000310
-.set MODEL_TTC_PIT_BLOCK_2,                     0x3F        # ttc_geo_000328
+.set MODEL_TTC_PIT_BLOCK,                       0x3E        # ttc_geo_000310 - has 2 vertical stripes
+.set MODEL_TTC_PIT_BLOCK_UNUSED,                0x3F        # ttc_geo_000328 - has 3 vertical stripes, unused
 .set MODEL_TTC_ELEVATOR_PLATFORM,               0x40        # ttc_geo_000340
 .set MODEL_TTC_CLOCK_HAND,                      0x41        # ttc_geo_000358
 .set MODEL_TTC_SPINNER,                         0x42        # ttc_geo_000370
@@ -189,10 +189,10 @@
 .set MODEL_RR_FLYING_CARPET,                    0x37        # rr_geo_000848
 .set MODEL_RR_OCTAGONAL_PLATFORM,               0x38        # rr_geo_0008A8
 .set MODEL_RR_ROTATING_BRIDGE_PLATFORM,         0x39        # rr_geo_000878
-.set MODEL_RR_TRIANGLE_PLATFORM,                0x3A        # rr_geo_0008D8 # unused
+.set MODEL_RR_TRIANGLE_PLATFORM,                0x3A        # rr_geo_0008D8 - unused
 .set MODEL_RR_CRUISER_WING,                     0x3B        # rr_geo_000890
 .set MODEL_RR_SEESAW_PLATFORM,                  0x3C        # rr_geo_000908
-.set MODEL_RR_L_SHAPED_PLATFORM,                0x3D        # rr_geo_000940 # unused
+.set MODEL_RR_L_SHAPED_PLATFORM,                0x3D        # rr_geo_000940 - unused
 .set MODEL_RR_SWINGING_PLATFORM,                0x3E        # rr_geo_000860
 .set MODEL_RR_DONUT_PLATFORM,                   0x3F        # rr_geo_000920
 .set MODEL_RR_ELEVATOR_PLATFORM,                0x40        # rr_geo_0008F0
@@ -216,7 +216,9 @@
 
 # vcutm
 .set MODEL_VCUTM_SEESAW_PLATFORM,               0x36        # vcutm_geo_0001F0
-.set MODEL_VCUTM_CHECKERBOARD_PLATFORM_SPAWNER, 0x37        #! this object doesn't have a geo associated with it, yet is placed in vcutm. This causes a crash when the player quickly looks towards the checkerboard platforms after spawning but before it is unloaded.
+.set MODEL_VCUTM_CHECKERBOARD_PLATFORM_SPAWNER, 0x37        #! this object doesn't have a geo associated with it, yet is placed in vcutm.
+                                                            #  This causes a crash when the player quickly looks towards the
+                                                            #  checkerboard platforms after spawning but before it is unloaded.
 
 # bitfs
 .set MODEL_BITFS_PLATFORM_ON_TRACK,             0x36        # bitfs_geo_000758
@@ -351,8 +353,8 @@
 .set MODEL_POKEY_BODY_PART,                     0x55        # pokey_body_part_geo
 .set MODEL_TORNADO,                             0x56        # tornado_seg5_geo_05014630
 .set MODEL_KLEPTO,                              0x57        # klepto_geo
-.set MODEL_EYEROK,                              0x58        # eyerok_geo
-.set MODEL_EYEROK_2,                            0x59        # eyerok2_geo
+.set MODEL_EYEROK_LEFT_HAND,                    0x58        # eyerok_left_hand_geo
+.set MODEL_EYEROK_RIGHT_HAND,                   0x59        # eyerok_right_hand_geo
 
 # group 6
 .set MODEL_DL_MONTY_MOLE_HOLE,                  0x54        # monty_mole_hole_seg5_dl_05000840
@@ -389,7 +391,7 @@
 .set MODEL_SPINY_BALL,                          0x55        # spiny_ball_geo
 .set MODEL_SPINY,                               0x56        # spiny_geo
 .set MODEL_WIGGLER,                             0x57        # wiggler_geo
-.set MODEL_WIGGLER_BODY_PART,                   0x58        # wiggler2_geo
+.set MODEL_WIGGLER_BODY_PART,                   0x58        # wiggler_body_part_geo
 .set MODEL_BUBBA,                               0x59        # bubba_geo
 
 # referenced in macro presets. Unknown usage.
@@ -398,12 +400,12 @@
 
 # second set of actor bins, (0x64-0x73)
 # group 12
-.set MODEL_BOWSER,                              0x64        # bowser_geo
-.set MODEL_BOWSER_BOMB2,                        0x65        # bowser_bomb_geo
+.set MODEL_BOWSER,                              0x64        # bowser_geo - 2nd geo loaded is bowser_geo_000424, starts with shadow command
+.set MODEL_BOWSER_BOMB_CHILD_OBJ,               0x65        # bowser_bomb_geo - Spawns as a chill object in bowser's behavior command, causing an explosion if it touches a bomb
 .set MODEL_BOWSER_SMOKE,                        0x66        # bowser_impact_smoke_geo
 .set MODEL_BOWSER_FLAMES,                       0x67        # bowser_flames_geo
 .set MODEL_BOWSER_WAVE,                         0x68        # invisible_bowser_accessory_geo
-.set MODEL_BOWSER2,                             0x69        # bowser2_geo
+.set MODEL_BOWSER2,                             0x69        # bowser2_geo - 2nd geo loaded is bowser_geo_000770, starts with node command, only difference
 
 # group 13
 .set MODEL_BUB,                                 0x64        # bub_geo
@@ -422,17 +424,17 @@
 .set MODEL_KOOPA_FLAG,                          0x6A        # koopa_flag_geo
 .set MODEL_WOODEN_POST,                         0x6B        # wooden_post_geo
 
-# group 15                                      
+# group 15
 .set MODEL_MIPS,                                0x64        # mips_geo
 .set MODEL_BOO_CASTLE,                          0x65        # boo_castle_geo
 .set MODEL_LAKITU,                              0x66        # lakitu_geo
 
-# group 16                                      
-.set MODEL_CHILL_BULLY,                         0x64        # chilly_chief_seg6_geo
-.set MODEL_BIG_CHILL_BULLY,                     0x65        # chilly_chief_seg6_geo2
+# group 16
+.set MODEL_CHILL_BULLY,                         0x64        # chilly_chief_geo
+.set MODEL_BIG_CHILL_BULLY,                     0x65        # chilly_chief_big_geo
 .set MODEL_MONEYBAG,                            0x66        # moneybag_geo
 
-# group 17                                      
+# group 17
 .set MODEL_SWOOP,                               0x64        # swoop_geo
 .set MODEL_SCUTTLEBUG,                          0x65        # scuttlebug_geo
 .set MODEL_MR_I_IRIS,                           0x66        # mr_i_iris_geo
@@ -449,7 +451,7 @@
 .set MODEL_STAR,                                0x7A        # star_geo
 .set MODEL_TTM_SLIDE_EXIT_PODIUM,               0x7B        # ttm_geo_000DF4
 .set MODEL_WOODEN_SIGNPOST,                     0x7C        # wooden_signpost_geo
-# find me
+.set MODEL_UNKNOWN_7D,                          0x7D        # referenced in macro presets. Unknown usage
 # find me
 .set MODEL_CANNON_BARREL,                       0x7F        # cannon_barrel_geo
 .set MODEL_CANNON_BASE,                         0x80        # cannon_base_geo
@@ -480,23 +482,23 @@
 # find me
 # find me
 # find me
-.set MODEL_BURN_SMOKE_COPY,                     0x9C        # burn_smoke_geo
+.set MODEL_BURN_SMOKE_UNUSED,                   0x9C        # burn_smoke_geo - unused & duplicated
 # find me
-.set MODEL_SNOWMAN_SNOW_BALL_DL,                0x9E        # snowman_snow_ball_dl
+.set MODEL_WHITE_PARTICLE_DL,                   0x9E        # white_particle_dl
 .set MODEL_SAND_DUST,                           0x9F        # sand_seg3_dl_0302BCD0
-.set MODEL_SNOWMAN_SNOW_BALL,                   0xA0        # snowman_snow_ball_geo
+.set MODEL_WHITE_PARTICLE,                      0xA0        # white_particle_geo
 .set MODEL_PEBBLE,                              0xA1        # pebble_seg3_dl_0301CB00
 .set MODEL_LEAVES,                              0xA2        # leaves_geo
 .set MODEL_WATER_WAVES,                         0xA3        # water_waves_geo
-.set MODEL_SMALL_SNOW_BALL,                     0xA4        # small_snow_ball_dl
+.set MODEL_WHITE_PARTICLE_SMALL,                0xA4        # white_particle_small_dl
 .set MODEL_SPOT_ON_GROUND,                      0xA5        # spot_on_ground_geo
-.set MODEL_WATER_WAVES_2,                       0xA6        # water_waves2_geo
+.set MODEL_WATER_WAVES_SURF,                    0xA6        # water_waves_surface_geo
 .set MODEL_WATER_SPLASH,                        0xA7        # water_splash_geo
 .set MODEL_BUBBLE,                              0xA8        # bubble_geo
 # find me
 .set MODEL_PURPLE_MARBLE,                       0xAA        # purple_marble_geo
 # find me
-# find me
+.set MODEL_UNKNOWN_AC,                          0xAC        # According to a special preset, it was the original id of the castle floor trap
 .set MODEL_WF_SLIDING_PLATFORM,                 0xAD        # wf_geo_000A98
 .set MODEL_WF_SMALL_BOMP,                       0xAE        # wf_geo_000A00
 .set MODEL_WF_ROTATING_WOODEN_PLATFORM,         0xAF        # wf_geo_000A58
@@ -506,12 +508,12 @@
 .set MODEL_BOWSER_BOMB,                         0xB3        # bowser_bomb_geo
 .set MODEL_WATER_MINE,                          0xB3        # water_mine_geo
 .set MODEL_BOWLING_BALL,                        0xB4        # bowling_ball_geo
-# find me
-# find me
-# find me
-# find me
-.set MODEL_FISH,                                0xB9        # fish_geo
-.set MODEL_FISH_2,                              0xBA        # fish2_geo
+.set MODEL_TRAMPOLINE,                          0xB5        # unused & undefined in level scripts, referenced in beta_trampoline.inc.c
+.set MODEL_TRAMPOLINE_CENTER,                   0xB6        # unused & undefined in level scripts, referenced in beta_trampoline.inc.c
+.set MODEL_TRAMPOLINE_BASE,                     0xB7        # unused & undefined in level scripts, referenced in beta_trampoline.inc.c
+.set MODEL_UNKNOWN_B8,                          0xB8        # referenced in special presets as a static object. Unknown usage
+.set MODEL_FISH,                                0xB9        # fish_geo - fish without shadow, used
+.set MODEL_FISH_SHADOW,                         0xBA        # fish_shadow_geo - fish with shadow, unused
 .set MODEL_BUTTERFLY,                           0xBB        # butterfly_geo
 .set MODEL_BLACK_BOBOMB,                        0xBC        # black_bobomb_geo
 # find me
@@ -550,26 +552,26 @@
 .set MODEL_PEACH,                               0xDE        # peach_geo
 .set MODEL_CHUCKYA,                             0xDF        # chuckya_geo
 .set MODEL_WHITE_PUFF,                          0xE0        # white_puff_geo
-.set MODEL_BOWLING_BALL_2,                      0xE1        # bowling_ball2_geo
+.set MODEL_BOWLING_BALL_TRACK,                  0xE1        # bowling_ball_track_geo - duplicate used in SSL Pyramid small sized and as a track ball
 
 # Menu Models (overwrites Level Geometry IDs)
-.set MODEL_MAIN_MENU_MARIO_SAVE_BUTTON,        MODEL_LEVEL_GEOMETRY_03        # main_menu_geo_0001D0
-.set MODEL_MAIN_MENU_RED_ERASE_BUTTON,         MODEL_LEVEL_GEOMETRY_04        # main_menu_geo_000290
-.set MODEL_MAIN_MENU_BLUE_COPY_BUTTON,         MODEL_LEVEL_GEOMETRY_05        # main_menu_geo_0002B8
-.set MODEL_MAIN_MENU_YELLOW_FILE_BUTTON,       MODEL_LEVEL_GEOMETRY_06        # main_menu_geo_0002E0
-.set MODEL_MAIN_MENU_GREEN_SCORE_BUTTON,       MODEL_LEVEL_GEOMETRY_07        # main_menu_geo_000308
-.set MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE,   MODEL_LEVEL_GEOMETRY_08        # main_menu_geo_000200
-.set MODEL_MAIN_MENU_MARIO_NEW_BUTTON,         MODEL_LEVEL_GEOMETRY_09        # main_menu_geo_000230
-.set MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE,    MODEL_LEVEL_GEOMETRY_0A        # main_menu_geo_000260
-.set MODEL_MAIN_MENU_PURPLE_SOUND_BUTTON,      MODEL_LEVEL_GEOMETRY_0B        # main_menu_geo_000330
-.set MODEL_MAIN_MENU_GENERIC_BUTTON,           MODEL_LEVEL_GEOMETRY_0C        # main_menu_geo_000358
+.set MODEL_MAIN_MENU_MARIO_SAVE_BUTTON,        MODEL_LEVEL_GEOMETRY_03   # main_menu_geo_0001D0
+.set MODEL_MAIN_MENU_RED_ERASE_BUTTON,         MODEL_LEVEL_GEOMETRY_04   # main_menu_geo_000290
+.set MODEL_MAIN_MENU_BLUE_COPY_BUTTON,         MODEL_LEVEL_GEOMETRY_05   # main_menu_geo_0002B8
+.set MODEL_MAIN_MENU_YELLOW_FILE_BUTTON,       MODEL_LEVEL_GEOMETRY_06   # main_menu_geo_0002E0
+.set MODEL_MAIN_MENU_GREEN_SCORE_BUTTON,       MODEL_LEVEL_GEOMETRY_07   # main_menu_geo_000308
+.set MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE,   MODEL_LEVEL_GEOMETRY_08   # main_menu_geo_000200
+.set MODEL_MAIN_MENU_MARIO_NEW_BUTTON,         MODEL_LEVEL_GEOMETRY_09   # main_menu_geo_000230
+.set MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE,    MODEL_LEVEL_GEOMETRY_0A   # main_menu_geo_000260
+.set MODEL_MAIN_MENU_PURPLE_SOUND_BUTTON,      MODEL_LEVEL_GEOMETRY_0B   # main_menu_geo_000330
+.set MODEL_MAIN_MENU_GENERIC_BUTTON,           MODEL_LEVEL_GEOMETRY_0C   # main_menu_geo_000358
 
 # level model aliases to level geometry IDs. Possibly a relic from an older level
 # format that used to rely on level geometry objects. (seen in WF, LLL, etc)
-.set MODEL_LLL_ROTATING_HEXAGONAL_PLATFORM, MODEL_LEVEL_GEOMETRY_09   # lll_geo_000A78
-.set MODEL_WF_GIANT_POLE,                   MODEL_LEVEL_GEOMETRY_0D   # wf_geo_000AE0
-.set MODEL_WF_ROTATING_PLATFORM,            MODEL_LEVEL_GEOMETRY_10   # wf_geo_0009B8
-.set MODEL_BITDW_WARP_PIPE,                 MODEL_LEVEL_GEOMETRY_12   # warp_pipe_geo
-.set MODEL_THI_WARP_PIPE,                   MODEL_LEVEL_GEOMETRY_16   # warp_pipe_geo
-.set MODEL_VCUTM_WARP_PIPE,                 MODEL_LEVEL_GEOMETRY_16   # warp_pipe_geo
-.set MODEL_CASTLE_GROUNDS_WARP_PIPE,        MODEL_LEVEL_GEOMETRY_16   # warp_pipe_geo
+.set MODEL_LLL_ROTATING_HEXAGONAL_PLATFORM,    MODEL_LEVEL_GEOMETRY_09   # lll_geo_000A78
+.set MODEL_WF_GIANT_POLE,                      MODEL_LEVEL_GEOMETRY_0D   # wf_geo_000AE0
+.set MODEL_WF_ROTATING_PLATFORM,               MODEL_LEVEL_GEOMETRY_10   # wf_geo_0009B8
+.set MODEL_BITDW_WARP_PIPE,                    MODEL_LEVEL_GEOMETRY_12   # warp_pipe_geo
+.set MODEL_THI_WARP_PIPE,                      MODEL_LEVEL_GEOMETRY_16   # warp_pipe_geo
+.set MODEL_VCUTM_WARP_PIPE,                    MODEL_LEVEL_GEOMETRY_16   # warp_pipe_geo
+.set MODEL_CASTLE_GROUNDS_WARP_PIPE,           MODEL_LEVEL_GEOMETRY_16   # warp_pipe_geo

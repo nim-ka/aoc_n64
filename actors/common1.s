@@ -25,6 +25,6 @@ actor star
 actor sand
 actor dirt
 actor transparent_star
-actor snowball
+actor white_particle
 actor wooden_signpost
 actor tree

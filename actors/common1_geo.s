@@ -41,6 +41,6 @@ actorgeo mushroom_1up
 actorgeo star
 actorgeo dirt
 actorgeo transparent_star
-actorgeo snowball
+actorgeo white_particle
 actorgeo wooden_signpost
 actorgeo tree

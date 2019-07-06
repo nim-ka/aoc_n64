@@ -95,7 +95,7 @@ void ActionCheepCheep2(void)
     if(o->oTimer < 20)
     {
         if(o->oInteractStatus & INT_STATUS_INTERACTED)
-            spawn_object(o,MODEL_SMALL_SNOW_BALL,bhvSmallParticleSnow);
+            spawn_object(o,MODEL_WHITE_PARTICLE_SMALL,bhvSmallParticleSnow);
     }
     else
         o->oInteractStatus = 0;

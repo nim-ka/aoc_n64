@@ -292,7 +292,7 @@ static void platform_on_track_update_pos_or_spawn_ball(s32 ballIndex, f32 x, f32
                 o->oPlatformOnTrackBaseBallIndex + ballIndex,
                 0, 0, 0,
                 o,
-                MODEL_BOWLING_BALL_2,
+                MODEL_BOWLING_BALL_TRACK,
                 bhvTrackBall);
 
             if (trackBall != NULL)
@@ -3049,7 +3049,7 @@ void BehBubbaLoop(void)
             {
                 sp36 = RandomU16();
                 o->oBubbaUnk10C -= 1.0f;
-                spawn_object_relative(0, 150.0f * coss(sp36), 0x64, 150.0f * sins(sp36), o, MODEL_SMALL_SNOW_BALL, bhvSmallParticleSnow);
+                spawn_object_relative(0, 150.0f * coss(sp36), 0x64, 150.0f * sins(sp36), o, MODEL_WHITE_PARTICLE_SMALL, bhvSmallParticleSnow);
             }
         }
 

@@ -1840,7 +1840,7 @@ glabel bhvBowser # 1850
     obj_set_pos
     obj_set_int32 objAnimations, bowser_seg6_anims_06057690
     obj_child MODEL_NONE, bhvBowserBodyAnchor
-    obj_child MODEL_BOWSER_BOMB2, bhvBowserFlameSpawn
+    obj_child MODEL_BOWSER_BOMB_CHILD_OBJ, bhvBowserFlameSpawn
     obj_spawn MODEL_NONE, bhvBowserTailAnchor
     obj_set_int objNumLootCoins, 0x0032
     gravity 0x0000, 0xFE70, 0xFFBA, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000

@@ -33,7 +33,7 @@ glabel level_ttc_entry
     load_model_from_geo /*model*/ MODEL_TTC_ROTATING_HEXAGON,  /*geo*/ ttc_geo_0002E0
     load_model_from_geo /*model*/ MODEL_TTC_ROTATING_TRIANGLE, /*geo*/ ttc_geo_0002F8
     load_model_from_geo /*model*/ MODEL_TTC_PIT_BLOCK,         /*geo*/ ttc_geo_000310
-    load_model_from_geo /*model*/ MODEL_TTC_PIT_BLOCK_2,       /*geo*/ ttc_geo_000328
+    load_model_from_geo /*model*/ MODEL_TTC_PIT_BLOCK_UNUSED,  /*geo*/ ttc_geo_000328
     load_model_from_geo /*model*/ MODEL_TTC_ELEVATOR_PLATFORM, /*geo*/ ttc_geo_000340
     load_model_from_geo /*model*/ MODEL_TTC_CLOCK_HAND,        /*geo*/ ttc_geo_000358
     load_model_from_geo /*model*/ MODEL_TTC_SPINNER,           /*geo*/ ttc_geo_000370

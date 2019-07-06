@@ -12,7 +12,7 @@ glabel bowling_ball_geo # 0x0F000640
    geo_close_node
    geo_end
 
-glabel bowling_ball2_geo # 0x0F00066C
+glabel bowling_ball_track_geo # 0x0F00066C
    geo_node_start
    geo_open_node
       geo_scale 0x00, 170393

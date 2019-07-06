@@ -121,7 +121,7 @@ struct SpawnParticlesInfo D_8032F3E0 = {0,5,MODEL_SAND_DUST,0,0,20,20,0,252,30,5
 
 s16 D_8032F3F4[] = {2,-8,1,4};
 
-struct SpawnParticlesInfo D_8032F3FC = {0,5,MODEL_SNOWMAN_SNOW_BALL_DL,0,0,20,20,0,252,30,2.0f,2.0f};
+struct SpawnParticlesInfo D_8032F3FC = {0,5,MODEL_WHITE_PARTICLE_DL,0,0,20,20,0,252,30,2.0f,2.0f};
 
 void bhv_elevator_loop(void)
 {

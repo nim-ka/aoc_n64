@@ -1,5 +1,5 @@
 # Why are these scripts compressed unlike the other ones?
-glabel chilly_chief_seg6_geo # 0x06003754
+glabel chilly_chief_geo # 0x06003754
     geo_shadow SHADOW_CIRCLE_4_VERTS, 0xC8, 0x46
     geo_open_node
       geo_scale 0, 0x7333
@@ -43,7 +43,7 @@ glabel chilly_chief_seg6_geo # 0x06003754
     geo_close_node
     geo_end
  
-glabel chilly_chief_seg6_geo2 # 0x06003874
+glabel chilly_chief_big_geo # 0x06003874
     geo_shadow SHADOW_CIRCLE_4_VERTS, 0xC8, 0xD2
     geo_open_node
 	  geo_scale 0, 0xE666
