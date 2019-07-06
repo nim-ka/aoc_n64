@@ -140,7 +140,6 @@
 #define TERRAIN_SPOOKY  0x0004
 #define TERRAIN_WATER   0x0005
 #define TERRAIN_SLIDE   0x0006
-#define TERRAIN_METAL   0x0007
 
 #define INPUT_NONZERO_ANALOG         0x0001
 #define INPUT_A_PRESSED              0x0002
