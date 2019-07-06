@@ -911,6 +911,32 @@
 .endm
 
 /*
+ * gDPLoadTextureBlock_4b is a macro that allows you to easily load a 4-bit texture in the Fast3D family of ucodes.
+ * Parameters:
+ * timg = label to the texture data
+ * fmt  = image format (G_IM_FMT_RGBA, G_IM_FMT_CI, G_IM_FMT_IA, G_IM_FMT_I, or G_IM_FMT_YUV)
+ * width = width of the texture in pixels
+ * height = height of the texture in pixels
+ * pal = palette id to use if using G_IM_FMT_CI, otherwise it should be 0.
+ * cms = Clamp & Mirror flags for the S axis
+ * cmt = Clamp & Mirror flags for the T axis
+ * masks = Sets how much of the S axis is shown before clamping. This is usually just log2(width).
+ * maskt = Sets how much of the T axis is shown before clamping. This is usually just log2(height).
+ * shifts = Sets the amount to shift S axis values after perspective division. This is usually G_TX_NOLOD.
+ * shiftt = Sets the amount to shift T axis values after perspective division. This is usually G_TX_NOLOD.
+ */
+
+.macro gsDPLoadTextureBlock_4b timg, fmt, width, height, pal, cms, cmt, masks, maskt, shifts, shiftt
+    gsDPSetTextureImage \fmt, G_IM_SIZ_16b, 1, \timg
+    gsDPSetTile \fmt, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, \cmt, \maskt, \shiftt, \cms, \masks, \shifts
+    gsDPLoadSync
+    _calc_gsDPLoadBlock4b \width, \height
+    gsDPPipeSync
+    gsDPSetTile \fmt, G_IM_SIZ_4b, ((((\width) >> 1) + 7) >> 3), 0, G_TX_RENDERTILE, \pal, \cmt, \maskt, \shiftt, \cms, \masks, \shifts
+    gsDPSetTileSize G_TX_RENDERTILE, 0, 0, ((\width) - 1) << G_TEXTURE_IMAGE_FRAC, ((\height) - 1) << G_TEXTURE_IMAGE_FRAC
+.endm
+
+/*
  * gSPFogFactor
  * Parameters:
  * fm = z multiplier
