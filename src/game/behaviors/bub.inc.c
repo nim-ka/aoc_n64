@@ -33,11 +33,11 @@ void ActionBirdChirpChirp3(void)
     o->oAction = 0;
 }
 
-void (*TableBirdChirpChirpActions[])(void) = {ActionBirdChirpChirp0,ActionBirdChirpChirp1,ActionBirdChirpChirp2,ActionBirdChirpChirp3};
+void (*sBirdChirpChirpActions[])(void) = {ActionBirdChirpChirp0,ActionBirdChirpChirp1,ActionBirdChirpChirp2,ActionBirdChirpChirp3};
 
 void bhv_bird_chirp_chirp_loop(void)
 {
-    obj_call_action_function(TableBirdChirpChirpActions);
+    obj_call_action_function(sBirdChirpChirpActions);
 }
 
 void func_802C0240(s32 a0)
@@ -126,7 +126,7 @@ void ActionCheepCheep2(void)
             o->oAction = 1;
 }
 
-void (*TableCheepCheepActions[])(void) = {ActionCheepCheep0,ActionCheepCheep1,ActionCheepCheep2};
+void (*sCheepCheepActions[])(void) = {ActionCheepCheep0,ActionCheepCheep1,ActionCheepCheep2};
 
 void bhv_cheep_cheep_loop(void)
 {
@@ -134,7 +134,7 @@ void bhv_cheep_cheep_loop(void)
     o->oCheepCheepUnkF8 = gMarioObject->oPosY + o->oCheepCheepUnkFC;
     o->oWallHitboxRadius = 30.0f;
     obj_update_floor_and_walls();
-    obj_call_action_function(TableCheepCheepActions);
+    obj_call_action_function(sCheepCheepActions);
     obj_move_using_fvel_and_gravity();
     if(o->parentObj->oAction == 2)
         mark_object_for_deletion(o);

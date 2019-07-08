@@ -98,7 +98,7 @@ struct HudDisplay {
 };
 
 extern struct HudDisplay gHudDisplay;
-extern s8 gSaveFileDoesNotExist;
+extern s8 gShouldNotPlayCastleMusic;
 
 enum HUDDisplayFlag {
     HUD_DISPLAY_FLAG_LIVES = 0x0001,

@@ -23,9 +23,8 @@
 #define OBJECT_FIELD_VPTR(index) rawData.asVoidPtr[index]
 #define OBJECT_FIELD_OBJ(index) rawData.asObjPtr[index]
 
-
+// 0x088 (0x00), the first field, is object-specific and defined below the common fields.
 /* Common fields */
-#define /*0x088*/ oUnk88 OBJECT_FIELD_S32(0x00)
 #define /*0x08C*/ oFlags OBJECT_FIELD_U32(0x01)
 #define /*0x090*/ oDialogueResponse OBJECT_FIELD_S16(0x02, 0)
 #define /*0x092*/ oDialogueState OBJECT_FIELD_S16(0x02, 1)
@@ -119,6 +118,7 @@
 #define /*0x1C4*/ oDeathSound OBJECT_FIELD_S32(0x4F)
 
 /* All uses of these should be removed as soon as object type is known */
+#define /*0x088*/ oUnknownUnk88 OBJECT_FIELD_S32(0x00)
 #define /*0x0F4*/ oUnknownUnkF4_S32 OBJECT_FIELD_S32(0x1B)
 #define /*0x0F4*/ oUnknownUnkF4_F32 OBJECT_FIELD_F32(0x1B)
 #define /*0x0FC*/ oUnknownUnkFC_VPtr OBJECT_FIELD_VPTR(0x1D)
@@ -210,9 +210,8 @@
 #define /*0x0F8*/ oWhirlpoolInitFaceRoll OBJECT_FIELD_S32(0x1C)
 
 /* Homing Amp */
-#define /*0x0F4*/ oAmpHomingLockedOn OBJECT_FIELD_S32(0x1B)
-#define /*0x0F8*/ oAmpHomingYPhase OBJECT_FIELD_S32(0x1C)
-#define /*0x0FC*/ oAmpHomingAvgY OBJECT_FIELD_F32(0x1D)
+#define /*0x0F4*/ oHomingAmpLockedOn OBJECT_FIELD_S32(0x1B)
+#define /*0x0FC*/ oHomingAmpAvgY OBJECT_FIELD_F32(0x1D)
 
 /* Amp */
 #define /*0x0F4*/ oAmpRadiusOfRotation OBJECT_FIELD_F32(0x1B)
@@ -336,7 +335,7 @@
 #define /*0x0F4*/ oHeaveHoUnkF4 OBJECT_FIELD_F32(0x1B)
 
 /* BetaTrampoline */
-#define /*0x110*/ oBetaTrampolineUnk110 OBJECT_FIELD_S32(0x22)
+#define /*0x110*/ oBetaTrampolineMarioOnTrampoline OBJECT_FIELD_S32(0x22)
 
 /* JumpingBox */
 #define /*0x0F4*/ oJumpingBoxUnkF4 OBJECT_FIELD_S32(0x1B)
@@ -481,8 +480,8 @@
 #define /*0x0F8*/ oJrbSlidingBoxUnkF8 OBJECT_FIELD_S32(0x1C)
 #define /*0x0FC*/ oJrbSlidingBoxUnkFC OBJECT_FIELD_F32(0x1D)
 
-/* HiddenBlueCoins */
-#define /*0x0F8*/ oHiddenBlueCoinsUnkF8 OBJECT_FIELD_VPTR(0x1C) // coin switch
+/* HiddenBlueCoin */
+#define /*0x0F8*/ oHiddenBlueCoinSwitch OBJECT_FIELD_VPTR(0x1C) // coin switch
 
 /* OpenableGrill */
 #define /*0x0F4*/ oOpenableGrillUnkF4 OBJECT_FIELD_VPTR(0x1B)
@@ -495,19 +494,30 @@
 #define /*0x0F4*/ oTweesterUnkF4 OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ oTweesterUnkF8 OBJECT_FIELD_S32(0x1C)
 
+/* HauntedBookshelf */
+#define /*0x088*/ oHauntedBookshelfShouldOpen OBJECT_FIELD_S32(0x00)
+
 /* Boo */
-#define /*0x0F4*/ oBooUnkF4 OBJECT_FIELD_S32(0x1B)
-#define /*0x0F8*/ oBooUnkF8 OBJECT_FIELD_F32(0x1C)
-#define /*0x0FC*/ oBooUnkFC OBJECT_FIELD_S32(0x1D)
-#define /*0x100*/ oBooUnk100 OBJECT_FIELD_S32(0x1E)
+#define /*0x088*/ oBooDeathStatus OBJECT_FIELD_S32(0x00)
+#define /*0x0F4*/ oBooTargetOpacity OBJECT_FIELD_S32(0x1B)
+#define /*0x0F8*/ oBooBaseScale OBJECT_FIELD_F32(0x1C)
+#define /*0x0FC*/ oBooOscillationTimer OBJECT_FIELD_S32(0x1D)
+#define /*0x100*/ oBooMoveYawAfterHit OBJECT_FIELD_S32(0x1E)
 #define /*0x104*/ oBooUnk104 OBJECT_FIELD_F32(0x1F)
-#define /*0x108*/ oBooUnk108 OBJECT_FIELD_VPTR(0x20)
+#define /*0x108*/ oBooParentBigBoo OBJECT_FIELD_OBJ(0x20)
 #define /*0x10C*/ oBooUnk10C OBJECT_FIELD_F32(0x21)
 #define /*0x110*/ oBooUnk110 OBJECT_FIELD_S32(0x22)
 
-/* RotatingMerryGoRound */
-#define /*0x0F8*/ oRotatingMerryGoRoundUnkF8 OBJECT_FIELD_S32(0x1C)
-#define /*0x0FC*/ oRotatingMerryGoRoundUnkFC OBJECT_FIELD_S32(0x1D)
+/* BigBoo */
+#define /*0x1AC*/ oBigBooNumMinionBoosKilled OBJECT_FIELD_S32(0x49)
+
+/* MerryGoRound */
+#define /*0x088*/ oMerryGoRoundStopped OBJECT_FIELD_S32(0x00)
+#define /*0x0F8*/ oMerryGoRoundMusicShouldPlay OBJECT_FIELD_S32(0x1C)
+#define /*0x0FC*/ oMerryGoRoundMarioIsOutside OBJECT_FIELD_S32(0x1D)
+
+/* MerryGoRoundBooManager */
+#define /*0x088*/ oMerryGoRoundBooManagerNumMinionBoosKilled OBJECT_FIELD_S32(0x00)
 
 /* Scuttlebug */
 #define /*0x0F4*/ oScuttlebugUnkF4 OBJECT_FIELD_S32(0x1B)
@@ -897,8 +907,8 @@
 
 /* Bird */
 #define /*0x0F4*/ oBirdSpeed OBJECT_FIELD_F32(0x1B)
-#define /*0x0F8*/ oBirdPitch OBJECT_FIELD_S32(0x1C)
-#define /*0x0FC*/ oBirdYaw OBJECT_FIELD_S32(0x1D)
+#define /*0x0F8*/ oBirdTargetPitch OBJECT_FIELD_S32(0x1C)
+#define /*0x0FC*/ oBirdTargetYaw OBJECT_FIELD_S32(0x1D)
 
 /* Racing penguin */
 #define /*0x0F4*/ oRacingPenguinInitTextCooldown OBJECT_FIELD_S32(0x1B)
@@ -1001,6 +1011,9 @@
 
 /* FloatingPlatform */
 #define /*0x0F4*/ oFloatingPlatformUnkFC OBJECT_FIELD_S32(0x1B)
+
+/* ArrowLift */
+#define /*0x0F4*/ oArrowLiftDisplacement OBJECT_FIELD_F32(0x1B)
 
 /* FallingPillar */
 #define /*0x0F4*/ oFallingPillarUnkF4 OBJECT_FIELD_F32(0x1B)

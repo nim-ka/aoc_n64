@@ -55,7 +55,7 @@ void bhv_blue_fish_loop(void)
         mark_object_for_deletion(o);
 }
 
-void bhv_tank_fish_groups_loop(void)
+void bhv_tank_fish_group_loop(void)
 {
     struct Object* fish;
     s32 i;

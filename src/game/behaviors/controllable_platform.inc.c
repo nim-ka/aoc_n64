@@ -101,7 +101,7 @@ void func_802F3FD8(s8 sp1B, s8 sp1C[3], Vec3f sp20, UNUSED Vec3f sp24, Vec3f sp2
         }
     }
 
-    if (!IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 400)) {
+    if (!is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 400)) {
         D_80331694 = 6;
         o->oUnknownUnk100_S32 = 1;
         o->oTimer = 0;

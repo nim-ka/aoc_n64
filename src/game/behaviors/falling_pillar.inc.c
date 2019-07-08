@@ -42,7 +42,7 @@ void bhv_falling_pillar_loop(void) {
     s16 sp26;
     switch(o->oAction) {
         case 0:
-            if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 1300)) {
+            if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 1300)) {
                 o->oMoveAngleYaw = o->oAngleToMario;
                 o->oForwardVel = 1.0f;
                 func_802F6308();

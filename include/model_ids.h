@@ -374,7 +374,7 @@
 
 // group 9
 #define MODEL_BOO                         0x54        // boo_geo
-#define MODEL_SMALL_KEY                   0x55        // small_key_geo
+#define MODEL_BETA_BOO_KEY                   0x55        // small_key_geo
 #define MODEL_HAUNTED_CHAIR               0x56        // haunted_chair_geo
 #define MODEL_MAD_PIANO                   0x57        // mad_piano_geo
 #define MODEL_BOOKEND_PART                0x58        // bookend_part_geo
@@ -507,9 +507,9 @@
 #define MODEL_BOWSER_BOMB                 0xB3        // bowser_bomb_geo
 #define MODEL_WATER_MINE                  0xB3        // water_mine_geo
 #define MODEL_BOWLING_BALL                0xB4        // bowling_ball_geo
-#define MODEL_TRAMPOLINE                  0xB5        // unused & undefined in level scripts, referenced in beta_trampoline.inc.c
-#define MODEL_TRAMPOLINE_CENTER           0xB6        // unused & undefined in level scripts, referenced in beta_trampoline.inc.c
-#define MODEL_TRAMPOLINE_BASE             0xB7        // unused & undefined in level scripts, referenced in beta_trampoline.inc.c
+#define MODEL_TRAMPOLINE                  0xB5        // springboard_top_geo (unused)
+#define MODEL_TRAMPOLINE_CENTER           0xB6        // springboard_spring_geo (unused)
+#define MODEL_TRAMPOLINE_BASE             0xB7        // springboard_bottom_geo (unused)
 #define MODEL_UNKNOWN_B8                  0xB8        // referenced in special presets as a static object. Unknown usage
 #define MODEL_FISH                        0xB9        // fish_geo - fish without shadow, used
 #define MODEL_FISH_SHADOW                 0xBA        // fish_shadow_geo - fish with shadow, unused

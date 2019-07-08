@@ -139,5 +139,5 @@ void bhv_star_door_loop_2(void)
     {
         o->header.gfx.node.flags &= ~1;
     }
-    o->oUnk88 = sp4;
+    o->oUnknownUnk88 = sp4;
 }

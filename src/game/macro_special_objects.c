@@ -205,13 +205,13 @@ void spawn_macro_objects_hardcoded(s16 areaIndex, s16* macroObjList)
                 spawn_macro_abs_yrot_2params(MODEL_NONE, bhvBooBossSpawnedBridge, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
                 break;
             case 1:
-                spawn_macro_abs_yrot_2params(MODEL_BBH_TILTING_FLOOR_PLATFORM, bhvBbhTiltFloorPlatforms, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
+                spawn_macro_abs_yrot_2params(MODEL_BBH_TILTING_FLOOR_PLATFORM, bhvBbhTiltingTrapPlatform, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
                 break;
             case 2:
                 spawn_macro_abs_yrot_2params(MODEL_BBH_TUMBLING_PLATFORM, bhvBbhTumblingBridge, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
                 break;
             case 3:
-                spawn_macro_abs_yrot_2params(MODEL_BBH_MOVING_BOOKSHELF, bhvTumblingBookshelf, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
+                spawn_macro_abs_yrot_2params(MODEL_BBH_MOVING_BOOKSHELF, bhvHauntedBookshelf, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
                 break;
             case 4:
                 spawn_macro_abs_yrot_2params(MODEL_BBH_MESH_ELEVATOR, bhvMeshElevator, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);

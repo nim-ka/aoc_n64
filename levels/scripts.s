@@ -330,7 +330,7 @@ glabel script_func_global_9
 
 glabel script_func_global_10
     load_model_from_geo /*model*/ MODEL_BOO,                     /*geo*/ boo_geo
-    load_model_from_geo /*model*/ MODEL_SMALL_KEY,               /*geo*/ small_key_geo
+    load_model_from_geo /*model*/ MODEL_BETA_BOO_KEY,               /*geo*/ small_key_geo
     load_model_from_geo /*model*/ MODEL_HAUNTED_CHAIR,           /*geo*/ haunted_chair_geo
     load_model_from_geo /*model*/ MODEL_MAD_PIANO,               /*geo*/ mad_piano_geo
     load_model_from_geo /*model*/ MODEL_BOOKEND_PART,            /*geo*/ bookend_part_geo

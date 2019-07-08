@@ -32,7 +32,7 @@ void ActionBowserTailAnchor2(void)
     obj_become_intangible();
 }
 
-void (*TableBowserTailAnchorActions[])(void) = {ActionBowserTailAnchor0,ActionBowserTailAnchor1,ActionBowserTailAnchor2};
+void (*sBowserTailAnchorActions[])(void) = {ActionBowserTailAnchor0,ActionBowserTailAnchor1,ActionBowserTailAnchor2};
 s8 D_8032F4FC[] = {7,8,9,12,13,14,15,4,3,16,17,19,3,3,3,3};
 s16 D_8032F50C[] = {60,0};
 s16 D_8032F510[] = {50,0};
@@ -55,7 +55,7 @@ s16 D_8032F520[][3] = {
 
 void bhv_bowser_tail_anchor_loop(void)
 {
-    obj_call_action_function(TableBowserTailAnchorActions);
+    obj_call_action_function(sBowserTailAnchorActions);
     o->oParentRelativePosX = 90.0f;
     if(o->parentObj->oAction == 4)
         o->parentObj->oIntangibleTimer = -1;
@@ -78,7 +78,7 @@ void bhv_bowser_flame_spawn_loop(void)
             sp30 = 0;
         if(sp30 > 45 && sp30 < 85)
         {
-            PlaySound(SOUND_CH6_UNKNOWN000);
+            PlaySound(SOUND_CH6_BOWSERSPITFIRE);
             sp2C = sp1C[5*sp30];
             sp28 = sp1C[5*sp30+2];
             o->oPosX = bowser->oPosX + (sp28 * sp20 + sp2C * sp24);
@@ -182,9 +182,9 @@ s32 func_802B3A98(void)
 
 void func_802B3B0C(void)
 {
-    if(o->oUnk88 == 0)
+    if(o->oUnknownUnk88 == 0)
         o->oAction = 5;
-    else if(o->oUnk88 == 1)
+    else if(o->oUnknownUnk88 == 1)
         o->oAction = 6;
     else if(o->oBehParams2ndByte == 1)
         o->oAction = 13;
@@ -213,8 +213,8 @@ void ActionBowser6(void)
     }
     else if(func_802B3A98())
     {
-        if(o->oUnk88 == 1)
-            o->oUnk88 = 0;
+        if(o->oUnknownUnk88 == 1)
+            o->oUnknownUnk88 = 0;
         func_802B3B0C();
     }
 }
@@ -475,7 +475,7 @@ void ActionBowser8(void) // only in sky
     frame = o->header.gfx.unk38.animFrame;
     if(frame > 24 && frame < 36)
         {
-            PlaySound(SOUND_CH6_UNKNOWN000);
+            PlaySound(SOUND_CH6_BOWSERSPITFIRE);
             if(frame == 35)
                 spawn_object_relative(1,0,0x190,0x64,o,MODEL_RED_FLAME,bhvBlueBowserFlame);
             else
@@ -1152,7 +1152,7 @@ s32 func_802B67C4(void) // bowser off stage?
     return 0;
 }
 
-void (*TableBowserActions[])(void) = {
+void (*sBowserActions[])(void) = {
     ActionBowser0,
     ActionBowser1,
     ActionBowser2,
@@ -1238,7 +1238,7 @@ void func_802B688C(void)
         apply_platform_displacement(0,platform);
     o->oBowserUnk10E = 0;
     obj_update_floor_and_walls();
-    obj_call_action_function(TableBowserActions);
+    obj_call_action_function(sBowserActions);
     obj_move_standard(-78);
     if(func_802B67C4())
         o->oAction = 2; // bowser go home?
@@ -1565,7 +1565,7 @@ void ActionFallingBowserPlatform2(void)
         mark_object_for_deletion(o);
 }
 
-void (*TableFallingBowserPlatformActions[])(void) = {ActionFallingBowserPlatform0,ActionFallingBowserPlatform1,ActionFallingBowserPlatform2};
+void (*sFallingBowserPlatformActions[])(void) = {ActionFallingBowserPlatform0,ActionFallingBowserPlatform1,ActionFallingBowserPlatform2};
 
 struct ObjectHitbox sGrowingBowserFlameHitbox =
 {
@@ -1597,7 +1597,7 @@ f32 D_8032F748[] = {-8.0f,-6.0f,-3.0f};
 
 void bhv_falling_bowser_platform_loop(void)
 {
-    obj_call_action_function(TableFallingBowserPlatformActions);
+    obj_call_action_function(sFallingBowserPlatformActions);
 }
 
 void func_802B7A58(void)

@@ -60,11 +60,11 @@ void ActionFish2(void)
     o->oAction = 0;
 }
 
-void (*TableFishActions[])(void) = {ActionFish0,ActionFish1,ActionFish2};
+void (*sFishActions[])(void) = {ActionFish0,ActionFish1,ActionFish2};
 
 void bhv_fish_loop(void)
 {
-    obj_call_action_function(TableFishActions);
+    obj_call_action_function(sFishActions);
 }
 
 void func_802BF59C(s32 a0)
@@ -170,7 +170,7 @@ void ActionFishGroup0(void)
     o->oAction = 1;
 }
 
-void (*TableFishGroupActions[])(void) = {ActionFishGroup0,ActionFishGroup1,ActionFishGroup2};
+void (*sFishGroupActions[])(void) = {ActionFishGroup0,ActionFishGroup1,ActionFishGroup2};
 
 void bhv_fish_group_2_loop(void) //TODO rename
 {
@@ -191,7 +191,7 @@ void bhv_fish_group_2_loop(void) //TODO rename
     }
     else
         o->oFishGroupUnkF4 = 1000.0f;
-    obj_call_action_function(TableFishGroupActions);
+    obj_call_action_function(sFishGroupActions);
     obj_move_using_fvel_and_gravity();
     if(o->parentObj->oAction == 2)
         mark_object_for_deletion(o);

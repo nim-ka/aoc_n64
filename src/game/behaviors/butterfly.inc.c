@@ -55,7 +55,7 @@ void CalculateButterflyAngle(void)
 
 void ButterflyRestingLoop(void)
 {
-    if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 1000))
+    if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 1000))
     {
         SetObjAnimation(0);
 
@@ -70,7 +70,7 @@ void ButterflyFollowMarioLoop(void)
     
     ButterflyStep(7);
     
-    if (!IsPointCloseToMario(o->oHomeX, o->oHomeY, o->oHomeZ, 1200))
+    if (!is_point_within_radius_of_mario(o->oHomeX, o->oHomeY, o->oHomeZ, 1200))
         o->oAction = BUTTERFLY_ACT_RETURN_HOME;
 }
 

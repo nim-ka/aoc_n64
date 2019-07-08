@@ -1385,11 +1385,11 @@ void BehAnimatesOnFloorSwitchPressLoop(void)
     {
         if (o->oFloorSwitchPressAnimationUnkF4 < 60)
         {
-            PlaySound(SOUND_CH8_UNK55);
+            PlaySound(SOUND_CH8_SWITCH6);
         }
         else
         {
-            PlaySound(SOUND_CH8_UNK54);
+            PlaySound(SOUND_CH8_SWITCH5);
         }
 
         if (--o->oFloorSwitchPressAnimationUnkF4 == 0)
@@ -2182,7 +2182,7 @@ void func_8030B5A4(void)
             {
                 if (o->oTimer > 100)
                 {
-                    o->parentObj = obj_nearest_object_with_behavior(bhvTumblingBookshelf);
+                    o->parentObj = obj_nearest_object_with_behavior(bhvHauntedBookshelf);
                     o->parentObj->oAction = 1;
                     o->oPosX = o->parentObj->oPosX;
                     o->oAction = 3;
@@ -2229,7 +2229,7 @@ void func_8030B794(void)
     }
 }
 
-void BehBookshelfThingLoop(void)
+void bhv_haunted_bookshelf_manager_loop(void)
 {
     switch (o->oAction)
     {
@@ -2241,7 +2241,7 @@ void BehBookshelfThingLoop(void)
     }
 }
 
-void BehBookSwitchLoop(void)
+void bhv_book_switch_loop(void)
 {
     s32 sp3C;
     struct Object *sp38;
@@ -2299,7 +2299,7 @@ void BehBookSwitchLoop(void)
                 {
                     if (o->parentObj->oBookSwitchManagerUnkF4 == o->oBehParams2ndByte)
                     {
-                        SetSound(SOUND_CH8_UNK6A, D_803320E0);
+                        SetSound(SOUND_CH8_RIGHTANSWER, D_803320E0);
                         o->parentObj->oBookSwitchManagerUnkF4 += 1;
                     }
                     else

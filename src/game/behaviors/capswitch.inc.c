@@ -53,11 +53,11 @@ void ActionActivateCapSwitch2(void)
 
 void ActionActivateCapSwitch3(){} // dead function
 
-void (*TableCapSwitchActions[])(void) = {ActionActivateCapSwitch0,ActionActivateCapSwitch1,ActionActivateCapSwitch2,ActionActivateCapSwitch3};
+void (*sCapSwitchActions[])(void) = {ActionActivateCapSwitch0,ActionActivateCapSwitch1,ActionActivateCapSwitch2,ActionActivateCapSwitch3};
 
 void bhv_cap_switch_loop(void)
 {
-    obj_call_action_function(TableCapSwitchActions);
+    obj_call_action_function(sCapSwitchActions);
 }
 
 Gfx *Geo18_802A719C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx)

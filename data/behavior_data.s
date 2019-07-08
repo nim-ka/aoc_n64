@@ -112,7 +112,9 @@
 .set objRoom, 0x46
 .set objUnk1A4, 0x47
 .set objUnk1A8, 0x48
-.set objUnk1AC, 0x49
+# Object specific, only used in this file by big boos (where it is oBigBooNumMinionBoosKilled)
+.set objVar1AC, 0x49
+#
 .set objUnk1B0, 0x4A
 .set objWallAngle, 0x4B
 .set objFloorType, 0x4C
@@ -498,21 +500,21 @@ glabel bhvBobombAnchorMario # 0254
         callnative bhv_bobomb_anchor_mario_loop
     end_loop
 
-glabel bhvBetaChest # 0278
+glabel bhvBetaChestBottom # 0278
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, (OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     drop_floor
-    callnative bhv_beta_chest_init
+    callnative bhv_beta_chest_bottom_init
     begin_loop
-        callnative bhv_beta_chest_loop
+        callnative bhv_beta_chest_bottom_loop
     end_loop
 
-glabel bhvBetaChestUpper # 029C
+glabel bhvBetaChestLid # 029C
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, (OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_pos
     begin_loop
-        callnative bhv_beta_chest_upper_loop
+        callnative bhv_beta_chest_lid_loop
     end_loop
 
 glabel bhvBubbleMario # 02B8
@@ -1702,22 +1704,22 @@ glabel bhvPoundExplodes # 15E4
         callnative bhv_pound_explodes_loop
     end_loop
 
-glabel bhvBetaTrampoline # 1608
+glabel bhvBetaTrampolineTop # 1608
     begin OBJ_LIST_SURFACE
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     collision_data springboard_collision_05001A28
     obj_set_pos
     begin_loop
-        callnative bhv_beta_trampoline_loop
+        callnative bhv_beta_trampoline_top_loop
         callnative load_object_collision_model
     end_loop
 
-glabel bhvBetaTrampolineSpawn # 1634
+glabel bhvBetaTrampolineSpring # 1634
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     obj_set_pos
     begin_loop
-        callnative bhv_beta_trampoline_spawn_loop
+        callnative bhv_beta_trampoline_spring_loop
     end_loop
 
 glabel bhvJumpingBox # 1650
@@ -1773,22 +1775,22 @@ glabel bhvGrandStar # 1714
         callnative bhv_grand_star_loop
     end_loop
 
-glabel bhvBetaBooKeyInside # 1744
+glabel bhvBetaBooKey # 1744
     begin OBJ_LIST_LEVEL
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     set_hitbox 0x0020, 0x0040
     gravity 0x001E, 0xFE70, 0xFFBA, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     begin_loop
-        callnative bhv_beta_boo_key_inside_loop
+        callnative bhv_beta_boo_key_loop
     end_loop
 
-glabel bhvBetaBooKeyOutside # 1778
+glabel bhvAlphaBooKey # 1778
     begin OBJ_LIST_LEVEL
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     set_hitbox 0x0020, 0x0040
     obj_set_int objIntangibleTimer, 0
     begin_loop
-        callnative bhv_beta_boo_key_outside_loop
+        callnative bhv_alpha_boo_key_loop
     end_loop
 
 glabel bhvBulletBill # 179C
@@ -1985,12 +1987,12 @@ glabel bhvBlueFish # 1B2C
         callnative bhv_blue_fish_loop
     end_loop
 
-glabel bhvTankFishGroups # 1B54
+glabel bhvTankFishGroup # 1B54
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     obj_set_pos
     begin_loop
-        callnative bhv_tank_fish_groups_loop
+        callnative bhv_tank_fish_group_loop
     end_loop
 
 glabel bhvCheckerboardElevatorGroup # 1B70
@@ -2608,6 +2610,7 @@ glabel bhvPurpleSwitchHiddenBoxes # 2558
     begin OBJ_LIST_SURFACE
     obj_set_int objBehParams2ndByte, 2
     goto .Lbeh_floor_switch_1488
+
 glabel bhvBlueCoinSwitch # 2568
     begin OBJ_LIST_SURFACE
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
@@ -2626,7 +2629,7 @@ glabel bhvHiddenBlueCoin # 2588
     obj_set_int objIntangibleTimer, 0
     obj_set_int objAnimState, -1
     begin_loop
-        callnative bhv_hidden_blue_coins_loop
+        callnative bhv_hidden_blue_coin_loop
         obj_add_int objAnimState, 1
     end_loop
 
@@ -2634,7 +2637,7 @@ glabel bhvOpenableCageDoor # 25C0
     begin OBJ_LIST_SURFACE
     obj_or_int objFlags, (OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     begin_loop
-        callnative bhv_bob_hmc_cage_door_loop
+        callnative bhv_openable_cage_door_loop
         callnative load_object_collision_model
     end_loop
 
@@ -2679,11 +2682,11 @@ glabel bhvTornado # 2650
         callnative bhv_tweester_loop
     end_loop
 
-glabel bhvSpawnBigBoo # 2684
+glabel bhvMerryGoRoundBooManager # 2684
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     begin_loop
-        callnative bhv_spawn_big_boo_loop
+        callnative bhv_merry_go_round_boo_manager_loop
     end_loop
 
 glabel bhvAnimatedTexture # 269C
@@ -2723,45 +2726,50 @@ glabel bhvBooWithCage # 2710
         callnative bhv_boo_with_cage_loop
     end_loop
 
-glabel bhvPatrollingBoo # 2768
+glabel bhvBalconyBigBoo # 2768
     begin OBJ_LIST_GENACTOR
     obj_set_int objBehParams2ndByte, 2
-    obj_set_int objUnk1AC, 10
-    goto .LbhvBoo2794
-glabel bhvSpawnedBoo # 277C
+    obj_set_int objVar1AC, 10
+    goto common_big_boo_bhv
+
+glabel bhvMerryGoRoundBigBoo # 277C
     begin OBJ_LIST_GENACTOR
     obj_set_int objBehParams2ndByte, 1
-    obj_set_int objUnk1AC, 10
-    goto .LbhvBoo2794
-glabel bhvBooGivingStar # 2790
+    # Set number of minion boos killed to 10, which is greater than 5 so that the boo always loads without needing to kill any boos.
+    obj_set_int objVar1AC, 10
+    goto common_big_boo_bhv
+
+glabel bhvGhostHuntBigBoo # 2790
     begin OBJ_LIST_GENACTOR
-.LbhvBoo2794: # 2794
+common_big_boo_bhv: # 2794
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_pos
     gravity 0x001E, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     callnative bhv_init_room
     callnative bhv_boo_init
     begin_loop
-        callnative bhv_boo_giving_star_loop
+        callnative bhv_big_boo_loop
     end_loop
 
-glabel bhvBooGroup # 27D0
+glabel bhvCourtyardBooTriplet # 27D0
     begin OBJ_LIST_DEFAULT
     graph_clear
-    callnative bhv_boo_group_init
+    callnative bhv_courtyard_boo_triplet_init
     deactivate
 
-glabel bhvBoo3 # 27E4
+glabel bhvBoo # 27E4
     begin OBJ_LIST_GENACTOR
     obj_set_int objBehParams2ndByte, 1
-    goto .LbhvBoo2808
-glabel bhvSpawnedBoo2 # 27F4
+    goto common_boo_bhv
+
+glabel bhvMerryGoRoundBoo # 27F4
     begin OBJ_LIST_GENACTOR
     obj_set_int objBehParams2ndByte, 2
-    goto .LbhvBoo2808
-glabel bhvBoo2 # 2804
+    goto common_boo_bhv
+
+glabel bhvGhostHuntBoo # 2804
     begin OBJ_LIST_GENACTOR
-.LbhvBoo2808: # 2808
+common_boo_bhv: # 2808
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_int objIntangibleTimer, 0
     obj_set_pos
@@ -2800,25 +2808,25 @@ glabel bhvBooBossSpawnedBridge # 2898
         callnative load_object_collision_model
     end_loop
 
-glabel bhvBbhTiltFloorPlatforms # 28CC
+glabel bhvBbhTiltingTrapPlatform # 28CC
     begin OBJ_LIST_SURFACE
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     collision_data bbh_seg7_collision_tilt_floor_platform
     obj_set_pos
     obj_set_int objRoom, 0x0002
     begin_loop
-        callnative bhv_bbh_tilt_floor_platform_loop
+        callnative bhv_bbh_tilting_trap_platform_loop
         callnative load_object_collision_model
     end_loop
 
-glabel bhvTumblingBookshelf # 28FC
+glabel bhvHauntedBookshelf # 28FC
     begin OBJ_LIST_SURFACE
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
-    collision_data bbh_seg7_collision_tumbling_bookshelf
+    collision_data bbh_seg7_collision_haunted_bookshelf
     obj_set_pos
     obj_set_int objRoom, 0x0006
     begin_loop
-        callnative bhv_tumbling_bookshelf_loop
+        callnative bhv_haunted_bookshelf_loop
         callnative load_object_collision_model
     end_loop
 
@@ -2835,14 +2843,14 @@ glabel bhvMeshElevator # 292C
         callnative load_object_collision_model
     end_loop
 
-glabel bhvRotatingMerryGoRound # 2968
+glabel bhvMerryGoRound # 2968
     begin OBJ_LIST_SURFACE
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
-    collision_data bbh_seg7_collision_rotating_merry_go_round
+    collision_data bbh_seg7_collision_merry_go_round
     obj_set_float objCollisionDistance, 0x07D0
     obj_set_int objRoom, 0x000A
     begin_loop
-        callnative bhv_rotating_merry_go_round_loop
+        callnative bhv_merry_go_round_loop
         callnative load_object_collision_model
     end_loop
 
@@ -2858,7 +2866,7 @@ glabel bhvPlaysMusicTrackWhenTouched # 2998
 glabel bhvInsideCannon # 2998
     break
 
-glabel bhvBetaFollowingCirclingObj # 299C
+glabel bhvBetaBowserAnchor # 299C
     begin OBJ_LIST_DESTRUCTIVE
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     billboard
@@ -2867,7 +2875,7 @@ glabel bhvBetaFollowingCirclingObj # 299C
     obj_set_int objIntangibleTimer, 0
     begin_loop
         obj_add_int objAnimState, 1
-        callnative bhv_beta_following_circling_obj_loop
+        callnative bhv_beta_bowser_anchor_loop
     end_loop
 
 glabel bhvStaticCheckeredPlatform # 29CC
@@ -3501,28 +3509,28 @@ glabel bhvSignOnWall # 3304
         obj_set_int objInteractStatus, 0
     end_loop
 
-glabel bhvAmpHoming # 3334
+glabel bhvHomingAmp # 3334
     begin OBJ_LIST_GENACTOR
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_MOVE_XZ_USING_FVEL | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_int32 objAnimations, amp_seg8_anims_08004034
     animate 0x00
     obj_set_float objGraphYOffset, 0x0028
     obj_set_int objIntangibleTimer, 0
-    callnative bhv_amp_homing_init
+    callnative bhv_homing_amp_init
     begin_loop
-        callnative bhv_amp_homing_loop
+        callnative bhv_homing_amp_loop
     end_loop
 
-glabel bhvAmpCircling # 3368
+glabel bhvCirclingAmp # 3368
     begin OBJ_LIST_GENACTOR
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_MOVE_XZ_USING_FVEL | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_int32 objAnimations, amp_seg8_anims_08004034
     animate 0x00
     obj_set_float objGraphYOffset, 0x0028
     obj_set_int objIntangibleTimer, 0
-    callnative bhv_amp_init
+    callnative bhv_circling_amp_init
     begin_loop
-        callnative bhv_amp_loop
+        callnative bhv_circling_amp_loop
     end_loop
 
 glabel bhvButterfly # 339C
@@ -3547,16 +3555,16 @@ glabel bhvHoot # 33CC
         callnative bhv_hoot_loop
     end_loop
 
-glabel bhvBetaGreenShell # 3400
+glabel bhvBetaHoldableObject # 3400
     begin OBJ_LIST_GENACTOR
     obj_or_int objFlags, (OBJ_FLAG_HOLDABLE | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
-    obj_set_int objInteractType, 0x02
+    obj_set_int objInteractType, 0x02 # INTERACT_GRABBABLE
     drop_floor
     set_hitbox 0x0028, 0x0032
-    callnative bhv_beta_green_shell_init
+    callnative bhv_beta_holdable_object_init
     begin_loop
         obj_set_int objIntangibleTimer, 0
-        callnative bhv_beta_green_shell_loop
+        callnative bhv_beta_holdable_object_loop
     end_loop
 
 glabel bhvCarrySomething1 # 3434
@@ -4068,7 +4076,7 @@ glabel bhvBirdsSoundLoop # 3C5C
 
 glabel bhvAmbientSounds # 3C70
     begin OBJ_LIST_DEFAULT
-    callnative BehAmbiantSoundsInit
+    callnative bhv_ambient_sounds_init
     begin_loop
     end_loop
 
@@ -5217,12 +5225,12 @@ glabel bhvBookendSpawn # 5094
         callnative BehBookendSpawnLoop
     end_loop
 
-glabel bhvBookshelfThing # 50B4
+glabel bhvHauntedBookshelfManager # 50B4
     begin OBJ_LIST_GENACTOR
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     callnative bhv_init_room
     begin_loop
-        callnative BehBookshelfThingLoop
+        callnative bhv_haunted_bookshelf_manager_loop
     end_loop
 
 glabel bhvBookSwitch # 50D4
@@ -5233,7 +5241,7 @@ glabel bhvBookSwitch # 50D4
     obj_add_int objMoveAngleYaw, 0x4000
     callnative bhv_init_room
     begin_loop
-        callnative BehBookSwitchLoop
+        callnative bhv_book_switch_loop
     end_loop
 
 glabel bhvFirePiranhaPlant # 5100
@@ -5348,7 +5356,7 @@ glabel bhvKlepto # 52F0
         callnative bhv_klepto_update
     end_loop
 
-glabel bBird # 5334
+glabel bhvBird # 5334
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_int32 objAnimations, birds_seg5_anims_050009E8

@@ -322,7 +322,7 @@ void ActionUkikiOpenCage4(void)
             func_8029ED38(5);
             o->oSubAction++;
             o->oUnk1B0_S16 = 32;
-            sp24->parentObj->oUnk88 = 1;
+            sp24->parentObj->oUnknownUnk88 = 1;
             o->oForwardVel = 0.0f;
         }
         break;
@@ -332,7 +332,7 @@ void ActionUkikiOpenCage4(void)
         if(o->oUnk1B0_S16 < 0)
         {
             o->oSubAction++;
-            sp24->parentObj->oUnk88 = 2;
+            sp24->parentObj->oUnknownUnk88 = 2;
         }
         break;
     case 7:
@@ -342,7 +342,7 @@ void ActionUkikiOpenCage4(void)
     }
 }
 
-void (*TableUkikiOpenCageActions[])(void) = {ActionUkikiOpenCage0,ActionUkikiOpenCage1,ActionUkikiOpenCage2,ActionUkikiOpenCage3,ActionUkikiOpenCage4,ActionUkikiOpenCage5,ActionUkikiOpenCage6,ActionUkikiOpenCage7};
+void (*sUkikiOpenCageActions[])(void) = {ActionUkikiOpenCage0,ActionUkikiOpenCage1,ActionUkikiOpenCage2,ActionUkikiOpenCage3,ActionUkikiOpenCage4,ActionUkikiOpenCage5,ActionUkikiOpenCage6,ActionUkikiOpenCage7};
 s16 D_8032F860[] = {2,30,0x4000,0,1,220,900,30,1,30,0,-30,2,30,-0x4000,0,1,220,900,30,1,30,0,-30,3,0};
 s16 D_8032F894[] = {4,0 ,0         ,0,1,475,900,30,1,30,0,-30,2,30, 0x8000,0,1,475,900,30,1,30,0,-30,3,0};
 s16* D_8032F8C8[] = {D_8032F860,D_8032F894};
@@ -351,7 +351,7 @@ void func_802BAE40(void)
 {
     s32 sp1C;
     obj_update_floor_and_walls();
-    obj_call_action_function(TableUkikiOpenCageActions);
+    obj_call_action_function(sUkikiOpenCageActions);
     if(o->oAction == 4 || o->oAction == 7)
         sp1C = -88;
     else

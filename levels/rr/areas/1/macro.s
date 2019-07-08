@@ -11,7 +11,7 @@ macro_object /*preset*/ macro_red_coin,                    /*yaw*/   0, /*pos*/ 
 macro_object /*preset*/ macro_bobomb_buddy_opens_cannon,   /*yaw*/   0, /*pos*/ -4200,  1648,     0
 macro_object /*preset*/ macro_cannon_closed,               /*yaw*/   0, /*pos*/  5545,  3333, -2345, /*behParam*/ 0xC0
 macro_object /*preset*/ macro_box_1up,                     /*yaw*/   0, /*pos*/ -6750,  2600,   -50
-macro_object /*preset*/ macro_amp_circling,                /*yaw*/   0, /*pos*/  6500,  -900,   900, /*behParam*/ 1
+macro_object /*preset*/ macro_circling_amp,                /*yaw*/   0, /*pos*/  6500,  -900,   900, /*behParam*/ 1
 macro_object /*preset*/ macro_coin_ring_horizontal,        /*yaw*/   0, /*pos*/  6500, -1000,   900
 macro_object /*preset*/ macro_enemy_lakitu,                /*yaw*/   0, /*pos*/   615,  -584,     0
 macro_object /*preset*/ macro_recovery_heart,              /*yaw*/   0, /*pos*/  -550, -1050,   -50
@@ -38,7 +38,7 @@ macro_object /*preset*/ macro_bobomb,                      /*yaw*/   0, /*pos*/ 
 macro_object /*preset*/ macro_coin_ring_horizontal,        /*yaw*/   0, /*pos*/  3542,  2923, -2371
 macro_object /*preset*/ macro_coin_line_horizontal,        /*yaw*/   0, /*pos*/ -3342,  3222, -5071
 macro_object /*preset*/ macro_coin_line_horizontal,        /*yaw*/   0, /*pos*/ -7771,  4352, -3871
-macro_object /*preset*/ macro_amp_circling,                /*yaw*/   0, /*pos*/ -6571,  4000, -2328, /*behParam*/ 1
+macro_object /*preset*/ macro_circling_amp,                /*yaw*/   0, /*pos*/ -6571,  4000, -2328, /*behParam*/ 1
 macro_object /*preset*/ macro_coin_line_horizontal_flying, /*yaw*/  90, /*pos*/ -6057,  4676, -5242
 macro_object /*preset*/ macro_chuckya,                     /*yaw*/   0, /*pos*/  5114,  3828,  4028
 macro_object /*preset*/ macro_1up,                         /*yaw*/   0, /*pos*/  -165,  3543, -2352

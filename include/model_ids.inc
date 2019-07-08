@@ -375,7 +375,7 @@
 
 # group 9
 .set MODEL_BOO,                                 0x54        # boo_geo
-.set MODEL_SMALL_KEY,                           0x55        # small_key_geo
+.set MODEL_BETA_BOO_KEY,                           0x55        # small_key_geo
 .set MODEL_HAUNTED_CHAIR,                       0x56        # haunted_chair_geo
 .set MODEL_MAD_PIANO,                           0x57        # mad_piano_geo
 .set MODEL_BOOKEND_PART,                        0x58        # bookend_part_geo
@@ -498,7 +498,6 @@
 # find me
 .set MODEL_PURPLE_MARBLE,                       0xAA        # purple_marble_geo
 # find me
-.set MODEL_UNKNOWN_AC,                          0xAC        # According to a special preset, it was the original id of the castle floor trap
 .set MODEL_WF_SLIDING_PLATFORM,                 0xAD        # wf_geo_000A98
 .set MODEL_WF_SMALL_BOMP,                       0xAE        # wf_geo_000A00
 .set MODEL_WF_ROTATING_WOODEN_PLATFORM,         0xAF        # wf_geo_000A58
@@ -508,9 +507,9 @@
 .set MODEL_BOWSER_BOMB,                         0xB3        # bowser_bomb_geo
 .set MODEL_WATER_MINE,                          0xB3        # water_mine_geo
 .set MODEL_BOWLING_BALL,                        0xB4        # bowling_ball_geo
-.set MODEL_TRAMPOLINE,                          0xB5        # unused & undefined in level scripts, referenced in beta_trampoline.inc.c
-.set MODEL_TRAMPOLINE_CENTER,                   0xB6        # unused & undefined in level scripts, referenced in beta_trampoline.inc.c
-.set MODEL_TRAMPOLINE_BASE,                     0xB7        # unused & undefined in level scripts, referenced in beta_trampoline.inc.c
+.set MODEL_TRAMPOLINE,                          0xB5        # springboard_top_geo (unused)
+.set MODEL_TRAMPOLINE_CENTER,                   0xB6        # springboard_spring_geo (unused)
+.set MODEL_TRAMPOLINE_BASE,                     0xB7        # springboard_bottom_geo (unused)
 .set MODEL_UNKNOWN_B8,                          0xB8        # referenced in special presets as a static object. Unknown usage
 .set MODEL_FISH,                                0xB9        # fish_geo - fish without shadow, used
 .set MODEL_FISH_SHADOW,                         0xBA        # fish_shadow_geo - fish with shadow, unused

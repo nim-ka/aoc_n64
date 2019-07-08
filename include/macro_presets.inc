@@ -45,8 +45,8 @@ define_preset macro_sign_on_wall
 define_preset macro_chuckya
 define_preset macro_cannon_open
 define_preset macro_goomba
-define_preset macro_amp_homing
-define_preset macro_amp_circling
+define_preset macro_homing_amp
+define_preset macro_circling_amp
 define_preset macro_unknown_40
 define_preset macro_unknown_41
 define_preset macro_free_bowling_ball

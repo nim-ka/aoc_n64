@@ -91,12 +91,12 @@ void ActionTweester2(void)
     }
 }
 
-void (*TableTweesterActions[])(void) = {ActionTweester0,ActionTweester1,ActionTweester2};
+void (*sTweesterActions[])(void) = {ActionTweester0,ActionTweester1,ActionTweester2};
 
 void bhv_tweester_loop(void)
 {
     set_object_hitbox(o,&sTweesterHitbox);
-    obj_call_action_function(TableTweesterActions);
+    obj_call_action_function(sTweesterActions);
     o->oInteractStatus = 0;
 }
 

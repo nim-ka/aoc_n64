@@ -108,7 +108,7 @@ void ActionKingBobomb3(void)
             print_debug_bottom_up("%d",o->OBJECT_FIELD_S32(0x1D));
             if(o->OBJECT_FIELD_S32(0x1D) > 10)
             {
-                o->oUnk88 = 3;
+                o->oUnknownUnk88 = 3;
                 o->oAction = 2;
                 o->OBJECT_FIELD_S32(0x20) = 35;
                 o->oInteractStatus &= ~(INT_STATUS_GRABBED_MARIO);
@@ -129,7 +129,7 @@ void ActionKingBobomb3(void)
             func_8029ED38(9);
             if(obj_check_anim_frame(31))
             {
-                o->oUnk88 = 2;
+                o->oUnknownUnk88 = 2;
                 PlaySound2(SOUND_OBJECT_UNKNOWN4);
             }
             else if(func_8029F788())
@@ -316,8 +316,8 @@ void ActionKingBobomb5() // bobomb returns home
     }
 }
 
-void (*TableKingBobombActions[])(void) = {ActionKingBobomb0,ActionKingBobomb1,ActionKingBobomb2,ActionKingBobomb3,ActionKingBobomb4,ActionKingBobomb5,ActionKingBobomb6,ActionKingBobomb7,ActionKingBobomb8};
-struct SoundState TableKingBobombSoundStates[] = {
+void (*sKingBobombActions[])(void) = {ActionKingBobomb0,ActionKingBobomb1,ActionKingBobomb2,ActionKingBobomb3,ActionKingBobomb4,ActionKingBobomb5,ActionKingBobomb6,ActionKingBobomb7,ActionKingBobomb8};
+struct SoundState sKingBobombSoundStates[] = {
     {0, 0,  0,  NO_SOUND},
     {1, 1,  20, SOUND_OBJECT_POUNDING1_HIGHPRIO},
     {0, 0,  0,  NO_SOUND},
@@ -339,8 +339,8 @@ void func_802A7748(void)
         obj_move_standard(-78);
     else
         obj_move_using_fvel_and_gravity();
-    obj_call_action_function(TableKingBobombActions);
-    exec_anim_sound_state(TableKingBobombSoundStates);
+    obj_call_action_function(sKingBobombActions);
+    exec_anim_sound_state(sKingBobombSoundStates);
     if(o->oDistanceToMario < 5000.0f)
         obj_enable_rendering();
     else

@@ -51,10 +51,10 @@ struct MacroPreset MacroObjectPresets[] = {
     {bhvChuckya, MODEL_CHUCKYA, 0},
     {bhvCannon, MODEL_CANNON_BASE, 0},
     {bhvGoomba, MODEL_GOOMBA, 0},
-    {bhvAmpHoming, MODEL_AMP, 0},
-    {bhvAmpCircling, MODEL_AMP, 0},
+    {bhvHomingAmp, MODEL_AMP, 0},
+    {bhvCirclingAmp, MODEL_AMP, 0},
     {bhvCarrySomething1, MODEL_UNKNOWN_7D, 0}, // unused
-    {bhvBetaTrampoline, MODEL_TRAMPOLINE, 0}, // unused
+    {bhvBetaTrampolineTop, MODEL_TRAMPOLINE, 0}, // unused
     {bhvFreeBowlingBall, MODEL_BOWLING_BALL, 0}, // unused
     {bhvSnufit, MODEL_SNUFIT, 0},
     {bhvRecoveryHeart, MODEL_HEART, 0},
@@ -205,11 +205,11 @@ struct MacroPreset MacroObjectPresets[] = {
     {bhvHauntedChair, MODEL_HAUNTED_CHAIR, 0}, // unused
     {bhvHauntedChair, MODEL_HAUNTED_CHAIR, 0},
     {bhvHauntedChair, MODEL_HAUNTED_CHAIR, 0}, // unused
-    {bhvBoo2, MODEL_BOO, 0}, // unused
-    {bhvBoo2, MODEL_BOO, 0}, // unused
-    {bhvBooGroup, MODEL_BOO, 0}, // unused
+    {bhvGhostHuntBoo, MODEL_BOO, 0}, // unused
+    {bhvGhostHuntBoo, MODEL_BOO, 0}, // unused
+    {bhvCourtyardBooTriplet, MODEL_BOO, 0}, // unused
     {bhvBooWithCage, MODEL_BOO, 0}, // unused
-    {bhvBetaBooKeyOutside, MODEL_SMALL_KEY, 0}, // unused
+    {bhvAlphaBooKey, MODEL_BETA_BOO_KEY, 0}, // unused
     {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
     {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
     {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
@@ -249,7 +249,7 @@ struct MacroPreset MacroObjectPresets[] = {
     {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
     {bhvChirpChirp, MODEL_NONE, 0},
     {bhvSeaweedBundle, MODEL_NONE, 0},
-    {bhvBetaChest, MODEL_TREASURE_CHEST_BASE, 0}, // unused
+    {bhvBetaChestBottom, MODEL_TREASURE_CHEST_BASE, 0}, // unused
     {bhvBowserBomb, MODEL_WATER_MINE, 0}, // unused
     {bhvLargeFishGroup, MODEL_NONE, 2}, // unused
     {bhvLargeFishGroup, MODEL_NONE, 3},

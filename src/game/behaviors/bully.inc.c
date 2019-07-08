@@ -92,7 +92,7 @@ void BullyChaseMarioLoop(void)
         if (o->oTimer >= 36) o->oTimer = 0;
     }
     
-    if (!IsPointCloseToMario(homeX, posY, homeZ, 1000))
+    if (!is_point_within_radius_of_mario(homeX, posY, homeZ, 1000))
     {
         o->oAction = BULLY_ACT_PATROL;
         SetObjAnimation(0);

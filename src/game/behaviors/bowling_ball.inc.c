@@ -104,7 +104,7 @@ void bhv_bowling_ball_roll_loop(void)
     
     if (sp18 == -1)
     {
-        if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 7000))
+        if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 7000))
         {
             func_802A3004();
             func_802AA618(0, 0, 92.0f);
@@ -203,13 +203,13 @@ void bhv_generic_bowling_ball_spawner_loop(void)
     if (o->oTimer == 256)
         o->oTimer = 0;
     
-    if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 1000)
+    if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 1000)
     ||  (o->oPosY < gMarioObject->header.gfx.pos[1]))
         return;
     
     if ((o->oTimer & o->oBBallSpwnrPeriodMinus1) == 0) /* Modulus */
     {
-        if  (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, o->oBBallSpwnrMaxSpawnDist))
+        if  (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, o->oBBallSpwnrMaxSpawnDist))
         {
             if  ((s32)(RandomFloat() * o->oBBallSpwnrSpawnOdds) == 0)
             {
@@ -227,13 +227,13 @@ void bhv_thi_bowling_ball_spawner_loop(void)
     if (o->oTimer == 256)
         o->oTimer = 0;
     
-    if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 800)
+    if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 800)
     ||  (o->oPosY < gMarioObject->header.gfx.pos[1]))
         return;
         
     if ((o->oTimer % 64) == 0)
     {
-        if  (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 12000))
+        if  (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 12000))
         {
             if  ((s32)(RandomFloat() * 1.5) == 0)
             {
@@ -293,7 +293,7 @@ void bhv_free_bowling_ball_roll_loop(void)
     &&  !(collisionFlags & OBJ_COL_FLAGS_LANDED))
         PlaySound2(SOUND_GENERAL_QUIETPOUND1_LOWPRIO);
         
-    if (!IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 6000))
+    if (!is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 6000))
     {
         o->header.gfx.node.flags |= 0x10; /* bit 4 */
         obj_become_intangible();
@@ -313,7 +313,7 @@ void bhv_free_bowling_ball_loop(void)
     switch (o->oAction)
     {
         case FREE_BBALL_ACT_IDLE:
-            if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 3000))
+            if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 3000))
             {
                 o->oAction = FREE_BBALL_ACT_ROLL;
                 o->header.gfx.node.flags &= ~0x10; /* bit 4 */
@@ -326,7 +326,7 @@ void bhv_free_bowling_ball_loop(void)
             break;
             
         case FREE_BBALL_ACT_RESET:
-            if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 5000))
+            if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 5000))
                 o->oAction = FREE_BBALL_ACT_IDLE;
             break;
     }

@@ -38,8 +38,8 @@ void ObjUpdatePosVelXZ(void);
 void ObjSplash(s32 waterY, s32 objY);
 s16 ObjectStep(void);
 s16 func_802E4204(void);
-void func_802E4250(struct Object* obj);
-s32 IsPointCloseToMario(f32 x, f32 y, f32 z, s32 dist);
+void obj_move_xyz_using_fvel_and_yaw(struct Object* obj);
+s32 is_point_within_radius_of_mario(f32 x, f32 y, f32 z, s32 dist);
 s32 IsPointCloseToObject(struct Object* obj, f32 x, f32 y, f32 z, s32 dist);
 void SetObjectVisibility(struct Object* obj, s32 arg1);
 s32 ObjLeaveIfMarioIsNearHome(struct Object* obj, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
@@ -99,17 +99,17 @@ void func_802E70A8(void);
 void WhirlpoolOrientGraph(void);
 void bhv_whirlpool_loop(void);
 void bhv_jet_stream_loop(void);
-void bhv_amp_homing_init(void);
-void CheckAmpAttack(void);
-void AmpHomingAppearLoop(void);
-void AmpHomingChaseLoop(void);
-void AmpHomingGiveUpLoop(void);
-void AmpAttackCooldownLoop(void);
-void bhv_amp_homing_loop(void);
-void bhv_amp_init(void);
-void FixedAmpIdleLoop(void);
-void AmpIdleLoop(void);
-void bhv_amp_loop(void);
+void bhv_homing_amp_init(void);
+//void check_amp_attack(void);
+//void homing_amp_appear_loop(void);
+//void homing_amp_chase_loop(void);
+//void homing_amp_give_up_loop(void);
+//void amp_attack_cooldown_loop(void);
+void bhv_homing_amp_loop(void);
+void bhv_circling_amp_init(void);
+//void fixed_circling_amp_idle_loop(void);
+//void circling_amp_idle_loop(void);
+void bhv_circling_amp_loop(void);
 void bhv_butterfly_init(void);
 void ButterflyStep(s32 speed);
 void CalculateButterflyAngle(void);
@@ -129,10 +129,10 @@ void HootActionLoop(void);
 void HootTurnToHome(void);
 void HootAwakeLoop(void);
 void bhv_hoot_loop(void);
-void bhv_beta_green_shell_init(void); /* unused */
-void BetaGreenShellDropped(void); /* unused */
-void BetaGreenShellThrown(void); /* unused */
-void bhv_beta_green_shell_loop(void); /* unused */
+void bhv_beta_holdable_object_init(void); /* unused */
+//void beta_holdable_object_drop(void); /* unused */
+//void beta_holdable_object_throw(void); /* unused */
+void bhv_beta_holdable_object_loop(void); /* unused */
 void bhv_object_bubble_init(void);
 void bhv_object_bubble_loop(void);
 void bhv_object_water_wave_init(void);

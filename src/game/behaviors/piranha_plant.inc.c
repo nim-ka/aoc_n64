@@ -178,7 +178,7 @@ void ActionPiranhaPlant24(void)
             o->oAction = 2;
 }
 
-void (*TablePiranhaPlantActions[])(void) = {ActionPiranhaPlant20,ActionPiranhaPlant21,ActionPiranhaPlant22,ActionPiranhaPlant23,ActionPiranhaPlant24,ActionPiranhaPlant25,ActionPiranhaPlant26,ActionPiranhaPlant27,ActionPiranhaPlant28};
+void (*sPiranhaPlantActions[])(void) = {ActionPiranhaPlant20,ActionPiranhaPlant21,ActionPiranhaPlant22,ActionPiranhaPlant23,ActionPiranhaPlant24,ActionPiranhaPlant25,ActionPiranhaPlant26,ActionPiranhaPlant27,ActionPiranhaPlant28};
 s8 D_8032F9C4[] = {2,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4,2,-1};
 s8 D_8032F9E0[] = {2,2,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4,2,2,-1};
 s8 D_8032F9FC[] = {2,2,2,5,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,6,2,2,2,-1};
@@ -198,7 +198,7 @@ struct Struct8032FB4C D_8032FB4C[] = {{MODEL_LLL_BOWSER_PIECE_1,251,241,1,D_8032
 
 void bhv_piranha_plant_2_loop(void)
 {
-    obj_call_action_function(TablePiranhaPlantActions);
+    obj_call_action_function(sPiranhaPlantActions);
     if(gCurrLevelNum == LEVEL_WF)
     {
         if(gMarioObject->oPosY > 3400.0f)

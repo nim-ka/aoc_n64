@@ -77,7 +77,7 @@ static void racing_penguin_act_race(void)
         targetSpeed = o->oPosY - gMarioObject->oPosY;
         minSpeed = 70.0f;
 
-        PlaySound(SOUND_CH6_UNKNOWN005);
+        PlaySound(SOUND_CH6_ROUGHSLIDE);
 
         if (targetSpeed < 100.0f || (o->oPathedPrevWaypointFlags & WAYPOINT_MASK_00FF) >= 35)
         {

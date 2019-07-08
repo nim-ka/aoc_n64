@@ -67,7 +67,7 @@ void func_802F76A8(void) {
     o->oForwardVel = 0.0f;
     sp1E = ObjectStep();
 
-    if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 500)) {
+    if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 500)) {
         if (func_802F7528() == -1) {
             o->oAction = 2;
         }

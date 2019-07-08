@@ -58,7 +58,7 @@ void ActionTuxiesMother2(void)
     if(sp1C != NULL && sp24 < 300.0f && sp1C->oHeldState != HELD_FREE)
     {
         o->oAction = 1;
-        sp1C->oUnk88 = 1;
+        sp1C->oUnknownUnk88 = 1;
         o->prevObj = sp1C;
     }
 }
@@ -130,7 +130,7 @@ void ActionTuxiesMother0(void)
     if(sp24 != NULL && sp28 < 300.0f && sp24->oHeldState != HELD_FREE)
     {
         o->oAction = 1;
-        sp24->oUnk88 = 1;
+        sp24->oUnknownUnk88 = 1;
         o->prevObj = sp24;
     }
     else
@@ -156,13 +156,13 @@ void ActionTuxiesMother0(void)
         PlaySound2(SOUND_OBJECT_BIGPENGUIN);
 }
 
-void (*TableTuxiesMotherActions[])(void) = {ActionTuxiesMother0,ActionTuxiesMother1,ActionTuxiesMother2};
+void (*sTuxiesMotherActions[])(void) = {ActionTuxiesMother0,ActionTuxiesMother1,ActionTuxiesMother2};
 
 void bhv_tuxies_mother_loop(void)
 {
     o->activeFlags |= 0x400;
     obj_update_floor_and_walls();
-    obj_call_action_function(TableTuxiesMotherActions);
+    obj_call_action_function(sTuxiesMotherActions);
     obj_move_standard(-78);
     play_penguin_walking_sound(1);
     o->oInteractStatus = 0;
@@ -276,17 +276,17 @@ void ActionSmallPenguin5(void)
     func_802BEA58();
 }
 
-void (*TableSmallPenguinActions[])(void) = {ActionSmallPenguin0,ActionSmallPenguin1,ActionSmallPenguin2,ActionSmallPenguin3,ActionSmallPenguin4,ActionSmallPenguin5};
+void (*sSmallPenguinActions[])(void) = {ActionSmallPenguin0,ActionSmallPenguin1,ActionSmallPenguin2,ActionSmallPenguin3,ActionSmallPenguin4,ActionSmallPenguin5};
 
 void func_802BF048(void)
 {
-    if(o->oUnk88 != 0)
+    if(o->oUnknownUnk88 != 0)
     {
         o->oAction = 5;
-        o->oUnk88 = 0;
+        o->oUnknownUnk88 = 0;
     }
     obj_update_floor_and_walls();
-    obj_call_action_function(TableSmallPenguinActions);
+    obj_call_action_function(sSmallPenguinActions);
     obj_move_standard(-78);
     play_penguin_walking_sound(0);
 }

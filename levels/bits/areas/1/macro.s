@@ -3,7 +3,7 @@ glabel bits_seg7_macro_objs # 0x0701A76C - 0x0701A99E
 macro_object /*preset*/ macro_yellow_coin,            /*yaw*/   0, /*pos*/ -1400, -4000,     0
 macro_object /*preset*/ macro_yellow_coin,            /*yaw*/   0, /*pos*/  -272, -4000,     0
 macro_object /*preset*/ macro_yellow_coin,            /*yaw*/   0, /*pos*/   840, -4000,     0
-macro_object /*preset*/ macro_amp_circling,           /*yaw*/   0, /*pos*/  4100, -1320, -1800, /*behParam*/ 1
+macro_object /*preset*/ macro_circling_amp,           /*yaw*/   0, /*pos*/  4100, -1320, -1800, /*behParam*/ 1
 macro_object /*preset*/ macro_goomba,                 /*yaw*/   0, /*pos*/  6180, -1791,     0
 macro_object /*preset*/ macro_goomba,                 /*yaw*/   0, /*pos*/  6260, -1453, -1800
 macro_object /*preset*/ macro_fire_piranha_plant,     /*yaw*/   0, /*pos*/  1920, -1187, -1840
@@ -35,8 +35,8 @@ macro_object /*preset*/ macro_coin_line_horizontal,   /*yaw*/   0, /*pos*/  1879
 macro_object /*preset*/ macro_1up,                    /*yaw*/   0, /*pos*/  -259,  6059, -3759
 macro_object /*preset*/ macro_recovery_heart,         /*yaw*/   0, /*pos*/   359,  6099, -3219
 macro_object /*preset*/ macro_fire_piranha_plant,     /*yaw*/   0, /*pos*/  3680,  2428, -1840
-macro_object /*preset*/ macro_amp_circling,           /*yaw*/   0, /*pos*/ -6460,  2080,  -900, /*behParam*/ 2
-macro_object /*preset*/ macro_amp_circling,           /*yaw*/   0, /*pos*/ -6460,  2280,  -900, /*behParam*/ 0
+macro_object /*preset*/ macro_circling_amp,           /*yaw*/   0, /*pos*/ -6460,  2080,  -900, /*behParam*/ 2
+macro_object /*preset*/ macro_circling_amp,           /*yaw*/   0, /*pos*/ -6460,  2280,  -900, /*behParam*/ 0
 macro_object /*preset*/ macro_goomba_triplet_spawner, /*yaw*/   0, /*pos*/   360,  6040, -2880
 macro_object /*preset*/ macro_coin_line_horizontal,   /*yaw*/   0, /*pos*/  -302, -2457,  -800
 macro_object /*preset*/ macro_red_coin,               /*yaw*/   0, /*pos*/  1590, -1120, -2055

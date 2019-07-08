@@ -116,7 +116,7 @@ void func_802F2924(void) {
 void bhvLllVolcanoFallingTrap_loop(void) {
     switch (o->oAction) {
         case 0:
-            if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 1000)) {
+            if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 1000)) {
                 o->oAction = 1;
                 PlaySound2(SOUND_GENERAL_QUIETPOUND2);
             }

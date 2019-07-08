@@ -2,7 +2,7 @@
 
 void func_802A8D18(f32 sp28,f32 sp2C,s32 sp30)
 {
-    switch(o->parentObj->oUnk88)
+    switch(o->parentObj->oUnknownUnk88)
     {
     case 0:
         break;
@@ -13,13 +13,13 @@ void func_802A8D18(f32 sp28,f32 sp2C,s32 sp30)
         gMarioObject->oInteractStatus |= (sp30+INT_STATUS_MARIO_UNK2);
         gMarioStates->forwardVel = sp28;
         gMarioStates->vel[1] = sp2C;
-        o->parentObj->oUnk88 = 0;
+        o->parentObj->oUnknownUnk88 = 0;
         break;
     case 3:
         gMarioObject->oInteractStatus |= (INT_STATUS_MARIO_UNK2+INT_STATUS_MARIO_UNK6); // loads 2 interactions at once?
         gMarioStates->forwardVel = 10.0f;
         gMarioStates->vel[1] = 10.0f;
-        o->parentObj->oUnk88 = 0;
+        o->parentObj->oUnknownUnk88 = 0;
         break;
     }
     o->oMoveAngleYaw = o->parentObj->oMoveAngleYaw;
@@ -138,7 +138,7 @@ void ActionChuckya0(void)
         o->OBJECT_FIELD_S32(0x1D)++;
     func_8029ED38(4);
     if(o->oForwardVel > 1.0f)
-        PlaySound(SOUND_CH6_UNKNOWN00A);
+        PlaySound(SOUND_CH6_CHUCKYAMOVE);
     print_debug_bottom_up("fg %d",sp3C);
     print_debug_bottom_up("sp %d",o->oForwardVel);
 }
@@ -161,7 +161,7 @@ void ActionChuckya1(void)
             print_debug_bottom_up("%d",o->OBJECT_FIELD_S32(0x1E));
             if(o->OBJECT_FIELD_S32(0x1E) > 10)
             {
-                o->oUnk88 = 3;
+                o->oUnknownUnk88 = 3;
                 o->oAction = 3;
                 o->oInteractStatus &= ~(INT_STATUS_GRABBED_MARIO);
             }
@@ -183,7 +183,7 @@ void ActionChuckya1(void)
             if(obj_check_anim_frame(18))
             {
                 PlaySound2(SOUND_OBJECT_UNKNOWN4);
-                o->oUnk88 = 2;
+                o->oUnknownUnk88 = 2;
                 o->oAction = 3;
                 o->oInteractStatus &= ~(INT_STATUS_GRABBED_MARIO);
             }
@@ -210,17 +210,17 @@ void ActionChuckya2(void)
     }
 }
 
-void (*TableChuckyaActions[])(void) = {ActionChuckya0,ActionChuckya1,ActionChuckya2,ActionChuckya3};
+void (*sChuckyaActions[])(void) = {ActionChuckya0,ActionChuckya1,ActionChuckya2,ActionChuckya3};
 
 void func_802A97B8(void)
 {
     obj_update_floor_and_walls();
-    obj_call_action_function(TableChuckyaActions);
+    obj_call_action_function(sChuckyaActions);
     obj_move_standard(-30);
     if(o->oInteractStatus & INT_STATUS_GRABBED_MARIO)
     {
         o->oAction = 1;
-        o->oUnk88 = 1;
+        o->oUnknownUnk88 = 1;
         PlaySound2(SOUND_OBJECT_UNKNOWN3);
     }
 }

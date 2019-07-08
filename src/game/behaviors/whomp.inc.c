@@ -293,13 +293,13 @@ void ActionWhomp9(void)
         func_80320CE8(1046);
 }
 
-void (*TableWhompActions[])(void) = {ActionWhomp0,ActionWhomp1,ActionWhomp2,ActionWhomp3,ActionWhomp4,ActionWhomp5,ActionWhomp6,ActionWhomp7,ActionWhomp8,ActionWhomp9};
+void (*sWhompActions[])(void) = {ActionWhomp0,ActionWhomp1,ActionWhomp2,ActionWhomp3,ActionWhomp4,ActionWhomp5,ActionWhomp6,ActionWhomp7,ActionWhomp8,ActionWhomp9};
 
 //MM
 void bhv_whomp_loop(void)
 {
     obj_update_floor_and_walls();
-    obj_call_action_function(TableWhompActions);
+    obj_call_action_function(sWhompActions);
     obj_move_standard(-20);
     if(o->oAction != 9)
     {

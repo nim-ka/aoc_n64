@@ -113,7 +113,7 @@ void bhv_elevator_init(void)
     }
 }
 
-void (*TableElevatorActions[])(void) = {ActionElevator0,ActionElevator1,ActionElevator2,ActionElevator3,ActionElevator4};
+void (*sElevatorActions[])(void) = {ActionElevator0,ActionElevator1,ActionElevator2,ActionElevator3,ActionElevator4};
 
 struct SpawnParticlesInfo D_8032F3CC = {3,20,MODEL_MIST,20,10,5,0,0,0,30,30.0f,1.5f};
 
@@ -125,5 +125,5 @@ struct SpawnParticlesInfo D_8032F3FC = {0,5,MODEL_WHITE_PARTICLE_DL,0,0,20,20,0,
 
 void bhv_elevator_loop(void)
 {
-    obj_call_action_function(TableElevatorActions);
+    obj_call_action_function(sElevatorActions);
 }

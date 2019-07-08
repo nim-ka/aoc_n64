@@ -120,6 +120,7 @@ void func_802C49E0(void);
 
 s32 D_8032F0C0[] = {SAVE_FLAG_HAVE_WING_CAP,SAVE_FLAG_HAVE_METAL_CAP,SAVE_FLAG_HAVE_VANISH_CAP};
 
+// Boo Roll
 s16 D_8032F0CC[] = {6047,5664,5292,4934,4587,4254,3933,3624,3329,3046,2775,2517,2271,2039,1818,1611,1416,1233,1063,906,761,629,509,402,308,226,157,100,56,25,4,0};
 
 #include "behaviors/star_door.inc.c"
@@ -220,12 +221,12 @@ s32 Geo18_802B1BB0(s32 run, UNUSED struct GraphNode *node, Mat4 mtx)
 void func_802B2328(s32 n,s32 a1,s32 a2,s32 r) // n is the number of objects to spawn, r if the rate of change of phase (frequency?)
 {
     s32 i;
-    s16 seperation = 0x10000/n; // Evenly spread around a circle
+    s16 separation = 0x10000/n; // Evenly spread around a circle
     for(i=0;i<n;i++)
         spawn_object_relative(0,
-                                    sins(D_8035FF10+i*seperation)*a1,
+                                    sins(D_8035FF10+i*separation)*a1,
                                     (i+1)*a2,
-                                    coss(D_8035FF10+i*seperation)*a1,
+                                    coss(D_8035FF10+i*separation)*a1,
                                     o,MODEL_NONE,bhvPowerupSparkles2);
 
     D_8035FF10 += r*0x100;
@@ -272,11 +273,11 @@ void func_802B2328(s32 n,s32 a1,s32 a2,s32 r) // n is the number of objects to s
 #include "behaviors/wdw_water_level.inc.c"
 #include "behaviors/tweester.inc.c"
 #include "behaviors/boo.inc.c"
-#include "behaviors/bbh_tilt_floor.inc.c"
-#include "behaviors/bbh_tumbling_bookshelf.inc.c"
+#include "behaviors/bbh_tilting_trap.inc.c"
+#include "behaviors/bbh_haunted_bookshelf.inc.c"
 #include "behaviors/bbh_merry_go_round.inc.c"
 #include "behaviors/static_checkered_platform.inc.c"
-#include "behaviors/beta_following_circling_obj.inc.c"
+#include "behaviors/beta_bowser_anchor.inc.c"
 #ifndef VERSION_JP
 #include "behaviors/music_touch.inc.c"
 #endif

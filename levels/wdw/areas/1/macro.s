@@ -11,9 +11,9 @@ macro_object /*preset*/ macro_hidden_blue_coin,            /*yaw*/   0, /*pos*/ 
 macro_object /*preset*/ macro_hidden_blue_coin,            /*yaw*/   0, /*pos*/   832,   400,  1194
 macro_object /*preset*/ macro_hidden_blue_coin,            /*yaw*/   0, /*pos*/  1124,   400,   282
 macro_object /*preset*/ macro_box_star_1,                  /*yaw*/   0, /*pos*/ -2200,  2600,  3500
-macro_object /*preset*/ macro_amp_circling,                /*yaw*/   0, /*pos*/ -1360,  3880, -1340, /*behParam*/ 2
-macro_object /*preset*/ macro_amp_circling,                /*yaw*/   0, /*pos*/   640,   700,  3720, /*behParam*/ 2
-macro_object /*preset*/ macro_amp_circling,                /*yaw*/   0, /*pos*/ -2100,  2400,  -500, /*behParam*/ 2
+macro_object /*preset*/ macro_circling_amp,                /*yaw*/   0, /*pos*/ -1360,  3880, -1340, /*behParam*/ 2
+macro_object /*preset*/ macro_circling_amp,                /*yaw*/   0, /*pos*/   640,   700,  3720, /*behParam*/ 2
+macro_object /*preset*/ macro_circling_amp,                /*yaw*/   0, /*pos*/ -2100,  2400,  -500, /*behParam*/ 2
 macro_object /*preset*/ macro_heave_ho,                    /*yaw*/   0, /*pos*/ -2656,  2300, -1352
 macro_object /*preset*/ macro_heave_ho,                    /*yaw*/   0, /*pos*/ -2909,  1140,   442
 macro_object /*preset*/ macro_cannon_closed,               /*yaw*/   0, /*pos*/ -2688,  3328,  3198, /*behParam*/ 0x40
@@ -27,7 +27,7 @@ macro_object /*preset*/ macro_hidden_star_trigger,         /*yaw*/   0, /*pos*/ 
 macro_object /*preset*/ macro_hidden_star_trigger,         /*yaw*/   0, /*pos*/ -2200,   384,  1145
 macro_object /*preset*/ macro_hidden_star_trigger,         /*yaw*/   0, /*pos*/ -2075,  3000,  -524
 macro_object /*preset*/ macro_hidden_star_trigger,         /*yaw*/   0, /*pos*/ -3760,   650,  4120
-macro_object /*preset*/ macro_amp_circling,                /*yaw*/   0, /*pos*/  -827,  3880,  -827, /*behParam*/ 2
+macro_object /*preset*/ macro_circling_amp,                /*yaw*/   0, /*pos*/  -827,  3880,  -827, /*behParam*/ 2
 macro_object /*preset*/ macro_breakable_box_no_coins,      /*yaw*/   0, /*pos*/  1360,   205, -1384
 macro_object /*preset*/ macro_floor_switch_hidden_objects, /*yaw*/   0, /*pos*/   920,  2300,  -840
 macro_object /*preset*/ macro_hidden_box,                  /*yaw*/   0, /*pos*/   470,  2300, -1310
@@ -48,7 +48,7 @@ macro_object /*preset*/ macro_breakable_box_three_coins,   /*yaw*/   0, /*pos*/ 
 macro_object /*preset*/ macro_pushable_metal_box,          /*yaw*/   0, /*pos*/ -3689,     0,  3205
 macro_object /*preset*/ macro_hidden_box,                  /*yaw*/   0, /*pos*/   470,  3100, -2310
 macro_object /*preset*/ macro_breakable_box_giant,         /*yaw*/   0, /*pos*/ -3093,   300,  3300
-macro_object /*preset*/ macro_amp_circling,                /*yaw*/   0, /*pos*/ -1500,  2360,  3120, /*behParam*/ 2
+macro_object /*preset*/ macro_circling_amp,                /*yaw*/   0, /*pos*/ -1500,  2360,  3120, /*behParam*/ 2
 macro_object /*preset*/ macro_hidden_blue_coin,            /*yaw*/   0, /*pos*/   420,   400,  1504
 macro_object /*preset*/ macro_hidden_blue_coin,            /*yaw*/   0, /*pos*/   -12,   400,  1808
 macro_object /*preset*/ macro_box_ten_coins,               /*yaw*/   0, /*pos*/ -2075,  3050,  -524

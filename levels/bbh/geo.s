@@ -1,5 +1,5 @@
 .include "levels/bbh/staircase_step/geo.s"
-.include "levels/bbh/tilting_floor_platform/geo.s"
+.include "levels/bbh/tilting_trap_platform/geo.s"
 .include "levels/bbh/tumbling_platform_far/geo.s"
 .include "levels/bbh/tumbling_platform_near/geo.s"
 .include "levels/bbh/moving_bookshelf/geo.s"

@@ -64,7 +64,7 @@ void bhv_star_spawn_loop(void) {
             break;
 
         case 1:
-            func_802E4250(o);
+            obj_move_xyz_using_fvel_and_yaw(o);
             o->oStarSpawnUnkFC += o->oVelY;
             o->oPosY = o->oStarSpawnUnkFC + sins((o->oTimer * 0x8000) / 30) * 400.0f;
             o->oFaceAngleYaw += 0x1000;
@@ -84,7 +84,7 @@ void bhv_star_spawn_loop(void) {
                 o->oVelY = -10.0f; 
 
             spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
-            func_802E4250(o);
+            obj_move_xyz_using_fvel_and_yaw(o);
             o->oFaceAngleYaw = o->oFaceAngleYaw - o->oTimer * 0x10 + 0x1000;
             PlaySound(SOUND_ENVIRONMENT_STAR);
 

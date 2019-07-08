@@ -126,7 +126,7 @@ void yoshi_walk_and_jump_off_roof_loop(void) {
 
 void yoshi_finish_jumping_and_despawn_loop(void) {
     func_8029F728();
-    func_802E4250(o);
+    obj_move_xyz_using_fvel_and_yaw(o);
     o->oVelY -= 2.0;
     if (o->oPosY < 2100.0f) {
         set_mario_npc_dialogue(0);

@@ -61,7 +61,7 @@ void func_802F2F8C(s16 sp1A) {
     if (sp1A & 0x02) 
         o->oAction = 2;
 
-    if (!IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 3000))
+    if (!is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 3000))
         o->oAction = 2;
 }
 
@@ -150,7 +150,7 @@ void func_802F3328(void) {
     if (o->oForwardVel > 40.0)
         o->oForwardVel = 40.0f;
 
-    if (!IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 5000)) 
+    if (!is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 5000)) 
         o->oAction = 2;
 }
 
@@ -158,7 +158,7 @@ void bhv_1up_sliding_loop(void) {
     switch (o->oAction) {
         case 0:
             SetObjectVisibility(o, 3000);
-            if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 1000)) 
+            if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 1000)) 
                 o->oAction = 1;
             break;
 
@@ -186,7 +186,7 @@ void bhv_1up_jump_on_approach_loop(void) {
 
     switch (o->oAction) {
         case 0:
-            if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 1000)) {
+            if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 1000)) {
                 o->oVelY = 40.0f;
                 o->oAction = 1;
             }
@@ -310,7 +310,7 @@ void bhv_1up_hidden_in_pole_trigger_loop(void) {
 void bhv_1up_hidden_in_pole_spawner_loop(void) {
     s8 sp2F;
 
-    if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 700)) {
+    if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 700)) {
         spawn_object_relative(2, 0, 50, 0, o, MODEL_1UP, bhvHidden1upInPole);
         for (sp2F = 0; sp2F < 2; sp2F++) {
             spawn_object_relative(0, 0, sp2F * -200, 0, o, MODEL_NONE, bhvHidden1upInPoleTrigger);

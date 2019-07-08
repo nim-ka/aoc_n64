@@ -395,7 +395,14 @@ s16 func_802E4204(void)
     return collisionFlags;
 }
 
-void func_802E4250(struct Object* obj)
+/**
+    Uses an object's forward velocity and yaw to move its X, Y, and Z positions.
+    This does accept an object as an argument, though it is always called with `o`.
+    If it wasn't called with `o`, it would modify `o`'s X and Z velocities based on
+    `obj`'s forward velocity and yaw instead of `o`'s, and wouldn't update `o`'s
+    position.
+*/
+void obj_move_xyz_using_fvel_and_yaw(struct Object* obj)
 {
     o->oVelX = obj->oForwardVel * sins(obj->oMoveAngleYaw);
     o->oVelZ = obj->oForwardVel * coss(obj->oMoveAngleYaw);
@@ -407,7 +414,7 @@ void func_802E4250(struct Object* obj)
 
 //sp18 = arg2
 
-s32 IsPointCloseToMario(f32 x, f32 y, f32 z, s32 dist)
+s32 is_point_within_radius_of_mario(f32 x, f32 y, f32 z, s32 dist)
 {
     f32 mGfxX = gMarioObject->header.gfx.pos[0];
     f32 mGfxY = gMarioObject->header.gfx.pos[1];
@@ -450,7 +457,7 @@ void SetObjectVisibility(struct Object* obj, s32 arg1)
     f32 objY = obj->oPosY;
     f32 objZ = obj->oPosZ;
 
-    if (IsPointCloseToMario(objX, objY, objZ, arg1) == 1) obj->header.gfx.node.flags &= ~0x10; /* bit 4 = 0 */
+    if (is_point_within_radius_of_mario(objX, objY, objZ, arg1) == 1) obj->header.gfx.node.flags &= ~0x10; /* bit 4 = 0 */
     else obj->header.gfx.node.flags |= 0x10; /* bit 4 = 1 */
 }
 
@@ -466,7 +473,7 @@ s32 ObjLeaveIfMarioIsNearHome(struct Object* obj, f32 homeX, f32 y, f32 homeZ, s
     f32 homeDistZ = homeZ - obj->oPosZ;
     s16 angleAwayFromHome = atan2s(homeDistZ, homeDistX);
 
-    if (IsPointCloseToMario(homeX, y, homeZ, dist) == 1) return 1;
+    if (is_point_within_radius_of_mario(homeX, y, homeZ, dist) == 1) return 1;
     else
     {
         obj->oMoveAngleYaw = approach_s16_symmetric(obj->oMoveAngleYaw, angleAwayFromHome, 320);
@@ -600,7 +607,7 @@ s16 func_802E4A38(s32 *arg0, s16 arg1, f32 arg2, s32 arg3)
 
     if
     (
-           (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, (s32)arg2) == 1
+           (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, (s32)arg2) == 1
         &&  func_802E46C0(o->oFaceAngleYaw, gMarioObject->header.gfx.angle[1] + 0x8000, 0x1000) == 1
         &&  func_802E46C0(o->oMoveAngleYaw, o->oAngleToMario, 0x1000) == 1)
     ||
@@ -712,7 +719,7 @@ s32 Unknown802E4DF4(s16 *arg0)
 #include "behaviors/amp.inc.c"
 #include "behaviors/butterfly.inc.c"
 #include "behaviors/hoot.inc.c"
-#include "behaviors/beta_green_shell.inc.c"
+#include "behaviors/beta_holdable_object.inc.c"
 #include "behaviors/bubble.inc.c"
 #include "behaviors/water_wave.inc.c"
 #include "behaviors/explosion.inc.c"
@@ -766,11 +773,11 @@ void BehBirdsSoundLoop(void) {
     }
 }
 
-void BehAmbiantSoundsInit(void) {
+void bhv_ambient_sounds_init(void) {
     if (gCurrLevelCamera->currPreset == CAMERA_PRESET_BEHIND_MARIO)
         return;
 
-    SetSound(SOUND_CH6_UNKNOWN010, D_803320E0);
+    SetSound(SOUND_CH6_CASTLEOUTDOORSAMBIENT, D_803320E0);
 }
 
 void BehSandSoundLoop(void) {

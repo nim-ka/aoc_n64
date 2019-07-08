@@ -4,7 +4,7 @@ macro_object /*preset*/ macro_yellow_coin,                 /*yaw*/   0, /*pos*/ 
 macro_object /*preset*/ macro_coin_line_horizontal_flying, /*yaw*/   0, /*pos*/  1130, -3000,   400
 macro_object /*preset*/ macro_1up,                         /*yaw*/   0, /*pos*/ -4320, -2640,  -500
 macro_object /*preset*/ macro_bully,                       /*yaw*/   0, /*pos*/  2340, -2764,   580
-macro_object /*preset*/ macro_amp_circling,                /*yaw*/   0, /*pos*/  6600, -2770,   280, /*behParam*/ 0
+macro_object /*preset*/ macro_circling_amp,                /*yaw*/   0, /*pos*/  6600, -2770,   280, /*behParam*/ 0
 macro_object /*preset*/ macro_recovery_heart,              /*yaw*/   0, /*pos*/  3660, -2700,   280
 macro_object /*preset*/ macro_hidden_1up_in_pole,          /*yaw*/   0, /*pos*/  3880, -1140,   260
 macro_object /*preset*/ macro_coin_ring_horizontal_flying, /*yaw*/   0, /*pos*/ -1900,   652,   320
@@ -37,6 +37,6 @@ macro_object /*preset*/ macro_red_coin,                    /*yaw*/   0, /*pos*/ 
 macro_object /*preset*/ macro_red_coin,                    /*yaw*/   0, /*pos*/  4330,  -790,   -50
 macro_object /*preset*/ macro_box_three_coins,             /*yaw*/   0, /*pos*/  7220, -1800,   260
 macro_object /*preset*/ macro_fire_spitter,                /*yaw*/   0, /*pos*/ -7280,  3100,  -925
-macro_object /*preset*/ macro_amp_circling,                /*yaw*/   0, /*pos*/ -2325,  3625,     0, /*behParam*/ 2
+macro_object /*preset*/ macro_circling_amp,                /*yaw*/   0, /*pos*/ -2325,  3625,     0, /*behParam*/ 2
 macro_object /*preset*/ macro_box_ten_coins,               /*yaw*/   0, /*pos*/ -5340,  4000,   100
 .hword 0x001E

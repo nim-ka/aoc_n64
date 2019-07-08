@@ -3,10 +3,10 @@ glabel bitdw_seg7_macro_objs # 0x0700F438 - 0x0700F688
 macro_object /*preset*/ macro_box_metal_cap,               /*yaw*/   0, /*pos*/ -6420, -2900,  3880
 macro_object /*preset*/ macro_coin_ring_horizontal_flying, /*yaw*/   0, /*pos*/ -1660, -3000,  3900
 macro_object /*preset*/ macro_coin_line_horizontal,        /*yaw*/   0, /*pos*/ -2400,  -800,  1900
-macro_object /*preset*/ macro_amp_circling,                /*yaw*/   0, /*pos*/ -5300,    20,  1000, /*behParam*/ 0
-macro_object /*preset*/ macro_amp_circling,                /*yaw*/   0, /*pos*/ -7140,   500,   380, /*behParam*/ 1
-macro_object /*preset*/ macro_amp_circling,                /*yaw*/   0, /*pos*/ -7120,  1050, -2080, /*behParam*/ 1
-macro_object /*preset*/ macro_amp_circling,                /*yaw*/   0, /*pos*/ -6480,   240,  1000, /*behParam*/ 0
+macro_object /*preset*/ macro_circling_amp,                /*yaw*/   0, /*pos*/ -5300,    20,  1000, /*behParam*/ 0
+macro_object /*preset*/ macro_circling_amp,                /*yaw*/   0, /*pos*/ -7140,   500,   380, /*behParam*/ 1
+macro_object /*preset*/ macro_circling_amp,                /*yaw*/   0, /*pos*/ -7120,  1050, -2080, /*behParam*/ 1
+macro_object /*preset*/ macro_circling_amp,                /*yaw*/   0, /*pos*/ -6480,   240,  1000, /*behParam*/ 0
 macro_object /*preset*/ macro_coin_ring_horizontal_flying, /*yaw*/   0, /*pos*/ -2060,  1200,  -940
 macro_object /*preset*/ macro_yellow_coin,                 /*yaw*/   0, /*pos*/  -170,  1070,   300
 macro_object /*preset*/ macro_yellow_coin,                 /*yaw*/   0, /*pos*/  -170,  1070,   700
@@ -24,7 +24,7 @@ macro_object /*preset*/ macro_yellow_coin_2,               /*yaw*/   0, /*pos*/ 
 macro_object /*preset*/ macro_yellow_coin_2,               /*yaw*/   0, /*pos*/ -3080,   813,   840
 macro_object /*preset*/ macro_yellow_coin_2,               /*yaw*/   0, /*pos*/ -3660,   873,   620
 macro_object /*preset*/ macro_yellow_coin_2,               /*yaw*/   0, /*pos*/ -4060,  1011,   240
-macro_object /*preset*/ macro_amp_circling,                /*yaw*/   0, /*pos*/ -4620,  1220,  -300, /*behParam*/ 2
+macro_object /*preset*/ macro_circling_amp,                /*yaw*/   0, /*pos*/ -4620,  1220,  -300, /*behParam*/ 2
 macro_object /*preset*/ macro_coin_ring_horizontal,        /*yaw*/   0, /*pos*/ -4620,  1220,  -300
 macro_object /*preset*/ macro_box_1up,                     /*yaw*/   0, /*pos*/ -4860,  1380,  -300
 macro_object /*preset*/ macro_yellow_coin,                 /*yaw*/   0, /*pos*/  -150, -1200,  3660

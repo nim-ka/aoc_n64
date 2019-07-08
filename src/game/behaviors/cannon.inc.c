@@ -124,13 +124,13 @@ void ActionOpenedCannon3(void)
         o->oAction = 0;
 }
 
-void (*TableOpenedCannonActions[])(void) =    {ActionOpenedCannon0,ActionOpenedCannon1,ActionOpenedCannon2,ActionOpenedCannon3,ActionOpenedCannon4,ActionOpenedCannon5,ActionOpenedCannon6};
+void (*sOpenedCannonActions[])(void) =    {ActionOpenedCannon0,ActionOpenedCannon1,ActionOpenedCannon2,ActionOpenedCannon3,ActionOpenedCannon4,ActionOpenedCannon5,ActionOpenedCannon6};
 
 u8 unused0EA1FC[] = {2,0,0,0,0,0,0,0,63,128,0,0,2,0,0,0,65,32,0,0,63,128,0,0,2,0,0,0,65,160,0,0,63,128,0,0,2,0,0,0,65,160,0,0,63,128,0,0,8,0,0,0,65,32,0,0,63,128,0,0};
 
 void bhv_cannon_base_loop(void)
 {
-    obj_call_action_function(TableOpenedCannonActions);
+    obj_call_action_function(sOpenedCannonActions);
     if(o->OBJECT_FIELD_S32(0x1C))
         o->OBJECT_FIELD_S32(0x1C)++;
     o->oInteractStatus = 0;

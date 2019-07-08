@@ -13,7 +13,7 @@ struct ObjectHitbox sExclamationBoxHitbox =
     /* hurtboxHeight: */     30,
 };
 
-struct Struct802C0DF0 TableExclamationBoxContents[] = {
+struct Struct802C0DF0 sExclamationBoxContents[] = {
     {0, 0, 0, MODEL_MARIOS_WING_CAP, bhvWingCap},
     {1, 0, 0, MODEL_MARIOS_METAL_CAP, bhvMetalCap},
     {2, 0, 0, MODEL_MARIOS_CAP, bhvVanishCap},
@@ -136,7 +136,7 @@ void func_802C0DF0(struct Struct802C0DF0 *a0, u8 a1)
 
 void ActionExclamationBox4(void)
 {
-    func_802C0DF0(TableExclamationBoxContents, o->oBehParams2ndByte);
+    func_802C0DF0(sExclamationBoxContents, o->oBehParams2ndByte);
     func_802AA618(0, 0, 46.0f);
     spawn_triangle_break_particles(20, 139, 0.3f, o->oAnimState);
     create_sound_spawner(SOUND_GENERAL_BREAKBOX);
@@ -155,10 +155,10 @@ void ActionExclamationBox5(void)
         o->oAction = 2;
 }
 
-void (*TableExclamationBoxActions[])(void) = {ActionExclamationBox0,ActionExclamationBox1,ActionExclamationBox2,ActionExclamationBox3,ActionExclamationBox4,ActionExclamationBox5};
+void (*sExclamationBoxActions[])(void) = {ActionExclamationBox0,ActionExclamationBox1,ActionExclamationBox2,ActionExclamationBox3,ActionExclamationBox4,ActionExclamationBox5};
 
 void bhv_exclamation_box_loop(void)
 {
     obj_scale(2.0f);
-    obj_call_action_function(TableExclamationBoxActions);
+    obj_call_action_function(sExclamationBoxActions);
 }

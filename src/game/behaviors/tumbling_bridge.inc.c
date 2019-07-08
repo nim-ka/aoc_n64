@@ -5,7 +5,7 @@ extern u8 bbh_seg7_collision_07026B1C[];
 extern u8 lll_seg7_collision_0701D21C[];
 extern u8 bitfs_seg7_collision_07015288[];
 
-struct Struct8032F34C TableTumblingBridgeParams[] = {
+struct Struct8032F34C sTumblingBridgeParams[] = {
     {9, -512, 0x80, MODEL_WF_TUMBLING_BRIDGE_PART, wf_seg7_collision_tumbling_bridge},
     {9, -412, 103, MODEL_BBH_TUMBLING_PLATFORM_PART, bbh_seg7_collision_07026B1C},
     {9, -512, 0x80, MODEL_LLL_FALLING_PLATFORM, lll_seg7_collision_0701D21C},
@@ -59,19 +59,19 @@ void ActionTumblingBridge1(void)
     s32 relativePlatformY = 0;
     s32 relativeInitialPlatformY = 0;
     
-    for (i = 0; i < TableTumblingBridgeParams[bridgeID].numBridgeSections; i++)
+    for (i = 0; i < sTumblingBridgeParams[bridgeID].numBridgeSections; i++)
     {
         relativePlatformX = 0;
         relativePlatformZ = 0;
         
         if (bridgeID == 3)
             relativePlatformX =
-                TableTumblingBridgeParams[bridgeID].bridgeRelativeStartingXorZ +
-                TableTumblingBridgeParams[bridgeID].platformWidth * i;
+                sTumblingBridgeParams[bridgeID].bridgeRelativeStartingXorZ +
+                sTumblingBridgeParams[bridgeID].platformWidth * i;
         else
             relativePlatformZ =
-                TableTumblingBridgeParams[bridgeID].bridgeRelativeStartingXorZ +
-                TableTumblingBridgeParams[bridgeID].platformWidth * i;
+                sTumblingBridgeParams[bridgeID].bridgeRelativeStartingXorZ +
+                sTumblingBridgeParams[bridgeID].platformWidth * i;
         
         if (obj_has_behavior(bhvLllTumblingBridge))
         {
@@ -86,11 +86,11 @@ void ActionTumblingBridge1(void)
             relativePlatformY + relativeInitialPlatformY,
             relativePlatformZ,
             o,
-            TableTumblingBridgeParams[bridgeID].model,
+            sTumblingBridgeParams[bridgeID].model,
             bhvTumblingBridgePlatform
         );
         
-        set_object_collision_data(platformObj, TableTumblingBridgeParams[bridgeID].segAddr);
+        set_object_collision_data(platformObj, sTumblingBridgeParams[bridgeID].segAddr);
     }
     
     o->oAction = 2;
@@ -120,11 +120,11 @@ void ActionTumblingBridge0(void)
         o->oAction = 1;
 }
 
-void (*TableTumblingBridgeActions[])(void) = {ActionTumblingBridge0,ActionTumblingBridge1,ActionTumblingBridge2,ActionTumblingBridge3};
+void (*sTumblingBridgeActions[])(void) = {ActionTumblingBridge0,ActionTumblingBridge1,ActionTumblingBridge2,ActionTumblingBridge3};
 
 s16 D_8032F38C[] = {-51,0,0,-461,0,0,-512,0,0,-2611,0,0,-2360,0,0,214,0,0,-50,1945,1,0};
 
 void bhv_tumbling_bridge_loop(void)
 {
-    obj_call_action_function(TableTumblingBridgeActions);
+    obj_call_action_function(sTumblingBridgeActions);
 }

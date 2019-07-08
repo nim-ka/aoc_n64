@@ -4,11 +4,11 @@ extern u8 bob_seg7_collision_gate[];
 extern u8 hmc_seg7_collision_0702B65C[];
 struct Struct8032FCE8 D_8032FCE8[] = {{320,MODEL_BOB_BARS_GRILLS,bob_seg7_collision_gate},{410,MODEL_HMC_RED_GRILLS,hmc_seg7_collision_0702B65C}};
 
-void bhv_bob_hmc_cage_door_loop(void)
+void bhv_openable_cage_door_loop(void)
 {
     if(gCurrentObject->oAction == 0)
     {
-        if(gCurrentObject->parentObj->oUnk88 != 0)
+        if(gCurrentObject->parentObj->oUnknownUnk88 != 0)
             gCurrentObject->oAction++;
     }
     else if(gCurrentObject->oAction == 1)
@@ -43,7 +43,7 @@ void bhv_openable_grill_loop(void)
         sp3C = o->oOpenableGrillUnkF4;
         if(sp3C->oAction == 2)
         {
-            o->oUnk88 = 2;
+            o->oUnknownUnk88 = 2;
             PlaySound2(SOUND_GENERAL_CAGEOPEN);
             o->oAction++;
             if(o->oBehParams2ndByte != 0)

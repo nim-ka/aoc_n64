@@ -45,7 +45,7 @@ void bhv_respawner_loop(void)
 {
     struct Object *spawnedObject;
     
-    if (!IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, o->oRespawnerMinSpawnDist))
+    if (!is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, o->oRespawnerMinSpawnDist))
     {
         spawnedObject = spawn_object(o, o->oRespawnerModelToRespawn, o->oRespawnerBehaviorToRespawn);
         spawnedObject->oBehParams = o->oBehParams;

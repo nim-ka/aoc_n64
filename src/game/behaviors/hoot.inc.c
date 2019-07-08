@@ -257,7 +257,7 @@ void bhv_hoot_loop(void)
     switch (o->oHootAvailability)
     {
         case HOOT_AVAIL_ASLEEP_IN_TREE:
-            if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 50))
+            if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 50))
             {
                 o->header.gfx.node.flags &= ~0x10; /* bit 4 */
                 o->oHootAvailability = HOOT_AVAIL_WANTS_TO_TALK;

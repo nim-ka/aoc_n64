@@ -25,14 +25,14 @@ void bhv_little_cage_2_loop(void)
 
 void ActionLittleCage0(void)
 {
-    if(o->oUnk88 != 0)
+    if(o->oUnknownUnk88 != 0)
         o->oAction = 1;
     load_object_collision_model();
 }
 
 void ActionLittleCage1(void)
 {
-    if(o->oUnk88 != 1)
+    if(o->oUnknownUnk88 != 1)
         o->oAction = 2;
     o->oMoveAngleYaw += 0x800;
     load_object_collision_model();
@@ -51,9 +51,9 @@ void ActionLittleCage3(void)
     obj_hide();
 }
 
-void (*TableLittleCageActions[])(void) = {ActionLittleCage0,ActionLittleCage1,ActionLittleCage2,ActionLittleCage3};
+void (*sLittleCageActions[])(void) = {ActionLittleCage0,ActionLittleCage1,ActionLittleCage2,ActionLittleCage3};
 
 void bhv_little_cage_loop(void)
 {
-    obj_call_action_function(TableLittleCageActions);
+    obj_call_action_function(sLittleCageActions);
 }

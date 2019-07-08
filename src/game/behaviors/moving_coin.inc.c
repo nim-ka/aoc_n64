@@ -116,7 +116,7 @@ void bhv_moving_blue_coin_loop(void)
     switch (o->oAction)
     {
         case MOV_BCOIN_ACT_STILL:
-            if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 1500) != 0)
+            if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 1500) != 0)
                 o->oAction = 1;
             break;
 
@@ -161,7 +161,7 @@ void func_802E540C(void)
     if (CoinStep(&collisionFlags) != 0) o->oVelY += 18.0f;
     if ((collisionFlags & 0x2) != 0) o->oAction = 3; /* bit 1 */
     
-    if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 1000) == 0)
+    if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 1000) == 0)
         o->oAction = 2;
 }
 
@@ -171,7 +171,7 @@ void func_802E54DC(void)
     
     CoinStep(&collisionFlags);
     
-    if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 500) == 1)
+    if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 500) == 1)
         o->oAction = 1;
     
     if (o->oTimer >= 151)
@@ -185,7 +185,7 @@ void bhv_blue_coin_sliding_loop(void)
     switch (o->oAction)
     {
         case 0:
-            if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 500) == 1)
+            if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 500) == 1)
                 o->oAction = 1;
             
             SetObjectVisibility(o, 3000);

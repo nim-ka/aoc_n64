@@ -561,9 +561,9 @@ s32 act_reading_automatic_dialogue(struct MarioState *m)
         else if (m->actionState == 25)
         {
             disable_time_stop();
-            if (gSaveFileDoesNotExist)
+            if (gShouldNotPlayCastleMusic)
             {
-                gSaveFileDoesNotExist = FALSE;
+                gShouldNotPlayCastleMusic = FALSE;
                 func_802492A0((0 << 8) | 4);
             }
             if (m->prevAction == ACT_STAR_DANCE_WATER)
@@ -1111,7 +1111,7 @@ s32 act_warp_door_spawn(struct MarioState *m)
     }
     else if (m->usedObj->oAction == 0)
     {
-        if (gSaveFileDoesNotExist == TRUE && gCurrLevelNum == LEVEL_CASTLE)
+        if (gShouldNotPlayCastleMusic == TRUE && gCurrLevelNum == LEVEL_CASTLE)
             set_mario_action(m, ACT_READING_AUTOMATIC_DIALOGUE, 21);
         else
             set_mario_action(m, ACT_IDLE, 0);
@@ -2294,7 +2294,7 @@ static void end_peach_cutscene_summon_jumbo_star(struct MarioState *m)
 
     sEndJumboStarObj->oFaceAngleYaw += 0x0400;
     generate_yellow_sparkles(0, 2528, -1800, 250.0f);
-    SetSound(SOUND_CH6_UNKNOWN00B, sEndJumboStarObj->header.gfx.cameraToObject);
+    SetSound(SOUND_CH6_PEACHTWINKLE, sEndJumboStarObj->header.gfx.cameraToObject);
 }
 
 // free peach from the stained glass window
@@ -2359,7 +2359,7 @@ static void end_peach_cutscene_spawn_peach(struct MarioState *m)
     // probably added sounds later and missed the previous >= 40 check
     if (m->actionTimer >= 40)
     {
-        SetSound(SOUND_CH6_UNKNOWN00B, sEndPeachObj->header.gfx.cameraToObject);
+        SetSound(SOUND_CH6_PEACHTWINKLE, sEndPeachObj->header.gfx.cameraToObject);
     }
 }
 
@@ -2383,7 +2383,7 @@ static void end_peach_cutscene_descend_peach(struct MarioState *m)
     if ((sEndPeachObj->oPosY -= m->actionState / 10) <= 907.0f)
         sEndPeachObj->oPosY = 906.0f;
 
-    SetSound(SOUND_CH6_UNKNOWN00B, sEndPeachObj->header.gfx.cameraToObject);
+    SetSound(SOUND_CH6_PEACHTWINKLE, sEndPeachObj->header.gfx.cameraToObject);
 
     if (m->actionTimer >= 584)
         advance_cutscene_step(m);

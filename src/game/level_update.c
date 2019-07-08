@@ -146,7 +146,7 @@ s8 sTimerRunning;
 
 struct HudDisplay gHudDisplay;
 
-s8 gSaveFileDoesNotExist;
+s8 gShouldNotPlayCastleMusic;
 
 
 void basic_update(s16 *arg);
@@ -1273,7 +1273,7 @@ s32 lvl_init_from_save_file(UNUSED s16 arg0, s32 levelNum)
 #endif
     sWarpDest.type = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;
-    gSaveFileDoesNotExist = !save_file_exists(gCurrSaveFileNum - 1);
+    gShouldNotPlayCastleMusic = !save_file_exists(gCurrSaveFileNum - 1);
 
     gCurrLevelNum = levelNum;
     gCurrCourseNum = COURSE_NONE;

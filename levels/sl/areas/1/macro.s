@@ -30,7 +30,7 @@ macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/  3400, 
 macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/ -3171,  1075, -4765
 macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/ -4241,  1009, -3834
 macro_object /*preset*/ macro_box_koopa_shell,      /*yaw*/   0, /*pos*/ -5450,  1300,  5900
-macro_object /*preset*/ macro_amp_circling,         /*yaw*/   0, /*pos*/  4060,   900, -2940, /*behParam*/ 0
+macro_object /*preset*/ macro_circling_amp,         /*yaw*/   0, /*pos*/  4060,   900, -2940, /*behParam*/ 0
 macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/ -4096,  1125,  3062
 macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/ -4536,  1125,  3782
 macro_object /*preset*/ macro_coin_line_horizontal, /*yaw*/  65, /*pos*/  -660,  2120,  1340

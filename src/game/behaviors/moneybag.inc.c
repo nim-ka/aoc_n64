@@ -137,7 +137,7 @@ void MoneybagMoveAroundLoop(void)
     MoneybagJump(collisionFlags);
     MoneybagCheckMarioCollision();
     
-    if (!IsPointCloseToMario(o->oHomeX, o->oHomeY, o->oHomeZ, 800)
+    if (!is_point_within_radius_of_mario(o->oHomeX, o->oHomeY, o->oHomeZ, 800)
     && ((collisionFlags & 0x9) == 9))
         o->oAction = MONEYBAG_ACT_RETURN_HOME;
 }
@@ -169,7 +169,7 @@ void MoneybagReturnHomeLoop(void)
         o->oMoneybagJumpState = MONEYBAG_JUMP_LANDING;
     }
     
-    if (IsPointCloseToMario(o->oHomeX, o->oHomeY, o->oHomeZ, 800) == 1)
+    if (is_point_within_radius_of_mario(o->oHomeX, o->oHomeY, o->oHomeZ, 800) == 1)
     {
         o->oAction = MONEYBAG_ACT_MOVE_AROUND;
         o->oMoneybagJumpState = MONEYBAG_JUMP_LANDING;
@@ -238,7 +238,7 @@ void bhv_moneybag_hidden_loop(void)
     switch (o->oAction)
     {
         case FAKE_MONEYBAG_COIN_ACT_IDLE:
-            if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 400))
+            if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 400))
             {
                 spawn_object(o, MODEL_MONEYBAG, bhvMoneybag);
 #ifndef VERSION_JP

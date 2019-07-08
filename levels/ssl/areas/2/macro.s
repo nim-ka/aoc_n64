@@ -7,7 +7,7 @@ macro_object /*preset*/ macro_goomba,                      /*yaw*/   0, /*pos*/ 
 macro_object /*preset*/ macro_box_1up,                     /*yaw*/   0, /*pos*/ -1242,   252, -3957
 macro_object /*preset*/ macro_yellow_coin_2,               /*yaw*/   0, /*pos*/  1873,     0, -3495
 macro_object /*preset*/ macro_yellow_coin_2,               /*yaw*/   0, /*pos*/  1200,     0, -3495
-macro_object /*preset*/ macro_amp_circling,                /*yaw*/   0, /*pos*/  3056,   736, -3267, /*behParam*/ 1
+macro_object /*preset*/ macro_circling_amp,                /*yaw*/   0, /*pos*/  3056,   736, -3267, /*behParam*/ 1
 macro_object /*preset*/ macro_goomba,                      /*yaw*/   0, /*pos*/  3263,   652,  2200
 macro_object /*preset*/ macro_goomba,                      /*yaw*/   0, /*pos*/  3431,   673, -1373
 macro_object /*preset*/ macro_coin_line_horizontal_flying, /*yaw*/  90, /*pos*/    -2,  1774,  2794
@@ -17,8 +17,8 @@ macro_object /*preset*/ macro_yellow_coin,                 /*yaw*/   0, /*pos*/ 
 macro_object /*preset*/ macro_yellow_coin,                 /*yaw*/   0, /*pos*/   736,  2546, -2250
 macro_object /*preset*/ macro_yellow_coin,                 /*yaw*/   0, /*pos*/  1368,  3263, -2250
 macro_object /*preset*/ macro_yellow_coin,                 /*yaw*/   0, /*pos*/  1368,  3135, -2250
-macro_object /*preset*/ macro_amp_homing,                  /*yaw*/   0, /*pos*/  1621,  3368, -1142
-macro_object /*preset*/ macro_amp_homing,                  /*yaw*/   0, /*pos*/  1621,  3389,   478
+macro_object /*preset*/ macro_homing_amp,                  /*yaw*/   0, /*pos*/  1621,  3368, -1142
+macro_object /*preset*/ macro_homing_amp,                  /*yaw*/   0, /*pos*/  1621,  3389,   478
 macro_object /*preset*/ macro_coin_line_horizontal,        /*yaw*/  90, /*pos*/  -210,  4521,  -994
 macro_object /*preset*/ macro_goomba,                      /*yaw*/   0, /*pos*/ -2100,     0,  3316
 macro_object /*preset*/ macro_blue_coin_switch,            /*yaw*/   0, /*pos*/  -719,     0,  4772

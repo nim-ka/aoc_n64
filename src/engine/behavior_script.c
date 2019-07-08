@@ -873,7 +873,7 @@ void cur_object_exec_behavior(void)
         gCurrentObject->oFaceAngleYaw = gCurrentObject->oMoveAngleYaw;
 
     if (flagsLo & OBJ_FLAG_MOVE_XZ_USING_FVEL)
-        obj_move_xz_using_fvel();
+        obj_move_xz_using_fvel_and_yaw();
 
     if (flagsLo & OBJ_FLAG_MOVE_Y_WITH_TERMINAL_VEL)
         obj_move_y_with_terminal_vel();

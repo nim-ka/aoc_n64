@@ -11,7 +11,7 @@ macro_object /*preset*/ macro_yellow_coin_2,        /*yaw*/   0, /*pos*/  4200, 
 macro_object /*preset*/ macro_yellow_coin_2,        /*yaw*/   0, /*pos*/  4740,     0, -4940
 macro_object /*preset*/ macro_yellow_coin_2,        /*yaw*/   0, /*pos*/  4740,     0, -4400
 macro_object /*preset*/ macro_coin_line_horizontal, /*yaw*/   0, /*pos*/ -2100, -3276,    20
-macro_object /*preset*/ macro_amp_circling,         /*yaw*/   0, /*pos*/ -2100, -2800, -3866, /*behParam*/ 1
+macro_object /*preset*/ macro_circling_amp,         /*yaw*/   0, /*pos*/ -2100, -2800, -3866, /*behParam*/ 1
 macro_object /*preset*/ macro_box_three_coins,      /*yaw*/   0, /*pos*/ -2145, -2160, -5963
 macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/ -5920,  4575, -4618
 macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/ -4740,  3581, -3854

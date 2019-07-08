@@ -8,7 +8,7 @@ void bhv_heave_ho_throw_mario_loop(void)
     o->oParentRelativePosY = -50.0f;
     o->oParentRelativePosZ = 0.0f;
     o->oMoveAngleYaw = o->parentObj->oMoveAngleYaw;
-    switch(o->parentObj->oUnk88)
+    switch(o->parentObj->oUnknownUnk88)
     {
     case 0:
         break;
@@ -19,7 +19,7 @@ void bhv_heave_ho_throw_mario_loop(void)
         gMarioObject->oInteractStatus |= INT_STATUS_MARIO_UNK2;
         gMarioStates->forwardVel = -45.0f;
         gMarioStates->vel[1] = 95.0f;
-        o->parentObj->oUnk88 = 0;
+        o->parentObj->oUnknownUnk88 = 0;
         break;
     }
 }
@@ -72,7 +72,7 @@ void ActionHeaveHo3(void)
 {
     o->oForwardVel = 0.0f;
     if(o->oTimer == 0)
-        o->oUnk88 = 2;
+        o->oUnknownUnk88 = 2;
     if(o->oTimer == 1)
     {
         func_8029ED98(1,1.0f);
@@ -98,25 +98,25 @@ void ActionHeaveHo0(void)
     }
 }
 
-void (*TableHeaveHoActions[])(void) = {ActionHeaveHo0,ActionHeaveHo1,ActionHeaveHo2,ActionHeaveHo3};
+void (*sHeaveHoActions[])(void) = {ActionHeaveHo0,ActionHeaveHo1,ActionHeaveHo2,ActionHeaveHo3};
 
 void func_802B18B4(void)
 {
     obj_update_floor_and_walls();
-    obj_call_action_function(TableHeaveHoActions);
+    obj_call_action_function(sHeaveHoActions);
     obj_move_standard(-78);
     if(o->oMoveFlags & (0x40 | 0x20 | 0x10 | 0x8))
         o->oGraphYOffset = -15.0f;
     else
         o->oGraphYOffset = 0.0f;
     if(o->oForwardVel > 3.0f)
-        PlaySound(SOUND_CH6_UNKNOWN006);
+        PlaySound(SOUND_CH6_HEAVEHOMOVE);
     if(o->oAction != 0 && o->oMoveFlags & (0x40 | 0x20 | 0x10 | 0x8))
         o->oAction = 0;
     if(o->oInteractStatus & INT_STATUS_GRABBED_MARIO)
     {
         o->oInteractStatus = 0;
-        o->oUnk88 = 1;
+        o->oUnknownUnk88 = 1;
         o->oAction = 3;
     }
 }

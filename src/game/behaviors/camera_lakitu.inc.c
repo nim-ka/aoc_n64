@@ -16,7 +16,7 @@ void bhv_camera_lakitu_init(void)
     if (o->oBehParams2ndByte != CAMERA_LAKITU_BP_FOLLOW_CAMERA)
     {
         // Despawn unless this is the very beginning of the game
-        if (gSaveFileDoesNotExist != TRUE)
+        if (gShouldNotPlayCastleMusic != TRUE)
         {
             mark_object_for_deletion(o);
         }
@@ -88,7 +88,7 @@ static void camera_lakitu_intro_act_show_dialogue(void)
     s16 targetMovePitch;
     s16 targetMoveYaw;
 
-    PlaySound(SOUND_CH6_UNKNOWN002);
+    PlaySound(SOUND_CH6_LAKITUFLY);
 
     // Face toward mario
     o->oFaceAnglePitch = obj_turn_pitch_toward_mario(120.0f, 0);

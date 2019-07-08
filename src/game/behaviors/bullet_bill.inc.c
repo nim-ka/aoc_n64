@@ -81,11 +81,11 @@ void ActionBulletBill4(void)
         o->oAction = 0;
 }
 
-void (*TableBulletBillActions[])(void) = {ActionBulletBill0,ActionBulletBill1,ActionBulletBill2,ActionBulletBill3,ActionBulletBill4};
+void (*sBulletBillActions[])(void) = {ActionBulletBill0,ActionBulletBill1,ActionBulletBill2,ActionBulletBill3,ActionBulletBill4};
 
 void bhv_bullet_bill_loop(void)
 {
-    obj_call_action_function(TableBulletBillActions);
+    obj_call_action_function(sBulletBillActions);
     if(obj_check_interacted())
         o->oAction = 4;
 }

@@ -125,7 +125,7 @@ void bhv_snowmans_bottom_loop(void) {
 
     switch (o->oAction) {
         case 0:
-            if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 400) == 1
+            if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 400) == 1
                 && set_mario_npc_dialogue(1) == 2) {
                 sp1E = func_8028F8E0(162, o, 110);
                 if (sp1E) {
@@ -229,7 +229,7 @@ void bhv_snowmans_head_loop(void) {
 }
 
 void bhv_snowmans_body_checkpoint_loop(void) {
-    if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 800)) {
+    if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 800)) {
         o->parentObj->oUnk1AC_S32++;
         o->activeFlags = 0;
     }

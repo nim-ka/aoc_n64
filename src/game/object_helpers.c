@@ -1652,7 +1652,7 @@ void obj_move_y(f32 gravity, f32 bounce, f32 buoyancy)
         if (o->oVelY > 5.0f)
         {
             o->oMoveFlags &= ~OBJ_MOVE_MASK_IN_WATER;
-            o->oMoveFlags |= OBJ_MOVE_12;
+            o->oMoveFlags |= OBJ_MOVE_LEAVING_WATER;
         }
     }
 
@@ -1748,7 +1748,7 @@ s16 abs_angle_diff(s16 x0, s16 x1)
     return diff;
 }
 
-void obj_move_xz_using_fvel(void)
+void obj_move_xz_using_fvel_and_yaw(void)
 {
     o->oVelX = o->oForwardVel * sins(o->oMoveAngleYaw);
     o->oVelZ = o->oForwardVel * coss(o->oMoveAngleYaw);
@@ -3496,7 +3496,7 @@ s32 obj_check_grabbed_mario(void)
 {
     if (o->oInteractStatus & INT_STATUS_GRABBED_MARIO)
     {
-        o->oUnk88 = 1;
+        o->oUnknownUnk88 = 1;
         obj_become_intangible();
         return TRUE;
     }

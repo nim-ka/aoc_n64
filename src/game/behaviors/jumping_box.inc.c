@@ -41,7 +41,7 @@ void ActionJumpingBox1(void)
     }
 }
 
-void (*TableJumpingBoxActions[])(void) = {ActionJumpingBox0,ActionJumpingBox1};
+void (*sJumpingBoxActions[])(void) = {ActionJumpingBox0,ActionJumpingBox1};
 
 void func_802B1F84(void)
 {
@@ -50,7 +50,7 @@ void func_802B1F84(void)
     set_object_hitbox(o,&sJumpingBoxHitbox);
     obj_update_floor_and_walls();
     obj_move_standard(78);
-    obj_call_action_function(TableJumpingBoxActions);
+    obj_call_action_function(sJumpingBoxActions);
 }
 
 void bhv_jumping_box_loop(void)

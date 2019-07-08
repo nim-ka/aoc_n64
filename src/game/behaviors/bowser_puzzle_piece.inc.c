@@ -124,12 +124,12 @@ void ActionBowserPuzzlePiece6(void)
     func_802BE014(0.0f,120.0f,4,3);
 }
 
-void (*TableBowserPuzzlePieceActions[])(void) = {ActionBowserPuzzlePiece0,ActionBowserPuzzlePiece1,ActionBowserPuzzlePiece2,ActionBowserPuzzlePiece3,ActionBowserPuzzlePiece4,ActionBowserPuzzlePiece5,ActionBowserPuzzlePiece6};
+void (*sBowserPuzzlePieceActions[])(void) = {ActionBowserPuzzlePiece0,ActionBowserPuzzlePiece1,ActionBowserPuzzlePiece2,ActionBowserPuzzlePiece3,ActionBowserPuzzlePiece4,ActionBowserPuzzlePiece5,ActionBowserPuzzlePiece6};
 
 void bhv_lll_bowser_puzzle_piece_loop(void)
 {
     func_802BDF2C();
-    obj_call_action_function(TableBowserPuzzlePieceActions);
+    obj_call_action_function(sBowserPuzzlePieceActions);
     o->oPosX = o->oBowserPuzzlePieceUnkFC + o->oHomeX;
     o->oPosY = o->oBowserPuzzlePieceUnk100 + o->oHomeY;
     o->oPosZ = o->oBowserPuzzlePieceUnk104 + o->oHomeZ;

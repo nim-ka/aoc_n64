@@ -84,7 +84,7 @@
 #define OBJ_MOVE_HIT_WALL              (1 <<  9) // 0x0200
 #define OBJ_MOVE_HIT_EDGE              (1 << 10) // 0x0400
 #define OBJ_MOVE_ABOVE_LAVA            (1 << 11) // 0x0800
-#define OBJ_MOVE_12                    (1 << 12) // 0x1000
+#define OBJ_MOVE_LEAVING_WATER                    (1 << 12) // 0x1000
 #define OBJ_MOVE_13                    (1 << 13) // 0x2000
 #ifndef VERSION_JP
 #define OBJ_MOVE_ABOVE_DEATH_BARRIER   (1 << 14) // 0x4000
@@ -139,6 +139,18 @@
     #define BOBOMB_ACT_EXPLODE 3
     #define BOBOMB_ACT_LAVA_DEATH 100
     #define BOBOMB_ACT_DEATH_PLANE_DEATH 101
+
+/* Hidden Blue Coin */
+    /* oAction */
+    #define HIDDEN_BLUE_COIN_ACT_INACTIVE 0
+    #define HIDDEN_BLUE_COIN_ACT_WAITING 1
+    #define HIDDEN_BLUE_COIN_ACT_ACTIVE 2
+
+/* Blue Coin Switch */
+    /* oAction */
+    #define BLUE_COIN_SWITCH_ACT_IDLE 0
+    #define BLUE_COIN_SWITCH_ACT_RECEDING 1
+    #define BLUE_COIN_SWITCH_ACT_TICKING 2
     
 /* Moving Blue Coin */
     /* oAction */
@@ -183,11 +195,11 @@
     
 /* Homing Amp */
     /* oAction */
-    #define AMP_HOMING_ACT_INACTIVE 0
-    #define AMP_HOMING_ACT_APPEAR 1
-    #define AMP_HOMING_ACT_CHASE 2
-    #define AMP_HOMING_ACT_GIVE_UP 3
-    #define AMP_HOMING_ACT_ATTACK_COOLDOWN 4
+    #define HOMING_AMP_ACT_INACTIVE 0
+    #define HOMING_AMP_ACT_APPEAR 1
+    #define HOMING_AMP_ACT_CHASE 2
+    #define HOMING_AMP_ACT_GIVE_UP 3
+    #define HOMING_AMP_ACT_ATTACK_COOLDOWN 4
     
 /* Amp */
     /* oBehParams2ndByte */
@@ -195,9 +207,10 @@
     #define AMP_BP_ROT_RADIUS_300 1
     #define AMP_BP_ROT_RADIUS_400 2
     #define AMP_BP_ROT_RADIUS_0 3
+    
     /* oAction */
     #define AMP_ACT_IDLE 2
-    #define AMP_ATTACK_COOLDOWN 4
+    #define AMP_ACT_ATTACK_COOLDOWN 4
     
 /* Butterfly */
     /* oAction */
@@ -233,7 +246,7 @@
     #define BULLY_STYPE_MINION 1
     #define BULLY_STYPE_CHILL 16
     
-/* Water Ring (all variants */
+/* Water Ring (all variants) */
     /* oAction */
     #define WATER_RING_ACT_NOT_COLLECTED 0
     #define WATER_RING_ACT_COLLECTED 1
@@ -309,6 +322,59 @@
     #define FREE_BBALL_ACT_IDLE 0
     #define FREE_BBALL_ACT_ROLL 1
     #define FREE_BBALL_ACT_RESET 2
+
+/* Beta Chest Lid */
+    /* oAction */
+    #define BETA_CHEST_ACT_IDLE_CLOSED 0
+    #define BETA_CHEST_ACT_OPENING 1
+    #define BETA_CHEST_ACT_IDLE_OPEN 2
+
+/* BBH Tilting Trap Platform */
+    /* oAction */
+    // Unused in original Japanese version
+    #define BBH_TILTING_TRAP_PLATFORM_ACT_MARIO_ON 0
+    #define BBH_TILTING_TRAP_PLATFORM_ACT_MARIO_OFF 1
+
+/* Boo */
+    /* oBooDeathStatus */
+    #define BOO_DEATH_STATUS_ALIVE 0
+    #define BOO_DEATH_STATUS_DYING 1
+    #define BOO_DEATH_STATUS_DEAD 2
+
+/* Beta Boo Key */
+    /* oAction */
+    #define BETA_BOO_KEY_ACT_IN_BOO 0
+    #define BETA_BOO_KEY_ACT_DROPPING 1
+    #define BETA_BOO_KEY_ACT_DROPPED 2
+
+/* Boo Cage */
+    /* oAction */
+    #define BOO_CAGE_ACT_IN_BOO 0
+    #define BOO_CAGE_ACT_FALLING 1
+    #define BOO_CAGE_ACT_ON_GROUND 2
+    #define BOO_CAGE_ACT_MARIO_JUMPING_IN 3
+    #define BOO_CAGE_ACT_USELESS 4
+
+/* BBH Haunted Bookshelf */
+    /* oAction */
+    #define HAUNTED_BOOKSHELF_ACT_IDLE 0
+    #define HAUNTED_BOOKSHELF_ACT_RECEDE 1
+
+/* BBH Merry-Go-Round */
+    /* gMarioCurrentRoom */
+    #define BBH_NEAR_MERRY_GO_ROUND_ROOM 10
+    #define BBH_DYNAMIC_SURFACE_ROOM 0
+    #define BBH_OUTSIDE_ROOM 13
+
+/* WDW Arrow Lift */
+    /* oAction */
+    #define ARROW_LIFT_ACT_IDLE 0
+    #define ARROW_LIFT_ACT_MOVING_AWAY 1
+    #define ARROW_LIFT_ACT_MOVING_BACK 2
+    
+    /* status */
+    #define ARROW_LIFT_NOT_DONE_MOVING 0
+    #define ARROW_LIFT_DONE_MOVING 1
 
 /* Yoshi */
     /* oAction */
@@ -551,6 +617,12 @@
     #define TTC_2D_ROTATOR_BP_HAND 0
     #define TTC_2D_ROTATOR_BP_2D_COG 1
 
+/* Activated Back-and-Forth Platform */
+    /* ((u16)(o->oBehParams >> 16) & 0x0300) >> 8 aka platform type */
+    #define ACTIVATED_BF_PLAT_TYPE_BITS_ARROW_PLAT 0
+    #define ACTIVATED_BF_PLAT_TYPE_BITFS_MESH_PLAT 1
+    #define ACTIVATED_BF_PLAT_TYPE_BITFS_ELEVATOR  2
+
 /* Dorrie */
     /* oAction */
     #define DORRIE_ACT_MOVE 0
@@ -617,7 +689,7 @@
 
 /* Bird */
     /* oAction */
-    #define BIRD_ACT_INIT 0
+    #define BIRD_ACT_INACTIVE 0
     #define BIRD_ACT_FLY 1
 
     /* oBehParams2ndByte */

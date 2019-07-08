@@ -188,7 +188,7 @@ static void enemy_lakitu_sub_act_throw_spiny(void)
  */
 static void enemy_lakitu_act_main(void)
 {
-    PlaySound(SOUND_CH6_UNKNOWN002);
+    PlaySound(SOUND_CH6_LAKITUFLY);
 
     obj_update_floor_and_walls();
 

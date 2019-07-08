@@ -51,9 +51,9 @@ void ActionGrindelThwomp0(void)
         o->oPosY += 10.0f;
 }
 
-void (*TableGrindelThwompActions[])(void) = {ActionGrindelThwomp0,ActionGrindelThwomp1,ActionGrindelThwomp2,ActionGrindelThwomp3,ActionGrindelThwomp4};
+void (*sGrindelThwompActions[])(void) = {ActionGrindelThwomp0,ActionGrindelThwomp1,ActionGrindelThwomp2,ActionGrindelThwomp3,ActionGrindelThwomp4};
 
 void bhv_grindel_thwomp_loop(void)
 {
-    obj_call_action_function(TableGrindelThwompActions);
+    obj_call_action_function(sGrindelThwompActions);
 }

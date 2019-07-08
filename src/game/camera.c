@@ -6886,7 +6886,7 @@ CmdRet CutsceneEnterBowserPlatform0_4(UNUSED struct LevelCamera *c)
 
 CmdRet CutsceneEnterBowserPlatform0_3(UNUSED struct LevelCamera *c)
 {
-    gSecondCameraFocus->oUnk88 = 1;
+    gSecondCameraFocus->oUnknownUnk88 = 1;
 }
 
 CmdRet CutsceneEnterBowserPlatform0_5(struct LevelCamera *c)
@@ -6978,7 +6978,7 @@ CmdRet CutsceneEnterBowserPlatform2(struct LevelCamera *c)
     init_transitional_movement(c, 20);
     gCameraFlags2 |= CAM_FLAG_2_UNUSED_CUTSCENE_ACTIVE;
     sFirstPersonCameraYaw = sMarioStatusForCamera->faceAngle[1] + 0x4000;
-    gSecondCameraFocus->oUnk88 = 2;
+    gSecondCameraFocus->oUnknownUnk88 = 2;
 }
 
 CmdRet CutsceneEnterBowserPlatform0(struct LevelCamera *c)
@@ -9859,7 +9859,7 @@ void BehBeginningLakituLoop(void)
             gCurrentObject->oPosZ = gCurrLevelCamera->pos[2];
         }
         if (gCutsceneTimer > 52)
-            PlaySound(SOUND_CH6_UNKNOWN002_HIGHPRIO);
+            PlaySound(SOUND_CH6_LAKITUFLY_HIGHPRIO);
         if (func_8029ACAC(gCurrentObject, D_8032E3CC, D_8032E2B4) == 1)
             gCurrentObject->oAction += 1; 
 
@@ -9905,11 +9905,11 @@ void BehBeginningLakituLoop(void)
             gCurrentObject->oFaceAngleYaw = gCurrentObject->oMoveAngleYaw + 0x4000;
             gCurrentObject->oMoveAnglePitch = 0x800;
         }
-        PlaySound(SOUND_CH6_UNKNOWN002_HIGHPRIO);
+        PlaySound(SOUND_CH6_LAKITUFLY_HIGHPRIO);
         break;
 
     case 3:
-        PlaySound(SOUND_CH6_UNKNOWN002_HIGHPRIO);
+        PlaySound(SOUND_CH6_LAKITUFLY_HIGHPRIO);
         vec3f_set(sp58, -1128.f, 560.f, 4664.f);
         gCurrentObject->oMoveAngleYaw += 0x200;
         gCurrentObject->oIntroLakituUnk100 = approach_f32_exponential(gCurrentObject->oIntroLakituUnk100, 100.f, 0.03f);

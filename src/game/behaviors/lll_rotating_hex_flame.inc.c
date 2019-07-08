@@ -60,11 +60,11 @@ void ActionRotatingCwFireBars3(void)
     o->oAction = 0;
 }
 
-void (*TableRotatingCwFireBarsActions[])(void) = {ActionRotatingCwFireBars0,ActionRotatingCwFireBars1,ActionRotatingCwFireBars2,ActionRotatingCwFireBars3};
+void (*sRotatingCwFireBarsActions[])(void) = {ActionRotatingCwFireBars0,ActionRotatingCwFireBars1,ActionRotatingCwFireBars2,ActionRotatingCwFireBars3};
 
 void bhv_lll_rotating_block_fire_bars_loop(void)
 {
-    obj_call_action_function(TableRotatingCwFireBarsActions);
+    obj_call_action_function(sRotatingCwFireBarsActions);
     if(o->oBehParams2ndByte == 0)
         load_object_collision_model();
 }

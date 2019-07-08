@@ -77,11 +77,11 @@ void ActionToxBox0(void)
     o->oAction = func_802A32A4(sp1C);
 }
 
-void (*TableToxBoxActions[])(void) = {ActionToxBox0,ActionToxBox1,ActionToxBox2,ActionToxBox3,ActionToxBox4,ActionToxBox5,ActionToxBox6,ActionToxBox7};
+void (*sToxBoxActions[])(void) = {ActionToxBox0,ActionToxBox1,ActionToxBox2,ActionToxBox3,ActionToxBox4,ActionToxBox5,ActionToxBox6,ActionToxBox7};
 s8 D_8032F998[] = {12,28,50,64,-1};
 
 void bhv_tox_box_loop(void)
 {
-    obj_call_action_function(TableToxBoxActions);
+    obj_call_action_function(sToxBoxActions);
     load_object_collision_model();
 }

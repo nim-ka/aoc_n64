@@ -230,10 +230,10 @@ glabel level_castle_entry
     area /*index*/ 1, /*geo*/ castle_geo_001400
         object /*model*/ MODEL_NONE,       /*pos*/ -5513,  717, -4324, /*angle*/ 0,  45, 0, /*behParam*/ 0x00140000, /*beh*/ bhvCastleFloorTrap
         object /*model*/ MODEL_NONE,       /*pos*/  2477,  307, -2000, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ bhvFishGroup
-        object /*model*/ MODEL_NONE,       /*pos*/  2774,  507, -1716, /*angle*/ 0,  90, 0, /*behParam*/ 0x00000000, /*beh*/ bhvTankFishGroups
-        object /*model*/ MODEL_NONE,       /*pos*/  3672,  507, -1307, /*angle*/ 0,  45, 0, /*behParam*/ 0x00000000, /*beh*/ bhvTankFishGroups
-        object /*model*/ MODEL_NONE,       /*pos*/  3748,  507,   773, /*angle*/ 0, -45, 0, /*behParam*/ 0x00000000, /*beh*/ bhvTankFishGroups
-        object /*model*/ MODEL_NONE,       /*pos*/  2778,  507,  1255, /*angle*/ 0, -90, 0, /*behParam*/ 0x00000000, /*beh*/ bhvTankFishGroups
+        object /*model*/ MODEL_NONE,       /*pos*/  2774,  507, -1716, /*angle*/ 0,  90, 0, /*behParam*/ 0x00000000, /*beh*/ bhvTankFishGroup
+        object /*model*/ MODEL_NONE,       /*pos*/  3672,  507, -1307, /*angle*/ 0,  45, 0, /*behParam*/ 0x00000000, /*beh*/ bhvTankFishGroup
+        object /*model*/ MODEL_NONE,       /*pos*/  3748,  507,   773, /*angle*/ 0, -45, 0, /*behParam*/ 0x00000000, /*beh*/ bhvTankFishGroup
+        object /*model*/ MODEL_NONE,       /*pos*/  2778,  507,  1255, /*angle*/ 0, -90, 0, /*behParam*/ 0x00000000, /*beh*/ bhvTankFishGroup
         object /*model*/ MODEL_BOO_CASTLE, /*pos*/ -1000,   50, -3500, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ bhvBooInCastle
         object /*model*/ MODEL_TOAD,       /*pos*/ -1671,    0,  1313, /*angle*/ 0,  83, 0, /*behParam*/ 0x85000000, /*beh*/ bhvToadMessage
         object /*model*/ MODEL_TOAD,       /*pos*/  1524,  307,   458, /*angle*/ 0, 110, 0, /*behParam*/ 0x86000000, /*beh*/ bhvToadMessage

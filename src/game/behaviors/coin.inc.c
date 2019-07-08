@@ -258,7 +258,7 @@ void ActionCoinInsideBoo0(void)
         obj_scale(0.7);
     }
     copy_object_pos(o,parent);
-    if(parent->oUnk88 == 1)
+    if(parent->oBooDeathStatus == BOO_DEATH_STATUS_DYING)
     {
         o->oAction = 1;
         sp26 = gMarioObject->oMoveAngleYaw;
@@ -269,11 +269,11 @@ void ActionCoinInsideBoo0(void)
     }
 }
 
-void (*TableCoinInsideBooActions[])(void) = {ActionCoinInsideBoo0,ActionCoinInsideBoo1};
+void (*sCoinInsideBooActions[])(void) = {ActionCoinInsideBoo0,ActionCoinInsideBoo1};
 
 void bhv_coin_inside_boo_loop(void)
 {
-    obj_call_action_function(TableCoinInsideBooActions);
+    obj_call_action_function(sCoinInsideBooActions);
 }
 
 void bhv_coin_sparkles_loop(void)

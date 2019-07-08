@@ -374,35 +374,35 @@
 /* not verified */ #define SOUND_GENERAL_ENEMYALERT2    0x307F
 
 /* Environment Sound Effects */
-/* not verified */ #define SOUND_ENVIRONMENT_WATERFALL1      SOUND_ARG_LOAD(4, 0, 0x00, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_WATERFALL2      SOUND_ARG_LOAD(4, 0, 0x01, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_ELEVATOR1       SOUND_ARG_LOAD(4, 0, 0x02, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_DRONING1        SOUND_ARG_LOAD(4, 1, 0x03, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_DRONING2        SOUND_ARG_LOAD(4, 0, 0x04, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_WIND1           SOUND_ARG_LOAD(4, 0, 0x05, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_MOVINGSANDSNOW  0x4006
-/* not verified */ #define SOUND_ENVIRONMENT_UNKNOWN1        0x4007
-/* not verified */ #define SOUND_ENVIRONMENT_ELEVATOR2       SOUND_ARG_LOAD(4, 0, 0x08, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_WATER           SOUND_ARG_LOAD(4, 0, 0x09, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_UNKNOWN2        SOUND_ARG_LOAD(4, 0, 0x0A, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_BOATROCKING1    SOUND_ARG_LOAD(4, 0, 0x0B, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_ELEVATOR3       SOUND_ARG_LOAD(4, 0, 0x0C, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_ELEVATOR4       SOUND_ARG_LOAD(4, 0, 0x0D, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_ELEVATOR4_2     SOUND_ARG_LOAD(4, 1, 0x0D, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_MOVINGSAND      SOUND_ARG_LOAD(4, 0, 0x0E, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_BOATROCKING2    SOUND_ARG_LOAD(4, 0, 0x0F, 0x40, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_WIND2           SOUND_ARG_LOAD(4, 0, 0x10, 0x80, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_MOVINGSANDSNOW2 0x4011
-/* not verified */ #define SOUND_ENVIRONMENT_UNKNOWN3        0x4012
-/* not verified */ #define SOUND_ENVIRONMENT_SLIDING         SOUND_ARG_LOAD(4, 0, 0x13, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_STAR            SOUND_ARG_LOAD(4, 0, 0x14, 0x00, 1)
-/* not verified */ #define SOUND_ENVIRONMENT_UNKNOWN4        SOUND_ARG_LOAD(4, 1, 0x15, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_WATERDRAIN      SOUND_ARG_LOAD(4, 1, 0x16, 0x00, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_METALBOXPUSH    SOUND_ARG_LOAD(4, 0, 0x17, 0x80, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_SINKQUICKSAND   SOUND_ARG_LOAD(4, 0, 0x18, 0x80, 0)
-/* not verified */ #define SOUND_ENVIRONMENT_PEACHSPARKLE    0x4019
-/* not verified */ #define SOUND_ENVIRONMENT_ELEVATOR5       0x401A
-/* not verified */ #define SOUND_ENVIRONMENT_FIRE            0x401B
+/* not verified */ #define SOUND_ENVIRONMENT_WATERFALL1             SOUND_ARG_LOAD(4, 0, 0x00, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_WATERFALL2             SOUND_ARG_LOAD(4, 0, 0x01, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_ELEVATOR1              SOUND_ARG_LOAD(4, 0, 0x02, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_DRONING1               SOUND_ARG_LOAD(4, 1, 0x03, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_DRONING2               SOUND_ARG_LOAD(4, 0, 0x04, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_WIND1                  SOUND_ARG_LOAD(4, 0, 0x05, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_MOVINGSANDSNOW         0x4006
+/* not verified */ #define SOUND_ENVIRONMENT_UNKNOWN1               0x4007
+/* not verified */ #define SOUND_ENVIRONMENT_ELEVATOR2              SOUND_ARG_LOAD(4, 0, 0x08, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_WATER                  SOUND_ARG_LOAD(4, 0, 0x09, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_UNKNOWN2               SOUND_ARG_LOAD(4, 0, 0x0A, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_BOATROCKING1           SOUND_ARG_LOAD(4, 0, 0x0B, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_ELEVATOR3              SOUND_ARG_LOAD(4, 0, 0x0C, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_ELEVATOR4              SOUND_ARG_LOAD(4, 0, 0x0D, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_ELEVATOR4_2            SOUND_ARG_LOAD(4, 1, 0x0D, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_MOVINGSAND             SOUND_ARG_LOAD(4, 0, 0x0E, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_MERRYGOROUNDCREAKING   SOUND_ARG_LOAD(4, 0, 0x0F, 0x40, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_WIND2                  SOUND_ARG_LOAD(4, 0, 0x10, 0x80, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_MOVINGSANDSNOW2        0x4011
+/* not verified */ #define SOUND_ENVIRONMENT_UNKNOWN3               0x4012
+/* not verified */ #define SOUND_ENVIRONMENT_SLIDING                SOUND_ARG_LOAD(4, 0, 0x13, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_STAR                   SOUND_ARG_LOAD(4, 0, 0x14, 0x00, 1)
+/* not verified */ #define SOUND_ENVIRONMENT_UNKNOWN4               SOUND_ARG_LOAD(4, 1, 0x15, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_WATERDRAIN             SOUND_ARG_LOAD(4, 1, 0x16, 0x00, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_METALBOXPUSH           SOUND_ARG_LOAD(4, 0, 0x17, 0x80, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_SINKQUICKSAND          SOUND_ARG_LOAD(4, 0, 0x18, 0x80, 0)
+/* not verified */ #define SOUND_ENVIRONMENT_PEACHSPARKLE           0x4019
+/* not verified */ #define SOUND_ENVIRONMENT_ELEVATOR5              0x401A
+/* not verified */ #define SOUND_ENVIRONMENT_FIRE                   0x401B
 
 /* Object Sound Effects */
 /* not verified */ #define SOUND_OBJECT_WATERSOUND           SOUND_ARG_LOAD(5, 0, 0x00, 0x80, 8)
@@ -415,7 +415,7 @@
 /* not verified */ #define SOUND_OBJECT_BOWSERSPINNING       SOUND_ARG_LOAD(5, 0, 0x07, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_BOWSERINHALING       SOUND_ARG_LOAD(5, 0, 0x08, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_PENGUINWALKING2      SOUND_ARG_LOAD(5, 0, 0x09, 0x80, 8)
-/* not verified */ #define SOUND_OBJECT_UNKNOWN1             SOUND_ARG_LOAD(5, 0, 0x0A, 0x00, 8)
+/* not verified */ #define SOUND_OBJECT_BOOBOUNCETOP             SOUND_ARG_LOAD(5, 0, 0x0A, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_BOOLAUGH1            SOUND_ARG_LOAD(5, 0, 0x0B, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_THWOMP               SOUND_ARG_LOAD(5, 0, 0x0C, 0xA0, 8)
 /* not verified */ #define SOUND_OBJECT_CANNON1              SOUND_ARG_LOAD(5, 0, 0x0D, 0xF0, 8)
@@ -546,19 +546,19 @@
 /* not verified */ #define SOUND_OBJECT_BOWSERSWINGTAIL2     0x507F
 
 // Channel 6 sound effects are not yet explored.
-/* not verified */ #define SOUND_CH6_UNKNOWN000              SOUND_ARG_LOAD(6, 0, 0x00, 0x00, 0)
-/* not verified */ #define SOUND_CH6_UNKNOWN002              SOUND_ARG_LOAD(6, 0, 0x02, 0x80, 0)
-/* not verified */ #define SOUND_CH6_UNKNOWN002_HIGHPRIO     SOUND_ARG_LOAD(6, 0, 0x02, 0xFF, 0)
-/* not verified */ #define SOUND_CH6_UNKNOWN003              SOUND_ARG_LOAD(6, 0, 0x03, 0x40, 0)
-/* not verified */ #define SOUND_CH6_UNKNOWN004              SOUND_ARG_LOAD(6, 0, 0x04, 0x80, 0)
-/* not verified */ #define SOUND_CH6_UNKNOWN004_2            SOUND_ARG_LOAD(6, 0, 0x04, 0x40, 0)
-/* not verified */ #define SOUND_CH6_UNKNOWN005              SOUND_ARG_LOAD(6, 0, 0x05, 0x00, 0)
-/* not verified */ #define SOUND_CH6_UNKNOWN006              SOUND_ARG_LOAD(6, 0, 0x06, 0x40, 0)
-/* not verified */ #define SOUND_CH6_UNKNOWN008              SOUND_ARG_LOAD(6, 0, 0x08, 0x60, 0)
-/* not verified */ #define SOUND_CH6_UNKNOWN009              SOUND_ARG_LOAD(6, 0, 0x09, 0x80, 0)
-/* not verified */ #define SOUND_CH6_UNKNOWN00A              SOUND_ARG_LOAD(6, 0, 0x0A, 0x40, 0)
-/* not verified */ #define SOUND_CH6_UNKNOWN00B              SOUND_ARG_LOAD(6, 0, 0x0B, 0x40, 0)
-/* not verified */ #define SOUND_CH6_UNKNOWN010              SOUND_ARG_LOAD(6, 0, 0x10, 0x40, 0)
+/* not verified */ #define SOUND_CH6_BOWSERSPITFIRE          SOUND_ARG_LOAD(6, 0, 0x00, 0x00, 0)
+/* not verified */ #define SOUND_CH6_LAKITUFLY               SOUND_ARG_LOAD(6, 0, 0x02, 0x80, 0)
+/* not verified */ #define SOUND_CH6_LAKITUFLY_HIGHPRIO      SOUND_ARG_LOAD(6, 0, 0x02, 0xFF, 0)
+/* not verified */ #define SOUND_CH6_AMPBUZZ                 SOUND_ARG_LOAD(6, 0, 0x03, 0x40, 0)
+/* not verified */ #define SOUND_CH6_BLOWWINDORFIRE          SOUND_ARG_LOAD(6, 0, 0x04, 0x80, 0)
+/* not verified */ #define SOUND_CH6_BLOWWINDORFIRE_LOWPRIO  SOUND_ARG_LOAD(6, 0, 0x04, 0x40, 0)
+/* not verified */ #define SOUND_CH6_ROUGHSLIDE              SOUND_ARG_LOAD(6, 0, 0x05, 0x00, 0)
+/* not verified */ #define SOUND_CH6_HEAVEHOMOVE             SOUND_ARG_LOAD(6, 0, 0x06, 0x40, 0)
+/* not verified */ #define SOUND_CH6_BOBOMBLITFUSE           SOUND_ARG_LOAD(6, 0, 0x08, 0x60, 0)
+/* not verified */ #define SOUND_CH6_HOWLINGWIND             SOUND_ARG_LOAD(6, 0, 0x09, 0x80, 0)
+/* not verified */ #define SOUND_CH6_CHUCKYAMOVE             SOUND_ARG_LOAD(6, 0, 0x0A, 0x40, 0)
+/* not verified */ #define SOUND_CH6_PEACHTWINKLE            SOUND_ARG_LOAD(6, 0, 0x0B, 0x40, 0)
+/* not verified */ #define SOUND_CH6_CASTLEOUTDOORSAMBIENT   SOUND_ARG_LOAD(6, 0, 0x10, 0x40, 0)
 
 /* Menu Sound Effects */
 /* not verified */ #define SOUND_MENU_CHANGESELECT           SOUND_ARG_LOAD(7, 0, 0x00, 0xF8, 8)
@@ -605,7 +605,9 @@
 /* not verified */ #define SOUND_MENU_COLLECTSECRET          SOUND_ARG_LOAD(7, 0, 0x30, 0x20, 8)
 
 /* Channel 8 Sound Effects */
-// not yet documented
+// Channel 3 loads sounds from the same place as channel 8, so these are all carried over.
+// Sounds from the same channel cannot play at the same time, so channel 3 and 5 sounds are also
+// loaded into channels 8 and 9 so that they can play over other channel 3/5 sounds.
 /* not verified */ #define SOUND_CH8_UNK2E      SOUND_ARG_LOAD(8, 0, 0x2E, 0x20, 8)
 /* not verified */ #define SOUND_CH8_UNK3E      SOUND_ARG_LOAD(8, 0, 0x3E, 0xC0, 8)
 /* not verified */ #define SOUND_CH8_UNK40      SOUND_ARG_LOAD(8, 0, 0x40, 0x00, 8)
@@ -613,18 +615,17 @@
 /* not verified */ #define SOUND_CH8_UNK4B      SOUND_ARG_LOAD(8, 1, 0x4B, 0xE0, 8)
 /* not verified */ #define SOUND_CH8_UNK4C      SOUND_ARG_LOAD(8, 1, 0x4C, 0xF0, 8)
 /* not verified */ #define SOUND_CH8_UNK50      SOUND_ARG_LOAD(8, 0, 0x50, 0x40, 0)
-/* not verified */ #define SOUND_CH8_UNK54      SOUND_ARG_LOAD(8, 0, 0x54, 0xF0, 1)
-/* not verified */ #define SOUND_CH8_UNK55      SOUND_ARG_LOAD(8, 0, 0x55, 0xF0, 1)
+/* not verified */ #define SOUND_CH8_SWITCH5      SOUND_ARG_LOAD(8, 0, 0x54, 0xF0, 1)
+/* not verified */ #define SOUND_CH8_SWITCH6      SOUND_ARG_LOAD(8, 0, 0x55, 0xF0, 1)
 /* not verified */ #define SOUND_CH8_UNK57      SOUND_ARG_LOAD(8, 0, 0x57, 0xFF, 9)
 /* not verified */ #define SOUND_CH8_UNK59      SOUND_ARG_LOAD(8, 0, 0x59, 0x00, 8)
 /* not verified */ #define SOUND_CH8_UNK60      SOUND_ARG_LOAD(8, 0, 0x60, 0x00, 8)
 /* not verified */ #define SOUND_CH8_UNK61      SOUND_ARG_LOAD(8, 0, 0x61, 0x00, 8)
 /* not verified */ #define SOUND_CH8_UNK63      SOUND_ARG_LOAD(8, 0, 0x63, 0xD0, 8)
-/* not verified */ #define SOUND_CH8_UNK6A      SOUND_ARG_LOAD(8, 0, 0x6A, 0xA0, 8)
+/* not verified */ #define SOUND_CH8_RIGHTANSWER      SOUND_ARG_LOAD(8, 0, 0x6A, 0xA0, 8)
 
 /* Channel 9 Sound Effects */
-// not yet documented. (It seems like bank 5 and 9 load sounds from the same
-// place, so some names could be carried over from there.)
+// Channel 9 loads sounds from the same place as channel 5. See the channel 8 comment for why this was done.
 /* not verified */ #define SOUND_CH9_UNK04      SOUND_ARG_LOAD(9, 0, 0x04, 0x00, 8)
 /* not verified */ #define SOUND_CH9_UNK10      SOUND_ARG_LOAD(9, 0, 0x10, 0x50, 8)
 /* not verified */ #define SOUND_CH9_UNK11      SOUND_ARG_LOAD(9, 0, 0x11, 0x60, 8)

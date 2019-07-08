@@ -247,7 +247,7 @@ void ObjRandomBlink(s32 *blinkTimer)
 void bhv_bobomb_loop(void)
 {
     s8 dustPeriodMinus1;
-    if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 4000) != 0)
+    if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 4000) != 0)
     {
         switch (o->oHeldState)
         {
@@ -278,7 +278,7 @@ void bhv_bobomb_loop(void)
             if ((dustPeriodMinus1 & o->oBobombFuseTimer) == 0) /* oBobombFuseTimer % 2 or oBobombFuseTimer % 8 */
                 spawn_object(o, MODEL_SMOKE, bhvBobombFuseSmoke);
                 
-            PlaySound(SOUND_CH6_UNKNOWN008);
+            PlaySound(SOUND_CH6_BOBOMBLITFUSE);
             
             o->oBobombFuseTimer++;
         }

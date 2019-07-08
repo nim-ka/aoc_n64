@@ -69,10 +69,10 @@ void bhv_treasure_chest_bottom_loop(void) {
     switch (o->oAction) {
         case 0:
             if (func_802E46C0(o->oMoveAngleYaw, gMarioObject->header.gfx.angle[1] + 0x8000, 0x3000)) {
-                if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 150)) {
+                if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 150)) {
                     if (!o->parentObj->oUnknownUnkF8_S32) {
                         if (o->parentObj->oUnknownUnkF4_S32 == o->oBehParams2ndByte) {
-                            SetSound(SOUND_CH8_UNK6A, D_803320E0);
+                            SetSound(SOUND_CH8_RIGHTANSWER, D_803320E0);
                             o->parentObj->oUnknownUnkF4_S32++;
                             o->oAction = 1;
                         }
@@ -95,7 +95,7 @@ void bhv_treasure_chest_bottom_loop(void) {
 
         case 2:
             obj_become_intangible();
-            if (!IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 500)) {
+            if (!is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 500)) {
                 o->parentObj->oUnknownUnkF8_S32 = 0;
                 o->oAction = 0;
             }

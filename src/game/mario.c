@@ -32,7 +32,7 @@
 #include "engine/surface_collision.h"
 
 u32 D_80339F10;
-s8 filler80339F1C[0x80339F30 - 0x80339F1C];
+s8 filler80339F1C[20];
 
 // Sound terrain types. See audio_defines.h.
 s8 D_8032CB40[7][6] = {
@@ -594,9 +594,9 @@ void func_80252070(struct MarioState *m)
     drop_and_set_mario_action(m, ACT_STEEP_JUMP, 0);
 }
 
-static void func_8025219C(struct MarioState *m, f32 unk1, f32 unk2)
+static void set_mario_y_vel_based_on_fspeed(struct MarioState *m, f32 initialVelY, f32 multiplier)
 {
-    m->vel[1] = unk1 + zero_80254E20() + m->forwardVel * unk2;
+    m->vel[1] = initialVelY + get_additive_y_vel_for_jumps() + m->forwardVel * multiplier;
     if (m->squishTimer != 0 || m->quicksandDepth > 1.0f)
         m->vel[1] *= 0.5f;
 }
@@ -614,29 +614,29 @@ static u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actio
     switch (action)
     {
         case ACT_DOUBLE_JUMP:
-            func_8025219C(m, 52.0f, 0.25f);
+            set_mario_y_vel_based_on_fspeed(m, 52.0f, 0.25f);
             m->forwardVel *= 0.8f;
             break;
 
         case ACT_BACKFLIP:
             m->marioObj->header.gfx.unk38.animID = -1;
             m->forwardVel = -16.0f;
-            func_8025219C(m, 62.0f, 0.0f);
+            set_mario_y_vel_based_on_fspeed(m, 62.0f, 0.0f);
             break;
 
         case ACT_TRIPLE_JUMP:
-            func_8025219C(m, 69.0f, 0.0f);
+            set_mario_y_vel_based_on_fspeed(m, 69.0f, 0.0f);
             m->forwardVel *= 0.8f;
             break;
 
         case ACT_FLYING_TRIPLE_JUMP:
-            func_8025219C(m, 82.0f, 0.0f);
+            set_mario_y_vel_based_on_fspeed(m, 82.0f, 0.0f);
             break;
 
         case ACT_WATER_JUMP:
         case ACT_HOLD_WATER_JUMP:
              if (actionArg == 0)
-                 func_8025219C(m, 42.0f, 0.0f);
+                 set_mario_y_vel_based_on_fspeed(m, 42.0f, 0.0f);
              break;
 
         case ACT_BURNING_JUMP:
@@ -645,33 +645,33 @@ static u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actio
              break;
 
         case ACT_RIDING_SHELL_JUMP:
-            func_8025219C(m, 42.0f, 0.25f);
+            set_mario_y_vel_based_on_fspeed(m, 42.0f, 0.25f);
             break;
 
         case ACT_JUMP:
         case ACT_HOLD_JUMP:
             m->marioObj->header.gfx.unk38.animID = -1;
-            func_8025219C(m, 42.0f, 0.25f);
+            set_mario_y_vel_based_on_fspeed(m, 42.0f, 0.25f);
             m->forwardVel *= 0.8f;
             break;
 
         case ACT_WALL_KICK_AIR:
         case ACT_TOP_OF_POLE_JUMP:
-            func_8025219C(m, 62.0f, 0.0f);
+            set_mario_y_vel_based_on_fspeed(m, 62.0f, 0.0f);
             if (m->forwardVel < 24.0f)
                 m->forwardVel = 24.0f;
             m->wallKickTimer = 0;
             break;
 
         case ACT_SIDE_FLIP:
-            func_8025219C(m, 62.0f, 0.0f);
+            set_mario_y_vel_based_on_fspeed(m, 62.0f, 0.0f);
             m->forwardVel = 8.0f;
             m->faceAngle[1] = m->intendedYaw;
             break;
 
         case ACT_STEEP_JUMP:
             m->marioObj->header.gfx.unk38.animID = -1;
-            func_8025219C(m, 42.0f, 0.25f);
+            set_mario_y_vel_based_on_fspeed(m, 42.0f, 0.25f);
             m->faceAngle[0] = -0x2000;
             break;
 
@@ -690,7 +690,7 @@ static u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actio
 
         case ACT_LONG_JUMP:
             m->marioObj->header.gfx.unk38.animID = -1;
-            func_8025219C(m, 30.0f, 0.0f);
+            set_mario_y_vel_based_on_fspeed(m, 30.0f, 0.0f);
             m->marioObj->oMarioLongJumpIsSlow = m->forwardVel > 16.0f ? FALSE : TRUE;
             if ((m->forwardVel *= 1.5f) > 48.0f)
                 m->forwardVel = 48.0f;

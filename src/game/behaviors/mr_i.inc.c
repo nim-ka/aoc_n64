@@ -35,11 +35,11 @@ void ActionMrIParticle1(void)
         spawn_object(o,MODEL_PURPLE_MARBLE,bhvGiantPiranhaParticle);
 }
 
-void (*TableMrIParticleActions[])(void) = {ActionMrIParticle0,ActionMrIParticle1};
+void (*sMrIParticleActions[])(void) = {ActionMrIParticle0,ActionMrIParticle1};
 
 void bhv_mr_i_particle_loop(void)
 {
-    obj_call_action_function(TableMrIParticleActions);
+    obj_call_action_function(sMrIParticleActions);
 }
 
 void func_802A525C(void)
@@ -264,7 +264,7 @@ void ActionMrI0(void)
         o->oAction = 1;
 }
 
-void (*TableMrIActions[])(void) = {ActionMrI0,ActionMrI1,ActionMrI2,ActionMrI3};
+void (*sMrIActions[])(void) = {ActionMrI0,ActionMrI1,ActionMrI2,ActionMrI3};
 
 struct ObjectHitbox sMrIHitbox =
 {
@@ -282,7 +282,7 @@ struct ObjectHitbox sMrIHitbox =
 void bhv_mr_i_loop(void)
 {
     set_object_hitbox(o,&sMrIHitbox);
-    obj_call_action_function(TableMrIActions);
+    obj_call_action_function(sMrIActions);
     if(o->oAction != 3)
         if(o->oDistanceToMario > 3000.0f || o->activeFlags & 8)
             o->oAction = 0;
