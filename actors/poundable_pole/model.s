@@ -9,10 +9,10 @@ poundable_pole_seg6_light_06001040: # 0x06001040
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 poundable_pole_seg6_texture_06001050: # 0x06001050
-.incbin "actors/poundable_pole/0.rgba16"
+.incbin "actors/poundable_pole/poundable_pole_top.rgba16"
 
 poundable_pole_seg6_texture_06001850: # 0x06001850
-.incbin "actors/poundable_pole/1.rgba16"
+.incbin "actors/poundable_pole/poundable_pole_side.rgba16"
 
 poundable_pole_seg6_vertex_06002050: # 0x06002050
 vertex    -38,    410,    -94,     78,     78,  0xDF, 0x5C, 0xB0, 0xFF

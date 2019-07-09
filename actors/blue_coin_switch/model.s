@@ -8,10 +8,10 @@ blue_coin_switch_seg8_light_08000008: # 0x08000008
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 blue_coin_switch_seg8_texture_08000018: # 0x08000018
-.incbin "actors/blue_coin_switch/0.rgba16"
+.incbin "actors/blue_coin_switch/blue_coin_switch_side.rgba16"
 
 blue_coin_switch_seg8_texture_08000418: # 0x08000418
-.incbin "actors/blue_coin_switch/1.rgba16"
+.incbin "actors/blue_coin_switch/blue_coin_switch_top.rgba16"
 
 blue_coin_switch_seg8_vertex_08000C18: # 0x08000C18
 vertex     26,      0,     26,    990,    479,  0x00, 0x00, 0x7F, 0xFF

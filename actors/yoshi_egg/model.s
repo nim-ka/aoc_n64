@@ -7,28 +7,28 @@ vertex    128,    256,      0,   1984,      0,  0x00, 0x00, 0x7F, 0x00
 vertex   -128,    256,      0,      0,      0,  0x00, 0x00, 0x7F, 0x00
 
 yoshi_egg_seg5_texture_050057B8: # 0x050057B8
-.incbin "actors/yoshi_egg/0.rgba16"
+.incbin "actors/yoshi_egg/yoshi_egg_0_unused.rgba16"
 
 yoshi_egg_seg5_texture_05005FB8: # 0x05005FB8
-.incbin "actors/yoshi_egg/1.rgba16"
+.incbin "actors/yoshi_egg/yoshi_egg_1_unused.rgba16"
 
 yoshi_egg_seg5_texture_050067B8: # 0x050067B8
-.incbin "actors/yoshi_egg/2.rgba16"
+.incbin "actors/yoshi_egg/yoshi_egg_2_unused.rgba16"
 
 yoshi_egg_seg5_texture_05006FB8: # 0x05006FB8
-.incbin "actors/yoshi_egg/3.rgba16"
+.incbin "actors/yoshi_egg/yoshi_egg_3_unused.rgba16"
 
 yoshi_egg_seg5_texture_050077B8: # 0x050077B8
-.incbin "actors/yoshi_egg/4.rgba16"
+.incbin "actors/yoshi_egg/yoshi_egg_4_unused.rgba16"
 
 yoshi_egg_seg5_texture_05007FB8: # 0x05007FB8
-.incbin "actors/yoshi_egg/5.rgba16"
+.incbin "actors/yoshi_egg/yoshi_egg_5_unused.rgba16"
 
 yoshi_egg_seg5_texture_050087B8: # 0x050087B8
-.incbin "actors/yoshi_egg/6.rgba16"
+.incbin "actors/yoshi_egg/yoshi_egg_6_unused.rgba16"
 
 yoshi_egg_seg5_texture_05008FB8: # 0x05008FB8
-.incbin "actors/yoshi_egg/7.rgba16"
+.incbin "actors/yoshi_egg/yoshi_egg_7_unused.rgba16"
 
 glabel yoshi_egg_seg5_dl_050097B8 # 0x050097B8 - 0x05009820
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0

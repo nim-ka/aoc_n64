@@ -14,10 +14,10 @@ vertex      5,      0,      5,    992,   2016,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,      0,     -5,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 impact_ring_seg6_texture_0601CA50: # 0x0601CA50
-.incbin "actors/impact_ring/0.ia16"
+.incbin "actors/impact_ring/impact_ring_left_side.ia16"
 
 impact_ring_seg6_texture_0601DA50: # 0x0601DA50
-.incbin "actors/impact_ring/1.ia16"
+.incbin "actors/impact_ring/impact_ring_right_side.ia16"
 
 glabel impact_ring_seg6_dl_0601EA50 # 0x0601EA50 - 0x0601EA88
 gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, impact_ring_seg6_texture_0601CA50

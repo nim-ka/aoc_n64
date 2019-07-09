@@ -21,19 +21,19 @@ lakitu_enemy_seg5_light_0500ECB8: # 0x0500ECB8
 
 # Unreferenced texture
 lakitu_enemy_seg5_texture_0500ECE0: # 0x0500ECE0
-.incbin "actors/lakitu_enemy/0.rgba16"
+.incbin "actors/lakitu_enemy/lakitu_enemy_cloud_face_unused.rgba16"
 
 lakitu_enemy_seg5_texture_0500F4E0: # 0x0500F4E0
-.incbin "actors/lakitu_enemy/1.rgba16"
+.incbin "actors/lakitu_enemy/lakitu_enemy_eyes_open.rgba16"
 
 lakitu_enemy_seg5_texture_050104E0: # 0x050104E0
-.incbin "actors/lakitu_enemy/2.rgba16"
+.incbin "actors/lakitu_enemy/lakitu_enemy_eyes_closed.rgba16"
 
 lakitu_enemy_seg5_texture_050114E0: # 0x050114E0
-.incbin "actors/lakitu_enemy/3.rgba16"
+.incbin "actors/lakitu_enemy/lakitu_enemy_shell.rgba16"
 
 lakitu_enemy_seg5_texture_05011CE0: # 0x05011CE0
-.incbin "actors/lakitu_enemy/4.rgba16"
+.incbin "actors/lakitu_enemy/lakitu_enemy_frown.rgba16"
 
 lakitu_enemy_seg5_light_050124E0: # 0x050124E0
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00

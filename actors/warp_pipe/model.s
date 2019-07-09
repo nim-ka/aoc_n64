@@ -86,7 +86,7 @@ vertex    154,    205,      0,      0,      0,  0x7D, 0x00, 0xEF, 0xFF
 vertex    154,      0,      0,      0,   2012,  0x7D, 0x00, 0x11, 0xFF
 
 warp_pipe_seg3_texture_03007E40: # 0x03007E40
-.incbin "actors/warp_pipe/0.rgba16"
+.incbin "actors/warp_pipe/warp_pipe_side.rgba16"
 
 glabel warp_pipe_seg3_dl_03008E40 # 0x03008E40 - 0x03008F98
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, warp_pipe_seg3_texture_03007E40
@@ -172,7 +172,7 @@ vertex   -101,     10,   -101,      0,      0,  0x00, 0x7F, 0x00, 0xFF
 vertex    102,     10,    102,      0,      0,  0x00, 0x7F, 0x00, 0xFF
 
 warp_pipe_seg3_texture_03009168: # 0x03009168
-.incbin "actors/warp_pipe/1.rgba16"
+.incbin "actors/warp_pipe/warp_pipe_top.rgba16"
 
 glabel warp_pipe_seg3_dl_03009968 # 0x03009968 - 0x03009A20
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, warp_pipe_seg3_texture_03009168

@@ -8,10 +8,10 @@ purple_switch_seg8_light_0800C098: # 0x0800C098
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 purple_switch_seg8_texture_0800C0A8: # 0x0800C0A8
-.incbin "actors/purple_switch/0.rgba16"
+.incbin "actors/purple_switch/purple_switch_base.rgba16"
 
 purple_switch_seg8_texture_0800C128: # 0x0800C128
-.incbin "actors/purple_switch/1.rgba16"
+.incbin "actors/purple_switch/purple_switch_exclamation_point.rgba16"
 
 purple_switch_seg8_vertex_0800C528: # 0x0800C528
 vertex    102,      0,   -101,      0,   -543,  0x53, 0x5F, 0x00, 0xFF

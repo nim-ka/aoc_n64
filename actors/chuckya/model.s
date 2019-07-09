@@ -43,16 +43,16 @@
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 chuckya_seg8_texture_08006778: # 0x08006778
-.incbin "actors/chuckya/0.rgba16"
+.incbin "actors/chuckya/chuckya_eyes.rgba16"
 
 chuckya_seg8_texture_08007778: # 0x08007778
-.incbin "actors/chuckya/1.rgba16"
+.incbin "actors/chuckya/chuckya_hand_antenna.rgba16"
 
 chuckya_seg8_texture_08007F78: # 0x08007F78
-.incbin "actors/chuckya/2.rgba16"
+.incbin "actors/chuckya/chuckya_body_arm_left_side.rgba16"
 
 chuckya_seg8_texture_08008F78: # 0x08008F78
-.incbin "actors/chuckya/3.rgba16"
+.incbin "actors/chuckya/chuckya_body_arm_right_side.rgba16"
 
 chuckya_seg8_vertex_08009F78: # 0x08009F78
 vertex      0,     56,      0,    990,      0,  0xFF, 0xFF, 0xFF, 0xFF

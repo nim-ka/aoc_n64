@@ -62,28 +62,28 @@ koopa_seg6_light_06002638: # 0x06002638
 #     the rest of its body. This is evident because once the mistake is corrected
 #     it turns back to being white like the other polygons.
 koopa_seg6_texture_06002648: # 0x06002648
-.incbin "actors/koopa/0.rgba16"
+.incbin "actors/koopa/koopa_shell_front.rgba16"
 
 koopa_seg6_texture_06002E48: # 0x06002E48
-.incbin "actors/koopa/1.rgba16"
+.incbin "actors/koopa/koopa_shell_back.rgba16"
 
 koopa_seg6_texture_06003648: # 0x06003648
-.incbin "actors/koopa/2.rgba16"
+.incbin "actors/koopa/koopa_shoe.rgba16"
 
 koopa_seg6_texture_06003E48: # 0x06003E48
-.incbin "actors/koopa/3.rgba16"
+.incbin "actors/koopa/koopa_shell_front_top.rgba16"
 
 koopa_seg6_texture_06004648: # 0x06004648
-.incbin "actors/koopa/4.rgba16"
+.incbin "actors/koopa/koopa_eyes_open.rgba16"
 
 koopa_seg6_texture_06004E48: # 0x06004E48
-.incbin "actors/koopa/5.rgba16"
+.incbin "actors/koopa/koopa_eyes_closed.rgba16"
 
 koopa_seg6_texture_06005648: # 0x06005648
-.incbin "actors/koopa/6.rgba16"
+.incbin "actors/koopa/koopa_eye_border.rgba16"
 
 koopa_seg6_texture_06005E48: # 0x06005E48
-.incbin "actors/koopa/7.rgba16"
+.incbin "actors/koopa/koopa_nostrils.rgba16"
 
 koopa_seg6_light_06006E48: # 0x06006E48
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00

@@ -24,22 +24,22 @@ piranha_plant_seg6_light_060113E8: # 0x060113E8
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 piranha_plant_seg6_texture_060113F8: # 0x060113F8
-.incbin "actors/piranha_plant/0.rgba16"
+.incbin "actors/piranha_plant/piranha_plant_tongue.rgba16"
 
 piranha_plant_seg6_texture_060123F8: # 0x060123F8
-.incbin "actors/piranha_plant/1.rgba16"
+.incbin "actors/piranha_plant/piranha_plant_skin.rgba16"
 
 piranha_plant_seg6_texture_06012BF8: # 0x06012BF8
-.incbin "actors/piranha_plant/2.rgba16"
+.incbin "actors/piranha_plant/piranha_plant_stem.rgba16"
 
 piranha_plant_seg6_texture_060133F8: # 0x060133F8
-.incbin "actors/piranha_plant/3.rgba16"
+.incbin "actors/piranha_plant/piranha_plant_bottom_lip.rgba16"
 
 piranha_plant_seg6_texture_06013BF8: # 0x06013BF8
-.incbin "actors/piranha_plant/4.rgba16"
+.incbin "actors/piranha_plant/piranha_plant_tooth.rgba16"
 
 piranha_plant_seg6_texture_060143F8: # 0x060143F8
-.incbin "actors/piranha_plant/5.rgba16"
+.incbin "actors/piranha_plant/piranha_plant_leaf.rgba16"
 
 piranha_plant_seg6_vertex_060153F8: # 0x060153F8
 vertex      0,      1,   -223,      0,   2012,  0x00, 0x7F, 0x00, 0xFF

@@ -7,16 +7,16 @@ vertex     50,     50,      0,    992,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    -50,     50,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 mr_i_iris_seg6_texture_06002170: # 0x06002170
-.incbin "actors/mr_i_iris/0.rgba16"
+.incbin "actors/mr_i_iris/mr_i_iris_open.rgba16"
 
 mr_i_iris_seg6_texture_06002970: # 0x06002970
-.incbin "actors/mr_i_iris/1.rgba16"
+.incbin "actors/mr_i_iris/mr_i_iris_mostly_open.rgba16"
 
 mr_i_iris_seg6_texture_06003170: # 0x06003170
-.incbin "actors/mr_i_iris/2.rgba16"
+.incbin "actors/mr_i_iris/mr_i_iris_mostly_closed.rgba16"
 
 mr_i_iris_seg6_texture_06003970: # 0x06003970
-.incbin "actors/mr_i_iris/3.rgba16"
+.incbin "actors/mr_i_iris/mr_i_iris_closed.rgba16"
 
 glabel mr_i_iris_seg6_dl_06004170 # 0x06004170 - 0x060041D8
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0

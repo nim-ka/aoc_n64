@@ -13,16 +13,16 @@
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 swoop_seg6_texture_06004270: # 0x06004270
-.incbin "actors/swoop/0.rgba16"
+.incbin "actors/swoop/swoop_body.rgba16"
 
 swoop_seg6_texture_06004A70: # 0x06004A70
-.incbin "actors/swoop/1.rgba16"
+.incbin "actors/swoop/swoop_eye.rgba16"
 
 swoop_seg6_texture_06005270: # 0x06005270
-.incbin "actors/swoop/2.rgba16"
+.incbin "actors/swoop/swoop_nose.rgba16"
 
 swoop_seg6_texture_06005A70: # 0x06005A70
-.incbin "actors/swoop/3.rgba16"
+.incbin "actors/swoop/swoop_wing.rgba16"
 
 swoop_seg6_light_06006270: # 0x06006270
 .byte 0x79, 0x79, 0x79, 0x00, 0x79, 0x79, 0x79, 0x00

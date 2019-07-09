@@ -7,7 +7,7 @@ vertex     20,     20,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    -19,     20,      0,    992,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 fwoosh_seg5_texture_05015808: # 0x05015808
-.incbin "actors/fwoosh/0.ia16"
+.incbin "actors/fwoosh/fwoosh_face.ia16"
 
 glabel fwoosh_seg5_dl_05016008 # 0x05016008 - 0x05016040
 gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, fwoosh_seg5_texture_05015808

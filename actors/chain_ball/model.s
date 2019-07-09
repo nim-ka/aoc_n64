@@ -10,7 +10,7 @@ vertex    -26,     26,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 .word 0, 0 # align but balign wont here?
 chain_ball_seg6_texture_06020AE8: # 0x06020AE8
-.incbin "actors/chain_ball/0.rgba16"
+.incbin "actors/chain_ball/chain_ball.rgba16"
 
 glabel chain_ball_seg6_dl_060212E8 # 0x060212E8 - 0x06021380
 gsDPPipeSync

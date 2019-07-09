@@ -8,10 +8,10 @@ thwomp_seg5_light_050098F0: # 0x050098F0
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 thwomp_seg5_texture_05009900: # 0x05009900
-.incbin "actors/thwomp/0.rgba16"
+.incbin "actors/thwomp/thwomp_face.rgba16"
 
 thwomp_seg5_texture_0500A900: # 0x0500A900
-.incbin "actors/thwomp/1.rgba16"
+.incbin "actors/thwomp/thwomp_surface.rgba16"
 
 thwomp_seg5_vertex_0500B100: # 0x0500B100
 vertex    -97,     52,   -141,   3308,    418,  0xCE, 0xCB, 0x99, 0xFF

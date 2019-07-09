@@ -4,46 +4,46 @@
 
 .balign 8
 flame_seg6_texture_06000000: # 0x06000000
-.incbin "actors/bowser_flame/0.rgba16"
+.incbin "actors/bowser_flame/bowser_flame_0.rgba16"
 
 flame_seg6_texture_06002000: # 0x06002000
-.incbin "actors/bowser_flame/1.rgba16"
+.incbin "actors/bowser_flame/bowser_flame_1.rgba16"
 
 flame_seg6_texture_06004000: # 0x06004000
-.incbin "actors/bowser_flame/2.rgba16"
+.incbin "actors/bowser_flame/bowser_flame_2.rgba16"
 
 flame_seg6_texture_06006000: # 0x06006000
-.incbin "actors/bowser_flame/3.rgba16"
+.incbin "actors/bowser_flame/bowser_flame_3.rgba16"
 
 flame_seg6_texture_06008000: # 0x06008000
-.incbin "actors/bowser_flame/4.rgba16"
+.incbin "actors/bowser_flame/bowser_flame_4.rgba16"
 
 flame_seg6_texture_0600A000: # 0x0600A000
-.incbin "actors/bowser_flame/5.rgba16"
+.incbin "actors/bowser_flame/bowser_flame_5.rgba16"
 
 flame_seg6_texture_0600C000: # 0x0600C000
-.incbin "actors/bowser_flame/6.rgba16"
+.incbin "actors/bowser_flame/bowser_flame_6.rgba16"
 
 flame_seg6_texture_0600E000: # 0x0600E000
-.incbin "actors/bowser_flame/7.rgba16"
+.incbin "actors/bowser_flame/bowser_flame_7.rgba16"
 
 flame_seg6_texture_06010000: # 0x06010000
-.incbin "actors/bowser_flame/8.rgba16"
+.incbin "actors/bowser_flame/bowser_flame_8.rgba16"
 
 flame_seg6_texture_06012000: # 0x06012000
-.incbin "actors/bowser_flame/9.rgba16"
+.incbin "actors/bowser_flame/bowser_flame_9.rgba16"
 
 flame_seg6_texture_06014000: # 0x06014000
-.incbin "actors/bowser_flame/10.rgba16"
+.incbin "actors/bowser_flame/bowser_flame_10.rgba16"
 
 flame_seg6_texture_06016000: # 0x06016000
-.incbin "actors/bowser_flame/11.rgba16"
+.incbin "actors/bowser_flame/bowser_flame_11.rgba16"
 
 flame_seg6_texture_06018000: # 0x06018000
-.incbin "actors/bowser_flame/12.rgba16"
+.incbin "actors/bowser_flame/bowser_flame_12.rgba16"
 
 flame_seg6_texture_0601A000: # 0x0601A000
-.incbin "actors/bowser_flame/13.rgba16"
+.incbin "actors/bowser_flame/bowser_flame_13.rgba16"
 
 flame_seg6_vertex_0601C000: # 0x0601C000
 vertex   -150,    150,      0,      0,    992,  0xFF, 0xFF, 0xFF, 0xFF

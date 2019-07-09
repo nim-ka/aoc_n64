@@ -7,7 +7,7 @@ vertex    -25,    -25,      0,      0,    990,  0xFF, 0xFF, 0xFF, 0xB4
 vertex     26,    -25,      0,    990,    990,  0xFF, 0xFF, 0xFF, 0xB4
 
 smoke_seg5_texture_050072C0: # 0x050072C0
-.incbin "actors/smoke/0.ia16"
+.incbin "actors/smoke/smoke.ia16"
 
 glabel smoke_seg5_dl_05007AC0 # 0x05007AC0 - 0x05007AF8
 gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg5_texture_050072C0

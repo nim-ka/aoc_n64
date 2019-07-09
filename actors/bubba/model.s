@@ -8,20 +8,20 @@
 # Bubba
 
 bubba_seg5_texture_05000008: # 0x05000008
-.incbin "actors/bubba/0.rgba16"
+.incbin "actors/bubba/bubba_sunglasses.rgba16"
 
-# unused eye texture, assumed leftover from when actor file was copied from cheep cheep
+# unused eye texture, assumed leftover from when actor file was copied from bub
 bubba_seg5_texture_05000408: # 0x05000408
-.incbin "actors/bubba/1.rgba16"
+.incbin "actors/bubba/bubba_eyes_unused.rgba16"
 
 bubba_seg5_texture_05001408: # 0x05001408
-.incbin "actors/bubba/2.rgba16"
+.incbin "actors/bubba/bubba_eye_border.rgba16"
 
 bubba_seg5_texture_05001C08: # 0x05001C08
-.incbin "actors/bubba/3.rgba16"
+.incbin "actors/bubba/bubba_fins.rgba16"
 
 bubba_seg5_texture_05002408: # 0x05002408
-.incbin "actors/bubba/4.rgba16"
+.incbin "actors/bubba/bubba_scales.rgba16"
 
 bubba_seg5_light_05004408: # 0x05004408
 .byte 0x48, 0x31, 0x2A, 0x00, 0x48, 0x31, 0x2A, 0x00

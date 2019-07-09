@@ -1,16 +1,16 @@
 # Snufit
 
 snufit_seg6_texture_060070E0: # 0x060070E0
-.incbin "actors/snufit/0.rgba16"
+.incbin "actors/snufit/snufit_body.rgba16"
 
 snufit_seg6_texture_060078E0: # 0x060078E0
-.incbin "actors/snufit/1.rgba16"
+.incbin "actors/snufit/snufit_eye.rgba16"
 
 snufit_seg6_texture_060080E0: # 0x060080E0
-.incbin "actors/snufit/2.rgba16"
+.incbin "actors/snufit/snufit_mask_strap.rgba16"
 
 snufit_seg6_texture_060084E0: # 0x060084E0
-.incbin "actors/snufit/3.rgba16"
+.incbin "actors/snufit/snufit_mouth.rgba16"
 
 snufit_seg6_light_06008CE0: # 0x06008CE0
 .byte 0x47, 0x47, 0x47, 0x00, 0x47, 0x47, 0x47, 0x00

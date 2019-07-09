@@ -25,22 +25,22 @@
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 mad_piano_seg5_texture_05006AF0: # 0x05006AF0
-.incbin "actors/mad_piano/0.rgba16"
+.incbin "actors/mad_piano/mad_piano_tooth.rgba16"
 
 mad_piano_seg5_texture_050072F0: # 0x050072F0
-.incbin "actors/mad_piano/1.rgba16"
+.incbin "actors/mad_piano/mad_piano_body.rgba16"
 
 mad_piano_seg5_texture_050076F0: # 0x050076F0
-.incbin "actors/mad_piano/2.rgba16"
+.incbin "actors/mad_piano/mad_piano_keys_corner.rgba16"
 
 mad_piano_seg5_texture_05007AF0: # 0x05007AF0
-.incbin "actors/mad_piano/3.rgba16"
+.incbin "actors/mad_piano/mad_piano_mouth.rgba16"
 
 mad_piano_seg5_texture_05007EF0: # 0x05007EF0
-.incbin "actors/mad_piano/4.rgba16"
+.incbin "actors/mad_piano/mad_piano_keys.rgba16"
 
 mad_piano_seg5_texture_050082F0: # 0x050082F0
-.incbin "actors/mad_piano/5.rgba16"
+.incbin "actors/mad_piano/mad_piano_keys_edge.rgba16"
 
 mad_piano_seg5_light_050086F0: # 0x050086F0
 .byte 0x4C, 0x4C, 0x4C, 0x00, 0x4C, 0x4C, 0x4C, 0x00

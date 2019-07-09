@@ -37,19 +37,19 @@
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 monty_mole_seg5_texture_05000970: # 0x05000970
-.incbin "actors/monty_mole/0.rgba16"
+.incbin "actors/monty_mole/monty_mole_cheek.rgba16"
 
 monty_mole_seg5_texture_05001170: # 0x05001170
-.incbin "actors/monty_mole/1.rgba16"
+.incbin "actors/monty_mole/monty_mole_eye.rgba16"
 
 monty_mole_seg5_texture_05001970: # 0x05001970
-.incbin "actors/monty_mole/2.rgba16"
+.incbin "actors/monty_mole/monty_mole_nose.rgba16"
 
 monty_mole_seg5_texture_05002170: # 0x05002170
-.incbin "actors/monty_mole/3.rgba16"
+.incbin "actors/monty_mole/monty_mole_tooth.rgba16"
 
 monty_mole_seg5_texture_05002970: # 0x05002970
-.incbin "actors/monty_mole/4.rgba16"
+.incbin "actors/monty_mole/monty_mole_claw.rgba16"
 
 monty_mole_seg5_light_05003170: # 0x05003170
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00

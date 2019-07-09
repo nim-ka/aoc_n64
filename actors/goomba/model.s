@@ -41,13 +41,13 @@ goomba_seg8_light_08019520: # 0x08019520
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 goomba_seg8_texture_08019530: # 0x08019530
-.incbin "actors/goomba/0.rgba16"
+.incbin "actors/goomba/goomba_body.rgba16"
 
 goomba_seg8_texture_08019D30: # 0x08019D30
-.incbin "actors/goomba/1.rgba16"
+.incbin "actors/goomba/goomba_face.rgba16"
 
 goomba_seg8_texture_0801A530: # 0x0801A530
-.incbin "actors/goomba/2.rgba16"
+.incbin "actors/goomba/goomba_face_blink.rgba16"
 
 goomba_seg8_light_0801AD30: # 0x0801AD30
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00

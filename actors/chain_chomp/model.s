@@ -25,19 +25,19 @@ chain_chomp_seg6_light_060213C0: # 0x060213C0
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 chain_chomp_seg6_texture_060213D0: # 0x060213D0
-.incbin "actors/chain_chomp/0.rgba16"
+.incbin "actors/chain_chomp/chain_chomp_bright_shine.rgba16"
 
 chain_chomp_seg6_texture_06021BD0: # 0x06021BD0
-.incbin "actors/chain_chomp/1.rgba16"
+.incbin "actors/chain_chomp/chain_chomp_dull_shine.rgba16"
 
 chain_chomp_seg6_texture_060223D0: # 0x060223D0
-.incbin "actors/chain_chomp/2.rgba16"
+.incbin "actors/chain_chomp/chain_chomp_tongue.rgba16"
 
 chain_chomp_seg6_texture_06022BD0: # 0x06022BD0
-.incbin "actors/chain_chomp/3.rgba16"
+.incbin "actors/chain_chomp/chain_chomp_tooth.rgba16"
 
 chain_chomp_seg6_texture_060233D0: # 0x060233D0
-.incbin "actors/chain_chomp/4.rgba16"
+.incbin "actors/chain_chomp/chain_chomp_eye.rgba16"
 
 chain_chomp_seg6_vertex_06023BD0: # 0x06023BD0
 vertex      0,      0,    582,    990,    380,  0xB2, 0xB2, 0xB2, 0xFF

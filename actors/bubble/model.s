@@ -7,10 +7,10 @@ vertex     16,     32,      0,    992,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    -16,     32,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 bubble_seg4_texture_0401CD60: # 0x0401CD60
-.incbin "actors/bubble/0.rgba16"
+.incbin "actors/bubble/bubble.rgba16"
 
 bubble_seg4_texture_0401D560: # 0x0401D560
-.incbin "actors/bubble/1.rgba16"
+.incbin "actors/bubble/mr_i_bubble.rgba16"
 
 glabel bubble_seg4_dl_0401DD60 # 0x0401DD60 - 0x0401DDE0
 gsDPPipeSync

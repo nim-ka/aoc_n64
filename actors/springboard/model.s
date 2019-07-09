@@ -1,4 +1,4 @@
-# Springboard
+# Springboard (unused)
 
 springboard_seg5_light_05000000: # 0x05000000
 .byte 0x3F, 0x3F, 0x3F, 0x00, 0x3F, 0x3F, 0x3F, 0x00
@@ -8,10 +8,10 @@ springboard_seg5_light_05000008: # 0x05000008
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 springboard_seg5_texture_05000018: # 0x05000018
-.incbin "actors/springboard/0.rgba16"
+.incbin "actors/springboard/springboard_top_unused.rgba16"
 
 springboard_seg5_texture_05000818: # 0x05000818
-.incbin "actors/springboard/1.rgba16"
+.incbin "actors/springboard/springboard_base_unused.rgba16"
 
 springboard_seg5_vertex_05001018: # 0x05001018
 vertex    205,      0,      0,   2524,    478,  0x00, 0x7F, 0x00, 0xFF

@@ -7,7 +7,7 @@ vertex     50,     50,      0,    992,      0,  0xFF, 0xFF, 0xFF, 0xB4
 vertex    -50,     50,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xB4
 
 heart_seg8_texture_0800D7E0: # 0x0800D7E0
-.incbin "actors/heart/0.rgba16"
+.incbin "actors/heart/spinning_heart.rgba16"
 
 glabel heart_seg8_dl_0800DFE0 # 0x0800DFE0 - 0x0800E078
 gsDPPipeSync

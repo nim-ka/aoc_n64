@@ -45,22 +45,22 @@ heave_ho_seg5_light_0500E988: # 0x0500E988
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 heave_ho_seg5_texture_0500E9C8: # 0x0500E9C8
-.incbin "actors/heave_ho/0.rgba16"
+.incbin "actors/heave_ho/heave-ho_face.rgba16"
 
 heave_ho_seg5_texture_0500F1C8: # 0x0500F1C8
-.incbin "actors/heave_ho/1.rgba16"
+.incbin "actors/heave_ho/heave-ho_platform.rgba16"
 
 heave_ho_seg5_texture_0500F9C8: # 0x0500F9C8
-.incbin "actors/heave_ho/2.rgba16"
+.incbin "actors/heave_ho/heave-ho_logo.rgba16"
 
 heave_ho_seg5_texture_050109C8: # 0x050109C8
-.incbin "actors/heave_ho/3.rgba16"
+.incbin "actors/heave_ho/heave-ho_arm_ornament.rgba16"
 
 heave_ho_seg5_texture_050111C8: # 0x050111C8
-.incbin "actors/heave_ho/4.rgba16"
+.incbin "actors/heave_ho/heave-ho_roller.rgba16"
 
 heave_ho_seg5_texture_050113C8: # 0x050113C8
-.incbin "actors/heave_ho/5.rgba16"
+.incbin "actors/heave_ho/heave-ho_turnkey.rgba16"
 
 heave_ho_seg5_light_05011BC8: # 0x05011BC8
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00

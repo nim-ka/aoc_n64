@@ -8,7 +8,7 @@ water_bubble_seg5_light_0500FE70: # 0x0500FE70
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 water_bubble_seg5_texture_0500FE80: # 0x0500FE80
-.incbin "actors/water_bubble/0.rgba16"
+.incbin "actors/water_bubble/water_bubble.rgba16"
 
 water_bubble_seg5_vertex_05010680: # 0x05010680
 vertex    -20,    -64,    -33,      0,      0,  0xDD, 0x95, 0xC7, 0xFF

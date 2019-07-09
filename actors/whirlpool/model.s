@@ -1,7 +1,7 @@
 # Whirlpool
 
 whirlpool_seg5_texture_05012848: # 0x05012848
-.incbin "actors/whirlpool/0.ia16"
+.incbin "actors/whirlpool/whirlpool.ia16"
 
 whirlpool_seg5_vertex_05013848: # 0x05013848
 vertex     93,    129,    161,    650,   1708,  0xFF, 0xFF, 0xFF, 0xFF

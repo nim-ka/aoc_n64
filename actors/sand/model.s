@@ -7,7 +7,7 @@ vertex      8,      8,      0,    480,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex     -8,      8,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 sand_seg3_texture_0302BAD0: # 0x0302BAD0
-.incbin "actors/sand/0.rgba16"
+.incbin "actors/sand/sand_particle.rgba16"
 
 glabel sand_seg3_dl_0302BCD0 # 0x0302BCD0 - 0x0302BD60
 gsDPPipeSync

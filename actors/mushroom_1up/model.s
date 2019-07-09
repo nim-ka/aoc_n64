@@ -7,7 +7,7 @@ vertex    -30,    -30,      0,      0,   2012,  0xFF, 0xFF, 0xFF, 0xFF
 vertex     31,    -30,      0,    990,   2012,  0xFF, 0xFF, 0xFF, 0xFF
 
 mushroom_1up_seg3_texture_03029628: # 0x03029628
-.incbin "actors/mushroom_1up/0.rgba16"
+.incbin "actors/mushroom_1up/1-up_mushroom.rgba16"
 
 glabel mushroom_1up_seg3_dl_0302A628 # 0x0302A628 - 0x0302A660
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mushroom_1up_seg3_texture_03029628

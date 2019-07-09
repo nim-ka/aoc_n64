@@ -15,7 +15,7 @@ cannon_base_seg8_light_080049A8: # 0x080049A8
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 cannon_base_seg8_texture_080049B8: # 0x080049B8
-.incbin "actors/cannon_base/0.rgba16"
+.incbin "actors/cannon_base/cannon_base.rgba16"
 
 cannon_base_seg8_vertex_080051B8: # 0x080051B8
 vertex    102,   -101,     51,      0,   1758,  0x7F, 0x00, 0x00, 0xFF

@@ -9,7 +9,7 @@ vertex      0,      0,     39,   2004,   4056,  0xFF, 0xFF, 0xFF, 0xFF
 vertex     79,      0,     39,    -60,   4056,  0xFF, 0xFF, 0xFF, 0xFF
 
 butterfly_seg3_texture_030043A8: # 0x030043A8
-.incbin "actors/butterfly/0.rgba16"
+.incbin "actors/butterfly/butterfly_wing.rgba16"
 
 butterfly_seg3_vertex_030053A8: # 0x030053A8
 vertex     79,      0,    -78,    -56,      0,  0xFF, 0xFF, 0xFF, 0xFF

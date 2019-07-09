@@ -29,22 +29,22 @@ penguin_seg5_light_05002DD0: # 0x05002DD0
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 penguin_seg5_texture_05002DE0: # 0x05002DE0
-.incbin "actors/penguin/0.rgba16"
+.incbin "actors/penguin/penguin_eye_open.rgba16"
 
 penguin_seg5_texture_050035E0: # 0x050035E0
-.incbin "actors/penguin/1.rgba16"
+.incbin "actors/penguin/penguin_eye_half_closed.rgba16"
 
 penguin_seg5_texture_05003DE0: # 0x05003DE0
-.incbin "actors/penguin/2.rgba16"
+.incbin "actors/penguin/penguin_eye_closed.rgba16"
 
 penguin_seg5_texture_050045E0: # 0x050045E0
-.incbin "actors/penguin/3.rgba16"
+.incbin "actors/penguin/penguin_eye_angry.rgba16"
 
 penguin_seg5_texture_05004DE0: # 0x05004DE0
-.incbin "actors/penguin/4.rgba16"
+.incbin "actors/penguin/penguin_eye_angry_unused.rgba16"
 
 penguin_seg5_texture_050055E0: # 0x050055E0
-.incbin "actors/penguin/5.rgba16"
+.incbin "actors/penguin/penguin_beak.rgba16"
 
 penguin_seg5_light_05005DE0: # 0x05005DE0
 .byte 0x04, 0x0F, 0x41, 0x00, 0x04, 0x0F, 0x41, 0x00

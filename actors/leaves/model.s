@@ -7,7 +7,7 @@ vertex     10,     10,      0,    480,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    -10,     10,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 leaves_seg3_texture_0301CBE0: # 0x0301CBE0
-.incbin "actors/leaves/0.rgba16"
+.incbin "actors/leaves/leaf.rgba16"
 
 glabel leaves_seg3_dl_0301CDE0 # 0x0301CDE0 - 0x0301CE70
 gsDPPipeSync

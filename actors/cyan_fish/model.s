@@ -5,7 +5,7 @@
 .word 0
 
 cyan_fish_seg6_texture_0600D468: # 0x0600D468
-.incbin "actors/cyan_fish/0.rgba16"
+.incbin "actors/cyan_fish/cyan_fish.rgba16"
 
 cyan_fish_seg6_light_0600DC68: # 0x0600DC68
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00

@@ -8,28 +8,28 @@ exclamation_box_seg8_light_08012E18: # 0x08012E18
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 exclamation_box_seg8_texture_08012E28: # 0x08012E28
-.incbin "actors/exclamation_box/0.rgba16"
+.incbin "actors/exclamation_box/vanish_cap_box_front.rgba16"
 
 exclamation_box_seg8_texture_08013628: # 0x08013628
-.incbin "actors/exclamation_box/1.rgba16"
+.incbin "actors/exclamation_box/vanish_cap_box_sides.rgba16"
 
 exclamation_box_seg8_texture_08014628: # 0x08014628
-.incbin "actors/exclamation_box/2.rgba16"
+.incbin "actors/exclamation_box/metal_cap_box_front.rgba16"
 
 exclamation_box_seg8_texture_08014E28: # 0x08014E28
-.incbin "actors/exclamation_box/3.rgba16"
+.incbin "actors/exclamation_box/metal_cap_box_side.rgba16"
 
 exclamation_box_seg8_texture_08015E28: # 0x08015E28
-.incbin "actors/exclamation_box/4.rgba16"
+.incbin "actors/exclamation_box/wing_cap_box_front.rgba16"
 
 exclamation_box_seg8_texture_08016628: # 0x08016628
-.incbin "actors/exclamation_box/5.rgba16"
+.incbin "actors/exclamation_box/wing_cap_box_sides.rgba16"
 
 exclamation_box_seg8_texture_08017628: # 0x08017628
-.incbin "actors/exclamation_box/6.rgba16"
+.incbin "actors/exclamation_box/exclamation_box_front.rgba16"
 
 exclamation_box_seg8_texture_08017E28: # 0x08017E28
-.incbin "actors/exclamation_box/7.rgba16"
+.incbin "actors/exclamation_box/exclamation_box_side.rgba16"
 
 exclamation_box_seg8_vertex_08018E28: # 0x08018E28
 vertex    -25,      1,    -25,    992,    992,  0x00, 0x00, 0x81, 0xFF

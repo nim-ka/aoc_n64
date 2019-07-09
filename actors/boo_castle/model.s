@@ -9,10 +9,10 @@ boo_castle_seg6_light_06015660: # 0x06015660
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 boo_castle_seg6_texture_06015670: # 0x06015670
-.incbin "actors/boo_castle/0.rgba16"
+.incbin "actors/boo_castle/bbh_boo_eyes.rgba16"
 
 boo_castle_seg6_texture_06016670: # 0x06016670
-.incbin "actors/boo_castle/1.rgba16"
+.incbin "actors/boo_castle/bbh_boo_mouth.rgba16"
 
 boo_castle_seg6_vertex_06016E70: # 0x06016E70
 vertex      0,   -117,    131,    458,    990,  0x00, 0x9D, 0x4E, 0x9E

@@ -136,7 +136,7 @@ vertex     26,      1,    -25,    996,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex     26,      1,     26,    -26,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 exclamation_box_outline_seg8_texture_08025168: # 0x08025168
-.incbin "actors/exclamation_box_outline/0.rgba16"
+.incbin "actors/exclamation_box_outline/exclamation_box_outline.rgba16"
 
 glabel exclamation_box_outline_seg8_dl_08025968 # 0x08025968 - 0x080259F8
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, exclamation_box_outline_seg8_texture_08025168
@@ -176,7 +176,7 @@ exclamation_box_outline_seg8_light_08025A70: # 0x08025A70
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 exclamation_box_outline_seg8_texture_08025A80: # 0x08025A80
-.incbin "actors/exclamation_box_outline/1.rgba16"
+.incbin "actors/exclamation_box_outline/exclamation_point.rgba16"
 
 exclamation_box_outline_seg8_vertex_08025E80: # 0x08025E80
 vertex    -22,     49,      0,   -157,      0,  0x00, 0x00, 0x7F, 0xFF

@@ -7,16 +7,16 @@
 .balign 8
 
 whomp_seg6_texture_0601C360: # 0x0601C360
-.incbin "actors/whomp/0.rgba16"
+.incbin "actors/whomp/whomp_back.rgba16"
 
 whomp_seg6_texture_0601D360: # 0x0601D360
-.incbin "actors/whomp/1.rgba16"
+.incbin "actors/whomp/whomp_face.rgba16"
 
 whomp_seg6_texture_0601E360: # 0x0601D360
-.incbin "actors/whomp/2.rgba16"
+.incbin "actors/whomp/whomp_hand.rgba16"
 
 whomp_seg6_texture_0601EB60: # 0x0601EB60
-.incbin "actors/whomp/3.rgba16"
+.incbin "actors/whomp/whomp_surface.rgba16"
 
 whomp_seg6_light_0601F360: # 0x0601F360
 .byte 0x4C, 0x4C, 0x4C, 0x00, 0x4C, 0x4C, 0x4C, 0x00

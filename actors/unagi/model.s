@@ -49,22 +49,22 @@
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 unagi_seg5_texture_0500AF20: # 0x0500AF20
-.incbin "actors/unagi/0.rgba16"
+.incbin "actors/unagi/unagi_body.rgba16"
 
 unagi_seg5_texture_0500B720: # 0x0500B720
-.incbin "actors/unagi/1.rgba16"
+.incbin "actors/unagi/unagi_eye.rgba16"
 
 unagi_seg5_texture_0500B920: # 0x0500B920
-.incbin "actors/unagi/2.rgba16"
+.incbin "actors/unagi/unagi_head_base.rgba16"
 
 unagi_seg5_texture_0500C120: # 0x0500C120
-.incbin "actors/unagi/3.rgba16"
+.incbin "actors/unagi/unagi_tooth.rgba16"
 
 unagi_seg5_texture_0500C320: # 0x0500C320
-.incbin "actors/unagi/4.rgba16"
+.incbin "actors/unagi/unagi_mouth.rgba16"
 
 unagi_seg5_texture_0500C3A0: # 0x0500C3A0
-.incbin "actors/unagi/5.rgba16"
+.incbin "actors/unagi/unagi_tail.rgba16"
 
 unagi_seg5_vertex_0500CBA0: # 0x0500CBA0
 vertex    179,     42,    160,    -25,    134,  0xFF, 0xFF, 0xFF, 0xFF

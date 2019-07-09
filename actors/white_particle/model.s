@@ -7,7 +7,7 @@ vertex     15,     15,      0,    480,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    -15,     15,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 white_particle_texture: # 0x0302C6A0
-.incbin "actors/white_particle/0.rgba16"
+.incbin "actors/white_particle/snow_particle.rgba16"
 
 glabel white_particle_dl # 0x0302C8A0 - 0x0302C938
 gsDPPipeSync

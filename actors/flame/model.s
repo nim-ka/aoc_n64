@@ -7,28 +7,28 @@ vertex     25,     25,      0,    992,      0,  0x00, 0x00, 0x00, 0x00
 vertex    -25,     25,      0,      0,      0,  0x00, 0x00, 0x00, 0x00
 
 flame_seg3_texture_03017320: # 0x03017320
-.incbin "actors/flame/0.ia16"
+.incbin "actors/flame/flame_0.ia16"
 
 flame_seg3_texture_03017B20: # 0x03017B20
-.incbin "actors/flame/1.ia16"
+.incbin "actors/flame/flame_1.ia16"
 
 flame_seg3_texture_03018320: # 0x03018320
-.incbin "actors/flame/2.ia16"
+.incbin "actors/flame/flame_2.ia16"
 
 flame_seg3_texture_03018B20: # 0x03018B20
-.incbin "actors/flame/3.ia16"
+.incbin "actors/flame/flame_3.ia16"
 
 flame_seg3_texture_03019320: # 0x03019320
-.incbin "actors/flame/4.ia16"
+.incbin "actors/flame/flame_4.ia16"
 
 flame_seg3_texture_03019B20: # 0x03019B20
-.incbin "actors/flame/5.ia16"
+.incbin "actors/flame/flame_5.ia16"
 
 flame_seg3_texture_0301A320: # 0x0301A320
-.incbin "actors/flame/6.ia16"
+.incbin "actors/flame/flame_6.ia16"
 
 flame_seg3_texture_0301AB20: # 0x0301AB20
-.incbin "actors/flame/7.ia16"
+.incbin "actors/flame/flame_7.ia16"
 
 glabel flame_seg3_dl_0301B320 # 0x0301B320 - 0x0301B3B0
 gsSPClearGeometryMode G_LIGHTING | G_SHADING_SMOOTH

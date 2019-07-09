@@ -10,7 +10,7 @@ book_seg5_light_05002560: # 0x05002560
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 book_seg5_texture_05002570: # 0x05002570
-.incbin "actors/book/0.rgba16"
+.incbin "actors/book/book_cover.rgba16"
 
 book_seg5_vertex_05002D70: # 0x05002D70
 vertex     -9,     31,    -50,    990,      0,  0x00, 0x7F, 0x00, 0xFF

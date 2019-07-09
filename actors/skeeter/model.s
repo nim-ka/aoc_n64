@@ -37,10 +37,10 @@
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 skeeter_seg6_texture_06000090: # 0x06000090
-.incbin "actors/skeeter/0.rgba16"
+.incbin "actors/skeeter/skeeter_eye.rgba16"
 
 skeeter_seg6_texture_06000890: # 0x06000890
-.incbin "actors/skeeter/1.rgba16"
+.incbin "actors/skeeter/skeeter_iris.rgba16"
 
 skeeter_seg6_vertex_06000990: # 0x06000990
 vertex    -44,     45,      0,      0,      0,  0x00, 0xFF, 0xD4, 0xFF

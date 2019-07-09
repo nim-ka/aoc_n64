@@ -6,19 +6,19 @@
 # Klepto
 
 klepto_seg5_texture_05000008: # 0x05000008
-.incbin "actors/klepto/0.rgba16"
+.incbin "actors/klepto/klepto_chest_tuft.rgba16"
 
 klepto_seg5_texture_05000808: # 0x05000808
-.incbin "actors/klepto/1.rgba16"
+.incbin "actors/klepto/klepto_eye.rgba16"
 
 klepto_seg5_texture_05001008: # 0x05001008
-.incbin "actors/klepto/2.rgba16"
+.incbin "actors/klepto/klepto_beak.rgba16"
 
 klepto_seg5_texture_05002008: # 0x05002008
-.incbin "actors/klepto/3.rgba16"
+.incbin "actors/klepto/klepto_wing.rgba16"
 
 klepto_seg5_texture_05003008: # 0x05003008
-.incbin "actors/klepto/4.rgba16"
+.incbin "actors/klepto/klepto_wing_flap.rgba16"
 
 klepto_seg5_light_05003808: # 0x05003808
 .byte 0x3F, 0x3F, 0x3F, 0x00, 0x3F, 0x3F, 0x3F, 0x00

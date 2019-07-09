@@ -7,19 +7,19 @@
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 eyerok_seg5_texture_05008D40: # 0x05008D40
-.incbin "actors/eyerok/0.rgba16"
+.incbin "actors/eyerok/eyerok_bricks.rgba16"
 
 eyerok_seg5_texture_05009540: # 0x05009540
-.incbin "actors/eyerok/1.rgba16"
+.incbin "actors/eyerok/eyerok_eye_open.rgba16"
 
 eyerok_seg5_texture_05009D40: # 0x05009D40
-.incbin "actors/eyerok/2.rgba16"
+.incbin "actors/eyerok/eyerok_eye_mostly_open.rgba16"
 
 eyerok_seg5_texture_0500A540: # 0x0500A540
-.incbin "actors/eyerok/3.rgba16"
+.incbin "actors/eyerok/eyerok_eye_mostly_closed.rgba16"
 
 eyerok_seg5_texture_0500AD40: # 0x0500AD40
-.incbin "actors/eyerok/4.rgba16"
+.incbin "actors/eyerok/eyerok_eye_closed.rgba16"
 
 eyerok_seg5_light_0500B540: # 0x0500B540
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00

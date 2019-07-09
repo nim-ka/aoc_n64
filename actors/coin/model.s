@@ -19,16 +19,16 @@ vertex     35,     70,      0,   1984,      0,  0xFF, 0x00, 0x00, 0xFF
 vertex    -35,     70,      0,      0,      0,  0xFF, 0x00, 0x00, 0xFF
 
 coin_seg3_texture_03005780: # 0x03005780
-.incbin "actors/coin/0.ia16"
+.incbin "actors/coin/coin_front.ia16"
 
 coin_seg3_texture_03005F80: # 0x03005F80
-.incbin "actors/coin/1.ia16"
+.incbin "actors/coin/coin_tilt_right.ia16"
 
 coin_seg3_texture_03006780: # 0x03006780
-.incbin "actors/coin/2.ia16"
+.incbin "actors/coin/coin_side.ia16"
 
 coin_seg3_texture_03006F80: # 0x03006F80
-.incbin "actors/coin/3.ia16"
+.incbin "actors/coin/coin_tilt_left.ia16"
 
 glabel coin_seg3_dl_03007780 # 0x03007780 - 0x030077D0
 gsDPPipeSync

@@ -7,19 +7,19 @@ vertex     32,     64,      0,    992,      0,  0xFF, 0xFF, 0x64, 0xFF
 vertex    -32,     64,      0,      0,      0,  0xFF, 0xFF, 0x64, 0xFF
 
 sparkles_animation_seg4_texture_04032A88: # 0x04032A88
-.incbin "actors/sparkle_animation/0.ia16"
+.incbin "actors/sparkle_animation/sparkle_animation_0.ia16"
 
 sparkles_animation_seg4_texture_04033288: # 0x04033288
-.incbin "actors/sparkle_animation/1.ia16"
+.incbin "actors/sparkle_animation/sparkle_animation_1.ia16"
 
 sparkles_animation_seg4_texture_04033A88: # 0x04033A88
-.incbin "actors/sparkle_animation/2.ia16"
+.incbin "actors/sparkle_animation/sparkle_animation_2.ia16"
 
 sparkles_animation_seg4_texture_04034288: # 0x04034288
-.incbin "actors/sparkle_animation/3.ia16"
+.incbin "actors/sparkle_animation/sparkle_animation_3.ia16"
 
 sparkles_animation_seg4_texture_04034A88: # 0x04034A88
-.incbin "actors/sparkle_animation/4.ia16"
+.incbin "actors/sparkle_animation/sparkle_animation_4.ia16"
 
 glabel sparkles_animation_seg4_dl_04035288 # 0x04035288 - 0x04035300
 gsSPClearGeometryMode G_LIGHTING

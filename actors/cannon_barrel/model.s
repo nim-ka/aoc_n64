@@ -15,7 +15,7 @@ cannon_barrel_seg8_light_08005898: # 0x08005898
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 cannon_barrel_seg8_texture_080058A8: # 0x080058A8
-.incbin "actors/cannon_barrel/0.rgba16"
+.incbin "actors/cannon_barrel/cannon_barrel.rgba16"
 
 cannon_barrel_seg8_vertex_080060A8: # 0x080060A8
 vertex    -40,    236,     41,    176,    748,  0x45, 0x5D, 0xCD, 0xFF

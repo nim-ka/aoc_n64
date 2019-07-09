@@ -7,17 +7,17 @@
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 chair_seg5_texture_05003060: # 0x05003060
-.incbin "actors/chair/0.rgba16"
+.incbin "actors/chair/chair_front.rgba16"
 
 chair_seg5_texture_05003860: # 0x05003860
-.incbin "actors/chair/1.rgba16"
+.incbin "actors/chair/chair_leg.rgba16"
 
 chair_seg5_texture_05004060: # 0x05004060
-.incbin "actors/chair/2.rgba16"
+.incbin "actors/chair/chair_bottom.rgba16"
 
 # unreferenced
 chair_seg5_texture_05004460: # 0x05004460
-.incbin "actors/chair/3.rgba16"
+.incbin "actors/chair/chair_surface_unused.rgba16"
 
 chair_seg5_light_05004C60: # 0x05004C60
 .byte 0x47, 0x47, 0x47, 0x00, 0x47, 0x47, 0x47, 0x00

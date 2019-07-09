@@ -7,7 +7,7 @@ vertex     50,     50,      0,    992,      0,  0xB5, 0x20, 0x40, 0xFF
 vertex    -49,     50,      0,      0,      0,  0xB5, 0x20, 0x40, 0xFF
 
 yellow_sphere_seg5_texture_05000040: # 0x05000040
-.incbin "actors/yellow_sphere_small/0.rgba16"
+.incbin "actors/yellow_sphere_small/small_yellow_sphere.rgba16"
 
 glabel yellow_sphere_seg5_dl_05000840 # 0x05000840 - 0x05000888
 gsDPPipeSync

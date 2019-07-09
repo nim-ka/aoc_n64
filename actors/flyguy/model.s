@@ -5,13 +5,13 @@
 .word 0
 
 flyguy_seg8_texture_0800E088: # 0x0800E088
-.incbin "actors/flyguy/0.rgba16"
+.incbin "actors/flyguy/flyguy_cloth_wrinkle.rgba16"
 
 flyguy_seg8_texture_0800F088: # 0x0800F088
-.incbin "actors/flyguy/1.rgba16"
+.incbin "actors/flyguy/flyguy_face.rgba16"
 
 flyguy_seg8_texture_0800F888: # 0x0800F888
-.incbin "actors/flyguy/2.ia16"
+.incbin "actors/flyguy/flyguy_propeller.ia16"
 
 # Unreferenced light
 .byte 0x3F, 0x3F, 0x3F, 0x00, 0x3F, 0x3F, 0x3F, 0x00

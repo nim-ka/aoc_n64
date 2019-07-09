@@ -9,13 +9,13 @@ bomb_seg6_light_06057AB0: # 0x06057AB0
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 bomb_seg6_texture_06057AC0: # 0x06057AC0
-.incbin "actors/bomb/0.rgba16"
+.incbin "actors/bomb/bomb_left_side.rgba16"
 
 bomb_seg6_texture_06058AC0: # 0x06058AC0
-.incbin "actors/bomb/1.rgba16"
+.incbin "actors/bomb/bomb_right_side.rgba16"
 
 bomb_seg6_texture_06059AC0: # 0x06059AC0
-.incbin "actors/bomb/2.rgba16"
+.incbin "actors/bomb/bomb_spike.rgba16"
 
 bomb_seg6_vertex_0605A2C0: # 0x0605A2C0
 vertex      0,    120,      0,    992,      0,  0xFF, 0xFF, 0xFF, 0xFF

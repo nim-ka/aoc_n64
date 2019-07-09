@@ -7,7 +7,7 @@ vertex     15,     15,      0,    992,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    -15,     15,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 pebble_seg3_texture_0301C300: # 0x0301C300
-.incbin "actors/pebble/0.rgba16"
+.incbin "actors/pebble/pebble.rgba16"
 
 glabel pebble_seg3_dl_0301CB00 # 0x0301CB00 - 0x0301CB98
 gsDPPipeSync

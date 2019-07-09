@@ -8,10 +8,10 @@ tree_seg3_light_0302DE18: # 0x0302DE18
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 tree_seg3_texture_0302DE28: # 0x0302DE28
-.incbin "actors/tree/0.rgba16"
+.incbin "actors/tree/tree_left_side.rgba16"
 
 tree_seg3_texture_0302EE28: # 0x0302EE28
-.incbin "actors/tree/1.rgba16"
+.incbin "actors/tree/tree_right_side.rgba16"
 
 tree_seg3_vertex_0302FE28: # 0x0302FE28
 vertex   -356,     -9,      0,   -796,   2012,  0xFF, 0xFF, 0xFF, 0xFF
@@ -57,7 +57,7 @@ gsSPSetGeometryMode G_LIGHTING
 gsSPEndDisplayList
 
 tree_seg3_texture_0302FF60: # 0x0302FF60
-.incbin "actors/tree/2.rgba16"
+.incbin "actors/tree/pine_tree.rgba16"
 
 tree_seg3_vertex_03030F60: # 0x03030F60
 vertex    128,    512,      0,    990,      0,  0x00, 0x00, 0x7F, 0xFF
@@ -88,7 +88,7 @@ gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPEndDisplayList
 
 tree_seg3_texture_03031048: # 0x03031048
-.incbin "actors/tree/3.rgba16"
+.incbin "actors/tree/snowy_pine_tree.rgba16"
 
 tree_seg3_vertex_03032048: # 0x03032048
 vertex    128,    512,      0,    990,      0,  0x00, 0x00, 0x7F, 0xFF
@@ -147,7 +147,7 @@ gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPEndDisplayList
 
 tree_seg3_texture_03032218: # 0x03032218
-.incbin "actors/tree/4.rgba16"
+.incbin "actors/tree/palm_tree.rgba16"
 
 tree_seg3_vertex_03033218: # 0x03033218
 vertex    170,    512,      0,    990,      0,  0x00, 0x00, 0x7F, 0xFF

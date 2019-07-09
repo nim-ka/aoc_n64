@@ -15,46 +15,46 @@ door_seg3_light_03009D00: # 0x03009D00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 door_seg3_texture_03009D10: # 0x03009D10
-.incbin "actors/door/0.rgba16"
+.incbin "actors/door/polished_wooden_door.rgba16"
 
 door_seg3_texture_0300AD10: # 0x0300AD10
-.incbin "actors/door/1.rgba16"
+.incbin "actors/door/polished_wooden_door_overlay.rgba16"
 
 door_seg3_texture_0300BD10: # 0x0300BD10
-.incbin "actors/door/2.rgba16"
+.incbin "actors/door/rough_wooden_door.rgba16"
 
 door_seg3_texture_0300CD10: # 0x0300CD10
-.incbin "actors/door/3.rgba16"
+.incbin "actors/door/rough_wooden_door_overlay.rgba16"
 
 door_seg3_texture_0300D510: # 0x0300D510
-.incbin "actors/door/4.rgba16"
+.incbin "actors/door/metal_door.rgba16"
 
 door_seg3_texture_0300E510: # 0x0300E510
-.incbin "actors/door/5.rgba16"
+.incbin "actors/door/metal_door_overlay.rgba16"
 
 door_seg3_texture_0300ED10: # 0x0300ED10
-.incbin "actors/door/6.rgba16"
+.incbin "actors/door/hmc_mural_door.rgba16"
 
 door_seg3_texture_0300FD10: # 0x0300FD10
-.incbin "actors/door/7.rgba16"
+.incbin "actors/door/hmc_mural_door_overlay.rgba16"
 
 door_seg3_texture_03010510: # 0x03010510
-.incbin "actors/door/8.rgba16"
+.incbin "actors/door/bbh_door.rgba16"
 
 door_seg3_texture_03011510: # 0x03011510
-.incbin "actors/door/9.rgba16"
+.incbin "actors/door/bbh_door_overlay.rgba16"
 
 door_seg3_texture_03011D10: # 0x03011D10
-.incbin "actors/door/10.rgba16"
+.incbin "actors/door/zero_star_door_sign.rgba16"
 
 door_seg3_texture_03012510: # 0x03012510
-.incbin "actors/door/11.rgba16"
+.incbin "actors/door/one_star_door_sign.rgba16"
 
 door_seg3_texture_03012D10: # 0x03012D10
-.incbin "actors/door/12.rgba16"
+.incbin "actors/door/three_star_door_sign.rgba16"
 
 door_seg3_texture_03013510: # 0x03013510
-.incbin "actors/door/13.rgba16"
+.incbin "actors/door/door_lock.rgba16"
 
 door_seg3_vertex_03013910: # 0x03013910
 vertex    -12,      0,    -58,      0,      0,  0x81, 0x00, 0x00, 0xFF

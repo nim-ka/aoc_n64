@@ -7,16 +7,16 @@ vertex     64,      0,    -64,    992,    992,  0xFF, 0xFF, 0xFF, 0xC8
 vertex    -64,      0,    -64,      0,    992,  0xFF, 0xFF, 0xFF, 0xC8
 
 water_waves_seg4_texture_04025358: # 0x04025358
-.incbin "actors/water_waves/0.ia16"
+.incbin "actors/water_waves/water_waves_0.ia16"
 
 water_waves_seg4_texture_04025B58: # 0x04025B58
-.incbin "actors/water_waves/1.ia16"
+.incbin "actors/water_waves/water_waves_1.ia16"
 
 water_waves_seg4_texture_04026358: # 0x04026358
-.incbin "actors/water_waves/2.ia16"
+.incbin "actors/water_waves/water_waves_2.ia16"
 
 water_waves_seg4_texture_04026B58: # 0x04026B58
-.incbin "actors/water_waves/3.ia16"
+.incbin "actors/water_waves/water_waves_3.ia16"
 
 glabel water_waves_seg4_dl_04027358 # 0x04027358 - 0x040273A0
 gsSPClearGeometryMode G_LIGHTING

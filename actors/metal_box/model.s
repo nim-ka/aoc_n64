@@ -8,7 +8,7 @@ metal_box_seg8_light_08023988: # 0x08023988
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 metal_box_seg8_texture_08023998: # 0x08023998
-.incbin "actors/metal_box/0.rgba16"
+.incbin "actors/metal_box/metal_box_side.rgba16"
 
 metal_box_seg8_vertex_08024998: # 0x08024998
 vertex    154,    307,   -153,    990,      0,  0x00, 0x7F, 0x00, 0xFF

@@ -7,13 +7,13 @@
 .word 1
 
 sushi_seg5_texture_05008ED0: # 0x05008ED0
-.incbin "actors/sushi/0.rgba16"
+.incbin "actors/sushi/sushi_snout.rgba16"
 
 sushi_seg5_texture_050096D0: # 0x050096D0
-.incbin "actors/sushi/1.rgba16"
+.incbin "actors/sushi/sushi_eye.rgba16"
 
 sushi_seg5_texture_05009AD0: # 0x05009AD0
-.incbin "actors/sushi/2.rgba16"
+.incbin "actors/sushi/sushi_tooth.rgba16"
 
 sushi_seg5_vertex_05009B50: # 0x05009B50
 vertex      0,      4,   -257,    528,    804,  0xFF, 0xFF, 0xFF, 0xFF

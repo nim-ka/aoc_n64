@@ -8,10 +8,10 @@ bullet_bill_seg5_light_0500BA98: # 0x0500BA98
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 bullet_bill_seg5_texture_0500BAA8: # 0x0500BAA8
-.incbin "actors/bullet_bill/0.rgba16"
+.incbin "actors/bullet_bill/bullet_bill_eye.rgba16"
 
 bullet_bill_seg5_texture_0500CAA8: # 0x0500CAA8
-.incbin "actors/bullet_bill/1.rgba16"
+.incbin "actors/bullet_bill/bullet_bill_mouth.rgba16"
 
 bullet_bill_seg5_vertex_0500DAA8: # 0x0500DAA8
 vertex   -195,      0,    272,    884,   1044,  0x9E, 0x02, 0x50, 0xFF

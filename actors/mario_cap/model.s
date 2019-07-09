@@ -22,22 +22,22 @@ mario_cap_seg3_light_0301CF40: # 0x0301CF40
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 mario_cap_seg3_texture_0301CF50: # 0x0301CF50
-.incbin "actors/mario_cap/0.rgba16"
+.incbin "actors/mario_cap/mario_cap_metal.rgba16"
 
 mario_cap_seg3_texture_0301DF50: # 0x0301DF50
-.incbin "actors/mario_cap/1.rgba16"
+.incbin "actors/mario_cap/mario_cap_logo.rgba16"
 
 mario_cap_seg3_texture_0301E750: # 0x0301E750
-.incbin "actors/mario_cap/2.rgba16"
+.incbin "actors/mario_cap/mario_cap_wing.rgba16"
 
 mario_cap_seg3_texture_0301F750: # 0x0301F750
-.incbin "actors/mario_cap/3.rgba16"
+.incbin "actors/mario_cap/mario_cap_wing_tip.rgba16"
 
 mario_cap_seg3_texture_03020750: # 0x03020750
-.incbin "actors/mario_cap/4.rgba16"
+.incbin "actors/mario_cap/mario_cap_metal_wing_unused.rgba16"
 
 mario_cap_seg3_texture_03021750: # 0x03021750
-.incbin "actors/mario_cap/5.rgba16"
+.incbin "actors/mario_cap/mario_cap_metal_wing_tip_unused.rgba16"
 
 mario_cap_seg3_vertex_03022750: # 0x03022750
 vertex     33,     35,    118,    728,    758,  0x30, 0x26, 0x6E, 0xFF

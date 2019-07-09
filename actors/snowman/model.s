@@ -29,19 +29,19 @@
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 snowman_seg5_texture_05008C70: # 0x05008C70
-.incbin "actors/snowman/0.rgba16"
+.incbin "actors/snowman/mr_blizzard_mitten.rgba16"
 
 snowman_seg5_texture_05009470: # 0x05009470
-.incbin "actors/snowman/1.rgba16"
+.incbin "actors/snowman/mr_blizzard_left_side.rgba16"
 
 snowman_seg5_texture_0500A470: # 0x0500A470
-.incbin "actors/snowman/2.rgba16"
+.incbin "actors/snowman/mr_blizzard_right_side.rgba16"
 
 snowman_seg5_texture_0500B470: # 0x0500B470
-.incbin "actors/snowman/3.rgba16"
+.incbin "actors/snowman/mr_blizzard_eye.rgba16"
 
 snowman_seg5_texture_0500BC70: # 0x0500BC70
-.incbin "actors/snowman/4.rgba16"
+.incbin "actors/snowman/mr_blizzard_mouth.rgba16"
 
 snowman_seg5_light_0500C470: # 0x0500C470
 .byte 0x1C, 0x0F, 0x07, 0x00, 0x1C, 0x0F, 0x07, 0x00

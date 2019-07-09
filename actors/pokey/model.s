@@ -7,10 +7,10 @@ vertex    -25,    -25,      0,      0,    990,  0xFF, 0xFF, 0xFF, 0xFF
 vertex     26,    -25,      0,    990,    990,  0xFF, 0xFF, 0xFF, 0xFF
 
 pokey_seg5_texture_05011750: # 0x05011750
-.incbin "actors/pokey/0.rgba16"
+.incbin "actors/pokey/pokey_face.rgba16"
 
 pokey_seg5_texture_05011F50: # 0x05011F50
-.incbin "actors/pokey/1.rgba16"
+.incbin "actors/pokey/pokey_face_blink.rgba16"
 
 glabel pokey_seg5_dl_05012750 # 0x05012750 - 0x05012798
 gsDPPipeSync
@@ -55,7 +55,7 @@ vertex    -25,    -25,      0,      0,    990,  0xFF, 0xFF, 0xFF, 0xFF
 vertex     26,    -25,      0,    990,    990,  0xFF, 0xFF, 0xFF, 0xFF
 
 pokey_seg5_texture_05012878: # 0x05012878
-.incbin "actors/pokey/2.rgba16"
+.incbin "actors/pokey/pokey_body.rgba16"
 
 glabel pokey_seg5_dl_05013078 # 0x05013078 - 0x050130B0
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, pokey_seg5_texture_05012878

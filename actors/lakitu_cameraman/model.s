@@ -2,22 +2,22 @@
 
 .balign 8
 lakitu_seg6_texture_06000000: # 0x06000000
-.incbin "actors/lakitu_cameraman/0.rgba16"
+.incbin "actors/lakitu_cameraman/lakitu_cameraman_cloud_face_unused.rgba16"
 
 lakitu_seg6_texture_06000800: # 0x06000800
-.incbin "actors/lakitu_cameraman/1.rgba16"
+.incbin "actors/lakitu_cameraman/lakitu_cameraman_eyes_open.rgba16"
 
 lakitu_seg6_texture_06001800: # 0x06001800
-.incbin "actors/lakitu_cameraman/2.rgba16"
+.incbin "actors/lakitu_cameraman/lakitu_cameraman_eyes_closed.rgba16"
 
 lakitu_seg6_texture_06002800: # 0x06002800
-.incbin "actors/lakitu_cameraman/3.rgba16"
+.incbin "actors/lakitu_cameraman/lakitu_cameraman_shell.rgba16"
 
 lakitu_seg6_texture_06003000: # 0x06003000
-.incbin "actors/lakitu_cameraman/4.rgba16"
+.incbin "actors/lakitu_cameraman/lakitu_cameraman_frown.rgba16"
 
 lakitu_seg6_texture_06003800: # 0x06003800
-.incbin "actors/lakitu_cameraman/5.rgba16"
+.incbin "actors/lakitu_cameraman/lakitu_camera_lens.rgba16"
 
 lakitu_seg6_light_06003A00: # 0x06003A00
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00

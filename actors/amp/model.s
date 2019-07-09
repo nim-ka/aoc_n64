@@ -1,16 +1,16 @@
 # Amp
 
 amp_seg8_texture_08000F18: # 0x08000F18
-.incbin "actors/amp/0.rgba16"
+.incbin "actors/amp/amp_electricity.rgba16"
 
 amp_seg8_texture_08001318: # 0x08001318
-.incbin "actors/amp/1.rgba16"
+.incbin "actors/amp/amp_eyes.rgba16"
 
 amp_seg8_texture_08001B18: # 0x08001B18
-.incbin "actors/amp/2.rgba16"
+.incbin "actors/amp/amp_body.rgba16"
 
 amp_seg8_texture_08002318: # 0x08002318
-.incbin "actors/amp/3.rgba16"
+.incbin "actors/amp/amp_mouth.rgba16"
 
 amp_seg8_vertex_08002B18: # 0x08002B18
 vertex    224,      0,    -89,      0,    480,  0xFF, 0xFF, 0xFF, 0xFF

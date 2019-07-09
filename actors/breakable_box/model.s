@@ -8,10 +8,10 @@ breakable_box_seg8_light_08011A80: # 0x08011A80
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 breakable_box_seg8_texture_08011A90: # 0x08011A90
-.incbin "actors/breakable_box/0.rgba16"
+.incbin "actors/breakable_box/crazy_box_surface.rgba16"
 
 breakable_box_seg8_texture_08012290: # 0x08012290
-.incbin "actors/breakable_box/1.rgba16"
+.incbin "actors/breakable_box/cork_box_surface.rgba16"
 
 breakable_box_seg8_vertex_08012A90: # 0x08012A90
 vertex   -100,      0,   -100,    992,      0,  0x81, 0x00, 0x00, 0xFF

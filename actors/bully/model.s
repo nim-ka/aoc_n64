@@ -17,7 +17,7 @@ vertex     91,     42,    115,    120,    778,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    140,     42,     35,    -40,    311,  0xFF, 0xFF, 0xFF, 0xFF
 
 bully_seg5_texture_050000E0: # 0x050000E0
-.incbin "actors/bully/0.rgba16"
+.incbin "actors/bully/bully_horn.rgba16"
 
 glabel bully_seg5_dl_050002E0 # 0x050002E0 - 0x05000398
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bully_seg5_texture_050000E0
@@ -80,13 +80,13 @@ bully_seg5_light_05000458: # 0x05000458
 
 # //! There's another malformed light entry here.
 bully_seg5_texture_05000468: # 0x05000468
-.incbin "actors/bully/1.rgba16"
+.incbin "actors/bully/bully_left_side.rgba16"
 
 bully_seg5_texture_05001468: # 0x05001468
-.incbin "actors/bully/2.rgba16"
+.incbin "actors/bully/bully_right_side.rgba16"
 
 bully_seg5_texture_05002468: # 0x05002468
-.incbin "actors/bully/3.rgba16"
+.incbin "actors/bully/bully_eye.rgba16"
 
 bully_seg5_vertex_05002C68: # 0x05002C68
 vertex     27,    -35,      0,      0,      0,  0x0C, 0x82, 0x04, 0x00

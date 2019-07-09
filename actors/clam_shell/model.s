@@ -13,10 +13,10 @@
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 clam_shell_seg5_texture_05000030: # 0x05000030
-.incbin "actors/clam_shell/0.rgba16"
+.incbin "actors/clam_shell/clam_shell.rgba16"
 
 clam_shell_seg5_texture_05000830: # 0x05000830
-.incbin "actors/clam_shell/1.rgba16"
+.incbin "actors/clam_shell/clam_shell_mouth.rgba16"
 
 clam_shell_seg5_light_05001030: # 0x05001030
 .byte 0x66, 0x66, 0x66, 0x00, 0x66, 0x66, 0x66, 0x00

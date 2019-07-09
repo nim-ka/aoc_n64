@@ -13,7 +13,7 @@ vertex      4,      8,      0,    960,      0,  0xFF, 0x00, 0x00, 0xFF
 vertex     -4,      8,      0,      0,      0,  0xFF, 0x00, 0x00, 0xFF
 
 white_particle_small_texture: # 0x04032780
-.incbin "actors/white_particle_small/0.rgba16"
+.incbin "actors/white_particle_small/small_snow_particle.rgba16"
 
 glabel white_particle_small_dl_begin # 0x04032980 - 0x040329E0
 gsDPPipeSync

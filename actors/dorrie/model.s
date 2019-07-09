@@ -1,13 +1,13 @@
 # Dorrie
 
 dorrie_seg6_texture_06009BA0: # 0x06009BA0
-.incbin "actors/dorrie/0.rgba16"
+.incbin "actors/dorrie/dorrie_eye.rgba16"
 
 dorrie_seg6_texture_06009DA0: # 0x06009DA0
-.incbin "actors/dorrie/1.rgba16"
+.incbin "actors/dorrie/dorrie_skin.rgba16"
 
 dorrie_seg6_texture_0600ADA0: # 0x0600ADA0
-.incbin "actors/dorrie/2.rgba16"
+.incbin "actors/dorrie/dorrie_tongue.rgba16"
 
 dorrie_seg6_light_0600B5A0: # 0x0600B5A0
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00

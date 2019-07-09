@@ -31,34 +31,34 @@
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 king_bobomb_seg5_texture_05000078: # 0x05000078
-.incbin "actors/king_bobomb/0.rgba16"
+.incbin "actors/king_bobomb/bob-omb_buddy_left_side_unused.rgba16"
 
 king_bobomb_seg5_texture_05001078: # 0x05001078
-.incbin "actors/king_bobomb/1.rgba16"
+.incbin "actors/king_bobomb/bob-omb_buddy_right_side_unused.rgba16"
 
 king_bobomb_seg5_texture_05002078: # 0x05002078
-.incbin "actors/king_bobomb/2.rgba16"
+.incbin "actors/king_bobomb/king_bob-omb_arm.rgba16"
 
 king_bobomb_seg5_texture_05002878: # 0x05002878
-.incbin "actors/king_bobomb/3.rgba16"
+.incbin "actors/king_bobomb/king_bob-omb_body_unused.rgba16"
 
 king_bobomb_seg5_texture_05004878: # 0x05004878
-.incbin "actors/king_bobomb/4.rgba16"
+.incbin "actors/king_bobomb/king_bob-omb_eyes.rgba16"
 
 king_bobomb_seg5_texture_05005878: # 0x05005878
-.incbin "actors/king_bobomb/5.rgba16"
+.incbin "actors/king_bobomb/king_bob-omb_hand.rgba16"
 
 king_bobomb_seg5_texture_05006078: # 0x05006078
-.incbin "actors/king_bobomb/6.rgba16"
+.incbin "actors/king_bobomb/king_bob-omb_crown_rim.rgba16"
 
 king_bobomb_seg5_texture_05006478: # 0x05006478
-.incbin "actors/king_bobomb/7.rgba16"
+.incbin "actors/king_bobomb/bob-omb_buddy_body_unused.rgba16"
 
 king_bobomb_seg5_texture_05008478: # 0x05008478
-.incbin "actors/king_bobomb/8.rgba16"
+.incbin "actors/king_bobomb/king_bob-omb_left_side.rgba16"
 
 king_bobomb_seg5_texture_05009478: # 0x05009478
-.incbin "actors/king_bobomb/9.rgba16"
+.incbin "actors/king_bobomb/king_bob-omb_right_side.rgba16"
 
 king_bobomb_seg5_vertex_0500A478: # 0x0500A478
 vertex     23,     23,      0,    990,      0,  0xFF, 0xFF, 0xFF, 0xFF

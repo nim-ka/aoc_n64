@@ -15,16 +15,16 @@ bub_seg6_light_0600E298: # 0x0600E298
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 bub_seg6_texture_0600E2A8: # 0x0600E2A8
-.incbin "actors/bub/0.rgba16"
+.incbin "actors/bub/bub_eye_border.rgba16"
 
 bub_seg6_texture_0600EAA8: # 0x0600EAA8
-.incbin "actors/bub/1.rgba16"
+.incbin "actors/bub/bub_fins.rgba16"
 
 bub_seg6_texture_0600F2A8: # 0x0600F2A8
-.incbin "actors/bub/2.rgba16"
+.incbin "actors/bub/bub_eyes.rgba16"
 
 bub_seg6_texture_060102A8: # 0x060102A8
-.incbin "actors/bub/3.rgba16"
+.incbin "actors/bub/bub_scales.rgba16"
 
 bub_seg6_vertex_060112A8: # 0x060112A8
 vertex    -47,     79,     27,     26,    980,  0x00, 0x6B, 0x43, 0xFF

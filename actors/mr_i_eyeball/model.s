@@ -11,10 +11,10 @@ vertex    100,    200,      0,    992,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,    200,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 mr_i_eyeball_seg6_texture_06000080: # 0x06000080
-.incbin "actors/mr_i_eyeball/0.rgba16"
+.incbin "actors/mr_i_eyeball/mr_i_eyeball_left_side.rgba16"
 
 mr_i_eyeball_seg6_texture_06001080: # 0x06001080
-.incbin "actors/mr_i_eyeball/1.rgba16"
+.incbin "actors/mr_i_eyeball/mr_i_eyeball_right_side.rgba16"
 
 glabel mr_i_eyeball_seg6_dl_06002080 # 0x06002080 - 0x06002128
 gsDPPipeSync

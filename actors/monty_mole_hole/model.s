@@ -7,7 +7,7 @@ vertex     40,      0,     40,    992,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex     40,      0,    -40,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 monty_mole_hole_seg5_texture_05000040: # 0x05000040
-.incbin "actors/monty_mole_hole/0.ia16"
+.incbin "actors/monty_mole_hole/monty_mole_hole.ia16"
 
 glabel monty_mole_hole_seg5_dl_05000840 # 0x05000840 - 0x050008D8
 gsDPPipeSync

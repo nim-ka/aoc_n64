@@ -23,16 +23,16 @@ ukiki_seg5_light_05007BA8: # 0x05007BA8
 .word 1 # The hell?
 
 ukiki_seg5_texture_05007BC0: # 0x05007BC0
-.incbin "actors/ukiki/0.rgba16"
+.incbin "actors/ukiki/ukiki_face.rgba16"
 
 ukiki_seg5_texture_05008BC0: # 0x05008BC0
-.incbin "actors/ukiki/1.rgba16"
+.incbin "actors/ukiki/ukiki_face_blink.rgba16"
 
 ukiki_seg5_texture_05009BC0: # 0x05009BC0
-.incbin "actors/ukiki/2.rgba16"
+.incbin "actors/ukiki/ukiki_butt.rgba16"
 
 ukiki_seg5_texture_0500A3C0: # 0x0500A3C0
-.incbin "actors/ukiki/3.rgba16"
+.incbin "actors/ukiki/ukiki_fur.rgba16"
 
 ukiki_seg5_light_0500ABC0: # 0x0500ABC0
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00

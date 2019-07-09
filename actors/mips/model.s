@@ -2,7 +2,7 @@
 
 .balign 8
 mips_seg6_texture_0600FB80: # 0x0600FB80
-.incbin "actors/mips/0.rgba16"
+.incbin "actors/mips/mips_eyes.rgba16"
 
 mips_seg6_light_06010380: # 0x06010380
 .byte 0x66, 0x66, 0x66, 0x00, 0x66, 0x66, 0x66, 0x00

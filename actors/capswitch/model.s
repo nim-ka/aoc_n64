@@ -44,10 +44,10 @@ capswitch_seg5_light_05001C38: # 0x05001C38
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 capswitch_seg5_texture_05001C48: # 0x05001C48
-.incbin "actors/capswitch/0.ia16"
+.incbin "actors/capswitch/cap_switch_head.ia16"
 
 capswitch_seg5_texture_05002C48: # 0x05002C48
-.incbin "actors/capswitch/1.rgba16"
+.incbin "actors/capswitch/cap_switch_base.rgba16"
 
 capswitch_seg5_vertex_05002CC8: # 0x05002CC8
 vertex   -118,    262,   -203,   -130,    364,  0x00, 0x36, 0x8E, 0xFF

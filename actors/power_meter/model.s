@@ -5,34 +5,34 @@
 .word 0
 
 power_meter_seg3_texture_030233E0: # 0x030233E0
-.incbin "actors/power_meter/0.rgba16"
+.incbin "actors/power_meter/power_meter_left_side.rgba16"
 
 power_meter_seg3_texture_030243E0: # 0x030243E0
-.incbin "actors/power_meter/1.rgba16"
+.incbin "actors/power_meter/power_meter_right_side.rgba16"
 
 power_meter_seg3_texture_030253E0: # 0x030253E0
-.incbin "actors/power_meter/2.rgba16"
+.incbin "actors/power_meter/power_meter_full.rgba16"
 
 power_meter_seg3_texture_03025BE0: # 0x03025BE0
-.incbin "actors/power_meter/3.rgba16"
+.incbin "actors/power_meter/power_meter_seven_segments.rgba16"
 
 power_meter_seg3_texture_030263E0: # 0x030263E0
-.incbin "actors/power_meter/4.rgba16"
+.incbin "actors/power_meter/power_meter_six_segments.rgba16"
 
 power_meter_seg3_texture_03026BE0: # 0x03026BE0
-.incbin "actors/power_meter/5.rgba16"
+.incbin "actors/power_meter/power_meter_five_segments.rgba16"
 
 power_meter_seg3_texture_030273E0: # 0x030273E0
-.incbin "actors/power_meter/6.rgba16"
+.incbin "actors/power_meter/power_meter_four_segments.rgba16"
 
 power_meter_seg3_texture_03027BE0: # 0x03027BE0
-.incbin "actors/power_meter/7.rgba16"
+.incbin "actors/power_meter/power_meter_three_segments.rgba16"
 
 power_meter_seg3_texture_030283E0: # 0x030283E0
-.incbin "actors/power_meter/8.rgba16"
+.incbin "actors/power_meter/power_meter_two_segments.rgba16"
 
 power_meter_seg3_texture_03028BE0: # 0x03028BE0
-.incbin "actors/power_meter/9.rgba16"
+.incbin "actors/power_meter/power_meter_one_segment.rgba16"
 
 glabel power_meter_seg3_health_icons_030293E0 # 0x030293E0
 .word power_meter_seg3_texture_03028BE0

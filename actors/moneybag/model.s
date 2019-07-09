@@ -1,10 +1,10 @@
 # Moneybag
 
 moneybag_seg6_texture_060039B0: # 0x060039B0
-.incbin "actors/moneybag/0.rgba16"
+.incbin "actors/moneybag/moneybag_mouth.rgba16"
 
 moneybag_seg6_texture_060049B0: # 0x060049B0
-.incbin "actors/moneybag/1.rgba16"
+.incbin "actors/moneybag/moneybag_eyes.rgba16"
 
 moneybag_seg6_light_060051B0: # 0x060051B0
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00

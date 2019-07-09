@@ -8,10 +8,10 @@ star_seg3_light_0302A6E0: # 0x0302A6E0
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 star_seg3_texture_0302A6F0: # 0x0302A6F0
-.incbin "actors/star/0.rgba16"
+.incbin "actors/star/star_surface.rgba16"
 
 star_seg3_texture_0302AEF0: # 0x0302AEF0
-.incbin "actors/star/1.rgba16"
+.incbin "actors/star/star_eye.rgba16"
 
 star_seg3_vertex_0302B6F0: # 0x0302B6F0
 vertex      0,      8,    -89,      0,      0,  0x00, 0x07, 0x82, 0xFF

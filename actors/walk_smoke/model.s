@@ -7,25 +7,25 @@ vertex     32,     64,      0,    992,      0,  0xFF, 0xFF, 0xFF, 0x64
 vertex    -32,     64,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0x64
 
 smoke_seg4_texture_0401DEA0: # 0x0401DEA0
-.incbin "actors/walk_smoke/0.ia16"
+.incbin "actors/walk_smoke/walk_smoke_0.ia16"
 
 smoke_seg4_texture_0401E6A0: # 0x0401E6A0
-.incbin "actors/walk_smoke/1.ia16"
+.incbin "actors/walk_smoke/walk_smoke_1.ia16"
 
 smoke_seg4_texture_0401EEA0: # 0x0401EEA0
-.incbin "actors/walk_smoke/2.ia16"
+.incbin "actors/walk_smoke/walk_smoke_2.ia16"
 
 smoke_seg4_texture_0401F6A0: # 0x0401F6A0
-.incbin "actors/walk_smoke/3.ia16"
+.incbin "actors/walk_smoke/walk_smoke_3.ia16"
 
 smoke_seg4_texture_0401FEA0: # 0x0401FEA0
-.incbin "actors/walk_smoke/4.ia16"
+.incbin "actors/walk_smoke/walk_smoke_4.ia16"
 
 smoke_seg4_texture_040206A0: # 0x040206A0
-.incbin "actors/walk_smoke/5.ia16"
+.incbin "actors/walk_smoke/walk_smoke_5.ia16"
 
 smoke_seg4_texture_04020EA0: # 0x04020EA0
-.incbin "actors/walk_smoke/6.ia16"
+.incbin "actors/walk_smoke/walk_smoke_6.ia16"
 
 glabel smoke_seg4_dl_040216A0 # 0x040216A0 - 0x04021718
 gsSPClearGeometryMode G_LIGHTING

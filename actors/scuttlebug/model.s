@@ -13,19 +13,19 @@
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 scuttlebug_seg6_texture_06010108: # 0x06010108
-.incbin "actors/scuttlebug/0.rgba16"
+.incbin "actors/scuttlebug/scuttlebug_eye.rgba16"
 
 scuttlebug_seg6_texture_06010908: # 0x06010908
-.incbin "actors/scuttlebug/1.rgba16"
+.incbin "actors/scuttlebug/scuttlebug_left_side.rgba16"
 
 scuttlebug_seg6_texture_06011908: # 0x06011908
-.incbin "actors/scuttlebug/2.rgba16"
+.incbin "actors/scuttlebug/scuttlebug_right_side.rgba16"
 
 scuttlebug_seg6_texture_06012908: # 0x06012908
-.incbin "actors/scuttlebug/3.rgba16"
+.incbin "actors/scuttlebug/scuttlebug_iris.rgba16"
 
 scuttlebug_seg6_texture_06013108: # 0x06013108
-.incbin "actors/scuttlebug/4.rgba16"
+.incbin "actors/scuttlebug/scuttlebug_leg.rgba16"
 
 scuttlebug_seg6_vertex_06013908: # 0x06013908
 vertex    -44,    -44,      0,      0,   2012,  0xFF, 0xFF, 0xFF, 0xFF

@@ -25,19 +25,19 @@
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 bookend_seg5_texture_05000060: # 0x05000060
-.incbin "actors/bookend/0.rgba16"
+.incbin "actors/bookend/bookend_spine.rgba16"
 
 bookend_seg5_texture_05000460: # 0x05000460
-.incbin "actors/bookend/1.rgba16"
+.incbin "actors/bookend/bookend_tooth.rgba16"
 
 bookend_seg5_texture_05000860: # 0x05000860
-.incbin "actors/bookend/2.rgba16"
+.incbin "actors/bookend/bookend_mouth.rgba16"
 
 bookend_seg5_texture_05000C60: # 0x05000C60
-.incbin "actors/bookend/3.rgba16"
+.incbin "actors/bookend/bookend_pages.rgba16"
 
 bookend_seg5_texture_05001060: # 0x05001060
-.incbin "actors/bookend/4.rgba16"
+.incbin "actors/bookend/bookend_cover.rgba16"
 
 bookend_seg5_light_05001860: # 0x05001860
 .byte 0x66, 0x66, 0x66, 0x00, 0x66, 0x66, 0x66, 0x00

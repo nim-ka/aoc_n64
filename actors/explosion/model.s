@@ -7,25 +7,25 @@ vertex    128,    128,      0,    992,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   -128,    128,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 explosion_seg3_texture_03000A08: # 0x03000A08
-.incbin "actors/explosion/0.rgba16"
+.incbin "actors/explosion/explosion_0.rgba16"
 
 explosion_seg3_texture_03001208: # 0x03001208
-.incbin "actors/explosion/1.rgba16"
+.incbin "actors/explosion/explosion_1.rgba16"
 
 explosion_seg3_texture_03001A08: # 0x03001A08
-.incbin "actors/explosion/2.rgba16"
+.incbin "actors/explosion/explosion_2.rgba16"
 
 explosion_seg3_texture_03002208: # 0x03002208
-.incbin "actors/explosion/3.rgba16"
+.incbin "actors/explosion/explosion_3.rgba16"
 
 explosion_seg3_texture_03002A08: # 0x03002A08
-.incbin "actors/explosion/4.rgba16"
+.incbin "actors/explosion/explosion_4.rgba16"
 
 explosion_seg3_texture_03003208: # 0x03003208
-.incbin "actors/explosion/5.rgba16"
+.incbin "actors/explosion/explosion_5.rgba16"
 
 explosion_seg3_texture_03003A08: # 0x03003A08
-.incbin "actors/explosion/6.rgba16"
+.incbin "actors/explosion/explosion_6.rgba16"
 
 glabel explosion_seg3_dl_03004208 # 0x03004208 - 0x03004298
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0

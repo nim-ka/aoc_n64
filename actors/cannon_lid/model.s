@@ -8,7 +8,7 @@ cannon_lid_seg8_light_08004048: # 0x08004048
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 cannon_lid_seg8_texture_08004058: # 0x08004058
-.incbin "actors/cannon_lid/0.rgba16"
+.incbin "actors/cannon_lid/cannon_lid.rgba16"
 
 cannon_lid_seg8_vertex_08004858: # 0x08004858
 vertex    102,      0,   -101,    990,      0,  0x00, 0x7F, 0x00, 0xFF

@@ -4,16 +4,16 @@
 
 .balign 8
 impact_smoke_seg6_texture_0605AA28: # 0x0605AA28
-.incbin "actors/impact_smoke/0.ia16"
+.incbin "actors/impact_smoke/impact_smoke_0.ia16"
 
 impact_smoke_seg6_texture_0605CA28: # 0x0605CA28
-.incbin "actors/impact_smoke/1.ia16"
+.incbin "actors/impact_smoke/impact_smoke_1.ia16"
 
 impact_smoke_seg6_texture_0605EA28: # 0x0605EA28
-.incbin "actors/impact_smoke/2.ia16"
+.incbin "actors/impact_smoke/impact_smoke_2.ia16"
 
 impact_smoke_seg6_texture_06060A28: # 0x06060A28
-.incbin "actors/impact_smoke/3.ia16"
+.incbin "actors/impact_smoke/impact_smoke_3.ia16"
 
 impact_smoke_seg6_vertex_06062A28: # 0x06062A28
 vertex   -150,    150,      0,      0,    992,  0x28, 0x19, 0x14, 0xFF

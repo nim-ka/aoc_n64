@@ -81,7 +81,7 @@ hoot_seg5_light_05000A10: # 0x05000A10
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 hoot_seg5_texture_05000A20: # 0x05000A20
-.incbin "actors/hoot/0.rgba16"
+.incbin "actors/hoot/hoot_eyes.rgba16"
 
 hoot_seg5_vertex_05001220: # 0x05001220
 vertex      8,     86,     22,   1292,   1620,  0xC8, 0x5E, 0x3F, 0x00
@@ -336,10 +336,10 @@ hoot_seg5_light_05001E40: # 0x05001E40
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 hoot_seg5_texture_05001E50: # 0x05001E50
-.incbin "actors/hoot/1.rgba16"
+.incbin "actors/hoot/hoot_wing.rgba16"
 
 hoot_seg5_texture_05002650: # 0x05002650
-.incbin "actors/hoot/2.rgba16"
+.incbin "actors/hoot/hoot_wing_tip.rgba16"
 
 # //! The vertex macro which calls this has too large of a size.
 hoot_seg5_vertex_05002E50: # 0x05002E50

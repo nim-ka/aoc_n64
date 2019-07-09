@@ -16,34 +16,34 @@ peach_seg5_light_05000A18: # 0x05000A18
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 peach_seg5_texture_05000A28: # 0x05000A28
-.incbin "actors/peach/0.rgba16"
+.incbin "actors/peach/peach_eye_open.rgba16"
 
 peach_seg5_texture_05001228: # 0x05001228
-.incbin "actors/peach/1.rgba16"
+.incbin "actors/peach/peach_eye_mostly_open.rgba16"
 
 peach_seg5_texture_05001A28: # 0x05001A28
-.incbin "actors/peach/2.rgba16"
+.incbin "actors/peach/peach_eye_mostly_closed.rgba16"
 
 peach_seg5_texture_05002228: # 0x05002228
-.incbin "actors/peach/3.rgba16"
+.incbin "actors/peach/peach_eye_closed.rgba16"
 
 peach_seg5_texture_05002A28: # 0x05002A28
-.incbin "actors/peach/4.rgba16"
+.incbin "actors/peach/peach_crown_jewel.rgba16"
 
 peach_seg5_texture_05002C28: # 0x05002C28
-.incbin "actors/peach/5.rgba16"
+.incbin "actors/peach/peach_chest_jewel.rgba16"
 
 peach_seg5_texture_05002E28: # 0x05002E28
-.incbin "actors/peach/6.rgba16"
+.incbin "actors/peach/peach_lips_scrunched.rgba16"
 
 peach_seg5_texture_05003628: # 0x05003628
-.incbin "actors/peach/7.rgba16"
+.incbin "actors/peach/peach_lips.rgba16"
 
 peach_seg5_texture_05003E28: # 0x05003E28
-.incbin "actors/peach/8.rgba16"
+.incbin "actors/peach/peach_nostril.rgba16"
 
 peach_seg5_texture_05004028: # 0x05004028
-.incbin "actors/peach/9.rgba16"
+.incbin "actors/peach/peach_dress.rgba16"
 
 peach_seg5_vertex_05004828: # 0x05004828
 vertex    205,     -4,    -48,    265,   1338,  0x7A, 0xF9, 0xE1, 0xFF

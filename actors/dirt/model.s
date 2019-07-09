@@ -34,7 +34,7 @@ vertex    102,    -60,      0,    599,    467,  0x00, 0x00, 0x7F, 0xFF
 vertex      0,     92,      0,    234,    -81,  0x00, 0x00, 0x7F, 0xFF
 
 dirt_seg3_texture_0302BDF8: # 0x0302BDF8
-.incbin "actors/dirt/0.rgba16"
+.incbin "actors/dirt/dirt_particle.rgba16"
 
 glabel dirt_seg3_dl_0302BFF8 # 0x0302BFF8 - 0x0302C028
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, dirt_seg3_texture_0302BDF8

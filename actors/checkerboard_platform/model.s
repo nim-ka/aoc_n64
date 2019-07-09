@@ -8,10 +8,10 @@ checkerboard_platform_seg8_light_0800C830: # 0x0800C830
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 checkerboard_platform_seg8_texture_0800C840: # 0x0800C840
-.incbin "actors/checkerboard_platform/0.rgba16"
+.incbin "actors/checkerboard_platform/checkerboard_platform_side.rgba16"
 
 checkerboard_platform_seg8_texture_0800CC40: # 0x0800CC40
-.incbin "actors/checkerboard_platform/1.rgba16"
+.incbin "actors/checkerboard_platform/checkerboard_platform.rgba16"
 
 checkerboard_platform_seg8_vertex_0800D440: # 0x0800D440
 vertex   -255,    -25,    154,   1504,    480,  0x81, 0x00, 0x00, 0xFF

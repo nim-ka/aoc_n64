@@ -10,7 +10,7 @@ vertex    -50,     50,      0,      0,      0,  0x14, 0x0A, 0x0A, 0xFF
 #     as a transparent black burn smoke. Probably meant to show up as white-ish
 #     burn smoke, but mistakened for being intended as black smoke.
 burn_smoke_seg4_texture_04021800: # 0x04021800
-.incbin "actors/burn_smoke/0.ia16"
+.incbin "actors/burn_smoke/burn_smoke.ia16"
 
 glabel burn_smoke_seg4_dl_04022000 # 0x04022000 - 0x04022028
 gsDPPipeSync

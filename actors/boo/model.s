@@ -9,10 +9,10 @@ boo_seg5_light_05009B30: # 0x05009B30
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 boo_seg5_texture_05009B40: # 0x05009B40
-.incbin "actors/boo/0.rgba16"
+.incbin "actors/boo/boo_eyes.rgba16"
 
 boo_seg5_texture_0500AB40: # 0x0500AB40
-.incbin "actors/boo/1.rgba16"
+.incbin "actors/boo/boo_mouth.rgba16"
 
 boo_seg5_vertex_0500B340: # 0x0500B340
 vertex      0,   -117,    131,    458,    990,  0x00, 0x9D, 0x4E, 0x9E

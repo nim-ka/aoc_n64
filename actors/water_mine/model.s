@@ -8,13 +8,13 @@ water_mine_seg6_light_0600A4E8: # 0x0600A4E8
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 water_mine_seg6_texture_0600A4F8: # 0x0600A4F8
-.incbin "actors/water_mine/0.rgba16"
+.incbin "actors/water_mine/water_mine_left_side_unused.rgba16"
 
 water_mine_seg6_texture_0600B4F8: # 0x0600B4F8
-.incbin "actors/water_mine/1.rgba16"
+.incbin "actors/water_mine/water_mine_right_side_unused.rgba16"
 
 water_mine_seg6_texture_0600C4F8: # 0x0600C4F8
-.incbin "actors/water_mine/2.rgba16"
+.incbin "actors/water_mine/water_mine_spike_unused.rgba16"
 
 water_mine_seg6_vertex_0600CCF8: # 0x0600CCF8
 vertex      0,     40,      0,    992,      0,  0xFF, 0xFF, 0xFF, 0xFF

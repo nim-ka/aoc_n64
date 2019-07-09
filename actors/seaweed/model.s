@@ -8,16 +8,16 @@ seaweed_seg6_light_06007E00: # 0x06007E00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 seaweed_seg6_texture_06007E10: # 0x06007E10
-.incbin "actors/seaweed/0.rgba16"
+.incbin "actors/seaweed/seaweed_tip.rgba16"
 
 seaweed_seg6_texture_06008610: # 0x06008610
-.incbin "actors/seaweed/1.rgba16"
+.incbin "actors/seaweed/seaweed_upper_center.rgba16"
 
 seaweed_seg6_texture_06008E10: # 0x06008E10
-.incbin "actors/seaweed/2.rgba16"
+.incbin "actors/seaweed/seaweed_lower_center.rgba16"
 
 seaweed_seg6_texture_06009610: # 0x06009610
-.incbin "actors/seaweed/3.rgba16"
+.incbin "actors/seaweed/seaweed_base.rgba16"
 
 seaweed_seg6_vertex_06009E10: # 0x06009E10
 vertex    232,      2,    -76,    -30,    -12,  0x00, 0x7F, 0x00, 0xFF

@@ -8,7 +8,7 @@ vertex     77,     77,      0,    992,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    -76,     77,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 yellow_sphere_seg6_texture_0601EB88: # 0x0601EB88
-.incbin "actors/yellow_sphere/0.rgba16"
+.incbin "actors/yellow_sphere/yellow_sphere.rgba16"
 
 glabel yellow_sphere_seg6_dl_0601F388 # 0x0601F388 - 0x0601F3C0
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, yellow_sphere_seg6_texture_0601EB88

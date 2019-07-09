@@ -1,4 +1,4 @@
-# Chilly Chief (Ice Bully)
+# Chilly Chief (Chill Bully)
 
 chilly_chief_seg6_light_06000000: # 0x06000000
 .byte 0x00, 0x38, 0x00, 0x00, 0x00, 0x38, 0x00, 0x00
@@ -28,13 +28,13 @@ chilly_chief_seg6_light_06000038: # 0x06000038
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 chilly_chief_seg6_texture_06000060: # 0x06000060
-.incbin "actors/chillychief/0.rgba16"
+.incbin "actors/chillychief/chill_bully_left_side.rgba16"
 
 chilly_chief_seg6_texture_06001060: # 0x06001060
-.incbin "actors/chillychief/1.rgba16"
+.incbin "actors/chillychief/chill_bully_right_side.rgba16"
 
 chilly_chief_seg6_texture_06002060: # 0x06002060
-.incbin "actors/chillychief/2.rgba16"
+.incbin "actors/chillychief/chill_bully_eye.rgba16"
 
 chilly_chief_seg6_vertex_06002860: # 0x06002860
 vertex     27,    -35,      0,      0,      0,  0x0C, 0x82, 0x04, 0x00

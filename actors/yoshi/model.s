@@ -22,13 +22,13 @@ yoshi_seg5_light_0501C490: # 0x0501C490
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 yoshi_seg5_texture_0501C4A0: # 0x0501C4A0
-.incbin "actors/yoshi/0.rgba16"
+.incbin "actors/yoshi/yoshi_eye.rgba16"
 
 yoshi_seg5_texture_0501C6A0: # 0x0501C6A0
-.incbin "actors/yoshi/1.rgba16"
+.incbin "actors/yoshi/yoshi_eye_blink.rgba16"
 
 yoshi_seg5_texture_0501C8A0: # 0x0501C8A0
-.incbin "actors/yoshi/2.rgba16"
+.incbin "actors/yoshi/yoshi_nostril.rgba16"
 
 yoshi_seg5_vertex_0501CAA0: # 0x0501CAA0
 vertex    174,    273,   -134,   1177,    698,  0x29, 0x20, 0x8D, 0xFF

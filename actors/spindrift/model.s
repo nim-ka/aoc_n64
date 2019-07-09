@@ -190,16 +190,16 @@ spindrift_seg5_anim_050006AC: # 0x050006AC
 .word 1 # False Bin ID?
 
 spindrift_seg5_texture_050006D0: # 0x050006D0
-.incbin "actors/spindrift/0.rgba16"
+.incbin "actors/spindrift/spindrift_face.rgba16"
 
 spindrift_seg5_texture_05000ED0: # 0x05000ED0
-.incbin "actors/spindrift/1.rgba16"
+.incbin "actors/spindrift/spindrift_petal.rgba16"
 
 spindrift_seg5_texture_050016D0: # 0x050016D0
-.incbin "actors/spindrift/2.rgba16"
+.incbin "actors/spindrift/spindrift_leaf.rgba16"
 
 spindrift_seg5_texture_05001ED0: # 0x05001ED0
-.incbin "actors/spindrift/3.rgba16"
+.incbin "actors/spindrift/spindrift_head.rgba16"
 
 spindrift_seg5_vertex_050026D0: # 0x050026D0
 vertex    -54,    -54,      0,      0,    990,  0xFF, 0xFF, 0xFF, 0xFF

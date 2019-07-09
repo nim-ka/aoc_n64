@@ -8,16 +8,16 @@ treasure_chest_seg6_light_06013F98: # 0x06013F98
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 treasure_chest_seg6_texture_06013FA8: # 0x06013FA8
-.incbin "actors/treasure_chest/0.rgba16"
+.incbin "actors/treasure_chest/treasure_chest_lock.rgba16"
 
 treasure_chest_seg6_texture_060147A8: # 0x060147A8
-.incbin "actors/treasure_chest/1.rgba16"
+.incbin "actors/treasure_chest/treasure_chest_side.rgba16"
 
 treasure_chest_seg6_texture_06014FA8: # 0x06014FA8
-.incbin "actors/treasure_chest/2.rgba16"
+.incbin "actors/treasure_chest/treasure_chest_lock_top.rgba16"
 
 treasure_chest_seg6_texture_060157A8: # 0x060157A8
-.incbin "actors/treasure_chest/3.rgba16"
+.incbin "actors/treasure_chest/treasure_chest_front.rgba16"
 
 treasure_chest_seg6_vertex_060167A8: # 0x060167A8
 vertex     20,    102,     87,    990,      0,  0x00, 0x00, 0x7F, 0xFF

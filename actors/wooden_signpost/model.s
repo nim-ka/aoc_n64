@@ -17,10 +17,10 @@ vertex    -23,    -39,     -6,     36,    178,  0x93, 0x00, 0xC1, 0xFF
 vertex     24,    -39,     -6,     36,    780,  0x6D, 0x00, 0xC0, 0xFF
 
 wooden_signpost_seg3_texture_0302C9C8: # 0x0302C9C8
-.incbin "actors/wooden_signpost/0.rgba16"
+.incbin "actors/wooden_signpost/wooden_signpost_back.rgba16"
 
 wooden_signpost_seg3_texture_0302D1C8: # 0x0302D1C8
-.incbin "actors/wooden_signpost/1.rgba16"
+.incbin "actors/wooden_signpost/wooden_signpost_front.rgba16"
 
 glabel wooden_signpost_seg3_dl_0302D9C8 # 0x0302D9C8 - 0x0302DA48
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, wooden_signpost_seg3_texture_0302C9C8

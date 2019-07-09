@@ -1,7 +1,7 @@
 # Tornado
 
 tornado_seg5_texture_05013128: # 0x05013128
-.incbin "actors/tornado/0.ia16"
+.incbin "actors/tornado/tornado.ia16"
 
 tornado_seg5_light_05014128: # 0x05014128
 .byte 0x3B, 0x34, 0x23, 0x00, 0x3B, 0x34, 0x23, 0x00

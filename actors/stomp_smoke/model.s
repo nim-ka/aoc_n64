@@ -13,22 +13,22 @@ vertex     32,      0,    -32,   1984,   1984,  0xFF, 0x00, 0x00, 0xC8
 vertex    -32,      0,    -32,      0,   1984,  0xFF, 0x00, 0x00, 0xC8
 
 stomp_smoke_seg4_texture_04022148: # 0x04022148
-.incbin "actors/stomp_smoke/0.ia16"
+.incbin "actors/stomp_smoke/stomp_smoke_0.ia16"
 
 stomp_smoke_seg4_texture_04022948: # 0x04022948
-.incbin "actors/stomp_smoke/1.ia16"
+.incbin "actors/stomp_smoke/stomp_smoke_1.ia16"
 
 stomp_smoke_seg4_texture_04023148: # 0x04023148
-.incbin "actors/stomp_smoke/2.ia16"
+.incbin "actors/stomp_smoke/stomp_smoke_2.ia16"
 
 stomp_smoke_seg4_texture_04023948: # 0x04023948
-.incbin "actors/stomp_smoke/3.ia16"
+.incbin "actors/stomp_smoke/stomp_smoke_3.ia16"
 
 stomp_smoke_seg4_texture_04024148: # 0x04024148
-.incbin "actors/stomp_smoke/4.ia16"
+.incbin "actors/stomp_smoke/stomp_smoke_4.ia16"
 
 stomp_smoke_seg4_texture_04024948: # 0x04024948
-.incbin "actors/stomp_smoke/5.ia16"
+.incbin "actors/stomp_smoke/stomp_smoke_5.ia16"
 
 glabel stomp_smoke_seg4_dl_04025148 # 0x04025148 - 0x04025190
 gsSPClearGeometryMode G_LIGHTING

@@ -1,22 +1,22 @@
 # Bobomb
 
 bobomb_seg8_texture_0801DA60: # 0x0801DA60
-.incbin "actors/bobomb/0.rgba16"
+.incbin "actors/bobomb/bob-omb_left_side.rgba16"
 
 bobomb_seg8_texture_0801EA60: # 0x0801EA60
-.incbin "actors/bobomb/1.rgba16"
+.incbin "actors/bobomb/bob-omb_right_side.rgba16"
 
 bobomb_seg8_texture_0801FA60: # 0x0801FA60
-.incbin "actors/bobomb/2.rgba16"
+.incbin "actors/bobomb/bob-omb_buddy_left_side.rgba16"
 
 bobomb_seg8_texture_08020A60: # 0x08020A60
-.incbin "actors/bobomb/3.rgba16"
+.incbin "actors/bobomb/bob-omb_buddy_right_side.rgba16"
 
 bobomb_seg8_texture_08021A60: # 0x08021A60
-.incbin "actors/bobomb/4.rgba16"
+.incbin "actors/bobomb/bob-omb_eyes.rgba16"
 
 bobomb_seg8_texture_08022260: # 0x08022260
-.incbin "actors/bobomb/5.rgba16"
+.incbin "actors/bobomb/bob-omb_eyes_blink.rgba16"
 
 bobomb_seg8_vertex_08022A60: # 0x08022A60
 vertex    133,    -47,      0,    480,      0,  0xFF, 0xFF, 0xFF, 0xFF

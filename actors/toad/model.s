@@ -9,10 +9,10 @@ toad_seg6_light_06005910: # 0x06005910
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 toad_seg6_texture_06005920: # 0x06005920
-.incbin "actors/toad/0.rgba16"
+.incbin "actors/toad/toad_face.rgba16"
 
 toad_seg6_texture_06006120: # 0x06006120
-.incbin "actors/toad/1.rgba16"
+.incbin "actors/toad/toad_head.rgba16"
 
 toad_seg6_vertex_06006920: # 0x06006920
 vertex    -43,   -102,    106,     36,    848,  0xBA, 0xCC, 0x5B, 0xFF

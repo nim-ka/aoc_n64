@@ -2,93 +2,93 @@
 
 .balign 8
 bowser_seg6_texture_0601F438: # 0x0601F438
-.incbin "actors/bowser/0.rgba16"
+.incbin "actors/bowser/bowser_shell.rgba16"
 
 bowser_seg6_texture_0601FC38: # 0x0601FC38
-.incbin "actors/bowser/1.rgba16"
+.incbin "actors/bowser/bowser_eyebrow.rgba16"
 
 bowser_seg6_texture_06020C38: # 0x06020C38
-.incbin "actors/bowser/2.rgba16"
+.incbin "actors/bowser/bowser_muzzle.rgba16"
 
 bowser_seg6_texture_06021438: # 0x06021438
-.incbin "actors/bowser/3.rgba16"
+.incbin "actors/bowser/bowser_nostrils.rgba16"
 
 bowser_seg6_texture_06022438: # 0x06022438
-.incbin "actors/bowser/4.rgba16"
+.incbin "actors/bowser/bowser_body.rgba16"
 
 bowser_seg6_texture_06022C38: # 0x06022C38
-.incbin "actors/bowser/5.rgba16"
+.incbin "actors/bowser/bowser_armband_spike.rgba16"
 
 bowser_seg6_texture_06023C38: # 0x06023C38
-.incbin "actors/bowser/6.rgba16"
+.incbin "actors/bowser/bowser_armband.rgba16"
 
 bowser_seg6_texture_06024438: # 0x06024438
-.incbin "actors/bowser/7.rgba16"
+.incbin "actors/bowser/bowser_tongue.rgba16"
 
 bowser_seg6_texture_06025438: # 0x06025438
-.incbin "actors/bowser/8.rgba16"
+.incbin "actors/bowser/bowser_chest.rgba16"
 
 bowser_seg6_texture_06025C38: # 0x06025C38
-.incbin "actors/bowser/9.rgba16"
+.incbin "actors/bowser/bowser_shell_edge.rgba16"
 
 # unreferenced, seen in pre-Spaceworld 1995 B-roll footage build
 bowser_seg6_texture_06026438: # 0x06026438
-.incbin "actors/bowser/10.rgba16"
+.incbin "actors/bowser/bowser_blue_eye_unused.rgba16"
 
 # unreferenced (stubbed texture? possibly original texture for mouth)
 bowser_seg6_texture_06027438: # 0x06027438
-.incbin "actors/bowser/11.rgba16"
+.incbin "actors/bowser/bowser_mouth_unused.rgba16"
 
 bowser_seg6_texture_06028438: # 0x06028438
-.incbin "actors/bowser/12.rgba16"
+.incbin "actors/bowser/bowser_upper_face.rgba16"
 
 bowser_seg6_texture_06028C38: # 0x06028C38
-.incbin "actors/bowser/13.rgba16"
+.incbin "actors/bowser/bowser_hair.rgba16"
 
 bowser_seg6_texture_06029C38: # 0x06029C38
-.incbin "actors/bowser/14.rgba16"
+.incbin "actors/bowser/bowser_claw_edge.rgba16"
 
 bowser_seg6_texture_0602AC38: # 0x0602AC38
-.incbin "actors/bowser/15.rgba16"
+.incbin "actors/bowser/bowser_claw_horn_tooth.rgba16"
 
 bowser_seg6_texture_0602BC38: # 0x0602BC38
-.incbin "actors/bowser/16.rgba16"
+.incbin "actors/bowser/bowser_claw_horn_angle.rgba16"
 
 bowser_seg6_texture_0602CC38: # 0x0602CC38
-.incbin "actors/bowser/17.rgba16"
+.incbin "actors/bowser/bowser_eye_left_0.rgba16"
 
 bowser_seg6_texture_0602DC38: # 0x0602DC38
-.incbin "actors/bowser/18.rgba16"
+.incbin "actors/bowser/bowser_eye_half_closed_0.rgba16"
 
 bowser_seg6_texture_0602EC38: # 0x0602EC38
-.incbin "actors/bowser/19.rgba16"
+.incbin "actors/bowser/bowser_eye_closed_0.rgba16"
 
 bowser_seg6_texture_0602FC38: # 0x0602FC38
-.incbin "actors/bowser/20.rgba16"
+.incbin "actors/bowser/bowser_eye_center_0.rgba16"
 
 bowser_seg6_texture_06030C38: # 0x06030C38
-.incbin "actors/bowser/21.rgba16"
+.incbin "actors/bowser/bowser_eye_right_0.rgba16"
 
 bowser_seg6_texture_06031C38: # 0x06031C38
-.incbin "actors/bowser/22.rgba16"
+.incbin "actors/bowser/bowser_eye_far_left_0.rgba16"
 
 bowser_seg6_texture_06032C38: # 0x06032C38
-.incbin "actors/bowser/23.rgba16"
+.incbin "actors/bowser/bowser_eye_left_1.rgba16"
 
 bowser_seg6_texture_06033C38: # 0x06033C38
-.incbin "actors/bowser/24.rgba16"
+.incbin "actors/bowser/bowser_eye_half_closed_1.rgba16"
 
 bowser_seg6_texture_06034C38: # 0x06034C38
-.incbin "actors/bowser/25.rgba16"
+.incbin "actors/bowser/bowser_eye_closed_1.rgba16"
 
 bowser_seg6_texture_06035C38: # 0x06035C38
-.incbin "actors/bowser/26.rgba16"
+.incbin "actors/bowser/bowser_eye_center_1.rgba16"
 
 bowser_seg6_texture_06036C38: # 0x06036C38
-.incbin "actors/bowser/27.rgba16"
+.incbin "actors/bowser/bowser_eye_right_1.rgba16"
 
 bowser_seg6_texture_06037C38: # 0x06037C38
-.incbin "actors/bowser/28.rgba16"
+.incbin "actors/bowser/bowser_eye_far_left_1.rgba16"
 
 bowser_seg6_light_06038C38: # 0x06038C38
 .byte 0x3F, 0x3F, 0x3F, 0x00, 0x3F, 0x3F, 0x3F, 0x00

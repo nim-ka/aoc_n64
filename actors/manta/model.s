@@ -21,16 +21,16 @@ manta_seg5_light_05001778: # 0x05001778
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 manta_seg5_texture_050017A0: # 0x050017A0
-.incbin "actors/manta/0.rgba16"
+.incbin "actors/manta/manta_fin_corner.rgba16"
 
 manta_seg5_texture_05001FA0: # 0x05001FA0
-.incbin "actors/manta/1.rgba16"
+.incbin "actors/manta/manta_gills.rgba16"
 
 manta_seg5_texture_05002FA0: # 0x05002FA0
-.incbin "actors/manta/2.rgba16"
+.incbin "actors/manta/manta_eye.rgba16"
 
 manta_seg5_texture_050037A0: # 0x050037A0
-.incbin "actors/manta/3.rgba16"
+.incbin "actors/manta/manta_fin_edge.rgba16"
 
 manta_seg5_vertex_050047A0: # 0x050047A0
 vertex     60,    -41,     -9,    112,    436,  0xFF, 0xFF, 0xFF, 0xFF

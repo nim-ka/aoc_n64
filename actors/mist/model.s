@@ -13,7 +13,7 @@ vertex     25,     25,      0,    992,      0,  0x22, 0x1A, 0x1C, 0xFF
 vertex    -25,     25,      0,      0,      0,  0x22, 0x1A, 0x1C, 0xFF
 
 mist_seg3_texture_03000080: # 0x03000080
-.incbin "actors/mist/0.ia16"
+.incbin "actors/mist/mist.ia16"
 
 glabel mist_seg3_dl_03000880 # 0x03000880 - 0x03000920
 gsDPPipeSync

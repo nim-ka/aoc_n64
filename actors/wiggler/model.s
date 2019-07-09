@@ -1,25 +1,25 @@
 # Wiggler
 
 wiggler_seg5_texture_05005A30: # 0x05005A30
-.incbin "actors/wiggler/0.rgba16"
+.incbin "actors/wiggler/wiggler_segment_left_side.rgba16"
 
 wiggler_seg5_texture_05006A30: # 0x05006A30
-.incbin "actors/wiggler/1.rgba16"
+.incbin "actors/wiggler/wiggler_segment_right_side.rgba16"
 
 wiggler_seg5_texture_05007A30: # 0x05007A30
-.incbin "actors/wiggler/2.rgba16"
+.incbin "actors/wiggler/wiggler_eye.rgba16"
 
 wiggler_seg5_texture_05008230: # 0x05008230
-.incbin "actors/wiggler/3.rgba16"
+.incbin "actors/wiggler/wiggler_flower.rgba16"
 
 wiggler_seg5_texture_05008A30: # 0x05008A30
-.incbin "actors/wiggler/4.rgba16"
+.incbin "actors/wiggler/wiggler_frown.rgba16"
 
 wiggler_seg5_texture_05009230: # 0x05009230
-.incbin "actors/wiggler/5.rgba16"
+.incbin "actors/wiggler/wiggler_nose_left_side.rgba16"
 
 wiggler_seg5_texture_0500A230: # 0x0500A230
-.incbin "actors/wiggler/6.rgba16"
+.incbin "actors/wiggler/wiggler_nose_right_side.rgba16"
 
 wiggler_seg5_light_0500B230: # 0x0500B230
 .byte 0x37, 0x00, 0x00, 0x00, 0x37, 0x00, 0x00, 0x00

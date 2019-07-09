@@ -374,10 +374,10 @@ koopa_shell_seg8_light_08027490: # 0x08027490
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 koopa_shell_seg8_texture_080274A0: # 0x080274A0
-.incbin "actors/koopa_shell/0.rgba16"
+.incbin "actors/koopa_shell/koopa_shell_front.rgba16"
 
 koopa_shell_seg8_texture_08027CA0: # 0x08027CA0
-.incbin "actors/koopa_shell/1.rgba16"
+.incbin "actors/koopa_shell/koopa_shell_back.rgba16"
 
 koopa_shell_seg8_vertex_080284A0: # 0x080284A0
 vertex    -15,     47,    -16,    774,    814,  0xE1, 0x74, 0xDB, 0xFF

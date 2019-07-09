@@ -15,19 +15,19 @@ haunted_cage_seg5_light_0500C278: # 0x0500C278
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 haunted_cage_seg5_texture_0500C288: # 0x0500C288
-.incbin "actors/haunted_cage/0.rgba16"
+.incbin "actors/haunted_cage/bbh_cage_floor.rgba16"
 
 haunted_cage_seg5_texture_0500CA88: # 0x0500CA88
-.incbin "actors/haunted_cage/1.rgba16"
+.incbin "actors/haunted_cage/bbh_cage_double_ornament.rgba16"
 
 haunted_cage_seg5_texture_0500D288: # 0x0500D288
-.incbin "actors/haunted_cage/2.rgba16"
+.incbin "actors/haunted_cage/bbh_cage_ornament.rgba16"
 
 haunted_cage_seg5_texture_0500D688: # 0x0500D688
-.incbin "actors/haunted_cage/3.rgba16"
+.incbin "actors/haunted_cage/bbh_cage_wooden_base.rgba16"
 
 haunted_cage_seg5_texture_0500DA88: # 0x0500DA88
-.incbin "actors/haunted_cage/4.rgba16"
+.incbin "actors/haunted_cage/bbh_cage_bars.rgba16"
 
 # possibly garbage. does not at all appear to be a texture and is unreferenced
 # also could be some sort of shader mask from much earlier in development, considering

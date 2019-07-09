@@ -8,7 +8,7 @@ water_ring_seg6_light_06012370: # 0x06012370
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 water_ring_seg6_texture_06012380: # 0x06012380
-.incbin "actors/water_ring/0.rgba16"
+.incbin "actors/water_ring/water_ring.rgba16"
 
 water_ring_seg6_vertex_06013380: # 0x06013380
 vertex      0,    264,      0,      0,      0,  0x00, 0x2A, 0x77, 0x00
