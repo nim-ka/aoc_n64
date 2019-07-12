@@ -2,29 +2,43 @@
 #define _AUDIODEFINES_H
 
 // Sound Magic Definition:
-// First Byte (Upper Nibble): Sound Bank
+// First Byte (Upper Nibble): Sound Bank (not the same as audio bank!)
 // First Byte (Lower Nibble): Bitflags for audio playback?
 // Second Byte: Sound ID
-// Third Byte: Bitflags for audio properties
-// Fourth Byte (Upper Nibble): Envelope? (0-8, 8 is play the full sound)
-// Fourth Byte (Lower Nibble): Sound Status (this is set to SOUND_PLAYING when passed to the audio driver.)
-#define SOUND_ARG_LOAD(bank, playFlags, soundID, priority, envelope) (((u32) (bank) << 28)     | \
+// Third Byte: Priority
+// Fourth Byte (Upper Nibble): More bitflags
+// Fourth Byte (Lower Nibble): Sound Status (this is set to SOUND_STATUS_PLAYING when passed to the audio driver.)
+#define SOUND_ARG_LOAD(bank, playFlags, soundID, priority, flags2) (((u32) (bank) << 28)       | \
                  ((u32) (playFlags) << 24) | ((u32) (soundID) << 16) | ((u32) (priority) << 8) | \
-                 ((u32) (envelope)  << 4)  |  SOUND_STARTING)
+                 ((u32) (flags2)  << 4)  |  SOUND_STATUS_STARTING)
+
+#define SOUNDARGS_MASK_BANK         0xF0000000
+#define SOUNDARGS_MASK_SOUNDID      0x00FF0000
+#define SOUNDARGS_MASK_PRIORITY     0x0000FF00
+#define SOUNDARGS_MASK_STATUS       0x0000000F
+
+#define SOUNDARGS_SHIFT_BANK        28
+#define SOUNDARGS_SHIFT_SOUNDID     16
+#define SOUNDARGS_SHIFT_PRIORITY    8
 
 /* Audio Status */
-#define SOUND_STOPPED  0
-#define SOUND_STARTING 1
-#define SOUND_PLAYING  2
+#define SOUND_STATUS_STOPPED        0
+#define SOUND_STATUS_STARTING       1
+#define SOUND_STATUS_PLAYING        2
 
-/* Audio Playback Bitflags. TODO: Figure out what these mean and use them below. */
-#define SOUND_PL_BITFLAG_UNK0     (1 << 0) // 0x01
-#define SOUND_PL_BITFLAG_UNK1     (1 << 1) // 0x02
-#define SOUND_PL_BITFLAG_UNK2     (1 << 2) // 0x04
-#define SOUND_PL_BITFLAG_UNK3     (1 << 3) // 0x08
+/* Audio lower bitflags. TODO: Figure out what these mean and use them below. */
+#define SOUND_LO_BITFLAG_UNK1       0x10 // fade in?
+#define SOUND_NO_ECHO               0x20 // not in JP
+#define SOUND_LO_BITFLAG_UNK8       0x80 // restart playing on each play_sound call?
+
+/* Audio playback bitflags. TODO: Figure out what these mean and use them below. */
+#define SOUND_PL_BITFLAG_UNK1       0x1000000
+#define SOUND_PL_BITFLAG_UNK2       0x2000000
+#define SOUND_PL_BITFLAG_UNK4       0x4000000
+#define SOUND_PL_BITFLAG_UNK8       0x8000000
 
 // silence
-#define NO_SOUND                  0
+#define NO_SOUND                    0
 
 /**
  * The table below defines all sounds that exist in the game, and which flags
@@ -33,8 +47,8 @@
  * Some sounds are given as 2-byte values rather than SOUND_ARG_LOAD calls.
  * These sounds are not directly referenced by the game; either they are
  * unused, or they are computed rather than referred to literally, or they
- * are loaded from another bank somehow (e.g. bank 9 and 5 seem to use the
- * same sounds).
+ * are loaded from another bank somehow (e.g. bank 9 and 5 use the same
+ * sounds, as do 8 and 3).
  */
 
 /* Terrain sounds */
@@ -198,7 +212,7 @@
 /* not verified */ #define SOUND_PEACH_DEARMARIO        SOUND_ARG_LOAD(2, 4, 0x28, 0xFF, 8)
 /* not verified */ #define SOUND_MARIO_WOOH2            0x2429
 /* not verified */ #define SOUND_MARIO_WOOH3            0x242A
-/* not verified */ // the next 5 sounds are in a group of 5 for which the sound is determined by the SetSound call used.
+/* not verified */ // the next 5 sounds are in a group of 5 for which the sound is determined by the play_sound call used.
 /* not verified */ #define SOUND_MARIO_YAHOO2           SOUND_ARG_LOAD(2, 4, 0x2B, 0x80, 8)
 /* not verified */ #define SOUND_MARIO_YAHOO3           SOUND_ARG_LOAD(2, 4, 0x2C, 0x80, 8)
 /* not verified */ #define SOUND_MARIO_YAHOO4           SOUND_ARG_LOAD(2, 4, 0x2D, 0x80, 8)
@@ -268,9 +282,9 @@
 /* not verified */ #define SOUND_GENERAL_CLAMSHELL4     SOUND_ARG_LOAD(3, 0, 0x27, 0x40, 8)
 /* not verified */ #define SOUND_GENERAL_EXITPAINTING1  0x3028
 #ifdef VERSION_JP
-/* not verified */ #define SOUND_UNKNOWN_UNK3828        SOUND_ARG_LOAD(3, 8, 0x28, 0x00, 8)
+/* not verified */ #define SOUND_GENERAL_PAINTING_EJECT SOUND_ARG_LOAD(3, 8, 0x28, 0x00, 8)
 #else
-/* not verified */ #define SOUND_UNKNOWN_UNK3828        SOUND_ARG_LOAD(3, 9, 0x28, 0x00, 8)
+/* not verified */ #define SOUND_GENERAL_PAINTING_EJECT SOUND_ARG_LOAD(3, 9, 0x28, 0x00, 8)
 #endif
 /* not verified */ #define SOUND_GENERAL_EXITPAINTING2  0x3029
 /* not verified */ #define SOUND_GENERAL_EXITPAINTING3  0x302A

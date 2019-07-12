@@ -7,7 +7,8 @@
 #include "memory.h"
 #include "area.h"
 #include "save_file.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
+#include "seq_ids.h"
 #include "level_update.h"
 #include "sound_init.h"
 #include "print.h"
@@ -155,7 +156,7 @@ s16 level_select_input_loop(void)
 
     // if the stage was changed, play the sound for changing a stage.
     if(stageChanged)
-        SetSound(SOUND_GENERAL_EXITPAINTING4, D_803320E0);
+        play_sound(SOUND_GENERAL_EXITPAINTING4, gDefaultSoundArgs);
 
     // TODO: enum counts for the stage lists
     if(gCurrLevelNum > LEVEL_MAX)
@@ -183,7 +184,7 @@ s16 level_select_input_loop(void)
             gDebugLevelSelect = 0;
             return -1;
         }
-        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
+        play_sound(SOUND_MENU_STARSOUND, gDefaultSoundArgs);
         return gCurrLevelNum;
     }
     return 0;
@@ -198,11 +199,11 @@ int func_8016F3CC(void)
     {
         if(gGlobalTimer < 0x81)
         {
-            SetSound(SOUND_MARIO_HELLO, D_803320E0);
+            play_sound(SOUND_MARIO_HELLO, gDefaultSoundArgs);
         }
         else
         {
-            SetSound(SOUND_MARIO_PRESSSTARTTOPLAY, D_803320E0);
+            play_sound(SOUND_MARIO_PRESSSTARTTOPLAY, gDefaultSoundArgs);
         }
         D_U_801A7C34 = 0;
     }
@@ -212,10 +213,10 @@ int func_8016F3CC(void)
     if(gPlayer1Controller->buttonPressed & START_BUTTON)
     {
 #ifdef VERSION_JP
-        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
+        play_sound(SOUND_MENU_STARSOUND, gDefaultSoundArgs);
         sp1C = 100 + gDebugLevelSelect;
 #else
-        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
+        play_sound(SOUND_MENU_STARSOUND, gDefaultSoundArgs);
         sp1C = 100 + gDebugLevelSelect;
         D_U_801A7C34 = 1;
 #endif
@@ -230,7 +231,7 @@ int func_8016F444(void)
 #ifndef VERSION_JP
     if(gameOverNotPlayed == 1)
     {
-        SetSound(SOUND_MARIO_GAMEOVER, D_803320E0);
+        play_sound(SOUND_MARIO_GAMEOVER, gDefaultSoundArgs);
         gameOverNotPlayed = 0;
     }
 #endif
@@ -239,7 +240,7 @@ int func_8016F444(void)
 
     if(gPlayer1Controller->buttonPressed & START_BUTTON)
     {
-        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
+        play_sound(SOUND_MENU_STARSOUND, gDefaultSoundArgs);
         sp1C = 100 + gDebugLevelSelect;
 #ifndef VERSION_JP
         gameOverNotPlayed = 1;
@@ -250,8 +251,8 @@ int func_8016F444(void)
 
 int func_8016F4BC(void)
 {
-    func_80249148(0, 0, 0);
-    SetSound(SOUND_MENU_COINITSAMEMARIO, D_803320E0);
+    set_background_music(0, SEQ_SOUND_PLAYER, 0);
+    play_sound(SOUND_MENU_COINITSAMEMARIO, gDefaultSoundArgs);
     return 1;
 }
 

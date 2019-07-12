@@ -43,8 +43,7 @@ void ActionPiranhaPlant21(void)
     obj_set_hurtbox_radius_and_height(150.0f,100.0f);
 #ifdef VERSION_US
     o->oDamageOrCoinValue = 0;
-#endif
-#ifdef VERSION_EU // hmm.. better way to write this ifdef?
+#elif defined(VERSION_EU)
     o->oDamageOrCoinValue = 3;
 #endif
     if(o->oDistanceToMario < 400.0f)
@@ -54,7 +53,7 @@ void ActionPiranhaPlant21(void)
     }
     else if(o->oDistanceToMario < 1000.0f)
     {
-        func_80320F84(11,0,255,1000);
+        play_secondary_music(SEQ_EVENT_PIRANHA_PLANT, 0, 255, 1000);
         o->oPiranhaPlant2UnkF4 = 0;
     }
     else if(o->oPiranhaPlant2UnkF4 == 0)

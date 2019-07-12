@@ -11,8 +11,8 @@ glabel D_80337BC8
 .text
 glabel func_80314480
 /* 0CF480 80314480 27BDFE88 */  addiu $sp, $sp, -0x178
-/* 0CF484 80314484 3C0E8022 */  lui   $t6, %hi(D_80226D70) # $t6, 0x8022
-/* 0CF488 80314488 8DCE6D70 */  lw    $t6, %lo(D_80226D70)($t6)
+/* 0CF484 80314484 3C0E8022 */  lui   $t6, %hi(gNoteCount) # $t6, 0x8022
+/* 0CF488 80314488 8DCE6D70 */  lw    $t6, %lo(gNoteCount)($t6)
 /* 0CF48C 8031448C AFB40030 */  sw    $s4, 0x30($sp)
 /* 0CF490 80314490 00C0A025 */  move  $s4, $a2
 /* 0CF494 80314494 AFBF0044 */  sw    $ra, 0x44($sp)
@@ -32,24 +32,24 @@ glabel func_80314480
 /* 0CF4CC 803144CC AFA0006C */  sw    $zero, 0x6c($sp)
 /* 0CF4D0 803144D0 3C1F8000 */  lui   $ra, 0x8000
 .L803144D4:
-/* 0CF4D4 803144D4 3C188022 */  lui   $t8, %hi(D_80222A10) # $t8, 0x8022
-/* 0CF4D8 803144D8 8F182A10 */  lw    $t8, %lo(D_80222A10)($t8)
+/* 0CF4D4 803144D4 3C188022 */  lui   $t8, %hi(gNotes) # $t8, 0x8022
+/* 0CF4D8 803144D8 8F182A10 */  lw    $t8, %lo(gNotes)($t8)
 /* 0CF4DC 803144DC 8FAF006C */  lw    $t7, 0x6c($sp)
-/* 0CF4E0 803144E0 3C198022 */  lui   $t9, %hi(D_802218D0)
+/* 0CF4E0 803144E0 3C198022 */  lui   $t9, %hi(gBankLoadStatus)
 /* 0CF4E4 803144E4 3C010100 */  lui   $at, 0x100
 /* 0CF4E8 803144E8 01F8B821 */  addu  $s7, $t7, $t8
 /* 0CF4EC 803144EC 92E20007 */  lbu   $v0, 7($s7)
 /* 0CF4F0 803144F0 8FB80174 */  lw    $t8, 0x174($sp)
 /* 0CF4F4 803144F4 0322C821 */  addu  $t9, $t9, $v0
-/* 0CF4F8 803144F8 933918D0 */  lbu   $t9, %lo(D_802218D0)($t9)
+/* 0CF4F8 803144F8 933918D0 */  lbu   $t9, %lo(gBankLoadStatus)($t9)
 /* 0CF4FC 803144FC 2B2E0002 */  slti  $t6, $t9, 2
 /* 0CF500 80314500 11C00006 */  beqz  $t6, .L8031451C
 /* 0CF504 80314504 00027A00 */   sll   $t7, $v0, 8
 /* 0CF508 80314508 01F8C821 */  addu  $t9, $t7, $t8
 /* 0CF50C 8031450C 03217021 */  addu  $t6, $t9, $at
-/* 0CF510 80314510 3C018033 */  lui    $at, %hi(D_80331D40)
+/* 0CF510 80314510 3C018033 */  lui    $at, %hi(gAudioErrorFlags)
 /* 0CF514 80314514 10000249 */  b     .L80314E3C
-/* 0CF518 80314518 AC2E1D40 */   sw    $t6, %lo(D_80331D40)($at)
+/* 0CF518 80314518 AC2E1D40 */   sw    $t6, %lo(gAudioErrorFlags)($at)
 .L8031451C:
 /* 0CF51C 8031451C 8EEF0000 */  lw    $t7, ($s7)
 /* 0CF520 80314520 000FC7C2 */  srl   $t8, $t7, 0x1f
@@ -687,8 +687,8 @@ glabel func_80314480
 .L80314E40:
 /* 0CFE40 80314E40 8FB9006C */  lw    $t9, 0x6c($sp)
 /* 0CFE44 80314E44 25D80001 */  addiu $t8, $t6, 1
-/* 0CFE48 80314E48 3C0E8022 */  lui   $t6, %hi(D_80226D70) # $t6, 0x8022
-/* 0CFE4C 80314E4C 8DCE6D70 */  lw    $t6, %lo(D_80226D70)($t6)
+/* 0CFE48 80314E48 3C0E8022 */  lui   $t6, %hi(gNoteCount) # $t6, 0x8022
+/* 0CFE4C 80314E4C 8DCE6D70 */  lw    $t6, %lo(gNoteCount)($t6)
 /* 0CFE50 80314E50 272F00C0 */  addiu $t7, $t9, 0xc0
 /* 0CFE54 80314E54 AFAF006C */  sw    $t7, 0x6c($sp)
 /* 0CFE58 80314E58 030E082A */  slt   $at, $t8, $t6

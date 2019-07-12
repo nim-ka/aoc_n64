@@ -635,7 +635,7 @@ struct Object *spawn_object_at_origin(
     func_8037C448(
         (struct GraphNodeObject *)&obj->header.gfx,
         gLoadedGraphNodes[model],
-        D_80385FD0,
+        gVec3fZero,
         D_80385FDC);
 
     return obj;

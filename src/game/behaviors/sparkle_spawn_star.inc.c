@@ -88,13 +88,13 @@ void bhv_unused_080c_loop(void)
             o->oVelY = 20.0f;
             o->oGravity = -1.0f;
             if(o->oUnk190 & 0x400)
-#ifndef VERSION_JP
-                play_power_star_jingle(1);
+#ifdef VERSION_JP
+                play_power_star_jingle(FALSE);
 #else
-                play_power_star_jingle(0);
+                play_power_star_jingle(TRUE);
 #endif
             else
-                play_power_star_jingle(1);
+                play_power_star_jingle(TRUE);
         }
     }
     else if(o->oAction == 1)

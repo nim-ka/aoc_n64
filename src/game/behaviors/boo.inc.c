@@ -732,7 +732,7 @@ void bhv_merry_go_round_boo_manager_loop(void)
 #ifndef VERSION_JP
                 play_puzzle_jingle();
 #else
-                SetSound(SOUND_CH8_RIGHTANSWER,D_803320E0);
+                play_sound(SOUND_CH8_RIGHTANSWER,gDefaultSoundArgs);
 #endif
             }
         }

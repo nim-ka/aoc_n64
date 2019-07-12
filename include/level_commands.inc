@@ -361,7 +361,7 @@
     .byte 0
 .endm
 
-.macro set_music unk2, seq
+.macro set_background_music unk2, seq
     .byte 0x36, 0x08
     .hword \unk2
     .hword \seq

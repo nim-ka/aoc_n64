@@ -3,7 +3,7 @@
 #include "sm64.h"
 #include "engine/behavior_script.h"
 #include "object_helpers.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "spawn_sound.h"
 #include "object_list_processor.h"
 
@@ -62,14 +62,14 @@ void create_sound_spawner(s32 soundMagic)
 void PlaySound(s32 soundMagic)
 {
     if(gCurrentObject->header.gfx.node.flags & 0x0001)
-        SetSound(soundMagic, gCurrentObject->header.gfx.cameraToObject);
+        play_sound(soundMagic, gCurrentObject->header.gfx.cameraToObject);
 }
 
 // duplicate function, but its the used one
 void PlaySound2(s32 soundMagic)
 {
     if(gCurrentObject->header.gfx.node.flags & 0x0001)
-        SetSound(soundMagic, gCurrentObject->header.gfx.cameraToObject);
+        play_sound(soundMagic, gCurrentObject->header.gfx.cameraToObject);
 }
 
 /*

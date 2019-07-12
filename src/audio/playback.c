@@ -1,62 +1,58 @@
 #include <ultra64.h>
 #include <macros.h>
 
-#include "dac.h"
+#include "memory.h"
 #include "data.h"
-#include "interface_1.h"
+#include "seqplayer.h"
 #include "playback.h"
-#include "something.h"
-#include "playback2.h"
+#include "synthesis.h"
+#include "effects.h"
 
-#ifdef VERSION_JP
-#define US_FLOAT(x) x
-#else
-#define US_FLOAT(x) x ## f
-#endif
+s32 func_80319660(struct Note *arg0, struct SequenceChannelLayer *arg1);
 
-void func_80318870(struct Struct_func_80318870 *arg0)
+void func_80318870(struct Note *note)
 {
-    if (arg0->unk2C->unk14.unk0 == 0)
+    if (note->parentLayer->adsr.releaseRate == 0)
     {
-        func_8031A564(&arg0->unk54, arg0->unk2C->unk50->unk78.unk4, &arg0->unk8);
+        adsr_init(&note->adsr, note->parentLayer->seqChannel->adsr.envelope, &note->unk8);
     }
     else
     {
-        func_8031A564(&arg0->unk54, arg0->unk2C->unk14.unk4, &arg0->unk8);
+        adsr_init(&note->adsr, note->parentLayer->adsr.envelope, &note->unk8);
     }
-    arg0->unk54.unk01 = 1;
-    func_803159C0(arg0);
-    func_80315D94(arg0);
+    note->adsr.state = ADSR_STATE_INITIAL;
+    note_init(note);
+    func_80315D94(note);
 }
 
-void func_803188E8(struct Struct_func_80318870 *arg0)
+void func_803188E8(struct Note *note)
 {
-    func_80315DE0(arg0);
+    func_80315DE0(note);
 }
 
 void func_80318908(void)
 {
     f32 f2;
-    f32 f0;
-    u8 a3;
-    f32 f20;
-    f32 f12;
+    f32 frequency;
+    u8 reverb;
+    f32 velocity;
+    f32 pan;
     f32 cap;
-    struct Struct_func_80318870 *s0;
-    struct SubStruct_func_80318870_2 *temp_v0;
-    struct PlaybackListItem *it;
+    struct Note *note;
+    struct SequenceChannelLayer_2 *temp_v0;
+    struct NoteListItem *it;
     s32 i;
 
     // Macro versions of func_80319564 and func_803195A4
     // (PREPEND does not actually need to be a macro, but it seems likely.)
-#define PREPEND(item, head) \
+#define PREPEND(item, head_arg) \
     ((it = (item), it->prev != NULL) ? it : ( \
-        it->prev = (head), \
-        it->next = (head)->next, \
-        (head)->next->prev = it, \
-        (head)->next = it, \
-        (head)->u.count++, \
-        it->unkC = (head)->unkC, \
+        it->prev = (head_arg), \
+        it->next = (head_arg)->next, \
+        (head_arg)->next->prev = it, \
+        (head_arg)->next = it, \
+        (head_arg)->u.count++, \
+        it->head = (head_arg)->head, \
         it))
 #define POP(item) \
     ((it = (item), it->prev == NULL) ? it : ( \
@@ -65,89 +61,89 @@ void func_80318908(void)
         it->prev = NULL, \
         it))
 
-    for (i = 0; i < D_80226D70; i++)
+    for (i = 0; i < gNoteCount; i++)
     {
-        s0 = &D_80222A10[i];
-        if (s0->unk4 != 0)
+        note = &gNotes[i];
+        if (note->unk4 != 0)
         {
-            if (s0->unk4 == 1 || s0->unk0b10)
+            if (note->unk4 == 1 || note->unk0b10)
             {
-                if (s0->unk8 == 0 || s0->unk0b10)
+                if (note->unk8 == 0 || note->unk0b10)
                 {
-                    if (s0->unk30 != MINUS_ONE)
+                    if (note->unk30 != NO_LAYER)
                     {
-                        func_803188E8(s0);
-                        if (s0->unk30->unk50 != 0)
+                        func_803188E8(note);
+                        if (note->unk30->seqChannel != 0)
                         {
-                            if (func_80319660(s0, s0->unk30) == 1)
+                            if (func_80319660(note, note->unk30) == 1)
                             {
-                                func_803188E8(s0);
-                                POP(&s0->unkA4);
-                                PREPEND(&s0->unkA4, &D_80225EA8[0]);
+                                func_803188E8(note);
+                                POP(&note->noteListItem);
+                                PREPEND(&note->noteListItem, &D_80225EA8[0]);
                             }
                             else
                             {
-                                func_8031A478(s0);
-                                func_8031AEF4(&s0->unkA4.unkC[3], POP(&s0->unkA4));
-                                s0->unk30 = MINUS_ONE;
+                                note_vibrato_init(note);
+                                note_list_item_add(&note->noteListItem.head[3], POP(&note->noteListItem));
+                                note->unk30 = NO_LAYER;
                             }
                         }
                         else
                         {
-                            func_803188E8(s0);
-                            func_8031AEF4(&s0->unkA4.unkC[0], POP(&s0->unkA4));
-                            s0->unk30 = MINUS_ONE;
+                            func_803188E8(note);
+                            note_list_item_add(&note->noteListItem.head[0], POP(&note->noteListItem));
+                            note->unk30 = NO_LAYER;
                             continue;
                         }
                     }
                     else
                     {
-                        func_803188E8(s0);
-                        func_8031AEF4(&s0->unkA4.unkC[0], POP(&s0->unkA4));
+                        func_803188E8(note);
+                        note_list_item_add(&note->noteListItem.head[0], POP(&note->noteListItem));
                         continue;
                     }
                 }
             }
             else
             {
-                if (s0->unk54.unk01 == 0)
+                if (note->adsr.state == ADSR_STATE_DISABLED)
                 {
-                    func_803188E8(s0);
-                    func_8031AEF4(&s0->unkA4.unkC[0], POP(&s0->unkA4));
+                    func_803188E8(note);
+                    note_list_item_add(&note->noteListItem.head[0], POP(&note->noteListItem));
                     continue;
                 }
             }
 
-            func_8031A584(&s0->unk54);
-            func_8031A418(s0);
-            temp_v0 = &s0->unk44;
-            if (s0->unk4 == 1)
+            adsr_update(&note->adsr);
+            note_vibrato_update(note);
+            temp_v0 = &note->unk44;
+            if (note->unk4 == 1)
             {
-                f0 = temp_v0->unk4;
-                f20 = temp_v0->unk8;
-                f12 = temp_v0->unkC;
-                a3 = temp_v0->unk0;
+                frequency = temp_v0->freqScale;
+                velocity = temp_v0->velocity;
+                pan = temp_v0->pan;
+                reverb = temp_v0->reverb;
             }
             else
             {
-                f0 = s0->unk2C->unk34;
-                f20 = s0->unk2C->unk2C;
-                f12 = s0->unk2C->unk30;
-                a3 = s0->unk2C->unk50->unk3;
+                frequency = note->parentLayer->noteFreqScale;
+                velocity = note->parentLayer->noteVelocity;
+                pan = note->parentLayer->notePan;
+                reverb = note->parentLayer->seqChannel->reverb;
             }
 
-            f2 = s0->unk8;
-            f0 *= s0->unk1C * s0->unk18;
+            f2 = note->unk8;
+            frequency *= note->vibratoFreqScale * note->portamentoFreqScale;
             cap = 3.99992f;
-            if (D_80226D64 != 32006)
+            if (gAiFrequency != 32006)
             {
-                f0 *= US_FLOAT(32000.0) / (f32) D_80226D64;
+                frequency *= US_FLOAT(32000.0) / (f32) gAiFrequency;
             }
-            f0 = (f0 < cap ? f0 : cap);
-            f2 *= 4.3498e-5f;
-            f20 = f20 * f2 * f2;
-            func_80315D88(s0, f0);
-            func_803159EC(s0, f20, f12, a3);
+            frequency = (frequency < cap ? frequency : cap);
+            f2 *= 4.3498e-5f; // ~1 / 23000
+            velocity = velocity * f2 * f2;
+            note_set_frequency(note, frequency);
+            func_803159EC(note, velocity, pan, reverb);
             continue;
         }
     }
@@ -155,85 +151,86 @@ void func_80318908(void)
 #undef POP
 }
 
-void func_80318D18(struct SubStruct_func_80318870 *arg0, s32 arg1)
+void seq_channel_layer_init(struct SequenceChannelLayer *seqLayer, s32 arg1)
 {
-    struct Struct_func_80318870 *unk44;
-    struct SubStruct_func_80318870_2 *sub;
+    struct Note *note;
+    struct SequenceChannelLayer_2 *sub;
 
-    if (arg0 == MINUS_ONE || arg0->unk44 == NULL)
+    if (seqLayer == NO_LAYER || seqLayer->note == NULL)
     {
         return;
     }
 
-    unk44 = arg0->unk44;
-    sub = &unk44->unk44;
+    note = seqLayer->note;
+    sub = &note->unk44;
 
-    if (arg0->unk50 != 0 && arg0->unk50->unk1 == 0)
+    if (seqLayer->seqChannel != 0 && seqLayer->seqChannel->someMask == 0)
     {
-        arg0->unk44 = NULL;
+        seqLayer->note = NULL;
     }
 
-    if (arg0 == unk44->unk30)
+    if (note->unk30 == seqLayer)
     {
-        unk44->unk30 = MINUS_ONE;
+        note->unk30 = NO_LAYER;
     }
 
-    if (arg0 != unk44->unk2C)
+    if (note->parentLayer != seqLayer)
     {
         return;
     }
 
-    arg0->unk1 = 0;
-    if (unk44->unk54.unk01  != 6)
+    seqLayer->unk1 = 0;
+    if (note->adsr.state != ADSR_STATE_DECAY)
     {
-        sub->unk4 = arg0->unk34;
-        sub->unk8 = arg0->unk2C;
-        sub->unkC = arg0->unk30;
-        if (arg0->unk50 != NULL)
+        sub->freqScale = seqLayer->noteFreqScale;
+        sub->velocity = seqLayer->noteVelocity;
+        sub->pan = seqLayer->notePan;
+        if (seqLayer->seqChannel != NULL)
         {
-            sub->unk0 = arg0->unk50->unk3;
+            sub->reverb = seqLayer->seqChannel->reverb;
         }
-        unk44->unk4 = 1;
-        unk44->unk28 = unk44->unk2C;
-        unk44->unk2C = MINUS_ONE;
+        note->unk4 = 1;
+        note->unk28 = note->parentLayer;
+        note->parentLayer = NO_LAYER;
         if (arg1 == 7)
         {
-            unk44->unk54.unk0E = 0x8000 / D_80226D7E;
-            unk44->unk54.unk00 |= 0x10;
+            note->adsr.fadeOutVel = 0x8000 / gAudioUpdatesPerFrame;
+            note->adsr.action |= ADSR_ACTION_RELEASE;
         }
         else
         {
-            unk44->unk54.unk00 |= 0x20;
-            if (arg0->unk14.unk0 == 0)
+            note->adsr.action |= ADSR_ACTION_DECAY;
+            if (seqLayer->adsr.releaseRate == 0)
             {
-                unk44->unk54.unk0E = arg0->unk50->unk78.unk0 * 0x18;
+                note->adsr.fadeOutVel = seqLayer->seqChannel->adsr.releaseRate * 24;
             }
             else
             {
-                unk44->unk54.unk0E = arg0->unk14.unk0 * 0x18;
+                note->adsr.fadeOutVel = seqLayer->adsr.releaseRate * 24;
             }
-            unk44->unk54.unk0C = (unk44->unk54.unk06 * arg0->unk50->unk78.unk2) / 0x10000;
+            note->adsr.sustain = (note->adsr.current * seqLayer->seqChannel->adsr.sustain) / 0x10000;
         }
     }
 
     if (arg1 == 6)
     {
-        func_803195A4(&unk44->unkA4);
-        func_80319564(&unk44->unkA4.unkC[1], &unk44->unkA4);
+        func_803195A4(&note->noteListItem);
+        func_80319564(&note->noteListItem.head[1], &note->noteListItem);
     }
 }
 
-void func_80318EC4(struct SubStruct_func_80318870 *arg0)
+void seq_channel_layer_init_6(struct SequenceChannelLayer *seqLayer)
 {
-    func_80318D18(arg0, 6);
+    seq_channel_layer_init(seqLayer, 6);
 }
 
-void func_80318EE4(struct SubStruct_func_80318870 *arg0)
+void seq_channel_layer_init_7(struct SequenceChannelLayer *seqLayer)
 {
-    func_80318D18(arg0, 7);
+    seq_channel_layer_init(seqLayer, 7);
 }
 
-void func_80318F04(struct Struct_func_80318870 *arg0, struct SubStruct_func_80318870 *arg1)
+// wave synthesizer
+void func_80318F04(struct Note *note, struct SequenceChannelLayer *seqLayer)
 {
     s32 i;
     s32 j;
@@ -241,98 +238,100 @@ void func_80318F04(struct Struct_func_80318870 *arg0, struct SubStruct_func_8031
     s32 stepSize;
     s32 offset;
     u8 lim;
-    u8 origUnk5 = arg0->unk5;
+    u8 origSampleCount = note->sampleCount;
 
-    if (arg1->unk20 < US_FLOAT(1.0))
+    if (seqLayer->freqScale < US_FLOAT(1.0))
     {
-        arg0->unk5 = 64;
-        arg1->unk20 *= US_FLOAT(1.0465);
+        note->sampleCount = 64;
+        seqLayer->freqScale *= US_FLOAT(1.0465);
         stepSize = 1;
     }
-    else if (arg1->unk20 < US_FLOAT(2.0))
+    else if (seqLayer->freqScale < US_FLOAT(2.0))
     {
-        arg0->unk5 = 32;
-        arg1->unk20 *= US_FLOAT(0.52325);
+        note->sampleCount = 32;
+        seqLayer->freqScale *= US_FLOAT(0.52325);
         stepSize = 2;
     }
-    else if (arg1->unk20 < US_FLOAT(4.0))
+    else if (seqLayer->freqScale < US_FLOAT(4.0))
     {
-        arg0->unk5 = 16;
-        arg1->unk20 *= US_FLOAT(0.26263);
+        note->sampleCount = 16;
+        seqLayer->freqScale *= US_FLOAT(0.26263);
         stepSize = 4;
     }
     else
     {
-        arg0->unk5 = 8;
-        arg1->unk20 *= US_FLOAT(0.13081);
+        note->sampleCount = 8;
+        seqLayer->freqScale *= US_FLOAT(0.13081);
         stepSize = 8;
     }
 
-    if (arg0->unk5 == origUnk5 && arg1->unk50->unk18 == arg0->unk6)
+    if (note->sampleCount == origSampleCount && seqLayer->seqChannel->instOrWave == note->instOrWave)
     {
         return;
     }
 
-    arg0->unk6 = (u8) arg1->unk50->unk18;
+    // Load wave sample
+    note->instOrWave = (u8) seqLayer->seqChannel->instOrWave;
     for (i = -1, pos = 0; pos < 0x40; pos += stepSize)
     {
         i++;
-        arg0->unk34->unk110[i] = gWaveSamples[arg1->unk50->unk18 - 0x80][pos];
+        note->unk34->samples[i] = gWaveSamples[seqLayer->seqChannel->instOrWave - 0x80][pos];
     }
 
-    for (offset = arg0->unk5; offset < 0x40; offset += arg0->unk5)
+    // Repeat sample
+    for (offset = note->sampleCount; offset < 0x40; offset += note->sampleCount)
     {
-        lim = arg0->unk5;
+        lim = note->sampleCount;
         if (offset < 0 || offset > 0)
         {
             for (j = 0; j < lim; j++)
             {
-                arg0->unk34->unk110[offset + j] = arg0->unk34->unk110[j];
+                note->unk34->samples[offset + j] = note->unk34->samples[j];
             }
         }
         else
         {
             for (j = 0; j < lim; j++)
             {
-                arg0->unk34->unk110[offset + j] = arg0->unk34->unk110[j];
+                note->unk34->samples[offset + j] = note->unk34->samples[j];
             }
         }
     }
 
-    osWritebackDCache(arg0->unk34->unk110, sizeof(arg0->unk34->unk110));
+    osWritebackDCache(note->unk34->samples, sizeof(note->unk34->samples));
 }
 
-void func_80319164(struct Struct_func_80318870 *arg0, struct SubStruct_func_80318870 *arg1)
+void func_80319164(struct Note *note, struct SequenceChannelLayer *seqLayer)
 {
-    s32 unk5 = arg0->unk5;
-    func_80318F04(arg0, arg1);
-    if (unk5 != 0)
+    s32 sampleCount = note->sampleCount;
+    func_80318F04(note, seqLayer);
+    if (sampleCount != 0)
     {
-        arg0->unk14 *= arg0->unk5 / unk5;
+        note->unk14 *= note->sampleCount / sampleCount;
     }
     else
     {
-        arg0->unk14 = 0;
+        note->unk14 = 0;
     }
 }
 
-void func_803191E8(struct PlaybackListItem *head)
+void note_list_create(struct NoteListItem *head)
 {
     head->prev = head;
     head->next = head;
     head->u.count = 0;
 }
 
-void func_803191F8(struct PlaybackListItem *headList)
+void func_803191F8(struct NoteListItem *gNoteListHeads)
 {
-    func_803191E8(&headList[0]);
-    func_803191E8(&headList[1]);
-    func_803191E8(&headList[2]);
-    func_803191E8(&headList[3]);
-    headList[0].unkC = headList;
-    headList[1].unkC = headList;
-    headList[2].unkC = headList;
-    headList[3].unkC = headList;
+    note_list_create(&gNoteListHeads[0]);
+    note_list_create(&gNoteListHeads[1]);
+    note_list_create(&gNoteListHeads[2]);
+    note_list_create(&gNoteListHeads[3]);
+    gNoteListHeads[0].head = gNoteListHeads;
+    gNoteListHeads[1].head = gNoteListHeads;
+    gNoteListHeads[2].head = gNoteListHeads;
+    gNoteListHeads[3].head = gNoteListHeads;
 }
 
 void func_80319248(void)
@@ -340,20 +339,20 @@ void func_80319248(void)
     s32 i;
 
     func_803191F8(D_80225EA8);
-    for (i = 0; i < D_80226D70; i++)
+    for (i = 0; i < gNoteCount; i++)
     {
-        D_80222A10[i].unkA4.u.value = &D_80222A10[i];
-        D_80222A10[i].unkA4.prev = NULL;
-        func_8031AEF4(&D_80225EA8[0], &D_80222A10[i].unkA4);
+        gNotes[i].noteListItem.u.value = &gNotes[i];
+        gNotes[i].noteListItem.prev = NULL;
+        note_list_item_add(&D_80225EA8[0], &gNotes[i].noteListItem);
     }
 }
 
-void func_803192FC(struct PlaybackListItem *headList)
+void func_803192FC(struct NoteListItem *gNoteListHeads)
 {
-    struct PlaybackListItem *s0;
-    struct PlaybackListItem *s2;
+    struct NoteListItem *s0;
+    struct NoteListItem *s2;
     s32 i;
-    struct PlaybackListItem *s3;
+    struct NoteListItem *s3;
     s32 j;
 
     for (i = 0; i < 4; i++)
@@ -361,22 +360,22 @@ void func_803192FC(struct PlaybackListItem *headList)
         switch (i)
         {
         case 0:
-            s2 = &headList[0];
+            s2 = &gNoteListHeads[0];
             s3 = &D_80225EA8[0];
             break;
 
         case 1:
-            s2 = &headList[1];
+            s2 = &gNoteListHeads[1];
             s3 = &D_80225EA8[1];
             break;
 
         case 2:
-            s2 = &headList[2];
+            s2 = &gNoteListHeads[2];
             s3 = &D_80225EA8[2];
             break;
 
         case 3:
-            s2 = &headList[3];
+            s2 = &gNoteListHeads[3];
             s3 = &D_80225EA8[3];
             break;
         }
@@ -388,21 +387,21 @@ void func_803192FC(struct PlaybackListItem *headList)
             if (s0 == s2)
                 break;
             func_803195A4(s0);
-            func_8031AEF4(s3, s0);
+            note_list_item_add(s3, s0);
             j++;
-        } while (j <= D_80226D70);
+        } while (j <= gNoteCount);
     }
 }
 
-void func_80319428(struct PlaybackListItem *headList, s32 count)
+void func_80319428(struct NoteListItem *gNoteListHeads, s32 count)
 {
     s32 i;
     s32 j;
-    struct Struct_func_80318870 *ret;
-    struct PlaybackListItem *s1;
-    struct PlaybackListItem *s2;
+    struct Note *ret;
+    struct NoteListItem *s1;
+    struct NoteListItem *s2;
 
-    func_803192FC(headList);
+    func_803192FC(gNoteListHeads);
 
     for (i = 0, j = 0; j < count; i++)
     {
@@ -413,37 +412,37 @@ void func_80319428(struct PlaybackListItem *headList, s32 count)
         {
         case 0:
             s1 = &D_80225EA8[0];
-            s2 = &headList[0];
+            s2 = &gNoteListHeads[0];
             break;
 
         case 1:
             s1 = &D_80225EA8[1];
-            s2 = &headList[1];
+            s2 = &gNoteListHeads[1];
             break;
 
         case 2:
             s1 = &D_80225EA8[2];
-            s2 = &headList[2];
+            s2 = &gNoteListHeads[2];
             break;
 
         case 3:
             s1 = &D_80225EA8[3];
-            s2 = &headList[3];
+            s2 = &gNoteListHeads[3];
             break;
         }
 
         while (j < count)
         {
-            ret = func_8031AF34(s1);
+            ret = note_list_item_remove(s1);
             if (ret == 0)
                 break;
-            func_8031AEF4(s2, &ret->unkA4);
+            note_list_item_add(s2, &ret->noteListItem);
             j++;
         }
     }
 }
 
-void func_80319564(struct PlaybackListItem *head, struct PlaybackListItem *item)
+void func_80319564(struct NoteListItem *head, struct NoteListItem *item)
 {
     // add 'item' to the front of the list given by 'head', if it's not in any list
     if (item->prev == NULL)
@@ -453,11 +452,11 @@ void func_80319564(struct PlaybackListItem *head, struct PlaybackListItem *item)
         head->next->prev = item;
         head->next = item;
         head->u.count++;
-        item->unkC = head->unkC;
+        item->head = head->head;
     }
 }
 
-void func_803195A4(struct PlaybackListItem *item)
+void func_803195A4(struct NoteListItem *item)
 {
     // remove 'item' from the list it's in, if any
     if (item->prev != NULL)
@@ -468,10 +467,10 @@ void func_803195A4(struct PlaybackListItem *item)
     }
 }
 
-struct Struct_func_80318870 *func_803195D0(struct PlaybackListItem *head, s32 arg1)
+struct Note *func_803195D0(struct NoteListItem *head, s32 arg1)
 {
-    struct PlaybackListItem *cur = head->next;
-    struct PlaybackListItem *best;
+    struct NoteListItem *cur = head->next;
+    struct NoteListItem *best;
 
     if (cur == head)
     {
@@ -496,107 +495,107 @@ struct Struct_func_80318870 *func_803195D0(struct PlaybackListItem *head, s32 ar
     return best->u.value;
 }
 
-s32 func_80319660(struct Struct_func_80318870 *arg0, struct SubStruct_func_80318870 *arg1)
+s32 func_80319660(struct Note *note, struct SequenceChannelLayer *seqLayer)
 {
-    arg0->unk28 = MINUS_ONE;
-    arg0->unk2C = arg1;
-    arg0->unk4 = arg1->unk50->unk4;
-    if ((D_802218D0[arg1->unk50->unk5] < 2) != 0)
+    note->unk28 = NO_LAYER;
+    note->parentLayer = seqLayer;
+    note->unk4 = seqLayer->seqChannel->unk4;
+    if (IS_BANK_LOAD_COMPLETE(seqLayer->seqChannel->bankId) == FALSE)
     {
-        return 1;
+        return TRUE;
     }
 
-    arg0->unk7 = arg1->unk50->unk5;
-    arg0->unk0b1 = arg1->unk50->unk0b4;
-    arg0->unk24 = arg1->unk4C;
-    arg1->unk1 = 3;
-    arg1->unk44 = arg0;
-    arg1->unk50->unk34 = arg0;
-    arg1->unk50->unk38 = arg1;
-    if (arg0->unk24 == NULL)
+    note->bankId = seqLayer->seqChannel->bankId;
+    note->soundModeSomething = seqLayer->seqChannel->soundModeSomething;
+    note->sound = seqLayer->sound;
+    seqLayer->unk1 = 3;
+    seqLayer->note = note;
+    seqLayer->seqChannel->unk34 = note;
+    seqLayer->seqChannel->unk38 = seqLayer;
+    if (note->sound == NULL)
     {
-        func_80318F04(arg0, arg1);
+        func_80318F04(note, seqLayer);
     }
-    func_80318870(arg0);
-    return 0;
+    func_80318870(note);
+    return FALSE;
 }
 
-void func_80319728(struct Struct_func_80318870 *arg0, struct SubStruct_func_80318870 *arg1)
+void func_80319728(struct Note *arg0, struct SequenceChannelLayer *seqLayer)
 {
-    func_80318EE4(arg0->unk2C);
-    arg0->unk30 = arg1;
+    seq_channel_layer_init_7(arg0->parentLayer);
+    arg0->unk30 = seqLayer;
 }
 
-void func_8031975C(struct Struct_func_80318870 *arg0, struct SubStruct_func_80318870 *arg1)
+void func_8031975C(struct Note *arg0, struct SequenceChannelLayer *seqLayer)
 {
-    arg0->unk30 = arg1;
+    arg0->unk30 = seqLayer;
     arg0->unk4 = 1;
-    arg0->unk54.unk0E = 0x8000 / D_80226D7E;
-    arg0->unk54.unk00 |= 0x10;
+    arg0->adsr.fadeOutVel = 0x8000 / gAudioUpdatesPerFrame;
+    arg0->adsr.action |= ADSR_ACTION_RELEASE;
 }
 
-struct Struct_func_80318870 *func_803197B4(struct PlaybackListItem *headList, struct SubStruct_func_80318870 *arg1)
+struct Note *func_803197B4(struct NoteListItem *gNoteListHeads, struct SequenceChannelLayer *seqLayer)
 {
-    struct Struct_func_80318870 *a2 = func_8031AF34(&headList[0]);
+    struct Note *a2 = note_list_item_remove(&gNoteListHeads[0]);
     if (a2 != NULL)
     {
-        if (func_80319660(a2, arg1) == 1)
+        if (func_80319660(a2, seqLayer) == TRUE)
         {
-            func_80319564(&D_80225EA8[0], &a2->unkA4);
+            func_80319564(&D_80225EA8[0], &a2->noteListItem);
             return NULL;
         }
 
-        func_80319564(&headList[3], &a2->unkA4);
+        func_80319564(&gNoteListHeads[3], &a2->noteListItem);
     }
     return a2;
 }
 
-struct Struct_func_80318870 *func_80319830(struct PlaybackListItem *headList, struct SubStruct_func_80318870 *arg1)
+struct Note *func_80319830(struct NoteListItem *gNoteListHeads, struct SequenceChannelLayer *seqLayer)
 {
-    struct Struct_func_80318870 *a2 = func_8031AF34(&headList[1]);
+    struct Note *a2 = note_list_item_remove(&gNoteListHeads[1]);
     if (a2 != NULL)
     {
-        func_8031975C(a2, arg1);
-        func_8031AEF4(&headList[2], &a2->unkA4);
+        func_8031975C(a2, seqLayer);
+        note_list_item_add(&gNoteListHeads[2], &a2->noteListItem);
     }
     return a2;
 }
 
-struct Struct_func_80318870 *func_80319884(struct PlaybackListItem *headList, struct SubStruct_func_80318870 *arg1)
+struct Note *func_80319884(struct NoteListItem *gNoteListHeads, struct SequenceChannelLayer *seqLayer)
 {
-    struct Struct_func_80318870 *a2 = func_803195D0(&headList[3], arg1->unk50->unk4);
+    struct Note *a2 = func_803195D0(&gNoteListHeads[3], seqLayer->seqChannel->unk4);
     if (a2 != 0)
     {
-        func_80319728(a2, arg1);
-        func_8031AEF4(&headList[2], &a2->unkA4);
+        func_80319728(a2, seqLayer);
+        note_list_item_add(&gNoteListHeads[2], &a2->noteListItem);
     }
     return a2;
 }
 
-struct Struct_func_80318870 *func_803198E0(struct SubStruct_func_80318870 *arg0)
+struct Note *func_803198E0(struct SequenceChannelLayer *seqLayer)
 {
-    struct Struct_func_80318870 *ret;
-    u32 mask = arg0->unk50->unk1;
+    struct Note *ret;
+    u32 mask = seqLayer->seqChannel->someMask;
 
     if (mask & 1)
     {
-        ret = arg0->unk44;
-        if (ret != NULL && ret->unk28 == arg0)
+        ret = seqLayer->note;
+        if (ret != NULL && ret->unk28 == seqLayer)
         {
-            func_8031975C(ret, arg0);
-            func_803195A4(&ret->unkA4);
-            func_8031AEF4(&D_80225EA8[2], &ret->unkA4);
+            func_8031975C(ret, seqLayer);
+            func_803195A4(&ret->noteListItem);
+            note_list_item_add(&D_80225EA8[2], &ret->noteListItem);
             return ret;
         }
     }
 
     if (mask & 2)
     {
-        if (!(ret = func_803197B4(arg0->unk50->unk80, arg0)) &&
-            !(ret = func_80319830(arg0->unk50->unk80, arg0)) &&
-            !(ret = func_80319884(arg0->unk50->unk80, arg0)))
+        if (!(ret = func_803197B4(seqLayer->seqChannel->unk80, seqLayer)) &&
+            !(ret = func_80319830(seqLayer->seqChannel->unk80, seqLayer)) &&
+            !(ret = func_80319884(seqLayer->seqChannel->unk80, seqLayer)))
         {
-            arg0->unk1 = 0;
+            seqLayer->unk1 = 0;
             return 0;
         }
         return ret;
@@ -604,14 +603,14 @@ struct Struct_func_80318870 *func_803198E0(struct SubStruct_func_80318870 *arg0)
 
     if (mask & 4)
     {
-        if (!(ret = func_803197B4(arg0->unk50->unk80, arg0)) &&
-            !(ret = func_803197B4(arg0->unk50->unk40->unk90, arg0)) &&
-            !(ret = func_80319830(arg0->unk50->unk80, arg0)) &&
-            !(ret = func_80319830(arg0->unk50->unk40->unk90, arg0)) &&
-            !(ret = func_80319884(arg0->unk50->unk80, arg0)) &&
-            !(ret = func_80319884(arg0->unk50->unk40->unk90, arg0)))
+        if (!(ret = func_803197B4(seqLayer->seqChannel->unk80, seqLayer)) &&
+            !(ret = func_803197B4(seqLayer->seqChannel->seqPlayer->unk90, seqLayer)) &&
+            !(ret = func_80319830(seqLayer->seqChannel->unk80, seqLayer)) &&
+            !(ret = func_80319830(seqLayer->seqChannel->seqPlayer->unk90, seqLayer)) &&
+            !(ret = func_80319884(seqLayer->seqChannel->unk80, seqLayer)) &&
+            !(ret = func_80319884(seqLayer->seqChannel->seqPlayer->unk90, seqLayer)))
         {
-            arg0->unk1 = 0;
+            seqLayer->unk1 = 0;
             return 0;
         }
         return ret;
@@ -619,27 +618,27 @@ struct Struct_func_80318870 *func_803198E0(struct SubStruct_func_80318870 *arg0)
 
     if (mask & 8)
     {
-        if (!(ret = func_803197B4(D_80225EA8, arg0)) &&
-            !(ret = func_80319830(D_80225EA8, arg0)) &&
-            !(ret = func_80319884(D_80225EA8, arg0)))
+        if (!(ret = func_803197B4(D_80225EA8, seqLayer)) &&
+            !(ret = func_80319830(D_80225EA8, seqLayer)) &&
+            !(ret = func_80319884(D_80225EA8, seqLayer)))
         {
-            arg0->unk1 = 0;
+            seqLayer->unk1 = 0;
             return 0;
         }
         return ret;
     }
 
-    if (!(ret = func_803197B4(arg0->unk50->unk80, arg0)) &&
-        !(ret = func_803197B4(arg0->unk50->unk40->unk90, arg0)) &&
-        !(ret = func_803197B4(D_80225EA8, arg0)) &&
-        !(ret = func_80319830(arg0->unk50->unk80, arg0)) &&
-        !(ret = func_80319830(arg0->unk50->unk40->unk90, arg0)) &&
-        !(ret = func_80319830(D_80225EA8, arg0)) &&
-        !(ret = func_80319884(arg0->unk50->unk80, arg0)) &&
-        !(ret = func_80319884(arg0->unk50->unk40->unk90, arg0)) &&
-        !(ret = func_80319884(D_80225EA8, arg0)))
+    if (!(ret = func_803197B4(seqLayer->seqChannel->unk80, seqLayer)) &&
+        !(ret = func_803197B4(seqLayer->seqChannel->seqPlayer->unk90, seqLayer)) &&
+        !(ret = func_803197B4(D_80225EA8, seqLayer)) &&
+        !(ret = func_80319830(seqLayer->seqChannel->unk80, seqLayer)) &&
+        !(ret = func_80319830(seqLayer->seqChannel->seqPlayer->unk90, seqLayer)) &&
+        !(ret = func_80319830(D_80225EA8, seqLayer)) &&
+        !(ret = func_80319884(seqLayer->seqChannel->unk80, seqLayer)) &&
+        !(ret = func_80319884(seqLayer->seqChannel->seqPlayer->unk90, seqLayer)) &&
+        !(ret = func_80319884(D_80225EA8, seqLayer)))
     {
-        arg0->unk1 = 0;
+        seqLayer->unk1 = 0;
         return 0;
     }
     return ret;
@@ -647,38 +646,38 @@ struct Struct_func_80318870 *func_803198E0(struct SubStruct_func_80318870 *arg0)
 
 void func_80319BC8(void)
 {
-    struct Struct_func_80318870 *s0;
-    struct PlaybackListItem *item;
+    struct Note *s0;
+    struct NoteListItem *item;
     s32 i;
     s32 cond;
 
-    for (i = 0; i < D_80226D70; i++)
+    for (i = 0; i < gNoteCount; i++)
     {
-        s0 = &D_80222A10[i];
-        if (s0->unk2C != MINUS_ONE)
+        s0 = &gNotes[i];
+        if (s0->parentLayer != NO_LAYER)
         {
             cond = FALSE;
-            if (!s0->unk2C->unk0b80 && s0->unk4 >= 2)
+            if (!s0->parentLayer->enabled && s0->unk4 >= 2)
             {
                 cond = TRUE;
             }
             else
             {
-                item = &s0->unk2C->unk70;
-                if (s0->unk2C->unk50 == NULL)
+                item = &s0->parentLayer->noteItem;
+                if (s0->parentLayer->seqChannel == NULL)
                 {
-                    func_8031AEF4(&D_80225E98, item);
-                    func_8031AA10(s0->unk2C);
+                    note_list_item_add(&gLayerFreeList, item);
+                    seq_channel_layer_disable(s0->parentLayer);
                     s0->unk4 = 1;
                 }
-                else if (s0->unk2C->unk50->unk40 == 0)
+                else if (s0->parentLayer->seqChannel->seqPlayer == NULL)
                 {
-                    func_8031AAD0(s0->unk2C->unk50);
+                    sequence_channel_disable(s0->parentLayer->seqChannel);
                     s0->unk4 = 1;
                 }
-                else if (s0->unk2C->unk50->unk40->unk0b20)
+                else if (s0->parentLayer->seqChannel->seqPlayer->muted)
                 {
-                    if (s0->unk2C->unk50->unk2 & 0xc0)
+                    if (s0->parentLayer->seqChannel->muteBehavior & (MUTE_BEHAVIOR_80 | MUTE_BEHAVIOR_40))
                     {
                         cond = TRUE;
                     }
@@ -691,46 +690,46 @@ void func_80319BC8(void)
 
             if (cond)
             {
-                func_80318EE4(s0->unk2C);
-                func_803195A4(&s0->unkA4);
-                func_80319564(s0->unkA4.unkC, &s0->unkA4);
+                seq_channel_layer_init_7(s0->parentLayer);
+                func_803195A4(&s0->noteListItem);
+                func_80319564(s0->noteListItem.head, &s0->noteListItem);
                 s0->unk4 = 1;
             }
         }
     }
 }
 
-void func_80319D40(void)
+void note_init_all(void)
 {
-    struct Struct_func_80318870 *temp;
+    struct Note *note;
     s32 i;
 
-    for (i = 0; i < D_80226D70; i++)
+    for (i = 0; i < gNoteCount; i++)
     {
-        temp = &D_80222A10[i];
-        temp->unk0b80 = 0;
-        temp->unk0b4 = 0;
-        temp->unk0b2 = 0;
-        temp->unk0b1 = 0;
-        temp->unk4 = 0;
-        temp->unk2C = MINUS_ONE;
-        temp->unk30 = MINUS_ONE;
-        temp->unk28 = MINUS_ONE;
-        temp->unk40 = 0;
-        temp->unk1 = 0;
-        temp->unk5 = 0;
-        temp->unk6 = 0;
-        temp->unk3C = 0;
-        temp->unk3E = 0;
-        temp->unk38 = 0.0f;
-        temp->unk41 = 0x3f;
-        temp->unk44.unk8 = 0.0f;
-        temp->unk8 = 0;
-        temp->unk54.unk01 = 0;
-        temp->unk54.unk00 = 0;
-        temp->unk84.unkC = 0;
-        temp->unk74.unk04 = 0.0f;
-        temp->unk74.unk08 = 0.0f;
-        temp->unk34 = soundAlloc(&D_802212C8, 0x190);
+        note = &gNotes[i];
+        note->enabled = FALSE;
+        note->unk0b4 = FALSE;
+        note->unk0b2 = FALSE;
+        note->soundModeSomething = FALSE;
+        note->unk4 = 0;
+        note->parentLayer = NO_LAYER;
+        note->unk30 = NO_LAYER;
+        note->unk28 = NO_LAYER;
+        note->reverb = 0;
+        note->unk1 = 0;
+        note->sampleCount = 0;
+        note->instOrWave = 0;
+        note->targetVolLeft = 0;
+        note->targetVolRight = 0;
+        note->frequency = 0.0f;
+        note->unk41 = 0x3f;
+        note->unk44.velocity = 0.0f;
+        note->unk8 = 0;
+        note->adsr.state = ADSR_STATE_DISABLED;
+        note->adsr.action = 0;
+        note->vibratoState.active = FALSE;
+        note->portamento.cur = 0.0f;
+        note->portamento.speed = 0.0f;
+        note->unk34 = soundAlloc(&D_802212C8, 0x190);
     }
 }

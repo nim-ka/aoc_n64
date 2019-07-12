@@ -73,7 +73,7 @@ glabel level_ccm_entry
         terrain /*terrainData*/ ccm_seg7_area_1_collision
         macro_objects /*objList*/ ccm_seg7_area_1_macro_objs
         show_dialog /*unk2*/ 0x00, /*dialogid*/ 0x30
-        set_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_SNOW
+        set_background_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_SNOW
         terrain_type /*terrainType*/ 0x0002
     end_area
 
@@ -86,7 +86,7 @@ glabel level_ccm_entry
         jump_link /*target*/ script_func_local_4
         terrain /*terrainData*/ ccm_seg7_area_2_collision
         macro_objects /*objList*/ ccm_seg7_area_2_macro_objs
-        set_music /*unk2*/ 0x0001, /*seq*/ SEQ_LEVEL_SLIDE
+        set_background_music /*unk2*/ 0x0001, /*seq*/ SEQ_LEVEL_SLIDE
         terrain_type /*terrainType*/ 0x0006
     end_area
 

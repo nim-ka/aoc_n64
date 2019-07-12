@@ -20,7 +20,7 @@ glabel level_pss_entry
         terrain /*terrainData*/ pss_seg7_collision
         macro_objects /*objList*/ pss_seg7_macro_objs
         terrain_type /*terrainType*/ 0x0006
-        set_music /*unk2*/ 0x0001, /*seq*/ SEQ_LEVEL_SLIDE
+        set_background_music /*unk2*/ 0x0001, /*seq*/ SEQ_LEVEL_SLIDE
     end_area
 
     free_level_pool

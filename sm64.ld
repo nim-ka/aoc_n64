@@ -147,13 +147,13 @@ SECTIONS
       BUILD_DIR/src/game/hud.o(.text);
       BUILD_DIR/src/game/obj_behaviors.o(.text);
       BUILD_DIR/src/game/obj_behaviors_2.o(.text);
-      BUILD_DIR/src/audio/something.o(.text);
-      BUILD_DIR/src/audio/dac.o(.text);
-      BUILD_DIR/src/audio/dma.o(.text);
+      BUILD_DIR/src/audio/synthesis.o(.text);
+      BUILD_DIR/src/audio/memory.o(.text);
+      BUILD_DIR/src/audio/load.o(.text);
       BUILD_DIR/src/audio/playback.o(.text);
-      BUILD_DIR/src/audio/playback2.o(.text);
-      BUILD_DIR/src/audio/interface_1.o(.text);
-      BUILD_DIR/src/audio/interface_2.o(.text);
+      BUILD_DIR/src/audio/effects.o(.text);
+      BUILD_DIR/src/audio/seqplayer.o(.text);
+      BUILD_DIR/src/audio/external.o(.text);
 #if VERSION_US
       . += 0x40;
 #endif
@@ -303,7 +303,7 @@ SECTIONS
       BUILD_DIR/src/game/hud.o(.data*);
       BUILD_DIR/src/game/obj_behaviors.o(.data*);
       BUILD_DIR/src/game/obj_behaviors_2.o(.data*);
-      BUILD_DIR/src/audio/interface_2.o(.data*);
+      BUILD_DIR/src/audio/external.o(.data*);
       BUILD_DIR/src/audio/data.o(.data*);
       BUILD_DIR/libultra.a:osCreateViManager.o(.data*);
       BUILD_DIR/libultra.a:osCreatePiManager.o(.data*);
@@ -364,12 +364,12 @@ SECTIONS
       BUILD_DIR/src/game/hud.o(.rodata*);
       BUILD_DIR/src/game/obj_behaviors.o(.rodata*);
       BUILD_DIR/src/game/obj_behaviors_2.o(.rodata*);
-      BUILD_DIR/src/audio/something.o(.rodata*);
-      BUILD_DIR/src/audio/dac.o(.rodata*);
+      BUILD_DIR/src/audio/synthesis.o(.rodata*);
+      BUILD_DIR/src/audio/memory.o(.rodata*);
       BUILD_DIR/src/audio/playback.o(.rodata*);
-      BUILD_DIR/src/audio/playback2.o(.rodata*);
-      BUILD_DIR/src/audio/interface_1.o(.rodata*);
-      BUILD_DIR/src/audio/interface_2.o(.rodata*);
+      BUILD_DIR/src/audio/effects.o(.rodata*);
+      BUILD_DIR/src/audio/seqplayer.o(.rodata*);
+      BUILD_DIR/src/audio/external.o(.rodata*);
       BUILD_DIR/libultra.a:guPerspectiveF.o(.rodata*);
       BUILD_DIR/libultra.a:llconv.o(.rodata*);
       BUILD_DIR/libultra.a:cosf.o(.rodata*);
@@ -422,7 +422,7 @@ SECTIONS
       BUILD_DIR/src/game/hud.o(.bss*);
       BUILD_DIR/src/game/obj_behaviors.o(.bss*);
       BUILD_DIR/src/game/obj_behaviors_2.o(.bss*);
-      BUILD_DIR/src/audio/interface_2.o(.bss*);
+      BUILD_DIR/src/audio/external.o(.bss*);
       BUILD_DIR/libultra.a:osSetEventMesg.o(.bss*);
       BUILD_DIR/libultra.a:osSpTaskLoadGo.o(.bss*);
       BUILD_DIR/libultra.a:osCreateViManager.o(.bss*);
@@ -757,6 +757,8 @@ SECTIONS
       BUILD_DIR/assets/sound_data.tbl.o(.data);
       . = ALIGN(0x10);
       BUILD_DIR/assets/music_data.sbk.o(.data);
+      . = ALIGN(0x10);
+      BUILD_DIR/assets/bank_sets.o(.data);
       . = ALIGN(0x10);
    }
    END_SEG(assets)

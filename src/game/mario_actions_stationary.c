@@ -7,7 +7,7 @@
 #include "mario_step.h"
 #include "mario_actions_stationary.h"
 #include "area.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "memory.h"
 #include "behavior_data.h"
 #include "sound_init.h"
@@ -191,7 +191,7 @@ void func_80260BC4(struct MarioState *m, u32 actionState, s32 animFrame, u32 sou
 {
     if (m->actionState == actionState && m->marioObj->header.gfx.unk38.animFrame == animFrame)
     {
-        SetSound(sound, m->marioObj->header.gfx.cameraToObject);
+        play_sound(sound, m->marioObj->header.gfx.cameraToObject);
     }
 }
 
@@ -255,13 +255,13 @@ s32 act_start_sleeping(struct MarioState *m) {
 #ifndef VERSION_JP
     if (m->actionState == 2) {
         if (sp24 == -1) {
-            SetSound(SOUND_MARIO_YAWNING, m->marioObj->header.gfx.cameraToObject);
+            play_sound(SOUND_MARIO_YAWNING, m->marioObj->header.gfx.cameraToObject);
         }
     }
     
     if (m->actionState == 1) {
         if (sp24 == -1) {
-            SetSound(SOUND_MARIO_IMATIRED, m->marioObj->header.gfx.cameraToObject);
+            play_sound(SOUND_MARIO_IMATIRED, m->marioObj->header.gfx.cameraToObject);
         }
     }
 #else
@@ -298,11 +298,11 @@ s32 act_sleeping(struct MarioState *m) {
             }
             
             if (sp24 == 2) {
-                SetSound(SOUND_MARIO_SNORING1, m->marioObj->header.gfx.cameraToObject);   
+                play_sound(SOUND_MARIO_SNORING1, m->marioObj->header.gfx.cameraToObject);
             }
 
             if (sp24 == 20) {
-                SetSound(SOUND_MARIO_SNORING2, m->marioObj->header.gfx.cameraToObject);
+                play_sound(SOUND_MARIO_SNORING2, m->marioObj->header.gfx.cameraToObject);
             }
 
             if (func_80250770(m)) {
@@ -329,11 +329,11 @@ s32 act_sleeping(struct MarioState *m) {
             func_80250F50(m, SOUND_MARIO_SNORING3, MARIO_UNKNOWN_16);
 #else
             if (sp24 == 2) {
-                SetSound(SOUND_MARIO_SNORING2, m->marioObj->header.gfx.cameraToObject);
+                play_sound(SOUND_MARIO_SNORING2, m->marioObj->header.gfx.cameraToObject);
             }
 
             if (sp24 == 25) {
-                SetSound(SOUND_MARIO_SNORING1, m->marioObj->header.gfx.cameraToObject);
+                play_sound(SOUND_MARIO_SNORING1, m->marioObj->header.gfx.cameraToObject);
             }
 #endif
             break;
@@ -402,10 +402,10 @@ s32 act_shivering(struct MarioState *m) {
             sp24 = set_mario_animation(m, MARIO_ANIM_SHIVERING_WARMING_HAND);
             if(sp24 == 0x31) {
                 m->particleFlags |= PARTICLE_17;
-                SetSound(SOUND_MARIO_HOO2, m->marioObj->header.gfx.cameraToObject);
+                play_sound(SOUND_MARIO_HOO2, m->marioObj->header.gfx.cameraToObject);
             }
             if(sp24 == 7 || sp24 == 0x51) {
-                SetSound(SOUND_ACTION_UNKNOWN62C, m->marioObj->header.gfx.cameraToObject);
+                play_sound(SOUND_ACTION_UNKNOWN62C, m->marioObj->header.gfx.cameraToObject);
             }
             if(func_802507AC(m)) {
                 m->actionState = 1;
@@ -415,7 +415,7 @@ s32 act_shivering(struct MarioState *m) {
         case 1: {
             sp24 = set_mario_animation(m, MARIO_ANIM_SHIVERING);
             if(sp24 == 9 || sp24 == 0x19 || sp24 == 0x2C) {
-                SetSound(SOUND_ACTION_UNKNOWN62C, m->marioObj->header.gfx.cameraToObject);
+                play_sound(SOUND_ACTION_UNKNOWN62C, m->marioObj->header.gfx.cameraToObject);
             }
             break;
         }
@@ -440,15 +440,15 @@ s32 act_coughing(struct MarioState *m) {
     stationary_ground_step(m);
     sp1C = set_mario_animation(m, MARIO_ANIM_COUGHING);
     if (sp1C == 0x19 || sp1C == 0x23) {
-        SetSound(SOUND_MARIO_COUGHING4, m->marioObj->header.gfx.cameraToObject);
+        play_sound(SOUND_MARIO_COUGHING4, m->marioObj->header.gfx.cameraToObject);
     }
 
     if (sp1C == 0x32 || sp1C == 0x3A) {
-        SetSound(SOUND_MARIO_COUGHING3, m->marioObj->header.gfx.cameraToObject);
+        play_sound(SOUND_MARIO_COUGHING3, m->marioObj->header.gfx.cameraToObject);
     }
 
     if (sp1C == 0x47 || sp1C == 0x50) {
-        SetSound(SOUND_MARIO_COUGHING2, m->marioObj->header.gfx.cameraToObject);
+        play_sound(SOUND_MARIO_COUGHING2, m->marioObj->header.gfx.cameraToObject);
     }
 
     return 0;
@@ -597,7 +597,7 @@ s32 act_panting(struct MarioState *m) {
     }
     
     if (set_mario_animation(m, MARIO_ANIM_WALK_PANTING) == 1) {
-        SetSound(SOUND_MARIO_HOO3 + ((D_80226EB8 % 3U) << 0x10),
+        play_sound(SOUND_MARIO_HOO3 + ((D_80226EB8 % 3U) << 0x10),
             m->marioObj->header.gfx.cameraToObject);
     }
     

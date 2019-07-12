@@ -131,7 +131,7 @@ glabel level_jrb_entry
         jump_link /*target*/ script_func_local_3
         terrain /*terrainData*/ jrb_seg7_area_1_collision
         macro_objects /*objList*/ jrb_seg7_area_1_macro_objs 
-        set_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_WATER
+        set_background_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_WATER
         terrain_type /*terrainType*/ 0x0005
     end_area
 
@@ -144,7 +144,7 @@ glabel level_jrb_entry
         jump_link /*target*/ script_func_local_5
         terrain /*terrainData*/ jrb_seg7_area_2_collision
         macro_objects /*objList*/ jrb_seg7_area_2_macro_objs 
-        set_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_WATER
+        set_background_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_WATER
         terrain_type /*terrainType*/ 0x0005
     end_area
 

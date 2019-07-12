@@ -3194,7 +3194,7 @@ labels:
    - [0x80296D28, "CutSceneUnlockKeyDoor0"]
    - [0x80296ED8, "CutSceneIntroPeach80296ED8"]
    - [0x80296F04, "CutSceneIntroPeach80296F04"]
-   # no CutSceneIntroPeach802975C4 with SetSound in (J)
+   # no CutSceneIntroPeach802975C4 with play_sound in (J)
    - [0x80296F6C, "CutSceneIntroPeach4"]
    - [0x80296FFC, "CutSceneIntroPeach80296FFC"]
    - [0x80297068, "CutSceneIntroPeach80297068"]
@@ -4099,13 +4099,13 @@ labels:
    - [0x803134C8, "BehBubbaLoop"]
    - [0x80316020, "soundAlloc"]
    - [0x803160F8, "Unknown803160F8"]
-   - [0x80316FB0, "BlockDmaCopy"]
+   - [0x80316FB0, "audio_dma_copy_immediate"]
    - [0x80318464, "InitAudioSystem"]
    - [0x8031C030, "SetInstrument"]
    # Unknown8031E4F0 not in (J)
    # Unknown8031E568 not in (J)
-   - [0x8031DC78, "SetSound"]
-   - [0x8031F690, "SetMusic"]
+   - [0x8031DC78, "play_sound"]
+   - [0x8031F690, "start_sequence"]
    - [0x8031FED0, "Unknown8031FED0"]
    - [0x8032050C, "Unknown8032050C"]
    - [0x803209D8, "Unknown803209D8"]

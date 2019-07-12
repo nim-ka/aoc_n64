@@ -31,7 +31,7 @@ glabel level_sa_entry
         jump_link /*target*/ script_func_local_2
         terrain /*terrainData*/ sa_seg7_collision
         macro_objects /*objList*/ sa_seg7_macro_objs
-        set_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_WATER_SA
+        set_background_music /*unk2*/ 0x0003, /*seq*/ (SEQ_LEVEL_WATER | 0x80) /* SEQUENCE_ARGS(3, TRUE, SEQ_LEVEL_WATER) */
         terrain_type /*terrainType*/ 0x0005
     end_area
 

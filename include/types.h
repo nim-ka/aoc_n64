@@ -18,7 +18,7 @@ struct Controller
 };
 
 typedef f32 Vec2f[2];
-typedef f32 Vec3f[3];
+typedef f32 Vec3f[3]; // X, Y, Z, where Y is up
 typedef s16 Vec3s[3];
 typedef s32 Vec3i[3];
 typedef f32 Vec4f[4];

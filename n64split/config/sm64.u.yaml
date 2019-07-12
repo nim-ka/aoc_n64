@@ -3778,7 +3778,7 @@ labels:
    - [0x80317040, "soundAlloc"]
    - [0x80317118, "Unknown803160F8"]
    # audio_dma
-   - [0x80318040, "BlockDmaCopy"]
+   - [0x80318040, "audio_dma_copy_immediate"]
    - [0x8031950C, "InitAudioSystem"]
    # audio_playback
    - [0x8031A94C, "func_803198E0"] # A0: ptr to struct
@@ -3787,8 +3787,8 @@ labels:
    # I don't know what these are, but they seem to be US exclusive. audio_interface_2 is very different in the US ROM. I'm leaving these unrenamed.
    - [0x8031E4F0, "Unknown8031E4F0"]
    - [0x8031E568, "Unknown8031E568"]
-   - [0x8031EB00, "SetSound"]
-   - [0x80320544, "SetMusic"]
+   - [0x8031EB00, "play_sound"]
+   - [0x80320544, "start_sequence"]
    - [0x80320D70, "Unknown80320D70"]
    - [0x80321398, "Unknown80321398"]
    - [0x80321864, "Unknown80321864"]

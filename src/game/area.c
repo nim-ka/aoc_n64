@@ -13,7 +13,7 @@
 #include "mario_actions_cutscene.h"
 #include "print.h"
 #include "hud.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "area.h"
 #include "rendering_graph_node.h"
 #include "level_update.h"

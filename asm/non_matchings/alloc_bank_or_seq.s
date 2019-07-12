@@ -1,4 +1,4 @@
-glabel func_803163DC
+glabel alloc_bank_or_seq
 /* 0D13DC 803163DC 27BDFF88 */  addiu $sp, $sp, -0x78
 /* 0D13E0 803163E0 AFB00020 */  sw    $s0, 0x20($sp)
 /* 0D13E4 803163E4 00808025 */  move  $s0, $a0
@@ -6,21 +6,21 @@ glabel func_803163DC
 /* 0D13EC 803163EC AFA5007C */  sw    $a1, 0x7c($sp)
 /* 0D13F0 803163F0 14E000CC */  bnez  $a3, .L80316724
 /* 0D13F4 803163F4 AFA60080 */   sw    $a2, 0x80($sp)
-/* 0D13F8 803163F8 3C0E8022 */  lui   $t6, %hi(D_80221328) # $t6, 0x8022
-/* 0D13FC 803163FC 25CE1328 */  addiu $t6, %lo(D_80221328) # addiu $t6, $t6, 0x1328
+/* 0D13F8 803163F8 3C0E8022 */  lui   $t6, %hi(gSeqLoadedPool) # $t6, 0x8022
+/* 0D13FC 803163FC 25CE1328 */  addiu $t6, %lo(gSeqLoadedPool) # addiu $t6, $t6, 0x1328
 /* 0D1400 80316400 148E0006 */  bne   $a0, $t6, .L8031641C
 /* 0D1404 80316404 26030194 */   addiu $v1, $s0, 0x194
-/* 0D1408 80316408 3C0A8022 */  lui   $t2, %hi(D_80221910) # $t2, 0x8022
-/* 0D140C 8031640C 254A1910 */  addiu $t2, %lo(D_80221910) # addiu $t2, $t2, 0x1910
+/* 0D1408 80316408 3C0A8022 */  lui   $t2, %hi(gSeqLoadStatus) # $t2, 0x8022
+/* 0D140C 8031640C 254A1910 */  addiu $t2, %lo(gSeqLoadStatus) # addiu $t2, $t2, 0x1910
 /* 0D1410 80316410 AFAA005C */  sw    $t2, 0x5c($sp)
 /* 0D1414 80316414 10000009 */  b     .L8031643C
 /* 0D1418 80316418 A3A0005B */   sb    $zero, 0x5b($sp)
 .L8031641C:
-/* 0D141C 8031641C 3C0F8022 */  lui   $t7, %hi(D_802214F8) # $t7, 0x8022
-/* 0D1420 80316420 25EF14F8 */  addiu $t7, %lo(D_802214F8) # addiu $t7, $t7, 0x14f8
+/* 0D141C 8031641C 3C0F8022 */  lui   $t7, %hi(gSoundLoadedPool) # $t7, 0x8022
+/* 0D1420 80316420 25EF14F8 */  addiu $t7, %lo(gSoundLoadedPool) # addiu $t7, $t7, 0x14f8
 /* 0D1424 80316424 160F0005 */  bne   $s0, $t7, .L8031643C
-/* 0D1428 80316428 3C0A8022 */   lui   $t2, %hi(D_802218D0) # $t2, 0x8022
-/* 0D142C 8031642C 254A18D0 */  addiu $t2, %lo(D_802218D0) # addiu $t2, $t2, 0x18d0
+/* 0D1428 80316428 3C0A8022 */   lui   $t2, %hi(gBankLoadStatus) # $t2, 0x8022
+/* 0D142C 8031642C 254A18D0 */  addiu $t2, %lo(gBankLoadStatus) # addiu $t2, $t2, 0x18d0
 /* 0D1430 80316430 240C0001 */  li    $t4, 1
 /* 0D1434 80316434 A3AC005B */  sb    $t4, 0x5b($sp)
 /* 0D1438 80316438 AFAA005C */  sw    $t2, 0x5c($sp)
@@ -117,7 +117,7 @@ glabel func_803163DC
 /* 0D156C 8031656C 8DA4001C */  lw    $a0, 0x1c($t5)
 /* 0D1570 80316570 A3AC005B */  sb    $t4, 0x5b($sp)
 /* 0D1574 80316574 AFAA005C */  sw    $t2, 0x5c($sp)
-/* 0D1578 80316578 0C0C57A9 */  jal   func_80315EA4
+/* 0D1578 80316578 0C0C57A9 */  jal   discard_bank
 /* 0D157C 8031657C AFA30030 */   sw    $v1, 0x30($sp)
 /* 0D1580 80316580 8FA30030 */  lw    $v1, 0x30($sp)
 /* 0D1584 80316584 24080001 */  li    $t0, 1
@@ -159,7 +159,7 @@ glabel func_803163DC
 .L8031660C:
 /* 0D160C 8031660C 8C640028 */  lw    $a0, 0x28($v1)
 /* 0D1610 80316610 AFA5002C */  sw    $a1, 0x2c($sp)
-/* 0D1614 80316614 0C0C57E5 */  jal   func_80315F94
+/* 0D1614 80316614 0C0C57E5 */  jal   discard_sequence
 /* 0D1618 80316618 AFA30030 */   sw    $v1, 0x30($sp)
 /* 0D161C 8031661C 8FA30030 */  lw    $v1, 0x30($sp)
 /* 0D1620 80316620 10000007 */  b     .L80316640
@@ -167,7 +167,7 @@ glabel func_803163DC
 /* 0D1628 80316628 8C640028 */  lw    $a0, 0x28($v1)
 .L8031662C:
 /* 0D162C 8031662C AFA5002C */  sw    $a1, 0x2c($sp)
-/* 0D1630 80316630 0C0C57A9 */  jal   func_80315EA4
+/* 0D1630 80316630 0C0C57A9 */  jal   discard_bank
 /* 0D1634 80316634 AFA30030 */   sw    $v1, 0x30($sp)
 /* 0D1638 80316638 8FA30030 */  lw    $v1, 0x30($sp)
 /* 0D163C 8031663C 8FA5002C */  lw    $a1, 0x2c($sp)
@@ -213,7 +213,7 @@ glabel func_803163DC
 .L803166CC:
 /* 0D16CC 803166CC 8C64001C */  lw    $a0, 0x1c($v1)
 /* 0D16D0 803166D0 AFA5002C */  sw    $a1, 0x2c($sp)
-/* 0D16D4 803166D4 0C0C57E5 */  jal   func_80315F94
+/* 0D16D4 803166D4 0C0C57E5 */  jal   discard_sequence
 /* 0D16D8 803166D8 AFA30030 */   sw    $v1, 0x30($sp)
 /* 0D16DC 803166DC 8FA30030 */  lw    $v1, 0x30($sp)
 /* 0D16E0 803166E0 10000007 */  b     .L80316700
@@ -221,7 +221,7 @@ glabel func_803163DC
 /* 0D16E8 803166E8 8C64001C */  lw    $a0, 0x1c($v1)
 .L803166EC:
 /* 0D16EC 803166EC AFA5002C */  sw    $a1, 0x2c($sp)
-/* 0D16F0 803166F0 0C0C57A9 */  jal   func_80315EA4
+/* 0D16F0 803166F0 0C0C57A9 */  jal   discard_bank
 /* 0D16F4 803166F4 AFA30030 */   sw    $v1, 0x30($sp)
 /* 0D16F8 803166F8 8FA30030 */  lw    $v1, 0x30($sp)
 /* 0D16FC 803166FC 8FA5002C */  lw    $a1, 0x2c($sp)
@@ -270,7 +270,7 @@ glabel func_803163DC
 /* 0D1798 80316798 8FA5007C */  lw    $a1, 0x7c($sp)
 /* 0D179C 8031679C 8FA60080 */  lw    $a2, 0x80($sp)
 /* 0D17A0 803167A0 00003825 */  move  $a3, $zero
-/* 0D17A4 803167A4 0C0C58F7 */  jal   func_803163DC
+/* 0D17A4 803167A4 0C0C58F7 */  jal   alloc_bank_or_seq
 /* 0D17A8 803167A8 AFAE0010 */   sw    $t6, 0x10($sp)
 /* 0D17AC 803167AC 10000013 */  b     .L803167FC
 /* 0D17B0 803167B0 8FBF0024 */   lw    $ra, 0x24($sp)

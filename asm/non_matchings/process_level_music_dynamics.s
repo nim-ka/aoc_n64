@@ -10,7 +10,7 @@ glabel jtbl_80338418
     .word L8031FD54
 
 .text
-glabel func_8031FA4C # US: 803208EC
+glabel process_level_music_dynamics # US: 803208EC
 /* 0DAA4C 8031FA4C 27BDFFA0 */  addiu $sp, $sp, -0x60
 /* 0DAA50 8031FA50 AFBF0024 */  sw    $ra, 0x24($sp)
 /* 0DAA54 8031FA54 AFB20020 */  sw    $s2, 0x20($sp)
@@ -22,27 +22,27 @@ glabel func_8031FA4C # US: 803208EC
 /* 0DAA6C 8031FA6C 24040002 */   li    $a0, 2
 /* 0DAA70 8031FA70 0C0C83B6 */  jal   func_80320ED8
 /* 0DAA74 8031FA74 00000000 */   nop   
-/* 0DAA78 8031FA78 3C038033 */  lui   $v1, %hi(D_803320A0) # $v1, 0x8033
-/* 0DAA7C 8031FA7C 246320A0 */  addiu $v1, %lo(D_803320A0) # addiu $v1, $v1, 0x20a0
+/* 0DAA78 8031FA78 3C038033 */  lui   $v1, %hi(sMusicDynamicDelay) # $v1, 0x8033
+/* 0DAA7C 8031FA7C 246320A0 */  addiu $v1, %lo(sMusicDynamicDelay) # addiu $v1, $v1, 0x20a0
 /* 0DAA80 8031FA80 90620000 */  lbu   $v0, ($v1)
 /* 0DAA84 8031FA84 10400003 */  beqz  $v0, .L8031FA94
 /* 0DAA88 8031FA88 244EFFFF */   addiu $t6, $v0, -1
 /* 0DAA8C 8031FA8C 10000005 */  b     .L8031FAA4
 /* 0DAA90 8031FA90 A06E0000 */   sb    $t6, ($v1)
 .L8031FA94:
-/* 0DAA94 8031FA94 3C0F8033 */  lui   $t7, %hi(D_8033209C) # $t7, 0x8033
-/* 0DAA98 8031FA98 91EF209C */  lbu   $t7, %lo(D_8033209C)($t7)
-/* 0DAA9C 8031FA9C 3C018033 */  lui   $at, %hi(D_80331EB0) # $at, 0x8033
-/* 0DAAA0 8031FAA0 A02F1EB0 */  sb    $t7, %lo(D_80331EB0)($at)
+/* 0DAA94 8031FA94 3C0F8033 */  lui   $t7, %hi(gPlayer0CurSeqId) # $t7, 0x8033
+/* 0DAA98 8031FA98 91EF209C */  lbu   $t7, %lo(gPlayer0CurSeqId)($t7)
+/* 0DAA9C 8031FA9C 3C018033 */  lui   $at, %hi(sBackgroundMusicForDynamics) # $at, 0x8033
+/* 0DAAA0 8031FAA0 A02F1EB0 */  sb    $t7, %lo(sBackgroundMusicForDynamics)($at)
 .L8031FAA4:
 /* 0DAAA4 8031FAA4 3C188033 */  lui   $t8, %hi(gCurrLevelNum) # $t8, 0x8033
 /* 0DAAA8 8031FAA8 8718CE98 */  lh    $t8, %lo(gCurrLevelNum)($t8)
-/* 0DAAAC 8031FAAC 3C098033 */  lui   $t1, %hi(D_80331EB4)
-/* 0DAAB0 8031FAB0 3C0C8033 */  lui   $t4, %hi(D_80331EB0) # $t4, 0x8033
+/* 0DAAAC 8031FAAC 3C098033 */  lui   $t1, %hi(sLevelDynamics)
+/* 0DAAB0 8031FAB0 3C0C8033 */  lui   $t4, %hi(sBackgroundMusicForDynamics) # $t4, 0x8033
 /* 0DAAB4 8031FAB4 0018C880 */  sll   $t9, $t8, 2
 /* 0DAAB8 8031FAB8 01394821 */  addu  $t1, $t1, $t9
-/* 0DAABC 8031FABC 8D291EB4 */  lw    $t1, %lo(D_80331EB4)($t1)
-/* 0DAAC0 8031FAC0 918C1EB0 */  lbu   $t4, %lo(D_80331EB0)($t4)
+/* 0DAABC 8031FABC 8D291EB4 */  lw    $t1, %lo(sLevelDynamics)($t1)
+/* 0DAAC0 8031FAC0 918C1EB0 */  lbu   $t4, %lo(sBackgroundMusicForDynamics)($t4)
 /* 0DAAC4 8031FAC4 852D0000 */  lh    $t5, ($t1)
 /* 0DAAC8 8031FAC8 558D00FC */  bnel  $t4, $t5, .L8031FEBC
 /* 0DAACC 8031FACC 8FBF0024 */   lw    $ra, 0x24($sp)
@@ -255,8 +255,8 @@ glabel L8031FD54
 /* 0DADC4 8031FDC4 1580FF50 */  bnez  $t4, .L8031FB08
 /* 0DADC8 8031FDC8 00608025 */   move  $s0, $v1
 .L8031FDCC:
-/* 0DADCC 8031FDCC 3C028033 */  lui   $v0, %hi(D_80331EAC) # $v0, 0x8033
-/* 0DADD0 8031FDD0 90421EAC */  lbu   $v0, %lo(D_80331EAC)($v0)
+/* 0DADCC 8031FDCC 3C028033 */  lui   $v0, %hi(sCurrentMusicDynamic) # $v0, 0x8033
+/* 0DADD0 8031FDD0 90421EAC */  lbu   $v0, %lo(sCurrentMusicDynamic)($v0)
 /* 0DADD4 8031FDD4 93B80057 */  lbu   $t8, 0x57($sp)
 /* 0DADD8 8031FDD8 240100FF */  li    $at, 255
 /* 0DADDC 8031FDDC 00008825 */  move  $s1, $zero
@@ -266,9 +266,9 @@ glabel L8031FD54
 /* 0DADEC 8031FDEC 24030001 */   li    $v1, 1
 /* 0DADF0 8031FDF0 00187880 */  sll   $t7, $t8, 2
 /* 0DADF4 8031FDF4 01F87823 */  subu  $t7, $t7, $t8
-/* 0DADF8 8031FDF8 3C0E8033 */  lui   $t6, %hi(D_80331F50) # $t6, 0x8033
+/* 0DADF8 8031FDF8 3C0E8033 */  lui   $t6, %hi(sMusicDynamics) # $t6, 0x8033
 /* 0DADFC 8031FDFC 24190001 */  li    $t9, 1
-/* 0DAE00 8031FE00 25CE1F50 */  addiu $t6, %lo(D_80331F50) # addiu $t6, $t6, 0x1f50
+/* 0DAE00 8031FE00 25CE1F50 */  addiu $t6, %lo(sMusicDynamics) # addiu $t6, $t6, 0x1f50
 /* 0DAE04 8031FE04 000F7880 */  sll   $t7, $t7, 2
 /* 0DAE08 8031FE08 240D0001 */  li    $t5, 1
 /* 0DAE0C 8031FE0C A7B9003A */  sh    $t9, 0x3a($sp)
@@ -277,8 +277,8 @@ glabel L8031FD54
 /* 0DAE18 8031FE18 01EE9021 */   addu  $s2, $t7, $t6
 .L8031FE1C:
 /* 0DAE1C 8031FE1C 93AC0057 */  lbu   $t4, 0x57($sp)
-/* 0DAE20 8031FE20 3C0D8033 */  lui   $t5, %hi(D_80331F50) # $t5, 0x8033
-/* 0DAE24 8031FE24 25AD1F50 */  addiu $t5, %lo(D_80331F50) # addiu $t5, $t5, 0x1f50
+/* 0DAE20 8031FE20 3C0D8033 */  lui   $t5, %hi(sMusicDynamics) # $t5, 0x8033
+/* 0DAE24 8031FE24 25AD1F50 */  addiu $t5, %lo(sMusicDynamics) # addiu $t5, $t5, 0x1f50
 /* 0DAE28 8031FE28 000CC880 */  sll   $t9, $t4, 2
 /* 0DAE2C 8031FE2C 032CC823 */  subu  $t9, $t9, $t4
 /* 0DAE30 8031FE30 0019C880 */  sll   $t9, $t9, 2
@@ -295,7 +295,7 @@ glabel L8031FD54
 /* 0DAE58 8031FE58 11800004 */  beqz  $t4, .L8031FE6C
 /* 0DAE5C 8031FE5C 322500FF */   andi  $a1, $s1, 0xff
 /* 0DAE60 8031FE60 92460003 */  lbu   $a2, 3($s2)
-/* 0DAE64 8031FE64 0C0C7E22 */  jal   func_8031F888
+/* 0DAE64 8031FE64 0C0C7E22 */  jal   fade_channel_volume_scale
 /* 0DAE68 8031FE68 97A7003A */   lhu   $a3, 0x3a($sp)
 .L8031FE6C:
 /* 0DAE6C 8031FE6C 86590006 */  lh    $t9, 6($s2)
@@ -304,7 +304,7 @@ glabel L8031FD54
 /* 0DAE78 8031FE78 03306824 */  and   $t5, $t9, $s0
 /* 0DAE7C 8031FE7C 11A00003 */  beqz  $t5, .L8031FE8C
 /* 0DAE80 8031FE80 97A70038 */   lhu   $a3, 0x38($sp)
-/* 0DAE84 8031FE84 0C0C7E22 */  jal   func_8031F888
+/* 0DAE84 8031FE84 0C0C7E22 */  jal   fade_channel_volume_scale
 /* 0DAE88 8031FE88 92460009 */   lbu   $a2, 9($s2)
 .L8031FE8C:
 /* 0DAE8C 8031FE8C 26310001 */  addiu $s1, $s1, 1
@@ -316,8 +316,8 @@ glabel L8031FD54
 /* 0DAEA4 8031FEA4 1420FFE8 */  bnez  $at, .L8031FE48
 /* 0DAEA8 8031FEA8 03001825 */   move  $v1, $t8
 /* 0DAEAC 8031FEAC 93AE0057 */  lbu   $t6, 0x57($sp)
-/* 0DAEB0 8031FEB0 3C018033 */  lui   $at, %hi(D_80331EAC) # $at, 0x8033
-/* 0DAEB4 8031FEB4 A02E1EAC */  sb    $t6, %lo(D_80331EAC)($at)
+/* 0DAEB0 8031FEB0 3C018033 */  lui   $at, %hi(sCurrentMusicDynamic) # $at, 0x8033
+/* 0DAEB4 8031FEB4 A02E1EAC */  sb    $t6, %lo(sCurrentMusicDynamic)($at)
 /* 0DAEB8 8031FEB8 8FBF0024 */  lw    $ra, 0x24($sp)
 .L8031FEBC:
 /* 0DAEBC 8031FEBC 8FB00018 */  lw    $s0, 0x18($sp)

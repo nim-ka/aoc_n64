@@ -1117,7 +1117,7 @@ void ActionBowser19(void)
                     sp28 = (o->oTimer-D_8032F520[i-1][2])*sp28;
                 func_802B64E8(platform,sp28);
                 if(sp28 != 0)
-                    SetSound(SOUND_ENVIRONMENT_UNKNOWN4,platform->header.gfx.cameraToObject);
+                    play_sound(SOUND_ENVIRONMENT_UNKNOWN4,platform->header.gfx.cameraToObject);
                 sp1C = 0;
                 break;
             }

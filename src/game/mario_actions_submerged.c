@@ -12,7 +12,7 @@
 #include "mario.h"
 #include "mario_step.h"
 #include "camera.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "behavior_data.h"
 
 static s16 sWasAtSurface = FALSE;
@@ -32,7 +32,7 @@ static void set_swimming_at_surface_particles(struct MarioState *m, u32 particle
     {
         m->particleFlags |= particleFlag;
         if (atSurface ^ sWasAtSurface)
-            SetSound(SOUND_ACTION_UNKNOWN431, m->marioObj->header.gfx.cameraToObject);
+            play_sound(SOUND_ACTION_UNKNOWN431, m->marioObj->header.gfx.cameraToObject);
     }
 
     sWasAtSurface = atSurface;
@@ -489,7 +489,7 @@ static void func_802713A8(struct MarioState *m)
     s16 animFrame = m->marioObj->header.gfx.unk38.animFrame;
 
     // (this need to be on one line to match on PAL)
-    if (animFrame == 0 || animFrame == 12) SetSound(SOUND_ACTION_UNKNOWN434, m->marioObj->header.gfx.cameraToObject);
+    if (animFrame == 0 || animFrame == 12) play_sound(SOUND_ACTION_UNKNOWN434, m->marioObj->header.gfx.cameraToObject);
 }
 
 static s32 check_water_jump(struct MarioState *m)
@@ -553,7 +553,7 @@ static s32 act_breaststroke(struct MarioState *m)
 
     if (m->actionTimer == 1)
     {
-        SetSound(D_8032CDD4 == 160 ? SOUND_ACTION_UNKNOWN433 : SOUND_ACTION_UNKNOWN447, m->marioObj->header.gfx.cameraToObject);
+        play_sound(D_8032CDD4 == 160 ? SOUND_ACTION_UNKNOWN433 : SOUND_ACTION_UNKNOWN447, m->marioObj->header.gfx.cameraToObject);
         func_8027107C(m);
     }
 
@@ -663,7 +663,7 @@ static s32 act_hold_breaststroke(struct MarioState *m)
 
     if (m->actionTimer == 1)
     {
-        SetSound(SOUND_ACTION_UNKNOWN433, m->marioObj->header.gfx.cameraToObject);
+        play_sound(SOUND_ACTION_UNKNOWN433, m->marioObj->header.gfx.cameraToObject);
         func_8027107C(m);
     }
 
@@ -736,7 +736,7 @@ static s32 act_water_shell_swimming(struct MarioState *m)
     {
         m->heldObj->oInteractStatus = INT_STATUS_STOP_RIDING;
         m->heldObj = NULL;
-        func_8024931C();
+        stop_shell_music();
         set_mario_action(m, ACT_FLUTTER_KICK, 0);
     }
 
@@ -830,7 +830,7 @@ static s32 act_water_punch(struct MarioState *m)
         {
             if (m->heldObj->behavior == segmented_to_virtual(bhvKoopaShellUnderwater))
             {
-                func_802492E0();
+                play_shell_music();
                 set_mario_action(m, ACT_WATER_SHELL_SWIMMING, 0);
             }
             else
@@ -876,7 +876,7 @@ static s32 act_forward_water_kb(struct MarioState *m)
 static s32 act_water_shocked(struct MarioState *m)
 {
     func_80250F50(m, SOUND_MARIO_WAAAOOOW, MARIO_UNKNOWN_16);
-    SetSound(SOUND_UNKNOWN_UNK1416, m->marioObj->header.gfx.cameraToObject);
+    play_sound(SOUND_UNKNOWN_UNK1416, m->marioObj->header.gfx.cameraToObject);
     set_camera_shake(SHAKE_SHOCK);
 
     if (set_mario_animation(m, MARIO_ANIM_SHOCKED) == 0)
@@ -961,9 +961,9 @@ static s32 act_water_plunge(struct MarioState *m)
 
     if (m->actionState == 0)
     {
-        SetSound(SOUND_ACTION_UNKNOWN430, m->marioObj->header.gfx.cameraToObject);
+        play_sound(SOUND_ACTION_UNKNOWN430, m->marioObj->header.gfx.cameraToObject);
         if (m->peakHeight - m->pos[1] > 1150.0f)
-            SetSound(SOUND_MARIO_HAHA_2, m->marioObj->header.gfx.cameraToObject);
+            play_sound(SOUND_MARIO_HAHA_2, m->marioObj->header.gfx.cameraToObject);
 
         m->particleFlags |= 0x00000040;
         m->actionState = 1;
@@ -1075,7 +1075,7 @@ static void play_metal_water_walking_sound(struct MarioState *m)
 {
     if (func_80250B68(m, 10) || func_80250B68(m, 49))
     {
-        SetSound(SOUND_ACTION_UNKNOWN452, m->marioObj->header.gfx.cameraToObject);
+        play_sound(SOUND_ACTION_UNKNOWN452, m->marioObj->header.gfx.cameraToObject);
         m->particleFlags |= 0x00000001;
     }
 }
@@ -1448,7 +1448,7 @@ static s32 check_common_submerged_cancels(struct MarioState *m)
             {
                 m->heldObj->oInteractStatus = INT_STATUS_STOP_RIDING;
                 m->heldObj = NULL;
-                func_8024931C();
+                stop_shell_music();
             }
             
             return func_802531B8(m);

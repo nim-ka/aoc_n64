@@ -73,7 +73,7 @@ void bhv_star_spawn_loop(void) {
             if (o->oTimer == 30) {
                 o->oAction = 2;
                 o->oForwardVel = 0;
-                play_power_star_jingle(1);
+                play_power_star_jingle(TRUE);
             }
             break;
 

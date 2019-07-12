@@ -53,7 +53,7 @@ extern struct PaintingData *D_8035FFA8;
 // extern ? func_802D5374(?);
 // extern ? func_802D5664(?);
 extern void print_text_fmt_int(s32, s32, const char *, s32);
-extern void print_text(s32, s32, char *);
+extern void print_text(s32, s32, const char *);
 extern void print_text_centered(s32, s32, const char *);
 // extern ? func_802D5D78(?);
 // extern ? addchar_displist(?);

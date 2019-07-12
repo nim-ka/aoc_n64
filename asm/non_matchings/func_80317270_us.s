@@ -177,11 +177,11 @@ glabel func_80317270
 /* 0D358C 8031858C AFC20048 */  sw    $v0, 0x48($fp)
 /* 0D3590 80318590 0C0C90EC */  jal   osInvalDCache
 /* 0D3594 80318594 02002825 */   move  $a1, $s0
-/* 0D3598 80318598 3C038022 */  lui   $v1, %hi(D_80226D84) # $v1, 0x8022
-/* 0D359C 8031859C 24636B84 */  addiu $v1, %lo(D_80226D84) # addiu $v1, $v1, 0x6b84
+/* 0D3598 80318598 3C038022 */  lui   $v1, %hi(gActiveAudioDmasCount) # $v1, 0x8022
+/* 0D359C 8031859C 24636B84 */  addiu $v1, %lo(gActiveAudioDmasCount) # addiu $v1, $v1, 0x6b84
 /* 0D35A0 803185A0 8C620000 */  lw    $v0, ($v1)
 /* 0D35A4 803185A4 8FC80068 */  lw    $t0, 0x68($fp)
-/* 0D35A8 803185A8 3C0F8022 */  lui   $t7, %hi(D_80226000) # $t7, 0x8022
+/* 0D35A8 803185A8 3C0F8022 */  lui   $t7, %hi(gActiveAudioDmasMesgBuf) # $t7, 0x8022
 /* 0D35AC 803185AC 244E0001 */  addiu $t6, $v0, 1
 /* 0D35B0 803185B0 AC6E0000 */  sw    $t6, ($v1)
 /* 0D35B4 803185B4 8C780000 */  lw    $t8, ($v1)
@@ -193,7 +193,7 @@ glabel func_80317270
 /* 0D35CC 803185CC 3C0E8022 */  lui   $t6, %hi(D_80225EE8) # $t6, 0x8022
 /* 0D35D0 803185D0 25CE5CE8 */  addiu $t6, %lo(D_80225EE8) # addiu $t6, $t6, 0x5ce8
 /* 0D35D4 803185D4 272CFFEC */  addiu $t4, $t9, -0x14
-/* 0D35D8 803185D8 25EF5E00 */  addiu $t7, %lo(D_80226000) # addiu $t7, $t7, 0x5e00
+/* 0D35D8 803185D8 25EF5E00 */  addiu $t7, %lo(gActiveAudioDmasMesgBuf) # addiu $t7, $t7, 0x5e00
 /* 0D35DC 803185DC 018F2021 */  addu  $a0, $t4, $t7
 /* 0D35E0 803185E0 AFAE0018 */  sw    $t6, 0x18($sp)
 /* 0D35E4 803185E4 AFB00014 */  sw    $s0, 0x14($sp)

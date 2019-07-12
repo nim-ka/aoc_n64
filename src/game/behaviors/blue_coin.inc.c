@@ -110,9 +110,9 @@ void bhv_blue_coin_switch_loop(void) {
         case BLUE_COIN_SWITCH_ACT_TICKING:
             // Tick faster when the blue coins start blinking
             if (o->oTimer < 200) {
-                SetSound(SOUND_CH8_SWITCH5, D_803320E0);
+                play_sound(SOUND_CH8_SWITCH5, gDefaultSoundArgs);
             } else {
-                SetSound(SOUND_CH8_SWITCH6, D_803320E0);
+                play_sound(SOUND_CH8_SWITCH6, gDefaultSoundArgs);
             }
             
             // Delete the switch (which stops the sound) after the last coin is collected,

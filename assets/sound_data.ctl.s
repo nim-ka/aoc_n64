@@ -3,18 +3,17 @@
 .section .data
 
 .macro adsrtable name
-.word (\name - gSoundDataADSR), (\name\()_end - \name)
+    .word (\name - gSoundDataADSR), (\name\()_end - \name)
 .endm
 
 .macro adsr name
-\name:
-.ifdef VERSION_JP
-.incbin "assets/sound/adsr/jp/\name\().bin"
-.endif
-.ifndef VERSION_JP
-.incbin "assets/sound/adsr/us/\name\().bin"
-.endif
-\name\()_end:
+    \name:
+    .ifdef VERSION_JP
+        .incbin "assets/sound/adsr/jp/\name\().bin"
+    .else
+        .incbin "assets/sound/adsr/us/\name\().bin"
+    .endif
+    \name\()_end:
 .endm
 
 glabel gSoundDataADSR # US: 57B720

@@ -8,7 +8,7 @@
 #include "object_helpers.h"
 #include "engine/behavior_script.h"
 #include "engine/surface_collision.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "level_update.h"
 #include "spawn_object.h"
 #include "object_list_processor.h"

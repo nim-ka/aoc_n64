@@ -3,19 +3,18 @@
 
 #include "types.h"
 
-extern u8 D_8032C6C0;
-extern s16 D_8032C6E8[];
-extern u32 D_8032C6F0[];
-extern u8 D_8032C6D4;
-extern u16 D_8032C6C8;
-extern u16 D_8032C6CC;
-extern u16 D_8032C6D0;
-extern Vec3f D_80385FD0;
+#define SOUND_MENU_FLAG_HANDAPPEAR              0x01
+#define SOUND_MENU_FLAG_HANDISAPPEAR            0x02
+#define SOUND_MENU_FLAG_UNKNOWN1                0x04
+#define SOUND_MENU_FLAG_PINCHMARIOFACE          0x08
+#define SOUND_MENU_FLAG_PINCHMARIOFACE2         0x10
+#define SOUND_MENU_FLAG_LETGOMARIOFACE          0x20
+#define SOUND_MENU_FLAG_CAMERAZOOMIN            0x40
+#define SOUND_MENU_FLAG_CAMERAZOOMOUT           0x80
 
-extern Vec3f D_80339DC0;
-extern OSMesgQueue gSoundMesgQueue;
-extern OSMesg gSoundMesgBuf[1];
-extern struct VblankHandler gSoundVblankHandler;
+#define SOUND_MENU_MODE_STEREO       0
+#define SOUND_MENU_MODE_MONO         1
+#define SOUND_MENU_MODE_HEADSET      2
 
 extern void func_80248C10(void);
 extern void func_80248CB8(s32);
@@ -23,20 +22,19 @@ extern void func_80248C28(s32);
 extern void func_80248D48(void);
 extern void func_80248D90(void);
 extern void set_sound_mode(u16);
-extern void func_80248E24(s16 a);
-extern void func_80248FBC(void);
-extern void func_80249040(void);
-extern void func_80249148(u16, u16, s16);
+extern void play_menu_sounds(s16 a);
+extern void play_painting_eject_sound(void);
+extern void play_infinite_stairs_music(void);
+extern void set_background_music(u16, u16, s16);
 extern void func_802491FC(s16);
-extern void func_8024924C(s16);
-extern void func_802492A0(u16);
-extern void func_802492E0(void);
-extern void func_8024931C(void);
-extern void func_80249368(u16);
-extern void func_802493D4(void);
-extern void func_80249418(void);
-extern void func_80249464(s32, void *);
-extern void func_802494A8(void);
+extern void func_8024924C(s16 fadeTimer);
+extern void play_cutscene_music(u16);
+extern void play_shell_music(void);
+extern void stop_shell_music(void);
+extern void play_cap_music(u16);
+extern void fadeout_cap_music(void);
+extern void stop_cap_music(void);
+extern void audio_game_loop_tick(void);
 extern void thread4_sound(void *);
 
 #endif /* _SOUND_INIT_H */

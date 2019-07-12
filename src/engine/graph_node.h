@@ -19,7 +19,7 @@ extern s16 gCurGraphNodeIndex;
 
 extern struct GraphNode D_8038BD88;
 
-extern Vec3f D_80385FD0;
+extern Vec3f gVec3fZero;
 extern Vec3s D_80385FDC;
 extern Vec3f D_80385FE4;
 extern Vec3s unused80385FF0;

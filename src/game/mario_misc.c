@@ -2,7 +2,7 @@
 
 #include "sm64.h"
 #include "area.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "camera.h"
 #include "mario_misc.h"
 #include "behavior_actions.h"
@@ -51,7 +51,7 @@ Gfx *Geo18_802764B0(s32 run, struct GraphNode *node, Mat4 *c)
         sp24 = (Gfx *)PHYSICAL_TO_VIRTUAL(gdm_gettestdl(sp1C->unk18));
         D_8032C6A0 = gd_vblank;
         sp22 = gd_sfx_to_play();
-        func_80248E24(sp22);
+        play_menu_sounds(sp22);
     }
     return sp24;
 }
@@ -232,7 +232,7 @@ void bhvUnlockDoorStar_loop(void)
         gCurrentObject->oMoveAngleYaw += gCurrentObject->oUnlockDoorStarYawVel; // Apply yaw velocity
         if (++gCurrentObject->oUnlockDoorStarTimer == 30)
         {
-            SetSound(SOUND_MENU_STARSOUND, gCurrentObject->header.gfx.cameraToObject); // Play final sound
+            play_sound(SOUND_MENU_STARSOUND, gCurrentObject->header.gfx.cameraToObject); // Play final sound
             obj_hide(); // Hide the object
             gCurrentObject->oUnlockDoorStarTimer = 0;
             gCurrentObject->oUnlockDoorStarState++; // Sets state to UNLOCK_DOOR_STAR_SPAWNING_PARTICLES
@@ -256,7 +256,7 @@ void bhvUnlockDoorStar_loop(void)
     // Checks if the angle has cycled back to 0.
     // This means that the code will execute when the star completes a full revolution.
     if (prevYaw > (s16)gCurrentObject->oMoveAngleYaw)
-        SetSound(SOUND_GENERAL_SHORTSTAR, gCurrentObject->header.gfx.cameraToObject); // Play a sound every time the star spins once
+        play_sound(SOUND_GENERAL_SHORTSTAR, gCurrentObject->header.gfx.cameraToObject); // Play a sound every time the star spins once
 }
 
 
@@ -529,7 +529,7 @@ Gfx *Geo18_80277B14(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
     switch (run)
     {
     case 0:
-        init_graph_node_object(NULL, &D_80339FE0, NULL, D_80385FD0, D_80385FDC, D_80385FE4);
+        init_graph_node_object(NULL, &D_80339FE0, NULL, gVec3fZero, D_80385FDC, D_80385FE4);
         break;
     case 3:
         func_8037C044(node, &D_80339FE0.node);

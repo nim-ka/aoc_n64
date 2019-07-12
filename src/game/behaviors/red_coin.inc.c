@@ -44,7 +44,7 @@ void bhv_red_coin_loop(void) {
             }
 
 #ifndef VERSION_JP
-            SetSound(SOUND_MENU_COLLECTREDCOIN + (((u8)o->parentObj->oHiddenRedCoinStarCoinsCollected - 1) << 16), D_803320E0);
+            play_sound(SOUND_MENU_COLLECTREDCOIN + (((u8)o->parentObj->oHiddenRedCoinStarCoinsCollected - 1) << 16), gDefaultSoundArgs);
 #endif
         }
 

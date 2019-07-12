@@ -5,7 +5,7 @@
 #include "main.h"
 #include "memory.h"
 #include "profiler.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "display.h"
 
 int unused8032C690 = 0;

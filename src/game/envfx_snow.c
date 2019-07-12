@@ -9,7 +9,7 @@
 #include "engine/surface_collision.h"
 #include "engine/math_util.h"
 #include "engine/behavior_script.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "obj_behaviors.h"
 
 /** This file contains the function that handles 'environment effects',

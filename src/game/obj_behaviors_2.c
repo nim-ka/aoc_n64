@@ -13,7 +13,8 @@
 #include "mario.h"
 #include "engine/surface_collision.h"
 #include "obj_behaviors_2.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
+#include "seq_ids.h"
 #include "level_update.h"
 #include "memory.h"
 #include "platform_displacement.h"
@@ -2299,7 +2300,7 @@ void bhv_book_switch_loop(void)
                 {
                     if (o->parentObj->oBookSwitchManagerUnkF4 == o->oBehParams2ndByte)
                     {
-                        SetSound(SOUND_CH8_RIGHTANSWER, D_803320E0);
+                        play_sound(SOUND_CH8_RIGHTANSWER, gDefaultSoundArgs);
                         o->parentObj->oBookSwitchManagerUnkF4 += 1;
                     }
                     else
@@ -2307,7 +2308,7 @@ void bhv_book_switch_loop(void)
                         sp36 = RandomU16() & 0x1;
                         sp34 = gMarioObject->oPosZ + 1.5f * gMarioStates[0].vel[2];
 
-                        SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
+                        play_sound(SOUND_MENU_CAMERABUZZ, gDefaultSoundArgs);
                         if (sp34 > 0)
                         {
                             sp34 = 0;

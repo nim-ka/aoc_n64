@@ -4,6 +4,7 @@
 #include "main.h"
 #include "memory.h"
 #include "save_file.h"
+#include "seq_ids.h"
 #include "sound_init.h"
 #include "display.h"
 #include "engine/level_script.h"
@@ -11,7 +12,7 @@
 #include "print.h"
 #include "segment2.h"
 #include "main_entry.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include <prevent_bss_reordering.h>
 #include "game.h"
 
@@ -54,7 +55,7 @@ struct DemoInput gRecordedDemoInput = {0}; // possibly removed in EU. TODO: Chec
 static void record_demo(void)
 {
     // record the player's button mask and current rawStickX and rawStickY.
-    u8 buttonMask = ((gPlayer1Controller->buttonDown & (A_BUTTON   | B_BUTTON   | Z_TRIG     | START_BUTTON)) >> 8) 
+    u8 buttonMask = ((gPlayer1Controller->buttonDown & (A_BUTTON   | B_BUTTON   | Z_TRIG     | START_BUTTON)) >> 8)
                   |  (gPlayer1Controller->buttonDown & (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS));
     s8 rawStickX     =   gPlayer1Controller->rawStickX;
     s8 rawStickY     =   gPlayer1Controller->rawStickY;
@@ -70,9 +71,9 @@ static void record_demo(void)
     // record the distinct input and timer so long as they
     // are unique. If the timer hits 0xFF, reset the timer
     // for the next demo input.
-    if(gRecordedDemoInput.timer == 0xFF 
-    || buttonMask != gRecordedDemoInput.button 
-    || rawStickX  != gRecordedDemoInput.rawStickX 
+    if(gRecordedDemoInput.timer == 0xFF
+    || buttonMask != gRecordedDemoInput.button
+    || rawStickX  != gRecordedDemoInput.rawStickX
     || rawStickY  != gRecordedDemoInput.rawStickY)
     {
         gRecordedDemoInput.timer = 0;
@@ -107,7 +108,7 @@ void adjust_analog_stick(struct Controller *controller)
         controller->stickY = controller->rawStickY - 6;
 
     // calculate f32 magnitude from the center by vector length.
-    controller->stickMag = sqrtf(controller->stickX * controller->stickX 
+    controller->stickMag = sqrtf(controller->stickX * controller->stickX
                                + controller->stickY * controller->stickY);
 
     // magnitude cannot exceed 64.0f: if it does, modify the values appropriately to
@@ -120,7 +121,7 @@ void adjust_analog_stick(struct Controller *controller)
     }
 }
 
-// if a demo sequence exists, this will run the demo 
+// if a demo sequence exists, this will run the demo
 // input list until it is complete. called every frame.
 void run_demo_inputs(void)
 {
@@ -135,9 +136,9 @@ void run_demo_inputs(void)
     if(gCurrDemoInput != NULL)
     {
         /*
-            clear player 2's inputs if they exist. Player 2's controller 
-            cannot be used to influence a demo. At some point, Nintendo 
-            may have planned for there to be a demo where 2 players moved 
+            clear player 2's inputs if they exist. Player 2's controller
+            cannot be used to influence a demo. At some point, Nintendo
+            may have planned for there to be a demo where 2 players moved
             around instead of just one, so clearing player 2's influence from
             the demo had to have been necessary to perform this. Co-op mode, perhaps?
         */
@@ -167,21 +168,21 @@ void run_demo_inputs(void)
             gControllers[0].controllerData->stick_y = gCurrDemoInput->rawStickY;
 
             /*
-                to assign the demo input, the button information is stored in 
-                an 8-bit mask rather than a 16-bit mask. this is because only 
-                A, B, Z, Start, and the C-Buttons are used in a demo, as bits 
-                in that order. In order to assign the mask, we need to take the 
-                upper 4 bits (A, B, Z, and Start) and shift then left by 8 to 
-                match the correct input mask. We then add this to the masked 
+                to assign the demo input, the button information is stored in
+                an 8-bit mask rather than a 16-bit mask. this is because only
+                A, B, Z, Start, and the C-Buttons are used in a demo, as bits
+                in that order. In order to assign the mask, we need to take the
+                upper 4 bits (A, B, Z, and Start) and shift then left by 8 to
+                match the correct input mask. We then add this to the masked
                 lower 4 bits to get the correct button mask.
             */
-            gControllers[0].controllerData->button = ((gCurrDemoInput->button & 0xF0) << 8) 
+            gControllers[0].controllerData->button = ((gCurrDemoInput->button & 0xF0) << 8)
                                                    + ((gCurrDemoInput->button & 0xF));
 
             // if start was pushed, put it into the demo sequence being input to
             // end the demo.
             gControllers[0].controllerData->button |= startPushed;
-            
+
             // run the current demo input's timer down. if it hits 0, advance the
             // demo input list.
             if(--gCurrDemoInput->timer == 0)
@@ -214,11 +215,11 @@ void read_controller_inputs(void)
         {
             controller->rawStickX     =  controller->controllerData->stick_x;
             controller->rawStickY     =  controller->controllerData->stick_y;
-            controller->buttonPressed =  controller->controllerData->button 
-                                      & (controller->controllerData->button 
+            controller->buttonPressed =  controller->controllerData->button
+                                      & (controller->controllerData->button
                                       ^  controller->buttonDown);
             // 0.5x A presses are a good meme
-            controller->buttonDown = controller->controllerData->button; 
+            controller->buttonDown = controller->controllerData->button;
             adjust_analog_stick(controller);
         }
         else // otherwise, if the controllerData is NULL, 0 out all of the inputs.
@@ -316,7 +317,7 @@ void thread5_game_loop(UNUSED void *arg)
     // point addr to the entry point into the level script data.
     addr = (struct LevelCommand *) segmented_to_virtual(level_script_entry);
 
-    func_80320AE8(2, 0, 0);
+    play_music(2, SEQUENCE_ARGS(0, FALSE, SEQ_SOUND_PLAYER), 0);
     set_sound_mode(save_file_get_sound_mode());
     func_80247ED8();
 
@@ -334,8 +335,8 @@ void thread5_game_loop(UNUSED void *arg)
         // read_controller_inputs is called later.
         if(gControllerBits)
             osContStartReadData(&gSIEventMesgQueue);
-        
-        func_802494A8();
+
+        audio_game_loop_tick();
         func_80247FAC();
         read_controller_inputs();
         addr = level_script_execute(addr);

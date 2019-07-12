@@ -29,9 +29,9 @@ void bhv_floor_switch_loop(void)
             else
             {
                 if(o->oTimer < 360)
-                    SetSound(SOUND_CH8_SWITCH5,D_803320E0);
+                    play_sound(SOUND_CH8_SWITCH5,gDefaultSoundArgs);
                 else
-                    SetSound(SOUND_CH8_SWITCH6,D_803320E0);
+                    play_sound(SOUND_CH8_SWITCH6,gDefaultSoundArgs);
                 if(o->oTimer > 400)
                     o->oAction = 4;
             }

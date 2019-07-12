@@ -8,6 +8,7 @@
 #include "main.h"
 #include "engine/surface_collision.h"
 #include "geo_misc.h"
+#include "print.h"
 
 struct TextLabel
 {
@@ -138,6 +139,8 @@ void parse_width_field(const char *str, s32 *srcIndex, u8 *width, s8 *zeroPad)
     *width = *width + digits[digitsLen - 1];
 }
 
+// Warning: this fails on too large numbers, because format_integer has bugs
+// related to overflow. For romhacks, prefer sprintf + print_text.
 void print_text_fmt_int(s32 x, s32 y, const char *str, s32 n)
 {
     char c = 0;

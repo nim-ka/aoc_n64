@@ -1,7 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "game/display.h"
 #include "game/game.h"
 #include "geo_layout.h"
@@ -759,7 +759,7 @@ static void level_cmd_set_music(void)
 
 static void level_cmd_set_menu_music(void)
 {
-    func_80249148(0, CMD_GET(s16, 2), 0);
+    set_background_music(0, CMD_GET(s16, 2), 0);
     sCurrentCmd = CMD_NEXT;
 }
 

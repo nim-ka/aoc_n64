@@ -1,7 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "game.h"
 #include "memory.h"
 #include "sound_init.h"
@@ -148,7 +148,7 @@ void handle_nmi_request(void)
     gResetTimer = 1;
     D_8032C648 = 0;
     func_80320890();
-    func_803208C0(2, 890);
+    sound_banks_disable(2, 0x037A);
     func_802491FC(90);
 }
 

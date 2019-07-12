@@ -9,7 +9,7 @@
 #include "engine/behavior_script.h"
 #include "ingame_menu.h"
 #include "text_strings.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "level_update.h"
 #include "segment2.h"
 #include "segment7.h"
@@ -277,9 +277,9 @@ int LevelProc_80177610(UNUSED s32 a, UNUSED s32 b)
          || (gPlayer3Controller->buttonPressed & B_BUTTON))
         {
 #ifdef VERSION_JP
-            SetSound(SOUND_MENU_STARSOUND, D_803320E0);
+            play_sound(SOUND_MENU_STARSOUND, gDefaultSoundArgs);
 #else
-            SetSound(SOUND_MENU_STARSOUNDLETSAGO, D_803320E0);
+            play_sound(SOUND_MENU_STARSOUNDLETSAGO, gDefaultSoundArgs);
 #endif
             if (sDefaultSelectedAct > sSelectedAct)
                 sCurrentMission = sSelectedAct + 1;

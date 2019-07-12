@@ -167,16 +167,16 @@ glabel func_80317270
 .L803174D4:
 /* 0D24D4 803174D4 9502000A */  lhu   $v0, 0xa($t0)
 /* 0D24D8 803174D8 2401FFF0 */  li    $at, -16
-/* 0D24DC 803174DC 3C098022 */  lui   $t1, %hi(D_80226D84) # $t1, 0x8022
+/* 0D24DC 803174DC 3C098022 */  lui   $t1, %hi(gActiveAudioDmasCount) # $t1, 0x8022
 /* 0D24E0 803174E0 240E0002 */  li    $t6, 2
 /* 0D24E4 803174E4 02218024 */  and   $s0, $s1, $at
-/* 0D24E8 803174E8 25296D84 */  addiu $t1, %lo(D_80226D84) # addiu $t1, $t1, 0x6d84
+/* 0D24E8 803174E8 25296D84 */  addiu $t1, %lo(gActiveAudioDmasCount) # addiu $t1, $t1, 0x6d84
 /* 0D24EC 803174EC A10E000E */  sb    $t6, 0xe($t0)
 /* 0D24F0 803174F0 AD100004 */  sw    $s0, 4($t0)
 /* 0D24F4 803174F4 A5020008 */  sh    $v0, 8($t0)
 /* 0D24F8 803174F8 8D230000 */  lw    $v1, ($t1)
-/* 0D24FC 803174FC 3C0E8022 */  lui   $t6, %hi(D_80226000) # $t6, 0x8022
-/* 0D2500 80317500 25CE6000 */  addiu $t6, %lo(D_80226000) # addiu $t6, $t6, 0x6000
+/* 0D24FC 803174FC 3C0E8022 */  lui   $t6, %hi(gActiveAudioDmasMesgBuf) # $t6, 0x8022
+/* 0D2500 80317500 25CE6000 */  addiu $t6, %lo(gActiveAudioDmasMesgBuf) # addiu $t6, $t6, 0x6000
 /* 0D2504 80317504 246F0001 */  addiu $t7, $v1, 1
 /* 0D2508 80317508 AD2F0000 */  sw    $t7, ($t1)
 /* 0D250C 8031750C 8D380000 */  lw    $t8, ($t1)

@@ -3,7 +3,7 @@
 #include "sm64.h"
 #include "mario.h"
 #include "area.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "behavior_actions.h"
 #include "behavior_data.h"
 #include "camera.h"
@@ -218,7 +218,7 @@ void func_80250F50(struct MarioState *m, u32 arg1, u32 arg2)
 {
     if ((m->flags & arg2) == 0)
     {
-        SetSound(arg1, m->marioObj->header.gfx.cameraToObject);
+        play_sound(arg1, m->marioObj->header.gfx.cameraToObject);
         m->flags |= arg2;
     }
 }
@@ -229,11 +229,11 @@ void func_80250FBC(struct MarioState *m)
     {
 #ifndef VERSION_JP
         if (m->action == ACT_TRIPLE_JUMP)
-            SetSound(SOUND_MARIO_YAHOO2 + ((D_80226EB8 % 5) << 0x10),
+            play_sound(SOUND_MARIO_YAHOO2 + ((D_80226EB8 % 5) << 0x10),
                 m->marioObj->header.gfx.cameraToObject);
         else
 #endif
-            SetSound(SOUND_MARIO_YAH + ((D_80226EB8 % 3) << 0x10),
+            play_sound(SOUND_MARIO_YAH + ((D_80226EB8 % 3) << 0x10),
                 m->marioObj->header.gfx.cameraToObject);
         m->flags |= MARIO_UNKNOWN_17;
     }
@@ -261,9 +261,9 @@ void func_802510E4(struct MarioState *m, u32 arg1, u32 arg2)
             m->particleFlags |= PARTICLE_14;
     }
     if ((m->flags & MARIO_METAL_CAP) || arg1 == SOUND_ACTION_UNKNOWN443 || arg1 == SOUND_MARIO_HOO6)
-        SetSound(arg1, m->marioObj->header.gfx.cameraToObject);
+        play_sound(arg1, m->marioObj->header.gfx.cameraToObject);
     else
-        SetSound((m->unk14 + arg1), m->marioObj->header.gfx.cameraToObject);
+        play_sound((m->unk14 + arg1), m->marioObj->header.gfx.cameraToObject);
 }
 
 void func_80251218(struct MarioState *m, u32 arg1, u32 arg2) {
@@ -1195,7 +1195,7 @@ void func_80253E34(struct MarioState *m)
             m->health = 0xFF;
 
         if (((m->action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED) && (m->health < 0x300))
-            SetSound(SOUND_UNKNOWN_UNK1C18, D_803320E0);
+            play_sound(SOUND_UNKNOWN_UNK1C18, gDefaultSoundArgs);
     }
 }
 
@@ -1258,7 +1258,7 @@ u32 func_802541BC(struct MarioState *m)
 
         if (m->capTimer == 0)
         {
-            func_80249418();
+            stop_cap_music();
             m->flags &= ~(MARIO_VANISH_CAP | MARIO_METAL_CAP | MARIO_WING_CAP);
             if ((m->flags &
                     (MARIO_UNKNOWN_00 | MARIO_VANISH_CAP |
@@ -1266,7 +1266,7 @@ u32 func_802541BC(struct MarioState *m)
                 m->flags &= ~MARIO_CAP_ON_HEAD;
         }
         if (m->capTimer == 0x3C)
-            func_802493D4();
+            fadeout_cap_music();
 
         if ((m->capTimer < 0x40) && ((1ULL << m->capTimer) & D_8032CB80))
         {
@@ -1334,7 +1334,7 @@ static void Unknown8025453C(u16 arg0, s32 arg1, u16 arg2, u16 arg3)
         if (arg2 > gMarioState->capTimer)
             gMarioState->capTimer = arg2;
 
-        func_80249368(arg3);
+        play_cap_music(arg3);
     }
 }
 
@@ -1392,7 +1392,7 @@ s32 func_80254604(UNUSED struct Object *arg0)
         {
             func_802ADC20(0, (gMarioState->floor->force << 8));
             #ifndef VERSION_JP
-                SetSound(SOUND_ENVIRONMENT_WIND2, gMarioState->marioObj->header.gfx.cameraToObject);
+                play_sound(SOUND_ENVIRONMENT_WIND2, gMarioState->marioObj->header.gfx.cameraToObject);
             #endif
         }
 
@@ -1400,11 +1400,11 @@ s32 func_80254604(UNUSED struct Object *arg0)
         {
             func_802ADC20(1, 0);
             #ifndef VERSION_JP
-                SetSound(SOUND_ENVIRONMENT_WIND2, gMarioState->marioObj->header.gfx.cameraToObject);
+                play_sound(SOUND_ENVIRONMENT_WIND2, gMarioState->marioObj->header.gfx.cameraToObject);
             #endif
         }
 
-        func_80249040();
+        play_infinite_stairs_music();
         gMarioState->marioObj->oInteractStatus = 0;
         return gMarioState->particleFlags;
     }

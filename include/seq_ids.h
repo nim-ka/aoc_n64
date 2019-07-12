@@ -1,13 +1,12 @@
 #ifndef _SEQ_IDS_H
 #define _SEQ_IDS_H
 
-#define SEQ_NONE                          0x0000
+#define SEQ_SOUND_PLAYER                  0x0000
 #define SEQ_EVENT_CUTSCENE_COLLECT_STAR   0x0001
 #define SEQ_MENU_TITLE_SCREEN             0x0002
 #define SEQ_LEVEL_GRASS                   0x0003
 #define SEQ_LEVEL_INSIDE_CASTLE           0x0004
 #define SEQ_LEVEL_WATER                   0x0005
-#define SEQ_LEVEL_WATER_SA                0x0085
 #define SEQ_LEVEL_HOT                     0x0006
 #define SEQ_LEVEL_BOSS_KOOPA              0x0007
 #define SEQ_LEVEL_SNOW                    0x0008

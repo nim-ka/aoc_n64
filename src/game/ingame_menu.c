@@ -3,7 +3,8 @@
 #include "sm64.h"
 #include "memory.h"
 #include "types.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
+#include "seq_ids.h"
 #include "game.h"
 #include "save_file.h"
 #include "level_update.h"
@@ -241,7 +242,7 @@ void func_802D6AFC(u8 c)
 
 #ifdef VERSION_JP
     unpackedTexture = func_802D69A0(packedTexture, 8, 16);
-    
+
     gDPPipeSync(gDisplayListHead++);
     gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_8b, 1, VIRTUAL_TO_PHYSICAL(unpackedTexture));
 #else
@@ -519,7 +520,7 @@ void handleMenuScrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 m
         }
         else
         {
-            SetSound(SOUND_MENU_CHANGESELECT, D_803320E0);
+            play_sound(SOUND_MENU_CHANGESELECT, gDefaultSoundArgs);
             currentIndex[0]++;
         }
     }
@@ -532,7 +533,7 @@ void handleMenuScrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 m
         }
         else
         {
-            SetSound(SOUND_MENU_CHANGESELECT, D_803320E0);
+            play_sound(SOUND_MENU_CHANGESELECT, gDefaultSoundArgs);
             currentIndex[0]--;
         }
     }
@@ -811,7 +812,7 @@ void func_802D8690(s8 lineNum, s8 sp27, s8 *sp28, s8 *sp2c, s16 *sp30)
         return;
     }
     dl_add_new_translation_matrix(1, JP_US_DEF(5.0f , 0.0f), 2 - (lineNum * JP_US_DEF(20 , 16)), 0);
-    
+
     sp30[0] = 0;
     sp2c[0] = 1;
 }
@@ -1135,7 +1136,7 @@ void func_802D91C0(s16 sp4a)
         if(sp3c[i] == sp4a)
         {
             func_80320040(0, 60);
-            func_80320AE8(0, (4 << 8) | 22, 0);
+            play_music(0, SEQUENCE_ARGS(4, FALSE, SEQ_EVENT_BOSS), 0);
             return;
         }
     }
@@ -1153,7 +1154,7 @@ void func_802D91C0(s16 sp4a)
     {
         if(sp28[i] == sp4a && D_80330430 == 1)
         {
-            SetSound(SOUND_MENU_STARSOUND, D_803320E0);
+            play_sound(SOUND_MENU_STARSOUND, gDefaultSoundArgs);
             return;
         }
     }
@@ -1232,8 +1233,8 @@ void func_802D93E0(void)
     case DIAG_STATE_OPENING:
         if(gDiagBoxOpenTimer == DEFAULT_DIAGBOX_ANGLE)
         {
-            func_80320A68(gDialogID);
-            SetSound(SOUND_MENU_MESSAGEAPPEAR, D_803320E0);
+            play_dialog_sound(gDialogID);
+            play_sound(SOUND_MENU_MESSAGEAPPEAR, gDefaultSoundArgs);
         }
 
         if(gDiagBoxType == DIAG_TYPE_ROTATE)
@@ -1270,7 +1271,7 @@ void func_802D93E0(void)
                else
                {
                    gDiagBoxState = DIAG_STATE_SCROLLING;
-                   SetSound(SOUND_MENU_MESSAGENEXTPAGE, D_803320E0);
+                   play_sound(SOUND_MENU_MESSAGENEXTPAGE, gDefaultSoundArgs);
                }
            }
 #ifndef VERSION_JP
@@ -1294,7 +1295,7 @@ void func_802D93E0(void)
         if(gDiagBoxOpenTimer == 20.0f)
         {
             level_set_transition(0, 0);
-            SetSound(SOUND_MENU_MESSAGEDISAPPEAR, D_803320E0);
+            play_sound(SOUND_MENU_MESSAGEDISAPPEAR, gDefaultSoundArgs);
 
             if(gDiagBoxType == DIAG_TYPE_ZOOM)
                 stop_mario(2);
@@ -1950,9 +1951,9 @@ s16 func_802DBBB0(void)
         D_80360088 = 0;
         level_set_transition(-1, 0);
 #ifdef VERSION_JP
-        SetSound(SOUND_MENU_PAUSE1, D_803320E0);
+        play_sound(SOUND_MENU_PAUSE1, gDefaultSoundArgs);
 #else
-        SetSound(SOUND_MENU_PAUSE1_HIGHPRIO, D_803320E0);
+        play_sound(SOUND_MENU_PAUSE1_HIGHPRIO, gDefaultSoundArgs);
 #endif
 
         if(gCurrCourseNum >= COURSE_MIN && gCurrCourseNum <= COURSE_MAX)
@@ -1978,7 +1979,7 @@ s16 func_802DBBB0(void)
            gPlayer3Controller->buttonPressed & START_BUTTON)
         {
             level_set_transition(0, 0);
-            SetSound(SOUND_MENU_PAUSE2, D_803320E0);
+            play_sound(SOUND_MENU_PAUSE2, gDefaultSoundArgs);
             gDiagBoxState = DIAG_STATE_OPENING;
             D_8033047C = -1;
 
@@ -2004,7 +2005,7 @@ s16 func_802DBBB0(void)
            gPlayer3Controller->buttonPressed & START_BUTTON)
         {
             level_set_transition(0, 0);
-            SetSound(SOUND_MENU_PAUSE2, D_803320E0);
+            play_sound(SOUND_MENU_PAUSE2, gDefaultSoundArgs);
             D_8033047C = -1;
             gDiagBoxState = DIAG_STATE_OPENING;
 
@@ -2069,17 +2070,17 @@ void func_802DC050(s16 sp32, s16 sp36)
         if((D_803305C4 & 1) || gHudDisplay.coins > 70)
         {
             D_803305C8++;
-            SetSound(SOUND_MENU_YOSHIGAINLIVES, D_803320E0);
+            play_sound(SOUND_MENU_YOSHIGAINLIVES, gDefaultSoundArgs);
 
             if(D_803305C8 ==  50 || D_803305C8 == 100 || D_803305C8 == 150)
             {
-                SetSound(SOUND_GENERAL_1UP, D_803320E0);
+                play_sound(SOUND_GENERAL_1UP, gDefaultSoundArgs);
                 gMarioState[0].numLives++;
             }
         }
 
         if (gHudDisplay.coins == D_803305C8 && gGotFileCoinHiScore != 0)
-            SetSound(SOUND_MENU_MARIOCASTLEWARP2, D_803320E0);
+            play_sound(SOUND_MENU_MARIOCASTLEWARP2, gDefaultSoundArgs);
     }
 }
 
@@ -2233,7 +2234,7 @@ s16 func_802DCBD4(void)
             gPlayer3Controller->buttonPressed & START_BUTTON))
         {
             level_set_transition(0, 0);
-            SetSound(SOUND_MENU_STARSOUND, D_803320E0);
+            play_sound(SOUND_MENU_STARSOUND, gDefaultSoundArgs);
             gDiagBoxState = DIAG_STATE_OPENING;
             D_8033047C = -1;
             sp26 = D_80330430;

@@ -19,7 +19,7 @@
 #include "area.h"
 #include "mario_misc.h"
 #include "level_update.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "behavior_actions.h"
 #include "spawn_object.h"
 #include "spawn_sound.h"
@@ -777,7 +777,7 @@ void bhv_ambient_sounds_init(void) {
     if (gCurrLevelCamera->currPreset == CAMERA_PRESET_BEHIND_MARIO)
         return;
 
-    SetSound(SOUND_CH6_CASTLEOUTDOORSAMBIENT, D_803320E0);
+    play_sound(SOUND_CH6_CASTLEOUTDOORSAMBIENT, gDefaultSoundArgs);
 }
 
 void BehSandSoundLoop(void) {

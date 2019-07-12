@@ -1,7 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "behavior_data.h"
 #include "engine/behavior_script.h"
 #include "game.h"
@@ -288,7 +288,7 @@ static void score_menu_file_exiting(struct Object *scoreFileButton, s8 scoreButt
     // Begin exit
     if (scoreFileButton->oMenuButtonState == MENU_BUTTON_STATE_FULLSCREEN && sCursorClickingTimer == 2)
     {
-        SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
+        play_sound(SOUND_MENU_CAMERAZOOMOUT, gDefaultSoundArgs);
         scoreFileButton->oMenuButtonState = MENU_BUTTON_STATE_SHRINKING;
     }
     // End exit
@@ -366,7 +366,7 @@ static void score_menu_check_clicked_buttons(struct Object *scoreButton)
                  || buttonId == MENU_BUTTON_SCORE_COPY_FILE
                  || buttonId == MENU_BUTTON_SCORE_ERASE_FILE)
                 {
-                    SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
+                    play_sound(SOUND_MENU_CLICKFILESELECT, gDefaultSoundArgs);
                     sMainMenuButtons[buttonId]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
                     sSelectedButtonID = buttonId;
                 }
@@ -378,14 +378,14 @@ static void score_menu_check_clicked_buttons(struct Object *scoreButton)
                         // Save file exists
                         if (save_file_exists(buttonId - 7) == TRUE)
                         {
-                            SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
+                            play_sound(SOUND_MENU_CAMERAZOOMIN, gDefaultSoundArgs);
                             sMainMenuButtons[buttonId]->oMenuButtonState = MENU_BUTTON_STATE_GROWING;
                             sSelectedButtonID = buttonId;
                         }
                         // Save file empty
                         else
                         {
-                            SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
+                            play_sound(SOUND_MENU_CAMERABUZZ, gDefaultSoundArgs);
                             sMainMenuButtons[buttonId]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
                             if (sMainMenuTimer >= 31)
                             {
@@ -459,7 +459,7 @@ static void CopyMenuCopyFile(struct Object *copyButton, s32 copyFileButtonId)
             return;
         if (save_file_exists(copyFileButtonId - 14) == TRUE)
         {
-            SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
+            play_sound(SOUND_MENU_CLICKFILESELECT, gDefaultSoundArgs);
             sMainMenuButtons[copyFileButtonId]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN;
             sSelectedFile = copyFileButtonId - 14;
             copyButton->oMenuButtonActionPhase = 1;
@@ -468,7 +468,7 @@ static void CopyMenuCopyFile(struct Object *copyButton, s32 copyFileButtonId)
         }
         else
         {
-            SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
+            play_sound(SOUND_MENU_CAMERABUZZ, gDefaultSoundArgs);
             sMainMenuButtons[copyFileButtonId]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
             if (sMainMenuTimer >= 21)
             {
@@ -481,7 +481,7 @@ static void CopyMenuCopyFile(struct Object *copyButton, s32 copyFileButtonId)
         sMainMenuButtons[copyFileButtonId]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
         if (save_file_exists(copyFileButtonId - 14) == FALSE)
         {
-            SetSound(SOUND_MENU_STARSOUND, D_803320E0);
+            play_sound(SOUND_MENU_STARSOUND, gDefaultSoundArgs);
             copyButton->oMenuButtonActionPhase = 2;
             sFadeOutText = 1;
             sMainMenuTimer = 0;
@@ -493,7 +493,7 @@ static void CopyMenuCopyFile(struct Object *copyButton, s32 copyFileButtonId)
         {
             if (MENU_BUTTON_COPY_FILE_A + sSelectedFile == copyFileButtonId)
             {
-                SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
+                play_sound(SOUND_MENU_CAMERABUZZ, gDefaultSoundArgs);
                 sMainMenuButtons[MENU_BUTTON_COPY_FILE_A + sSelectedFile]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_OUT;
                 copyButton->oMenuButtonActionPhase = 0;
                 sFadeOutText = 1;
@@ -529,7 +529,7 @@ static void copy_menu_check_clicked_buttons(struct Object *copyButton)
                 {
                     if (copyButton->oMenuButtonActionPhase == 0)
                     {
-                        SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
+                        play_sound(SOUND_MENU_CLICKFILESELECT, gDefaultSoundArgs);
                         sMainMenuButtons[buttonId]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
                         sSelectedButtonID = buttonId;
                     }
@@ -607,7 +607,7 @@ static void erase_menu_erase_file(struct Object *eraseButton, s32 eraseFileButto
     case 0:
         if (save_file_exists(eraseFileButtonId - MENU_BUTTON_ERASE_FILE_A) == TRUE)
         {
-            SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
+            play_sound(SOUND_MENU_CLICKFILESELECT, gDefaultSoundArgs);
             sMainMenuButtons[eraseFileButtonId]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN;
             sSelectedFile = eraseFileButtonId - MENU_BUTTON_ERASE_FILE_A;
             eraseButton->oMenuButtonActionPhase = 1;
@@ -616,7 +616,7 @@ static void erase_menu_erase_file(struct Object *eraseButton, s32 eraseFileButto
         }
         else
         {
-            SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
+            play_sound(SOUND_MENU_CAMERABUZZ, gDefaultSoundArgs);
             sMainMenuButtons[eraseFileButtonId]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
             if (sMainMenuTimer >= 21)
             {
@@ -628,7 +628,7 @@ static void erase_menu_erase_file(struct Object *eraseButton, s32 eraseFileButto
     case 1:
         if (MENU_BUTTON_ERASE_FILE_A + sSelectedFile == eraseFileButtonId)
         {
-            SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
+            play_sound(SOUND_MENU_CLICKFILESELECT, gDefaultSoundArgs);
             sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_OUT;
             eraseButton->oMenuButtonActionPhase = 0;
             sFadeOutText = 1;
@@ -657,7 +657,7 @@ static void erase_menu_check_clicked_buttons(struct Object *eraseButton)
                 {
                     if (eraseButton->oMenuButtonActionPhase == 0)
                     {
-                        SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
+                        play_sound(SOUND_MENU_CLICKFILESELECT, gDefaultSoundArgs);
                         sMainMenuButtons[buttonId]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
                         sSelectedButtonID = buttonId;
                     }
@@ -718,7 +718,7 @@ static void sound_mode_menu_check_clicked_buttons(struct Object *soundModeButton
                 {
                     if (soundModeButton->oMenuButtonActionPhase == 0)
                     {
-                        SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
+                        play_sound(SOUND_MENU_CLICKFILESELECT, gDefaultSoundArgs);
                         sMainMenuButtons[buttonId]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
                         sSelectedButtonID = buttonId;
                         sSoundMode = buttonId - 29;
@@ -744,7 +744,7 @@ static void return_to_main_menu(s16 prevMenuButtonId, struct Object *sourceButto
 
     if (sourceButton->oMenuButtonState == MENU_BUTTON_STATE_DEFAULT && sMainMenuButtons[prevMenuButtonId]->oMenuButtonState == MENU_BUTTON_STATE_FULLSCREEN)
     {
-        SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
+        play_sound(SOUND_MENU_CAMERAZOOMOUT, gDefaultSoundArgs);
         sMainMenuButtons[prevMenuButtonId]->oMenuButtonState = MENU_BUTTON_STATE_SHRINKING;
         sCurrentMenuLevel = MENU_LAYER_MAIN;
     }
@@ -781,7 +781,7 @@ static void score_menu_init_from_submenu(s16 prevMenuButtonId, struct Object *so
 
     if (sourceButton->oMenuButtonState == MENU_BUTTON_STATE_DEFAULT && sMainMenuButtons[prevMenuButtonId]->oMenuButtonState == MENU_BUTTON_STATE_FULLSCREEN)
     {
-        SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
+        play_sound(SOUND_MENU_CAMERAZOOMOUT, gDefaultSoundArgs);
         sMainMenuButtons[prevMenuButtonId]->oMenuButtonState = MENU_BUTTON_STATE_SHRINKING;
         sCurrentMenuLevel = MENU_LAYER_MAIN;
     }
@@ -804,7 +804,7 @@ static void score_menu_init_from_submenu(s16 prevMenuButtonId, struct Object *so
                 mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
         sSelectedButtonID = MENU_BUTTON_SCORE;
-        SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
+        play_sound(SOUND_MENU_CAMERAZOOMIN, gDefaultSoundArgs);
         sMainMenuButtons[MENU_BUTTON_SCORE]->oMenuButtonState = MENU_BUTTON_STATE_GROWING;
         score_menu_create_buttons(sMainMenuButtons[MENU_BUTTON_SCORE]);
     }
@@ -816,7 +816,7 @@ static void copy_menu_init_from_submenu(s16 prevMenuButtonId, struct Object *sou
 
     if (sourceButton->oMenuButtonState == MENU_BUTTON_STATE_DEFAULT && sMainMenuButtons[prevMenuButtonId]->oMenuButtonState == MENU_BUTTON_STATE_FULLSCREEN)
     {
-        SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
+        play_sound(SOUND_MENU_CAMERAZOOMOUT, gDefaultSoundArgs);
         sMainMenuButtons[prevMenuButtonId]->oMenuButtonState = MENU_BUTTON_STATE_SHRINKING;
         sCurrentMenuLevel = MENU_LAYER_MAIN;
     }
@@ -839,7 +839,7 @@ static void copy_menu_init_from_submenu(s16 prevMenuButtonId, struct Object *sou
                 mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
         sSelectedButtonID = MENU_BUTTON_COPY;
-        SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
+        play_sound(SOUND_MENU_CAMERAZOOMIN, gDefaultSoundArgs);
         sMainMenuButtons[MENU_BUTTON_COPY]->oMenuButtonState = MENU_BUTTON_STATE_GROWING;
         copy_menu_create_buttons(sMainMenuButtons[MENU_BUTTON_COPY]);
     }
@@ -851,7 +851,7 @@ static void erase_menu_init_from_submenu(s16 prevMenuButtonId, struct Object *so
 
     if (sourceButton->oMenuButtonState == MENU_BUTTON_STATE_DEFAULT && sMainMenuButtons[prevMenuButtonId]->oMenuButtonState == MENU_BUTTON_STATE_FULLSCREEN)
     {
-        SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
+        play_sound(SOUND_MENU_CAMERAZOOMOUT, gDefaultSoundArgs);
         sMainMenuButtons[prevMenuButtonId]->oMenuButtonState = MENU_BUTTON_STATE_SHRINKING;
         sCurrentMenuLevel = MENU_LAYER_MAIN;
     }
@@ -874,7 +874,7 @@ static void erase_menu_init_from_submenu(s16 prevMenuButtonId, struct Object *so
                 mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
         sSelectedButtonID = MENU_BUTTON_ERASE;
-        SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
+        play_sound(SOUND_MENU_CAMERAZOOMIN, gDefaultSoundArgs);
         sMainMenuButtons[MENU_BUTTON_ERASE]->oMenuButtonState = MENU_BUTTON_STATE_GROWING;
         erase_menu_create_buttons(sMainMenuButtons[MENU_BUTTON_ERASE]);
     }
@@ -971,31 +971,31 @@ static void main_menu_check_clicked_buttons(void)
     switch (sSelectedButtonID)
     {
     case MENU_BUTTON_PLAY_FILE_A:
-        SetSound(FILE_SELECT_SOUND, D_803320E0);
+        play_sound(FILE_SELECT_SOUND, gDefaultSoundArgs);
         break;
     case MENU_BUTTON_PLAY_FILE_B:
-        SetSound(FILE_SELECT_SOUND, D_803320E0);
+        play_sound(FILE_SELECT_SOUND, gDefaultSoundArgs);
         break;
     case MENU_BUTTON_PLAY_FILE_C:
-        SetSound(FILE_SELECT_SOUND, D_803320E0);
+        play_sound(FILE_SELECT_SOUND, gDefaultSoundArgs);
         break;
     case MENU_BUTTON_PLAY_FILE_D:
-        SetSound(FILE_SELECT_SOUND, D_803320E0);
+        play_sound(FILE_SELECT_SOUND, gDefaultSoundArgs);
         break;
     case MENU_BUTTON_SCORE:
-        SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
+        play_sound(SOUND_MENU_CAMERAZOOMIN, gDefaultSoundArgs);
         score_menu_create_buttons(sMainMenuButtons[MENU_BUTTON_SCORE]);
         break;
     case MENU_BUTTON_COPY:
-        SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
+        play_sound(SOUND_MENU_CAMERAZOOMIN, gDefaultSoundArgs);
         copy_menu_create_buttons(sMainMenuButtons[MENU_BUTTON_COPY]);
         break;
     case MENU_BUTTON_ERASE:
-        SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
+        play_sound(SOUND_MENU_CAMERAZOOMIN, gDefaultSoundArgs);
         erase_menu_create_buttons(sMainMenuButtons[MENU_BUTTON_ERASE]);
         break;
     case MENU_BUTTON_SOUND_MODE:
-        SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
+        play_sound(SOUND_MENU_CAMERAZOOMIN, gDefaultSoundArgs);
         sound_mode_menu_create_buttons(sMainMenuButtons[MENU_BUTTON_SOUND_MODE]);
         break;
     }
@@ -1125,7 +1125,7 @@ static void handle_button_presses(void)
         else if (gPlayer3Controller->buttonPressed & A_BUTTON)
         {
             sScoreFileCoinScoreMode = 1 - sScoreFileCoinScoreMode;
-            SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
+            play_sound(SOUND_MENU_CLICKFILESELECT, gDefaultSoundArgs);
         }
     }
     else
@@ -1522,7 +1522,7 @@ static void erase_menu_yes_no_prompt(s16 x, s16 y)
     {
         if (D_801A7C04 == 1)
         {
-            SetSound(SOUND_MARIO_WAAAOOOW, D_803320E0);
+            play_sound(SOUND_MARIO_WAAAOOOW, gDefaultSoundArgs);
             sMainMenuButtons[MENU_BUTTON_ERASE]->oMenuButtonActionPhase = 2;
             sFadeOutText = 1;
             sMainMenuTimer = 0;
@@ -1533,7 +1533,7 @@ static void erase_menu_yes_no_prompt(s16 x, s16 y)
         }
         else if (D_801A7C04 == 2)
         {
-            SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
+            play_sound(SOUND_MENU_CLICKFILESELECT, gDefaultSoundArgs);
             sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_OUT;
             sMainMenuButtons[MENU_BUTTON_ERASE]->oMenuButtonActionPhase = 0;
             sFadeOutText = 1;

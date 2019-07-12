@@ -15,7 +15,7 @@ static void handle_merry_go_round_music(void) {
     if (o->oMerryGoRoundMusicShouldPlay == FALSE) {
         if (gMarioCurrentRoom == BBH_NEAR_MERRY_GO_ROUND_ROOM) {
             // Play the merry-go-round and BBH music at the same time
-            func_80320F84(19, 45, 20, 200);
+            play_secondary_music(SEQ_EVENT_MERRY_GO_ROUND, 45, 20, 200);
             // Set to TRUE
             o->oMerryGoRoundMusicShouldPlay++;
         }
@@ -38,12 +38,12 @@ static void handle_merry_go_round_music(void) {
         // without being on a floor with surface type 0x1A.
         if (obj_is_mario_on_platform() || marioFloorType == SURFACE_001A) {
             // If Mario is in the merry-go-round's enclosure, play only the merry-go-round music.
-            func_80320F84(19, 0, 78, 50);
+            play_secondary_music(SEQ_EVENT_MERRY_GO_ROUND, 0, 78, 50);
             gMarioOnMerryGoRound = TRUE;
         } else {
             // If Mario is not in the merry-go-round's enclosure,
             // i.e. he's around it, play both the merry-go-round music and the BBH music.
-            func_80320F84(19, 45, 20, 200);
+            play_secondary_music(SEQ_EVENT_MERRY_GO_ROUND, 45, 20, 200);
             gMarioOnMerryGoRound = FALSE;
         }
         
@@ -75,7 +75,7 @@ void bhv_merry_go_round_loop(void) {
             o->oMerryGoRoundMarioIsOutside++;
         }
     } else {
-        SetSound(SOUND_CH6_HOWLINGWIND, D_803320E0);
+        play_sound(SOUND_CH6_HOWLINGWIND, gDefaultSoundArgs);
         
         if (
             // There are objects outside BBH, such as corkboxes.

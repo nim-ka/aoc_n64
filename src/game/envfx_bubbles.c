@@ -9,7 +9,7 @@
 #include "engine/surface_collision.h"
 #include "engine/math_util.h"
 #include "engine/behavior_script.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "obj_behaviors.h"
 
 /** This file implements environment effects that are not snow:
@@ -185,7 +185,7 @@ void envfx_update_lava(Vec3s centerPos) {
     }
 
     if ((chance = (s32)(RandomFloat() * 16.0f)) == 8)
-        SetSound(SOUND_GENERAL_QUIETBUBBLE2, D_803320E0);
+        play_sound(SOUND_GENERAL_QUIETBUBBLE2, gDefaultSoundArgs);
 }
 
 /** Rotate the input x, y and z around the rotation origin of the whirlpool

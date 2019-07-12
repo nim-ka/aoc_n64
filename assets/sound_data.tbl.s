@@ -3,18 +3,17 @@
 .section .data
 
 .macro soundtable name
-.word (\name - gSoundDataRaw), (\name\()_end - \name)
+    .word (\name - gSoundDataRaw), (\name\()_end - \name)
 .endm
 
 .macro sound bank, name
-.ifdef VERSION_JP
-.align 4, 0x00
-.incbin "assets/sound/jp/\bank/\name\.bin"
-.endif
-.ifndef VERSION_JP
-.align 4, 0x00
-.incbin "assets/sound/us/\bank/\name\.bin"
-.endif
+    .ifdef VERSION_JP
+        .align 4, 0x00
+        .incbin "assets/sound/jp/\bank/\name\.bin"
+    .else
+        .align 4, 0x00
+        .incbin "assets/sound/us/\bank/\name\.bin"
+    .endif
 .endm
 
 # US: 593560 - 7B0860
@@ -252,7 +251,7 @@ sound 0A, 17 # mario
 .endif
 nlist_0A_end:
 
-# TODO: Use instrument names
+# TODO: Use real instrument and bank names
 nlist_0B_rest: # US: 6B5B00
 sound 0B, 00
 sound 0B, 01

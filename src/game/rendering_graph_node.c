@@ -307,7 +307,7 @@ void func_8027BDAC(struct GraphNode017 *a)
     f32 sp20[4][4];
     Mtx *sp1C = alloc_display_list(sizeof(*sp1C));
 
-    mtxf_rotate_zxy_and_translate(sp20, D_80385FD0, a->unk18);
+    mtxf_rotate_zxy_and_translate(sp20, gVec3fZero, a->unk18);
     mtxf_mul(D_8033A778[D_8033A770 + 1], sp20, D_8033A778[D_8033A770]);
     D_8033A770++;
     mtxf_to_mtx(sp1C, D_8033A778[D_8033A770]);

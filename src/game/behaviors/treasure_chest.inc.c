@@ -31,9 +31,9 @@ void bhv_treasure_chest_top_loop(void) {
             if (o->oTimer == 0) {
                 if (sp34->oUnknownUnkFC_S32 == 0) {
                     spawn_object_relative(0, 0, -80, 120, o, MODEL_BUBBLE, bhvWaterAirBubble);
-                    SetSound(SOUND_GENERAL_CLAMSHELL1, o->header.gfx.cameraToObject);
+                    play_sound(SOUND_GENERAL_CLAMSHELL1, o->header.gfx.cameraToObject);
                 } else {
-                    SetSound(SOUND_GENERAL_OPENCHEST1, o->header.gfx.cameraToObject);
+                    play_sound(SOUND_GENERAL_OPENCHEST1, o->header.gfx.cameraToObject);
                 }
             }
 
@@ -72,7 +72,7 @@ void bhv_treasure_chest_bottom_loop(void) {
                 if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 150)) {
                     if (!o->parentObj->oUnknownUnkF8_S32) {
                         if (o->parentObj->oUnknownUnkF4_S32 == o->oBehParams2ndByte) {
-                            SetSound(SOUND_CH8_RIGHTANSWER, D_803320E0);
+                            play_sound(SOUND_CH8_RIGHTANSWER, gDefaultSoundArgs);
                             o->parentObj->oUnknownUnkF4_S32++;
                             o->oAction = 1;
                         }
@@ -81,7 +81,7 @@ void bhv_treasure_chest_bottom_loop(void) {
                             o->parentObj->oUnknownUnkF8_S32 = 1;
                             o->oAction = 2;
                             obj_become_tangible();
-                            SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
+                            play_sound(SOUND_MENU_CAMERABUZZ, gDefaultSoundArgs);
                         }
                     }
                 }
@@ -125,7 +125,7 @@ void bhv_treasure_chest_ship_loop(void) {
         case 0: 
             if (o->oUnknownUnkF4_S32 == 5) {
                 play_puzzle_jingle();
-                func_8031F810(0, 127, 1000);
+                fade_volume_scale(0, 127, 1000);
                 o->oAction = 1;
             }
             break;
@@ -133,7 +133,7 @@ void bhv_treasure_chest_ship_loop(void) {
         case 1:
             if (gWaterRegions != NULL) {
                 gWaterRegions[6] += -5;
-                SetSound(SOUND_ENVIRONMENT_WATERDRAIN, D_803320E0);
+                play_sound(SOUND_ENVIRONMENT_WATERDRAIN, gDefaultSoundArgs);
                 set_camera_shake_2(SHAKE_2_JRB_SHIP_DRAIN);
                 if (gWaterRegions[6] < -335) {
                     gWaterRegions[6] = -335;

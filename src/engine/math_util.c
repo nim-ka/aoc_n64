@@ -1,7 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "game/sound_init.h"
+#include "engine/graph_node.h"
 #include "math_util.h"
 #include "surface_collision.h"
 
@@ -726,7 +726,7 @@ s32 func_8037AFE8(Vec3f a)
     s32 i;
     s32 sp28 = 0;
 
-    vec3f_copy(a, D_80385FD0);
+    vec3f_copy(a, gVec3fZero);
     func_8037ABEC(sp30, D_8038BC94, D_8038BC98);
     for (i = 0; i < 4; i++)
     {

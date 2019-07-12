@@ -4,7 +4,8 @@
 
 #include "sm64.h"
 #include "camera.h"
-#include "audio/interface_2.h"
+#include "seq_ids.h"
+#include "audio/external.h"
 #include "mario_misc.h"
 #include "game.h"
 #include "hud.h"
@@ -3974,12 +3975,12 @@ s32 func_8028AF24(struct LevelCamera *c, s16 b)
 
 void func_8028B13C(void)
 {
-    func_80320AE8(0, (4 << 8) | 29, 0);
+    play_music(0, SEQUENCE_ARGS(4, FALSE, SEQ_EVENT_PEACH_MESSAGE), 0);
 }
 
 void func_8028B16C(void)
 {
-    func_80320AE8(0, (15 << 8) | 30, 0);
+    play_music(0, SEQUENCE_ARGS(15, FALSE, SEQ_EVENT_CUTSCENE_INTRO), 0);
 }
 
 void play_camera_buzz_if_cdown(void)
@@ -4002,27 +4003,27 @@ void play_camera_buzz_if_c_sideways(void)
 
 void play_sound_cbutton_up(void)
 {
-    SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
+    play_sound(SOUND_MENU_CAMERAZOOMIN, gDefaultSoundArgs);
 }
 
 void play_sound_cbutton_down(void)
 {
-    SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
+    play_sound(SOUND_MENU_CAMERAZOOMOUT, gDefaultSoundArgs);
 }
 
 void play_sound_cbutton_side(void)
 {
-    SetSound(SOUND_MENU_CAMERATURN, D_803320E0);
+    play_sound(SOUND_MENU_CAMERATURN, gDefaultSoundArgs);
 }
 
 void play_sound_button_change_blocked(void)
 {
-    SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
+    play_sound(SOUND_MENU_CAMERABUZZ, gDefaultSoundArgs);
 }
 
 void play_sound_rbutton_changed(void)
 {
-    SetSound(SOUND_MENU_CLICKCHANGEVIEW, D_803320E0);
+    play_sound(SOUND_MENU_CLICKCHANGEVIEW, gDefaultSoundArgs);
 }
 
 void func_8028B36C(void)
@@ -5203,7 +5204,7 @@ struct TableCamera TableCameraSL[3] = {
 
 /**
  * The THI table is specifically for the tunnel near the start of the Huge Island.
- * The first aligns with the tunnel, the latter helps the camera from getting stuck on the 
+ * The first aligns with the tunnel, the latter helps the camera from getting stuck on the
  * starting side. Both sides achieve their effect by editing the camera yaw.
  */
 struct TableCamera TableCameraTHI[3] = {
@@ -8073,7 +8074,7 @@ CmdRet peach_letter_text(UNUSED struct LevelCamera *c)
 #ifndef VERSION_JP
 CmdRet play_sound_peach_reading_letter(UNUSED struct LevelCamera *c)
 {
-    SetSound(SOUND_PEACH_DEARMARIO, D_803320E0);
+    play_sound(SOUND_PEACH_DEARMARIO, gDefaultSoundArgs);
 }
 #endif
 
@@ -8506,7 +8507,7 @@ CmdRet CutsceneEnterPainting0(struct LevelCamera *c)
         sp2C[0] = ripplingPainting->vSize / 2.0f;
         sp2C[1] = sp2C[0];
         sp2C[2] = 0;
-        
+
         sp44[0] = ripplingPainting->vXPos;
         sp44[1] = ripplingPainting->vYPos;
         sp44[2] = ripplingPainting->vZPos;
@@ -9861,7 +9862,7 @@ void BehBeginningLakituLoop(void)
         if (gCutsceneTimer > 52)
             PlaySound(SOUND_CH6_LAKITUFLY_HIGHPRIO);
         if (func_8029ACAC(gCurrentObject, D_8032E3CC, D_8032E2B4) == 1)
-            gCurrentObject->oAction += 1; 
+            gCurrentObject->oAction += 1;
 
         switch (gCurrentObject->oTimer)
         {

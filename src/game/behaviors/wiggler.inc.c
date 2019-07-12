@@ -438,7 +438,7 @@ static void wiggler_act_fall_through_floor(void)
 {
     if (o->oTimer == 60)
     {
-        func_80320CE8(0x416);
+        stop_background_music(SEQUENCE_ARGS(4, FALSE, SEQ_EVENT_BOSS));
         o->oWigglerFallThroughFloorsHeight = 1700.0f;
     }
     else if (o->oTimer > 60)

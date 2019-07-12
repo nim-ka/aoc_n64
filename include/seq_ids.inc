@@ -1,13 +1,12 @@
 
 /* Music Defines */
 
-.set SEQ_NONE,                          0x0000
+.set SEQ_SOUND_PLAYER,                  0x0000
 .set SEQ_EVENT_CUTSCENE_COLLECT_STAR,   0x0001
 .set SEQ_MENU_TITLE_SCREEN,             0x0002
 .set SEQ_LEVEL_GRASS,                   0x0003
 .set SEQ_LEVEL_INSIDE_CASTLE,           0x0004
 .set SEQ_LEVEL_WATER,                   0x0005
-.set SEQ_LEVEL_WATER_SA,                0x0085
 .set SEQ_LEVEL_HOT,                     0x0006
 .set SEQ_LEVEL_BOSS_KOOPA,              0x0007
 .set SEQ_LEVEL_SNOW,                    0x0008

@@ -135,7 +135,7 @@ static void camera_lakitu_intro_act_show_dialogue(void)
 #ifndef VERSION_JP
                     if (!o->oCameraLakituUnk104)
                     {
-                        func_80320AE8(0, (15 << 8) | 34, 0);
+                        play_music(0, SEQUENCE_ARGS(15, FALSE, SEQ_EVENT_CUTSCENE_LAKITU), 0);
                         o->oCameraLakituUnk104 = TRUE;
                     }
 #endif

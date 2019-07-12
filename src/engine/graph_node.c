@@ -23,7 +23,7 @@ s16 zeroMtx[4][4] = {
     {0, 0, 0, 0}
 };
 
-Vec3f D_80385FD0 = {0.0f, 0.0f, 0.0f};
+Vec3f gVec3fZero = {0.0f, 0.0f, 0.0f};
 Vec3s D_80385FDC = {0, 0, 0};
 Vec3f D_80385FE4 = {1.0f, 1.0f, 1.0f};
 Vec3s unused80385FF0 = {1, 1, 1};
@@ -660,7 +660,7 @@ void func_8037C360(struct GraphNode *graphNode, s32 sp1c)
 
 void func_8037C3D0(struct GraphNodeObject *graphNode)
 {
-    init_graph_node_object(NULL, graphNode, 0, D_80385FD0, D_80385FDC, D_80385FE4);
+    init_graph_node_object(NULL, graphNode, 0, gVec3fZero, D_80385FDC, D_80385FE4);
     
     func_8037C044(&D_8038BD88, &graphNode->node);
     graphNode->node.flags &= ~GRAPH_RENDER_01;

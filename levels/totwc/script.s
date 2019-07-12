@@ -32,7 +32,7 @@ glabel level_totwc_entry
         terrain /*terrainData*/ totwc_seg7_collision
         macro_objects /*objList*/ totwc_seg7_macro_objs
         show_dialog /*unk2*/ 0x00, /*dialogid*/ 0x83
-        set_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_SLIDE
+        set_background_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_SLIDE
         terrain_type /*terrainType*/ 0x0001
     end_area
 

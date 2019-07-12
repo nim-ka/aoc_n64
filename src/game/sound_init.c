@@ -1,33 +1,36 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "seq_ids.h"
 #include "level_update.h"
 #include "main.h"
 #include "engine/math_util.h"
 #include "area.h"
 #include "profiler.h"
-#include "audio/dma.h"
-#include "audio/interface_2.h"
+#include "audio/external.h"
 #include "print.h"
 #include "save_file.h"
 #include "sound_init.h"
+#include "engine/graph_node.h"
 #include "paintings.h"
 
-Vec3f D_80339DC0;
-OSMesgQueue gSoundMesgQueue;
-OSMesg gSoundMesgBuf[1];
-struct VblankHandler gSoundVblankHandler;
+#define MUSIC_NONE 0xFFFF
 
-u8 D_8032C6C0 = 0;
-u8 D_8032C6C4 = 0;
-u16 D_8032C6C8 = 0xFFFF;
-u16 D_8032C6CC = 0xFFFF;
-u16 D_8032C6D0 = 0xFFFF;
-u8 D_8032C6D4 = 0;
-u8 unused8032C6D8[16] = {0};
-s16 D_8032C6E8[] = {0, 3, 1, 0};
-// I'm not sure what this is. Only the 20th array element is used.
-u32 D_8032C6F0[] = {
+static Vec3f unused80339DC0;
+static OSMesgQueue sSoundMesgQueue;
+static OSMesg sSoundMesgBuf[1];
+static struct VblankHandler sSoundVblankHandler;
+
+static u8 D_8032C6C0 = 0;
+static u8 D_8032C6C4 = 0;
+static u16 sCurrentMusic = MUSIC_NONE;
+static u16 sCurrentShellMusic = MUSIC_NONE;
+static u16 sCurrentCapMusic = MUSIC_NONE;
+static u8 sPlayingInfiniteStairs = FALSE;
+static u8 unused8032C6D8[16] = {0};
+static s16 sSoundMenuModeToSoundMode[] = { SOUND_MODE_STEREO, SOUND_MODE_MONO, SOUND_MODE_HEADSET };
+// Only the 20th array element is used.
+static u32 menuSoundsExtra[] = {
     SOUND_UNKNOWN_UNK1400, SOUND_UNKNOWN_UNK1401, SOUND_UNKNOWN_UNK1402,
     SOUND_UNKNOWN_UNK1403, SOUND_UNKNOWN_UNK1404, SOUND_UNKNOWN_UNK1405,
     SOUND_UNKNOWN_UNK1406, SOUND_UNKNOWN_UNK1410, SOUND_UNKNOWN_UNK1412,
@@ -41,36 +44,38 @@ u32 D_8032C6F0[] = {
     SOUND_CH8_UNK50, SOUND_OBJECT_BIRDS2, SOUND_ENVIRONMENT_ELEVATOR2,
     SOUND_CH6_BLOWWINDORFIRE_LOWPRIO, SOUND_CH6_BLOWWINDORFIRE, SOUND_ENVIRONMENT_ELEVATOR4
 };
-s8 D_8032C780 = 0;
+static s8 paintingEjectSoundPlayed = FALSE;
+
+static void play_menu_sounds_extra(int a, void *b);
 
 void func_80248C10(void)
 {
     D_8032C6C0 = 0;
 }
 
-void func_80248C28(s32 a)
+void func_80248C28(s32 a) // Soften volume
 {
     switch (a)
     {
     case 1:
-        func_80320248(1);
+        set_sound_disabled(TRUE);
         break;
     case 2:
-        func_8031FFB4(0, 60, 40);
+        func_8031FFB4(0, 60, 40); // soften music
         break;
     }
     D_8032C6C0 |= a;
 }
 
-void func_80248CB8(s32 a)
+void func_80248CB8(s32 a) // harden volume
 {
     switch (a)
     {
     case 1:
-        func_80320248(0);
+        set_sound_disabled(FALSE);
         break;
     case 2:
-        func_80320040(0, 60);
+        func_80320040(0, 60); // unsoften?
         break;
     }
     D_8032C6C0 &= ~a;
@@ -81,7 +86,7 @@ void func_80248D48(void)
     if (D_8032C6C4 == 0)
     {
         D_8032C6C4 = 1;
-        func_803208C0(2, 890);
+        sound_banks_disable(2, 0x037A);
     }
 }
 
@@ -90,184 +95,200 @@ void func_80248D90(void)
     if (D_8032C6C4 == 1)
     {
         D_8032C6C4 = 0;
-        func_80320980(2, 890);
+        sound_banks_enable(2, 0x037A);
     }
 }
 
-void set_sound_mode(u16 mode)
+/**
+ * Sets the sound mode
+ */
+void set_sound_mode(u16 soundMode)
 {
-    if (mode < 3)
-        func_80321434(D_8032C6E8[mode]);
+    if (soundMode < 3)
+        audio_set_sound_mode(sSoundMenuModeToSoundMode[soundMode]);
 }
 
-void func_80248E24(s16 a)
+/**
+ * Wrapper method by menu used to set the sound via flags.
+ */
+void play_menu_sounds(s16 soundMenuFlags)
 {
-    if (a & 0x1)
-        SetSound(SOUND_MENU_HANDAPPEAR, D_803320E0);
-    else if (a & 0x2)
-        SetSound(SOUND_MENU_HANDDISAPPEAR, D_803320E0);
-    else if (a & 0x4)
-        SetSound(SOUND_MENU_UNKNOWN1, D_803320E0);
-    else if (a & 0x8)
-        SetSound(SOUND_MENU_PINCHMARIOFACE, D_803320E0);
-    else if (a & 0x10)
-        SetSound(SOUND_MENU_PINCHMARIOFACE, D_803320E0);
-    else if (a & 0x20)
-        SetSound(SOUND_MENU_LETGOMARIOFACE, D_803320E0);
-    else if (a & 0x40)
-        SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
-    else if (a & 0x80)
-        SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
-    
-    if (a & 0x100)
-        func_80249464(20, NULL);
+    if (soundMenuFlags & SOUND_MENU_FLAG_HANDAPPEAR)
+        play_sound(SOUND_MENU_HANDAPPEAR, gDefaultSoundArgs);
+    else if (soundMenuFlags & SOUND_MENU_FLAG_HANDISAPPEAR)
+        play_sound(SOUND_MENU_HANDDISAPPEAR, gDefaultSoundArgs);
+    else if (soundMenuFlags & SOUND_MENU_FLAG_UNKNOWN1)
+        play_sound(SOUND_MENU_UNKNOWN1, gDefaultSoundArgs);
+    else if (soundMenuFlags & SOUND_MENU_FLAG_PINCHMARIOFACE)
+        play_sound(SOUND_MENU_PINCHMARIOFACE, gDefaultSoundArgs);
+    else if (soundMenuFlags & SOUND_MENU_FLAG_PINCHMARIOFACE2)
+        play_sound(SOUND_MENU_PINCHMARIOFACE, gDefaultSoundArgs);
+    else if (soundMenuFlags & SOUND_MENU_FLAG_LETGOMARIOFACE)
+        play_sound(SOUND_MENU_LETGOMARIOFACE, gDefaultSoundArgs);
+    else if (soundMenuFlags & SOUND_MENU_FLAG_CAMERAZOOMIN)
+        play_sound(SOUND_MENU_CAMERAZOOMIN, gDefaultSoundArgs);
+    else if (soundMenuFlags & SOUND_MENU_FLAG_CAMERAZOOMOUT)
+        play_sound(SOUND_MENU_CAMERAZOOMOUT, gDefaultSoundArgs);
+
+    if (soundMenuFlags & 0x100)
+        play_menu_sounds_extra(20, NULL);
 }
 
-void func_80248FBC(void)
+/**
+ * Plays the painting eject sound effect if it has not already been played
+ */
+void play_painting_eject_sound(void)
 {
     if (ripplingPainting != NULL && ripplingPainting->rippleStatus == 2) // ripple when Mario enters painting
     {
-        if (D_8032C780 == 0)
-            SetSound(SOUND_UNKNOWN_UNK3828, gMarioStates[0].marioObj->header.gfx.cameraToObject);
-        D_8032C780 = 1;
+        if (paintingEjectSoundPlayed == FALSE)
+            play_sound(SOUND_GENERAL_PAINTING_EJECT, gMarioStates[0].marioObj->header.gfx.cameraToObject);
+        paintingEjectSoundPlayed = TRUE;
     }
     else
     {
-        D_8032C780 = 0;
+        paintingEjectSoundPlayed = FALSE;
     }
 }
 
-void func_80249040(void)
+void play_infinite_stairs_music(void)
 {
-    u8 sp1f = FALSE;
-    
+    u8 shouldPlay = FALSE;
+
+    /* Infinite stairs? */
     if (gCurrLevelNum == LEVEL_CASTLE && gCurrAreaIndex == 2 && gMarioState->numStars < 70)
     {
         if (gMarioState->floor != NULL && gMarioState->floor->room == 6)
         {
             if (gMarioState->pos[2] < 2540.0f)
-                sp1f = TRUE;
+                shouldPlay = TRUE;
         }
     }
 
-    if (D_8032C6D4 ^ sp1f)
+    if (sPlayingInfiniteStairs ^ shouldPlay)
     {
-        D_8032C6D4 = sp1f;
-        if (sp1f)
-            func_80320F84(24, 0, 255, 1000);
+        sPlayingInfiniteStairs = shouldPlay;
+        if (shouldPlay)
+            play_secondary_music(SEQ_EVENT_ENDLESS_STAIRS, 0, 255, 1000);
         else
             func_80321080(500);
     }
 }
 
-void func_80249148(u16 a, u16 b, s16 c)
+void set_background_music(u16 a, u16 seqArgs, s16 fadeTimer)
 {
-    if (gResetTimer == 0 && b != D_8032C6C8)
+    if (gResetTimer == 0 && seqArgs != sCurrentMusic)
     {
         if (gCurrCreditsEntry != 0)
-            func_80321368(7);
+            sound_reset(7);
         else
-            func_80321368(a);
-        
-        if (gShouldNotPlayCastleMusic == 0 || b != 4)
+            sound_reset(a);
+
+        if (!(gShouldNotPlayCastleMusic && seqArgs == SEQ_LEVEL_INSIDE_CASTLE))
         {
-            func_80320AE8(0, b, c);
-            D_8032C6C8 = b;
+            play_music(0, seqArgs, fadeTimer);
+            sCurrentMusic = seqArgs;
         }
     }
 }
 
-void func_802491FC(s16 a)
+void func_802491FC(s16 fadeOutTime)
 {
-    func_803210D4(a);
-    D_8032C6C8 = 0xFFFF;
-    D_8032C6CC = 0xFFFF;
-    D_8032C6D0 = 0xFFFF;
+    func_803210D4(fadeOutTime);
+    sCurrentMusic = MUSIC_NONE;
+    sCurrentShellMusic = MUSIC_NONE;
+    sCurrentCapMusic = MUSIC_NONE;
 }
 
-void func_8024924C(s16 a)
+void func_8024924C(s16 fadeTimer)
 {
-    func_8031F7CC(0, a);
-    D_8032C6C8 = 0xFFFF;
-    D_8032C6CC = 0xFFFF;
-    D_8032C6D0 = 0xFFFF;
+    func_8031F7CC(0, fadeTimer);
+    sCurrentMusic = MUSIC_NONE;
+    sCurrentShellMusic = MUSIC_NONE;
+    sCurrentCapMusic = MUSIC_NONE;
 }
 
-void func_802492A0(u16 a)
+void play_cutscene_music(u16 seqArgs)
 {
-    func_80320AE8(0, a, 0);
-    D_8032C6C8 = a;
+    play_music(0, seqArgs, 0);
+    sCurrentMusic = seqArgs;
 }
 
-void func_802492E0(void)
+void play_shell_music(void)
 {
-    func_80320AE8(0, (4 << 8) | 142, 0);
-    D_8032C6CC = (4 << 8) | 142;
+    play_music(0, SEQUENCE_ARGS(4, TRUE, SEQ_EVENT_POWERUP), 0);
+    sCurrentShellMusic = SEQUENCE_ARGS(4, TRUE, SEQ_EVENT_POWERUP);
 }
 
-void func_8024931C(void)
+void stop_shell_music(void)
 {
-    if (D_8032C6CC != 0xFFFF)
+    if (sCurrentShellMusic != MUSIC_NONE)
     {
-        func_80320CE8(D_8032C6CC);
-        D_8032C6CC = 0xFFFF;
+        stop_background_music(sCurrentShellMusic);
+        sCurrentShellMusic = MUSIC_NONE;
     }
 }
 
-void func_80249368(u16 a)
+void play_cap_music(u16 seqArgs)
 {
-    func_80320AE8(0, a, 0);
-    if (D_8032C6D0 != 0xFFFF && D_8032C6D0 != a)
-        func_80320CE8(D_8032C6D0);
-    D_8032C6D0 = a;
+    play_music(0, seqArgs, 0);
+    if (sCurrentCapMusic != MUSIC_NONE && sCurrentCapMusic != seqArgs)
+        stop_background_music(sCurrentCapMusic);
+    sCurrentCapMusic = seqArgs;
 }
 
-void func_802493D4(void)
+void fadeout_cap_music(void)
 {
-    if (D_8032C6D0 != 0xFFFF)
-        func_80320E20(D_8032C6D0, 600);
+    if (sCurrentCapMusic != MUSIC_NONE)
+        fadeout_background_music(sCurrentCapMusic, 600);
 }
 
-void func_80249418(void)
+void stop_cap_music(void)
 {
-    if (D_8032C6D0 != 0xFFFF)
+    if (sCurrentCapMusic != MUSIC_NONE)
     {
-        func_80320CE8(D_8032C6D0);
-        D_8032C6D0 = 0xFFFF;
+        stop_background_music(sCurrentCapMusic);
+        sCurrentCapMusic = MUSIC_NONE;
     }
 }
 
-void func_80249464(s32 a, void *b)
+void play_menu_sounds_extra(s32 a, void *b)
 {
-    SetSound(D_8032C6F0[a], b);
+    play_sound(menuSoundsExtra[a], b);
 }
 
-void func_802494A8(void)
+void audio_game_loop_tick(void)
 {
-    func_8031EED0();
+    audio_signal_game_loop_tick();
 }
 
+/**
+ * Sound processing thread. Runs at 60 FPS.
+ */
 void thread4_sound(UNUSED void *arg)
 {
-    InitAudioSystem();
-    func_803202A0();
-    vec3f_copy(D_80339DC0, D_80385FD0);
-    osCreateMesgQueue(&gSoundMesgQueue, gSoundMesgBuf, ARRAY_COUNT(gSoundMesgBuf));
-    set_vblank_handler(1, &gSoundVblankHandler, &gSoundMesgQueue, (OSMesg)512);
-    
-    while (1)
-    {
+    audio_init();
+    sound_init();
+
+    // Zero-out unused vector
+    vec3f_copy(unused80339DC0, gVec3fZero);
+
+    osCreateMesgQueue(&sSoundMesgQueue, sSoundMesgBuf, ARRAY_COUNT(sSoundMesgBuf));
+    set_vblank_handler(1, &sSoundVblankHandler, &sSoundMesgQueue, (OSMesg)512);
+
+
+    while (TRUE) {
         OSMesg msg;
 
-        osRecvMesg(&gSoundMesgQueue, &msg, OS_MESG_BLOCK);
-        if (gResetTimer < 25)
-        {
+        osRecvMesg(&sSoundMesgQueue, &msg, OS_MESG_BLOCK);
+        if (gResetTimer < 25) {
             struct SPTask *spTask;
 
             profiler_log_thread4_time();
-            spTask = func_8031D924();
+            spTask = create_next_audio_frame_task();
             if (spTask != NULL)
                 dispatch_audio_sptask(spTask);
+
             profiler_log_thread4_time();
         }
     }
