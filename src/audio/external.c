@@ -552,18 +552,14 @@ static void func_8031D838(s32 player, FadeT fadeInTime, u8 targetVolume)
     seqPlayer->fadeTimer = fadeInTime;
 }
 
-#ifdef NON_MATCHING
-
 struct SPTask *create_next_audio_frame_task(void)
 {
-    s32 writtenCmds; // sp40;
-    s32 oldIndex; // sp3C;
     u32 t2;
-    s32 maxLen; // v0;
+    s32 writtenCmds;
     s32 index;
-    UNUSED s32 dummy;
-    s32 taskIndex;
     OSTask_t *task;
+    s32 oldDmaCount;
+    s32 flags;
 
     gActiveAudioFrames++;
     if (gAudioLoadLock != AUDIO_LOCK_NOT_LOADING)
@@ -575,36 +571,36 @@ struct SPTask *create_next_audio_frame_task(void)
     gAudioTaskIndex ^= 1;
     gCurrAiBufferIndex++;
     gCurrAiBufferIndex %= NUMAIBUFFERS;
-    oldIndex = (gCurrAiBufferIndex + 1) % NUMAIBUFFERS;
-    t2 = osAiGetLength() >> 2;
+    index = (gCurrAiBufferIndex - 2 + NUMAIBUFFERS) % NUMAIBUFFERS;
+    t2 = osAiGetLength() / 4;
 
     // Graphics lags behind a little, so make sure audio does too by playing the
     // sound that was generated two frames ago.
-    if (gAiBufferLengths[oldIndex] != 0)
+    if (gAiBufferLengths[index] != 0)
     {
-        osAiSetNextBuffer(gAiBuffers[oldIndex], gAiBufferLengths[oldIndex] * 4);
+        osAiSetNextBuffer(gAiBuffers[index], gAiBufferLengths[index] * 4);
     }
 
-    // there is a pointless volatile load here, that loads into a temporary
-    // register rather than a zero one...
-    stubbed_printf("DMA: Request queue over.( %d )\n", gActiveAudioDmasCount);
+    oldDmaCount = gActiveAudioDmasCount;
+    if (oldDmaCount > 0)
+    {
+        stubbed_printf("DMA: Request queue over.( %d )\n", oldDmaCount);
+    }
     gActiveAudioDmasCount = 0;
-    // dummy = gActiveAudioDmasCount; gActiveAudioDmasCount = dummy & 0;
-    // dummy = gActiveAudioDmasCount; gActiveAudioDmasCount = dummy * 0;
+
     gAudioTask = &gAudioTasks[gAudioTaskIndex];
     gAudioCmd = gAudioCmdBuffers[gAudioTaskIndex];
 
     index = gCurrAiBufferIndex;
     gCurrAiBuffer = gAiBuffers[index];
     gAiBufferLengths[index] = (((D_80226D74 - t2) + 0x40) & 0xfff0) + 0x10;
-    maxLen = D_80226D74 + 0x10;
     if (gAiBufferLengths[index] < gMinAiBufferLength)
     {
         gAiBufferLengths[index] = gMinAiBufferLength;
     }
-    if (gAiBufferLengths[index] > maxLen)
+    if (gAiBufferLengths[index] > D_80226D74 + 0x10)
     {
-        gAiBufferLengths[index] = maxLen;
+        gAiBufferLengths[index] = D_80226D74 + 0x10;
     }
 
     if (sGameLoopTicked != 0)
@@ -613,16 +609,20 @@ struct SPTask *create_next_audio_frame_task(void)
         sGameLoopTicked = 0;
     }
 
-    gAudioCmd = func_80313CD4(gAudioCmd, &writtenCmds, gCurrAiBuffer, gAiBufferLengths[index]);
-    D_80226EB8 = ((gActiveAudioFrames + D_80226EB8) * gActiveAudioFrames);
+    // For the function to match we have to preserve some arbitrary variable
+    // across this function call.
+    flags = 0;
 
-    taskIndex = gAudioTaskIndex;
+    gAudioCmd = func_80313CD4(gAudioCmd, &writtenCmds, gCurrAiBuffer, gAiBufferLengths[index]);
+    D_80226EB8 = ((D_80226EB8 + gActiveAudioFrames) * gActiveAudioFrames);
+
+    index = gAudioTaskIndex;
     gAudioTask->msgqueue = NULL;
     gAudioTask->msg = NULL;
 
     task = &gAudioTask->task.t;
     task->type = M_AUDTASK;
-    task->flags = 0;
+    task->flags = flags;
     task->ucode_boot = rspF3DBootStart;
     task->ucode_boot_size = (u32) rspF3DBootEnd - (u32) rspF3DBootStart;
     task->ucode = rspAspMainStart;
@@ -633,8 +633,8 @@ struct SPTask *create_next_audio_frame_task(void)
     task->dram_stack_size = 0;
     task->output_buff = NULL;
     task->output_buff_size = NULL;
-    task->data_ptr = gAudioCmdBuffers[taskIndex];
-    task->data_size = writtenCmds * 8;
+    task->data_ptr = gAudioCmdBuffers[index];
+    task->data_size = writtenCmds * sizeof(u64);
 #ifdef VERSION_JP
     task->yield_data_ptr = gAudioSPTaskYieldBuffer;
     task->yield_data_size = 0x400;
@@ -646,16 +646,6 @@ struct SPTask *create_next_audio_frame_task(void)
     func_8031715C();
     return gAudioTask;
 }
-
-#else
-const char sUnusedStr1[] = "DAC:Lost 1 Frame.\n";
-const char sUnusedStr2[] = "DMA: Request queue over.( %d )\n";
-#ifdef VERSION_JP
-GLOBAL_ASM("asm/non_matchings/create_next_audio_frame_task_jp.s")
-#else
-GLOBAL_ASM("asm/non_matchings/create_next_audio_frame_task_us.s")
-#endif
-#endif
 
 void play_sound(s32 soundBits, f32 *pos)
 {

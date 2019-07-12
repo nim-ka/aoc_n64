@@ -44,8 +44,6 @@ extern u32 D_80226D68;
 extern volatile s32 gActiveAudioFrames;
 extern s32 gAudioTaskIndex;
 extern s32 gCurrAiBufferIndex;
-// volatile according to create_next_audio_frame_task, but not to audio_init.
-// Maybe incorrectly extern'd in dma.c?
 extern struct SPTask *gAudioTask;
 extern struct SPTask gAudioTasks[2];
 extern u16 *gAiBuffers[NUMAIBUFFERS];
