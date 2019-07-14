@@ -166,7 +166,7 @@ static void koopa_walk_start(void)
  */
 static void koopa_walk(void)
 {
-    func_8029ED38(9);
+    set_obj_animation_and_sound_state(9);
     koopa_play_footstep_sound(2, 17);
 
     if (o->oKoopaCountdown != 0)
@@ -229,7 +229,7 @@ static void koopa_shelled_act_walk(void)
  */
 static void koopa_shelled_act_run_from_mario(void)
 {
-    func_8029ED38(1);
+    set_obj_animation_and_sound_state(1);
     koopa_play_footstep_sound(0, 11);
 
     // If far from home, run toward it
@@ -391,7 +391,7 @@ static void koopa_unshelled_act_run(void)
     f32 distToShell = 99999.0f;
     struct Object *shell;
 
-    func_8029ED38(3);
+    set_obj_animation_and_sound_state(3);
     koopa_play_footstep_sound(0, 6);
 
     if (o->oKoopaTurningAwayFromWall)
@@ -602,7 +602,7 @@ static void koopa_the_quick_act_wait_before_race(void)
         //  obj_update_dialogue_unk2 for that glitch)
         o->oAction = KOOPA_THE_QUICK_ACT_SHOW_INIT_TEXT;
         o->oForwardVel = 0.0f;
-        func_8029ED38(7);
+        set_obj_animation_and_sound_state(7);
     }
 }
 
@@ -782,7 +782,7 @@ static void koopa_the_quick_act_race(void)
                     o->oSubAction = 2;
                     o->oMoveFlags = 0;
 
-                    func_8029ED38(12);
+                    set_obj_animation_and_sound_state(12);
                 }
                 break;
 
@@ -840,7 +840,7 @@ static void koopa_the_quick_act_stop(void)
  */
 static void koopa_the_quick_act_after_race(void)
 {
-    func_8029ED38(7);
+    set_obj_animation_and_sound_state(7);
 
     if (o->parentObj->oKoopaRaceEndpointUnk100 == 0)
     {

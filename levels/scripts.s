@@ -267,7 +267,7 @@ glabel script_func_global_1
     load_model_from_geo /*model*/ MODEL_HEART,                   /*geo*/ heart_geo
     load_model_from_geo /*model*/ MODEL_FLYGUY,                  /*geo*/ flyguy_geo
     load_model_from_geo /*model*/ MODEL_CHUCKYA,                 /*geo*/ chuckya_geo
-    load_model_from_geo /*model*/ MODEL_BOWLING_BALL_TRACK,      /*geo*/ bowling_ball_track_geo
+    load_model_from_geo /*model*/ MODEL_TRAJECTORY_MARKER_BALL,      /*geo*/ bowling_ball_track_geo
     return
 
 glabel script_func_global_2

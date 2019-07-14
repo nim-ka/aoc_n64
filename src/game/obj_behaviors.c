@@ -809,7 +809,7 @@ void BehHiddenAt120StarsInit(void) {
 #include "behaviors/manta_ray.inc.c"
 #include "behaviors/falling_pillar.inc.c"
 #include "behaviors/floating_box.inc.c"
-#include "behaviors/pendulum.inc.c"
+#include "behaviors/decorative_pendulum.inc.c"
 #include "behaviors/treasure_chest.inc.c"
 #include "behaviors/mips.inc.c"
 #include "behaviors/yoshi.inc.c"

@@ -36,7 +36,7 @@ void ActionTuxiesMother2(void)
     {
         if(o->oSubAction == 0)
         {
-            func_8029ED38(0);
+            set_obj_animation_and_sound_state(0);
             o->oForwardVel = 10.0f;
             if(800.0f < obj_lateral_dist_from_mario_to_home())
                 o->oSubAction = 1;
@@ -45,7 +45,7 @@ void ActionTuxiesMother2(void)
         else
         {
             o->oForwardVel = 0.0f;
-            func_8029ED38(3);
+            set_obj_animation_and_sound_state(3);
             if(obj_lateral_dist_from_mario_to_home() < 700.0f)
                 o->oSubAction = 0;
         }
@@ -53,7 +53,7 @@ void ActionTuxiesMother2(void)
     else
     {
         o->oForwardVel = 0.0f;
-        func_8029ED38(3);
+        set_obj_animation_and_sound_state(3);
     }
     if(sp1C != NULL && sp24 < 300.0f && sp1C->oHeldState != HELD_FREE)
     {
@@ -71,7 +71,7 @@ void ActionTuxiesMother1(void)
     switch(o->oSubAction)
     {
     case 0:
-        func_8029ED38(3);
+        set_obj_animation_and_sound_state(3);
         if(!obj_is_mario_on_platform())
         {
             sp2C = (o->oBehParams >> 0x10) & 0xFF;
@@ -90,7 +90,7 @@ void ActionTuxiesMother1(void)
             }
         }
         else
-            func_8029ED38(0);
+            set_obj_animation_and_sound_state(0);
         break;
     case 1:
         if(o->prevObj->oHeldState == HELD_FREE)
@@ -124,7 +124,7 @@ void ActionTuxiesMother0(void)
     sp2C = 0;
     sp24 = obj_find_nearest_object_with_behavior(bhvSmallPenguin,&sp28);
     obj_scale(4.0f);
-    func_8029ED38(3);
+    set_obj_animation_and_sound_state(3);
     if(sp28 < 500.0f)
         sp2C = 1;
     if(sp24 != NULL && sp28 < 300.0f && sp24->oHeldState != HELD_FREE)
@@ -183,7 +183,7 @@ void ActionSmallPenguin2(void)
     if(o->oTimer == 0)
         if(obj_dist_to_nearest_object_with_behavior(bhvTuxiesMother) < 1000.0f)
             sp1C = 1;
-    func_8029ED38(0);
+    set_obj_animation_and_sound_state(0);
     o->oForwardVel = o->oSmallPenguinUnk104 + 3.0f;
     obj_rotate_yaw_toward(o->oAngleToMario+0x8000,o->oSmallPenguinUnk110+0x600);
     if(o->oDistanceToMario > o->oSmallPenguinUnk108 + 500.0f)
@@ -195,7 +195,7 @@ void ActionSmallPenguin2(void)
 
 void ActionSmallPenguin1(void)
 {
-    func_8029ED38(0);
+    set_obj_animation_and_sound_state(0);
     o->oForwardVel = o->oSmallPenguinUnk104 + 3.0f;
     obj_rotate_yaw_toward(o->oAngleToMario,o->oSmallPenguinUnk110+0x600);
     if(o->oDistanceToMario < o->oSmallPenguinUnk108 + 300.0f)
@@ -211,7 +211,7 @@ void ActionSmallPenguin3(void)
     {
         if(o->oTimer == 6)
             PlaySound2(SOUND_OBJECT_BABYPENGUINTRICK);
-        func_8029ED38(1);
+        set_obj_animation_and_sound_state(1);
         if(o->oTimer > 25)
             if(!mario_is_dive_sliding())
                 o->oAction = 4;
@@ -223,7 +223,7 @@ void ActionSmallPenguin4(void)
     if(o->oTimer > 20)
     {
         o->oForwardVel = 0.0f;
-        func_8029ED38(2);
+        set_obj_animation_and_sound_state(2);
         if(o->oTimer > 40)
             o->oAction = o->oSmallPenguinUnk100;
     }
@@ -234,7 +234,7 @@ void ActionSmallPenguin0(void)
     s32 sp1C;
 
     sp1C = 0;
-    func_8029ED38(3);
+    set_obj_animation_and_sound_state(3);
     if(o->oTimer == 0)
     {
         o->oSmallPenguinUnk110 = (s32)(RandomFloat() * 0x400);
@@ -271,7 +271,7 @@ void ActionSmallPenguin5(void)
             obj_rotate_yaw_toward(sp22,0x400);
         else
             obj_rotate_yaw_toward(sp22+0x8000,0x400);
-        func_8029ED38(0);
+        set_obj_animation_and_sound_state(0);
     }
     func_802BEA58();
 }

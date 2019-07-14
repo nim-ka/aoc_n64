@@ -423,8 +423,8 @@
 #define /*0x0F8*/ oKoopaShellFlameUnkF8 OBJECT_FIELD_F32(0x1C)
 
 /* PiranhaPlant */
-#define /*0x0F4*/ oPiranhaPlant2UnkF4 OBJECT_FIELD_S32(0x1B)
-#define /*0x0F8*/ oPiranhaPlant2UnkF8 OBJECT_FIELD_F32(0x1C) // scale
+#define /*0x0F4*/ oPiranhaPlantSleepMusicState OBJECT_FIELD_S32(0x1B)
+#define /*0x0F8*/ oPiranhaPlantScale OBJECT_FIELD_F32(0x1C)
 
 /* BowserPuzzle */
 #define /*0x0F4*/ oBowserPuzzleUnkF4 OBJECT_FIELD_S32(0x1B)
@@ -966,10 +966,10 @@
 #define /*0x1B2*/ oBubbaUnk1B2 OBJECT_FIELD_S16(0x4A, + 1)
 
 /* PyramidTop */
-#define /*0x0F4*/ oPyramidTopUnkF4 OBJECT_FIELD_S32(0x1B)
+#define /*0x0F4*/ oPyramidTopPillarsTouched OBJECT_FIELD_S32(0x1B)
 
 /* PyramidTopExplosion */
-#define /*0x0F4*/ oPyramidTopExplosionUnkF4 OBJECT_FIELD_F32(0x1B)
+#define /*0x0F4*/ oPyramidTopFragmentsScale OBJECT_FIELD_F32(0x1B)
 
 /* SnowmansBottom */
 #define /*0x0F4*/ oSnowmansBottomUnkF4 OBJECT_FIELD_F32(0x1B)

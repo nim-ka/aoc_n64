@@ -28,7 +28,7 @@ static struct ObjectHitbox sSwoopHitbox =
  */
 static void swoop_act_idle(void)
 {
-    func_8029ED38(1);
+    set_obj_animation_and_sound_state(1);
 
     if (approach_f32_ptr(&o->header.gfx.scale[0], 1.0f, 0.05f) &&
         o->oDistanceToMario < 1500.0f)

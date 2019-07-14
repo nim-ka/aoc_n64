@@ -410,7 +410,7 @@ glabel bhvMrIParticle # 00AC
         callnative bhv_mr_i_particle_loop
     end_loop
 
-glabel bhvGiantPiranhaParticle # 00F8
+glabel bhvPurpleParticle # 00F8
     begin OBJ_LIST_UNIMPORTANT
     billboard
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
@@ -724,7 +724,7 @@ glabel bhvWfBreakableWallRight # 0624
     begin OBJ_LIST_SURFACE
     collision_data wf_seg7_collision_breakable_wall
     goto .L13000644
-    
+
 glabel bhvWfBreakableWallLeft # 0638
     begin OBJ_LIST_SURFACE
     collision_data wf_seg7_collision_breakable_wall_2
@@ -839,7 +839,7 @@ glabel bhvSpawnedStar # 07F8
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     obj_set_int objBehParams2ndByte, 1
     goto .L13000814
-    
+
 glabel bhvUnused080C # 080C
     begin OBJ_LIST_LEVEL
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
@@ -900,7 +900,7 @@ glabel bhvOneCoin # 090C
     begin OBJ_LIST_LEVEL
     obj_set_int objBehParams2ndByte, 1
     goto .L13000920
-    
+
 glabel bhvYellowCoin # 091C
     begin OBJ_LIST_LEVEL
 .L13000920: # 0920
@@ -1027,7 +1027,7 @@ glabel bhvDoorWarp # 0AFC
     begin OBJ_LIST_SURFACE
     obj_set_int objInteractType, 0x800
     goto .L13000B14
-    
+
 glabel bhvDoor # 0B0C
     begin OBJ_LIST_SURFACE
     obj_set_int objInteractType, 0x04
@@ -1268,14 +1268,14 @@ glabel bhvEndPeach # 0EAC
         callnative BehEndPeachLoop
     end_loop
 
-glabel bhvPiranhaParticlesSpawn # 0ED0
+glabel bhvUnusedParticleSpawn # 0ED0
     begin OBJ_LIST_GENACTOR
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     gravity 0x001E, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     obj_set_int objIntangibleTimer, 0
     set_hitbox 0x0028, 0x0028
     begin_loop
-        callnative bhv_piranha_particles_spawn_loop
+        callnative bhv_unused_particle_spawn_loop
     end_loop
 
 glabel bhvUkiki # 0F08
@@ -1614,22 +1614,22 @@ glabel bhvFloorSwitchAnimatesObject # 1468
 glabel bhvFloorSwitchGrills # 1478
     begin OBJ_LIST_SURFACE
     goto .Lbeh_floor_switch_1488
-    
+
 glabel bhvFloorSwitchHardcodedModel # 1484
     begin OBJ_LIST_SURFACE
 .Lbeh_floor_switch_1488: # 1488
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     collision_data purple_switch_seg8_collision_0800C7A8
     begin_loop
-        callnative bhv_floor_switch_loop
+        callnative bhv_purple_switch_loop
         callnative load_object_collision_model
     end_loop
-    
+
 glabel bhvFloorSwitchHiddenObjects # 14AC
     begin OBJ_LIST_SURFACE
     obj_set_int objBehParams2ndByte, 2
     goto .Lbeh_floor_switch_1488
-    
+
 glabel bhvHiddenObject # 14BC
     begin OBJ_LIST_SURFACE
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
@@ -1695,13 +1695,13 @@ glabel bhvCcmTouchedStarSpawn # 15C0
         callnative bhv_ccm_touched_star_spawn_loop
     end_loop
 
-glabel bhvPoundExplodes # 15E4
+glabel bhvUnusedPoundablePlatform # 15E4
     begin OBJ_LIST_SURFACE
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     collision_data sl_seg7_collision_pound_explodes
     obj_set_pos
     begin_loop
-        callnative bhv_pound_explodes_loop
+        callnative bhv_unused_poundable_platform
     end_loop
 
 glabel bhvBetaTrampolineTop # 1608
@@ -2262,7 +2262,7 @@ glabel bhvToxBox # 1F90
         callnative bhv_tox_box_loop
     end_loop
 
-glabel bhvPiranhaPlant2 # 1FBC
+glabel bhvPiranhaPlant # 1FBC
     begin OBJ_LIST_GENACTOR
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_int32 objAnimations, piranha_plant_seg6_anims_0601C31C
@@ -2277,7 +2277,7 @@ glabel bhvPiranhaPlant2 # 1FBC
     obj_set_float objDrawingDistance, 0x07D0
     obj_set_pos
     begin_loop
-        callnative bhv_piranha_plant_2_loop
+        callnative bhv_piranha_plant_loop
     end_loop
 
 glabel bhvLllHexagonalMesh # 2018
@@ -2396,7 +2396,7 @@ glabel bhvChirpChirp # 21E4
     goto .LbhvChirpChirp_21F4
 
 glabel bhvChirpChirpUnused # 21F4
-.LbhvChirpChirp_21F4: 
+.LbhvChirpChirp_21F4:
     graph_clear
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     begin_loop
@@ -2945,7 +2945,7 @@ glabel bhvTree # 2A8C
         callnative BehClimbDetectLoop
     end_loop
 
-glabel bhvPowerupSparkles1 # 2AB8
+glabel bhvSparkle # 2AB8
     begin OBJ_LIST_UNIMPORTANT
     billboard
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
@@ -2955,11 +2955,11 @@ glabel bhvPowerupSparkles1 # 2AB8
     end_repeat
     deactivate
 
-glabel bhvPowerupSparkles2 # 2AD8
+glabel bhvSparkleSpawn # 2AD8
     begin OBJ_LIST_UNIMPORTANT
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     begin_loop
-        callnative bhv_powerup_sparkles_loop
+        callnative bhv_sparkle_spawn_loop
     end_loop
 
 glabel bhvSpecialTripleJumpSparkles # 2AF0
@@ -4010,12 +4010,12 @@ glabel bhvPyramidElevator # 3B40
         callnative load_object_collision_model
     end_loop
 
-glabel bhvPyramidElevatorMetalBalls # 3B78
+glabel bhvPyramidElevatorTrajectoryMarkerBall # 3B78
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     billboard
     begin_loop
-        callnative bhv_pyramid_elevator_metal_balls_loop
+        callnative bhv_pyramid_elevator_trajectory_marker_ball_loop
     end_loop
 
 glabel bhvPyramidTop # 3B94
@@ -4030,21 +4030,21 @@ glabel bhvPyramidTop # 3B94
         callnative load_object_collision_model
     end_loop
 
-glabel bhvPyramidTopExplosion # 3BCC
+glabel bhvPyramidTopFragment # 3BCC
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
-    callnative bhv_pyramid_top_explosion_init
+    callnative bhv_pyramid_top_fragment_init
     begin_loop
-        callnative bhv_pyramid_top_explosion_loop
+        callnative bhv_pyramid_top_fragment_loop
     end_loop
 
-glabel bhvCollisionBoxSubbehavior # 3BEC
+glabel bhvPyramidPillarTouchDetector # 3BEC
     begin OBJ_LIST_LEVEL
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     set_hitbox 0x0032, 0x0032
     obj_set_int objIntangibleTimer, 0
     begin_loop
-        callnative bhv_collision_box_sub_bhvavior_loop
+        callnative bhv_pyramid_pillar_touch_detector_loop
     end_loop
 
 glabel bhvWaterfallSoundLoop # 3C10
@@ -4535,12 +4535,12 @@ glabel bhvJrbFloatingBox # 43E0
         callnative load_object_collision_model
     end_loop
 
-glabel bhvOscillatingPendulum # 440C
+glabel bhvDecorativePendulum # 440C
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
-    callnative bhv_oscillating_pendulum_init
+    callnative bhv_decorative_pendulum_init
     begin_loop
-        callnative bhv_oscillating_pendulum_loop
+        callnative bhv_decorative_pendulum_loop
     end_loop
 
 glabel bhvTreasureChestsShip # 442C

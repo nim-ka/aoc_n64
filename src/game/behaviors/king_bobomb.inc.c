@@ -15,7 +15,7 @@ void ActionKingBobomb0(void)
     {
         obj_become_intangible();
         gSecondCameraFocus = o;
-        func_8029ED38(5);
+        set_obj_animation_and_sound_state(5);
         obj_set_pos_to_home();
         o->oHealth = 3;
         if(obj_is_mario_in_range_and_ready_to_speak(500.0f,100.0f))
@@ -62,7 +62,7 @@ void ActionKingBobomb2(void)
             o->OBJECT_FIELD_S32(0x1E) = 2;
         }
         else
-            func_8029ED38(11);
+            set_obj_animation_and_sound_state(11);
         if(o->OBJECT_FIELD_S32(0x20) == 0)
         {
             o->oForwardVel = 3.0f;
@@ -103,7 +103,7 @@ void ActionKingBobomb3(void)
     {
         if(o->oSubAction == 1)
         {
-            func_8029ED38(1);
+            set_obj_animation_and_sound_state(1);
             o->OBJECT_FIELD_S32(0x1D) += player_performed_grab_escape_action();
             print_debug_bottom_up("%d",o->OBJECT_FIELD_S32(0x1D));
             if(o->OBJECT_FIELD_S32(0x1D) > 10)
@@ -126,7 +126,7 @@ void ActionKingBobomb3(void)
         }
         else
         {
-            func_8029ED38(9);
+            set_obj_animation_and_sound_state(9);
             if(obj_check_anim_frame(31))
             {
                 o->oUnknownUnk88 = 2;
@@ -145,7 +145,7 @@ void ActionKingBobomb1(void)
 {
     o->oForwardVel = 0;
     o->oVelY = 0;
-    func_8029ED38(11);
+    set_obj_animation_and_sound_state(11);
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw,o->oAngleToMario,512);
     if(o->oDistanceToMario < 2500.0f)
         o->oAction = 2;
@@ -190,7 +190,7 @@ void ActionKingBobomb6(void)
         }
         else
         {
-            func_8029ED38(11);
+            set_obj_animation_and_sound_state(11);
             if(obj_rotate_yaw_toward(o->oAngleToMario,0x800) == 1)
                 o->oAction = 2;
         }
@@ -200,7 +200,7 @@ void ActionKingBobomb6(void)
 
 void ActionKingBobomb7(void)
 {
-    func_8029ED38(2);
+    set_obj_animation_and_sound_state(2);
     if(obj_update_dialogue_unk2(2,2,162,116))
     {
         create_sound_spawner(SOUND_OBJECT_KINGWHOMPDEATH);
@@ -290,7 +290,7 @@ void ActionKingBobomb5() // bobomb returns home
             o->oForwardVel = 0;
             o->oGravity = -4.0f;
             o->OBJECT_FIELD_S32(0x1C) = 0;
-            func_8029ED38(7);
+            set_obj_animation_and_sound_state(7);
             PlaySound2(SOUND_OBJECT_BULLYTHWOMP);
             ShakeScreen(1);
             o->oSubAction++;

@@ -27,7 +27,7 @@ static void dorrie_act_move(void)
 
     startYaw = o->oMoveAngleYaw;
     o->oDorrieNeckAngle = -0x26F4;
-    func_8029ED38(1);
+    set_obj_animation_and_sound_state(1);
 
     if (o->oDorrieForwardDistToMario < 320.0f && o->oDorrieGroundPounded)
     {

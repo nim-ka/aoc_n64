@@ -136,7 +136,7 @@ void ActionChuckya0(void)
         o->OBJECT_FIELD_S32(0x1D) = 0;
     else
         o->OBJECT_FIELD_S32(0x1D)++;
-    func_8029ED38(4);
+    set_obj_animation_and_sound_state(4);
     if(o->oForwardVel > 1.0f)
         PlaySound(SOUND_CH6_CHUCKYAMOVE);
     print_debug_bottom_up("fg %d",sp3C);
@@ -167,7 +167,7 @@ void ActionChuckya1(void)
             }
             else
             {
-                func_8029ED38(1);
+                set_obj_animation_and_sound_state(1);
                 o->oMoveAngleYaw += INT_STATUS_GRABBED_MARIO;
                 if(o->OBJECT_FIELD_S32(0x1D)-- < 0)
                     if(func_802B0C54(50.0f,150.0f) || o->OBJECT_FIELD_S32(0x1D) < -16)
@@ -179,7 +179,7 @@ void ActionChuckya1(void)
         }
         else
         {
-            func_8029ED38(3);
+            set_obj_animation_and_sound_state(3);
             if(obj_check_anim_frame(18))
             {
                 PlaySound2(SOUND_OBJECT_UNKNOWN4);
@@ -195,7 +195,7 @@ void ActionChuckya3(void)
 {
     o->oForwardVel = 0;
     o->oVelY = 0;
-    func_8029ED38(4);
+    set_obj_animation_and_sound_state(4);
     if(o->oTimer > 100)
         o->oAction = 0;
 }

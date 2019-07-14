@@ -54,7 +54,7 @@ void bhv_koopa_shell_flame_spawn(void)
 
 void func_802BCCD4(f32 a)
 {
-    struct Object* sp1C = spawn_object(o,MODEL_NONE,bhvPowerupSparkles2);
+    struct Object* sp1C = spawn_object(o,MODEL_NONE,bhvSparkleSpawn);
     sp1C->oPosY += a;
 }
 

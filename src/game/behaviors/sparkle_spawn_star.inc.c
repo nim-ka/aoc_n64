@@ -80,7 +80,7 @@ void bhv_unused_080c_loop(void)
             func_802A3004();
         }
         PlaySound(SOUND_ENVIRONMENT_STAR);
-        spawn_object(o,MODEL_NONE,bhvPowerupSparkles2);
+        spawn_object(o,MODEL_NONE,bhvSparkleSpawn);
         if(o->oVelY < 0 && o->oPosY < o->oHomeY)
         {
             o->oAction++;
@@ -108,7 +108,7 @@ void bhv_unused_080c_loop(void)
             o->oGravity = 0;
             o->oAction++;
         }
-        spawn_object(o,MODEL_NONE,bhvPowerupSparkles2);
+        spawn_object(o,MODEL_NONE,bhvSparkleSpawn);
     }
     else if(o->oAction == 2)
     {

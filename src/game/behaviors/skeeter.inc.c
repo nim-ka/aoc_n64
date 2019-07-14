@@ -33,7 +33,7 @@ static void skeeter_act_idle(void)
 {
     if (o->oMoveFlags & 0x00000003)
     {
-        func_8029ED38(3);
+        set_obj_animation_and_sound_state(3);
         o->oForwardVel = 0.0f;
 
         if (o->oTimer > o->oSkeeterWaitTime && func_8029F788())
@@ -43,7 +43,7 @@ static void skeeter_act_idle(void)
     }
     else
     {
-        func_8029ED38(1);
+        set_obj_animation_and_sound_state(1);
 
         if (o->oMoveFlags & 0x00000010)
         {
@@ -76,7 +76,7 @@ static void skeeter_act_lunge(void)
     else
     {
         skeeter_spawn_waves();
-        func_8029ED38(0);
+        set_obj_animation_and_sound_state(0);
 
         if (o->oMoveFlags & 0x00000200)
         {

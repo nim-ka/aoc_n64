@@ -201,8 +201,8 @@
 
 // vcutm
 #define MODEL_VCUTM_SEESAW_PLATFORM               0x36        // vcutm_geo_0001F0
-#define MODEL_VCUTM_CHECKERBOARD_PLATFORM_SPAWNER 0x37        //! @bug this object doesn't have a geo associated with it, yet is placed in vcutm. 
-                                                              //  This causes a crash when the player quickly looks towards the 
+#define MODEL_VCUTM_CHECKERBOARD_PLATFORM_SPAWNER 0x37        //! @bug this object doesn't have a geo associated with it, yet is placed in vcutm.
+                                                              //  This causes a crash when the player quickly looks towards the
                                                               //  checkerboard platforms after spawning but before it is unloaded.
 
 // bitfs
@@ -551,7 +551,7 @@
 #define MODEL_PEACH                       0xDE        // peach_geo
 #define MODEL_CHUCKYA                     0xDF        // chuckya_geo
 #define MODEL_WHITE_PUFF                  0xE0        // white_puff_geo
-#define MODEL_BOWLING_BALL_TRACK          0xE1        // bowling_ball_track_geo - duplicate used in SSL Pyramid small sized and as a track ball
+#define MODEL_TRAJECTORY_MARKER_BALL          0xE1        // bowling_ball_track_geo - duplicate used in SSL Pyramid small sized and as a track ball
 
 // Menu Models (overwrites Level Geometry IDs)
 #define MODEL_MAIN_MENU_MARIO_SAVE_BUTTON         MODEL_LEVEL_GEOMETRY_03   // main_menu_geo_0001D0

@@ -877,7 +877,7 @@ void SetObjAnimation(s32 arg0)
     func_8037C658(&o->header.gfx, sp1C + arg0);
 }
 
-void func_8029ED38(s32 arg0)
+void set_obj_animation_and_sound_state(s32 arg0)
 {
     u32 *sp1C = o->oAnimations;
     func_8037C658(&o->header.gfx, sp1C + arg0);
@@ -1292,7 +1292,7 @@ s32 mario_is_dive_sliding(void)
 void func_8029FA1C(f32 sp18, s32 sp1C)
 {
     o->oVelY = sp18;
-    func_8029ED38(sp1C);
+    set_obj_animation_and_sound_state(sp1C);
 }
 
 void func_8029FA5C(s32 sp18, s32 sp1C)
@@ -1302,7 +1302,7 @@ void func_8029FA5C(s32 sp18, s32 sp1C)
 
     if (sp18 >= 0)
     {
-        func_8029ED38(sp18);
+        set_obj_animation_and_sound_state(sp18);
     }
 
     o->oAction = sp1C;
@@ -3476,19 +3476,19 @@ void copy_object_behavior_params(struct Object *dst, struct Object *src)
 
 void func_802A4A70(s32 sp18, s32 sp1C)
 {
-    func_8029ED38(sp18);
+    set_obj_animation_and_sound_state(sp18);
     o->header.gfx.unk38.animFrame = sp1C;
 }
 
 s32 func_802A4AB0(s32 sp18)
 {
-    func_8029ED38(sp18);
+    set_obj_animation_and_sound_state(sp18);
     return func_8029F788();
 }
 
 void func_802A4AEC(s32 sp18)
 {
-    func_8029ED38(sp18);
+    set_obj_animation_and_sound_state(sp18);
     func_8029F728();
 }
 

@@ -14,7 +14,7 @@ static struct ObjectHitbox sMadPianoHitbox =
 
 static void mad_piano_act_wait(void)
 {
-    func_8029ED38(0);
+    set_obj_animation_and_sound_state(0);
 
     if (o->oDistanceToMario < 500.0f)
     {
@@ -38,7 +38,7 @@ static void mad_piano_act_wait(void)
 static void mad_piano_act_attack(void)
 {
     obj_update_floor_and_walls();
-    func_8029ED38(1);
+    set_obj_animation_and_sound_state(1);
     func_802F9378(0, 0, SOUND_OBJECT_MADPIANOCHOMPING);
     
     if (o->oDistanceToMario < 500.0f)

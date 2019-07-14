@@ -129,7 +129,7 @@ static void fire_piranha_plant_act_grow(void)
         {
             PlaySound2(SOUND_OBJECT_PIRANHAPLANTSHRINK);
             o->oAction = FIRE_PIRANHA_PLANT_ACT_HIDE;
-            func_8029ED38(0);
+            set_obj_animation_and_sound_state(0);
         }
         else if (o->oTimer < 50)
         {
@@ -182,7 +182,7 @@ void bhv_fire_piranha_plant_update(void)
         }
         else
         {
-            func_8029ED38(2);
+            set_obj_animation_and_sound_state(2);
         }
 
         o->oAction = FIRE_PIRANHA_PLANT_ACT_HIDE;

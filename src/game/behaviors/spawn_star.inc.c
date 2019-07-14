@@ -21,7 +21,7 @@ void bhv_collect_star_init(void) {
     sp1E = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
     if (sp1E & (1 << sp1F)) {
         o->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_TRANSPARENT_STAR];
-    } 
+    }
     else {
         o->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_STAR];
     }
@@ -31,7 +31,7 @@ void bhv_collect_star_init(void) {
 
 void bhv_collect_star_loop(void) {
     o->oFaceAngleYaw += 0x800;
-    
+
     if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         mark_obj_for_deletion(o);
         o->oInteractStatus = 0;
@@ -47,7 +47,7 @@ void bhv_star_spawn_init(void) {
     o->oStarSpawnUnkFC = o->oPosY;
     if (o->oBehParams2ndByte == 0 || gCurrCourseNum == 5)
         func_8028F9E8(173, o);
-    else 
+    else
         func_8028F9E8(176, o);
 
     set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
@@ -68,7 +68,7 @@ void bhv_star_spawn_loop(void) {
             o->oStarSpawnUnkFC += o->oVelY;
             o->oPosY = o->oStarSpawnUnkFC + sins((o->oTimer * 0x8000) / 30) * 400.0f;
             o->oFaceAngleYaw += 0x1000;
-            spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
+            spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
             PlaySound(SOUND_ENVIRONMENT_STAR);
             if (o->oTimer == 30) {
                 o->oAction = 2;
@@ -80,10 +80,10 @@ void bhv_star_spawn_loop(void) {
         case 2:
             if (o->oTimer < 20)
                 o->oVelY = 20 - o->oTimer;
-            else    
-                o->oVelY = -10.0f; 
+            else
+                o->oVelY = -10.0f;
 
-            spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
+            spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
             obj_move_xyz_using_fvel_and_yaw(o);
             o->oFaceAngleYaw = o->oFaceAngleYaw - o->oTimer * 0x10 + 0x1000;
             PlaySound(SOUND_ENVIRONMENT_STAR);
@@ -163,7 +163,7 @@ void bhv_hidden_red_coin_star_loop(void) {
     D_8036008E = o->oHiddenRedCoinStarCoinsCollected;
     switch (o->oAction) {
         case 0:
-            if (o->oHiddenRedCoinStarCoinsCollected == 8) 
+            if (o->oHiddenRedCoinStarCoinsCollected == 8)
                 o->oAction = 1;
             break;
 

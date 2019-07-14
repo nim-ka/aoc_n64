@@ -26,18 +26,18 @@ static struct ObjectHitbox sBooCageHitbox = {
  */
 void bhv_boo_cage_loop(void) {
     UNUSED s32 unused;
-    
+
     set_object_hitbox(o, &sBooCageHitbox);
-    
+
     switch (o->oAction) {
         case BOO_CAGE_ACT_IN_BOO:
             // Don't let Mario enter BBH until the boo is killed
             obj_become_intangible();
-            
+
             // Useless scale. This is also found in the code for BOO_CAGE_ACT_ON_GROUND.
             // Was the boo cage originally meant to have been shrunk and grow while falling?
             obj_scale(1.0f);
-            
+
             // If the cage's parent boo is killed, set the action to BOO_CAGE_ACT_FALLING,
             // give the cage an initial Y velocity of 60 units/frame, and play the puzzle jingle.
             // Otherwise, stay inside the boo.
@@ -48,26 +48,26 @@ void bhv_boo_cage_loop(void) {
             } else {
                 copy_object_pos_and_angle(o, o->parentObj);
             }
-            
+
             break;
         case BOO_CAGE_ACT_FALLING:
             // Reset pitch and roll. This is useless, since the cage never rotates.
             // Was it meant to rotate inside the boo, like the beta boo key?
             o->oFaceAnglePitch = 0;
             o->oFaceAngleRoll = 0;
-            
+
             // Apply standard physics to the cage.
             obj_update_floor_and_walls();
             obj_move_standard(-78);
-            
+
             // Spawn sparkles while the cage falls.
-            spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
-            
+            spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
+
             // When the cage lands/bounces, play a landing/bouncing sound.
             if (o->oMoveFlags & OBJ_MOVE_LANDED) {
                 PlaySound2(SOUND_GENERAL_SOFTLANDING);
             }
-            
+
             // Once the cage stops bouncing and settles on the ground,
             // set the action to BOO_CAGE_ACT_ON_GROUND.
             // This is the only use of the OBJ_MOVE_AT_WATER_SURFACE flag in the game.
@@ -75,30 +75,30 @@ void bhv_boo_cage_loop(void) {
             if (o->oMoveFlags & (OBJ_MOVE_UNDERWATER_ON_GROUND | OBJ_MOVE_AT_WATER_SURFACE | OBJ_MOVE_ON_GROUND)) {
                 o->oAction++;
             }
-            
+
             break;
         case BOO_CAGE_ACT_ON_GROUND:
             // Allow Mario to enter the cage once it's still on the ground.
             obj_become_tangible();
-            
+
             // The other useless scale
             obj_scale(1.0f);
-            
+
             // Set the action to BOO_CAGE_ACT_MARIO_JUMPING_IN when Mario jumps in.
             if (are_objects_collided(o, gMarioObject)) {
                 o->oAction++;
             }
-            
+
             break;
         case BOO_CAGE_ACT_MARIO_JUMPING_IN:
             // All this action does is wait 100 frames after Mario starts
             // jumping into the cage to set the action to BOO_CAGE_ACT_USELESS,
             // which does nothing. By extension, this action is also useless.
-            
+
             if (o->oTimer > 100) {
                 o->oAction++;
             }
-            
+
             break;
         case BOO_CAGE_ACT_USELESS:
             break;

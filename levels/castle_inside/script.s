@@ -250,7 +250,7 @@ glabel level_castle_entry
     area /*index*/ 2, /*geo*/ castle_geo_001858
         object /*model*/ MODEL_CASTLE_CLOCK_MINUTE_HAND, /*pos*/  -205, 2918, 7222, /*angle*/ 0, 180, 0, /*behParam*/ 0x00000000, /*beh*/ bhvClockMinuteHand
         object /*model*/ MODEL_CASTLE_CLOCK_HOUR_HAND,   /*pos*/  -205, 2918, 7222, /*angle*/ 0, 180, 0, /*behParam*/ 0x00000000, /*beh*/ bhvClockHourHand
-        object /*model*/ MODEL_CASTLE_CLOCK_PENDULUM,    /*pos*/  -205, 2611, 7140, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ bhvOscillatingPendulum
+        object /*model*/ MODEL_CASTLE_CLOCK_PENDULUM,    /*pos*/  -205, 2611, 7140, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ bhvDecorativePendulum
         object /*model*/ MODEL_LAKITU,                   /*pos*/  4231, 1408, 1601, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ bhvCameraLakitu
         object /*model*/ MODEL_TOAD,                     /*pos*/  -977, 1203, 2569, /*angle*/ 0,   0, 0, /*behParam*/ 0x4C000000, /*beh*/ bhvToadMessage
         object /*model*/ MODEL_TOAD,                     /*pos*/ -1584, 2253, 7157, /*angle*/ 0, 136, 0, /*behParam*/ 0x53000000, /*beh*/ bhvToadMessage

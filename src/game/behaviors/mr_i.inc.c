@@ -32,7 +32,7 @@ void ActionMrIParticle1(void)
     s32 i;
     mark_object_for_deletion(o);
     for(i = 0;i<10;i++)
-        spawn_object(o,MODEL_PURPLE_MARBLE,bhvGiantPiranhaParticle);
+        spawn_object(o,MODEL_PURPLE_MARBLE,bhvPurpleParticle);
 }
 
 void (*sMrIParticleActions[])(void) = {ActionMrIParticle0,ActionMrIParticle1};

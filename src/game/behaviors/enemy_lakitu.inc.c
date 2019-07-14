@@ -118,7 +118,7 @@ static void enemy_lakitu_update_speed_and_angle(void)
  */
 static void enemy_lakitu_sub_act_no_spiny(void)
 {
-    func_8029ED38(1);
+    set_obj_animation_and_sound_state(1);
 
     if (o->oEnemyLakituSpinyCooldown != 0)
     {

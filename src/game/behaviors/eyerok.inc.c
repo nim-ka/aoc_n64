@@ -272,7 +272,7 @@ static void eyerok_hand_act_sleep(void)
 
 static void eyerok_hand_act_idle(void)
 {
-    func_8029ED38(2);
+    set_obj_animation_and_sound_state(2);
 
     if (o->parentObj->oAction == EYEROK_BOSS_ACT_FIGHT)
     {
@@ -355,7 +355,7 @@ static void eyerok_hand_act_show_eye(void)
 {
     UNUSED s16 val06;
 
-    func_8029ED38(5);
+    set_obj_animation_and_sound_state(5);
     func_802F9378(0, 0, SOUND_OBJECT_BRIDGEEXPLODE);
 
     if (!eyerok_hand_check_attacked())

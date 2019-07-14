@@ -280,7 +280,7 @@ static void monty_mole_act_select_hole(void)
  */
 static void monty_mole_act_rise_from_hole(void)
 {
-    func_8029ED38(1);
+    set_obj_animation_and_sound_state(1);
 
     if (o->oMontyMoleHeightRelativeToFloor >= 49.0f)
     {
@@ -390,7 +390,7 @@ static void monty_mole_hide_in_hole(void)
  */
 static void monty_mole_act_hide(void)
 {
-    func_8029ED38(1);
+    set_obj_animation_and_sound_state(1);
 
     if (o->oMoveFlags & OBJ_MOVE_MASK_ON_GROUND)
     {
@@ -411,7 +411,7 @@ static void monty_mole_act_jump_out_of_hole(void)
 {
     if (o->oVelY > 0.0f)
     {
-        func_8029ED38(9);
+        set_obj_animation_and_sound_state(9);
     }
     else
     {

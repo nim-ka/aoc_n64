@@ -293,7 +293,7 @@ static void platform_on_track_update_pos_or_spawn_ball(s32 ballIndex, f32 x, f32
                 o->oPlatformOnTrackBaseBallIndex + ballIndex,
                 0, 0, 0,
                 o,
-                MODEL_BOWLING_BALL_TRACK,
+                MODEL_TRAJECTORY_MARKER_BALL,
                 bhvTrackBall);
 
             if (trackBall != NULL)
@@ -368,7 +368,7 @@ static void func_802F8D78(f32 arg0, f32 arg1)
                 val24 = arg1;
             }
         }
-        
+
         c = coss(o->oFaceAnglePitch);
         s = sins(o->oFaceAnglePitch);
         val08 = val1C * c + val20 * s;
@@ -451,19 +451,19 @@ static s32 clamp_f32(f32 *value, f32 minimum, f32 maximum)
 
 static void func_802F927C(s32 arg0)
 {
-    func_8029ED38(arg0);
+    set_obj_animation_and_sound_state(arg0);
     func_8029F728();
 }
 
 static s32 func_802F92B0(s32 arg0)
 {
-    func_8029ED38(arg0);
+    set_obj_animation_and_sound_state(arg0);
     return func_8029F788();
 }
 
 static s32 func_802F92EC(s32 arg0, s32 arg1)
 {
-    func_8029ED38(arg0);
+    set_obj_animation_and_sound_state(arg0);
     return obj_check_anim_frame(arg1);
 }
 
@@ -471,7 +471,7 @@ static s32 func_802F932C(s32 arg0)
 {
     if (func_8029F828())
     {
-        func_8029ED38(arg0);
+        set_obj_animation_and_sound_state(arg0);
         return TRUE;
     }
     return FALSE;
@@ -542,7 +542,7 @@ static s32 obj_move_pitch_approach(s16 target, s16 delta)
     {
         return TRUE;
     }
-    
+
     return FALSE;
 }
 
@@ -599,10 +599,10 @@ static s32 obj_smooth_turn(
 
     *angleVel = approach_s16_symmetric(
         *angleVel, (targetAngle - currentAngle) * targetSpeedProportion, accel);
-    
+
     currentSpeed = absi(*angleVel);
     clamp_s16(&currentSpeed, minSpeed, maxSpeed);
-    
+
     *angle = approach_s16_symmetric(*angle, targetAngle, currentSpeed);
     return (s16)(*angle) == targetAngle;
 }
@@ -695,7 +695,7 @@ static s32 oscillate_toward(
 
         *vel += accel;
     }
-    
+
     return FALSE;
 }
 
@@ -757,7 +757,7 @@ static s32 obj_resolve_object_collisions(s32 *targetYaw)
 
             otherObject->oPosX = newCenterX + otherRadius * coss(angle);
             otherObject->oPosZ = newCenterZ + otherRadius * sins(angle);
-            
+
             if (targetYaw != NULL && abs_angle_diff(o->oMoveAngleYaw, angle) < 0x4000)
             {
                 // Bounce off object (or it would, if the above atan2s bug
@@ -792,7 +792,7 @@ static s32 obj_bounce_off_walls_edges_objects(s32 *targetYaw)
 static s32 obj_resolve_collisions_and_turn(s16 targetYaw, s16 turnSpeed)
 {
     obj_resolve_object_collisions(NULL);
-    
+
     if (obj_rotate_yaw_toward(targetYaw, turnSpeed))
     {
         return FALSE;
@@ -1009,7 +1009,7 @@ static void obj_act_squished(f32 baseScale)
     f32 targetScaleY = baseScale * 0.3f;
 
     obj_update_floor_and_walls();
-    
+
     if (o->header.gfx.unk38.curAnim != NULL)
     {
         func_8029F728();
@@ -1602,11 +1602,11 @@ void func_803092AC(s32 arg0)
         {
             if (o->oAction != arg0 && (o->oUnagiUnk104 & 0xFF) >= 7)
             {
-                func_8029ED38(3);
+                set_obj_animation_and_sound_state(3);
             }
             else
             {
-                func_8029ED38(2);
+                set_obj_animation_and_sound_state(2);
             }
         }
     }
@@ -1653,8 +1653,8 @@ void func_80309530(void)
 {
     if (o->oUnagiUnkF4 < 0.0f)
     {
-        func_8029ED38(6);
-        
+        set_obj_animation_and_sound_state(6);
+
         if ((o->oUnagiUnkF4 += 10.0f) > 0.0f)
         {
             o->oUnagiUnkF4 = 0.0f;
@@ -1664,7 +1664,7 @@ void func_80309530(void)
     {
         if (o->oUnagiUnkF4 == 0.0f)
         {
-            func_8029ED38(6);
+            set_obj_animation_and_sound_state(6);
 
             if (o->oTimer > 60 && o->oUnagiUnk1AC < 1000.0f)
             {
@@ -1685,23 +1685,23 @@ void func_80309530(void)
         }
         else if (o->oUnagiUnk110 == 0.0f)
         {
-            func_8029ED38(0);
+            set_obj_animation_and_sound_state(0);
             if (func_8029F828())
             {
                 if (o->oUnagiUnk1AC < 1000.0f)
                 {
                     o->oAction = 4;
                     o->oForwardVel = o->oUnagiUnkF8;
-                    func_8029ED38(1);
+                    set_obj_animation_and_sound_state(1);
                 }
                 else
                 {
                     o->oUnagiUnk110 = -50.0f;
-                    func_8029ED38(4);
+                    set_obj_animation_and_sound_state(4);
                 }
             }
         }
-        
+
         approach_f32_ptr(&o->oUnagiUnkF8, o->oUnagiUnk110, 4.0f);
 
         if ((o->oUnagiUnkF4 += o->oUnagiUnkF8) < 0.0f)
@@ -2053,7 +2053,7 @@ void func_8030AFF0(void)
 
 void func_8030B110(void)
 {
-    func_8029ED38(1);
+    set_obj_animation_and_sound_state(1);
     obj_update_floor_and_walls();
 
     if (o->oForwardVel == 0.0f)
@@ -2325,7 +2325,7 @@ void bhv_book_switch_loop(void)
                             0,
                             0x8000 * sp36 + 0x4000,
                             0);
-                        
+
                         if (sp38 != NULL)
                         {
                             sp38->oAction = 3;

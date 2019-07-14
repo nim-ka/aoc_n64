@@ -116,7 +116,7 @@ extern u32 blue_fish_seg3_anims_0301C2B0[];
 
 void func_802A8D18(f32,f32,s32);
 
-s32 func_802BDAD4(void);
+s32 mario_moving_fast_enough_to_make_piranha_plant_bite(void);
 void func_802C49E0(void);
 
 s32 D_8032F0C0[] = {SAVE_FLAG_HAVE_WING_CAP,SAVE_FLAG_HAVE_METAL_CAP,SAVE_FLAG_HAVE_VANISH_CAP};
@@ -147,6 +147,7 @@ s16 D_8032F0CC[] = {6047,5664,5292,4934,4587,4254,3933,3624,3329,3046,2775,2517,
 // not in behavior file
 struct SpawnParticlesInfo D_8032F270 = {2,20,MODEL_MIST,0,40,5,30,20,252,30,330.0f,10.0f};
 
+// generate_wind_puffs/dust (something like that)
 void func_802AA618(s32 sp18,s32 sp1C,f32 sp20)
 {
     D_8032F270.sizeBase = sp20;
@@ -173,7 +174,7 @@ void func_802AA618(s32 sp18,s32 sp1C,f32 sp20)
 #include "behaviors/water_mist.inc.c"
 #include "behaviors/ground_particles.inc.c"
 #include "behaviors/wind.inc.c"
-#include "behaviors/piranha_particles.inc.c"
+#include "behaviors/unused_particle_spawn.inc.c"
 #include "behaviors/little_cage.inc.c"
 #include "behaviors/falling_rising_platform.inc.c"
 #include "behaviors/fishing_boo.inc.c"
@@ -213,7 +214,7 @@ s32 Geo18_802B1BB0(s32 run, UNUSED struct GraphNode *node, Mat4 mtx)
 
 #include "behaviors/heave_ho.inc.c"
 #include "behaviors/spawn_star_exit.inc.c"
-#include "behaviors/pound_explode.inc.c"
+#include "behaviors/unused_poundable_platform.inc.c"
 #include "behaviors/beta_trampoline.inc.c"
 #include "behaviors/jumping_box.inc.c"
 #include "behaviors/boo_cage.inc.c"
@@ -228,7 +229,7 @@ void func_802B2328(s32 n,s32 a1,s32 a2,s32 r) // n is the number of objects to s
                                     sins(D_8035FF10+i*separation)*a1,
                                     (i+1)*a2,
                                     coss(D_8035FF10+i*separation)*a1,
-                                    o,MODEL_NONE,bhvPowerupSparkles2);
+                                    o,MODEL_NONE,bhvSparkleSpawn);
 
     D_8035FF10 += r*0x100;
 }
@@ -293,7 +294,7 @@ void BehClimbDetectLoop(void)
                 obj_push_mario_away(70.0f);
 }
 
-#include "behaviors/powerup_sparkles.inc.c"
+#include "behaviors/sparkle_spawn.inc.c"
 #include "behaviors/scuttlebug.inc.c" // :scuttleeyes:
 #include "behaviors/whomp.inc.c"
 #include "behaviors/water_splash.inc.c"

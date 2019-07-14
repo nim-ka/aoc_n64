@@ -210,7 +210,7 @@ void print_displaying_credits_entry(void)
 
 void BehEndPeachLoop(void)
 {
-    func_8029ED38(sEndPeachAnimation);
+    set_obj_animation_and_sound_state(sEndPeachAnimation);
     if (func_8029F788())
     {
         // anims: 0-3, 4, 5, 6-8, 9, 10, 11
@@ -223,7 +223,7 @@ void BehEndToadLoop(void)
 {
     s32 toadAnimIndex = (gCurrentObject->oPosX >= 0.0f);
 
-    func_8029ED38(sEndToadAnims[toadAnimIndex]);
+    set_obj_animation_and_sound_state(sEndToadAnims[toadAnimIndex]);
     if (func_8029F788())
     {
         // 0-1, 2-3, 4, 5, 6, 7
@@ -2199,7 +2199,7 @@ static void generate_yellow_sparkles(s16 x, s16 y, s16 z, f32 radius)
     s16 offsetZ = radius * coss(sSparkleGenTheta) * coss(sSparkleGenPhi);
 
     spawn_object_abs_with_rot(
-        gCurrentObject, 0, MODEL_NONE, bhvPowerupSparkles2,
+        gCurrentObject, 0, MODEL_NONE, bhvSparkleSpawn,
         x + offsetX, y + offsetY, z + offsetZ,
         0, 0, 0
     );
@@ -2210,7 +2210,7 @@ static void generate_yellow_sparkles(s16 x, s16 y, s16 z, f32 radius)
     offsetX = offsetZ * 4 / 3;
 
     spawn_object_abs_with_rot(
-        gCurrentObject, 0, MODEL_NONE, bhvPowerupSparkles2,
+        gCurrentObject, 0, MODEL_NONE, bhvSparkleSpawn,
         x - offsetX, y - offsetY, z - offsetZ,
         0, 0, 0
     );

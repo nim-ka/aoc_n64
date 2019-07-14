@@ -14,7 +14,7 @@ s32 D_8032F330[] = {SOUND_GENERAL_CLOSEWOODDOOR, SOUND_GENERAL_CLOSEIRONDOOR};
 
 void func_802AC070(s32 sp18)
 {
-    func_8029ED38(sp18);
+    set_obj_animation_and_sound_state(sp18);
     if(func_8029F788())
         o->oAction = 0;
 }
@@ -63,7 +63,7 @@ void bhv_door_loop(void)
     }
     switch(o->oAction)
     {
-    case 0: func_8029ED38(0); break;
+    case 0: set_obj_animation_and_sound_state(0); break;
     case 1: func_802AC070(1); func_802AC130(); break;
     case 2: func_802AC070(2); func_802AC130(); break;
     case 3: func_802AC070(3); func_802AC1CC(); break;

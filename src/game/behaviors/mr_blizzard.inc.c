@@ -267,7 +267,7 @@ static void func_80307650(void)
         }
         else if (o->oDistanceToMario > 1000.0f)
         {
-            func_8029ED38(1);
+            set_obj_animation_and_sound_state(1);
 
             o->oAction = 0;
             o->oMrBlizzardUnkF4 = 1.0f;
@@ -307,7 +307,7 @@ static void func_80307A0C(void)
     if (approach_f32_ptr(&o->oMrBlizzardUnk10C, -200.0f, 4.0f))
     {
         o->oAction = 0;
-        func_8029ED38(1);
+        set_obj_animation_and_sound_state(1);
     }
 }
 

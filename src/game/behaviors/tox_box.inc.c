@@ -78,7 +78,6 @@ void ActionToxBox0(void)
 }
 
 void (*sToxBoxActions[])(void) = {ActionToxBox0,ActionToxBox1,ActionToxBox2,ActionToxBox3,ActionToxBox4,ActionToxBox5,ActionToxBox6,ActionToxBox7};
-s8 D_8032F998[] = {12,28,50,64,-1};
 
 void bhv_tox_box_loop(void)
 {

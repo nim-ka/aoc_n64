@@ -22,7 +22,7 @@ void bhv_1up_init(void) {
     if (o->oBehParams2ndByte == 1) {
         if ((save_file_get_flags() & 0x50) == 0)
             o->activeFlags = 0;
-    } 
+    }
     else if (o->oBehParams2ndByte == 2) {
         if ((save_file_get_flags() & 0xa0) == 0)
             o->activeFlags = 0;
@@ -58,7 +58,7 @@ void func_802F2F8C(s16 sp1A) {
     o->oForwardVel = 8.0f;
     o->oMoveAngleYaw = o->oAngleToMario + 0x8000;
     bhv_1up_interact();
-    if (sp1A & 0x02) 
+    if (sp1A & 0x02)
         o->oAction = 2;
 
     if (!is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 3000))
@@ -70,8 +70,8 @@ void bhv_1up_walking_loop(void) {
 
     switch(o->oAction) {
         case 0:
-            if (o->oTimer >= 18) 
-                spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
+            if (o->oTimer >= 18)
+                spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
 
             if (o->oTimer == 0)
                 play_sound(SOUND_CH8_UNK63, gDefaultSoundArgs);
@@ -107,8 +107,8 @@ void bhv_1up_running_away_loop(void) {
     sp26 = ObjectStep();
     switch (o->oAction) {
         case 0:
-            if (o->oTimer >= 18) 
-                spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
+            if (o->oTimer >= 18)
+                spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
 
             if (o->oTimer == 0)
                 play_sound(SOUND_CH8_UNK63, gDefaultSoundArgs);
@@ -123,7 +123,7 @@ void bhv_1up_running_away_loop(void) {
             break;
 
         case 1:
-            spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
+            spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
             func_802F2F8C(sp26);
             break;
 
@@ -150,7 +150,7 @@ void func_802F3328(void) {
     if (o->oForwardVel > 40.0)
         o->oForwardVel = 40.0f;
 
-    if (!is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 5000)) 
+    if (!is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 5000))
         o->oAction = 2;
 }
 
@@ -158,7 +158,7 @@ void bhv_1up_sliding_loop(void) {
     switch (o->oAction) {
         case 0:
             SetObjectVisibility(o, 3000);
-            if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 1000)) 
+            if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 1000))
                 o->oAction = 1;
             break;
 
@@ -173,7 +173,7 @@ void bhv_1up_sliding_loop(void) {
     }
 
     bhv_1up_interact();
-    spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
+    spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
 }
 
 void bhv_1up_loop(void) {
@@ -195,7 +195,7 @@ void bhv_1up_jump_on_approach_loop(void) {
         case 1:
             sp26 = ObjectStep();
             func_802F2F8C(sp26);
-            spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
+            spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
             break;
 
         case 2:
@@ -214,7 +214,7 @@ void bhv_1up_hidden_loop(void) {
         case 0:
             o->header.gfx.node.flags |= 0x10;
             if (o->o1UpHiddenUnkF4 == o->oBehParams2ndByte)  {
-                o->oVelY = 40.0f; 
+                o->oVelY = 40.0f;
                 o->oAction = 3;
                 o->header.gfx.node.flags &= ~0x10;
                 play_sound(SOUND_CH8_UNK63, gDefaultSoundArgs);
@@ -224,7 +224,7 @@ void bhv_1up_hidden_loop(void) {
         case 1:
             sp26 = ObjectStep();
             func_802F2F8C(sp26);
-            spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
+            spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
             break;
 
         case 2:
@@ -235,8 +235,8 @@ void bhv_1up_hidden_loop(void) {
 
         case 3:
             sp26 = ObjectStep();
-            if (o->oTimer >= 18) 
-                spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
+            if (o->oTimer >= 18)
+                spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
 
             func_802F2D40();
 
@@ -253,7 +253,7 @@ void bhv_1up_hidden_trigger_loop(void) {
     struct Object *sp1C;
     if (are_objects_collided(o, gMarioObject) == 1) {
         sp1C = obj_nearest_object_with_behavior(bhvHidden1up);
-        if (sp1C != NULL) 
+        if (sp1C != NULL)
             sp1C->o1UpHiddenUnkF4++;
 
         o->activeFlags = 0;
@@ -266,7 +266,7 @@ void bhv_1up_hidden_in_pole_loop(void) {
         case 0:
             o->header.gfx.node.flags |= 0x10;
             if (o->o1UpHiddenUnkF4 == o->oBehParams2ndByte)  {
-                o->oVelY = 40.0f; 
+                o->oVelY = 40.0f;
                 o->oAction = 3;
                 o->header.gfx.node.flags &= ~0x10;
                 play_sound(SOUND_CH8_UNK63, gDefaultSoundArgs);
@@ -280,8 +280,8 @@ void bhv_1up_hidden_in_pole_loop(void) {
 
         case 3:
             sp26 = ObjectStep();
-            if (o->oTimer >= 18) 
-                spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
+            if (o->oTimer >= 18)
+                spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
 
             func_802F2D40();
 

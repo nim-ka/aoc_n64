@@ -187,7 +187,7 @@ void bhvToadMessage_init(void)
 
 static void bhvUnlockDoorStar_spawn_particle(s16 angleOffset)
 {
-    struct Object *sparkleParticle = spawn_object(gCurrentObject, 0, bhvPowerupSparkles2);
+    struct Object *sparkleParticle = spawn_object(gCurrentObject, 0, bhvSparkleSpawn);
 
     sparkleParticle->oPosX += 100.0f * sins((gCurrentObject->oUnlockDoorStarTimer * 0x2800) + angleOffset);
     sparkleParticle->oPosZ += 100.0f * coss((gCurrentObject->oUnlockDoorStarTimer * 0x2800) + angleOffset);

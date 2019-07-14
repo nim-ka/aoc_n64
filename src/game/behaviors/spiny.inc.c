@@ -72,7 +72,7 @@ static void spiny_act_walk(void)
         obj_update_floor_and_walls();
 
         o->oGraphYOffset = -17.0f;
-        func_8029ED38(0);
+        set_obj_animation_and_sound_state(0);
 
         if (o->oMoveFlags & OBJ_MOVE_MASK_ON_GROUND)
         {
@@ -150,7 +150,7 @@ static void spiny_act_walk(void)
 static void spiny_act_held_by_lakitu(void)
 {
     o->oGraphYOffset = 15.0f;
-    func_8029ED38(0);
+    set_obj_animation_and_sound_state(0);
 
     o->oParentRelativePosX = -50.0f;
     o->oParentRelativePosY = 35.0f;
@@ -182,7 +182,7 @@ static void spiny_act_thrown_by_lakitu(void)
         o->oGraphYOffset = 15.0f;
         o->oFaceAnglePitch -= 0x2000;
 
-        func_8029ED38(0);
+        set_obj_animation_and_sound_state(0);
 
         if (o->oMoveFlags & OBJ_MOVE_LANDED)
         {

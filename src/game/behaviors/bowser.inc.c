@@ -150,7 +150,7 @@ void func_802B392C(s32* a)
 
 s32 func_802B39B8(void)
 {
-    func_8029ED38(15);
+    set_obj_animation_and_sound_state(15);
     if(obj_check_anim_frame(21))
         o->oForwardVel = 3.0f;
     if(func_8029F788())
@@ -162,7 +162,7 @@ s32 func_802B39B8(void)
 s32 func_802B3A30(void)
 {
     o->oForwardVel = 3.0f;
-    func_8029ED38(13);
+    set_obj_animation_and_sound_state(13);
     if(func_8029F788())
         return 1;
     else
@@ -171,7 +171,7 @@ s32 func_802B3A30(void)
 
 s32 func_802B3A98(void)
 {
-    func_8029ED38(14);
+    set_obj_animation_and_sound_state(14);
     if(obj_check_anim_frame(20))
         o->oForwardVel = 0.0f;
     if(func_8029F788())
@@ -195,7 +195,7 @@ void func_802B3B0C(void)
 void ActionBowser5() // not much
 {
     o->oForwardVel = 0.0f;
-    func_8029ED38(12);
+    set_obj_animation_and_sound_state(12);
     func_802B3B0C();
 }
 
@@ -365,7 +365,7 @@ void ActionBowser18() // unused?
 void ActionBowser0() // only lasts one frame
 {
     o->oEyesShut = 0;
-    func_8029ED38(12);
+    set_obj_animation_and_sound_state(12);
     // stop him still
     o->oAngleVelYaw = 0;
     o->oForwardVel = 0.0f;
@@ -471,7 +471,7 @@ void ActionBowser16(void)
 void ActionBowser8(void) // only in sky
 {
     s32 frame;
-    func_8029ED38(11);
+    set_obj_animation_and_sound_state(11);
     frame = o->header.gfx.unk38.animFrame;
     if(frame > 24 && frame < 36)
         {
@@ -497,18 +497,18 @@ void ActionBowser12(void)
     }
     if(o->oSubAction == 0)
     {
-        func_8029ED38(25);
+        set_obj_animation_and_sound_state(25);
         o->oSubAction++;
         o->oBowserUnkF8 = 0;
     }
     else if(o->oSubAction == 1)
     {
-        func_8029ED38(25);
+        set_obj_animation_and_sound_state(25);
         func_8029F728();
         func_802B392C(&o->oBowserUnkF8);
         if((o->oBowserUnkF8 > 2))
         {
-            func_8029ED38(26);
+            set_obj_animation_and_sound_state(26);
             o->oVelY = 0.0f;
             o->oForwardVel = 0.0f;
             o->oSubAction++;
@@ -530,7 +530,7 @@ void ActionBowser12(void)
 
 s32 func_802B4A44(void)
 {
-    func_8029ED38(9);
+    set_obj_animation_and_sound_state(9);
     if(obj_check_anim_frame(11))
         return 1;
     else
@@ -544,7 +544,7 @@ s32 func_802B4A94(void)
         o->oForwardVel = 0;
         o->oVelY = 0;
         func_802AA618(0,0,60.0f);
-        func_8029ED38(8);
+        set_obj_animation_and_sound_state(8);
         o->header.gfx.unk38.animFrame = 0;
         func_802A11B4(o,7);
         if(BITDW)
@@ -646,14 +646,14 @@ void ActionBowser10(void)
     switch(o->oSubAction)
     {
     case 0:
-        func_8029ED38(23);
+        set_obj_animation_and_sound_state(23);
         if(func_8029F788())
             o->oBowserUnkF8++;
         if(o->oBowserUnkF8 > 0)
             o->oSubAction++;
         break;
     case 1:
-        func_8029ED38(24);
+        set_obj_animation_and_sound_state(24);
         if(func_8029F788())
             o->oAction = 11;
         break;
@@ -666,7 +666,7 @@ void ActionBowser9(void)
         o->oBowserUnk108 = 3;
     else
         o->oBowserUnk108 = RandomFloat() * 3.0f + 1.0f;
-    func_8029ED38(22);
+    set_obj_animation_and_sound_state(22);
     if(obj_check_anim_frame(5))
         obj_spit_fire(0,200,180,7.0f,MODEL_RED_FLAME,30.0f,10.0f,0x1000);
     if(func_8029F788())
@@ -688,7 +688,7 @@ s32 func_802B5108(s32 a0,s16 a1)
             o->oSubAction++;
     }
     else
-        func_8029ED38(12);
+        set_obj_animation_and_sound_state(12);
     o->oForwardVel = 0.0f;
     o->oMoveAngleYaw += a1;
     if(o->oTimer >= a0)
@@ -730,7 +730,7 @@ void ActionBowser7(void)
         break;
     case 3:
         o->oBowserUnkF8 = 0;
-        func_8029ED38(21);
+        set_obj_animation_and_sound_state(21);
         spawn_object_relative_with_scale(0, 100,-50,0,3.0f,o,MODEL_SMOKE,&bhvWhitePuffSmoke2);
         spawn_object_relative_with_scale(0,-100,-50,0,3.0f,o,MODEL_SMOKE,&bhvWhitePuffSmoke2);
         if(approach_f32_signed(&o->oForwardVel,0,-1.0f))
@@ -739,7 +739,7 @@ void ActionBowser7(void)
         break;
     case 2:
         o->oForwardVel = 0.0f;
-        func_8029ED38(20);
+        set_obj_animation_and_sound_state(20);
         if(func_8029F788())
         {
             if(BITS)
@@ -777,7 +777,7 @@ void ActionBowser1(void) // unused?
         o->oBowserUnkF8 = 0;
     if(o->oSubAction == 0)
     {
-        func_8029ED38(2);
+        set_obj_animation_and_sound_state(2);
         func_802B392C(&o->oBowserUnkF8);
         if(o->oMoveFlags & 2)
         {
@@ -833,7 +833,7 @@ void ActionBowser2(void)
         func_802B5738();
         break;
     case 1:
-        func_8029ED38(9);
+        set_obj_animation_and_sound_state(9);
         if(obj_check_anim_frame(11))
         {
             o->oMoveAngleYaw = o->oBowserAngleToCentre;
@@ -915,7 +915,7 @@ void func_802B5C78(void)
 
 void func_802B5D18(void)
 {
-    func_8029ED38(16);
+    set_obj_animation_and_sound_state(16);
     if(BITS)
         o->oForwardVel = -400.0f;
     else
@@ -1264,7 +1264,7 @@ void func_802B697C(void)
     case 1:
         if(func_8029F788())
         {
-            func_8029ED38(2);
+            set_obj_animation_and_sound_state(2);
             o->oBowserUnk10E++;
         }
         break;

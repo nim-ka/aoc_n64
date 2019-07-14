@@ -97,7 +97,7 @@ static void racing_penguin_act_race(void)
         clamp_f32(&targetSpeed, minSpeed, 150.0f);
         obj_forward_vel_approach(targetSpeed, 0.4f);
 
-        func_8029ED38(1);
+        set_obj_animation_and_sound_state(1);
         obj_rotate_yaw_toward(o->oPathedTargetYaw, (s32)(15.0f * o->oForwardVel));
 
         if (func_8029F828() && (o->oMoveFlags & 0x00000003))
@@ -144,7 +144,7 @@ static void racing_penguin_act_show_final_text(void)
     {
         if (obj_rotate_yaw_toward(0, 200))
         {
-            func_8029ED38(3);
+            set_obj_animation_and_sound_state(3);
             o->oForwardVel = 0.0f;
 
             if (obj_is_mario_in_range_and_ready_to_speak(400.0f, 400.0f))
@@ -169,7 +169,7 @@ static void racing_penguin_act_show_final_text(void)
         }
         else
         {
-            func_8029ED38(0);
+            set_obj_animation_and_sound_state(0);
 
 #ifndef VERSION_JP
             play_penguin_walking_sound(1);

@@ -641,8 +641,8 @@
 /* Channel 9 Sound Effects */
 // Channel 9 loads sounds from the same place as channel 5. See the channel 8 comment for why this was done.
 /* not verified */ #define SOUND_CH9_UNK04      SOUND_ARG_LOAD(9, 0, 0x04, 0x00, 8)
-/* not verified */ #define SOUND_CH9_UNK10      SOUND_ARG_LOAD(9, 0, 0x10, 0x50, 8)
-/* not verified */ #define SOUND_CH9_UNK11      SOUND_ARG_LOAD(9, 0, 0x11, 0x60, 8)
+#define SOUND_PIRANHA_PLANT_BITE      SOUND_ARG_LOAD(9, 0, 0x10, 0x50, 8)
+#define SOUND_PIRANHA_PLANT_DYING      SOUND_ARG_LOAD(9, 0, 0x11, 0x60, 8)
 /* not verified */ #define SOUND_CH9_UNK19      SOUND_ARG_LOAD(9, 0, 0x19, 0x20, 8)
 /* not verified */ #define SOUND_CH9_UNK1C      SOUND_ARG_LOAD(9, 0, 0x1C, 0x00, 8)
 /* not verified */ #define SOUND_CH9_UNK42      SOUND_ARG_LOAD(9, 1, 0x42, 0x40, 8)

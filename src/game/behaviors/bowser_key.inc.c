@@ -26,7 +26,7 @@ void bhv_bowser_key_loop(void)
         if(o->oTimer == 0)
             o->oVelY = 70.0f;
         func_802B2328(3,200,80,-60);
-        spawn_object(o,MODEL_NONE,bhvPowerupSparkles2);
+        spawn_object(o,MODEL_NONE,bhvSparkleSpawn);
         obj_update_floor_and_walls();
         obj_move_standard(78);
         if(o->oMoveFlags & OBJ_MOVE_ON_GROUND)
@@ -35,7 +35,7 @@ void bhv_bowser_key_loop(void)
 #ifndef VERSION_JP
             PlaySound2(SOUND_GENERAL_UNKNOWN3_2);
 #else
-            PlaySound2(SOUND_GENERAL_UNKNOWN3_LOWPRIO);    
+            PlaySound2(SOUND_GENERAL_UNKNOWN3_LOWPRIO);
 #endif
     }
     else

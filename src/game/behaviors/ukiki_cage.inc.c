@@ -84,26 +84,26 @@ void func_802BA000(void)
     switch(o->oSubAction)
     {
     case 1:
-        func_8029ED38(9);
+        set_obj_animation_and_sound_state(9);
         if(func_8029F788())
             o->oSubAction = 0;
         break;
     case 2:
-        func_8029ED38(4);
+        set_obj_animation_and_sound_state(4);
         if(func_8029F788())
             o->oUkikiOpenCageUnkF4++;
         if(o->oUkikiOpenCageUnkF4 >= o->oUkikiOpenCageUnkF6 * 2)
             o->oSubAction = 0;
         break;
     case 3:
-        func_8029ED38(5);
+        set_obj_animation_and_sound_state(5);
         if(func_8029F788())
             o->oUkikiOpenCageUnkF4++;
         if(o->oUkikiOpenCageUnkF4 >= o->oUkikiOpenCageUnkF6)
             o->oSubAction = 0;
         break;
     case 4:
-        func_8029ED38(10);
+        set_obj_animation_and_sound_state(10);
         if(func_8029F788())
             o->oSubAction = 0;
         break;
@@ -152,7 +152,7 @@ void ActionUkikiOpenCage0(void)
 void ActionUkikiOpenCage7(void)
 {
     UNUSED s32 unused;
-    func_8029ED38(0);
+    set_obj_animation_and_sound_state(0);
     o->oMoveAngleYaw = obj_angle_to_home();
     o->oForwardVel = 10.0f;
     if(o->oPosY > -1550.0f)
@@ -181,7 +181,7 @@ void ActionUkikiOpenCage2(void)
     s32 sp1C;
     if(o->oTimer == 0)
         o->oForwardVel = RandomFloat() * 3.0f + 2.0f;
-    func_8029ED38(11);
+    set_obj_animation_and_sound_state(11);
     sp1C = obj_rotate_yaw_toward(o->oAngleToMario,0x800);
     if(sp1C)
         o->oAction = 0;
@@ -205,7 +205,7 @@ void ActionUkikiOpenCage1(void)
     }
     if(o->oTimer == 0)
         o->oUkikiOpenCageUnk110 = RandomFloat() * 100.0f + 350.0f;
-    func_8029ED38(0);
+    set_obj_animation_and_sound_state(0);
     obj_rotate_yaw_toward(sp1A,0x800);
     func_8029F684(20.0f,0.9f);
     if(sp1C)
@@ -251,7 +251,7 @@ void ActionUkikiOpenCage3(void)
     else
     {
         o->oForwardVel = 0.0f;
-        func_8029ED38(7);
+        set_obj_animation_and_sound_state(7);
         obj_become_tangible();
         if(func_8029F788())
             o->oAction = 1;
@@ -274,7 +274,7 @@ void ActionUkikiOpenCage4(void)
     switch(o->oSubAction)
     {
     case 0:
-        func_8029ED38(0);
+        set_obj_animation_and_sound_state(0);
         o->oUkikiOpenCageUnkFC = D_8032F77C;
         if(obj_follow_path(0) != -1)
         {
@@ -289,19 +289,19 @@ void ActionUkikiOpenCage4(void)
         }
         break;
     case 1:
-        func_8029ED38(5);
+        set_obj_animation_and_sound_state(5);
         obj_rotate_yaw_toward(o->oAngleToMario,0x400);
         if(func_802A3FF8(200.0f,30.0f,0x7FFF))
             o->oSubAction++;
         else // weird?
             break;
     case 2:
-        func_8029ED38(10);
+        set_obj_animation_and_sound_state(10);
         if(obj_update_dialogue_unk2(3,1,162,80))
             o->oSubAction++;
         break;
     case 3:
-        func_8029ED38(0);
+        set_obj_animation_and_sound_state(0);
         if(obj_rotate_yaw_toward(sp1E,0x400))
         {
             o->oForwardVel = 10.0f;
@@ -319,7 +319,7 @@ void ActionUkikiOpenCage4(void)
         if(o->oMoveFlags & 1)
         {
             play_puzzle_jingle();
-            func_8029ED38(5);
+            set_obj_animation_and_sound_state(5);
             o->oSubAction++;
             o->oUnk1B0_S16 = 32;
             sp24->parentObj->oUnknownUnk88 = 1;

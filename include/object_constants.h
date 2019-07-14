@@ -151,7 +151,7 @@
     #define BLUE_COIN_SWITCH_ACT_IDLE 0
     #define BLUE_COIN_SWITCH_ACT_RECEDING 1
     #define BLUE_COIN_SWITCH_ACT_TICKING 2
-    
+
 /* Moving Blue Coin */
     /* oAction */
     #define MOV_BCOIN_ACT_STILL 0
@@ -163,7 +163,7 @@
     #define MOV_YCOIN_ACT_BLINKING 1
     #define MOV_YCOIN_ACT_LAVA_DEATH 100
     #define MOV_YCOIN_ACT_DEATH_PLANE_DEATH 101
-    
+
 /* Bob-omb Buddy */
     /* oBehParams2ndByte */
     #define BOBOMB_BUDDY_BP_STYPE_GENERIC 0
@@ -185,14 +185,14 @@
     /* oBobombBuddyHasTalkedToMario */
     #define BOBOMB_BUDDY_HAS_NOT_TALKED 0
     #define BOBOMB_BUDDY_HAS_TALKED 2
-    
+
 /* Cannon Trap Door */
     /* oAction */
     #define CANNON_TRAP_DOOR_ACT_CLOSED 0
     #define CANNON_TRAP_DOOR_ACT_CAM_ZOOM 1
     #define CANNON_TRAP_DOOR_ACT_OPENING 2
     #define CANNON_TRAP_DOOR_ACT_OPEN 3
-    
+
 /* Homing Amp */
     /* oAction */
     #define HOMING_AMP_ACT_INACTIVE 0
@@ -200,18 +200,18 @@
     #define HOMING_AMP_ACT_CHASE 2
     #define HOMING_AMP_ACT_GIVE_UP 3
     #define HOMING_AMP_ACT_ATTACK_COOLDOWN 4
-    
+
 /* Amp */
     /* oBehParams2ndByte */
     #define AMP_BP_ROT_RADIUS_200 0
     #define AMP_BP_ROT_RADIUS_300 1
     #define AMP_BP_ROT_RADIUS_400 2
     #define AMP_BP_ROT_RADIUS_0 3
-    
+
     /* oAction */
     #define AMP_ACT_IDLE 2
     #define AMP_ACT_ATTACK_COOLDOWN 4
-    
+
 /* Butterfly */
     /* oAction */
     #define BUTTERFLY_ACT_RESTING 0
@@ -227,7 +227,7 @@
     #define HOOT_ACT_ASCENT 0
     #define HOOT_ACT_CARRY 1
     #define HOOT_ACT_TIRED 2
-    
+
 /* Bully (all variants) */
     /* oBehParams2ndByte */
     #define BULLY_BP_SIZE_SMALL 0
@@ -245,34 +245,34 @@
     #define BULLY_STYPE_GENERIC 0
     #define BULLY_STYPE_MINION 1
     #define BULLY_STYPE_CHILL 16
-    
+
 /* Water Ring (all variants) */
     /* oAction */
     #define WATER_RING_ACT_NOT_COLLECTED 0
     #define WATER_RING_ACT_COLLECTED 1
-    
+
 /* Jet Stream Water Ring Spawner */
     /* oAction */
     #define JS_RING_SPAWNER_ACT_ACTIVE 0
     #define JS_RING_SPAWNER_ACT_INACTIVE 1
-    
+
 /* Celebration Star */
     /* oAction */
     #define CELEB_STAR_ACT_SPIN_AROUND_MARIO 0
     #define CELEB_STAR_ACT_FACE_CAMERA 1
-    
+
 /* LLL Drawbridge */
     /* oAction */
     #define LLL_DRAWBRIDGE_ACT_LOWER 0
     #define LLL_DRAWBRIDGE_ACT_RAISE 1
-    
+
 /* Bomp (both variants) */
     /* oAction */
     #define BOMP_ACT_WAIT 0
     #define BOMP_ACT_POKE_OUT 1
     #define BOMP_ACT_EXTEND 2
     #define BOMP_ACT_RETRACT 3
-    
+
 /* WF Sliding Brick Platform */
     /* oBehParams2ndByte */
     #define WF_SLID_BRICK_PTFM_BP_MOV_VEL_10 1
@@ -282,12 +282,12 @@
     #define WF_SLID_BRICK_PTFM_ACT_WAIT 0
     #define WF_SLID_BRICK_PTFM_ACT_EXTEND 1
     #define WF_SLID_BRICK_PTFM_ACT_RETRACT 2
-    
+
 /* Fake Moneybag Coin */
     /* oAction */
     #define FAKE_MONEYBAG_COIN_ACT_IDLE 0
     #define FAKE_MONEYBAG_COIN_ACT_TRANSFORM 1
-    
+
 /* Moneybag */
     /* oAction */
     #define MONEYBAG_ACT_APPEAR 0
@@ -303,12 +303,12 @@
     #define MONEYBAG_JUMP_JUMP_AND_BOUNCE 3
     #define MONEYBAG_JUMP_WALK_AROUND 4
     #define MONEYBAG_JUMP_WALK_HOME 5
-    
+
 /* Bowling Ball */
     /* oAction */
     #define BBALL_ACT_INITIALIZE 0
     #define BBALL_ACT_ROLL 1
-    
+
 /* Bowling Ball + Bowling Ball Spawner (all variants) */
     /* oBehParams2ndByte */
     #define BBALL_BP_STYPE_BOB_UPPER 0
@@ -316,7 +316,7 @@
     #define BBALL_BP_STYPE_BOB_LOWER 2
     #define BBALL_BP_STYPE_THI_LARGE 3
     #define BBALL_BP_STYPE_THI_SMALL 4
-    
+
 /* Bowling Ball (Free) */
     /* oAction */
     #define FREE_BBALL_ACT_IDLE 0
@@ -371,7 +371,7 @@
     #define ARROW_LIFT_ACT_IDLE 0
     #define ARROW_LIFT_ACT_MOVING_AWAY 1
     #define ARROW_LIFT_ACT_MOVING_BACK 2
-    
+
     /* status */
     #define ARROW_LIFT_NOT_DONE_MOVING 0
     #define ARROW_LIFT_DONE_MOVING 1
@@ -563,6 +563,23 @@
     #define MONTY_MOLE_ROCK_ACT_HELD 0
     #define MONTY_MOLE_ROCK_ACT_MOVE 1
 
+/* Piranha Plant */
+    /* oAction */
+    #define PIRANHA_PLANT_ACT_IDLE 0
+    #define PIRANHA_PLANT_ACT_SLEEPING 1
+    #define PIRANHA_PLANT_ACT_BITING 2
+    #define PIRANHA_PLANT_ACT_WOKEN_UP 3
+    #define PIRANHA_PLANT_ACT_STOPPED_BITING 4
+    #define PIRANHA_PLANT_ACT_ATTACKED 5
+    #define PIRANHA_PLANT_ACT_SHRINK_AND_DIE 6
+    #define PIRANHA_PLANT_ACT_WAIT_TO_RESPAWN 7
+    #define PIRANHA_PLANT_ACT_RESPAWN 8
+
+/* Piranha Plant bubble */
+    #define PIRANHA_PLANT_BUBBLE_ACT_IDLE 0
+    #define PIRANHA_PLANT_BUBBLE_ACT_GROW_SHRINK_LOOP 1
+    #define PIRANHA_PLANT_BUBBLE_ACT_BURST 2
+
 /* Platform on track */
     /* oAction */
     #define PLATFORM_ON_TRACK_ACT_INIT 0
@@ -583,6 +600,34 @@
     #define PLATFORM_ON_TRACK_TYPE_SKI_LIFT  1
     #define PLATFORM_ON_TRACK_TYPE_CHECKERED 2
     #define PLATFORM_ON_TRACK_TYPE_GRATE     3
+
+/* Purple switch */
+    #define PURPLE_SWITCH_IDLE                      0
+    #define PURPLE_SWITCH_PRESSED                   1
+    #define PURPLE_SWITCH_TICKING                   2
+    #define PURPLE_SWITCH_UNPRESSED                 3
+    #define PURPLE_SWITCH_WAIT_FOR_MARIO_TO_GET_OFF 4
+
+/* Pyramid elevator */
+    #define PYRAMID_ELEVATOR_IDLE              0
+    #define PYRAMID_ELEVATOR_START_MOVING      1
+    #define PYRAMID_ELEVATOR_CONSTANT_VELOCITY 2
+    #define PYRAMID_ELEVATOR_AT_BOTTOM         3
+
+/* Pyramid top */
+    #define PYRAMID_TOP_ACT_CHECK_IF_SOLVED 0
+    #define PYRAMID_TOP_ACT_SPINNING 1
+    #define PYRAMID_TOP_ACT_EXPLODE 2
+
+/* Pyramid wall */
+    /* oAction */
+    #define PYRAMID_WALL_ACT_MOVING_DOWN 0
+    #define PYRAMID_WALL_ACT_MOVING_UP 1
+
+    /* oBehParams2ndByte */
+    #define PYRAMID_WALL_BP_POSITION_HIGH 0
+    #define PYRAMID_WALL_BP_POSITION_MIDDLE 1
+    #define PYRAMID_WALL_BP_POSITION_LOW 2
 
 /* Water bomb */
     /* oAction */
