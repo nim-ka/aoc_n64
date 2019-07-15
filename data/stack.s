@@ -12,16 +12,10 @@ glabel gAudioHeap
 glabel gAudioSPTaskYieldBuffer
     .space 0x400
 .endif
-
-/*
- * Probably Thread 2 stack space; its even in the
- * same area. unreferenced.
- */
-
-.ifndef F3DEX_GBI_SHARED /* F3DEX task yield buffer */
+/* Probably Thread 2 stack space. Unreferenced, and stubbed out with f3dex to
+ * avoid an overflowing .stack segment. */
+.ifndef F3DEX_GBI_SHARED
     .space 0x1400
-.else
-    .space 0x1100
 .endif
 glabel gIdleThreadStack
     .space 0x800
@@ -197,14 +191,8 @@ glabel D_80226EB8
     .space 0x8
 glabel D_80226EC0
     .space 0x8
-/*
- * Pad to a multiple of 0x1000
- * (Is gGfxSPTaskOutputBuffer declared in a .o file with large alignment?)
- */
-.ifdef VERSION_JP
-    .space 0x138
-.else
-    .space 0x338
-.endif
+
+# There's a bunch of unused space here due to the align (~0x100 in JP, ~0x300 in US)
+.balign 0x1000
 glabel gGfxSPTaskOutputBuffer /* FIFO buffer */
     .space 0x1F000
