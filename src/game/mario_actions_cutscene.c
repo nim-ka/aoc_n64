@@ -565,7 +565,7 @@ s32 act_reading_automatic_dialogue(struct MarioState *m)
             if (gShouldNotPlayCastleMusic)
             {
                 gShouldNotPlayCastleMusic = FALSE;
-                play_cutscene_music(SEQUENCE_ARGS(0, FALSE, SEQ_LEVEL_INSIDE_CASTLE));
+                play_cutscene_music(SEQUENCE_ARGS(0, SEQ_LEVEL_INSIDE_CASTLE));
             }
             if (m->prevAction == ACT_STAR_DANCE_WATER)
                 set_mario_action(m, ACT_WATER_IDLE, 0); // 100c star?
@@ -700,9 +700,9 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater)
                 {
                     if (gCurrLevelNum == LEVEL_BOWSER_1 ||
                         gCurrLevelNum == LEVEL_BOWSER_2)
-                        play_music(1, SEQUENCE_ARGS(15, FALSE, SEQ_EVENT_CUTSCENE_COLLECT_KEY), 0);
+                        play_music(1, SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_COLLECT_KEY), 0);
                     else
-                        play_music(1, SEQUENCE_ARGS(15, FALSE, SEQ_EVENT_CUTSCENE_COLLECT_STAR), 0);
+                        play_music(1, SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_COLLECT_STAR), 0);
                 }
                 break;
 
@@ -2044,7 +2044,7 @@ static void jumbo_star_cutscene_falling(struct MarioState *m)
 
         if (perform_air_step(m, 1) == AIR_STEP_LANDED)
         {
-            play_cutscene_music(SEQUENCE_ARGS(15, FALSE, SEQ_EVENT_CUTSCENE_VICTORY));
+            play_cutscene_music(SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_VICTORY));
             func_80251280(m, SOUND_TERRAIN_2);
             m->actionState++;
         }
@@ -2289,7 +2289,7 @@ static void end_peach_cutscene_summon_jumbo_star(struct MarioState *m)
     if (m->actionState == 0 && func_802507AC(m))
         m->actionState++;
     if (m->actionTimer == 90)
-        play_cutscene_music(SEQUENCE_ARGS(0, FALSE, SEQ_EVENT_CUTSCENE_ENDING));
+        play_cutscene_music(SEQUENCE_ARGS(0, SEQ_EVENT_CUTSCENE_ENDING));
     if (m->actionTimer == 255)
         advance_cutscene_step(m);
 
@@ -2598,7 +2598,7 @@ static void end_peach_cutscene_star_dance(struct MarioState *m)
         #ifndef VERSION_JP
             func_80320040(0, 60);
         #endif
-            play_cutscene_music(SEQUENCE_ARGS(15, FALSE, SEQ_EVENT_CUTSCENE_CREDITS));
+            play_cutscene_music(SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_CREDITS));
             break;
 
         case 142:

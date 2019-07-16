@@ -20,21 +20,21 @@ extern struct AdsrEnvelope gDefaultEnvelope[3];
 
 extern s16 *gWaveSamples[4];
 
-extern u16 gPanQuantization[10];
-extern f32 D_80332CE4[128];
-extern f32 D_80332EE4[128];
-extern f32 D_803330E4[128];
+extern u16 gHeadsetPanQuantization[10];
+extern f32 gHeadsetPanVolume[128];
+extern f32 gStereoPanVolume[128];
+extern f32 gDefaultPanVolume[128];
 
-extern f32 D_803332E4[128];
-extern f32 D_803334E4[128];
-extern f32 D_803336E4[128];
-extern f32 D_803338E4[128];
-extern f32 D_80333AE4[128];
-extern f32 D_80333CE4[128];
+extern f32 gVolRampingLhs136[128];
+extern f32 gVolRampingRhs136[128];
+extern f32 gVolRampingLhs144[128];
+extern f32 gVolRampingRhs144[128];
+extern f32 gVolRampingLhs128[128];
+extern f32 gVolRampingRhs128[128];
 
 extern s16 gTatumsPerBeat;
-extern s8 D_80333EE8;
-extern s32 D_80333EEC;
+extern s8 gUnusedCount80333EE8;
+extern s32 gAudioHeapSize;
 extern s32 D_80333EF0;
 extern volatile s32 gAudioLoadLock;
 

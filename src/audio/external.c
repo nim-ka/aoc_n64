@@ -54,7 +54,7 @@ struct SoundCharacteristics
     u32 priority;
     u32 soundBits; // packed bits, same as first arg to play_sound
     u8 soundStatus;
-    u8 unk19; // sometimes set to 10
+    u8 unk19; // ttl? sometimes set to 10
     u8 prev;
     u8 next;
 }; // size = 0x1C
@@ -358,16 +358,16 @@ f32 gDefaultSoundArgs[3] = {0.0f, 0.0f, 0.0f};
 f32 gUnusedSoundArgs[3] = {1.0f, 1.0f, 1.0f};
 u8 gSoundBankDisabled[16] = {0};
 u8 D_80332108 = 0;
-u8 init803210D4 = FALSE;
+u8 sHasStartedFadeOut = FALSE;
 u16 D_80332110 = 0;
-u8 D_80332114 = 0;
-u16 sUnused80332118 = 0; // never read, sometimes set to 0
+u8 sUnused80332114 = 0; // never read, set to 0
+u16 sUnused80332118 = 0; // never read, set to 0
 u8 D_8033211C = 0;
 u8 D_80332120 = 0;
 u8 D_80332124 = 0;
 u8 sBackgroundMusicQueueSize = 0;
 #ifndef VERSION_JP
-u8 sUnused8033323C = 0;
+u8 sUnused8033323C = 0; // never read, set to 0
 #endif
 
 // bss
@@ -403,56 +403,84 @@ void func_80320ED8(void);
 #ifndef VERSION_JP
 void unused_8031E4F0(void)
 {
-    // This is some debug function which is almost entirely optimized away,
-    // except for loops, string literals (the original source likely did
-    // "#define printf /* nothing */"), and a read of a volatile variable.
+    // This is a debug function which is almost entirely optimized away,
+    // except for loops, string literals, and a read of a volatile variable.
+    // The string literals have allowed it to be partially reconstructed.
     s32 i;
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-value"
-    "AUTOSEQ ";
-    "%2x %2x <%5x : %5x / %5x>\n";
-    "AUTOBNK ";
-    "%2x %3x <%5x : %5x / %5x>\n";
-    "STAYSEQ ";
-    "[%2x] <%5x / %5x>\n";
-    "%2x ";
-    "\n";
-    "STAYBNK ";
-    "[%2x] <%5x / %5x>\n";
-    "%2x ";
-    "\n\n";
-    "    0123456789ABCDEF0123456789ABCDEF01234567\n";
-    "--------------------------------------------\n";
-    "SEQ ";
-    "%1x";
-    "\n";
-    "BNK ";
-    "%1x";
-    "\n";
-    "FIXHEAP ";
-    "%4x / %4x\n";
-    "DRVHEAP ";
-    "%5x / %5x\n";
-    "DMACACHE  %4d Blocks\n";
-    "CHANNELS  %2d / MAX %3d \n";
-    "TEMPOMAX  %d\n";
-    "TEMPO G0  %d\n";
-    "TEMPO G1  %d\n";
-    "TEMPO G2  %d\n";
-    "DEBUGFLAG  %8x\n";
-    "COUNT %8d\n";
-#pragma GCC diagnostic pop
+    stubbed_printf("AUTOSEQ ");
+    stubbed_printf("%2x %2x <%5x : %5x / %5x>\n",
+            gSeqLoadedPool.temporary.entries[0].id,
+            gSeqLoadedPool.temporary.entries[1].id,
+            gSeqLoadedPool.temporary.entries[0].size,
+            gSeqLoadedPool.temporary.entries[1].size,
+            gSeqLoadedPool.temporary.pool.size);
 
-    for (i = 0; (u32)i < gSeqLoadedPool.first.unk0; i++) {}
-    for (i = 0; (u32)i < gSoundLoadedPool.first.unk0; i++) {}
-    for (i = 0; i < 40; i++) {}
-    for (i = 0; i < 40; i += 4) {}
+    stubbed_printf("AUTOBNK ");
+    stubbed_printf("%2x %3x <%5x : %5x / %5x>\n",
+            gBankLoadedPool.temporary.entries[0].id,
+            gBankLoadedPool.temporary.entries[1].id,
+            gBankLoadedPool.temporary.entries[0].size,
+            gBankLoadedPool.temporary.entries[1].size,
+            gBankLoadedPool.temporary.pool.size);
+
+    stubbed_printf("STAYSEQ ");
+    stubbed_printf("[%2x] <%5x / %5x>\n",
+            gSeqLoadedPool.persistent.numEntries,
+            gSeqLoadedPool.persistent.pool.cur - gSeqLoadedPool.persistent.pool.start,
+            gSeqLoadedPool.persistent.pool.size);
+    for (i = 0; (u32)i < gSeqLoadedPool.persistent.numEntries; i++)
+    {
+        stubbed_printf("%2x ", gSeqLoadedPool.persistent.entries[i].id);
+    }
+    stubbed_printf("\n");
+
+    stubbed_printf("STAYBNK ");
+    stubbed_printf("[%2x] <%5x / %5x>\n",
+            gBankLoadedPool.persistent.numEntries,
+            gBankLoadedPool.persistent.pool.cur - gBankLoadedPool.persistent.pool.start,
+            gBankLoadedPool.persistent.pool.size);
+    for (i = 0; (u32)i < gBankLoadedPool.persistent.numEntries; i++)
+    {
+        stubbed_printf("%2x ", gBankLoadedPool.persistent.entries[i].id);
+    }
+    stubbed_printf("\n\n");
+
+    stubbed_printf("    0123456789ABCDEF0123456789ABCDEF01234567\n");
+    stubbed_printf("--------------------------------------------\n");
+
+    // gSeqLoadStatus/gBankLoadStatus, 4 entries at a time?
+    stubbed_printf("SEQ ");
+    for (i = 0; i < 40; i++)
+    {
+        stubbed_printf("%1x", 0);
+    }
+    stubbed_printf("\n");
+
+    stubbed_printf("BNK ");
+    for (i = 0; i < 40; i += 4)
+    {
+        stubbed_printf("%1x", 0);
+    }
+    stubbed_printf("\n");
+
+    stubbed_printf("FIXHEAP ");
+    stubbed_printf("%4x / %4x\n", 0, 0);
+    stubbed_printf("DRVHEAP ");
+    stubbed_printf("%5x / %5x\n", 0, 0);
+    stubbed_printf("DMACACHE  %4d Blocks\n", 0);
+    stubbed_printf("CHANNELS  %2d / MAX %3d \n", 0, 0);
+
+    stubbed_printf("TEMPOMAX  %d\n", gTempoInternalToExternal / TEMPO_SCALE);
+    stubbed_printf("TEMPO G0  %d\n", gSequencePlayers[0].tempo / TEMPO_SCALE);
+    stubbed_printf("TEMPO G1  %d\n", gSequencePlayers[1].tempo / TEMPO_SCALE);
+    stubbed_printf("TEMPO G2  %d\n", gSequencePlayers[2].tempo / TEMPO_SCALE);
+    stubbed_printf("DEBUGFLAG  %8x\n", gAudioErrorFlags);
 }
 
 void unused_8031E568(void)
 {
-    gActiveAudioFrames;
+    stubbed_printf("COUNT %8d\n", gActiveAudioFrames);
 }
 #endif
 
@@ -581,12 +609,15 @@ struct SPTask *create_next_audio_frame_task(void)
         osAiSetNextBuffer(gAiBuffers[index], gAiBufferLengths[index] * 4);
     }
 
-    oldDmaCount = gActiveAudioDmasCount;
-    if (oldDmaCount > 0)
+    oldDmaCount = gCurrAudioFrameDmaCount;
+    // There has to be some sort of no-op if here, but it's not exactly clear
+    // how it should look... It's also very unclear why gCurrAudioFrameDmaQueue
+    // isn't read from here, despite gCurrAudioFrameDmaCount being reset.
+    if (oldDmaCount > ARRAY_COUNT(gCurrAudioFrameDmaMesgBufs))
     {
         stubbed_printf("DMA: Request queue over.( %d )\n", oldDmaCount);
     }
-    gActiveAudioDmasCount = 0;
+    gCurrAudioFrameDmaCount = 0;
 
     gAudioTask = &gAudioTasks[gAudioTaskIndex];
     gAudioCmd = gAudioCmdBuffers[gAudioTaskIndex];
@@ -643,7 +674,7 @@ struct SPTask *create_next_audio_frame_task(void)
     task->yield_data_size = 0;
 #endif
 
-    func_8031715C();
+    decrease_sample_dma_ttls();
     return gAudioTask;
 }
 
@@ -800,7 +831,7 @@ static void func_8031E16C(u8 bankIndex)
                     (SOUND_LO_BITFLAG_UNK8 | SOUNDARGS_MASK_STATUS)) ==
                     (SOUND_LO_BITFLAG_UNK8 | SOUND_STATUS_STARTING))
         {
-            if (!gSoundBanks[bankIndex][soundIndex].unk19--)
+            if (gSoundBanks[bankIndex][soundIndex].unk19-- == 0)
             {
                 gSoundBanks[bankIndex][soundIndex].soundBits = NO_SOUND;
             }
@@ -1364,7 +1395,7 @@ void play_sequence(u8 player, u8 seqId, u16 fadeTimer)
         D_80360928[player][i].remDuration = 0;
     }
 
-    gSequencePlayers[player].unk1 = seqId & 0x80;
+    gSequencePlayers[player].seqVariation = seqId & 0x80;
     load_sequence(player, seqId & 0x7f, 0);
     if (player == 0)
     {
@@ -1775,7 +1806,7 @@ void sound_init(void)
     D_80363812 = 0;
     sCapVolumeTo40 = FALSE;
     D_80332110 = 0;
-    D_80332114 = 0;
+    sUnused80332114 = 0;
     gPlayer0CurSeqId = 0xff;
     gSoundMode = SOUND_MODE_STEREO;
     sBackgroundMusicQueueSize = 0;
@@ -2166,7 +2197,7 @@ void func_803210D4(u16 fadeOutTime)
 {
     u8 i;
 
-    if (init803210D4)
+    if (sHasStartedFadeOut)
     {
         return;
     }
@@ -2187,7 +2218,7 @@ void func_803210D4(u16 fadeOutTime)
             fade_channel_volume_scale(2, i, 0, fadeOutTime / 16);
         }
     }
-    init803210D4 = TRUE;
+    sHasStartedFadeOut = TRUE;
 }
 
 void play_course_clear(void)
@@ -2271,7 +2302,7 @@ void sound_reset(u8 arg0)
     play_sequence(2, SEQ_SOUND_PLAYER, 0);
     D_80332108 = (D_80332108 & 0xf0) + arg0;
     gSoundMode = D_80332108 >> 4;
-    init803210D4 = FALSE;
+    sHasStartedFadeOut = FALSE;
 }
 
 void audio_set_sound_mode(u8 soundMode)

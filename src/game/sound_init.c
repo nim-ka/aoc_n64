@@ -216,8 +216,8 @@ void play_cutscene_music(u16 seqArgs)
 
 void play_shell_music(void)
 {
-    play_music(0, SEQUENCE_ARGS(4, TRUE, SEQ_EVENT_POWERUP), 0);
-    sCurrentShellMusic = SEQUENCE_ARGS(4, TRUE, SEQ_EVENT_POWERUP);
+    play_music(0, SEQUENCE_ARGS(4, SEQ_EVENT_POWERUP | SEQ_VARIATION), 0);
+    sCurrentShellMusic = SEQUENCE_ARGS(4, SEQ_EVENT_POWERUP | SEQ_VARIATION);
 }
 
 void stop_shell_music(void)

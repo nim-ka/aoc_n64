@@ -7,8 +7,8 @@ glabel D_80337BB8
 
 glabel func_80314480
 /* 0D0590 80315590 27BDFE90 */  addiu $sp, $sp, -0x170
-/* 0D0594 80315594 3C0E8022 */  lui   $t6, %hi(gNoteCount) # $t6, 0x8022
-/* 0D0598 80315598 8DCE6B70 */  lw    $t6, %lo(gNoteCount)($t6)
+/* 0D0594 80315594 3C0E8022 */  lui   $t6, %hi(gMaxSimultaneousNotes) # $t6, 0x8022
+/* 0D0598 80315598 8DCE6B70 */  lw    $t6, %lo(gMaxSimultaneousNotes)($t6)
 /* 0D059C 8031559C AFB40030 */  sw    $s4, 0x30($sp)
 /* 0D05A0 803155A0 00C0A025 */  move  $s4, $a2
 /* 0D05A4 803155A4 AFBF0044 */  sw    $ra, 0x44($sp)
@@ -286,7 +286,7 @@ glabel func_80314480
 /* 0D0988 80315988 01030019 */  multu $t0, $v1
 /* 0D098C 8031598C 00008812 */  mflo  $s1
 /* 0D0990 80315990 02202825 */  move  $a1, $s1
-/* 0D0994 80315994 0C0C60C0 */  jal   func_80317270
+/* 0D0994 80315994 0C0C60C0 */  jal   dma_sample_data
 /* 0D0998 80315998 00000000 */   nop   
 /* 0D099C 8031599C 3047000F */  andi  $a3, $v0, 0xf
 /* 0D09A0 803159A0 02802025 */  move  $a0, $s4
@@ -682,8 +682,8 @@ glabel func_80314480
 .L_US_80315F48:
 /* 0D0F48 80315F48 8FB80064 */  lw    $t8, 0x64($sp)
 /* 0D0F4C 80315F4C 272E0001 */  addiu $t6, $t9, 1
-/* 0D0F50 80315F50 3C198022 */  lui   $t9, %hi(gNoteCount) # $t9, 0x8022
-/* 0D0F54 80315F54 8F396B70 */  lw    $t9, %lo(gNoteCount)($t9)
+/* 0D0F50 80315F50 3C198022 */  lui   $t9, %hi(gMaxSimultaneousNotes) # $t9, 0x8022
+/* 0D0F54 80315F54 8F396B70 */  lw    $t9, %lo(gMaxSimultaneousNotes)($t9)
 /* 0D0F58 80315F58 270F00C0 */  addiu $t7, $t8, 0xc0
 /* 0D0F5C 80315F5C AFAF0064 */  sw    $t7, 0x64($sp)
 /* 0D0F60 80315F60 01D9082A */  slt   $at, $t6, $t9

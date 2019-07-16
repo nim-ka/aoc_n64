@@ -1,6 +1,8 @@
 
 /* Music Defines */
 
+.set SEQ_VARIATION,                     0x80
+
 .set SEQ_SOUND_PLAYER,                  0x0000
 .set SEQ_EVENT_CUTSCENE_COLLECT_STAR,   0x0001
 .set SEQ_MENU_TITLE_SCREEN,             0x0002

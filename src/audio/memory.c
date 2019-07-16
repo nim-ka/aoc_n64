@@ -6,23 +6,22 @@
 #include "load.h"
 #include "synthesis.h"
 #include "seqplayer.h"
-#include "external.h"
 #include "effects.h"
 
 #define ALIGN16(val) (((val) + 0xF) & ~0xF)
 
 struct Struct803161E0
 {
-    u32 unk0;
-    u32 unk4;
-    u32 unk8;
-    u32 unkC;
+    u32 wantSeq;
+    u32 wantBank;
+    u32 wantUnused;
+    u32 wantCustom;
 }; // size = 0x10
 
 struct U32Pair
 {
-    u32 first;
-    u32 second;
+    u32 wantPersistent;
+    u32 wantTemporary;
 }; // size = 0x8
 
 extern struct SoundAllocPool D_802212A8;
@@ -39,7 +38,7 @@ extern struct U32Pair D_802218A8;
 extern struct Struct803161E0 D_802218B0;
 extern struct Struct803161E0 D_802218C0;
 
-void func_80315E60(void)
+void reset_bank_and_seq_load_status(void)
 {
     s32 i;
 
@@ -58,20 +57,20 @@ void discard_bank(s32 bankId)
 {
     s32 i;
 
-    for (i = 0; i < gNoteCount; i++)
+    for (i = 0; i < gMaxSimultaneousNotes; i++)
     {
         struct Note *note = &gNotes[i];
 
         if (note->bankId == bankId)
         {
-            if (note->unk4 > 1)
+            if (note->priority >= NOTE_PRIORITY_MIN)
             {
                 note->parentLayer->enabled = FALSE;
                 note->parentLayer->finished = TRUE;
             }
-            func_80315DE0(note);
-            func_803195A4(&note->noteListItem);
-            note_list_item_add(&D_80225EA8[0], &note->noteListItem);
+            note_disable(note);
+            audio_list_remove(&note->listItem);
+            audio_list_push_back(&gNoteFreeLists.disabled, &note->listItem);
         }
     }
 }
@@ -91,6 +90,7 @@ void discard_sequence(s32 seqId)
 void *soundAlloc(struct SoundAllocPool *pool, u32 size)
 {
     // Has a bunch of register swaps: v1 -> a2/a0, a1 -> v1, a2 -> a1
+    // v1 = temp used for size + 15 and last + 1
     s32 last; // a2
     s32 i; // a3
     u8 *ret; // a1, v0
@@ -123,73 +123,73 @@ void func_80316094(struct SoundAllocPool *pool, void *arg1, u32 arg2)
 {
     pool->cur = pool->start = (u8 *)(((u32) arg1 + 0xf) & -0x10);
     pool->size = arg2;
-    pool->unkC = 0;
+    pool->unused = 0;
 }
 
-void func_803160B4(struct SoundPoolHolder *arg0)
+void func_803160B4(struct PersistentPool *persistent)
 {
-    arg0->pool.unkC = 0;
-    arg0->unk0 = 0;
-    arg0->pool.cur = arg0->pool.start;
+    persistent->pool.unused = 0;
+    persistent->pool.cur = persistent->pool.start;
+    persistent->numEntries = 0;
 }
 
-void func_803160C8(struct SoundPoolHolder2 *arg0)
+void func_803160C8(struct TemporaryPool *temporary)
 {
-    arg0->pool.unkC = 0;
-    arg0->side = 0;
-    arg0->arr[1].ptr = arg0->pool.size + arg0->pool.start;
-    arg0->arr[0].id = -1;
-    arg0->arr[1].id = -1;
-    arg0->pool.cur = arg0->pool.start;
-    arg0->arr[0].ptr = arg0->pool.start;
+    temporary->pool.unused = 0;
+    temporary->pool.cur = temporary->pool.start;
+    temporary->nextSide = 0;
+    temporary->entries[0].ptr = temporary->pool.start;
+    temporary->entries[1].ptr = temporary->pool.size + temporary->pool.start;
+    temporary->entries[0].id = -1;
+    temporary->entries[1].id = -1;
 }
 
 void unused_803160F8(struct SoundAllocPool *pool)
 {
-    pool->unkC = 0;
+    pool->unused = 0;
     pool->cur = pool->start;
 }
 
 void func_80316108(s32 arg0)
 {
     func_80316094(&gSoundPool, gAudioHeap, arg0);
-    func_80316094(&D_802212A8, gAudioHeap + arg0, D_80333EEC - arg0);
+    func_80316094(&D_802212A8, gAudioHeap + arg0, gAudioHeapSize - arg0);
 }
 
 void func_80316164(struct Struct803161E0 *a)
 {
     D_802212A8.cur = D_802212A8.start;
-    func_80316094(&D_802212C8, soundAlloc(&D_802212A8, a->unk0), a->unk0);
-    func_80316094(&D_802212F8, soundAlloc(&D_802212A8, a->unkC), a->unkC);
+    func_80316094(&D_802212C8, soundAlloc(&D_802212A8, a->wantSeq), a->wantSeq);
+    func_80316094(&D_802212F8, soundAlloc(&D_802212A8, a->wantCustom), a->wantCustom);
 }
 
 void func_803161E0(struct U32Pair *a)
 {
     D_802212F8.cur = D_802212F8.start;
-    func_80316094(&D_80221308, soundAlloc(&D_802212F8, a->first), a->first);
-    func_80316094(&D_80221318, soundAlloc(&D_802212F8, a->second), a->second);
+    func_80316094(&D_80221308, soundAlloc(&D_802212F8, a->wantPersistent), a->wantPersistent);
+    func_80316094(&D_80221318, soundAlloc(&D_802212F8, a->wantTemporary), a->wantTemporary);
 }
 
 void func_8031625C(struct Struct803161E0 *a)
 {
     D_80221308.cur = D_80221308.start;
-    func_80316094(&gSeqLoadedPool.first.pool, soundAlloc(&D_80221308, a->unk0), a->unk0);
-    func_80316094(&gSoundLoadedPool.first.pool, soundAlloc(&D_80221308, a->unk4), a->unk4);
-    func_80316094(&gUnusedLoadedPool.first.pool, soundAlloc(&D_80221308, a->unk8), a->unk8);
-    func_803160B4(&gSeqLoadedPool.first);
-    func_803160B4(&gSoundLoadedPool.first);
-    func_803160B4(&gUnusedLoadedPool.first);
+    func_80316094(&gSeqLoadedPool.persistent.pool, soundAlloc(&D_80221308, a->wantSeq), a->wantSeq);
+    func_80316094(&gBankLoadedPool.persistent.pool, soundAlloc(&D_80221308, a->wantBank), a->wantBank);
+    func_80316094(&gUnusedLoadedPool.persistent.pool, soundAlloc(&D_80221308, a->wantUnused), a->wantUnused);
+    func_803160B4(&gSeqLoadedPool.persistent);
+    func_803160B4(&gBankLoadedPool.persistent);
+    func_803160B4(&gUnusedLoadedPool.persistent);
 }
 
 void func_80316318(struct Struct803161E0 *a)
 {
     D_80221318.cur = D_80221318.start;
-    func_80316094(&gSeqLoadedPool.second.pool, soundAlloc(&D_80221318, a->unk0), a->unk0);
-    func_80316094(&gSoundLoadedPool.second.pool, soundAlloc(&D_80221318, a->unk4), a->unk4);
-    func_80316094(&gUnusedLoadedPool.second.pool, soundAlloc(&D_80221318, a->unk8), a->unk8);
-    func_803160C8(&gSeqLoadedPool.second);
-    func_803160C8(&gSoundLoadedPool.second);
-    func_803160C8(&gUnusedLoadedPool.second);
+    func_80316094(&gSeqLoadedPool.temporary.pool, soundAlloc(&D_80221318, a->wantSeq), a->wantSeq);
+    func_80316094(&gBankLoadedPool.temporary.pool, soundAlloc(&D_80221318, a->wantBank), a->wantBank);
+    func_80316094(&gUnusedLoadedPool.temporary.pool, soundAlloc(&D_80221318, a->wantUnused), a->wantUnused);
+    func_803160C8(&gSeqLoadedPool.temporary);
+    func_803160C8(&gBankLoadedPool.temporary);
+    func_803160C8(&gUnusedLoadedPool.temporary);
 }
 
 static void unused_803163D4()
@@ -212,27 +212,27 @@ void *alloc_bank_or_seq(struct SoundMultiPool *arg0, s32 arg1, s32 size, s32 arg
     u32 leftNotLoaded, rightNotLoaded;
     u32 leftAvail, rightAvail;
     UNUSED s32 temp;
-    struct SoundPoolHolder2 *v1; // sp30
-    struct SoundPoolHolder *first = &arg0->first;
+    struct TemporaryPool *v1; // sp30
+    struct PersistentPool *persistent = &arg0->persistent;
 
     if (arg3 == 0)
     {
-        v1 = &arg0->second;
+        v1 = &arg0->temporary;
         if (arg0 == &gSeqLoadedPool)
         {
             table = gSeqLoadStatus;
             isSound = FALSE;
         }
-        else if (arg0 == &gSoundLoadedPool)
+        else if (arg0 == &gBankLoadedPool)
         {
             table = gBankLoadStatus;
             isSound = TRUE;
         }
 
-        firstVal = (v1->arr[0].id == -1 ? SOUND_LOAD_STATUS_NOT_LOADED :
-                table[v1->arr[0].id]); // a3, a2
-        secondVal = (v1->arr[1].id == -1 ? SOUND_LOAD_STATUS_NOT_LOADED :
-                table[v1->arr[1].id]); // a1
+        firstVal = (v1->entries[0].id == -1 ? SOUND_LOAD_STATUS_NOT_LOADED :
+                table[v1->entries[0].id]); // a3, a2
+        secondVal = (v1->entries[1].id == -1 ? SOUND_LOAD_STATUS_NOT_LOADED :
+                table[v1->entries[1].id]); // a1
         leftNotLoaded = (firstVal == SOUND_LOAD_STATUS_NOT_LOADED);
         leftDiscardable = (firstVal == SOUND_LOAD_STATUS_DISCARDABLE); // t0
         leftAvail = (firstVal != SOUND_LOAD_STATUS_IN_PROGRESS);
@@ -243,11 +243,11 @@ void *alloc_bank_or_seq(struct SoundMultiPool *arg0, s32 arg1, s32 size, s32 arg
 
         if (leftNotLoaded)
         {
-            v1->side = 0;
+            v1->nextSide = 0;
         }
         else if (rightNotLoaded)
         {
-            v1->side = 1;
+            v1->nextSide = 1;
         }
         else if (bothDiscardable)
         {
@@ -255,19 +255,19 @@ void *alloc_bank_or_seq(struct SoundMultiPool *arg0, s32 arg1, s32 size, s32 arg
         }
         else if (leftDiscardable)
         {
-            v1->side = 0;
+            v1->nextSide = 0;
         }
         else if (rightDiscardable)
         {
-            v1->side = 1;
+            v1->nextSide = 1;
         }
         else if (leftAvail)
         {
-            v1->side = 0;
+            v1->nextSide = 0;
         }
         else if (rightAvail)
         {
-            v1->side = 1;
+            v1->nextSide = 1;
         }
         else
         {
@@ -275,72 +275,72 @@ void *alloc_bank_or_seq(struct SoundMultiPool *arg0, s32 arg1, s32 size, s32 arg
             return NULL;
         }
 
-        if (v1->arr[v1->side].id != -1)
+        if (v1->entries[v1->nextSide].id != -1)
         {
-            table[v1->arr[v1->side].id] = SOUND_LOAD_STATUS_NOT_LOADED;
+            table[v1->entries[v1->nextSide].id] = SOUND_LOAD_STATUS_NOT_LOADED;
             if (isSound == TRUE)
             {
-                discard_bank(v1->arr[v1->side].id);
+                discard_bank(v1->entries[v1->nextSide].id);
             }
         }
 
-        pool = &arg0->second.pool; // a1
-        switch (v1->side)
+        pool = &arg0->temporary.pool; // a1
+        switch (v1->nextSide)
         {
         case 0:
-            v1->arr[0].ptr = pool->start;
-            v1->arr[0].id = id;
-            v1->arr[0].size = size;
+            v1->entries[0].ptr = pool->start;
+            v1->entries[0].id = id;
+            v1->entries[0].size = size;
 
             pool->cur = pool->start + size;
 
-            if (v1->arr[1].ptr < pool->cur)
+            if (v1->entries[1].ptr < pool->cur)
             {
                 // Throw out the entry on the other side if it doesn't fit.
                 // (possible @bug: what if it's currently being loaded?)
-                table[v1->arr[1].id] = SOUND_LOAD_STATUS_NOT_LOADED;
+                table[v1->entries[1].id] = SOUND_LOAD_STATUS_NOT_LOADED;
 
                 switch (isSound)
                 {
                 case FALSE:
-                    discard_sequence(v1->arr[1].id);
+                    discard_sequence(v1->entries[1].id);
                     break;
                 case TRUE:
-                    discard_bank(v1->arr[1].id);
+                    discard_bank(v1->entries[1].id);
                     break;
                 }
 
-                v1->arr[1].id = -1;
-                v1->arr[1].ptr = pool->size + pool->start;
+                v1->entries[1].id = -1;
+                v1->entries[1].ptr = pool->size + pool->start;
             }
 
-            ret = v1->arr[0].ptr;
+            ret = v1->entries[0].ptr;
             break;
 
         case 1:
-            v1->arr[1].ptr = pool->size + pool->start - size - 0x10;
-            v1->arr[1].id = id;
-            v1->arr[1].size = size;
+            v1->entries[1].ptr = pool->size + pool->start - size - 0x10;
+            v1->entries[1].id = id;
+            v1->entries[1].size = size;
 
-            if (v1->arr[1].ptr < pool->cur)
+            if (v1->entries[1].ptr < pool->cur)
             {
-                table[v1->arr[0].id] = SOUND_LOAD_STATUS_NOT_LOADED;
+                table[v1->entries[0].id] = SOUND_LOAD_STATUS_NOT_LOADED;
 
                 switch (isSound)
                 {
                 case FALSE:
-                    discard_sequence(v1->arr[0].id);
+                    discard_sequence(v1->entries[0].id);
                     break;
                 case TRUE:
-                    discard_bank(v1->arr[0].id);
+                    discard_bank(v1->entries[0].id);
                     break;
                 }
 
-                v1->arr[0].id = -1;
+                v1->entries[0].id = -1;
                 pool->cur = pool->start;
             }
 
-            ret = v1->arr[1].ptr;
+            ret = v1->entries[1].ptr;
             break;
 
         default:
@@ -349,14 +349,14 @@ void *alloc_bank_or_seq(struct SoundMultiPool *arg0, s32 arg1, s32 size, s32 arg
 
         // Switch sides for next time in case both entries are
         // SOUND_LOAD_STATUS_DISCARDABLE.
-        v1->side ^= 1;
+        v1->nextSide ^= 1;
 
         return ret;
     }
 
-    arg0->arr[first->unk0].ptr = soundAlloc(&first->pool, arg1 * size);
+    persistent->entries[persistent->numEntries].ptr = soundAlloc(&persistent->pool, arg1 * size);
 
-    if (arg0->arr[first->unk0].ptr == NULL)
+    if (persistent->entries[persistent->numEntries].ptr == NULL)
     {
         switch (arg3)
         {
@@ -371,9 +371,9 @@ void *alloc_bank_or_seq(struct SoundMultiPool *arg0, s32 arg1, s32 size, s32 arg
 
     // TODO: why is this guaranteed to write <= 32 entries...?
     // Because the buffer is small enough that more don't fit?
-    arg0->arr[first->unk0].id = id;
-    arg0->arr[first->unk0].size = size;
-    first->unk0++; return arg0->arr[first->unk0 - 1].ptr;
+    persistent->entries[persistent->numEntries].id = id;
+    persistent->entries[persistent->numEntries].size = size;
+    persistent->numEntries++; return persistent->entries[persistent->numEntries - 1].ptr;
 }
 
 #else
@@ -384,31 +384,31 @@ void *get_bank_or_seq(struct SoundMultiPool *arg0, s32 arg1, s32 id)
 {
     u32 i;
     void *ret;
-    struct SoundPoolHolder2 *second = &arg0->second;
+    struct TemporaryPool *temporary = &arg0->temporary;
 
     if (arg1 == 0)
     {
-        // Try not to overwrite sound that we have just accessed, by setting side appropriately.
-        if (second->arr[0].id == id)
+        // Try not to overwrite sound that we have just accessed, by setting nextSide appropriately.
+        if (temporary->entries[0].id == id)
         {
-            second->side = 1;
-            return second->arr[0].ptr;
+            temporary->nextSide = 1;
+            return temporary->entries[0].ptr;
         }
-        else if (second->arr[1].id == id)
+        else if (temporary->entries[1].id == id)
         {
-            second->side = 0;
-            return second->arr[1].ptr;
+            temporary->nextSide = 0;
+            return temporary->entries[1].ptr;
         }
         return NULL;
     }
     else
     {
-        struct SoundPoolHolder *first = &arg0->first;
-        for (i = 0; i < first->unk0; i++)
+        struct PersistentPool *persistent = &arg0->persistent;
+        for (i = 0; i < persistent->numEntries; i++)
         {
-            if (id == arg0->arr[i].id)
+            if (id == persistent->entries[i].id)
             {
-                return arg0->arr[i].ptr;
+                return persistent->entries[i].ptr;
             }
         }
 
@@ -448,10 +448,10 @@ void func_80316928(struct Struct80332190 *arg0)
     s32 i; // s0
     s32 j;
     s32 k;
-    s32 sum1;
-    s32 sum2;
-    s32 sum3;
-    s32 sum4;
+    s32 persistentMem;
+    s32 temporaryMem;
+    s32 totalMem;
+    s32 wantMisc;
     s32 s1;
     s8 temp8;
     s32 size;
@@ -460,7 +460,7 @@ void func_80316928(struct Struct80332190 *arg0)
     if (gAudioLoadLock != AUDIO_LOCK_UNINITIALIZED)
     {
         func_803168CC();
-        for (i = 0; i < gNoteCount; i++)
+        for (i = 0; i < gMaxSimultaneousNotes; i++)
         {
             if (gNotes[i].enabled && gNotes[i].adsr.state != ADSR_STATE_DISABLED)
             {
@@ -481,13 +481,13 @@ void func_80316928(struct Struct80332190 *arg0)
                 break;
             }
 
-            for (i = 0; i < gNoteCount; i++)
+            for (i = 0; i < gMaxSimultaneousNotes; i++)
             {
                 if (gNotes[i].enabled)
                     break;
             }
 
-            if (i == gNoteCount)
+            if (i == gMaxSimultaneousNotes)
             {
                 // All zero, break early
                 break;
@@ -499,16 +499,16 @@ void func_80316928(struct Struct80332190 *arg0)
         gAudioLoadLock = AUDIO_LOCK_LOADING;
         wait_for_audio_frames(3);
 
-        s1 = gActiveAudioDmasCount;
+        s1 = gCurrAudioFrameDmaCount;
         while (s1 > 0)
         {
-            for (i = 0; i < gActiveAudioDmasCount; i++)
+            for (i = 0; i < gCurrAudioFrameDmaCount; i++)
             {
-                if (osRecvMesg(&D_80225EE8, NULL, OS_MESG_NOBLOCK) == 0)
+                if (osRecvMesg(&gCurrAudioFrameDmaQueue, NULL, OS_MESG_NOBLOCK) == 0)
                     s1--;
             }
         }
-        gActiveAudioDmasCount = 0;
+        gCurrAudioFrameDmaCount = 0;
 
         for (j = 0; j < NUMAIBUFFERS; j++)
         {
@@ -519,10 +519,10 @@ void func_80316928(struct Struct80332190 *arg0)
         }
     }
 
-    D_80226B38 = 0;
-    sp2C = arg0->size;
+    sSampleDmaNumListItems = 0;
+    sp2C = arg0->unk6;
     gAiFrequency = osAiSetFrequency(arg0->frequency);
-    gNoteCount = arg0->noteCount;
+    gMaxSimultaneousNotes = arg0->maxSimultaneousNotes;
     size = gAiFrequency / 60;
     D_80226D74 = ALIGN16(size);
     D_802212A2 = arg0->unk5;
@@ -549,7 +549,7 @@ void func_80316928(struct Struct80332190 *arg0)
     }
 
     D_802212A2 = arg0->unk5;
-    D_802212A0 = arg0->unkA;
+    D_802212A0 = arg0->volume;
     gMinAiBufferLength = D_80226D74 - 0x10;
     temp8 = D_80226D74 / 160 + 1;
     gAudioUpdatesPerFrame = temp8;
@@ -561,27 +561,27 @@ void func_80316928(struct Struct80332190 *arg0)
 #else
     gTempoInternalToExternal = (u32) (temp8 * 2880000.0f / gTatumsPerBeat / 16.713f);
 #endif
-    D_80226D6C = gNoteCount * 20 * temp8 + 320;
-    sum1 = arg0->unk10 + arg0->unkC;
-    sum2 = arg0->unk18 + arg0->unk14;
-    sum3 = sum1 + sum2;
-    // (the address of D_802212A8.unk8 is lui'd too far up)
-    sum4 = D_802212A8.size - sum3 - 0x100;
-    D_80221898.unk0 = sum4;
-    D_80221898.unkC = sum3;
+    D_80226D6C = gMaxSimultaneousNotes * 20 * temp8 + 320;
+    persistentMem = arg0->persistentBankMem + arg0->persistentSeqMem;
+    temporaryMem = arg0->temporaryBankMem + arg0->temporarySeqMem;
+    totalMem = persistentMem + temporaryMem;
+    // (the address of D_802212A8.size is lui'd too far up)
+    wantMisc = D_802212A8.size - totalMem - 0x100;
+    D_80221898.wantSeq = wantMisc;
+    D_80221898.wantCustom = totalMem;
     func_80316164(&D_80221898);
-    D_802218A8.first = sum1;
-    D_802218A8.second = sum2;
+    D_802218A8.wantPersistent = persistentMem;
+    D_802218A8.wantTemporary = temporaryMem;
     func_803161E0(&D_802218A8);
-    D_802218B0.unk0 = arg0->unkC;
-    D_802218B0.unk4 = arg0->unk10;
-    D_802218B0.unk8 = 0;
+    D_802218B0.wantSeq = arg0->persistentSeqMem;
+    D_802218B0.wantBank = arg0->persistentBankMem;
+    D_802218B0.wantUnused = 0;
     func_8031625C(&D_802218B0);
-    D_802218C0.unk0 = arg0->unk14;
-    D_802218C0.unk4 = arg0->unk18;
-    D_802218C0.unk8 = 0;
+    D_802218C0.wantSeq = arg0->temporarySeqMem;
+    D_802218C0.wantBank = arg0->temporaryBankMem;
+    D_802218C0.wantUnused = 0;
     func_80316318(&D_802218C0);
-    func_80315E60();
+    reset_bank_and_seq_load_status();
 
     for (j = 0; j < 2; j++)
     {
@@ -589,9 +589,9 @@ void func_80316928(struct Struct80332190 *arg0)
     }
 
     gNotes = soundAlloc(&D_802212C8,
-            gNoteCount * sizeof(struct Note));
+            gMaxSimultaneousNotes * sizeof(struct Note));
     note_init_all();
-    func_80319248();
+    init_note_free_list();
 
     if (sp2C == 0)
     {
@@ -628,7 +628,7 @@ void func_80316928(struct Struct80332190 *arg0)
         }
     }
 
-    func_8031758C(gNoteCount);
+    func_8031758C(gMaxSimultaneousNotes);
     osWritebackDCacheAll();
     if (gAudioLoadLock != AUDIO_LOCK_UNINITIALIZED)
     {

@@ -563,7 +563,7 @@ s32 obj_begin_race(s32 noTimer)
 
         if (!noTimer)
         {
-            play_music(0, SEQUENCE_ARGS(4, FALSE, SEQ_LEVEL_SLIDE), 0);
+            play_music(0, SEQUENCE_ARGS(4, SEQ_LEVEL_SLIDE), 0);
 
             level_control_timer(TIMER_CONTROL_SHOW);
             level_control_timer(TIMER_CONTROL_START);
@@ -846,7 +846,7 @@ static void koopa_the_quick_act_after_race(void)
     {
         if (obj_is_mario_in_range_and_ready_to_speak(400.0f, 400.0f))
         {
-            stop_background_music(SEQUENCE_ARGS(4, FALSE, SEQ_LEVEL_SLIDE));
+            stop_background_music(SEQUENCE_ARGS(4, SEQ_LEVEL_SLIDE));
 
             // Determine which text to display
 

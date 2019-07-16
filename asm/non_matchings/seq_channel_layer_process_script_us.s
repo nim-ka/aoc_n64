@@ -54,7 +54,7 @@ glabel seq_channel_layer_process_script
 /* 0D7114 8031C114 01F8082A */  slt   $at, $t7, $t8
 /* 0D7118 8031C118 5420034A */  bnezl $at, .L8031CE44
 /* 0D711C 8031C11C 8FBF001C */   lw    $ra, 0x1c($sp)
-/* 0D7120 8031C120 0C0C67D9 */  jal   seq_channel_layer_init_6
+/* 0D7120 8031C120 0C0C67D9 */  jal   seq_channel_layer_note_decay
 /* 0D7124 8031C124 00000000 */   nop   
 /* 0D7128 8031C128 920E0000 */  lbu   $t6, ($s0)
 /* 0D712C 8031C12C 35CF0020 */  ori   $t7, $t6, 0x20
@@ -63,7 +63,7 @@ glabel seq_channel_layer_process_script
 .L8031C138:
 /* 0D7138 8031C138 07220004 */  bltzl $t9, .L8031C14C_2
 /* 0D713C 8031C13C 92020004 */   lbu   $v0, 4($s0)
-/* 0D7140 8031C140 0C0C67D9 */  jal   seq_channel_layer_init_6
+/* 0D7140 8031C140 0C0C67D9 */  jal   seq_channel_layer_note_decay
 /* 0D7144 8031C144 02002025 */   move  $a0, $s0
 /* 0D7148 8031C148 92020004 */  lbu   $v0, 4($s0)
 .L8031C14C_2:
@@ -81,9 +81,9 @@ glabel seq_channel_layer_process_script
 /* 0D7174 8031C174 8E0D0050 */  lw    $t5, 0x50($s0)
 .L8031C178:
 /* 0D7178 8031C178 3C013C00 */  li    $at, 0x3C000000 # 0.007812
-/* 0D717C 8031C17C 3C0B8022 */  lui   $t3, %hi(gSoundLoadedPool) # $t3, 0x8022
+/* 0D717C 8031C17C 3C0B8022 */  lui   $t3, %hi(gBankLoadedPool) # $t3, 0x8022
 /* 0D7180 8031C180 44810000 */  mtc1  $at, $f0
-/* 0D7184 8031C184 256B10F8 */  addiu $t3, %lo(gSoundLoadedPool) # addiu $t3, $t3, 0x10f8
+/* 0D7184 8031C184 256B10F8 */  addiu $t3, %lo(gBankLoadedPool) # addiu $t3, $t3, 0x10f8
 /* 0D7188 8031C188 97AA003A */  lhu   $t2, 0x3a($sp)
 /* 0D718C 8031C18C 240900FF */  li    $t1, 255
 /* 0D7190 8031C190 8DAC0040 */  lw    $t4, 0x40($t5)
@@ -267,14 +267,14 @@ glabel L_U_8031C3E8
 /* 0D7414 8031C414 A20F0000 */  sb    $t7, ($s0)
 /* 0D7418 8031C418 AFAD0058 */  sw    $t5, 0x58($sp)
 /* 0D741C 8031C41C AFAC005C */  sw    $t4, 0x5c($sp)
-/* 0D7420 8031C420 0C0C67D9 */  jal   seq_channel_layer_init_6
+/* 0D7420 8031C420 0C0C67D9 */  jal   seq_channel_layer_note_decay
 /* 0D7424 8031C424 A7AA003A */   sh    $t2, 0x3a($sp)
 /* 0D7428 8031C428 3C013C00 */  li    $at, 0x3C000000 # 0.007812
 /* 0D742C 8031C42C 44810000 */  mtc1  $at, $f0
-/* 0D7430 8031C430 3C0B8022 */  lui   $t3, %hi(gSoundLoadedPool) # $t3, 0x8022
+/* 0D7430 8031C430 3C0B8022 */  lui   $t3, %hi(gBankLoadedPool) # $t3, 0x8022
 /* 0D7434 8031C434 3C1F8022 */  lui   $ra, %hi(gCtlEntries) # $ra, 0x8022
 /* 0D7438 8031C438 27FF6B60 */  addiu $ra, %lo(gCtlEntries) # addiu $ra, $ra, 0x6b60
-/* 0D743C 8031C43C 256B10F8 */  addiu $t3, %lo(gSoundLoadedPool) # addiu $t3, $t3, 0x10f8
+/* 0D743C 8031C43C 256B10F8 */  addiu $t3, %lo(gBankLoadedPool) # addiu $t3, $t3, 0x10f8
 /* 0D7440 8031C440 240900FF */  li    $t1, 255
 /* 0D7444 8031C444 97AA003A */  lhu   $t2, 0x3a($sp)
 /* 0D7448 8031C448 8FAC005C */  lw    $t4, 0x5c($sp)
@@ -939,7 +939,7 @@ glabel L_U_8031CBEC
 /* 0D7D88 8031CD88 0703002E */  bgezl $t8, .L8031CE44
 /* 0D7D8C 8031CD8C 8FBF001C */   lw    $ra, 0x1c($sp)
 .L8031CD90:
-/* 0D7D90 8031CD90 0C0C67D9 */  jal   seq_channel_layer_init_6
+/* 0D7D90 8031CD90 0C0C67D9 */  jal   seq_channel_layer_note_decay
 /* 0D7D94 8031CD94 02002025 */   move  $a0, $s0
 /* 0D7D98 8031CD98 1000002A */  b     .L8031CE44
 /* 0D7D9C 8031CD9C 8FBF001C */   lw    $ra, 0x1c($sp)
@@ -963,7 +963,7 @@ glabel L_U_8031CBEC
 .L8031CDD8:
 /* 0D7DD8 8031CDD8 57000006 */  bnezl $t8, .L8031CDF4
 /* 0D7DDC 8031CDDC 8E19004C */   lw    $t9, 0x4c($s0)
-/* 0D7DE0 8031CDE0 0C0C67D9 */  jal   seq_channel_layer_init_6
+/* 0D7DE0 8031CDE0 0C0C67D9 */  jal   seq_channel_layer_note_decay
 /* 0D7DE4 8031CDE4 02002025 */   move  $a0, $s0
 /* 0D7DE8 8031CDE8 10000008 */  b     .L8031CE0C
 /* 0D7DEC 8031CDEC 24080001 */   li    $t0, 1
@@ -978,7 +978,7 @@ glabel L_U_8031CBEC
 .L8031CE0C:
 /* 0D7E0C 8031CE0C 51000005 */  beql  $t0, $zero, .L8031CE24
 /* 0D7E10 8031CE10 8E040044 */   lw    $a0, 0x44($s0)
-/* 0D7E14 8031CE14 0C0C6A53 */  jal   func_803198E0
+/* 0D7E14 8031CE14 0C0C6A53 */  jal   alloc_note
 /* 0D7E18 8031CE18 02002025 */   move  $a0, $s0
 /* 0D7E1C 8031CE1C AE020044 */  sw    $v0, 0x44($s0)
 /* 0D7E20 8031CE20 8E040044 */  lw    $a0, 0x44($s0)

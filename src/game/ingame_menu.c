@@ -1136,7 +1136,7 @@ void func_802D91C0(s16 sp4a)
         if(sp3c[i] == sp4a)
         {
             func_80320040(0, 60);
-            play_music(0, SEQUENCE_ARGS(4, FALSE, SEQ_EVENT_BOSS), 0);
+            play_music(0, SEQUENCE_ARGS(4, SEQ_EVENT_BOSS), 0);
             return;
         }
     }

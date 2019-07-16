@@ -21,6 +21,11 @@
 #define SEQUENCE_PLAYER_STATE_3 3
 #define SEQUENCE_PLAYER_STATE_4 4
 
+#define NOTE_PRIORITY_DISABLED 0
+#define NOTE_PRIORITY_STOPPING 1
+#define NOTE_PRIORITY_MIN 2
+#define NOTE_PRIORITY_DEFAULT 3
+
 #define TATUMS_PER_BEAT 48
 
 #ifdef VERSION_JP
@@ -44,24 +49,33 @@
 #define FLOAT_CAST(x) (f32) (s32) (x)
 #endif
 
-struct NoteListItem
+struct NotePool;
+
+struct AudioListItem
 {
     // A node in a circularly linked list. Each node is either a head or an item:
     // - Items can be either detached (prev = NULL), or attached to a list.
-    //   'value' or 'value2' points to something of interest.
+    //   'value' points to something of interest.
     // - List heads are always attached; if a list is empty, its head points
     //   to itself. 'count' contains the size of the list.
-    // unkC records information related to the list itself; for the D_80225EA8
-    // lists it points to that array of lists; for gLayerFreeList it is NULL.
-    struct NoteListItem *prev;
-    struct NoteListItem *next;
+    // If the list holds notes, 'pool' points back to the pool where it lives.
+    // Otherwise, that member is NULL.
+    struct AudioListItem *prev;
+    struct AudioListItem *next;
     union {
-        struct Note *value; // TODO: void*
-        struct SequenceChannelLayer *value2;
+        void *value; // either Note* or SequenceChannelLayer*
         s32 count;
     } u;
-    struct NoteListItem *head;
+    struct NotePool *pool;
 }; // size = 0x10
+
+struct NotePool
+{
+    struct AudioListItem disabled;
+    struct AudioListItem decaying;
+    struct AudioListItem releasing;
+    struct AudioListItem active;
+};
 
 struct VibratoState {
     struct SequenceChannel *seqChannel;
@@ -153,13 +167,13 @@ struct M64ScriptState {
 struct SequencePlayer
 {
     /*0x000*/ volatile u8 enabled : 1;
-    /*0x000*/ u8 unk0b40 : 1;
+    /*0x000*/ u8 finished : 1; // never read
     /*0x000*/ u8 muted : 1;
     /*0x000*/ u8 seqDmaInProgress : 1;
     /*0x000*/ u8 bankDmaInProgress : 1;
-    /*0x001*/ s8 unk1;
+    /*0x001*/ s8 seqVariation;
     /*0x002*/ u8 state;
-    /*0x003*/ u8 someMask;
+    /*0x003*/ u8 noteAllocPolicy;
     /*0x004*/ u8 muteBehavior;
     /*0x005*/ u8 seqId;
     /*0x006*/ u8 anyBank[1]; // must be an array to get a comparison
@@ -170,7 +184,7 @@ struct SequencePlayer
     /*0x00A*/ u16 tempo; // beats per minute in JP, tatums per minute in US
     /*0x00C*/ u16 tempoAcc;
     /*0x00E*/ u16 fadeTimer;
-    /*0x010*/ s16 unk10;
+    /*0x010*/ s16 transposition;
     /*0x012*/ u16 delay;
     /*0x014*/ u8 *seqData; // buffer of some sort
     /*0x018*/ f32 fadeVolume; // set to 1.0f
@@ -178,11 +192,11 @@ struct SequencePlayer
     /*0x020*/ f32 volume; // set to 0.0f
     /*0x024*/ f32 muteVolumeScale; // set to 0.5f
     /*     */ u8 pad1[4];
-    /*0x02C*/ struct SequenceChannel *channels[CHANNELS_MAX]; // TODO: or tracks?
+    /*0x02C*/ struct SequenceChannel *channels[CHANNELS_MAX];
     /*0x06C*/ struct M64ScriptState scriptState;
     /*0x088*/ u8 *shortNoteVelocityTable;
     /*0x08C*/ u8 *shortNoteDurationTable;
-    /*0x090*/ struct NoteListItem unk90[4]; // heads
+    /*0x090*/ struct NotePool notePool;
     /*0x0D0*/ OSMesgQueue seqDmaMesgQueue;
     /*0x0E8*/ OSMesg seqDmaMesg;
     /*0x0EC*/ OSIoMesg seqDmaIoMesg;
@@ -202,20 +216,44 @@ struct AdsrSettings
     struct AdsrEnvelope *envelope;
 }; // size = 0x8
 
+struct AdsrState {
+    u8 action;
+    u8 state;
+    s16 initial; // always 0
+    s16 target;
+    s16 current;
+    s16 envIndex;
+    s16 delay;
+    s16 sustain;
+    s16 fadeOutVel;
+    s32 velocity;
+    s32 currentHiRes;
+    s16 *volOut;
+    struct AdsrEnvelope *envelope;
+}; // size = 0x20
+
+struct NoteAttributes
+{
+    s8 reverb;
+    f32 freqScale;
+    f32 velocity;
+    f32 pan;
+}; // size = 0x10
+
 struct SequenceChannel
 {
     /*0x00*/ u8 enabled : 1;
-    /*0x00*/ u8 disabledByChannel : 1;
+    /*0x00*/ u8 finished : 1;
     /*0x00*/ u8 stopScript : 1;
     /*0x00*/ u8 unk0b10 : 1;
     /*0x00*/ u8 hasInstrument : 1;
-    /*0x00*/ u8 soundModeSomething : 1;
+    /*0x00*/ u8 stereoHeadsetEffects : 1;
     /*0x00*/ u8 largeNotes : 1; // notes specify duration and velocity
-    /*0x00*/ u8 unk0b1 : 1;
-    /*0x01*/ u8 someMask;
+    /*0x00*/ u8 unused : 1; // never read, set to 0
+    /*0x01*/ u8 noteAllocPolicy;
     /*0x02*/ u8 muteBehavior;
     /*0x03*/ u8 reverb; // or dry/wet mix
-    /*0x03*/ u8 unk4; // set to 3
+    /*0x04*/ u8 notePriority; // 0-3
     /*0x05*/ u8 bankId;
     /*0x06*/ u8 updatesPerFrameUnused; // never read
     /*0x08*/ u16 vibratoRateStart; // initially 0x800
@@ -235,8 +273,8 @@ struct SequenceChannel
     /*0x28*/ f32 panChannelWeight; // proportion of pan that comes from the channel (0..1)
     /*0x2C*/ f32 freqScale;
     /*0x30*/ u8 (*dynTable)[][2];
-    /*0x34*/ struct Note *unk34;
-    /*0x38*/ struct SequenceChannelLayer *unk38;
+    /*0x34*/ struct Note *noteUnused; // never read
+    /*0x38*/ struct SequenceChannelLayer *layerUnused; // never read
     /*0x3C*/ struct Instrument *instrument;
     /*0x40*/ struct SequencePlayer *seqPlayer;
     /*0x44*/ struct SequenceChannelLayer *layers[4];
@@ -244,7 +282,7 @@ struct SequenceChannel
     // [0] contains enabled, [4] contains sound ID, [5] contains reverb adjustment
     /*0x5C*/ struct M64ScriptState scriptState;
     /*0x78*/ struct AdsrSettings adsr;
-    /*0x80*/ struct NoteListItem unk80[4]; // heads
+    /*0x80*/ struct NotePool notePool;
 }; // size = 0xC0
 
 struct SequenceChannelLayer // Maybe SequenceTrack?
@@ -255,7 +293,7 @@ struct SequenceChannelLayer // Maybe SequenceTrack?
     /*0x00*/ u8 unk0b10 : 1;
     /*0x01*/ u8 unk1;
     /*0x02*/ u8 noteDuration; // set to 0x80
-    /*0x03*/ u8 unk3;
+    /*0x03*/ u8 portamentoTargetNote;
     /*0x04*/ struct Portamento portamento;
     /*0x14*/ struct AdsrSettings adsr;
     /*0x1C*/ u16 portamentoTime;
@@ -278,32 +316,8 @@ struct SequenceChannelLayer // Maybe SequenceTrack?
     /*0x4C*/ struct AudioBankSound *sound;
     /*0x50*/ struct SequenceChannel *seqChannel;
     /*0x54*/ struct M64ScriptState scriptState;
-    /*0x70*/ struct NoteListItem noteItem;
+    /*0x70*/ struct AudioListItem listItem;
 }; // size = 0x80
-
-struct SequenceChannelLayer_2
-{
-    s8 reverb;
-    f32 freqScale;
-    f32 velocity;
-    f32 pan;
-}; // size = 0x10
-
-struct AdsrState {
-    u8 action;
-    u8 state;
-    s16 initial; // always 0
-    s16 target;
-    s16 current;
-    s16 envIndex;
-    s16 delay;
-    s16 sustain;
-    s16 fadeOutVel;
-    s32 velocity;
-    s32 currentHiRes;
-    s16 *volOut; // points to note->unk8
-    struct AdsrEnvelope *envelope;
-}; // size = 0x20
 
 struct Note
 {
@@ -312,45 +326,45 @@ struct Note
     /*0x00*/ u8 unk0b20 : 1;
     /*0x00*/ u8 unk0b10 : 1;
     /*0x00*/ u8 unk0b8 : 1;
-    /*0x00*/ u8 unk0b4 : 1;
-    /*0x00*/ u8 unk0b2 : 1;
-    /*0x00*/ u8 soundModeSomething : 1;
-    /*0x01*/ u8 unk1;
+    /*0x00*/ u8 stereoStrongRight : 1;
+    /*0x00*/ u8 stereoStrongLeft : 1;
+    /*0x00*/ u8 stereoHeadsetEffects : 1;
+    /*0x01*/ u8 usesStereo;
     /*0x02*/ u8 unk2;
-    /*0x03*/ u8 unk3;
-    /*0x04*/ u8 unk4;
+    /*0x03*/ u8 sampleDmaIndex;
+    /*0x04*/ u8 priority;
     /*0x05*/ u8 sampleCount; // 0, 8, 16, 32 or 64
     /*0x06*/ u8 instOrWave;
     /*0x07*/ u8 bankId;
-    /*0x08*/ s16 unk8;
+    /*0x08*/ s16 adsrVolScale;
     /*    */ u8 pad1[2];
-    /*0x0C*/ u16 panRight;
-    /*0x0E*/ u16 panLeft;
-    /*0x10*/ u16 unk10;
-    /*0x12*/ u16 unk12;
+    /*0x0C*/ u16 headsetPanRight;
+    /*0x0E*/ u16 headsetPanLeft;
+    /*0x10*/ u16 prevHeadsetPanRight;
+    /*0x12*/ u16 prevHeadsetPanLeft;
     /*0x14*/ s32 unk14;
     /*0x18*/ f32 portamentoFreqScale;
     /*0x1C*/ f32 vibratoFreqScale;
     /*0x20*/ u16 unk20;
     /*0x24*/ struct AudioBankSound *sound;
-    /*0x28*/ struct SequenceChannelLayer *unk28;
-    /*0x2C*/ struct SequenceChannelLayer *parentLayer; // ?
-    /*0x30*/ struct SequenceChannelLayer *unk30;
+    /*0x28*/ struct SequenceChannelLayer *prevParentLayer;
+    /*0x2C*/ struct SequenceChannelLayer *parentLayer;
+    /*0x30*/ struct SequenceChannelLayer *wantedParentLayer;
     /*0x34*/ struct SubStruct_func_80318F04 *unk34; // or s16*
     /*0x38*/ f32 frequency;
     /*0x3C*/ u16 targetVolLeft;
     /*0x3E*/ u16 targetVolRight;
     /*0x40*/ u8 reverb;
-    /*0x41*/ u8 unk41;
-    /*0x44*/ struct SequenceChannelLayer_2 unk44;
+    /*0x41*/ u8 unused1; // never read, set to 0x3f
+    /*0x44*/ struct NoteAttributes attributes;
     /*0x54*/ struct AdsrState adsr;
     /*0x74*/ struct Portamento portamento;
     /*0x84*/ struct VibratoState vibratoState;
     /*0x9C*/ s16 curVolLeft;
     /*0x9E*/ s16 curVolRight;
     /*0xA0*/ s16 reverbVol;
-    /*0xA2*/ s16 unused; // never read, set to 0
-    /*0xA4*/ struct NoteListItem noteListItem;
+    /*0xA2*/ s16 unused2; // never read, set to 0
+    /*0xA4*/ struct AudioListItem listItem;
     /*    */ u8 pad2[0xc];
 }; // size = 0xC0
 
@@ -361,24 +375,23 @@ struct SubStruct_func_80318F04
     s16 unk20[0x10];
     s16 unk40[0x28];
     s16 unk90[0x10];
-    s16 unkb0[0x10];
-    s16 unkd0[0x10];
-    s16 unkf0[0x10];
+    s16 unkB0[0x20];
+    s16 unkF0[0x10];
     s16 samples[0x40];
 };
 
 struct Struct80332190
 {
-    /*0x00*/ u32 frequency; // 32000, 27000
-    /*0x04*/ u8 noteCount; // stored in gNoteCount, 16 (mostly), 20, 14, 12, 10, 8
-    /*0x05*/ u8 unk5; // stored in D_802212A2, always 1
-    /*0x06*/ u16 size; // sent as param to soundAlloc
-    /*0x08*/ u16 unk8; // unknown, stored to D_802211B0.4
-    /*0x0A*/ u16 unkA; // stored in D_802212A0
-    /*0x0C*/ u32 unkC; // added with unk10
-    /*0x10*/ u32 unk10;
-    /*0x14*/ u32 unk14; // added with unk18
-    /*0x18*/ u32 unk18;
+    /*0x00*/ u32 frequency;
+    /*0x04*/ u8 maxSimultaneousNotes;
+    /*0x05*/ u8 unk5; // stored to D_802212A2, always 1
+    /*0x06*/ u16 unk6; // memory requirement of some sort
+    /*0x08*/ u16 unk8; // gain? stored to D_802211B0.unk4
+    /*0x0A*/ u16 volume;
+    /*0x0C*/ u32 persistentSeqMem;
+    /*0x10*/ u32 persistentBankMem;
+    /*0x14*/ u32 temporarySeqMem;
+    /*0x18*/ u32 temporaryBankMem;
 }; // size = 0x1C
 
 extern struct Note *gNotes; // points to an array
@@ -401,9 +414,9 @@ extern struct SequenceChannelLayer D_802245D8[52];
 extern struct SequenceChannel gSequenceChannelNone;
 
 // List of struct SequenceChannelLayer's
-extern struct NoteListItem gLayerFreeList;      // head
+extern struct AudioListItem gLayerFreeList;
 
 // Lists of struct Note's
-extern struct NoteListItem D_80225EA8[4];   // four heads
+extern struct NotePool gNoteFreeLists;
 
 #endif /* _AUDIO_INTERNAL_H */

@@ -177,7 +177,7 @@ static void eyerok_boss_act_die(void)
     }
     else if (o->oTimer > 120)
     {
-        stop_background_music(SEQUENCE_ARGS(4, FALSE, SEQ_EVENT_BOSS));
+        stop_background_music(SEQUENCE_ARGS(4, SEQ_EVENT_BOSS));
         mark_object_for_deletion(o);
     }
 }

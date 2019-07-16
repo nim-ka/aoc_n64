@@ -436,17 +436,17 @@ glabel L8031C34C
 /* 0D73A0 8031C3A0 AE090000 */   sw    $t1, ($s0)
 glabel L8031C3A4
 /* 0D73A4 8031C3A4 26510080 */  addiu $s1, $s2, 0x80
-/* 0D73A8 8031C3A8 0C0C64BF */  jal   func_803192FC
+/* 0D73A8 8031C3A8 0C0C64BF */  jal   note_pool_clear
 /* 0D73AC 8031C3AC 02202025 */   move  $a0, $s1
 /* 0D73B0 8031C3B0 0C0C6C07 */  jal   m64_read_u8
 /* 0D73B4 8031C3B4 02002025 */   move  $a0, $s0
 /* 0D73B8 8031C3B8 02202025 */  move  $a0, $s1
-/* 0D73BC 8031C3BC 0C0C650A */  jal   func_80319428
+/* 0D73BC 8031C3BC 0C0C650A */  jal   note_pool_fill
 /* 0D73C0 8031C3C0 00402825 */   move  $a1, $v0
 /* 0D73C4 8031C3C4 1000FF81 */  b     .L8031C1CC
 /* 0D73C8 8031C3C8 00000000 */   nop   
 glabel L8031C3CC
-/* 0D73CC 8031C3CC 0C0C64BF */  jal   func_803192FC
+/* 0D73CC 8031C3CC 0C0C64BF */  jal   note_pool_clear
 /* 0D73D0 8031C3D0 26440080 */   addiu $a0, $s2, 0x80
 /* 0D73D4 8031C3D4 1000FF7D */  b     .L8031C1CC
 /* 0D73D8 8031C3D8 00000000 */   nop   
@@ -670,10 +670,10 @@ glabel L8031C6C8
 /* 0D76D4 8031C6D4 3C038022 */  lui   $v1, %hi(gAlBankSets) # $v1, 0x8022
 /* 0D76D8 8031C6D8 8C636D58 */  lw    $v1, %lo(gAlBankSets)($v1)
 /* 0D76DC 8031C6DC 000F7040 */  sll   $t6, $t7, 1
-/* 0D76E0 8031C6E0 3C048022 */  lui   $a0, %hi(gSoundLoadedPool) # $a0, 0x8022
+/* 0D76E0 8031C6E0 3C048022 */  lui   $a0, %hi(gBankLoadedPool) # $a0, 0x8022
 /* 0D76E4 8031C6E4 006EC821 */  addu  $t9, $v1, $t6
 /* 0D76E8 8031C6E8 97270000 */  lhu   $a3, ($t9)
-/* 0D76EC 8031C6EC 248414F8 */  addiu $a0, %lo(gSoundLoadedPool) # addiu $a0, $a0, 0x14f8
+/* 0D76EC 8031C6EC 248414F8 */  addiu $a0, %lo(gBankLoadedPool) # addiu $a0, $a0, 0x14f8
 /* 0D76F0 8031C6F0 24050002 */  li    $a1, 2
 /* 0D76F4 8031C6F4 00E34821 */  addu  $t1, $a3, $v1
 /* 0D76F8 8031C6F8 91280000 */  lbu   $t0, ($t1)

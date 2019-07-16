@@ -39,8 +39,8 @@ glabel func_80316928
 /* 0D2974 80317974 8FB80038 */   lw    $t8, 0x38($sp)
 /* 0D2978 80317978 0C0C5E3B */  jal   func_803168CC
 /* 0D297C 8031797C 00000000 */   nop   
-/* 0D2980 80317980 3C038022 */  lui   $v1, %hi(gNoteCount) # $v1, 0x8022
-/* 0D2984 80317984 8C636B70 */  lw    $v1, %lo(gNoteCount)($v1)
+/* 0D2980 80317980 3C038022 */  lui   $v1, %hi(gMaxSimultaneousNotes) # $v1, 0x8022
+/* 0D2984 80317984 8C636B70 */  lw    $v1, %lo(gMaxSimultaneousNotes)($v1)
 /* 0D2988 80317988 00008025 */  move  $s0, $zero
 /* 0D298C 8031798C 00002025 */  move  $a0, $zero
 /* 0D2990 80317990 18600027 */  blez  $v1, .L80317A30
@@ -62,7 +62,7 @@ glabel func_80316928
 /* 0D29CC 803179CC 0203082A */   slt   $at, $s0, $v1
 /* 0D29D0 803179D0 80CE0000 */  lb    $t6, ($a2)
 /* 0D29D4 803179D4 340F8000 */  li    $t7, 32768
-/* 0D29D8 803179D8 3C038022 */  lui   $v1, %hi(gNoteCount) # $v1, 0x8022
+/* 0D29D8 803179D8 3C038022 */  lui   $v1, %hi(gMaxSimultaneousNotes) # $v1, 0x8022
 /* 0D29DC 803179DC 01EE001A */  div   $zero, $t7, $t6
 /* 0D29E0 803179E0 0000C012 */  mflo  $t8
 /* 0D29E4 803179E4 A4580062 */  sh    $t8, 0x62($v0)
@@ -82,7 +82,7 @@ glabel func_80316928
 /* 0D2A14 80317A14 904C0054 */  lbu   $t4, 0x54($v0)
 /* 0D2A18 80317A18 358D0010 */  ori   $t5, $t4, 0x10
 /* 0D2A1C 80317A1C A04D0054 */  sb    $t5, 0x54($v0)
-/* 0D2A20 80317A20 8C636B70 */  lw    $v1, %lo(gNoteCount)($v1)
+/* 0D2A20 80317A20 8C636B70 */  lw    $v1, %lo(gMaxSimultaneousNotes)($v1)
 /* 0D2A24 80317A24 0203082A */  slt   $at, $s0, $v1
 .L80317A28:
 /* 0D2A28 80317A28 1420FFDF */  bnez  $at, .L803179A8
@@ -93,8 +93,8 @@ glabel func_80316928
 /* 0D2A38 80317A38 26310001 */  addiu $s1, $s1, 1
 /* 0D2A3C 80317A3C 2A2100F1 */  slti  $at, $s1, 0xf1
 /* 0D2A40 80317A40 10200013 */  beqz  $at, .L80317A90
-/* 0D2A44 80317A44 3C038022 */   lui   $v1, %hi(gNoteCount) # $v1, 0x8022
-/* 0D2A48 80317A48 8C636B70 */  lw    $v1, %lo(gNoteCount)($v1)
+/* 0D2A44 80317A44 3C038022 */   lui   $v1, %hi(gMaxSimultaneousNotes) # $v1, 0x8022
+/* 0D2A48 80317A48 8C636B70 */  lw    $v1, %lo(gMaxSimultaneousNotes)($v1)
 /* 0D2A4C 80317A4C 00008025 */  move  $s0, $zero
 /* 0D2A50 80317A50 3C028022 */  lui   $v0, %hi(gNotes) # $v0, 0x8022
 /* 0D2A54 80317A54 1860000A */  blez  $v1, .L80317A80
@@ -126,11 +126,11 @@ glabel func_80316928
 /* 0D2AB0 80317AB0 AF380000 */  sw    $t8, ($t9)
 /* 0D2AB4 80317AB4 0C0C5E45 */  jal   wait_for_audio_frames
 /* 0D2AB8 80317AB8 24040003 */   li    $a0, 3
-/* 0D2ABC 80317ABC 3C138022 */  lui   $s3, %hi(gActiveAudioDmasCount) # $s3, 0x8022
-/* 0D2AC0 80317AC0 26736B84 */  addiu $s3, %lo(gActiveAudioDmasCount) # addiu $s3, $s3, 0x6b84
+/* 0D2ABC 80317ABC 3C138022 */  lui   $s3, %hi(gCurrAudioFrameDmaCount) # $s3, 0x8022
+/* 0D2AC0 80317AC0 26736B84 */  addiu $s3, %lo(gCurrAudioFrameDmaCount) # addiu $s3, $s3, 0x6b84
 /* 0D2AC4 80317AC4 8E710000 */  lw    $s1, ($s3)
-/* 0D2AC8 80317AC8 3C128022 */  lui   $s2, %hi(D_80225EE8) # $s2, 0x8022
-/* 0D2ACC 80317ACC 26525CE8 */  addiu $s2, %lo(D_80225EE8) # addiu $s2, $s2, 0x5ce8
+/* 0D2AC8 80317AC8 3C128022 */  lui   $s2, %hi(gCurrAudioFrameDmaQueue) # $s2, 0x8022
+/* 0D2ACC 80317ACC 26525CE8 */  addiu $s2, %lo(gCurrAudioFrameDmaQueue) # addiu $s2, $s2, 0x5ce8
 /* 0D2AD0 80317AD0 1A200012 */  blez  $s1, .L80317B1C
 /* 0D2AD4 80317AD4 00000000 */   nop   
 /* 0D2AD8 80317AD8 8E6C0000 */  lw    $t4, ($s3)
@@ -173,8 +173,8 @@ glabel func_80316928
 /* 0D2B54 80317B54 00001025 */   move  $v0, $zero
 /* 0D2B58 80317B58 8FB80038 */  lw    $t8, 0x38($sp)
 .L80317B5C:
-/* 0D2B5C 80317B5C 3C018022 */  lui   $at, %hi(D_80226B38) # $at, 0x8022
-/* 0D2B60 80317B60 AC206938 */  sw    $zero, %lo(D_80226B38)($at)
+/* 0D2B5C 80317B5C 3C018022 */  lui   $at, %hi(sSampleDmaNumListItems) # $at, 0x8022
+/* 0D2B60 80317B60 AC206938 */  sw    $zero, %lo(sSampleDmaNumListItems)($at)
 /* 0D2B64 80317B64 97190006 */  lhu   $t9, 6($t8)
 /* 0D2B68 80317B68 AFB9002C */  sw    $t9, 0x2c($sp)
 /* 0D2B6C 80317B6C 0C0C965C */  jal   osAiSetFrequency
@@ -188,10 +188,10 @@ glabel func_80316928
 /* 0D2B8C 80317B8C 910C0004 */  lbu   $t4, 4($t0)
 /* 0D2B90 80317B90 00007812 */  mflo  $t7
 /* 0D2B94 80317B94 3C0A8022 */  lui   $t2, %hi(D_80226D74) # $t2, 0x8022
-/* 0D2B98 80317B98 3C0B8022 */  lui   $t3, %hi(gNoteCount) # $t3, 0x8022
+/* 0D2B98 80317B98 3C0B8022 */  lui   $t3, %hi(gMaxSimultaneousNotes) # $t3, 0x8022
 /* 0D2B9C 80317B9C 25EE000F */  addiu $t6, $t7, 0xf
 /* 0D2BA0 80317BA0 2401FFF0 */  li    $at, -16
-/* 0D2BA4 80317BA4 256B6B70 */  addiu $t3, %lo(gNoteCount) # addiu $t3, $t3, 0x6b70
+/* 0D2BA4 80317BA4 256B6B70 */  addiu $t3, %lo(gMaxSimultaneousNotes) # addiu $t3, $t3, 0x6b70
 /* 0D2BA8 80317BA8 254A6B74 */  addiu $t2, %lo(D_80226D74) # addiu $t2, $t2, 0x6b74
 /* 0D2BAC 80317BAC 01C1C824 */  and   $t9, $t6, $at
 /* 0D2BB0 80317BB0 AD590000 */  sw    $t9, ($t2)
@@ -357,7 +357,7 @@ glabel L80317C3C
 /* 0D2E04 80317E04 AC800008 */  sw    $zero, 8($a0)
 /* 0D2E08 80317E08 0C0C5CCE */  jal   func_80316318
 /* 0D2E0C 80317E0C AC8E0004 */   sw    $t6, 4($a0)
-/* 0D2E10 80317E10 0C0C5BA0 */  jal   func_80315E60
+/* 0D2E10 80317E10 0C0C5BA0 */  jal   reset_bank_and_seq_load_status
 /* 0D2E14 80317E14 00000000 */   nop   
 /* 0D2E18 80317E18 3C108022 */  lui   $s0, %hi(gAudioCmdBuffers) # $s0, 0x8022
 /* 0D2E1C 80317E1C 3C128022 */  lui   $s2, %hi(D_802212C8) # $s2, 0x8022
@@ -374,8 +374,8 @@ glabel L80317C3C
 /* 0D2E44 80317E44 26100004 */  addiu $s0, $s0, 4
 /* 0D2E48 80317E48 1611FFF9 */  bne   $s0, $s1, .L80317E30
 /* 0D2E4C 80317E4C AE02FFFC */   sw    $v0, -4($s0)
-/* 0D2E50 80317E50 3C058022 */  lui   $a1, %hi(gNoteCount) # $a1, 0x8022
-/* 0D2E54 80317E54 8CA56B70 */  lw    $a1, %lo(gNoteCount)($a1)
+/* 0D2E50 80317E50 3C058022 */  lui   $a1, %hi(gMaxSimultaneousNotes) # $a1, 0x8022
+/* 0D2E54 80317E54 8CA56B70 */  lw    $a1, %lo(gMaxSimultaneousNotes)($a1)
 /* 0D2E58 80317E58 02402025 */  move  $a0, $s2
 /* 0D2E5C 80317E5C 0005C080 */  sll   $t8, $a1, 2
 /* 0D2E60 80317E60 0305C023 */  subu  $t8, $t8, $a1
@@ -384,7 +384,7 @@ glabel L80317C3C
 /* 0D2E6C 80317E6C 3C018022 */  lui   $at, %hi(gNotes) # $at, 0x8022
 /* 0D2E70 80317E70 0C0C6B6B */  jal   note_init_all
 /* 0D2E74 80317E74 AC222610 */   sw    $v0, %lo(gNotes)($at)
-/* 0D2E78 80317E78 0C0C68AD */  jal   func_80319248
+/* 0D2E78 80317E78 0C0C68AD */  jal   init_note_free_list
 /* 0D2E7C 80317E7C 00000000 */   nop   
 /* 0D2E80 80317E80 8FA2002C */  lw    $v0, 0x2c($sp)
 /* 0D2E84 80317E84 3C118022 */  lui   $s1, %hi(D_802211B0) # $s1, 0x8022
@@ -480,9 +480,9 @@ glabel L80317C3C
 /* 0D2FDC 80317FDC 5420FFEF */  bnezl $at, .L80317F9C
 /* 0D2FE0 80317FE0 02402025 */   move  $a0, $s2
 .L80317FE4:
-/* 0D2FE4 80317FE4 3C048022 */  lui   $a0, %hi(gNoteCount) # $a0, 0x8022
+/* 0D2FE4 80317FE4 3C048022 */  lui   $a0, %hi(gMaxSimultaneousNotes) # $a0, 0x8022
 /* 0D2FE8 80317FE8 0C0C618D */  jal   func_8031758C
-/* 0D2FEC 80317FEC 8C846B70 */   lw    $a0, %lo(gNoteCount)($a0)
+/* 0D2FEC 80317FEC 8C846B70 */   lw    $a0, %lo(gMaxSimultaneousNotes)($a0)
 /* 0D2FF0 80317FF0 0C0C8BD0 */  jal   osWritebackDCacheAll
 /* 0D2FF4 80317FF4 00000000 */   nop   
 /* 0D2FF8 80317FF8 3C0C8033 */  lui   $t4, %hi(gAudioLoadLock) # $t4, 0x8033

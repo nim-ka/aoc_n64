@@ -60,7 +60,7 @@ glabel seq_channel_layer_process_script
 /* 0D60F4 8031B0F4 01F8082A */  slt   $at, $t7, $t8
 /* 0D60F8 8031B0F8 54200369 */  bnezl $at, .L8031BEA0
 /* 0D60FC 8031B0FC 8FBF001C */   lw    $ra, 0x1c($sp)
-/* 0D6100 8031B100 0C0C63B1 */  jal   seq_channel_layer_init_6
+/* 0D6100 8031B100 0C0C63B1 */  jal   seq_channel_layer_note_decay
 /* 0D6104 8031B104 00000000 */   nop   
 /* 0D6108 8031B108 920E0000 */  lbu   $t6, ($s0)
 /* 0D610C 8031B10C 35CF0020 */  ori   $t7, $t6, 0x20
@@ -69,7 +69,7 @@ glabel seq_channel_layer_process_script
 .L8031B118:
 /* 0D6118 8031B118 07220004 */  bltzl $t9, .L8031B12C
 /* 0D611C 8031B11C 92020004 */   lbu   $v0, 4($s0)
-/* 0D6120 8031B120 0C0C63B1 */  jal   seq_channel_layer_init_6
+/* 0D6120 8031B120 0C0C63B1 */  jal   seq_channel_layer_note_decay
 /* 0D6124 8031B124 02002025 */   move  $a0, $s0
 /* 0D6128 8031B128 92020004 */  lbu   $v0, 4($s0)
 .L8031B12C:
@@ -87,9 +87,9 @@ glabel seq_channel_layer_process_script
 /* 0D6154 8031B154 8E0D0050 */  lw    $t5, 0x50($s0)
 .L8031B158:
 /* 0D6158 8031B158 3C013F80 */  lui   $at, 0x3f80
-/* 0D615C 8031B15C 3C0B8022 */  lui   $t3, %hi(gSoundLoadedPool) 
+/* 0D615C 8031B15C 3C0B8022 */  lui   $t3, %hi(gBankLoadedPool) 
 /* 0D6160 8031B160 44810800 */  mtc1  $at, $f1
-/* 0D6164 8031B164 256B14F8 */  addiu $t3, $t3, %lo(gSoundLoadedPool)
+/* 0D6164 8031B164 256B14F8 */  addiu $t3, $t3, %lo(gBankLoadedPool)
 /* 0D6168 8031B168 27FF6D60 */  addiu $ra, %lo(gCtlEntries) # addiu $ra, $ra, 0x6d60
 /* 0D616C 8031B16C 97AA003A */  lhu   $t2, 0x3a($sp)
 /* 0D6170 8031B170 240900FF */  li    $t1, 255
@@ -276,15 +276,15 @@ glabel L8031B3D4
 /* 0D6400 8031B400 A20F0000 */  sb    $t7, ($s0)
 /* 0D6404 8031B404 AFAD0058 */  sw    $t5, 0x58($sp)
 /* 0D6408 8031B408 AFAC005C */  sw    $t4, 0x5c($sp)
-/* 0D640C 8031B40C 0C0C63B1 */  jal   seq_channel_layer_init_6
+/* 0D640C 8031B40C 0C0C63B1 */  jal   seq_channel_layer_note_decay
 /* 0D6410 8031B410 A7AA003A */   sh    $t2, 0x3a($sp)
 /* 0D6414 8031B414 3C013F80 */  li    $at, 0x3F800000 # 1.000000
 /* 0D6418 8031B418 44810800 */  mtc1  $at, $f1
-/* 0D641C 8031B41C 3C0B8022 */  lui   $t3, %hi(gSoundLoadedPool) # $t3, 0x8022
+/* 0D641C 8031B41C 3C0B8022 */  lui   $t3, %hi(gBankLoadedPool) # $t3, 0x8022
 /* 0D6420 8031B420 3C1F8022 */  lui   $ra, %hi(gCtlEntries) 
 /* 0D6424 8031B424 44800000 */  mtc1  $zero, $f0
 /* 0D6428 8031B428 27FF6D60 */  addiu $ra, $ra, %lo(gCtlEntries)
-/* 0D642C 8031B42C 256B14F8 */  addiu $t3, %lo(gSoundLoadedPool) # addiu $t3, $t3, 0x14f8
+/* 0D642C 8031B42C 256B14F8 */  addiu $t3, %lo(gBankLoadedPool) # addiu $t3, $t3, 0x14f8
 /* 0D6430 8031B430 240900FF */  li    $t1, 255
 /* 0D6434 8031B434 97AA003A */  lhu   $t2, 0x3a($sp)
 /* 0D6438 8031B438 8FAC005C */  lw    $t4, 0x5c($sp)
@@ -980,7 +980,7 @@ glabel L8031BBF4
 /* 0D6DE4 8031BDE4 0703002E */  bgezl $t8, .L8031BEA0
 /* 0D6DE8 8031BDE8 8FBF001C */   lw    $ra, 0x1c($sp)
 .L8031BDEC:
-/* 0D6DEC 8031BDEC 0C0C63B1 */  jal   seq_channel_layer_init_6
+/* 0D6DEC 8031BDEC 0C0C63B1 */  jal   seq_channel_layer_note_decay
 /* 0D6DF0 8031BDF0 02002025 */   move  $a0, $s0
 /* 0D6DF4 8031BDF4 1000002A */  b     .L8031BEA0
 /* 0D6DF8 8031BDF8 8FBF001C */   lw    $ra, 0x1c($sp)
@@ -1004,7 +1004,7 @@ glabel L8031BBF4
 .L8031BE34:
 /* 0D6E34 8031BE34 57000006 */  bnezl $t8, .L8031BE50
 /* 0D6E38 8031BE38 8E19004C */   lw    $t9, 0x4c($s0)
-/* 0D6E3C 8031BE3C 0C0C63B1 */  jal   seq_channel_layer_init_6
+/* 0D6E3C 8031BE3C 0C0C63B1 */  jal   seq_channel_layer_note_decay
 /* 0D6E40 8031BE40 02002025 */   move  $a0, $s0
 /* 0D6E44 8031BE44 10000008 */  b     .L8031BE68
 /* 0D6E48 8031BE48 24080001 */   li    $t0, 1
@@ -1019,7 +1019,7 @@ glabel L8031BBF4
 .L8031BE68:
 /* 0D6E68 8031BE68 51000005 */  beql  $t0, $zero, .L8031BE80
 /* 0D6E6C 8031BE6C 8E040044 */   lw    $a0, 0x44($s0)
-/* 0D6E70 8031BE70 0C0C6638 */  jal   func_803198E0
+/* 0D6E70 8031BE70 0C0C6638 */  jal   alloc_note
 /* 0D6E74 8031BE74 02002025 */   move  $a0, $s0
 /* 0D6E78 8031BE78 AE020044 */  sw    $v0, 0x44($s0)
 /* 0D6E7C 8031BE7C 8E040044 */  lw    $a0, 0x44($s0)

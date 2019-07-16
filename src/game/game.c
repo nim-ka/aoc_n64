@@ -317,7 +317,7 @@ void thread5_game_loop(UNUSED void *arg)
     // point addr to the entry point into the level script data.
     addr = (struct LevelCommand *) segmented_to_virtual(level_script_entry);
 
-    play_music(2, SEQUENCE_ARGS(0, FALSE, SEQ_SOUND_PLAYER), 0);
+    play_music(2, SEQUENCE_ARGS(0, SEQ_SOUND_PLAYER), 0);
     set_sound_mode(save_file_get_sound_mode());
     func_80247ED8();
 

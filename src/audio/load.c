@@ -5,7 +5,6 @@
 #include "memory.h"
 #include "data.h"
 #include "seqplayer.h"
-#include "external.h"
 
 #define ALIGN16(val) (((val) + 0xF) & ~0xF)
 
@@ -42,204 +41,222 @@ void audio_dma_partial_copy_async(u32 *devAddr, u8 **vAddr, s32 *remaining, OSMe
     *vAddr += transfer;
 }
 
-void func_8031715C()
+void decrease_sample_dma_ttls()
 {
     u32 i;
 
-    for (i = 0; i < D_80226B3C; i++)
+    for (i = 0; i < sSampleDmaListSize1; i++)
     {
-        struct Struct80226538 *temp = D_80226538 + i;
-        if (temp->unkE != 0)
+        struct SharedDma *temp = sSampleDmas + i;
+        if (temp->ttl != 0)
         {
-            temp->unkE--;
-            if (temp->unkE == 0)
+            temp->ttl--;
+            if (temp->ttl == 0)
             {
-                temp->unkD = D_80226D4A;
-                D_80226B48[D_80226D4A++] = (u8)i;
+                temp->reuseIndex = sSampleDmaReuseQueueHead1;
+                sSampleDmaReuseQueue1[sSampleDmaReuseQueueHead1++] = (u8)i;
             }
         }
     }
 
-    for (i = D_80226B3C; i < D_80226B38; i++)
+    for (i = sSampleDmaListSize1; i < sSampleDmaNumListItems; i++)
     {
-        struct Struct80226538 *temp = D_80226538 + i;
-        if (temp->unkE != 0)
+        struct SharedDma *temp = sSampleDmas + i;
+        if (temp->ttl != 0)
         {
-            temp->unkE--;
-            if (temp->unkE == 0)
+            temp->ttl--;
+            if (temp->ttl == 0)
             {
-                temp->unkD = D_80226D4B;
-                D_80226C48[D_80226D4B++] = (u8)i;
+                temp->reuseIndex = sSampleDmaReuseQueueHead2;
+                sSampleDmaReuseQueue2[sSampleDmaReuseQueueHead2++] = (u8)i;
             }
         }
     }
 
-    D_80226B40 = 0;
+    sUnused80226B40 = 0;
 }
 
 #ifdef NON_MATCHING
 
-void *func_80317270(u8 *arg0, u32 arg1, s32 arg2, u8 *arg3)
+void *dma_sample_data(u8 *devAddr, u32 size, s32 arg2, u8 *arg3)
 {
-    struct Struct80226538 *temp; // v1
-    struct Struct80226538 *dma; // sp58, t0
+    s32 bufferPos; // v0
+    struct SharedDma *dma; // sp58, v1, t0
     u32 transfer; // v0
-    u32 devAddr; // s0
+    u32 dmaDevAddr; // s0
     u32 i; // a0
     u32 dmaIndex; // sp48, t2
     s32 hasDma = 0; // t4
+    UNUSED s32 pad;
 
-    if (arg2 != 0 || *arg3 >= D_80226B3C)
+    if (arg2 != 0 || *arg3 >= sSampleDmaListSize1)
     {
-        for (i = D_80226B3C; i < D_80226B38; i++)
+        for (i = sSampleDmaListSize1; i < sSampleDmaNumListItems; i++)
         {
-            temp = D_80226538 + i;
-            transfer = (u32) arg0 - temp->unk4;
-            if ((s32)transfer >= 0 && temp->unkA - arg1 >= transfer)
+            dma = sSampleDmas + i;
+            bufferPos = (u32) devAddr - dma->source;
+            if (0 <= bufferPos && (u32) bufferPos <= dma->bufSize - size)
             {
-                if (temp->unkE == 0 && D_80226D4B != D_80226D49)
+                // We already have a DMA request for this memory range.
+                if (dma->ttl == 0 && sSampleDmaReuseQueueHead2 != sSampleDmaReuseQueueTail2)
                 {
-                    if (temp->unkD != D_80226D49)
+                    // Move the DMA out of the reuse queue, by swapping it with the
+                    // tail, and then incrementing the tail.
+                    if (dma->reuseIndex != sSampleDmaReuseQueueTail2)
                     {
-                        D_80226C48[temp->unkD] = D_80226C48[D_80226D49];
-                        D_80226538[D_80226C48[D_80226D49]].unkD = temp->unkD;
+                        sSampleDmaReuseQueue2[dma->reuseIndex] = sSampleDmaReuseQueue2[sSampleDmaReuseQueueTail2];
+                        sSampleDmas[sSampleDmaReuseQueue2[sSampleDmaReuseQueueTail2]].reuseIndex = dma->reuseIndex;
                     }
-                    D_80226D49++;
+                    sSampleDmaReuseQueueTail2++;
                 }
-                temp->unkE = 60;
+                dma->ttl = 60;
                 *arg3 = (u8)i;
-                transfer = (u32) arg0 - temp->unk4;
-                return temp->unk0 + transfer;
+                bufferPos = (u32) devAddr - dma->source;
+                return dma->buffer + bufferPos;
             }
-            dma = temp;
         }
 
-        if (D_80226D4B != D_80226D49 && arg2 != 0)
+        if (sSampleDmaReuseQueueHead2 != sSampleDmaReuseQueueTail2 && arg2 != 0)
         {
-            dmaIndex = D_80226C48[D_80226D49++];
-            dma = &D_80226538[dmaIndex];
+            // Allocate a DMA from reuse queue 2. This queue can be empty, since
+            // TTL 60 is pretty large.
+            dmaIndex = sSampleDmaReuseQueue2[sSampleDmaReuseQueueTail2++];
+            dma = &sSampleDmas[dmaIndex];
             hasDma = 1;
         }
     }
     else
     {
-        dma = &D_80226538[*arg3];
-        transfer = (u32) arg0 - dma->unk4;
-        if ((s32)transfer >= 0 && dma->unkA - arg1 >= transfer)
+        dma = &sSampleDmas[*arg3];
+        bufferPos = (u32) devAddr - dma->source;
+        if (0 <= bufferPos && (u32) bufferPos <= dma->bufSize - size)
         {
-            if (dma->unkE == 0)
+            // We already have DMA for this memory range.
+            if (dma->ttl == 0)
             {
-                if (dma->unkD != D_80226D48)
+                // Move the DMA out of the reuse queue, by swapping it with the
+                // tail, and then incrementing the tail.
+                if (dma->reuseIndex != sSampleDmaReuseQueueTail1)
                 {
-                    D_80226B48[dma->unkD] = D_80226B48[D_80226D48];
-                    D_80226538[D_80226B48[D_80226D48]].unkD = dma->unkD;
+                    sSampleDmaReuseQueue1[dma->reuseIndex] = sSampleDmaReuseQueue1[sSampleDmaReuseQueueTail1];
+                    sSampleDmas[sSampleDmaReuseQueue1[sSampleDmaReuseQueueTail1]].reuseIndex = dma->reuseIndex;
                 }
-                D_80226D48++;
-                transfer = (u32) arg0 - dma->unk4;
+                sSampleDmaReuseQueueTail1++;
+                bufferPos = (u32) devAddr - dma->source;
             }
-            dma->unkE = 2;
-            return dma->unk0 + transfer;
+            dma->ttl = 2;
+            return dma->buffer + bufferPos;
         }
     }
 
     if (!hasDma)
     {
-        dmaIndex = D_80226B48[D_80226D48++];
-        dma = &D_80226538[dmaIndex];
+        // Allocate a DMA from reuse queue 1. This queue will hopefully never
+        // be empty, since TTL 2 is so small.
+        dmaIndex = sSampleDmaReuseQueue1[sSampleDmaReuseQueueTail1++];
+        dma = &sSampleDmas[dmaIndex];
         hasDma = 1;
     }
 
-    transfer = dma->unkA;
-    devAddr = (u32) arg0 & ~0xF;
-    dma->unkE = 2;
-    dma->unk4 = devAddr;
-    dma->unk8 = transfer;
+    transfer = dma->bufSize;
+    dmaDevAddr = (u32) devAddr & ~0xF;
+    dma->ttl = 2;
+    dma->source = dmaDevAddr;
+    dma->sizeUnused = transfer;
 #ifndef VERSION_JP
-    osInvalDCache(dma->unk0, transfer);
+    osInvalDCache(dma->buffer, transfer);
 #endif
-    gActiveAudioDmasCount++;
-    osPiStartDma(&gActiveAudioDmasMesgBuf[gActiveAudioDmasCount - 1], OS_MESG_PRI_NORMAL, OS_READ,
-            devAddr, dma->unk0, transfer, &D_80225EE8);
+    gCurrAudioFrameDmaCount++;
+    osPiStartDma(&gCurrAudioFrameDmaIoMesgBufs[gCurrAudioFrameDmaCount - 1],
+            OS_MESG_PRI_NORMAL, OS_READ,
+            dmaDevAddr, dma->buffer, transfer, &gCurrAudioFrameDmaQueue);
     *arg3 = dmaIndex;
-    return dma->unk0 + (u32) arg0 - devAddr;
+    return dma->buffer + (u32) devAddr - dmaDevAddr;
 }
 
 #elif defined(VERSION_JP)
-GLOBAL_ASM("asm/non_matchings/func_80317270_jp.s")
+GLOBAL_ASM("asm/non_matchings/dma_sample_data_jp.s")
 #else
-GLOBAL_ASM("asm/non_matchings/func_80317270_us.s")
+GLOBAL_ASM("asm/non_matchings/dma_sample_data_us.s")
 #endif
 
+// called from sound_reset
 void func_8031758C(UNUSED s32 arg0)
 {
     s32 i;
     s32 j;
 
     D_80226D68 = 0x510;
-    for (i = 0; i < gNoteCount * 3; i++)
+    for (i = 0; i < gMaxSimultaneousNotes * 3; i++)
     {
-        D_80226538[D_80226B38].unk0 = soundAlloc(&D_802212C8, D_80226D68);
-        if (D_80226538[D_80226B38].unk0 == NULL)
+        sSampleDmas[sSampleDmaNumListItems].buffer = soundAlloc(&D_802212C8, D_80226D68);
+        if (sSampleDmas[sSampleDmaNumListItems].buffer == NULL)
         {
             goto out1;
         }
-        D_80226538[D_80226B38].unk4 = 0;
-        D_80226538[D_80226B38].unk8 = 0;
-        D_80226538[D_80226B38].unkC = 0;
-        D_80226538[D_80226B38].unkE = 0;
-        D_80226538[D_80226B38].unkA = D_80226D68;
-        D_80226B38++;
+        sSampleDmas[sSampleDmaNumListItems].source = 0;
+        sSampleDmas[sSampleDmaNumListItems].sizeUnused = 0;
+        sSampleDmas[sSampleDmaNumListItems].unused2 = 0;
+        sSampleDmas[sSampleDmaNumListItems].ttl = 0;
+        sSampleDmas[sSampleDmaNumListItems].bufSize = D_80226D68;
+        sSampleDmaNumListItems++;
     }
 out1:
 
-    for (i = 0; (u32) i < D_80226B38; i++)
+    for (i = 0; (u32) i < sSampleDmaNumListItems; i++)
     {
-        D_80226B48[i] = (u8) i;
-        D_80226538[i].unkD = (u8) i;
+        sSampleDmaReuseQueue1[i] = (u8) i;
+        sSampleDmas[i].reuseIndex = (u8) i;
     }
 
-    for (j = D_80226B38; j < 0x100; j++)
+    for (j = sSampleDmaNumListItems; j < 0x100; j++)
     {
-        D_80226B48[j] = 0;
+        sSampleDmaReuseQueue1[j] = 0;
     }
 
-    D_80226D48 = 0;
-    D_80226D4A = (u8) D_80226B38;
-    D_80226B3C = D_80226B38;
+    sSampleDmaReuseQueueTail1 = 0;
+    sSampleDmaReuseQueueHead1 = (u8) sSampleDmaNumListItems;
+    sSampleDmaListSize1 = sSampleDmaNumListItems;
     D_80226D68 = 0x5a0;
 
-    for (i = 0; i < gNoteCount; i++)
+    for (i = 0; i < gMaxSimultaneousNotes; i++)
     {
-        D_80226538[D_80226B38].unk0 = soundAlloc(&D_802212C8, D_80226D68);
-        if (D_80226538[D_80226B38].unk0 == NULL)
+        sSampleDmas[sSampleDmaNumListItems].buffer = soundAlloc(&D_802212C8, D_80226D68);
+        if (sSampleDmas[sSampleDmaNumListItems].buffer == NULL)
         {
             goto out2;
         }
-        D_80226538[D_80226B38].unk4 = 0;
-        D_80226538[D_80226B38].unk8 = 0;
-        D_80226538[D_80226B38].unkC = 0;
-        D_80226538[D_80226B38].unkE = 0;
-        D_80226538[D_80226B38].unkA = D_80226D68;
-        D_80226B38++;
+        sSampleDmas[sSampleDmaNumListItems].source = 0;
+        sSampleDmas[sSampleDmaNumListItems].sizeUnused = 0;
+        sSampleDmas[sSampleDmaNumListItems].unused2 = 0;
+        sSampleDmas[sSampleDmaNumListItems].ttl = 0;
+        sSampleDmas[sSampleDmaNumListItems].bufSize = D_80226D68;
+        sSampleDmaNumListItems++;
     }
 out2:
 
-    for (i = D_80226B3C; (u32) i < D_80226B38; i++)
+    for (i = sSampleDmaListSize1; (u32) i < sSampleDmaNumListItems; i++)
     {
-        D_80226C48[i - D_80226B3C] = (u8) i;
-        D_80226538[i].unkD = (u8) (i - D_80226B3C);
+        sSampleDmaReuseQueue2[i - sSampleDmaListSize1] = (u8) i;
+        sSampleDmas[i].reuseIndex = (u8) (i - sSampleDmaListSize1);
     }
 
-    for (j = D_80226B38; j < 0x100; j++)
+    // This probably meant to touch the range size1..size2 as well... but it
+    // doesn't matter, since these values are never read anyway.
+    for (j = sSampleDmaNumListItems; j < 0x100; j++)
     {
-        D_80226C48[j] = D_80226B3C;
+        sSampleDmaReuseQueue2[j] = sSampleDmaListSize1;
     }
 
-    D_80226D49 = 0;
-    D_80226D4B = D_80226B38 - D_80226B3C;
+    sSampleDmaReuseQueueTail2 = 0;
+    sSampleDmaReuseQueueHead2 = sSampleDmaNumListItems - sSampleDmaListSize1;
 }
 
 #ifndef static
+// Keep supporting the good old "#define static" hack.
+#undef static
+#endif
+
 static void unused_80317844(void)
 {
     // With -O2 -framepointer, this never-invoked static function gets *almost*
@@ -247,12 +264,6 @@ static void unused_80317844(void)
     // If not declared as static, it unnecessarily moves the stack pointer up
     // and down by 8.
 }
-#else
-// Keep supporting the good old "#define static" hack.
-#undef static
-static void unused_80317844(void) {}
-#define static
-#endif
 
 #ifdef NON_MATCHING
 void func_8031784C(struct AudioBank *mem, u8 *offset, u32 numInstruments, u32 numDrums)
@@ -391,7 +402,7 @@ struct AudioBank *bank_load_immediate(s32 bankId, s32 arg1)
     alloc = ALIGN16(alloc);
     alloc -= 0x10;
     ctlData = gAlCtlHeader->seqArray[bankId].offset;
-    ret = alloc_bank_or_seq(&gSoundLoadedPool, 1, alloc, arg1, bankId);
+    ret = alloc_bank_or_seq(&gBankLoadedPool, 1, alloc, arg1, bankId);
     if (ret == NULL)
     {
         return NULL;
@@ -425,7 +436,7 @@ struct AudioBank *bank_load_async(s32 bankId, s32 arg1, struct SequencePlayer *s
     alloc = ALIGN16(alloc);
     alloc -= 0x10;
     ctlData = gAlCtlHeader->seqArray[bankId].offset;
-    ret = alloc_bank_or_seq(&gSoundLoadedPool, 1, alloc, arg1, bankId);
+    ret = alloc_bank_or_seq(&gBankLoadedPool, 1, alloc, arg1, bankId);
     if (ret == NULL)
     {
         return NULL;
@@ -524,7 +535,7 @@ u8 get_missing_bank(u32 seqId, s32 *nonNullCount, s32 *nullCount)
 
         if (IS_BANK_LOAD_COMPLETE(bankId) == TRUE)
         {
-            temp = get_bank_or_seq(&gSoundLoadedPool, 2, gAlBankSets[offset - 1]);
+            temp = get_bank_or_seq(&gBankLoadedPool, 2, gAlBankSets[offset - 1]);
         }
         else
         {
@@ -560,7 +571,7 @@ struct AudioBank *load_banks_immediate(s32 seqId, u8 *arg1)
 
         if (IS_BANK_LOAD_COMPLETE(bankId) == TRUE)
         {
-            ret = get_bank_or_seq(&gSoundLoadedPool, 2, gAlBankSets[offset - 1]);
+            ret = get_bank_or_seq(&gBankLoadedPool, 2, gAlBankSets[offset - 1]);
         }
         else
         {
@@ -701,14 +712,14 @@ void audio_init()
 
     gAudioLoadLock = AUDIO_LOCK_UNINITIALIZED;
 
-    lim1 = D_80333EE8;
+    lim1 = gUnusedCount80333EE8;
     for (i = 0; i < lim1; i++)
     {
-        D_80226E58[i] = 0;
-        D_80226E98[i] = 0;
+        sUnused80226E58[i] = 0;
+        sUnused80226E98[i] = 0;
     }
 
-    lim2 = D_80333EEC;
+    lim2 = gAudioHeapSize;
     for (i = 0; i <= lim2 / 8 - 1; i++)
     {
         ((u64 *) gAudioHeap)[i] = 0;
@@ -736,9 +747,10 @@ void audio_init()
     gAudioTasks[0].task.t.data_size = 0;
     gAudioTasks[1].task.t.data_size = 0;
     osCreateMesgQueue(&gAudioDmaMesgQueue, &gAudioDmaMesg, 1);
-    osCreateMesgQueue(&D_80225EE8, D_80225F00, ARRAY_COUNT(D_80225F00));
-    gActiveAudioDmasCount = 0;
-    D_80226B38 = 0;
+    osCreateMesgQueue(&gCurrAudioFrameDmaQueue, gCurrAudioFrameDmaMesgBufs,
+            ARRAY_COUNT(gCurrAudioFrameDmaMesgBufs));
+    gCurrAudioFrameDmaCount = 0;
+    sSampleDmaNumListItems = 0;
 
     func_80316108(D_80333EF0);
 

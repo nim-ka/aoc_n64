@@ -119,7 +119,7 @@ void ActionWhomp2(void)
     if(func_802A6AF8(1000.0f))
     {
         o->oAction = 0;
-        stop_background_music(SEQUENCE_ARGS(4, FALSE, SEQ_EVENT_BOSS));
+        stop_background_music(SEQUENCE_ARGS(4, SEQ_EVENT_BOSS));
     }
 }
 
@@ -290,7 +290,7 @@ void ActionWhomp8(void)
 void ActionWhomp9(void)
 {
     if(o->oTimer == 60)
-        stop_background_music(SEQUENCE_ARGS(4, FALSE, SEQ_EVENT_BOSS));
+        stop_background_music(SEQUENCE_ARGS(4, SEQ_EVENT_BOSS));
 }
 
 void (*sWhompActions[])(void) = {ActionWhomp0,ActionWhomp1,ActionWhomp2,ActionWhomp3,ActionWhomp4,ActionWhomp5,ActionWhomp6,ActionWhomp7,ActionWhomp8,ActionWhomp9};

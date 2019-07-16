@@ -79,25 +79,27 @@ void func_80313920(s32 arg0, u32 updateIndex)
         D_802211B0.unk8 = a0;
     }
     sp1c->unk00 = v1_2;
-    sp1c->unk02 = arg0;
+    sp1c->chunkLen = arg0;
 }
 
 s32 get_volume_ramping(u16 sourceVol, u16 targetVol, s32 arg2)
 {
+    // This roughly computes 2^16 * (targetVol / sourceVol) ^ (8 / arg2),
+    // but with discretizations of targetVol, sourceVol and arg2.
     f32 ret;
     switch (arg2)
     {
     default:
-        ret = D_803332E4[targetVol >> 8] * D_803334E4[sourceVol >> 8];
+        ret = gVolRampingLhs136[targetVol >> 8] * gVolRampingRhs136[sourceVol >> 8];
         break;
     case 128:
-        ret = D_80333AE4[targetVol >> 8] * D_80333CE4[sourceVol >> 8];
+        ret = gVolRampingLhs128[targetVol >> 8] * gVolRampingRhs128[sourceVol >> 8];
         break;
     case 136:
-        ret = D_803332E4[targetVol >> 8] * D_803334E4[sourceVol >> 8];
+        ret = gVolRampingLhs136[targetVol >> 8] * gVolRampingRhs136[sourceVol >> 8];
         break;
     case 144:
-        ret = D_803336E4[targetVol >> 8] * D_803338E4[sourceVol >> 8];
+        ret = gVolRampingLhs144[targetVol >> 8] * gVolRampingRhs144[sourceVol >> 8];
         break;
     }
     return ret;
@@ -269,7 +271,7 @@ u64 *func_80314480(u16 *aiBuf, s32 bufLen, u64 *cmd)
     f32 f12;
     UNUSED s32 temp;
 
-    for (sp174 = 0, sp15C = NULL; sp174 < gNoteCount; sp174++)
+    for (sp174 = 0, sp15C = NULL; sp174 < gMaxSimultaneousNotes; sp174++)
     {
         s7 = &gNotes[sp174];
         if (IS_BANK_LOAD_COMPLETE(s7->bankId) == FALSE)
@@ -279,11 +281,11 @@ u64 *func_80314480(u16 *aiBuf, s32 bufLen, u64 *cmd)
         else if (s7->enabled)
         {
             // This matches much much better if enabled is volatile... but that
-            // breaks other functions (e.g. func_80315D94). Can we achieve the
+            // breaks other functions (e.g. note_enable). Can we achieve the
             // volatile effect in some other way?
             sp148 = 0;
 
-            if (s7->unk0b40 == 1)
+            if (s7->unk0b40 == TRUE)
             {
                 sp148 = 1;
                 s7->unk14 = 0;
@@ -421,8 +423,8 @@ u64 *func_80314480(u16 *aiBuf, s32 bufLen, u64 *cmd)
                         if (t0 != 0)
                         {
                             // maybe keep a var for t0 * 9?
-                            v0_2 = func_80317270(sp120 + (s7->unk14 - s2 + 0x10) / 16 * 9,
-                                    t0 * 9, sp148, &s7->unk3);
+                            v0_2 = dma_sample_data(sp120 + (s7->unk14 - s2 + 0x10) / 16 * 9,
+                                    t0 * 9, sp148, &s7->sampleDmaIndex);
                             a3 = (u32)v0_2 & 0xf;
                             aSetBuffer(cmd++, 0, 0x3f0, 0, t0 * 9 + a3);
                             aLoadBuffer(cmd++, FIX(v0_2 - a3));
@@ -509,7 +511,7 @@ u64 *func_80314480(u16 *aiBuf, s32 bufLen, u64 *cmd)
                         {
                         case 0:
                             aSetBuffer(cmd++, 0, sp130 + 0x180, 0x20, t5 + 4);
-                            aResample(cmd++, 0x1, 0xff60, FIX(s7->unk34->unkf0));
+                            aResample(cmd++, 0x1, 0xff60, FIX(s7->unk34->unkF0));
                             spD8 = t5 + 4;
                             spD6 = 36;
                             if (s7->unk0b10 != 0)
@@ -520,7 +522,7 @@ u64 *func_80314480(u16 *aiBuf, s32 bufLen, u64 *cmd)
 
                         case 1:
                             aSetBuffer(cmd++, 0, sp130 + 0x180, 0x160, t5 + 8);
-                            aResample(cmd++, 0x1, 0xff60, FIX(s7->unk34->unkf0));
+                            aResample(cmd++, 0x1, 0xff60, FIX(s7->unk34->unkF0));
                             aDMEMMove(cmd++, 0x164, spD8 + 0x20, t5 + 4);
                             break;
                         }
@@ -538,19 +540,19 @@ u64 *func_80314480(u16 *aiBuf, s32 bufLen, u64 *cmd)
             }
 out:
 
-            if (s7->unk0b40 == 1)
+            if (s7->unk0b40 == TRUE)
             {
                 sp148 = 1;
-                s7->unk0b40 = 0;
+                s7->unk0b40 = FALSE;
             }
 
             cmd = func_80314FD4(cmd, s7, bufLen * 2, sp5c, spD6, sp148);
 
-            if (s7->panRight != 0 || s7->unk10 != 0)
+            if (s7->headsetPanRight != 0 || s7->prevHeadsetPanRight != 0)
             {
                 s0 = 1;
             }
-            else if (s7->panLeft != 0 || s7->unk12 != 0)
+            else if (s7->headsetPanLeft != 0 || s7->prevHeadsetPanLeft != 0)
             {
                 s0 = 2;
             }
@@ -560,7 +562,7 @@ out:
             }
 
             cmd = func_80315030(cmd, s7, bufLen, 0, s0, sp148);
-            if (s7->unk1)
+            if (s7->usesStereo)
             {
                 cmd = func_803155F4(cmd, s7, bufLen * 2, sp148, s0);
             }
@@ -630,7 +632,7 @@ u64 *func_80315094(u64 *cmd, struct Note *note, s32 arg2, u16 arg3, s32 arg4, st
     u8 mixerFlags;
     UNUSED u8 pad2[8];
     s32 rampLeft, rampRight;
-    if (note->unk1)
+    if (note->usesStereo)
     {
         aClearBuffer(cmd++, 0x200, 320);
 
@@ -652,13 +654,13 @@ u64 *func_80315094(u64 *cmd, struct Note *note, s32 arg2, u16 arg3, s32 arg4, st
     }
     else
     {
-        if (note->unk0b4)
+        if (note->stereoStrongRight)
         {
             aClearBuffer(cmd++, 0x200, 640);
             aSetBuffer(cmd++, 0, arg3, 0x200, arg2 * 2);
             aSetBuffer(cmd++, 8, 0x600, 0x340, 0x880);
         }
-        else if (note->unk0b2)
+        else if (note->stereoStrongLeft)
         {
             aClearBuffer(cmd++, 0x200, 640);
             aSetBuffer(cmd++, 0, arg3, 0x4c0, arg2 * 2);
@@ -690,13 +692,13 @@ u64 *func_80315094(u64 *cmd, struct Note *note, s32 arg2, u16 arg3, s32 arg4, st
     if (D_802211B0.unk1 && note->reverb)
     {
         aEnvMixer(cmd++, mixerFlags | A_AUX, FIX(note->unk34->unk40));
-        if (note->unk0b4)
+        if (note->stereoStrongRight)
         {
             aSetBuffer(cmd++, 0, 0, 0, arg2 * 2);
             aMix(cmd++, 0, /*gain*/ 0x8000, /*in*/ 0x200, /*out*/ 0x4c0);
             aMix(cmd++, 0, /*gain*/ 0x8000, /*in*/ 0x340, /*out*/ 0x740);
         }
-        else if (note->unk0b2)
+        else if (note->stereoStrongLeft)
         {
             aSetBuffer(cmd++, 0, 0, 0, arg2 * 2);
             aMix(cmd++, 0, /*gain*/ 0x8000, /*in*/ 0x200, /*out*/ 0x600);
@@ -706,12 +708,12 @@ u64 *func_80315094(u64 *cmd, struct Note *note, s32 arg2, u16 arg3, s32 arg4, st
     else
     {
         aEnvMixer(cmd++, mixerFlags, FIX(note->unk34->unk40));
-        if (note->unk0b4)
+        if (note->stereoStrongRight)
         {
             aSetBuffer(cmd++, 0, 0, 0, arg2 * 2);
             aMix(cmd++, 0, /*gain*/ 0x8000, /*in*/ 0x200, /*out*/ 0x4c0);
         }
-        else if (note->unk0b2)
+        else if (note->stereoStrongLeft)
         {
             aSetBuffer(cmd++, 0, 0, 0, arg2 * 2);
             aMix(cmd++, 0, /*gain*/ 0x8000, /*in*/ 0x200, /*out*/ 0x600);
@@ -723,7 +725,7 @@ u64 *func_80315094(u64 *cmd, struct Note *note, s32 arg2, u16 arg3, s32 arg4, st
 u64 *func_803155F4(u64 *cmd, struct Note *note, s32 arg2, s32 arg3, s32 leftRight)
 {
     u16 t0;
-    u16 a3;
+    u16 prevPanVolume;
     u16 panVolume;
     u16 pitch; // t2
     UNUSED s32 padding[11];
@@ -732,17 +734,17 @@ u64 *func_803155F4(u64 *cmd, struct Note *note, s32 arg2, s32 arg3, s32 leftRigh
     {
     case 1:
         t0 = 0x4c0;
-        note->unk12 = 0;
-        panVolume = note->panRight;
-        a3 = note->unk10;
-        note->unk10 = panVolume;
+        note->prevHeadsetPanLeft = 0;
+        panVolume = note->headsetPanRight;
+        prevPanVolume = note->prevHeadsetPanRight;
+        note->prevHeadsetPanRight = panVolume;
         break;
     case 2:
         t0 = 0x600;
-        note->unk10 = 0;
-        panVolume = note->panLeft;
-        a3 = note->unk12;
-        note->unk12 = panVolume;
+        note->prevHeadsetPanRight = 0;
+        panVolume = note->headsetPanLeft;
+        prevPanVolume = note->prevHeadsetPanLeft;
+        note->prevHeadsetPanLeft = panVolume;
         break;
     default:
         return cmd;
@@ -750,35 +752,35 @@ u64 *func_803155F4(u64 *cmd, struct Note *note, s32 arg2, s32 arg3, s32 leftRigh
 
     if (arg3 != 1) //A_INIT?
     {
-        if (a3 == 0)
+        if (prevPanVolume == 0)
         {
             aDMEMMove(cmd++, 0x200, 0, 8);
             aClearBuffer(cmd++, 8, 8);
             aDMEMMove(cmd++, 0x200, 0x10, 0x10);
             aSetBuffer(cmd++, 0, 0, 0, 32);
             aSaveBuffer(cmd++, FIX(note->unk34->unk90));
-            pitch = (arg2 << 0xf) / (panVolume + arg2 - a3 + 8);
-            aSetBuffer(cmd++, 0, 0x208, 0, panVolume + arg2 - a3);
+            pitch = (arg2 << 0xf) / (panVolume + arg2 - prevPanVolume + 8);
+            aSetBuffer(cmd++, 0, 0x208, 0, panVolume + arg2 - prevPanVolume);
             aResample(cmd++, 0, pitch, FIX(note->unk34->unk90));
         }
         else
         {
             pitch = (panVolume == 0) ?
-                (arg2 << 0xf) / (arg2 - a3 - 4) :
-                (arg2 << 0xf) / (arg2 + panVolume - a3);
-            aSetBuffer(cmd++, 0, 0x200, 0, panVolume + arg2 - a3);
+                (arg2 << 0xf) / (arg2 - prevPanVolume - 4) :
+                (arg2 << 0xf) / (arg2 + panVolume - prevPanVolume);
+            aSetBuffer(cmd++, 0, 0x200, 0, panVolume + arg2 - prevPanVolume);
             aResample(cmd++, 0, pitch, FIX(note->unk34->unk90));
         }
 
-        if (a3 != 0)
+        if (prevPanVolume != 0)
         {
-            aSetBuffer(cmd++, 0, 0x200, 0, a3);
-            aLoadBuffer(cmd++, FIX(note->unk34->unkb0));
-            aDMEMMove(cmd++, 0, a3 + 0x200, panVolume + arg2 - a3);
+            aSetBuffer(cmd++, 0, 0x200, 0, prevPanVolume);
+            aLoadBuffer(cmd++, FIX(note->unk34->unkB0));
+            aDMEMMove(cmd++, 0, prevPanVolume + 0x200, panVolume + arg2 - prevPanVolume);
         }
         else
         {
-            aDMEMMove(cmd++, 0, 0x200, panVolume + arg2 - a3);
+            aDMEMMove(cmd++, 0, 0x200, panVolume + arg2 - prevPanVolume);
         }
     }
     else
@@ -791,7 +793,7 @@ u64 *func_803155F4(u64 *cmd, struct Note *note, s32 arg2, s32 arg3, s32 leftRigh
     if (panVolume)
     {
         aSetBuffer(cmd++, 0, 0, arg2 + 0x200, panVolume);
-        aSaveBuffer(cmd++, FIX(note->unk34->unkb0));
+        aSaveBuffer(cmd++, FIX(note->unk34->unkB0));
     }
 
     aSetBuffer(cmd++, 0, 0, 0, arg2);
@@ -800,85 +802,78 @@ u64 *func_803155F4(u64 *cmd, struct Note *note, s32 arg2, s32 arg3, s32 leftRigh
     return cmd;
 }
 
-void note_init(struct Note *note) // This is wrong. It only partially updates the note
+void note_init_volume(struct Note *note)
 {
     note->targetVolLeft = 0;
     note->targetVolRight = 0;
     note->reverb = 0;
     note->reverbVol = 0;
-    note->unused = 0;
+    note->unused2 = 0;
     note->curVolLeft = 1;
     note->curVolRight = 1;
     note->frequency = 0.0f;
 }
 
-void func_803159EC(struct Note *note, f32 velocity, f32 pan, u8 reverb)
+void note_set_vel_pan_reverb(struct Note *note, f32 velocity, f32 pan, u8 reverb)
 {
-    s32 v0;
-    f32 f0;
-    f32 f2;
+    s32 panIndex;
+    f32 volLeft;
+    f32 volRight;
 #ifdef VERSION_JP
-    v0 = MIN((s32)(pan * 127.5), 127);
+    panIndex = MIN((s32)(pan * 127.5), 127);
+#else
+    panIndex = (s32)(pan * 127.5f) & 127;
 #endif
-    if (note->soundModeSomething && gSoundMode == SOUND_MODE_HEADSET)
+    if (note->stereoHeadsetEffects && gSoundMode == SOUND_MODE_HEADSET)
     {
-        s8 panIndex;
-        panIndex = MIN((s8)(pan * 10.0f), 9);
-        note->panLeft = gPanQuantization[panIndex];
-        note->panRight = gPanQuantization[9 - panIndex];
-        note->unk0b4 = 0;
-        note->unk0b2 = 0;
-        note->unk1 = 1;
-#ifndef VERSION_JP
-        v0 = (s32)(pan * 127.5f) & 127;
-#endif
-        f0 = D_80332CE4[v0];
-        f2 = D_80332CE4[127 - v0];
+        s8 smallPanIndex;
+        smallPanIndex = MIN((s8)(pan * 10.0f), 9);
+        note->headsetPanLeft = gHeadsetPanQuantization[smallPanIndex];
+        note->headsetPanRight = gHeadsetPanQuantization[9 - smallPanIndex];
+        note->stereoStrongRight = FALSE;
+        note->stereoStrongLeft = FALSE;
+        note->usesStereo = TRUE;
+        volLeft = gHeadsetPanVolume[panIndex];
+        volRight = gHeadsetPanVolume[127 - panIndex];
     }
-    else if (note->soundModeSomething && gSoundMode == SOUND_MODE_STEREO)
+    else if (note->stereoHeadsetEffects && gSoundMode == SOUND_MODE_STEREO)
     {
-        u8 v1 = 0;
-        u8 a1 = 0;
-        note->panLeft = 0;
-        note->panRight = 0;
-        note->unk1 = 0;
-#ifndef VERSION_JP
-        v0 = (s32)(pan * 127.5f) & 127;
-#endif
-        f0 = D_80332EE4[v0];
-        f2 = D_80332EE4[127 - v0];
-        if (v0 < 0x20)
+        u8 strongLeft = FALSE;
+        u8 strongRight = FALSE;
+        note->headsetPanLeft = 0;
+        note->headsetPanRight = 0;
+        note->usesStereo = FALSE;
+        volLeft = gStereoPanVolume[panIndex];
+        volRight = gStereoPanVolume[127 - panIndex];
+        if (panIndex < 0x20)
         {
-            v1 = 1;
+            strongLeft = TRUE;
         }
-        else if (v0 > 0x60)
+        else if (panIndex > 0x60)
         {
-            a1 = 1;
+            strongRight = TRUE;
         }
-        note->unk0b4 = a1;
-        note->unk0b2 = v1;
+        note->stereoStrongRight = strongRight;
+        note->stereoStrongLeft = strongLeft;
     }
     else if (gSoundMode == SOUND_MODE_MONO)
     {
-        f0 = .707f;
-        f2 = .707f;
+        volLeft = .707f;
+        volRight = .707f;
     }
     else
     {
-#ifndef VERSION_JP
-        v0 = (s32)(pan * 127.5f) & 127;
-#endif
-        f0 = D_803330E4[v0];
-        f2 = D_803330E4[127 - v0];
+        volLeft = gDefaultPanVolume[panIndex];
+        volRight = gDefaultPanVolume[127 - panIndex];
     }
 
     velocity = MAX(velocity, 0);
 #ifdef VERSION_JP
-    note->targetVolLeft = (u16)(velocity * f0) & ~0x80FF; // 0x7F00, but that doesn't match
-    note->targetVolRight = (u16)(velocity * f2) & ~0x80FF;
+    note->targetVolLeft = (u16)(velocity * volLeft) & ~0x80FF; // 0x7F00, but that doesn't match
+    note->targetVolRight = (u16)(velocity * volRight) & ~0x80FF;
 #else
-    note->targetVolLeft = (u16)(s32)(velocity * f0) & ~0x80FF;
-    note->targetVolRight = (u16)(s32)(velocity * f2) & ~0x80FF;
+    note->targetVolLeft = (u16)(s32)(velocity * volLeft) & ~0x80FF;
+    note->targetVolRight = (u16)(s32)(velocity * volRight) & ~0x80FF;
 #endif
     if (note->targetVolLeft == 0)
     {
@@ -892,16 +887,18 @@ void func_803159EC(struct Note *note, f32 velocity, f32 pan, u8 reverb)
     {
         note->reverb = reverb;
         note->reverbVol = reverb << 8;
-        note->unk0b8 = 1;
+        note->unk0b8 = TRUE;
         return;
     }
+
     if (note->unk0b40)
     {
-        note->unk0b8 = 1;
-        return;
+        note->unk0b8 = TRUE;
     }
-    note->unk0b8 = 0;
-    return;
+    else
+    {
+        note->unk0b8 = FALSE;
+    }
 }
 
 void note_set_frequency(struct Note *note, f32 frequency)
@@ -909,35 +906,34 @@ void note_set_frequency(struct Note *note, f32 frequency)
     note->frequency = frequency;
 }
 
-// init something?
-void func_80315D94(struct Note *note)
+void note_enable(struct Note *note)
 {
-    note->unk1 = 0;
-    note->panLeft = 0;
     note->enabled = TRUE;
     note->unk0b40 = TRUE;
     note->unk0b20 = FALSE;
     note->unk0b10 = FALSE;
-    note->unk0b4 = FALSE;
-    note->unk0b2 = FALSE;
-    note->panRight = 0;
-    note->unk10 = 0;
-    note->unk12 = 0;
+    note->stereoStrongRight = FALSE;
+    note->stereoStrongLeft = FALSE;
+    note->usesStereo = FALSE;
+    note->headsetPanLeft = 0;
+    note->headsetPanRight = 0;
+    note->prevHeadsetPanRight = 0;
+    note->prevHeadsetPanLeft = 0;
 }
 
-void func_80315DE0(struct Note *note)
+void note_disable(struct Note *note)
 {
-    if (note->unk0b40 == 1)
+    if (note->unk0b40 == TRUE)
     {
-        note->unk0b40 = 0;
+        note->unk0b40 = FALSE;
     }
     else
     {
-        func_803159EC(note, 0, .5, 0);
+        note_set_vel_pan_reverb(note, 0, .5, 0);
     }
-    note->unk4 = 0;
+    note->priority = NOTE_PRIORITY_DISABLED;
     note->enabled = FALSE;
     note->unk0b10 = FALSE;
     note->parentLayer = NO_LAYER;
-    note->unk28 = NO_LAYER;
+    note->prevParentLayer = NO_LAYER;
 }

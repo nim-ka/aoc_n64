@@ -1,6 +1,8 @@
 #ifndef _SEQ_IDS_H
 #define _SEQ_IDS_H
 
+#define SEQ_VARIATION                     0x80
+
 #define SEQ_SOUND_PLAYER                  0x0000
 #define SEQ_EVENT_CUTSCENE_COLLECT_STAR   0x0001
 #define SEQ_MENU_TITLE_SCREEN             0x0002

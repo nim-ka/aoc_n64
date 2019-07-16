@@ -16,8 +16,8 @@ glabel alloc_bank_or_seq
 /* 0D1414 80316414 10000009 */  b     .L8031643C
 /* 0D1418 80316418 A3A0005B */   sb    $zero, 0x5b($sp)
 .L8031641C:
-/* 0D141C 8031641C 3C0F8022 */  lui   $t7, %hi(gSoundLoadedPool) # $t7, 0x8022
-/* 0D1420 80316420 25EF14F8 */  addiu $t7, %lo(gSoundLoadedPool) # addiu $t7, $t7, 0x14f8
+/* 0D141C 8031641C 3C0F8022 */  lui   $t7, %hi(gBankLoadedPool) # $t7, 0x8022
+/* 0D1420 80316420 25EF14F8 */  addiu $t7, %lo(gBankLoadedPool) # addiu $t7, $t7, 0x14f8
 /* 0D1424 80316424 160F0005 */  bne   $s0, $t7, .L8031643C
 /* 0D1428 80316428 3C0A8022 */   lui   $t2, %hi(gBankLoadStatus) # $t2, 0x8022
 /* 0D142C 8031642C 254A18D0 */  addiu $t2, %lo(gBankLoadStatus) # addiu $t2, $t2, 0x18d0

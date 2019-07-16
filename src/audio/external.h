@@ -3,8 +3,10 @@
 
 #include "types.h"
 
-// "something" is stored into gSequencePlayers.unk1, and can be read by sound scripts
-#define SEQUENCE_ARGS(priority, something, seqId) ((priority << 8) | (something << 7) | seqId)
+// Sequence arguments, passed to play_sequence. seqId may be bit-OR'ed with
+// SEQ_VARIATION; this will load the same sequence, but set a variation
+// bit which may be read by the sequence script.
+#define SEQUENCE_ARGS(priority, seqId) ((priority << 8) | seqId)
 
 #define SOUND_MODE_STEREO           0
 #define SOUND_MODE_MONO             3

@@ -3975,12 +3975,12 @@ s32 func_8028AF24(struct LevelCamera *c, s16 b)
 
 void func_8028B13C(void)
 {
-    play_music(0, SEQUENCE_ARGS(4, FALSE, SEQ_EVENT_PEACH_MESSAGE), 0);
+    play_music(0, SEQUENCE_ARGS(4, SEQ_EVENT_PEACH_MESSAGE), 0);
 }
 
 void func_8028B16C(void)
 {
-    play_music(0, SEQUENCE_ARGS(15, FALSE, SEQ_EVENT_CUTSCENE_INTRO), 0);
+    play_music(0, SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_INTRO), 0);
 }
 
 void play_camera_buzz_if_cdown(void)

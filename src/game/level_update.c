@@ -369,14 +369,14 @@ void init_mario_after_warp(void)
         set_background_music(gCurrentArea->musicParam, gCurrentArea->musicParam2, 0);
 
         if (gMarioState->flags & MARIO_METAL_CAP)
-            play_cap_music(SEQUENCE_ARGS(4, FALSE, SEQ_EVENT_METAL_CAP));
+            play_cap_music(SEQUENCE_ARGS(4, SEQ_EVENT_METAL_CAP));
 
         if (gMarioState->flags & (MARIO_VANISH_CAP | MARIO_WING_CAP))
-            play_cap_music(SEQUENCE_ARGS(4, FALSE, SEQ_EVENT_POWERUP));
+            play_cap_music(SEQUENCE_ARGS(4, SEQ_EVENT_POWERUP));
 
 #ifndef VERSION_JP
-        if (gCurrLevelNum == LEVEL_BOB && get_current_background_music() != SEQUENCE_ARGS(4, FALSE, SEQ_LEVEL_SLIDE) && sTimerRunning != 0)
-            play_music(0, SEQUENCE_ARGS(4, FALSE, SEQ_LEVEL_SLIDE), 0);
+        if (gCurrLevelNum == LEVEL_BOB && get_current_background_music() != SEQUENCE_ARGS(4, SEQ_LEVEL_SLIDE) && sTimerRunning != 0)
+            play_music(0, SEQUENCE_ARGS(4, SEQ_LEVEL_SLIDE), 0);
 #endif
 
         if (sWarpDest.levelNum == LEVEL_CASTLE
@@ -538,7 +538,7 @@ s16 func_8024A48C(s16 arg)
     if (levelNum == LEVEL_BOB && levelNum == gCurrLevelNum && destArea == gCurrAreaIndex)
     {
         sp2C = get_current_background_music();
-        if (sp2C == SEQUENCE_ARGS(4, TRUE, SEQ_EVENT_POWERUP) || sp2C == SEQUENCE_ARGS(4, FALSE, SEQ_EVENT_POWERUP))
+        if (sp2C == SEQUENCE_ARGS(4, SEQ_EVENT_POWERUP | SEQ_VARIATION) || sp2C == SEQUENCE_ARGS(4, SEQ_EVENT_POWERUP))
             val4 = 0;
     }
     else

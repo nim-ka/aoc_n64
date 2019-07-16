@@ -79,7 +79,7 @@ void ActionKingBobomb2(void)
     if(func_802A6AF8(1200.0f))
     {
         o->oAction = 0;
-        stop_background_music(SEQUENCE_ARGS(4, FALSE, SEQ_EVENT_BOSS));
+        stop_background_music(SEQUENCE_ARGS(4, SEQ_EVENT_BOSS));
     }
 }
 
@@ -151,7 +151,7 @@ void ActionKingBobomb1(void)
         o->oAction = 2;
     if(func_802A6AF8(1200.0f)){
         o->oAction = 0;
-        stop_background_music(SEQUENCE_ARGS(4, FALSE, SEQ_EVENT_BOSS));
+        stop_background_music(SEQUENCE_ARGS(4, SEQ_EVENT_BOSS));
     }
 }
 
@@ -222,7 +222,7 @@ void ActionKingBobomb7(void)
 void ActionKingBobomb8(void)
 {
     if(o->oTimer == 60)
-        stop_background_music(SEQUENCE_ARGS(4, FALSE, SEQ_EVENT_BOSS));
+        stop_background_music(SEQUENCE_ARGS(4, SEQ_EVENT_BOSS));
 }
 
 void ActionKingBobomb4() // bobomb been thrown
@@ -304,7 +304,7 @@ void ActionKingBobomb5() // bobomb returns home
         if(func_802A6AF8(1200.0f))
         {
             o->oAction = 0;
-            stop_background_music(SEQUENCE_ARGS(4, FALSE, SEQ_EVENT_BOSS));
+            stop_background_music(SEQUENCE_ARGS(4, SEQ_EVENT_BOSS));
         }
         if(obj_is_mario_in_range_and_ready_to_speak(500.0f,100.0f))
             o->oSubAction++;
