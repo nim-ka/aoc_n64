@@ -3,27 +3,27 @@ pipeline {
   stages {
     stage('Build Tools') {
       steps {
-        sh 'make -C tools/'
+        sh 'make -j4 -C tools/'
       }
     }
     stage('Build J Source') {
       steps {
-        sh 'make VERSION=jp'
+        sh 'make -j4 VERSION=jp'
       }
     }
     stage('Build U Source') {
       steps {
-        sh 'make VERSION=us'
+        sh 'make -j4 VERSION=us'
       }
     }
     stage('Build J Source, NON_MATCHING') {
       steps {
-        sh 'make VERSION=jp NON_MATCHING=1'
+        sh 'make -j4 VERSION=jp NON_MATCHING=1'
       }
     }
     stage('Build U Source, NON_MATCHING') {
       steps {
-        sh 'make VERSION=us NON_MATCHING=1'
+        sh 'make -j4 VERSION=us NON_MATCHING=1'
       }
     }
   }
