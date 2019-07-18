@@ -23,14 +23,14 @@ ifeq ($(VERSION),jp)
   VERSION_ASFLAGS := --defsym VERSION_JP=1
   GRUCODE_CFLAGS := -DF3D_OLD
   GRUCODE_ASFLAGS := --defsym F3D_OLD=1
-  TARGET := sm64.j
+  TARGET := sm64.jp
 else
 ifeq ($(VERSION),us)
   VERSION_CFLAGS := -DVERSION_US=1
   VERSION_ASFLAGS := --defsym VERSION_US=1
   GRUCODE_CFLAGS := -DF3D_OLD
   GRUCODE_ASFLAGS := --defsym F3D_OLD=1
-  TARGET := sm64.u
+  TARGET := sm64.us
 else
 ifeq ($(VERSION),eu)
   $(warning Building EU is experimental and is prone to breaking. Try at your own risk.)

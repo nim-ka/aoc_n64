@@ -17,9 +17,9 @@
 
 2b] Optionally, grab the prebuilt qemu-irix from the Releases section.
 
-3] Take the executable "qemu-irix" in irix-linux-user and put it somewhere where you will define an environment variable to it.
+3] Take the executable `qemu-irix` in irix-linux-user and put it somewhere where you will define an environment variable to it.
 
-4] Define "QEMU_IRIX" in your bashrc to point to this qemu-irix executable.
+4] Define `QEMU_IRIX` in your bashrc to point to this qemu-irix executable.
 
 5] After setting this repository up, run `make` to build the ROM. Make sure your path is not too long or else this process will error, as the emulated IDO compiler cannot handle paths longer than 255 characters.
 

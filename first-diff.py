@@ -19,7 +19,7 @@ for arg in sys.argv[1:]:
 if lang is None:
     lang = 'us'
     best = 0
-    for path in ['build/us/sm64.u.z64', 'build/jp/sm64.j.z64', 'build/eu/sm64.eu.z64']:
+    for path in ['build/us/sm64.us.z64', 'build/jp/sm64.jp.z64', 'build/eu/sm64.eu.z64']:
         try:
             if os.path.getmtime(path) > best:
                 lang = path.split('/')[1]
@@ -27,12 +27,11 @@ if lang is None:
             pass
     print("Assuming language " + lang)
 
-shortlang = ('eu' if lang == 'eu' else lang[0])
-baserom = 'baserom' if lang == 'jp' else 'baseromus' if lang == 'us' else 'baseromeu'
+baserom = 'baserom.' + lang + '.z64'
 baseimg = baserom + '.z64'
-basemap = 'sm64.' + shortlang + '.map'
+basemap = 'sm64.' + lang + '.map'
 
-myimg = 'build/' + lang + '/sm64.' + shortlang + '.z64'
+myimg = 'build/' + lang + '/sm64.' + lang + '.z64'
 mymap = 'build/' + lang + '/sm64.map'
 
 if os.path.isfile('expected/' + mymap):
