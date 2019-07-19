@@ -1246,8 +1246,8 @@ u32 func_802541BC(struct MarioState *m)
         if (
             (m->capTimer <= 60) ||
             (
-                (action != ACT_READING_AUTOMATIC_DIALOGUE) &&
-                    (action != ACT_READING_NPC_DIALOGUE) &&
+                (action != ACT_READING_AUTOMATIC_DIALOG) &&
+                    (action != ACT_READING_NPC_DIALOG) &&
                     (action != ACT_READING_SIGN) &&
                     (action != ACT_IN_CANNON)
             )

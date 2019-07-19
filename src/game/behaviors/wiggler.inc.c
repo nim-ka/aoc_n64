@@ -239,20 +239,20 @@ static void wiggler_act_walk(void)
     o->oWigglerWalkAnimSpeed = 0.06f * o->oForwardVel;
 
     // Update text if necessary
-    if (o->oWigglerTextStatus < WIGGLER_TEXT_STATUS_COMPLETED_DIALOGUE)
+    if (o->oWigglerTextStatus < WIGGLER_TEXT_STATUS_COMPLETED_DIALOG)
     {
-        if (o->oWigglerTextStatus == WIGGLER_TEXT_STATUS_AWAIT_DIALOGUE)
+        if (o->oWigglerTextStatus == WIGGLER_TEXT_STATUS_AWAIT_DIALOG)
         {
             func_8031FFB4(0, 60, 40);
-            o->oWigglerTextStatus = WIGGLER_TEXT_STATUS_SHOWING_DIALOGUE;
+            o->oWigglerTextStatus = WIGGLER_TEXT_STATUS_SHOWING_DIALOG;
         }
 
         // If Mario is positioned below the wiggler, assume he entered through the
         // lower cave entrance, so don't display text.
         if (gMarioObject->oPosY < o->oPosY ||
-            obj_update_dialogue_unk2(2, 0, 0xA2, 0x96) != 0)
+            obj_update_dialog_unk2(2, 0, 0xA2, 0x96) != 0)
         {
-            o->oWigglerTextStatus = WIGGLER_TEXT_STATUS_COMPLETED_DIALOGUE;
+            o->oWigglerTextStatus = WIGGLER_TEXT_STATUS_COMPLETED_DIALOG;
         }
     }
     else
@@ -351,7 +351,7 @@ static void wiggler_act_jumped_on(void)
     {
         if (o->oTimer > 30)
         {
-            if (obj_update_dialogue_unk2(
+            if (obj_update_dialog_unk2(
                 2, 0, 0xA2, attackText[o->oHealth - 2]) != 0)
             {
                 // Because we don't want the wiggler to disappear after being

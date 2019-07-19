@@ -45,7 +45,7 @@ void ActionActivateCapSwitch2(void)
     }
     else
     {
-        sp1C = obj_update_dialogue_unk2(1,12,161,0);
+        sp1C = obj_update_dialog_unk2(1,12,161,0);
         if(sp1C)
             o->oAction = 3;
     }

@@ -615,12 +615,12 @@ s16 func_802E4A38(s32 *arg0, s16 arg1, f32 arg2, s32 arg3)
     )
     {
         *arg0 = 1;
-        if (set_mario_npc_dialogue(arg3) == 2)
+        if (set_mario_npc_dialog(arg3) == 2)
         {
             sp1e = func_8028F8E0(162, o, arg1);
             if (sp1e != 0)
             {
-                set_mario_npc_dialogue(0);
+                set_mario_npc_dialog(0);
                 *arg0 = 0;
                 return sp1e;
             }

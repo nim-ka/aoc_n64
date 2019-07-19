@@ -46,7 +46,7 @@ static void camera_lakitu_intro_act_trigger_cutscene(void)
         gMarioObject->oPosZ > -2000.0f && gMarioObject->oPosZ < -177.0f &&
         gMarioObject->oPosZ < -177.0f) // always double check your conditions
     {
-        if (set_mario_npc_dialogue(2) == 1)
+        if (set_mario_npc_dialog(2) == 1)
         {
             o->oAction = CAMERA_LAKITU_INTRO_ACT_SPAWN_CLOUD;
         }
@@ -58,7 +58,7 @@ static void camera_lakitu_intro_act_trigger_cutscene(void)
  */
 static void camera_lakitu_intro_act_spawn_cloud(void)
 {
-    if (set_mario_npc_dialogue(2) == 2)
+    if (set_mario_npc_dialog(2) == 2)
     {
         o->oAction = CAMERA_LAKITU_INTRO_ACT_UNK2;
 
@@ -81,9 +81,9 @@ static void camera_lakitu_intro_act_spawn_cloud(void)
 }
 
 /**
- * Circle down to mario, show the dialogue, then fly away.
+ * Circle down to mario, show the dialog, then fly away.
  */
-static void camera_lakitu_intro_act_show_dialogue(void)
+static void camera_lakitu_intro_act_show_dialog(void)
 {
     s16 targetMovePitch;
     s16 targetMoveYaw;
@@ -94,8 +94,8 @@ static void camera_lakitu_intro_act_show_dialogue(void)
     o->oFaceAnglePitch = obj_turn_pitch_toward_mario(120.0f, 0);
     o->oFaceAngleYaw = o->oAngleToMario;
 
-    // After finishing dialogue, fly away and despawn
-    if (o->oCameraLakituFinishedDialogue)
+    // After finishing dialog, fly away and despawn
+    if (o->oCameraLakituFinishedDialog)
     {
         approach_f32_ptr(&o->oCameraLakituSpeed, 60.0f, 3.0f);
         if (o->oDistanceToMario > 6000.0f)
@@ -152,13 +152,13 @@ static void camera_lakitu_intro_act_show_dialogue(void)
                 }
             }
         }
-        else if (obj_update_dialogue_unk2(
+        else if (obj_update_dialog_unk2(
             2,
-            DIALOGUE_UNK2_FLAG_0,
+            DIALOG_UNK2_FLAG_0,
             0xA2,
             0x22) != 0)
         {
-            o->oCameraLakituFinishedDialogue = TRUE;
+            o->oCameraLakituFinishedDialog = TRUE;
         }
     }
 
@@ -187,7 +187,7 @@ void bhv_camera_lakitu_update(void)
             switch (o->oAction) {
             case CAMERA_LAKITU_INTRO_ACT_TRIGGER_CUTSCENE: camera_lakitu_intro_act_trigger_cutscene(); break;
             case CAMERA_LAKITU_INTRO_ACT_SPAWN_CLOUD:      camera_lakitu_intro_act_spawn_cloud();      break;
-            case CAMERA_LAKITU_INTRO_ACT_UNK2:             camera_lakitu_intro_act_show_dialogue();    break;
+            case CAMERA_LAKITU_INTRO_ACT_UNK2:             camera_lakitu_intro_act_show_dialog();    break;
             }
         }
         else

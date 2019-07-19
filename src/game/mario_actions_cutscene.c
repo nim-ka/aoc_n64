@@ -50,7 +50,7 @@ static s8 D_8032CBE4 = 0;
 static s8 D_8032CBE8 = 0;
 static s8 D_8032CBEC[7] = { 2, 3, 2, 1, 2, 3, 2 };
 
-static u8 sStarsNeededForDialogue[6] = { 1, 3, 8, 30, 50, 70 };
+static u8 sStarsNeededForDialog[6] = { 1, 3, 8, 30, 50, 70 };
 
 // data for the jumbo star cutscene
 static Vec4s sJumboStarKeyframes[27] =
@@ -263,35 +263,35 @@ static void Unknown80256FF8(u16 *a0)
         *a0 = 0;
 }
 
-/** get_star_collection_dialogue: Determine what dialogue should show when Mario
+/** get_star_collection_dialog: Determine what dialog should show when Mario
  ** collects a star.
- * Determines if Mario has collected enough stars to get a dialogue for it, and
- * if so, return the dialogue ID. Otherwise, return 0
+ * Determines if Mario has collected enough stars to get a dialog for it, and
+ * if so, return the dialog ID. Otherwise, return 0
  */
-s32 get_star_collection_dialogue(struct MarioState *m)
+s32 get_star_collection_dialog(struct MarioState *m)
 {
     s32 i;
-    s32 dialogueID = 0;
+    s32 dialogID = 0;
     s32 numStarsRequired;
 
     for (i = 0; i < 6; i++)
     {
-        numStarsRequired = sStarsNeededForDialogue[i];
+        numStarsRequired = sStarsNeededForDialog[i];
         if (m->unkB8 < numStarsRequired && m->numStars >= numStarsRequired)
         {
-            dialogueID = i + 0x8D;
+            dialogID = i + 0x8D;
             break;
         }
     }
 
     m->unkB8 = m->numStars;
-    return dialogueID;
+    return dialogID;
 }
 
 // save menu handler
 void handle_save_menu(struct MarioState *m)
 {
-    s32 dialogueID;
+    s32 dialogID;
     // wait for the menu to show up
     // mario_finished_animation(m) ? (not my file, not my problem)
     if (func_802507AC(m) && D_8033A760 != 0)
@@ -311,13 +311,13 @@ void handle_save_menu(struct MarioState *m)
         {
             disable_time_stop();
             m->faceAngle[1] += 0x8000;
-            // figure out what dialogue to show, if we should
-            dialogueID = get_star_collection_dialogue(m);
-            if (dialogueID != 0)
+            // figure out what dialog to show, if we should
+            dialogID = get_star_collection_dialog(m);
+            if (dialogID != 0)
             {
                 play_peachs_jingle();
-                // look up for dialogue
-                set_mario_action(m, ACT_READING_AUTOMATIC_DIALOGUE, dialogueID);
+                // look up for dialog
+                set_mario_action(m, ACT_READING_AUTOMATIC_DIALOG, dialogID);
             }
             else
             {
@@ -374,7 +374,7 @@ void cutscene_put_cap_on(struct MarioState *m)
  * The following conditions must be met in order for Mario to be considered
  * ready to speak.
  * 1: Mario's action must be in the stationary or moving action groups, or if
- *    not, he must be in the "waiting for dialogue" state.
+ *    not, he must be in the "waiting for dialog" state.
  * 2: Mario mat not be riding a shell or be invulnerable.
  * 3: Mario must not be in first person mode.
  */
@@ -385,7 +385,7 @@ s32 mario_ready_to_speak(void)
 
     if (
         (
-            gMarioState->action == ACT_WAITING_FOR_DIALOGUE ||
+            gMarioState->action == ACT_WAITING_FOR_DIALOG ||
             actionGroup == ACT_GROUP_STATIONARY ||
             actionGroup == ACT_GROUP_MOVING
         ) &&
@@ -402,37 +402,37 @@ s32 mario_ready_to_speak(void)
     return isReadyToSpeak;
 }
 
-// (can) place mario in dialogue?
-// initiate dialogue?
+// (can) place mario in dialog?
+// initiate dialog?
 // return values:
-// 0 = not in dialogue
-// 1 = starting dialogue
+// 0 = not in dialog
+// 1 = starting dialog
 // 2 = speaking
-s32 set_mario_npc_dialogue(s32 actionArg)
+s32 set_mario_npc_dialog(s32 actionArg)
 {
-    s32 dialogueState = 0;
+    s32 dialogState = 0;
 
-    // in dialogue
-    if (gMarioState->action == ACT_READING_NPC_DIALOGUE)
+    // in dialog
+    if (gMarioState->action == ACT_READING_NPC_DIALOG)
     {
         if (gMarioState->actionState < 8)
-            dialogueState = 1; // starting dialogue
+            dialogState = 1; // starting dialog
         if (gMarioState->actionState == 8)
         {
             if (actionArg == 0)
-                gMarioState->actionState++; // exit dialogue
+                gMarioState->actionState++; // exit dialog
             else
-                dialogueState = 2;
+                dialogState = 2;
         }
     }
     else if (actionArg != 0 && mario_ready_to_speak())
     {
         gMarioState->usedObj = gCurrentObject;
-        set_mario_action(gMarioState, ACT_READING_NPC_DIALOGUE, actionArg);
-        dialogueState = 1; // starting dialogue
+        set_mario_action(gMarioState, ACT_READING_NPC_DIALOG, actionArg);
+        dialogState = 1; // starting dialog
     }
 
-    return dialogueState;
+    return dialogState;
 }
 
 // actionargs:
@@ -441,10 +441,10 @@ s32 set_mario_npc_dialogue(s32 actionArg)
 // 3 : look down
 // actionstate values:
 // 0 - 7: looking toward npc
-// 8: in dialogue
+// 8: in dialog
 // 9 - 22: looking away from npc
 // 23: end
-s32 act_reading_npc_dialogue(struct MarioState *m)
+s32 act_reading_npc_dialog(struct MarioState *m)
 {
     s32 headTurnAmount = 0;
     s16 angleToNPC;
@@ -493,8 +493,8 @@ s32 act_reading_npc_dialogue(struct MarioState *m)
     return FALSE;
 }
 
-// puts mario in a state where he's waiting for (npc) dialogue; doesn't do much
-s32 act_waiting_for_dialogue(struct MarioState *m)
+// puts mario in a state where he's waiting for (npc) dialog; doesn't do much
+s32 act_waiting_for_dialog(struct MarioState *m)
 {
     set_mario_animation(
         m, m->heldObj == NULL ? \
@@ -520,7 +520,7 @@ s32 act_disappeared(struct MarioState *m)
     return FALSE;
 }
 
-s32 act_reading_automatic_dialogue(struct MarioState *m)
+s32 act_reading_automatic_dialog(struct MarioState *m)
 {
     u32 actionArg;
 
@@ -533,12 +533,12 @@ s32 act_reading_automatic_dialogue(struct MarioState *m)
             m, m->prevAction == ACT_STAR_DANCE_WATER ? \
             MARIO_ANIM_WATER_IDLE : MARIO_ANIM_FIRST_PERSON
         );
-        // always look up for automatic dialogues
+        // always look up for automatic dialogs
         m->actionTimer -= 1024;
     }
     else
     {
-        // set mario dialogue
+        // set mario dialog
         if (m->actionState == 9)
         {
             actionArg = m->actionArg;
@@ -547,7 +547,7 @@ s32 act_reading_automatic_dialogue(struct MarioState *m)
             else
                 func_802D7FCC(GET_HIGH_U16_OF_32(actionArg), GET_LOW_U16_OF_32(actionArg));
         }
-        // wait until dialogue is done
+        // wait until dialog is done
         else if (m->actionState == 10)
         {
             if (get_dialog_id() >= 0)
@@ -570,7 +570,7 @@ s32 act_reading_automatic_dialogue(struct MarioState *m)
             if (m->prevAction == ACT_STAR_DANCE_WATER)
                 set_mario_action(m, ACT_WATER_IDLE, 0); // 100c star?
             else
-                // make mario walk into door after star dialogue
+                // make mario walk into door after star dialog
                 set_mario_action(m,
                     m->prevAction == ACT_UNLOCKING_STAR_DOOR ? \
                     ACT_WALKING : ACT_IDLE,
@@ -591,7 +591,7 @@ s32 act_reading_sign(struct MarioState *m)
 
     switch (m->actionState)
     {
-        // start dialogue
+        // start dialog
         case 0:
             stop_mario(1);
             enable_time_stop();
@@ -611,9 +611,9 @@ s32 act_reading_sign(struct MarioState *m)
                 m->actionState = 2;
             }
             break;
-        // in dialogue
+        // in dialog
         case 2:
-            // dialogue finished
+            // dialog finished
             if (gCurrLevelCamera->cutscene == 0)
             {
                 disable_time_stop();
@@ -684,7 +684,7 @@ s32 act_debug_free_move(struct MarioState *m)
 // star dance handler
 void general_star_dance_handler(struct MarioState *m, s32 isInWater)
 {
-    s32 dialogueID;
+    s32 dialogID;
     if (m->actionState == 0)
     {
         switch (++m->actionTimer)
@@ -734,10 +734,10 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater)
     {
         disable_time_stop();
         func_80248D90();
-        dialogueID = get_star_collection_dialogue(m);
-        if (dialogueID != 0)
-            // look up for dialogue
-            set_mario_action(m, ACT_READING_AUTOMATIC_DIALOGUE, dialogueID);
+        dialogID = get_star_collection_dialog(m);
+        if (dialogID != 0)
+            // look up for dialog
+            set_mario_action(m, ACT_READING_AUTOMATIC_DIALOG, dialogID);
         else
             set_mario_action(m, isInWater ? ACT_WATER_IDLE : ACT_IDLE, 0);
     }
@@ -981,7 +981,7 @@ s32 act_unlocking_star_door(struct MarioState *m)
             if (func_80250770(m))
             {
                 save_file_set_flags(get_door_save_file_flag(m->usedObj));
-                set_mario_action(m, ACT_READING_AUTOMATIC_DIALOGUE, 38);
+                set_mario_action(m, ACT_READING_AUTOMATIC_DIALOG, 38);
             }
             break;
     }
@@ -1113,7 +1113,7 @@ s32 act_warp_door_spawn(struct MarioState *m)
     else if (m->usedObj->oAction == 0)
     {
         if (gShouldNotPlayCastleMusic == TRUE && gCurrLevelNum == LEVEL_CASTLE)
-            set_mario_action(m, ACT_READING_AUTOMATIC_DIALOGUE, 21);
+            set_mario_action(m, ACT_READING_AUTOMATIC_DIALOG, 21);
         else
             set_mario_action(m, ACT_IDLE, 0);
     }
@@ -1213,7 +1213,7 @@ s32 act_exit_airborne(struct MarioState *m)
 {
     if (15 < m->actionTimer++ && \
         launch_mario_until_land(
-            m, ACT_EXIT_LAND_SAVE_DIALOGUE, MARIO_ANIM_GENERAL_FALL, -32.0f
+            m, ACT_EXIT_LAND_SAVE_DIALOG, MARIO_ANIM_GENERAL_FALL, -32.0f
         )
     )
         // heal mario
@@ -1228,7 +1228,7 @@ s32 act_falling_exit_airborne(struct MarioState *m)
 {
     if (
         launch_mario_until_land(
-            m, ACT_EXIT_LAND_SAVE_DIALOGUE, MARIO_ANIM_GENERAL_FALL, 0.0f
+            m, ACT_EXIT_LAND_SAVE_DIALOG, MARIO_ANIM_GENERAL_FALL, 0.0f
         )
     )
         // heal mario
@@ -1239,7 +1239,7 @@ s32 act_falling_exit_airborne(struct MarioState *m)
     return FALSE;
 }
 
-s32 act_exit_land_save_dialogue(struct MarioState *m)
+s32 act_exit_land_save_dialog(struct MarioState *m)
 {
     s32 animFrame;
     stationary_ground_step(m);
@@ -1403,7 +1403,7 @@ s32 act_special_exit_airborne(struct MarioState *m)
 
     if (
         launch_mario_until_land(
-            m, ACT_EXIT_LAND_SAVE_DIALOGUE, MARIO_ANIM_SINGLE_JUMP, -24.0f
+            m, ACT_EXIT_LAND_SAVE_DIALOG, MARIO_ANIM_SINGLE_JUMP, -24.0f
         )
     )
     {
@@ -2413,10 +2413,10 @@ static void end_peach_cutscene_run_to_peach(struct MarioState *m)
     m->particleFlags |= PARTICLE_DUST;
 }
 
-// dialogue 1
+// dialog 1
 // "Mario!"
 // "The power of the Stars is restored to the castle..."
-static void end_peach_cutscene_dialogue_1(struct MarioState *m)
+static void end_peach_cutscene_dialog_1(struct MarioState *m)
 {
     s32 animFrame = set_mario_animation(
         m, m->actionState == 0 ? \
@@ -2477,11 +2477,11 @@ static void end_peach_cutscene_dialogue_1(struct MarioState *m)
     }
 }
 
-// dialogue 2
+// dialog 2
 // "...and it's all thanks to you!"
 // "Thank you Mario!"
 // "We have to do something special for you..."
-static void end_peach_cutscene_dialogue_2(struct MarioState *m)
+static void end_peach_cutscene_dialog_2(struct MarioState *m)
 {
     sEndPeachAnimation = 9;
 
@@ -2607,11 +2607,11 @@ static void end_peach_cutscene_star_dance(struct MarioState *m)
     }
 }
 
-// dialogue 3
+// dialog 3
 // "Listen everybody"
 // "let's bake a delicious cake..."
 // "...for Mario..."
-static void end_peach_cutscene_dialogue_3(struct MarioState *m)
+static void end_peach_cutscene_dialog_3(struct MarioState *m)
 {
     set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
 
@@ -2692,11 +2692,11 @@ enum
     END_PEACH_CUTSCENE_SPAWN_PEACH,
     END_PEACH_CUTSCENE_DESCEND_PEACH,
     END_PEACH_CUTSCENE_RUN_TO_PEACH,
-    END_PEACH_CUTSCENE_DIALOGUE_1,
-    END_PEACH_CUTSCENE_DIALOGUE_2,
+    END_PEACH_CUTSCENE_DIALOG_1,
+    END_PEACH_CUTSCENE_DIALOG_2,
     END_PEACH_CUTSCENE_KISS_FROM_PEACH,
     END_PEACH_CUTSCENE_STAR_DANCE,
-    END_PEACH_CUTSCENE_DIALOGUE_3,
+    END_PEACH_CUTSCENE_DIALOG_3,
     END_PEACH_CUTSCENE_RUN_TO_CASTLE,
     END_PEACH_CUTSCENE_FADE_OUT
 };
@@ -2711,11 +2711,11 @@ static s32 act_end_peach_cutscene(struct MarioState *m)
         case END_PEACH_CUTSCENE_SPAWN_PEACH:       end_peach_cutscene_spawn_peach(m);       break;
         case END_PEACH_CUTSCENE_DESCEND_PEACH:     end_peach_cutscene_descend_peach(m);     break;
         case END_PEACH_CUTSCENE_RUN_TO_PEACH:      end_peach_cutscene_run_to_peach(m);      break;
-        case END_PEACH_CUTSCENE_DIALOGUE_1:        end_peach_cutscene_dialogue_1(m);        break;
-        case END_PEACH_CUTSCENE_DIALOGUE_2:        end_peach_cutscene_dialogue_2(m);        break;
+        case END_PEACH_CUTSCENE_DIALOG_1:          end_peach_cutscene_dialog_1(m);          break;
+        case END_PEACH_CUTSCENE_DIALOG_2:          end_peach_cutscene_dialog_2(m);          break;
         case END_PEACH_CUTSCENE_KISS_FROM_PEACH:   end_peach_cutscene_kiss_from_peach(m);   break;
         case END_PEACH_CUTSCENE_STAR_DANCE:        end_peach_cutscene_star_dance(m);        break;
-        case END_PEACH_CUTSCENE_DIALOGUE_3:        end_peach_cutscene_dialogue_3(m);        break;
+        case END_PEACH_CUTSCENE_DIALOG_3:          end_peach_cutscene_dialog_3(m);          break;
         case END_PEACH_CUTSCENE_RUN_TO_CASTLE:     end_peach_cutscene_run_to_castle(m);     break;
         case END_PEACH_CUTSCENE_FADE_OUT:          end_peach_cutscene_fade_out(m);          break;
     }
@@ -2861,12 +2861,12 @@ s32 mario_execute_cutscene_action(struct MarioState *m)
         case ACT_STAR_DANCE_NO_EXIT:         cancel = act_star_dance(m);                 break;
         case ACT_STAR_DANCE_WATER:           cancel = act_star_dance_water(m);           break;
         case ACT_FALL_AFTER_STAR_GRAB:       cancel = act_fall_after_star_grab(m);       break;
-        case ACT_READING_AUTOMATIC_DIALOGUE: cancel = act_reading_automatic_dialogue(m); break;
-        case ACT_READING_NPC_DIALOGUE:       cancel = act_reading_npc_dialogue(m);       break;
+        case ACT_READING_AUTOMATIC_DIALOG:   cancel = act_reading_automatic_dialog(m);   break;
+        case ACT_READING_NPC_DIALOG:         cancel = act_reading_npc_dialog(m);         break;
         case ACT_DEBUG_FREE_MOVE:            cancel = act_debug_free_move(m);            break;
         case ACT_READING_SIGN:               cancel = act_reading_sign(m);               break;
         case ACT_JUMBO_STAR_CUTSCENE:        cancel = act_jumbo_star_cutscene(m);        break;
-        case ACT_WAITING_FOR_DIALOGUE:       cancel = act_waiting_for_dialogue(m);       break;
+        case ACT_WAITING_FOR_DIALOG:         cancel = act_waiting_for_dialog(m);         break;
         case ACT_STANDING_DEATH:             cancel = act_standing_death(m);             break;
         case ACT_QUICKSAND_DEATH:            cancel = act_quicksand_death(m);            break;
         case ACT_ELECTROCUTION:              cancel = act_electrocution(m);              break;
@@ -2884,7 +2884,7 @@ s32 mario_execute_cutscene_action(struct MarioState *m)
         case ACT_SPAWN_SPIN_AIRBORNE:        cancel = act_spawn_spin_airborne(m);        break;
         case ACT_SPAWN_SPIN_LANDING:         cancel = act_spawn_spin_landing(m);         break;
         case ACT_EXIT_AIRBORNE:              cancel = act_exit_airborne(m);              break;
-        case ACT_EXIT_LAND_SAVE_DIALOGUE:    cancel = act_exit_land_save_dialogue(m);    break;
+        case ACT_EXIT_LAND_SAVE_DIALOG:      cancel = act_exit_land_save_dialog(m);      break;
         case ACT_DEATH_EXIT:                 cancel = act_death_exit(m);                 break;
         case ACT_UNUSED_DEATH_EXIT:          cancel = act_unused_death_exit(m);          break;
         case ACT_FALLING_DEATH_EXIT:         cancel = act_falling_death_exit(m);         break;

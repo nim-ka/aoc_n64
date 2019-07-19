@@ -146,27 +146,27 @@ static s16 obj_get_pitch_from_vel(void)
 }
 
 /**
- * Show dialogue proposing a race.
+ * Show dialog proposing a race.
  * If the player accepts the race, then leave time stop enabled and mario in the
  * text action so that the racing object can wait before starting the race.
  * If the player declines the race, then disable time stop and allow mario to
  * move again.
  */
-static s32 obj_update_race_proposition_dialogue(s16 arg0)
+static s32 obj_update_race_proposition_dialog(s16 arg0)
 {
-    s32 dialogueResponse = obj_update_dialogue_unk2(
+    s32 dialogResponse = obj_update_dialog_unk2(
         2,
-        DIALOGUE_UNK2_FLAG_0 | DIALOGUE_UNK2_LEAVE_TIME_STOP_ENABLED,
+        DIALOG_UNK2_FLAG_0 | DIALOG_UNK2_LEAVE_TIME_STOP_ENABLED,
         0xA3,
         arg0);
 
-    if (dialogueResponse == 2)
+    if (dialogResponse == 2)
     {
-        set_mario_npc_dialogue(0);
+        set_mario_npc_dialog(0);
         disable_time_stop_including_mario();
     }
 
-    return dialogueResponse;
+    return dialogResponse;
 }
 
 static void obj_set_dist_from_home(f32 distFromHome)

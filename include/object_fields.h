@@ -26,8 +26,8 @@
 // 0x088 (0x00), the first field, is object-specific and defined below the common fields.
 /* Common fields */
 #define /*0x08C*/ oFlags OBJECT_FIELD_U32(0x01)
-#define /*0x090*/ oDialogueResponse OBJECT_FIELD_S16(0x02, 0)
-#define /*0x092*/ oDialogueState OBJECT_FIELD_S16(0x02, 1)
+#define /*0x090*/ oDialogResponse OBJECT_FIELD_S16(0x02, 0)
+#define /*0x092*/ oDialogState OBJECT_FIELD_S16(0x02, 1)
 #define /*0x09C*/ oIntangibleTimer OBJECT_FIELD_S32(0x05)
 #define /*0x0A0*/ O_POS_INDEX 0x06
 #define /*0x0A0*/ oPosX OBJECT_FIELD_F32(O_POS_INDEX + 0)
@@ -654,7 +654,7 @@
 #define /*0x0F4*/ oCameraLakituBlinkTimer OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ oCameraLakituSpeed OBJECT_FIELD_F32(0x1C)
 #define /*0x0FC*/ oCameraLakituCircleRadius OBJECT_FIELD_F32(0x1D)
-#define /*0x100*/ oCameraLakituFinishedDialogue OBJECT_FIELD_S32(0x1E)
+#define /*0x100*/ oCameraLakituFinishedDialog OBJECT_FIELD_S32(0x1E)
 #ifndef VERSION_JP
 #define /*0x104*/ oCameraLakituUnk104 OBJECT_FIELD_S32(0x1F)
 #endif

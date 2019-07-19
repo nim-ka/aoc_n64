@@ -297,7 +297,7 @@ void ActionUkikiOpenCage4(void)
             break;
     case 2:
         set_obj_animation_and_sound_state(10);
-        if(obj_update_dialogue_unk2(3,1,162,80))
+        if(obj_update_dialog_unk2(3,1,162,80))
             o->oSubAction++;
         break;
     case 3:
@@ -377,7 +377,7 @@ void func_802BAF30(void)
         switch(o->oUnk1AC_S16)
         {
         case 0:
-            if(set_mario_npc_dialogue(2) == 2)
+            if(set_mario_npc_dialog(2) == 2)
             {
                 func_802D8050(79);
                 o->oUnk1AC_S16 = 1;
@@ -386,7 +386,7 @@ void func_802BAF30(void)
         case 1:
             if(gDialogResponse != 0)
             {
-                set_mario_npc_dialogue(0);
+                set_mario_npc_dialog(0);
                 if(gDialogResponse == 1)
                 {
                     o->oUnk190 |= 0x40;
@@ -427,7 +427,7 @@ void func_802BB0E4(void)
         else {}
         break;
     case 7:
-        if(obj_update_dialogue_unk1(2,2,100,0))
+        if(obj_update_dialog_unk1(2,2,100,0))
         {
             o->oUnk190 |= 0x40;
             o->oUnk1AC_S16 = 3;
@@ -436,10 +436,10 @@ void func_802BB0E4(void)
     case 3:
         break;
     case 4:
-        if(obj_update_dialogue_unk1(2,18,101,0))
+        if(obj_update_dialog_unk1(2,18,101,0))
         {
             mario_retrieve_cap();
-            set_mario_npc_dialogue(0);
+            set_mario_npc_dialog(0);
             o->oUnk1B2 &= ~1;
             o->oUnk1AC_S16 = 5;
         }

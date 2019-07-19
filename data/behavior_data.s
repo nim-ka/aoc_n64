@@ -39,7 +39,7 @@
 # TODO: Use C preprocessor define instead of redefining the lists seperately. (object_fields.h)
 .set objUnk88, 0x00
 .set objFlags, 0x01
-.set objDialogueResponse, 0x02
+.set objDialogResponse, 0x02
 .set objUnk94, 0x03
 .set objUnk98, 0x04
 .set objIntangibleTimer, 0x05

@@ -39,7 +39,7 @@ void ActionWhomp0(void)
                 o->oHealth = 3;
             }
         }
-        else if(obj_update_dialogue_unk2(2,1,162,114))
+        else if(obj_update_dialog_unk2(2,1,162,114))
             o->oAction = 2;
     }
     else if(o->oDistanceToMario < 500.0f)
@@ -263,7 +263,7 @@ void ActionWhomp8(void)
 {
     if(o->oBehParams2ndByte != 0)
     {
-        if(obj_update_dialogue_unk2(2,2,162,115))
+        if(obj_update_dialog_unk2(2,2,162,115))
         {
             set_object_angle(o,0,0,0);
             obj_hide();

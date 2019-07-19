@@ -84,7 +84,7 @@ static void dorrie_act_lower_head(void)
         }
         else if (gMarioObject->platform == o)
         {
-            if (o->oDorrieForwardDistToMario > 830.0f && set_mario_npc_dialogue(2) == 1)
+            if (o->oDorrieForwardDistToMario > 830.0f && set_mario_npc_dialog(2) == 1)
             {
                 dorrie_begin_head_raise(TRUE);
             }
@@ -96,7 +96,7 @@ static void dorrie_act_lower_head(void)
 #else
         if (gMarioObject->platform == o)
         {
-            if (o->oDorrieOffsetY == -17.0f && o->oDorrieForwardDistToMario > 780.0f && set_mario_npc_dialogue(2) == 1)
+            if (o->oDorrieOffsetY == -17.0f && o->oDorrieForwardDistToMario > 780.0f && set_mario_npc_dialog(2) == 1)
             {
                 dorrie_begin_head_raise(TRUE);
             }
@@ -127,12 +127,12 @@ static void dorrie_act_raise_head(void)
     }
     else if (o->oDorrieLiftingMario && o->header.gfx.unk38.animFrame < 74)
     {
-        if (set_mario_npc_dialogue(2) == 2)
+        if (set_mario_npc_dialog(2) == 2)
         {
             o->oDorrieHeadRaiseSpeed += 0x1CC;
             if (obj_check_anim_frame(73))
             {
-                set_mario_npc_dialogue(0);
+                set_mario_npc_dialog(0);
             }
             dorrie_raise_head();
         }

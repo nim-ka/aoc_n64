@@ -312,7 +312,7 @@ static void chain_chomp_released_trigger_cutscene(void)
 
     //! Can delay this if we get into a cutscene-unfriendly action after the
     //  last post ground pound and before this
-    if (set_mario_npc_dialogue(2) == 2 &&
+    if (set_mario_npc_dialog(2) == 2 &&
         (o->oMoveFlags & OBJ_MOVE_MASK_ON_GROUND) &&
         func_8028F9E8(0xAD, o) == 1)
     {
@@ -421,7 +421,7 @@ static void chain_chomp_released_end_cutscene(void)
 {
     if (func_8028F9E8(0xAD, o) == -1)
     {
-        set_mario_npc_dialogue(0);
+        set_mario_npc_dialog(0);
         o->oAction = CHAIN_CHOMP_ACT_UNLOAD_CHAIN;
     }
 }

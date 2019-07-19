@@ -80,7 +80,7 @@ void ActionTuxiesMother1(void)
                 sp24 = 58;
             else
                 sp24 = 59;
-            if(obj_update_dialogue_unk2(2,1,162,sp24))
+            if(obj_update_dialog_unk2(2,1,162,sp24))
             {
                 if(sp24 == 58)
                     o->oSubAction = 1;
@@ -143,7 +143,7 @@ void ActionTuxiesMother0(void)
                     o->oSubAction++;
             break;
         case 1:
-            if(obj_update_dialogue_unk2(2,1,162,57))
+            if(obj_update_dialog_unk2(2,1,162,57))
                 o->oSubAction++;
             break;
         case 2:

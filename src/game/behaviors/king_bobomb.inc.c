@@ -24,7 +24,7 @@ void ActionKingBobomb0(void)
             func_8031FFB4(0,60,40);
         }
     }
-    else if(obj_update_dialogue_unk2(2,1,162,17))
+    else if(obj_update_dialog_unk2(2,1,162,17))
     {
         o->oAction = 2;
         o->oFlags |= OBJ_FLAG_HOLDABLE;
@@ -201,7 +201,7 @@ void ActionKingBobomb6(void)
 void ActionKingBobomb7(void)
 {
     set_obj_animation_and_sound_state(2);
-    if(obj_update_dialogue_unk2(2,2,162,116))
+    if(obj_update_dialog_unk2(2,2,162,116))
     {
         create_sound_spawner(SOUND_OBJECT_KINGWHOMPDEATH);
         obj_hide();
@@ -310,7 +310,7 @@ void ActionKingBobomb5() // bobomb returns home
             o->oSubAction++;
         break;
     case 4:
-        if(obj_update_dialogue_unk2(2,1,162,128))
+        if(obj_update_dialog_unk2(2,1,162,128))
             o->oAction = 2;
         break;
     }

@@ -19,7 +19,7 @@ void bhv_snowman_wind_blowing_loop(void)
     }
     else if(o->oSubAction == 1)
     {
-        if(obj_update_dialogue_unk1(2,2,153,0))
+        if(obj_update_dialog_unk1(2,2,153,0))
             o->oSubAction++;
     }
     else if(o->oDistanceToMario < 1500.0f && absf(gMarioObject->oPosY-o->oHomeY) < 500.0f)

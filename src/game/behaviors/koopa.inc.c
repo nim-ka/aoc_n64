@@ -572,7 +572,7 @@ s32 obj_begin_race(s32 noTimer)
         }
 
         // Unfreeze mario and disable time stop to begin the race
-        set_mario_npc_dialogue(0);
+        set_mario_npc_dialog(0);
         disable_time_stop_including_mario();
     }
     else if (o->oTimer > 50)
@@ -599,7 +599,7 @@ static void koopa_the_quick_act_wait_before_race(void)
         //! The next action doesn't execute until next frame, giving mario one
         //  frame where he can jump, and thus no longer be ready to speak.
         //  (On J, he has two frames and doing this enables time stop - see
-        //  obj_update_dialogue_unk2 for that glitch)
+        //  obj_update_dialog_unk2 for that glitch)
         o->oAction = KOOPA_THE_QUICK_ACT_SHOW_INIT_TEXT;
         o->oForwardVel = 0.0f;
         set_obj_animation_and_sound_state(7);
@@ -607,12 +607,12 @@ static void koopa_the_quick_act_wait_before_race(void)
 }
 
 /**
- * Display the dialogue asking mario if he wants to race. Begin the race or
+ * Display the dialog asking mario if he wants to race. Begin the race or
  * return to the waiting action.
  */
 static void koopa_the_quick_act_show_init_text(void)
 {
-    s32 response = obj_update_race_proposition_dialogue(
+    s32 response = obj_update_race_proposition_dialog(
         sKoopaTheQuickProperties[o->oKoopaTheQuickRaceIndex].initText);
     UNUSED s32 unused;
 
@@ -876,9 +876,9 @@ static void koopa_the_quick_act_after_race(void)
     }
     else if (o->parentObj->oKoopaRaceEndpointUnk100 > 0)
     {
-        s32 dialogueResponse =
-            obj_update_dialogue_unk2(2, 1, 0xA2, o->parentObj->oKoopaRaceEndpointUnk100);
-        if (dialogueResponse != 0)
+        s32 dialogResponse =
+            obj_update_dialog_unk2(2, 1, 0xA2, o->parentObj->oKoopaRaceEndpointUnk100);
+        if (dialogResponse != 0)
         {
             o->parentObj->oKoopaRaceEndpointUnk100 = -1;
             o->oTimer = 0;

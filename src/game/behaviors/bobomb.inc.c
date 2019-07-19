@@ -354,7 +354,7 @@ void BobombBuddyCannonLoop(s16 arg0, s16 arg1)
             break;
             
         case BOBOMB_BUDDY_CANNON_STOP_TALKING:
-            set_mario_npc_dialogue(0);
+            set_mario_npc_dialog(0);
             
             o->activeFlags &= ~0x20; /* bit 5 */
             o->oBobombBuddyHasTalkedToMario = BOBOMB_BUDDY_HAS_TALKED;
@@ -367,7 +367,7 @@ void BobombBuddyCannonLoop(s16 arg0, s16 arg1)
 
 void BobombBuddyTalkLoop(void)
 {
-    if (set_mario_npc_dialogue(1) == 2)
+    if (set_mario_npc_dialog(1) == 2)
     {
         o->activeFlags |= 0x20; /* bit 5 */
 
@@ -376,7 +376,7 @@ void BobombBuddyTalkLoop(void)
             case BOBOMB_BUDDY_ROLE_ADVICE:
                 if (func_8028F8E0(162, o, o->oBehParams2ndByte) != BOBOMB_BUDDY_BP_STYPE_GENERIC)
                 {
-                    set_mario_npc_dialogue(0);
+                    set_mario_npc_dialog(0);
 
                     o->activeFlags &= ~0x20; /* bit 5 */
                     o->oBobombBuddyHasTalkedToMario = BOBOMB_BUDDY_HAS_TALKED;

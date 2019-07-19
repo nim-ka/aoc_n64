@@ -942,7 +942,7 @@ u32 interact_warp_door(struct MarioState *m, UNUSED u32 interactType, struct Obj
             if (!(saveFlags & SAVE_FLAG_HAVE_KEY_2))
             {
                 if (!sDisplayingDoorText)
-                    set_mario_action(m, ACT_READING_AUTOMATIC_DIALOGUE, (saveFlags & SAVE_FLAG_HAVE_KEY_1) ? 0x17 : 0x16);
+                    set_mario_action(m, ACT_READING_AUTOMATIC_DIALOG, (saveFlags & SAVE_FLAG_HAVE_KEY_1) ? 0x17 : 0x16);
                 sDisplayingDoorText = TRUE;
 
                 return FALSE;
@@ -957,7 +957,7 @@ u32 interact_warp_door(struct MarioState *m, UNUSED u32 interactType, struct Obj
             {
                 if (!sDisplayingDoorText)
                     // Moat door skip was intended confirmed
-                    set_mario_action(m, ACT_READING_AUTOMATIC_DIALOGUE, (saveFlags & SAVE_FLAG_HAVE_KEY_2) ? 0x17 : 0x16);
+                    set_mario_action(m, ACT_READING_AUTOMATIC_DIALOG, (saveFlags & SAVE_FLAG_HAVE_KEY_2) ? 0x17 : 0x16);
                 sDisplayingDoorText = TRUE;
 
                 return FALSE;
@@ -1075,7 +1075,7 @@ u32 interact_door(struct MarioState *m, UNUSED u32 interactType, struct Object *
             text += requiredNumStars - numStars;
 
             sDisplayingDoorText = TRUE;
-            return set_mario_action(m, ACT_READING_AUTOMATIC_DIALOGUE, text);
+            return set_mario_action(m, ACT_READING_AUTOMATIC_DIALOG, text);
         }
     }
     else if (m->action == ACT_IDLE && sDisplayingDoorText == TRUE && requiredNumStars == 70)
@@ -1762,7 +1762,7 @@ u32 func_8024FEC0(struct MarioState *m, struct Object *o)
             m->usedObj = o;
 
             push_mario_out_of_object(m, o, -10.0f);
-            return set_mario_action(m, ACT_WAITING_FOR_DIALOGUE, 0);
+            return set_mario_action(m, ACT_WAITING_FOR_DIALOG, 0);
         }
     }
 

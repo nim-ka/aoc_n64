@@ -267,9 +267,9 @@ void bhv_hoot_loop(void)
         case HOOT_AVAIL_WANTS_TO_TALK:
             HootAwakeLoop();
             
-            if (set_mario_npc_dialogue(2) == 2 && func_8028F8E0(162, o, 44))
+            if (set_mario_npc_dialog(2) == 2 && func_8028F8E0(162, o, 44))
             {
-                set_mario_npc_dialogue(0);
+                set_mario_npc_dialog(0);
                 
                 obj_become_tangible();
                 

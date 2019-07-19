@@ -451,7 +451,7 @@ void ActionBoo4(void)
     else
         dialogID = 107;
     
-    if(obj_update_dialogue_unk1(2,2,dialogID,0))
+    if(obj_update_dialog_unk1(2,2,dialogID,0))
     {
         create_sound_spawner(SOUND_OBJECT_DYINGENEMY1);
         mark_object_for_deletion(o);

@@ -81,7 +81,7 @@ void yoshi_idle_loop(void) {
 void yoshi_talk_loop(void) {
     if ((s16) o->oMoveAngleYaw == (s16)o->oAngleToMario) {
         SetObjAnimation(0);
-        if (set_mario_npc_dialogue(1) == 2) {
+        if (set_mario_npc_dialog(1) == 2) {
             o->activeFlags |= 0x20;
             if (func_8028F8E0(162, o, 161)) {
                 o->activeFlags &= ~0x20;
@@ -129,7 +129,7 @@ void yoshi_finish_jumping_and_despawn_loop(void) {
     obj_move_xyz_using_fvel_and_yaw(o);
     o->oVelY -= 2.0;
     if (o->oPosY < 2100.0f) {
-        set_mario_npc_dialogue(0);
+        set_mario_npc_dialog(0);
         gCutsceneActive = 1;
         D_80331508 = 1;
         o->activeFlags = 0;

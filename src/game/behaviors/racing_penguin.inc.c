@@ -29,7 +29,7 @@ static void racing_penguin_act_show_init_text(void)
     s32 response;
     struct Object *child;
 
-    response = obj_update_race_proposition_dialogue(sRacingPenguinData[o->oBehParams2ndByte].text);
+    response = obj_update_race_proposition_dialog(sRacingPenguinData[o->oBehParams2ndByte].text);
     if (response == 1)
     {
         child = obj_nearest_object_with_behavior(bhvPenguinRaceFinishLine);
@@ -180,7 +180,7 @@ static void racing_penguin_act_show_final_text(void)
     }
     else if (o->oRacingPenguinFinalTextbox > 0)
     {
-        if ((textResult = obj_update_dialogue_unk2(2, 1, 0xA2, o->oRacingPenguinFinalTextbox)) != 0)
+        if ((textResult = obj_update_dialog_unk2(2, 1, 0xA2, o->oRacingPenguinFinalTextbox)) != 0)
         {
             o->oRacingPenguinFinalTextbox = -1;
             o->oTimer = 0;

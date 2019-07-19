@@ -6021,7 +6021,7 @@ void func_8028FBD8(struct CinematicCameraTable a[], struct CinematicCameraTable 
 s16 func_8028FD94(s32 a)
 {
     s16 timer = gCutsceneTimer;
-    if (set_mario_npc_dialogue(a) == 2)
+    if (set_mario_npc_dialog(a) == 2)
         timer = 0x7FFF;
     return timer;
 }
@@ -6942,28 +6942,28 @@ CmdRet CutsceneEnterBowserPlatform0_2(struct LevelCamera *c)
     CutsceneEnterBowserPlatform0_9(c);
 }
 
-CmdRet bowser_fight_intro_dialogue(UNUSED struct LevelCamera *c)
+CmdRet bowser_fight_intro_dialog(UNUSED struct LevelCamera *c)
 {
-    s16 dialogue;
+    s16 dialog;
 
     switch (gCurrLevelNum)
     {
     case LEVEL_BOWSER_1:
-        dialogue = 67;
+        dialog = 67;
         break;
     case LEVEL_BOWSER_2:
-        dialogue = 92;
+        dialog = 92;
         break;
     default:
-        dialogue = 93;
+        dialog = 93;
     }
 
-    func_802D7F90(dialogue);
+    func_802D7F90(dialog);
 }
 
 CmdRet CutsceneEnterBowserPlatform1(struct LevelCamera *c)
 {
-    call_cutscene_func_in_time_range(bowser_fight_intro_dialogue, c, 0, 0);
+    call_cutscene_func_in_time_range(bowser_fight_intro_dialog, c, 0, 0);
 
     if (get_dialog_id() == -1)
         gCutsceneTimer = 0x7FFF;
@@ -7634,7 +7634,7 @@ CmdRet CutsceneDialog0_2(struct LevelCamera *c)
 
 CmdRet CutsceneDialog0_3(struct LevelCamera *c)
 {
-    if (c->cutscene == CUTSCENE_DIALOGUE_2)
+    if (c->cutscene == CUTSCENE_DIALOG_2)
         func_802D8050(D_8033B320);
     else
         func_802D7F90(D_8033B320);
@@ -7654,7 +7654,7 @@ CmdRet CutsceneDialog0(struct LevelCamera *c)
 
     if ((get_dialog_id() == -1) && (D_8033B6F0[8].unk1C[0] != 0))
     {
-        if (c->cutscene != CUTSCENE_DIALOGUE_2)
+        if (c->cutscene != CUTSCENE_DIALOG_2)
             D_8032CFFC = 3;
 
         gCutsceneTimer = 0x7FFF;
@@ -9441,9 +9441,9 @@ void handle_cutscenes(struct LevelCamera *c)
     CUTSCENE_TABLE_JUMP(CUTSCENE_EXIT_WATERFALL,     TableCutsceneExitWaterfall)
     CUTSCENE_TABLE_JUMP(CUTSCENE_EXIT_FALL_WMOTR,    TableCutsceneFallToCastleGrounds)
     CUTSCENE_TABLE_JUMP(CUTSCENE_NONPAINTING_DEATH,  TableCutsceneNonPaintingDeath)
-    CUTSCENE_TABLE_JUMP(CUTSCENE_DIALOGUE_1,         TableCutsceneDialog)
+    CUTSCENE_TABLE_JUMP(CUTSCENE_DIALOG_1,           TableCutsceneDialog)
     CUTSCENE_TABLE_JUMP(CUTSCENE_READ_MESSAGE,       TableCutsceneReadMessage)
-    CUTSCENE_TABLE_JUMP(CUTSCENE_DIALOGUE_2,         TableCutsceneDialog)
+    CUTSCENE_TABLE_JUMP(CUTSCENE_DIALOG_2,           TableCutsceneDialog)
     CUTSCENE_TABLE_JUMP(CUTSCENE_ENTER_PYRAMID_TOP,  TableCutsceneEnterPyramidTop)
     CUTSCENE_TABLE_JUMP(CUTSCENE_26_TODO,            TableCutscene26Todo)
     }

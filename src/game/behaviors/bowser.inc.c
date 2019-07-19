@@ -992,7 +992,7 @@ s32 func_802B6120(void)
             func_8031FFB4(0,60,40);
             o->oBowserUnkF8++;
         }
-        if(obj_update_dialogue_unk1(2,18,D_8032F518[o->oBehParams2ndByte],0))
+        if(obj_update_dialog_unk1(2,18,D_8032F518[o->oBehParams2ndByte],0))
         {
             o->oBowserUnkF8++;
             PlaySound2(SOUND_CH8_UNK60);
@@ -1005,7 +1005,7 @@ s32 func_802B6120(void)
         func_802B60B8();
         spawn_triangle_break_particles(20,116,1.0f,0);
         func_802B5C78();
-        set_mario_npc_dialogue(0);
+        set_mario_npc_dialog(0);
         ret = 1;
     }
     return ret;
@@ -1027,7 +1027,7 @@ s32 func_802B6254(void)
             func_8031FFB4(0,60,40);
             o->oBowserUnkF8++;
         }
-        if(obj_update_dialogue_unk1(2,18,sp1C,0))
+        if(obj_update_dialog_unk1(2,18,sp1C,0))
         {
             obj_set_model(MODEL_BOWSER2);
             func_80320040(0,60);

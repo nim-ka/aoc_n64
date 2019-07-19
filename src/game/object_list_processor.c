@@ -64,7 +64,7 @@ s16 gDebugInfoOverwrite[16][8];
 
 /**
  * A set of flags to control which objects are updated on a given frame.
- * This is used during dialogue and cutscenes to freeze most objects in place.
+ * This is used during dialog and cutscenes to freeze most objects in place.
  */
 u32 gTimeStopState;
 

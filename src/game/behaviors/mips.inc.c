@@ -176,13 +176,13 @@ void func_802F7AA4(void) {
         else
             sp1E = 162;
 
-        if (set_mario_npc_dialogue(1) == 2) {
+        if (set_mario_npc_dialog(1) == 2) {
             o->activeFlags |= 0x20;
             if (func_8028F8E0(162, o, sp1E)) {
                 o->oUnk190 |= 0x40;
                 o->activeFlags &= ~0x20;
                 o->oMipsUnkF4 = 1;
-                set_mario_npc_dialogue(0);
+                set_mario_npc_dialog(0);
             }
         }
     }

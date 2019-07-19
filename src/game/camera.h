@@ -142,8 +142,8 @@
 #define CUTSCENE_WATER_DEATH        159 //Not in cutscene switch
 #define CUTSCENE_EXIT_PAINTING_SUCC 160
 #define CUTSCENE_CAP_SWITCH_PRESS   161
-#define CUTSCENE_DIALOGUE_1         162
-#define CUTSCENE_DIALOGUE_2         163
+#define CUTSCENE_DIALOG_1           162
+#define CUTSCENE_DIALOG_2           163
 #define CUTSCENE_ENTER_PYRAMID_TOP  164
 #define CUTSCENE_STAR_DANCE_2       165
 #define CUTSCENE_STAR_DANCE_3       166

@@ -126,12 +126,12 @@ void bhv_snowmans_bottom_loop(void) {
     switch (o->oAction) {
         case 0:
             if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 400) == 1
-                && set_mario_npc_dialogue(1) == 2) {
+                && set_mario_npc_dialog(1) == 2) {
                 sp1E = func_8028F8E0(162, o, 110);
                 if (sp1E) {
                     o->oForwardVel = 10.0f;
                     o->oAction = 1;
-                    set_mario_npc_dialogue(0);
+                    set_mario_npc_dialog(0);
                 }
             }
             break;

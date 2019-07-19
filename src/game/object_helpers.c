@@ -3163,26 +3163,26 @@ s32 obj_is_mario_in_range_and_ready_to_speak(f32 radius, f32 height)
     return func_802A3FF8(radius, height, 0x1000);
 }
 
-static void obj_end_dialogue(s32 dialogueFlags, s32 dialogueResult)
+static void obj_end_dialog(s32 dialogFlags, s32 dialogResult)
 {
-    o->oDialogueResponse = dialogueResult;
-    o->oDialogueState++;
+    o->oDialogResponse = dialogResult;
+    o->oDialogState++;
 
-    if (!(dialogueFlags & DIALOGUE_UNK1_FLAG_4))
+    if (!(dialogFlags & DIALOG_UNK1_FLAG_4))
     {
-        set_mario_npc_dialogue(0);
+        set_mario_npc_dialog(0);
     }
 }
 
-s32 obj_update_dialogue_unk1(s32 arg0, s32 dialogueFlags, s32 dialogID, UNUSED s32 unusedArg)
+s32 obj_update_dialog_unk1(s32 arg0, s32 dialogFlags, s32 dialogID, UNUSED s32 unusedArg)
 {
-    s32 dialogueResponse = 0;
+    s32 dialogResponse = 0;
     UNUSED s32 doneTurning = TRUE;
 
-    switch (o->oDialogueState)
+    switch (o->oDialogState)
     {
 #ifdef VERSION_JP
-    case DIALOGUE_UNK1_ENABLE_TIME_STOP:
+    case DIALOG_UNK1_ENABLE_TIME_STOP:
         //! We enable time stop even if mario is not ready to speak. This
         //  allows us to move during time stop as long as mario never enters
         //  an action that can be interrupted with text.
@@ -3190,18 +3190,18 @@ s32 obj_update_dialogue_unk1(s32 arg0, s32 dialogueFlags, s32 dialogID, UNUSED s
         {
             gTimeStopState |= TIME_STOP_ENABLED;
             o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
-            o->oDialogueState++;
+            o->oDialogState++;
         }
         break;
 #else
-    case DIALOGUE_UNK1_ENABLE_TIME_STOP:
+    case DIALOG_UNK1_ENABLE_TIME_STOP:
         // Patched :(
         // Wait for mario to be ready to speak, and then enable time stop
-        if (mario_ready_to_speak() || gMarioState->action == ACT_READING_NPC_DIALOGUE)
+        if (mario_ready_to_speak() || gMarioState->action == ACT_READING_NPC_DIALOG)
         {
             gTimeStopState |= TIME_STOP_ENABLED;
             o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
-            o->oDialogueState++;
+            o->oDialogState++;
         }
         else
         {
@@ -3211,74 +3211,74 @@ s32 obj_update_dialogue_unk1(s32 arg0, s32 dialogueFlags, s32 dialogID, UNUSED s
         // after time is stopped
 #endif
 
-    case DIALOGUE_UNK1_INTERRUPT_MARIO_ACTION:
-        if (set_mario_npc_dialogue(arg0) == 2)
+    case DIALOG_UNK1_INTERRUPT_MARIO_ACTION:
+        if (set_mario_npc_dialog(arg0) == 2)
         {
-            o->oDialogueState++;
+            o->oDialogState++;
         }
         break;
 
-    case DIALOGUE_UNK1_BEGIN_DIALOGUE:
-        if (dialogueFlags & DIALOGUE_UNK1_FLAG_2)
+    case DIALOG_UNK1_BEGIN_DIALOG:
+        if (dialogFlags & DIALOG_UNK1_FLAG_2)
         {
             func_802D8050(dialogID);
         }
-        else if (dialogueFlags & DIALOGUE_UNK1_FLAG_1)
+        else if (dialogFlags & DIALOG_UNK1_FLAG_1)
         {
             func_802D7F90(dialogID);
         }
-        o->oDialogueState++;
+        o->oDialogState++;
         break;
 
-    case DIALOGUE_UNK1_AWAIT_DIALOGUE:
-        if (dialogueFlags & DIALOGUE_UNK1_FLAG_2)
+    case DIALOG_UNK1_AWAIT_DIALOG:
+        if (dialogFlags & DIALOG_UNK1_FLAG_2)
         {
             if (gDialogResponse != 0)
             {
-                obj_end_dialogue(dialogueFlags, gDialogResponse);
+                obj_end_dialog(dialogFlags, gDialogResponse);
             }
         }
-        else if (dialogueFlags & DIALOGUE_UNK1_FLAG_1)
+        else if (dialogFlags & DIALOG_UNK1_FLAG_1)
         {
             if (get_dialog_id() == -1)
             {
-                obj_end_dialogue(dialogueFlags, 3);
+                obj_end_dialog(dialogFlags, 3);
             }
         }
         else
         {
-            obj_end_dialogue(dialogueFlags, 3);
+            obj_end_dialog(dialogFlags, 3);
         }
         break;
 
-    case DIALOGUE_UNK1_DISABLE_TIME_STOP:
-        if (gMarioState->action != ACT_READING_NPC_DIALOGUE ||
-            (dialogueFlags & DIALOGUE_UNK1_FLAG_4))
+    case DIALOG_UNK1_DISABLE_TIME_STOP:
+        if (gMarioState->action != ACT_READING_NPC_DIALOG ||
+            (dialogFlags & DIALOG_UNK1_FLAG_4))
         {
             gTimeStopState &= ~TIME_STOP_ENABLED;
             o->activeFlags &= ~ACTIVE_FLAG_INITIATED_TIME_STOP;
-            dialogueResponse = o->oDialogueResponse;
-            o->oDialogueState = DIALOGUE_UNK1_ENABLE_TIME_STOP;
+            dialogResponse = o->oDialogResponse;
+            o->oDialogState = DIALOG_UNK1_ENABLE_TIME_STOP;
         }
         break;
 
     default:
-        o->oDialogueState = DIALOGUE_UNK1_ENABLE_TIME_STOP;
+        o->oDialogState = DIALOG_UNK1_ENABLE_TIME_STOP;
         break;
     }
 
-    return dialogueResponse;
+    return dialogResponse;
 }
 
-s32 obj_update_dialogue_unk2(s32 arg0, s32 dialogueFlags, s32 dialogueID, s32 arg3)
+s32 obj_update_dialog_unk2(s32 arg0, s32 dialogFlags, s32 dialogID, s32 arg3)
 {
-    s32 dialogueResponse = 0;
+    s32 dialogResponse = 0;
     s32 doneTurning = TRUE;
 
-    switch (o->oDialogueState)
+    switch (o->oDialogState)
     {
 #ifdef VERSION_JP
-    case DIALOGUE_UNK2_ENABLE_TIME_STOP:
+    case DIALOG_UNK2_ENABLE_TIME_STOP:
         //! We enable time stop even if mario is not ready to speak. This
         //  allows us to move during time stop as long as mario never enters
         //  an action that can be interrupted with text.
@@ -3286,19 +3286,19 @@ s32 obj_update_dialogue_unk2(s32 arg0, s32 dialogueFlags, s32 dialogueID, s32 ar
         {
             gTimeStopState |= TIME_STOP_ENABLED;
             o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
-            o->oDialogueState++;
-            o->oDialogueResponse = 0;
+            o->oDialogState++;
+            o->oDialogResponse = 0;
         }
         break;
 #else
-    case DIALOGUE_UNK2_ENABLE_TIME_STOP:
+    case DIALOG_UNK2_ENABLE_TIME_STOP:
         // Wait for mario to be ready to speak, and then enable time stop
-        if (mario_ready_to_speak() || gMarioState->action == ACT_READING_NPC_DIALOGUE)
+        if (mario_ready_to_speak() || gMarioState->action == ACT_READING_NPC_DIALOG)
         {
             gTimeStopState |= TIME_STOP_ENABLED;
             o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
-            o->oDialogueState++;
-            o->oDialogueResponse = 0;
+            o->oDialogState++;
+            o->oDialogResponse = 0;
         }
         else
         {
@@ -3308,65 +3308,65 @@ s32 obj_update_dialogue_unk2(s32 arg0, s32 dialogueFlags, s32 dialogueID, s32 ar
         // after time is stopped
 #endif
 
-    case DIALOGUE_UNK2_TURN_AND_INTERRUPT_MARIO_ACTION:
-        if (dialogueFlags & DIALOGUE_UNK2_FLAG_0)
+    case DIALOG_UNK2_TURN_AND_INTERRUPT_MARIO_ACTION:
+        if (dialogFlags & DIALOG_UNK2_FLAG_0)
         {
             doneTurning = obj_rotate_yaw_toward(angle_to_object(o, gMarioObject), 0x800);
-            if (o->oDialogueResponse >= 0x21)
+            if (o->oDialogResponse >= 0x21)
             {
                 doneTurning = TRUE;
             }
         }
 
-        if (set_mario_npc_dialogue(arg0) == 2 && doneTurning)
+        if (set_mario_npc_dialog(arg0) == 2 && doneTurning)
         {
-            o->oDialogueResponse = 0;
-            o->oDialogueState++;
+            o->oDialogResponse = 0;
+            o->oDialogState++;
         }
         else
         {
-            o->oDialogueResponse++;
+            o->oDialogResponse++;
         }
         break;
 
-    case DIALOGUE_UNK2_AWAIT_DIALOGUE:
-        if (dialogueID == 0xA1)
+    case DIALOG_UNK2_AWAIT_DIALOG:
+        if (dialogID == 0xA1)
         {
-            if ((o->oDialogueResponse = func_8028F9A4(dialogueID, o)) != 0)
+            if ((o->oDialogResponse = func_8028F9A4(dialogID, o)) != 0)
             {
-                o->oDialogueState++;
+                o->oDialogState++;
             }
         }
         else
         {
-            if ((o->oDialogueResponse = func_8028F8E0(dialogueID, o, arg3)) != 0)
+            if ((o->oDialogResponse = func_8028F8E0(dialogID, o, arg3)) != 0)
             {
-                o->oDialogueState++;
+                o->oDialogState++;
             }
         }
         break;
 
-    case DIALOGUE_UNK2_END_DIALOGUE:
-        if (dialogueFlags & DIALOGUE_UNK2_LEAVE_TIME_STOP_ENABLED)
+    case DIALOG_UNK2_END_DIALOG:
+        if (dialogFlags & DIALOG_UNK2_LEAVE_TIME_STOP_ENABLED)
         {
-            dialogueResponse = o->oDialogueResponse;
-            o->oDialogueState = DIALOGUE_UNK2_ENABLE_TIME_STOP;
+            dialogResponse = o->oDialogResponse;
+            o->oDialogState = DIALOG_UNK2_ENABLE_TIME_STOP;
         }
-        else if (gMarioState->action != ACT_READING_NPC_DIALOGUE)
+        else if (gMarioState->action != ACT_READING_NPC_DIALOG)
         {
             gTimeStopState &= ~TIME_STOP_ENABLED;
             o->activeFlags &= ~ACTIVE_FLAG_INITIATED_TIME_STOP;
-            dialogueResponse = o->oDialogueResponse;
-            o->oDialogueState = DIALOGUE_UNK2_ENABLE_TIME_STOP;
+            dialogResponse = o->oDialogResponse;
+            o->oDialogState = DIALOG_UNK2_ENABLE_TIME_STOP;
         }
         else
         {
-            set_mario_npc_dialogue(0);
+            set_mario_npc_dialog(0);
         }
         break;
     }
 
-    return dialogueResponse;
+    return dialogResponse;
 }
 
 s32 obj_has_model(u16 a0)

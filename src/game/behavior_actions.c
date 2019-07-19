@@ -105,7 +105,7 @@ extern s16 gDebugInfo[][8];
 extern s8 gDoorAdjacentRooms[][2];
 extern u8 inside_castle_seg7_collision_ddd_warp_2[];
 extern u8 inside_castle_seg7_collision_ddd_warp[];
-extern s32 gDialogueResponse;
+extern s32 gDialogResponse;
 extern s32 gCutsceneActive;
 extern u8 gCutsceneNumber;
 extern s8* D_8032F96C[];

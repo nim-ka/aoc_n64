@@ -87,7 +87,7 @@ static void eyerok_boss_act_wake_up(void)
 
 static void eyerok_boss_act_show_intro_text(void)
 {
-    if (obj_update_dialogue_unk2(2, 0, 0xA2, 0x75))
+    if (obj_update_dialog_unk2(2, 0, 0xA2, 0x75))
     {
         o->oAction = EYEROK_BOSS_ACT_FIGHT;
     }
@@ -166,7 +166,7 @@ static void eyerok_boss_act_die(void)
 {
     if (o->oTimer == 60)
     {
-        if (obj_update_dialogue_unk2(2, 0, 0xA2, 0x76))
+        if (obj_update_dialog_unk2(2, 0, 0xA2, 0x76))
         {
             CreateStar(0.0f, -900.0f, -3700.0f);
         }
