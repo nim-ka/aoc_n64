@@ -384,10 +384,10 @@ void func_802BAF30(void)
             }
             break;
         case 1:
-            if(gDialogueResponse != 0)
+            if(gDialogResponse != 0)
             {
                 set_mario_npc_dialogue(0);
-                if(gDialogueResponse == 1)
+                if(gDialogResponse == 1)
                 {
                     o->oUnk190 |= 0x40;
                     o->oUnk1AC_S16 = 2;

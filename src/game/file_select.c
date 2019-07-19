@@ -1807,11 +1807,11 @@ static void draw_file_scores(s8 fileNum)
 #ifdef VERSION_JP
     unsigned char textFileLetter[] = {TEXT_0};
     void **levelNameTable = segmented_to_virtual(seg2_level_name_table);
-    unsigned char textHiScore[] = {TEXT_HISCORE};
-    unsigned char textMyScore[] = {TEXT_MYSCORE};
+    unsigned char textHiScore[] = {TEXT_HI_SCORE};
+    unsigned char textMyScore[] = {TEXT_MY_SCORE};
 #else
-    unsigned char textHiScore[] = {TEXT_HISCORE};
-    unsigned char textMyScore[] = {TEXT_MYSCORE};
+    unsigned char textHiScore[] = {TEXT_HI_SCORE_EN};
+    unsigned char textMyScore[] = {TEXT_MY_SCORE};
     unsigned char textFileLetter[] = {TEXT_0};
     void **levelNameTable = segmented_to_virtual(seg2_level_name_table);
 #endif

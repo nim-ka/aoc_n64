@@ -63,8 +63,6 @@ s16 gCameraFlags1;
 u16 gCButtonsPressed;
 s16 D_8033B320;
 struct CameraState gCameraStatus;
-s16 unused_8033B3E4;
-s16 unused_8033B3E6;
 s16 unused_8033B3E8;
 s16 sYawFocToMario;
 s16 D_8033B3EC;
@@ -167,7 +165,6 @@ s32 (*TableCameraTransitions[])(struct LevelCamera *, Vec3f, Vec3f) = {
     return_spiral_stairs_camera_yaw
 };
 
-extern s32 gDialogueResponse;
 extern f32 unused_8033B3CC;
 extern f32 unused_8033B3D4;
 extern s16 unused_8033B3A2;
@@ -542,7 +539,7 @@ void func_8027FF44(struct LevelCamera *c)
      || (sMarioStatusForCamera->action != ACT_TOP_OF_POLE && (sMarioStatusForCamera->action & ACT_FLAG_ON_POLE)))
         sp24[0] = -sp24[0];
     if (gCameraFlags2 & CAM_FLAG_2_SLEEPING)
-        approach_f32_exponential_bool(&D_8033B40C, 0, 0.025f);
+        approach_f32_exponential_bool(&D_8033B40C, 0.f, 0.025f);
     else
         approach_f32_exponential_bool(&D_8033B40C, sp24[0], 0.025f);
     sp24[0] = D_8033B40C;
@@ -2616,10 +2613,10 @@ void init_camera(struct LevelCamera *c)
     gCameraStatus.unkAC = 0.3f;
     gCameraStatus.unkB0 = 0.3f;
     gCameraStatus.unkA4 = 0.8f;
-    gCameraStatus.unkA4 = 0.3f;
+    gCameraStatus.unkA4 = 0.3f; // @bug set unkA4 back-to-back
     gCameraStatus.roll = 0;
     gCameraStatus.cameraKeyCutsceneRollOffset = 0;
-    unused_8033B3E4 = 0;
+    gCameraStatus.unkBC = 0;
     gCameraFlags2 &= ~CAM_FLAG_2_SMOOTH_MOVEMENT;
     vec3f_set(sFixedPresetBasePositionOffset, 0.f, 0.f, 0.f);
     vec3f_set(D_8033B218, 0.f, 0.f, 0.f);
@@ -4450,8 +4447,8 @@ void Unknown8028C3AC(UNUSED s32 a, UNUSED s32 b, UNUSED s32 c, UNUSED s32 d)
 
 void set_focus_position(struct LevelCamera *c, f32 b, f32 heightOffset, f32 d, s16 yawOffset)
 {
-    u16 yaw;
-    UNUSED u8 unused[2];
+    s16 yaw;
+    UNUSED u16 unused;
     f32 heightAboveFloor;
 
     return_height_above_floor(&heightAboveFloor, 1.f, 200.f, &heightAboveFloor, 0.9f, 200.f);
@@ -4688,7 +4685,7 @@ void parallel_tracking_init(struct LevelCamera *a, struct ParallelTrackingTable 
     }
 }
 
-void set_fixed_cam_axis_sa_lobby(UNUSED s32 preset)
+void set_fixed_cam_axis_sa_lobby(UNUSED s16 preset)
 {
     switch (gCurrLevelArea)
     {
@@ -6011,7 +6008,7 @@ void func_8028FBD8(struct CinematicCameraTable a[], struct CinematicCameraTable 
             i += 1;
             j += 1;
         }
-        while ((b[j].unk0 != -1) && (b[j].unk0 != -1)); //! what the fuck
+        while ((b[j].unk0 != -1) && (b[j].unk0 != -1)); //! same comparison performed twice
     }
     while (j > 16);
 
@@ -6630,7 +6627,7 @@ CmdRet CutsceneStarDance1(struct LevelCamera *c)
     }
 }
 
-void func_80291FE8(struct LevelCamera *a, s16 b, s16 c)
+CmdRet func_80291FE8(struct LevelCamera *a, s16 b, s16 c)
 {
     s16 pitch, yaw;
     f32 distCamToMario;
@@ -6653,14 +6650,14 @@ void func_80291FE8(struct LevelCamera *a, s16 b, s16 c)
 
 CmdRet CutsceneStarDance3_1(struct LevelCamera *c)
 {
-    UNUSED u32 pad[2];
+    UNUSED s32 pad[2];
 
     if ((gLastCompletedStarNum == 4) && (gCurrCourseNum == COURSE_JRB))
         func_80291FE8(c, 0, 0x4000);
     if ((gLastCompletedStarNum == 1) && (gCurrCourseNum == COURSE_DDD))
-        func_80291FE8(c, 0x8000, 0x5000);
+        func_80291FE8(c, -0x8000, 0x5000);
     if ((gLastCompletedStarNum == 5) && (gCurrCourseNum == COURSE_WDW))
-        func_80291FE8(c, 0x8000, 0x800);
+        func_80291FE8(c, -0x8000, 0x800);
 
     vec3f_copy(D_8033B6F0[9].unk4, c->focus);
     D_8033B6F0[8].unk1C[0] = 0x2000;
@@ -7652,8 +7649,8 @@ CmdRet CutsceneDialog0(struct LevelCamera *c)
     call_cutscene_func_in_time_range(CutsceneDialog0_3, c, 10, 10);
     gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
 
-    if (gDialogueResponse != 0)
-        D_8032CFFC = gDialogueResponse;
+    if (gDialogResponse != 0)
+        D_8032CFFC = gDialogResponse;
 
     if ((get_dialog_id() == -1) && (D_8033B6F0[8].unk1C[0] != 0))
     {
@@ -7987,8 +7984,8 @@ CmdRet CutsceneCapSwitchPress0(struct LevelCamera *c)
     call_cutscene_func_in_time_range(CutsceneCapSwitchPress0_6, c, 10, 10);
     vec3f_get_dist_and_angle(sMarioStatusForCamera->pos, c->pos, &sp24, &sp22, &sp20);
 
-    if (gDialogueResponse != 0)
-        D_8033B6F0[4].unk1C[0] = gDialogueResponse;
+    if (gDialogResponse != 0)
+        D_8033B6F0[4].unk1C[0] = gDialogResponse;
 
     if ((get_dialog_id() == -1) && (D_8033B6F0[4].unk1C[0] != 0))
     {
@@ -9522,9 +9519,9 @@ void func_80299DB4(struct Struct80287404 *a)
 {
     if (D_8033B230.unk10 != 0.f)
     {
-        D_8033B230.unk8 = coss(D_8033B230.unk14) * D_8033B230.unk10 / 256.f;
+        D_8033B230.unk8 = coss(D_8033B230.unk14) * D_8033B230.unk10 / 256;
         D_8033B230.unk14 += D_8033B230.unk16;
-        camera_approach_f32_symmetric_bool(&D_8033B230.unk10, 0, D_8033B230.unk18);
+        camera_approach_f32_symmetric_bool(&D_8033B230.unk10, 0.f, D_8033B230.unk18);
         a->unk1C[0] += D_8033B230.unk8;
     }
     else

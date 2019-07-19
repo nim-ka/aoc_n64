@@ -832,7 +832,7 @@ s32 func_80262574(struct MarioState *m) {
     sp1E = (m->actionTimer % 0x10) << 0xC;
     sp18 = (f32) (((f32) (6 - m->actionTimer / 8) * 8.0f) + 4.0f);
     mario_set_forward_vel(m, 0);
-    vec3f_set(m->vel, 0, 0, 0);
+    vec3f_set(m->vel, 0.0f, 0.0f, 0.0f);
     if (sins(sp1E) >= 0.0f) {
         m->pos[1] = sins(sp1E) * sp18 + m->floorHeight;
     } else {

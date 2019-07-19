@@ -156,28 +156,28 @@ void print_displaying_credits_entry(void)
 
         // init printing credits text?
         func_802D9A60();
-        print_credits_str(28, strY, titleStr);
+        print_credits_str_ascii(28, strY, titleStr);
 
     #ifndef VERSION_JP
         switch (numLines)
         {
         case 4:
-            print_credits_str(28, strY + 24, *currStrPtr++);
+            print_credits_str_ascii(28, strY + 24, *currStrPtr++);
             numLines = 2;
             lineHeight = 24;
             break;
         case 5:
-            print_credits_str(28, strY + 16, *currStrPtr++);
+            print_credits_str_ascii(28, strY + 16, *currStrPtr++);
             numLines = 3;
             break;
 #ifdef VERSION_EU
         case 6:
-            print_credits_str(28, strY + 32, *currStrPtr++);
+            print_credits_str_ascii(28, strY + 32, *currStrPtr++);
             numLines = 3;
             break;
         case 7:
-            print_credits_str(28, strY + 16, *currStrPtr++);
-            print_credits_str(28, strY + 32, *currStrPtr++);
+            print_credits_str_ascii(28, strY + 16, *currStrPtr++);
+            print_credits_str_ascii(28, strY + 32, *currStrPtr++);
             numLines = 3;
             break;
 #endif
@@ -188,7 +188,7 @@ void print_displaying_credits_entry(void)
         // chips 23 years later and nearly causes upwarp 2
         while (numLines-- > 0)
         {
-            print_credits_str(
+            print_credits_str_ascii(
                 (320 - 28) - get_credits_str_width(*currStrPtr), strY,
                 *currStrPtr
             );
@@ -724,9 +724,9 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater)
                 break;
         }
     }
-    else if (m->actionState == 1 && gDialogueResponse)
+    else if (m->actionState == 1 && gDialogResponse)
     {
-        if (gDialogueResponse == 1)
+        if (gDialogResponse == 1)
             save_file_do_save(gCurrSaveFileNum - 1);
         m->actionState = 2;
     }

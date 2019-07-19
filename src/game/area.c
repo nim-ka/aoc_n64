@@ -18,6 +18,7 @@
 #include "rendering_graph_node.h"
 #include "level_update.h"
 #include "engine/geo_layout.h"
+#include "save_file.h"
 
 struct SpawnInfo gPlayerSpawnInfos[1];
 struct GraphNode *D_8033A160[0x100];
@@ -102,6 +103,14 @@ Vp D_8032CF00 =
     {640, 480, 511, 0},
 }};
 
+#ifdef VERSION_EU
+const char *gNoControllerMsg[] =
+{
+    "NO CONTROLLER",
+    "MANETTE DEBRANCHEE",
+    "CONTROLLER FEHLT",
+};
+#endif
 
 void func_8027A220(Vp *a, Vp *b, u8 c, u8 d, u8 e)
 {
@@ -124,16 +133,27 @@ void set_warp_transition_rgb(u8 red, u8 green, u8 blue)
 
 void print_intro_text(void)
 {
+#ifdef VERSION_EU
+    int language = eu_get_language();
+#endif
     if ((gGlobalTimer & 0x1F) < 20)
     {
         if (gControllerBits == 0)
         {
+#ifdef VERSION_EU
+            print_text_centered(160, 20, gNoControllerMsg[language]);
+#else
             print_text_centered(160, 20, "NO CONTROLLER");
+#endif
         }
         else
         {
+#ifdef VERSION_EU
+            print_text_centered(20, 20, "START");
+#else
             print_text_centered(60, 38, "PRESS");
             print_text_centered(60, 20, "START");
+#endif
         }
     }
 }

@@ -356,6 +356,7 @@ struct CameraState
     /*0xB0*/ float unkB0;
     /*0xB4*/ s16 cameraKeyCutsceneRollOffset;
     /*0xB8*/ u32 lastFrameAction;
+    /*0xBC*/ s16 unkBC;
 };
 
 // bss order hack to not affect BSS order. if possible, remove me, but it will be hard to match otherwise
@@ -485,7 +486,7 @@ s16 func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 g); 
 // extern ? set_camera_preset_close_cam(?);
 // extern ? set_camera_preset_open_camera(?);
 // extern ? parallel_tracking_init(?);
-extern void set_fixed_cam_axis_sa_lobby(); // postdefined
+extern void set_fixed_cam_axis_sa_lobby(s16 preset); // postdefined
 // extern ? func_8028D32C(?);
 // extern ? CameraRR00(?);
 // extern ? CameraRR04(?);

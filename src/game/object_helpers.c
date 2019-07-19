@@ -32,7 +32,6 @@ s8 D_8032F0A0[] = { 0xF8, 0x08, 0xFC, 0x04};
 s16 D_8032F0A4[] = { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 };
 static s8 sLevelsWithRooms[] = { LEVEL_BBH, LEVEL_CASTLE, LEVEL_HMC, -1 };
 
-extern s32 gDialogueResponse;
 s32 sGrabReleaseState;
 
 // These can be static:
@@ -3234,9 +3233,9 @@ s32 obj_update_dialogue_unk1(s32 arg0, s32 dialogueFlags, s32 dialogID, UNUSED s
     case DIALOGUE_UNK1_AWAIT_DIALOGUE:
         if (dialogueFlags & DIALOGUE_UNK1_FLAG_2)
         {
-            if (gDialogueResponse != 0)
+            if (gDialogResponse != 0)
             {
-                obj_end_dialogue(dialogueFlags, gDialogueResponse);
+                obj_end_dialogue(dialogueFlags, gDialogResponse);
             }
         }
         else if (dialogueFlags & DIALOGUE_UNK1_FLAG_1)

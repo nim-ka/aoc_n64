@@ -179,13 +179,13 @@ texture_colorful_char_beta_key:
 .incbin "textures/segment2/segment2.06000.rgba16"
 .endif
 
-texture_credits_num_3:
+texture_credits_char_3:
 .incbin "textures/segment2/segment2.06200.rgba16"
 
-texture_credits_num_4:
+texture_credits_char_4:
 .incbin "textures/segment2/segment2.06280.rgba16"
 
-texture_credits_num_6:
+texture_credits_char_6:
 .incbin "textures/segment2/segment2.06300.rgba16"
 
 texture_credits_char_A:
@@ -1613,9 +1613,9 @@ glabel seg2_small_font_lut
 
 # credits font LUT 0x02008738-0x020087CB
 glabel seg2_credits_font_lut
-.word                   0x0,                   0x0,                   0x0, texture_credits_num_3
-.word texture_credits_num_4,                   0x0, texture_credits_num_6,                   0x0
-.word                   0x0,                   0x0, texture_credits_char_A, texture_credits_char_B
+.word                    0x0,                    0x0,                    0x0, texture_credits_char_3
+.word texture_credits_char_4,                    0x0, texture_credits_char_6,                    0x0
+.word                    0x0,                    0x0, texture_credits_char_A, texture_credits_char_B
 .word texture_credits_char_C, texture_credits_char_D, texture_credits_char_E, texture_credits_char_F
 .word texture_credits_char_G, texture_credits_char_H, texture_credits_char_I, texture_credits_char_J
 .word texture_credits_char_K, texture_credits_char_L, texture_credits_char_M, texture_credits_char_N

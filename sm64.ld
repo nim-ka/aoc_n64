@@ -120,10 +120,6 @@ SECTIONS
       BUILD_DIR/src/game/paintings.o(.text);
       BUILD_DIR/src/game/print.o(.text);
       BUILD_DIR/src/game/ingame_menu.o(.text);
-      // UNSORTED (find where these are)
-      BUILD_DIR/src/game/object_collision.o(.text);
-      BUILD_DIR/src/game/spawn_object.o(.text);
-      BUILD_DIR/src/game/object_helpers.o(.text);
 #else
       BUILD_DIR/src/game/object_helpers.o(.text);
       BUILD_DIR/src/game/behavior_actions.o(.text);
@@ -154,6 +150,12 @@ SECTIONS
       BUILD_DIR/src/audio/effects.o(.text);
       BUILD_DIR/src/audio/seqplayer.o(.text);
       BUILD_DIR/src/audio/external.o(.text);
+#ifdef VERSION_EU
+      // UNSORTED (find where these are)
+      BUILD_DIR/src/game/object_helpers.o(.text);
+      BUILD_DIR/src/game/object_collision.o(.text);
+      BUILD_DIR/src/game/spawn_object.o(.text);
+#endif
 #if VERSION_US
       . += 0x40;
 #endif

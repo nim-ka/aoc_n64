@@ -21,9 +21,9 @@
 #define BUGFIX_KOOPA_RACE_MUSIC (0 || VERSION_US || VERSION_EU)
 /// Fixes bug where Piranha Plants do not reset their action state when the
 /// player exits their activation radius.
-#define BUGFIX_PIRANHA_PLANT_STATE_RESET (0 || VERSION_US)
+#define BUGFIX_PIRANHA_PLANT_STATE_RESET (0 || VERSION_US || VERSION_EU)
 /// Fixes bug where sleeping Piranha Plants damage players that bump into them
-#define BUGFIX_PIRANHA_PLANT_SLEEP_DAMAGE (0 || VERSION_US)
+#define BUGFIX_PIRANHA_PLANT_SLEEP_DAMAGE (0 || VERSION_US || VERSION_EU)
 /// Fixes bug where it shows a star when you grab a key in bowser battle stages
 #define BUGFIX_STAR_BOWSER_KEY (0 || VERSION_US || VERSION_EU)
 

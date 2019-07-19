@@ -1,5 +1,5 @@
-#ifndef INGAME_MENU_2_H
-#define INGAME_MENU_2_H
+#ifndef ENVFX_SNOW_H
+#define ENVFX_SNOW_H
 
 #include <ultra64.h>
 #include "types.h"
@@ -31,7 +31,6 @@ struct EnvFxParticle {
 
 extern s8 gEnvFxMode;
 extern UNUSED s32 D_80330644;
-extern Vtx_t gSnowTempVtx[3];
 extern struct SnowFlakeVertex gSnowFlakeVertex1;
 extern struct SnowFlakeVertex gSnowFlakeVertex2;
 extern struct SnowFlakeVertex gSnowFlakeVertex3;
@@ -45,4 +44,4 @@ Gfx *envfx_update_particles(s32 snowMode, Vec3s marioPos, Vec3s camTo, Vec3s cam
 void orbit_from_positions(Vec3s from, Vec3s to, s16 *radius, s16 *pitch, s16 *yaw);
 void rotate_triangle_vertices(Vec3s vertex1, Vec3s vertex2, Vec3s vertex3, s16 pitch, s16 yaw);
 
-#endif // INGAME_MENU_2_H
+#endif // ENVFX_SNOW_H

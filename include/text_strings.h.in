@@ -6,14 +6,17 @@
 
 #define TEXT_COIN_X _("$[x]")
 #define TEXT_STAR_X _("*[x]")
-#define TEXT_START _("*")
 
+// common
+#define TEXT_COIN _("$")
+#define TEXT_STAR _("*")
+#define TEXT_VARIABLE_X _("[x]")
+#define TEXT_UNFILLED_STAR _("#")
+#define TEXT_NEW _("NEW")
 
 #ifdef VERSION_JP
 #define TEXT_COURSE _("コ-ス")
 #define TEXT_MY_SCORE _("マイスコア")
-#define TEXT_STAR _("*")
-#define TEXT_UNFILLED_STAR _("#")
 #define TEXT_LAKITU_MARIO _("ジュゲム+マリオ")
 #define TEXT_LAKITU_STOP _("ジュゲム+ストップ")
 #define TEXT_NORMAL_UPCLOSE _("(おすすめ)(リアル)")
@@ -41,8 +44,8 @@
 // file select
 #define TEXT_RETURN _("もどる")
 #define TEXT_CHECK_SCORE _("スコアをみる")
-#define TEXT_HISCORE _("ハイスコア")
-#define TEXT_MYSCORE _("マイスコア")
+#define TEXT_HI_SCORE _("ハイスコア")
+#define TEXT_MY_SCORE _("マイスコア")
 #define TEXT_COPY_FILE_BUTTON _("ファイルコピ-")
 #define TEXT_ERASE_FILE_BUTTON _("ファイルけす")
 #define TEXT_STEREO _("ステレオ")
@@ -56,7 +59,6 @@
 #define TEXT_SCORE_MARIO_B _("マリオB")
 #define TEXT_SCORE_MARIO_C _("マリオC")
 #define TEXT_SCORE_MARIO_D _("マリオD")
-#define TEXT_NEW _("NEW")
 #define TEXT_SCORE _("スコア")
 #define TEXT_COPY _("コピ-")
 #define TEXT_ERASE _("けす")
@@ -66,7 +68,7 @@
 #define TEXT_YES _("はい")
 #define TEXT_NO _("いいえ")
 #define TEXT_4DASHES _("----")
-#define TEXT_HISCORE_ENG _("HISCORE")
+#define TEXT_HI_SCORE_EN _("HISCORE")
 #define TEXT_CLEAR _("クリア!")
 #define TEXT_CATCH _("キャッチ!")
 // todo: handle these strings
@@ -78,11 +80,55 @@
 #define TEXT_SOUND_SELECT 0x18, 0x19, 0x1A, 0x1B, 0x04, 0x05, 0x06, 0x07, 0xFF
 
 
-#else // todo: others
+#else
+#ifdef VERSION_EU
+#define TEXT_CAMERA_ANGLE_R_EN          _("SET CAMERA ANGLE WITH [R]")
+
+#define TEXT_MY_SCORE_FR                _("MON SCORE")
+#define TEXT_COURSE_FR                  _("NIVEAU")
+#define TEXT_NORMAL_UPCLOSE_FR          _("(NORMAL}{GROS-PLAN)")
+#define TEXT_NORMAL_FIXED_FR            _("(NORMAL}{FIXE)")
+#define TEXT_CONTINUE_FR                _("CONTINUER")
+#define TEXT_EXIT_COURSE_FR             _("QUITTER NIVEAU")
+#define TEXT_CAMERA_ANGLE_R_FR          _("RÉGLAGE CAMÉRA AVEC [R]")
+#define TEXT_HI_SCORE_FR                _("MEILLEUR SCORE")
+#define TEXT_CONGRATULATIONS_FR         _("FELICITATIONS")
+#define TEXT_SAVE_AND_CONTINUE_FR       _("SAUVEGARDER & CONTINUER")
+#define TEXT_SAVE_AND_QUIT_FR           _("SAUVEGARDER & QUITTER")
+#define TEXT_CONTINUE_WITHOUT_SAVING_FR _("CONTINUER SANS SAUVEGARDER")
+
+#define TEXT_MY_SCORE_DE                _("LEISTUNG")
+#define TEXT_COURSE_DE                  _("KURS")
+#define TEXT_NORMAL_UPCLOSE_DE          _("(NORMAL}{WEIT-ZOOM)")
+#define TEXT_NORMAL_FIXED_DE            _("(NORMAL}{STATIV)")
+#define TEXT_CONTINUE_DE                _("WEITER")
+#define TEXT_EXIT_COURSE_DE             _("KURS VERLASSEN")
+#define TEXT_CAMERA_ANGLE_R_DE          _("KAMERA MIT [R] VERSTELLEN")
+#define TEXT_HI_SCORE_DE                _("BESTLEISTUNG")
+#define TEXT_CONGRATULATIONS_DE         _("GRATULATION")
+#define TEXT_SAVE_AND_CONTINUE_DE       _("SPEICHERN & WEITER")
+#define TEXT_SAVE_AND_QUIT_DE           _("SPEICHERN & ENDE")
+#define TEXT_CONTINUE_WITHOUT_SAVING_DE _("WEITER OHNE ZU SPEICHERN")
+
+#define TEXT_POWER_STARS_RESTORED_FR _("Grâce aux étoiles, le château a retrouvé ses pouvoirs...")
+#define TEXT_THANKS_TO_YOU_FR        _("...et ceci grâce à toi!")
+#define TEXT_THANK_YOU_MARIO_FR      _("Merci, Mario!")
+#define TEXT_SOMETHING_SPECIAL_FR    _("Tu mérites une récompense...")
+#define TEXT_COME_ON_EVERYBODY_FR    _("Venez les amis...")
+#define TEXT_LETS_HAVE_CAKE_FR       _("Allons préparer un délicieux gâteau...")
+#define TEXT_FOR_MARIO_FR            _("...pour Mario...")
+
+#define TEXT_POWER_STARS_RESTORED_DE _("Die Macht der Sterne ruht wieder sicher im Schloss...")
+#define TEXT_THANKS_TO_YOU_DE        _("...und alles dank Deiner Hilfe!")
+#define TEXT_THANK_YOU_MARIO_DE      _("Vielen Dank, Mario!")
+#define TEXT_SOMETHING_SPECIAL_DE    _("Wir haben eine Überraschung für Dich...")
+#define TEXT_COME_ON_EVERYBODY_DE    _("Hört alle her...")
+#define TEXT_LETS_HAVE_CAKE_DE       _("Laßt uns einen leckeren Kuchen backen...")
+#define TEXT_FOR_MARIO_DE            _("...für Mario...")
+#endif
+
 #define TEXT_COURSE _("COURSE")
 #define TEXT_MY_SCORE _("MY SCORE")
-#define TEXT_STAR _("*")
-#define TEXT_UNFILLED_STAR _("#")
 #define TEXT_LAKITU_MARIO _("LAKITU + MARIO")
 #define TEXT_LAKITU_STOP _("LAKITU + STOP")
 #define TEXT_NORMAL_UPCLOSE _("(NORMAL}{UP-CLOSE)")
@@ -93,18 +139,22 @@
 #define TEXT_SAVE_AND_CONTINUE _("SAVE & CONTINUE")
 #define TEXT_SAVE_AND_QUIT _("SAVE & QUIT")
 #define TEXT_CONTINUE_WITHOUT_SAVING _("CONTINUE, DON'T SAVE")
-#define TEXT_HISCORE_ENG _("HI SCORE")
+#define TEXT_HI_SCORE_EN _("HI SCORE")
 // ending cutscene subtitles
-// TODO: Handle uncompressed strings
-#define TEXT_FILE_MARIO_EXCLAMATION 0x16, 0x24, 0x35, 0x2C, 0x32, 0xF2, 0xFF, 0x00
+// TODO: Handle the following uncompressed strings
+// #define TEXT_POWER_STARS_RESTORED __("The power of the Stars is restored to the castle...")
+// #define TEXT_THANKS_TO_YOU __("...and it's all thanks to you!")
+// #define TEXT_THANK_YOU_MARIO __("Thank you, Mario!")
+// #define TEXT_SOMETHING_SPECIAL __("We have to do something special for you...")
+#define TEXT_FILE_MARIO_EXCLAMATION _("Mario!")
 #define TEXT_POWER_STARS_RESTORED 0x1D, 0x2B, 0x28, 0x9E, 0x33, 0x32, 0x3A, 0x28, 0x35, 0x9E, 0x32, 0x29, 0x9E, 0x37, 0x2B, 0x28, 0x9E, 0x1C, 0x37, 0x24, 0x35, 0x36, 0x9E, 0x2C, 0x36, 0x9E, 0x35, 0x28, 0x36, 0x37, 0x32, 0x35, 0x28, 0x27, 0x9E, 0x37, 0x32, 0x9E, 0x37, 0x2B, 0x28, 0x9E, 0x26, 0x24, 0x36, 0x37, 0x2F, 0x28, 0x3F, 0x3F, 0x3F, 0xFF
-#define TEXT_THANKS_TO_YOU 0x3F, 0x3F, 0x3F, 0x24, 0x31, 0x27, 0x9E, 0x2C, 0x37, 0x3E, 0x36, 0x9E, 0x24, 0x2F, 0x2F, 0x9E, 0x37, 0x2B, 0x24, 0x31, 0x2E, 0x36, 0x9E, 0x37, 0x32, 0x9E, 0x3C, 0x32, 0x38, 0xF2, 0xFF, 0x00
-#define TEXT_THANK_YOU_MARIO 0x1D, 0x2B, 0x24, 0x31, 0x2E, 0x9E, 0x3C, 0x32, 0x38, 0x6F, 0x9E, 0x16, 0x24, 0x35, 0x2C, 0x32, 0xF2, 0xFF, 0x00, 0x00
-#define TEXT_SOMETHING_SPECIAL 0x20, 0x28, 0x9E, 0x2B, 0x24, 0x39, 0x28, 0x9E, 0x37, 0x32, 0x9E, 0x27, 0x32, 0x9E, 0x36, 0x32, 0x30, 0x28, 0x37, 0x2B, 0x2C, 0x31, 0x2A, 0x9E, 0x36, 0x33, 0x28, 0x26, 0x2C, 0x24, 0x2F, 0x9E, 0x29, 0x32, 0x35, 0x9E, 0x3C, 0x32, 0x38, 0x3F, 0x3F, 0x3F, 0xFF, 0x00
-#define TEXT_COME_ON_EVERYBODY 0x15, 0x2C, 0x36, 0x37, 0x28, 0x31, 0x6F, 0x9E, 0x28, 0x39, 0x28, 0x35, 0x3C, 0x25, 0x32, 0x27, 0x3C, 0x6F, 0xFF, 0x00
-#define TEXT_LETS_HAVE_CAKE 0x2F, 0x28, 0x37, 0x3E, 0x36, 0x9E, 0x25, 0x24, 0x2E, 0x28, 0x9E, 0x24, 0x9E, 0x27, 0x28, 0x2F, 0x2C, 0x26, 0x2C, 0x32, 0x38, 0x36, 0x9E, 0x26, 0x24, 0x2E, 0x28, 0x3F, 0x3F, 0x3F, 0xFF, 0x00
-#define TEXT_FOR_MARIO 0x3F, 0x3F, 0x3F, 0x29, 0x32, 0x35, 0x9E, 0x16, 0x24, 0x35, 0x2C, 0x32, 0x3F, 0x3F, 0x3F, 0xFF
-#define TEXT_FILE_MARIO_QUESTION 0x16, 0x24, 0x35, 0x2C, 0x32, 0xF2, 0xFF, 0x00
+#define TEXT_THANKS_TO_YOU 0x3F, 0x3F, 0x3F, 0x24, 0x31, 0x27, 0x9E, 0x2C, 0x37, 0x3E, 0x36, 0x9E, 0x24, 0x2F, 0x2F, 0x9E, 0x37, 0x2B, 0x24, 0x31, 0x2E, 0x36, 0x9E, 0x37, 0x32, 0x9E, 0x3C, 0x32, 0x38, 0xF2, 0xFF
+#define TEXT_THANK_YOU_MARIO 0x1D, 0x2B, 0x24, 0x31, 0x2E, 0x9E, 0x3C, 0x32, 0x38, 0x6F, 0x9E, 0x16, 0x24, 0x35, 0x2C, 0x32, 0xF2, 0xFF
+#define TEXT_SOMETHING_SPECIAL 0x20, 0x28, 0x9E, 0x2B, 0x24, 0x39, 0x28, 0x9E, 0x37, 0x32, 0x9E, 0x27, 0x32, 0x9E, 0x36, 0x32, 0x30, 0x28, 0x37, 0x2B, 0x2C, 0x31, 0x2A, 0x9E, 0x36, 0x33, 0x28, 0x26, 0x2C, 0x24, 0x2F, 0x9E, 0x29, 0x32, 0x35, 0x9E, 0x3C, 0x32, 0x38, 0x3F, 0x3F, 0x3F, 0xFF
+#define TEXT_COME_ON_EVERYBODY _("Listen, everybody,")
+#define TEXT_LETS_HAVE_CAKE _("let's bake a delicious cake...")
+#define TEXT_FOR_MARIO _("...for Mario...")
+#define TEXT_FILE_MARIO_QUESTION _("Mario!")
 #define TEXT_ERASE_FILE _("ERASE FILE")
 #define TEXT_SURE _("SURE?")
 #define TEXT_NO_SAVED_DATA_EXISTS _("NO SAVED DATA EXISTS")
@@ -113,9 +163,7 @@
 // file select
 #define TEXT_RETURN _("RETURN")
 #define TEXT_CHECK_SCORE _("CHECK SCORE")
-#define TEXT_HISCORE _("HI SCORE")
-#define TEXT_MYSCORE _("MY SCORE")
-#define TEXT_MYSCORE2 _("MYSCORE")
+#define TEXT_MYSCORE _("MYSCORE")
 #define TEXT_COPY_FILE_BUTTON _("COPY FILE")
 #define TEXT_ERASE_FILE_BUTTON _("ERASE FILE")
 #define TEXT_STEREO _("STEREO")
@@ -129,7 +177,6 @@
 #define TEXT_SCORE_MARIO_B 0x40, 0x41, 0x0B, 0xFF
 #define TEXT_SCORE_MARIO_C 0x40, 0x41, 0x0C, 0xFF
 #define TEXT_SCORE_MARIO_D 0x40, 0x41, 0x0D, 0xFF
-#define TEXT_NEW _("NEW")
 #define TEXT_SCORE _("SCORE")
 #define TEXT_COPY _("COPY")
 #define TEXT_ERASE _("ERASE")
@@ -152,9 +199,6 @@
 #define TEXT_PAUSE _("PAUSE")
 
 // course complete menu
-#define TEXT_UNK33 0x33,0xFF
-#define TEXT_UNK32 0x32,0xFF
-#define TEXT_UNK35 0x35,0xFF
 #define TEXT_CONGRATULATIONS _("CONGRATULATIONS")
 
 #endif

@@ -293,7 +293,8 @@ void print_string_array_info(const char **strArr)
             print_debug_top_down_mapinfo(strArr[i], gDebugInfo[sDebugPage][i]);
         }
         // modify the cursor position so the cursor prints at the correct location.
-        set_text_array_x_y(0, -8 - -sDebugSysCursor);
+        // this is equivalent to (sDebugSysCursor - 8)
+        set_text_array_x_y(0, -1 - (u32)(7 - sDebugSysCursor));
         print_debug_top_down_mapinfo(strArr[8], 0); // print the cursor
         set_text_array_x_y(0, 7 - sDebugSysCursor);
     }

@@ -11,8 +11,16 @@ extern u8 _translation_fr_mio0SegmentRomEnd[];
 extern u8 _translation_de_mio0SegmentRomStart[];
 extern u8 _translation_de_mio0SegmentRomEnd[];
 
-extern void *dialog_table_eu_de[]; // 0x19009CBC
-extern void *dialog_table_eu_en[]; // 0x19008CD8
-extern void *dialog_table_eu_fr[]; // 0x1900A120
+extern void *dialog_table_eu_en[];
+extern void *level_name_table_eu_en[];
+extern void *act_name_table_eu_en[];
+
+extern void *dialog_table_eu_fr[];
+extern void *level_name_table_eu_fr[];
+extern void *act_name_table_eu_fr[];
+
+extern void *dialog_table_eu_de[];
+extern void *level_name_table_eu_de[];
+extern void *act_name_table_eu_de[];
 
 #endif /* EU_TRANSLATION_H */

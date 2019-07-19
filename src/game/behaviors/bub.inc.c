@@ -60,7 +60,7 @@ void ActionCheepCheep1(void)
     f32 dy;
     if(o->oTimer == 0)
     {
-        o->oForwardVel = RandomFloat() * 2.0f + 2.0f;
+        o->oForwardVel = RandomFloat() * 2 + 2;
         o->oCheepCheepUnk108 = RandomFloat();
     }
     dy = o->oPosY - gMarioObject->oPosY;

@@ -77,7 +77,7 @@ void spawn_macro_abs_special(u32 model, u32 *behavior, s16 x, s16 y, s16 z, s16 
     newObj->oUnknownUnk110_F32 = (f32) unkC;
 }
 
-void Unknown802E142C(u32 (*a0)[], s16 a1[])
+static void Unknown802E142C(u32 (*a0)[], s16 a1[])
 {    
     struct Object *sp3C;
     s16 model;
@@ -232,14 +232,18 @@ void spawn_special_objects(s16 areaIndex, s16** specialObjList)
 {
     s32 numOfSpecialObjects;
     s32 i;
-    u32 offset;
+    s32 offset;
     s16 x;
     s16 y;
     s16 z;
-    s16 extraParams[5];
+    s16 extraParams[4];
+#ifdef VERSION_EU
+    s16 model;
+#else
     u8  model;
+#endif
     u8  type;
-    s8  presetID;
+    u8  presetID;
     u8  defaultParam;
     u32* behavior;
 
@@ -251,7 +255,7 @@ void spawn_special_objects(s16 areaIndex, s16** specialObjList)
 
     for (i = 0; i < numOfSpecialObjects; i++)
     {
-        presetID = (s8) **specialObjList;
+        presetID = (u8)**specialObjList;
         (*specialObjList)++;
         x = **specialObjList;
         (*specialObjList)++;
@@ -263,7 +267,7 @@ void spawn_special_objects(s16 areaIndex, s16** specialObjList)
         offset = 0;
         while (TRUE)
         {
-            if (SpecialObjectPresets[offset].preset_id == (u8) presetID)
+            if (SpecialObjectPresets[offset].preset_id == presetID)
                 break;
 
             if (SpecialObjectPresets[offset].preset_id == 0xFF) { }
