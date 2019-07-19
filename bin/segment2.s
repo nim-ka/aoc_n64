@@ -4,1359 +4,1359 @@
 .include "PR/gbi.inc"
 
 texture_colorful_num_0:
-.incbin "bin/segment2/segment2.00000.rgba16"
+.incbin "textures/segment2/segment2.00000.rgba16"
 
 texture_colorful_num_1:
-.incbin "bin/segment2/segment2.00200.rgba16"
+.incbin "textures/segment2/segment2.00200.rgba16"
 
 texture_colorful_num_2:
-.incbin "bin/segment2/segment2.00400.rgba16"
+.incbin "textures/segment2/segment2.00400.rgba16"
 
 texture_colorful_num_3:
-.incbin "bin/segment2/segment2.00600.rgba16"
+.incbin "textures/segment2/segment2.00600.rgba16"
 
 texture_colorful_num_4:
-.incbin "bin/segment2/segment2.00800.rgba16"
+.incbin "textures/segment2/segment2.00800.rgba16"
 
 texture_colorful_num_5:
-.incbin "bin/segment2/segment2.00A00.rgba16"
+.incbin "textures/segment2/segment2.00A00.rgba16"
 
 texture_colorful_num_6:
-.incbin "bin/segment2/segment2.00C00.rgba16"
+.incbin "textures/segment2/segment2.00C00.rgba16"
 
 texture_colorful_num_7:
-.incbin "bin/segment2/segment2.00E00.rgba16"
+.incbin "textures/segment2/segment2.00E00.rgba16"
 
 texture_colorful_num_8:
-.incbin "bin/segment2/segment2.01000.rgba16"
+.incbin "textures/segment2/segment2.01000.rgba16"
 
 texture_colorful_num_9:
-.incbin "bin/segment2/segment2.01200.rgba16"
+.incbin "textures/segment2/segment2.01200.rgba16"
 
 texture_colorful_char_A:
-.incbin "bin/segment2/segment2.01400.rgba16"
+.incbin "textures/segment2/segment2.01400.rgba16"
 
 texture_colorful_char_B:
-.incbin "bin/segment2/segment2.01600.rgba16"
+.incbin "textures/segment2/segment2.01600.rgba16"
 
 texture_colorful_char_C:
-.incbin "bin/segment2/segment2.01800.rgba16"
+.incbin "textures/segment2/segment2.01800.rgba16"
 
 texture_colorful_char_D:
-.incbin "bin/segment2/segment2.01A00.rgba16"
+.incbin "textures/segment2/segment2.01A00.rgba16"
 
 texture_colorful_char_E:
-.incbin "bin/segment2/segment2.01C00.rgba16"
+.incbin "textures/segment2/segment2.01C00.rgba16"
 
 texture_colorful_char_F:
-.incbin "bin/segment2/segment2.01E00.rgba16"
+.incbin "textures/segment2/segment2.01E00.rgba16"
 
 texture_colorful_char_G:
-.incbin "bin/segment2/segment2.02000.rgba16"
+.incbin "textures/segment2/segment2.02000.rgba16"
 
 texture_colorful_char_H:
-.incbin "bin/segment2/segment2.02200.rgba16"
+.incbin "textures/segment2/segment2.02200.rgba16"
 
 texture_colorful_char_I:
-.incbin "bin/segment2/segment2.02400.rgba16"
+.incbin "textures/segment2/segment2.02400.rgba16"
 
 .ifdef VERSION_JP
 texture_colorful_char_J:
-.incbin "bin/segment2/segment2.02600.rgba16"
+.incbin "textures/segment2/segment2.02600.rgba16"
 .endif
 
 texture_colorful_char_K:
-.incbin "bin/segment2/segment2.02800.rgba16"
+.incbin "textures/segment2/segment2.02800.rgba16"
 
 texture_colorful_char_L:
-.incbin "bin/segment2/segment2.02A00.rgba16"
+.incbin "textures/segment2/segment2.02A00.rgba16"
 
 texture_colorful_char_M:
-.incbin "bin/segment2/segment2.02C00.rgba16"
+.incbin "textures/segment2/segment2.02C00.rgba16"
 
 texture_colorful_char_N:
-.incbin "bin/segment2/segment2.02E00.rgba16"
+.incbin "textures/segment2/segment2.02E00.rgba16"
 
 texture_colorful_char_O:
-.incbin "bin/segment2/segment2.03000.rgba16"
+.incbin "textures/segment2/segment2.03000.rgba16"
 
 texture_colorful_char_P:
-.incbin "bin/segment2/segment2.03200.rgba16"
+.incbin "textures/segment2/segment2.03200.rgba16"
 
 .ifdef VERSION_JP
 texture_colorful_char_Q:
-.incbin "bin/segment2/segment2.03400.rgba16"
+.incbin "textures/segment2/segment2.03400.rgba16"
 .endif
 
 texture_colorful_char_R:
-.incbin "bin/segment2/segment2.03600.rgba16"
+.incbin "textures/segment2/segment2.03600.rgba16"
 
 texture_colorful_char_S:
-.incbin "bin/segment2/segment2.03800.rgba16"
+.incbin "textures/segment2/segment2.03800.rgba16"
 
 texture_colorful_char_T:
-.incbin "bin/segment2/segment2.03A00.rgba16"
+.incbin "textures/segment2/segment2.03A00.rgba16"
 
 texture_colorful_char_U:
-.incbin "bin/segment2/segment2.03C00.rgba16"
+.incbin "textures/segment2/segment2.03C00.rgba16"
 
 .if VERSION_JP == 1 || VERSION_EU == 1
 texture_colorful_char_V:
-.incbin "bin/segment2/segment2.03E00.rgba16"
+.incbin "textures/segment2/segment2.03E00.rgba16"
 .endif
 
 texture_colorful_char_W:
-.incbin "bin/segment2/segment2.04000.rgba16"
+.incbin "textures/segment2/segment2.04000.rgba16"
 
 .ifdef VERSION_JP
 texture_colorful_char_X:
-.incbin "bin/segment2/segment2.04200.rgba16"
+.incbin "textures/segment2/segment2.04200.rgba16"
 .endif
 
 texture_colorful_char_Y:
-.incbin "bin/segment2/segment2.04400.rgba16"
+.incbin "textures/segment2/segment2.04400.rgba16"
 
 .if VERSION_JP == 1 || VERSION_EU == 1
 texture_colorful_char_Z:
-.incbin "bin/segment2/segment2.04600.rgba16"
+.incbin "textures/segment2/segment2.04600.rgba16"
 .endif
 
 texture_colorful_char_apostrophe:
-.incbin "bin/segment2/segment2.04800.rgba16"
+.incbin "textures/segment2/segment2.04800.rgba16"
 
 texture_colorful_char_double_quote:
-.incbin "bin/segment2/segment2.04A00.rgba16"
+.incbin "textures/segment2/segment2.04A00.rgba16"
 
 .ifdef VERSION_EU
 texture_colorful_char_umlaut:
-.incbin "bin/segment2/segment2.umlaut.rgba16" # EU ¨
+.incbin "textures/segment2/segment2.umlaut.rgba16" # EU ¨
 .endif
 
 .ifdef VERSION_JP
 texture_colorful_char_exclamation:
-.incbin "bin/segment2/segment2.04C00.rgba16" # JP !
+.incbin "textures/segment2/segment2.04C00.rgba16" # JP !
 .endif
 
 .ifdef VERSION_JP
 texture_colorful_char_double_exclamation:
-.incbin "bin/segment2/segment2.04E00.rgba16" # JP !!
+.incbin "textures/segment2/segment2.04E00.rgba16" # JP !!
 .endif
 
 .ifdef VERSION_JP
 texture_colorful_char_question:
-.incbin "bin/segment2/segment2.05000.rgba16" # JP ?
+.incbin "textures/segment2/segment2.05000.rgba16" # JP ?
 .endif
 
 .ifdef VERSION_JP
 texture_colorful_char_ampersand:
-.incbin "bin/segment2/segment2.05200.rgba16" # JP &
+.incbin "textures/segment2/segment2.05200.rgba16" # JP &
 .endif
 
 .ifdef VERSION_JP
 texture_colorful_char_percent:
-.incbin "bin/segment2/segment2.05400.rgba16" # JP %
+.incbin "textures/segment2/segment2.05400.rgba16" # JP %
 .endif
 
 texture_colorful_char_multiply:
-.incbin "bin/segment2/segment2.05600.rgba16"
+.incbin "textures/segment2/segment2.05600.rgba16"
 
 texture_colorful_char_coin:
-.incbin "bin/segment2/segment2.05800.rgba16"
+.incbin "textures/segment2/segment2.05800.rgba16"
 
 texture_colorful_char_mario_head:
-.incbin "bin/segment2/segment2.05A00.rgba16"
+.incbin "textures/segment2/segment2.05A00.rgba16"
 
 texture_colorful_char_star:
-.incbin "bin/segment2/segment2.05C00.rgba16"
+.incbin "textures/segment2/segment2.05C00.rgba16"
 
 .ifdef VERSION_JP
 texture_colorful_char_decimal_point:
-.incbin "bin/segment2/segment2.05E00.rgba16"
+.incbin "textures/segment2/segment2.05E00.rgba16"
 .endif
 
 .ifdef VERSION_JP
 texture_colorful_char_beta_key:
-.incbin "bin/segment2/segment2.06000.rgba16"
+.incbin "textures/segment2/segment2.06000.rgba16"
 .endif
 
 texture_credits_num_3:
-.incbin "bin/segment2/segment2.06200.rgba16"
+.incbin "textures/segment2/segment2.06200.rgba16"
 
 texture_credits_num_4:
-.incbin "bin/segment2/segment2.06280.rgba16"
+.incbin "textures/segment2/segment2.06280.rgba16"
 
 texture_credits_num_6:
-.incbin "bin/segment2/segment2.06300.rgba16"
+.incbin "textures/segment2/segment2.06300.rgba16"
 
 texture_credits_char_A:
-.incbin "bin/segment2/segment2.06380.rgba16"
+.incbin "textures/segment2/segment2.06380.rgba16"
 
 texture_credits_char_B:
-.incbin "bin/segment2/segment2.06400.rgba16"
+.incbin "textures/segment2/segment2.06400.rgba16"
 
 texture_credits_char_C:
-.incbin "bin/segment2/segment2.06480.rgba16"
+.incbin "textures/segment2/segment2.06480.rgba16"
 
 texture_credits_char_D:
-.incbin "bin/segment2/segment2.06500.rgba16"
+.incbin "textures/segment2/segment2.06500.rgba16"
 
 texture_credits_char_E:
-.incbin "bin/segment2/segment2.06580.rgba16"
+.incbin "textures/segment2/segment2.06580.rgba16"
 
 texture_credits_char_F:
-.incbin "bin/segment2/segment2.06600.rgba16"
+.incbin "textures/segment2/segment2.06600.rgba16"
 
 texture_credits_char_G:
-.incbin "bin/segment2/segment2.06680.rgba16"
+.incbin "textures/segment2/segment2.06680.rgba16"
 
 texture_credits_char_H:
-.incbin "bin/segment2/segment2.06700.rgba16"
+.incbin "textures/segment2/segment2.06700.rgba16"
 
 texture_credits_char_I:
-.incbin "bin/segment2/segment2.06780.rgba16"
+.incbin "textures/segment2/segment2.06780.rgba16"
 
 texture_credits_char_J:
-.incbin "bin/segment2/segment2.06800.rgba16"
+.incbin "textures/segment2/segment2.06800.rgba16"
 
 texture_credits_char_K:
-.incbin "bin/segment2/segment2.06880.rgba16"
+.incbin "textures/segment2/segment2.06880.rgba16"
 
 texture_credits_char_L:
-.incbin "bin/segment2/segment2.06900.rgba16"
+.incbin "textures/segment2/segment2.06900.rgba16"
 
 texture_credits_char_M:
-.incbin "bin/segment2/segment2.06980.rgba16"
+.incbin "textures/segment2/segment2.06980.rgba16"
 
 texture_credits_char_N:
-.incbin "bin/segment2/segment2.06A00.rgba16"
+.incbin "textures/segment2/segment2.06A00.rgba16"
 
 texture_credits_char_O:
-.incbin "bin/segment2/segment2.06A80.rgba16"
+.incbin "textures/segment2/segment2.06A80.rgba16"
 
 texture_credits_char_P:
-.incbin "bin/segment2/segment2.06B00.rgba16"
+.incbin "textures/segment2/segment2.06B00.rgba16"
 
 texture_credits_char_Q:
-.incbin "bin/segment2/segment2.06B80.rgba16"
+.incbin "textures/segment2/segment2.06B80.rgba16"
 
 texture_credits_char_R:
-.incbin "bin/segment2/segment2.06C00.rgba16"
+.incbin "textures/segment2/segment2.06C00.rgba16"
 
 texture_credits_char_S:
-.incbin "bin/segment2/segment2.06C80.rgba16"
+.incbin "textures/segment2/segment2.06C80.rgba16"
 
 texture_credits_char_T:
-.incbin "bin/segment2/segment2.06D00.rgba16"
+.incbin "textures/segment2/segment2.06D00.rgba16"
 
 texture_credits_char_U:
-.incbin "bin/segment2/segment2.06D80.rgba16"
+.incbin "textures/segment2/segment2.06D80.rgba16"
 
 texture_credits_char_V:
-.incbin "bin/segment2/segment2.06E00.rgba16"
+.incbin "textures/segment2/segment2.06E00.rgba16"
 
 texture_credits_char_W:
-.incbin "bin/segment2/segment2.06E80.rgba16"
+.incbin "textures/segment2/segment2.06E80.rgba16"
 
 texture_credits_char_X:
-.incbin "bin/segment2/segment2.06F00.rgba16"
+.incbin "textures/segment2/segment2.06F00.rgba16"
 
 texture_credits_char_Y:
-.incbin "bin/segment2/segment2.06F80.rgba16"
+.incbin "textures/segment2/segment2.06F80.rgba16"
 
 texture_credits_char_Z:
-.incbin "bin/segment2/segment2.07000.rgba16"
+.incbin "textures/segment2/segment2.07000.rgba16"
 
 texture_credits_char_period:
-.incbin "bin/segment2/segment2.07080.rgba16"
+.incbin "textures/segment2/segment2.07080.rgba16"
 
 .ifdef VERSION_JP # JP Small Font
 texture_dialog_jp_0:
-    .incbin "bin/segment2/segment2.07100.ia1"
+    .incbin "textures/segment2/segment2.07100.ia1"
     
 texture_dialog_jp_1:
-    .incbin "bin/segment2/segment2.07110.ia1"
+    .incbin "textures/segment2/segment2.07110.ia1"
     
 texture_dialog_jp_2:
-    .incbin "bin/segment2/segment2.07120.ia1"
+    .incbin "textures/segment2/segment2.07120.ia1"
     
 texture_dialog_jp_3:
-    .incbin "bin/segment2/segment2.07130.ia1"
+    .incbin "textures/segment2/segment2.07130.ia1"
     
 texture_dialog_jp_4:
-    .incbin "bin/segment2/segment2.07140.ia1"
+    .incbin "textures/segment2/segment2.07140.ia1"
     
 texture_dialog_jp_5:
-    .incbin "bin/segment2/segment2.07150.ia1"
+    .incbin "textures/segment2/segment2.07150.ia1"
     
 texture_dialog_jp_6:
-    .incbin "bin/segment2/segment2.07160.ia1"
+    .incbin "textures/segment2/segment2.07160.ia1"
     
 texture_dialog_jp_7:
-    .incbin "bin/segment2/segment2.07170.ia1"
+    .incbin "textures/segment2/segment2.07170.ia1"
     
 texture_dialog_jp_8:
-    .incbin "bin/segment2/segment2.07180.ia1"
+    .incbin "textures/segment2/segment2.07180.ia1"
     
 texture_dialog_jp_9:
-    .incbin "bin/segment2/segment2.07190.ia1"
+    .incbin "textures/segment2/segment2.07190.ia1"
     
 texture_dialog_jp_A:
-    .incbin "bin/segment2/segment2.071A0.ia1"
+    .incbin "textures/segment2/segment2.071A0.ia1"
     
 texture_dialog_jp_B:
-    .incbin "bin/segment2/segment2.071B0.ia1"
+    .incbin "textures/segment2/segment2.071B0.ia1"
     
 texture_dialog_jp_C:
-    .incbin "bin/segment2/segment2.071C0.ia1"
+    .incbin "textures/segment2/segment2.071C0.ia1"
     
 texture_dialog_jp_D:
-    .incbin "bin/segment2/segment2.071D0.ia1"
+    .incbin "textures/segment2/segment2.071D0.ia1"
     
 texture_dialog_jp_E:
-    .incbin "bin/segment2/segment2.071E0.ia1"
+    .incbin "textures/segment2/segment2.071E0.ia1"
     
 texture_dialog_jp_F:
-    .incbin "bin/segment2/segment2.071F0.ia1"
+    .incbin "textures/segment2/segment2.071F0.ia1"
     
 texture_dialog_jp_G:
-    .incbin "bin/segment2/segment2.07200.ia1"
+    .incbin "textures/segment2/segment2.07200.ia1"
     
 texture_dialog_jp_H:
-    .incbin "bin/segment2/segment2.07210.ia1"
+    .incbin "textures/segment2/segment2.07210.ia1"
     
 texture_dialog_jp_I:
-    .incbin "bin/segment2/segment2.07220.ia1"
+    .incbin "textures/segment2/segment2.07220.ia1"
     
 texture_dialog_jp_J:
-    .incbin "bin/segment2/segment2.07230.ia1"
+    .incbin "textures/segment2/segment2.07230.ia1"
     
 texture_dialog_jp_K:
-    .incbin "bin/segment2/segment2.07240.ia1"
+    .incbin "textures/segment2/segment2.07240.ia1"
     
 texture_dialog_jp_L:
-    .incbin "bin/segment2/segment2.07250.ia1"
+    .incbin "textures/segment2/segment2.07250.ia1"
     
 texture_dialog_jp_M:
-    .incbin "bin/segment2/segment2.07260.ia1"
+    .incbin "textures/segment2/segment2.07260.ia1"
     
 texture_dialog_jp_N:
-    .incbin "bin/segment2/segment2.07270.ia1"
+    .incbin "textures/segment2/segment2.07270.ia1"
     
 texture_dialog_jp_O:
-    .incbin "bin/segment2/segment2.07280.ia1"
+    .incbin "textures/segment2/segment2.07280.ia1"
     
 texture_dialog_jp_P:
-    .incbin "bin/segment2/segment2.07290.ia1"
+    .incbin "textures/segment2/segment2.07290.ia1"
     
 texture_dialog_jp_Q:
-    .incbin "bin/segment2/segment2.072A0.ia1"
+    .incbin "textures/segment2/segment2.072A0.ia1"
     
 texture_dialog_jp_R:
-    .incbin "bin/segment2/segment2.072B0.ia1"
+    .incbin "textures/segment2/segment2.072B0.ia1"
     
 texture_dialog_jp_S:
-    .incbin "bin/segment2/segment2.072C0.ia1"
+    .incbin "textures/segment2/segment2.072C0.ia1"
     
 texture_dialog_jp_T:
-    .incbin "bin/segment2/segment2.072D0.ia1"
+    .incbin "textures/segment2/segment2.072D0.ia1"
     
 texture_dialog_jp_U:
-    .incbin "bin/segment2/segment2.072E0.ia1"
+    .incbin "textures/segment2/segment2.072E0.ia1"
     
 texture_dialog_jp_V:
-    .incbin "bin/segment2/segment2.072F0.ia1"
+    .incbin "textures/segment2/segment2.072F0.ia1"
     
 texture_dialog_jp_W:
-    .incbin "bin/segment2/segment2.07300.ia1"
+    .incbin "textures/segment2/segment2.07300.ia1"
     
 texture_dialog_jp_X:
-    .incbin "bin/segment2/segment2.07310.ia1"
+    .incbin "textures/segment2/segment2.07310.ia1"
     
 texture_dialog_jp_Y:
-    .incbin "bin/segment2/segment2.07320.ia1"
+    .incbin "textures/segment2/segment2.07320.ia1"
     
 texture_dialog_jp_Z:
-    .incbin "bin/segment2/segment2.07330.ia1"
+    .incbin "textures/segment2/segment2.07330.ia1"
     
 texture_dialog_jp_long_vowel:
-    .incbin "bin/segment2/segment2.07340.ia1"
+    .incbin "textures/segment2/segment2.07340.ia1"
     
 texture_dialog_jp_exclamation:
-    .incbin "bin/segment2/segment2.07350.ia1"
+    .incbin "textures/segment2/segment2.07350.ia1"
     
 texture_dialog_jp_dakuten:
-    .incbin "bin/segment2/segment2.07360.ia1"
+    .incbin "textures/segment2/segment2.07360.ia1"
     
 texture_dialog_jp_handakuten:
-    .incbin "bin/segment2/segment2.07370.ia1"
+    .incbin "textures/segment2/segment2.07370.ia1"
     
 texture_dialog_jp_percent:
-    .incbin "bin/segment2/segment2.07380.ia1"
+    .incbin "textures/segment2/segment2.07380.ia1"
     
 texture_dialog_jp_question:
-    .incbin "bin/segment2/segment2.07390.ia1"
+    .incbin "textures/segment2/segment2.07390.ia1"
     
 texture_dialog_jp_left_right_arrow:
-    .incbin "bin/segment2/segment2.073A0.ia1"
+    .incbin "textures/segment2/segment2.073A0.ia1"
     
 texture_dialog_jp_open_parentheses:
-    .incbin "bin/segment2/segment2.073B0.ia1"
+    .incbin "textures/segment2/segment2.073B0.ia1"
     
 texture_dialog_jp_close_open_parentheses:
-    .incbin "bin/segment2/segment2.073C0.ia1"
+    .incbin "textures/segment2/segment2.073C0.ia1"
     
 texture_dialog_jp_close_parentheses:
-    .incbin "bin/segment2/segment2.073D0.ia1"
+    .incbin "textures/segment2/segment2.073D0.ia1"
     
 texture_dialog_jp_coin:
-    .incbin "bin/segment2/segment2.073E0.ia1"
+    .incbin "textures/segment2/segment2.073E0.ia1"
     
 texture_dialog_jp_multiply:
-    .incbin "bin/segment2/segment2.073F0.ia1"
+    .incbin "textures/segment2/segment2.073F0.ia1"
     
 texture_dialog_jp_star_filled:
-    .incbin "bin/segment2/segment2.07400.ia1"
+    .incbin "textures/segment2/segment2.07400.ia1"
     
 texture_dialog_jp_star_hollow:
-    .incbin "bin/segment2/segment2.07410.ia1"
+    .incbin "textures/segment2/segment2.07410.ia1"
     
 texture_dialog_jp_hiragana_a:
-    .incbin "bin/segment2/segment2.07420.ia1"
+    .incbin "textures/segment2/segment2.07420.ia1"
     
 texture_dialog_jp_hiragana_i:
-    .incbin "bin/segment2/segment2.07430.ia1"
+    .incbin "textures/segment2/segment2.07430.ia1"
     
 texture_dialog_jp_hiragana_u:
-    .incbin "bin/segment2/segment2.07440.ia1"
+    .incbin "textures/segment2/segment2.07440.ia1"
     
 texture_dialog_jp_hiragana_c:
-    .incbin "bin/segment2/segment2.07450.ia1"
+    .incbin "textures/segment2/segment2.07450.ia1"
     
 texture_dialog_jp_hiragana_o:
-    .incbin "bin/segment2/segment2.07460.ia1"
+    .incbin "textures/segment2/segment2.07460.ia1"
     
 texture_dialog_jp_hiragana_ka:
-    .incbin "bin/segment2/segment2.07470.ia1"
+    .incbin "textures/segment2/segment2.07470.ia1"
     
 texture_dialog_jp_hiragana_ki:
-    .incbin "bin/segment2/segment2.07480.ia1"
+    .incbin "textures/segment2/segment2.07480.ia1"
     
 texture_dialog_jp_hiragana_ku:
-    .incbin "bin/segment2/segment2.07490.ia1"
+    .incbin "textures/segment2/segment2.07490.ia1"
     
 texture_dialog_jp_hiragana_ke:
-    .incbin "bin/segment2/segment2.074A0.ia1"
+    .incbin "textures/segment2/segment2.074A0.ia1"
     
 texture_dialog_jp_hiragana_ko:
-    .incbin "bin/segment2/segment2.074B0.ia1"
+    .incbin "textures/segment2/segment2.074B0.ia1"
     
 texture_dialog_jp_hiragana_sa:
-    .incbin "bin/segment2/segment2.074C0.ia1"
+    .incbin "textures/segment2/segment2.074C0.ia1"
     
 texture_dialog_jp_hiragana_shi:
-    .incbin "bin/segment2/segment2.074D0.ia1"
+    .incbin "textures/segment2/segment2.074D0.ia1"
     
 texture_dialog_jp_hiragana_su:
-    .incbin "bin/segment2/segment2.074E0.ia1"
+    .incbin "textures/segment2/segment2.074E0.ia1"
     
 texture_dialog_jp_hiragana_se:
-    .incbin "bin/segment2/segment2.074F0.ia1"
+    .incbin "textures/segment2/segment2.074F0.ia1"
     
 texture_dialog_jp_hiragana_so:
-    .incbin "bin/segment2/segment2.07500.ia1"
+    .incbin "textures/segment2/segment2.07500.ia1"
     
 texture_dialog_jp_hiragana_ta:
-    .incbin "bin/segment2/segment2.07510.ia1"
+    .incbin "textures/segment2/segment2.07510.ia1"
     
 texture_dialog_jp_hiragana_chi:
-    .incbin "bin/segment2/segment2.07520.ia1"
+    .incbin "textures/segment2/segment2.07520.ia1"
     
 texture_dialog_jp_hiragana_tsu:
-    .incbin "bin/segment2/segment2.07530.ia1"
+    .incbin "textures/segment2/segment2.07530.ia1"
     
 texture_dialog_jp_hiragana_te:
-    .incbin "bin/segment2/segment2.07540.ia1"
+    .incbin "textures/segment2/segment2.07540.ia1"
     
 texture_dialog_jp_hiragana_to:
-    .incbin "bin/segment2/segment2.07550.ia1"
+    .incbin "textures/segment2/segment2.07550.ia1"
     
 texture_dialog_jp_hiragana_na:
-    .incbin "bin/segment2/segment2.07560.ia1"
+    .incbin "textures/segment2/segment2.07560.ia1"
     
 texture_dialog_jp_hiragana_ni:
-    .incbin "bin/segment2/segment2.07570.ia1"
+    .incbin "textures/segment2/segment2.07570.ia1"
     
 texture_dialog_jp_hiragana_nu:
-    .incbin "bin/segment2/segment2.07580.ia1"
+    .incbin "textures/segment2/segment2.07580.ia1"
     
 texture_dialog_jp_hiragana_ne:
-    .incbin "bin/segment2/segment2.07590.ia1"
+    .incbin "textures/segment2/segment2.07590.ia1"
     
 texture_dialog_jp_hiragana_no:
-    .incbin "bin/segment2/segment2.075A0.ia1"
+    .incbin "textures/segment2/segment2.075A0.ia1"
     
 texture_dialog_jp_hiragana_ha:
-    .incbin "bin/segment2/segment2.075B0.ia1"
+    .incbin "textures/segment2/segment2.075B0.ia1"
     
 texture_dialog_jp_hiragana_hi:
-    .incbin "bin/segment2/segment2.075C0.ia1"
+    .incbin "textures/segment2/segment2.075C0.ia1"
     
 texture_dialog_jp_hiragana_hu:
-    .incbin "bin/segment2/segment2.075D0.ia1"
+    .incbin "textures/segment2/segment2.075D0.ia1"
     
 texture_dialog_jp_hiragana_he:
-    .incbin "bin/segment2/segment2.075E0.ia1"
+    .incbin "textures/segment2/segment2.075E0.ia1"
     
 texture_dialog_jp_hiragana_ho:
-    .incbin "bin/segment2/segment2.075F0.ia1"
+    .incbin "textures/segment2/segment2.075F0.ia1"
     
 texture_dialog_jp_hiragana_ma:
-    .incbin "bin/segment2/segment2.07600.ia1"
+    .incbin "textures/segment2/segment2.07600.ia1"
     
 texture_dialog_jp_hiragana_mi:
-    .incbin "bin/segment2/segment2.07610.ia1"
+    .incbin "textures/segment2/segment2.07610.ia1"
     
 texture_dialog_jp_hiragana_mu:
-    .incbin "bin/segment2/segment2.07620.ia1"
+    .incbin "textures/segment2/segment2.07620.ia1"
     
 texture_dialog_jp_hiragana_me:
-    .incbin "bin/segment2/segment2.07630.ia1"
+    .incbin "textures/segment2/segment2.07630.ia1"
     
 texture_dialog_jp_hiragana_mo:
-    .incbin "bin/segment2/segment2.07640.ia1"
+    .incbin "textures/segment2/segment2.07640.ia1"
     
 texture_dialog_jp_hiragana_ya:
-    .incbin "bin/segment2/segment2.07650.ia1"
+    .incbin "textures/segment2/segment2.07650.ia1"
     
 texture_dialog_jp_hiragana_yu:
-    .incbin "bin/segment2/segment2.07660.ia1"
+    .incbin "textures/segment2/segment2.07660.ia1"
     
 texture_dialog_jp_hiragana_yo:
-    .incbin "bin/segment2/segment2.07670.ia1"
+    .incbin "textures/segment2/segment2.07670.ia1"
     
 texture_dialog_jp_hiragana_ra:
-    .incbin "bin/segment2/segment2.07680.ia1"
+    .incbin "textures/segment2/segment2.07680.ia1"
     
 texture_dialog_jp_hiragana_ri:
-    .incbin "bin/segment2/segment2.07690.ia1"
+    .incbin "textures/segment2/segment2.07690.ia1"
     
 texture_dialog_jp_hiragana_ru:
-    .incbin "bin/segment2/segment2.076A0.ia1"
+    .incbin "textures/segment2/segment2.076A0.ia1"
     
 texture_dialog_jp_hiragana_re:
-    .incbin "bin/segment2/segment2.076B0.ia1"
+    .incbin "textures/segment2/segment2.076B0.ia1"
     
 texture_dialog_jp_hiragana_ro:
-    .incbin "bin/segment2/segment2.076C0.ia1"
+    .incbin "textures/segment2/segment2.076C0.ia1"
     
 texture_dialog_jp_hiragana_wa:
-    .incbin "bin/segment2/segment2.076D0.ia1"
+    .incbin "textures/segment2/segment2.076D0.ia1"
     
 texture_dialog_jp_hiragana_wo:
-    .incbin "bin/segment2/segment2.076E0.ia1"
+    .incbin "textures/segment2/segment2.076E0.ia1"
     
 texture_dialog_jp_hiragana_n:
-    .incbin "bin/segment2/segment2.076F0.ia1"
+    .incbin "textures/segment2/segment2.076F0.ia1"
     
 texture_dialog_jp_hiragana_small_e:
-    .incbin "bin/segment2/segment2.07700.ia1"
+    .incbin "textures/segment2/segment2.07700.ia1"
     
 texture_dialog_jp_hiragana_small_tsu:
-    .incbin "bin/segment2/segment2.07710.ia1"
+    .incbin "textures/segment2/segment2.07710.ia1"
     
 texture_dialog_jp_hiragana_small_ka:
-    .incbin "bin/segment2/segment2.07720.ia1"
+    .incbin "textures/segment2/segment2.07720.ia1"
     
 texture_dialog_jp_hiragana_small_yu:
-    .incbin "bin/segment2/segment2.07730.ia1"
+    .incbin "textures/segment2/segment2.07730.ia1"
     
 texture_dialog_jp_hiragana_small_yo:
-    .incbin "bin/segment2/segment2.07740.ia1"
+    .incbin "textures/segment2/segment2.07740.ia1"
     
 texture_dialog_jp_hiragana_small_a:
-    .incbin "bin/segment2/segment2.07750.ia1"
+    .incbin "textures/segment2/segment2.07750.ia1"
     
 texture_dialog_jp_hiragana_small_i:
-    .incbin "bin/segment2/segment2.07760.ia1"
+    .incbin "textures/segment2/segment2.07760.ia1"
     
 texture_dialog_jp_hiragana_small_o:
-    .incbin "bin/segment2/segment2.07770.ia1"
+    .incbin "textures/segment2/segment2.07770.ia1"
     
 texture_dialog_jp_hiragana_small_u:
-    .incbin "bin/segment2/segment2.07780.ia1"
+    .incbin "textures/segment2/segment2.07780.ia1"
     
 texture_dialog_jp_interpunct:
-    .incbin "bin/segment2/segment2.07790.ia1"
+    .incbin "textures/segment2/segment2.07790.ia1"
     
 texture_dialog_jp_comma:
-    .incbin "bin/segment2/segment2.077A0.ia1"
+    .incbin "textures/segment2/segment2.077A0.ia1"
     
 texture_dialog_jp_katakana_a:
-    .incbin "bin/segment2/segment2.077B0.ia1"
+    .incbin "textures/segment2/segment2.077B0.ia1"
     
 texture_dialog_jp_katakana_i:
-    .incbin "bin/segment2/segment2.077C0.ia1"
+    .incbin "textures/segment2/segment2.077C0.ia1"
     
 texture_dialog_jp_katakana_u:
-    .incbin "bin/segment2/segment2.077D0.ia1"
+    .incbin "textures/segment2/segment2.077D0.ia1"
     
 texture_dialog_jp_katakana_e:
-    .incbin "bin/segment2/segment2.077E0.ia1"
+    .incbin "textures/segment2/segment2.077E0.ia1"
     
 texture_dialog_jp_katakana_o:
-    .incbin "bin/segment2/segment2.077F0.ia1"
+    .incbin "textures/segment2/segment2.077F0.ia1"
     
 texture_dialog_jp_katakana_ka:
-    .incbin "bin/segment2/segment2.07800.ia1"
+    .incbin "textures/segment2/segment2.07800.ia1"
     
 texture_dialog_jp_katakana_ki:
-    .incbin "bin/segment2/segment2.07810.ia1"
+    .incbin "textures/segment2/segment2.07810.ia1"
     
 texture_dialog_jp_katakana_ku:
-    .incbin "bin/segment2/segment2.07820.ia1"
+    .incbin "textures/segment2/segment2.07820.ia1"
     
 texture_dialog_jp_katakana_ke:
-    .incbin "bin/segment2/segment2.07830.ia1"
+    .incbin "textures/segment2/segment2.07830.ia1"
     
 texture_dialog_jp_katakana_ko:
-    .incbin "bin/segment2/segment2.07840.ia1"
+    .incbin "textures/segment2/segment2.07840.ia1"
     
 texture_dialog_jp_katakana_sa:
-    .incbin "bin/segment2/segment2.07850.ia1"
+    .incbin "textures/segment2/segment2.07850.ia1"
     
 texture_dialog_jp_katakana_shi:
-    .incbin "bin/segment2/segment2.07860.ia1"
+    .incbin "textures/segment2/segment2.07860.ia1"
     
 texture_dialog_jp_katakana_su:
-    .incbin "bin/segment2/segment2.07870.ia1"
+    .incbin "textures/segment2/segment2.07870.ia1"
     
 texture_dialog_jp_katakana_se:
-    .incbin "bin/segment2/segment2.07880.ia1"
+    .incbin "textures/segment2/segment2.07880.ia1"
     
 texture_dialog_jp_katakana_so:
-    .incbin "bin/segment2/segment2.07890.ia1"
+    .incbin "textures/segment2/segment2.07890.ia1"
     
 texture_dialog_jp_katakana_ta:
-    .incbin "bin/segment2/segment2.078A0.ia1"
+    .incbin "textures/segment2/segment2.078A0.ia1"
     
 texture_dialog_jp_katakana_chi:
-    .incbin "bin/segment2/segment2.078B0.ia1"
+    .incbin "textures/segment2/segment2.078B0.ia1"
     
 texture_dialog_jp_katakana_tsu:
-    .incbin "bin/segment2/segment2.078C0.ia1"
+    .incbin "textures/segment2/segment2.078C0.ia1"
     
 texture_dialog_jp_katakana_te:
-    .incbin "bin/segment2/segment2.078D0.ia1"
+    .incbin "textures/segment2/segment2.078D0.ia1"
     
 texture_dialog_jp_katakana_to:
-    .incbin "bin/segment2/segment2.078E0.ia1"
+    .incbin "textures/segment2/segment2.078E0.ia1"
     
 texture_dialog_jp_katakana_na:
-    .incbin "bin/segment2/segment2.078F0.ia1"
+    .incbin "textures/segment2/segment2.078F0.ia1"
     
 texture_dialog_jp_katakana_ni:
-    .incbin "bin/segment2/segment2.07900.ia1"
+    .incbin "textures/segment2/segment2.07900.ia1"
     
 texture_dialog_jp_katakana_nu:
-    .incbin "bin/segment2/segment2.07910.ia1"
+    .incbin "textures/segment2/segment2.07910.ia1"
     
 texture_dialog_jp_katakana_ne:
-    .incbin "bin/segment2/segment2.07920.ia1"
+    .incbin "textures/segment2/segment2.07920.ia1"
     
 texture_dialog_jp_katakana_no:
-    .incbin "bin/segment2/segment2.07930.ia1"
+    .incbin "textures/segment2/segment2.07930.ia1"
     
 texture_dialog_jp_katakana_ha:
-    .incbin "bin/segment2/segment2.07940.ia1"
+    .incbin "textures/segment2/segment2.07940.ia1"
     
 texture_dialog_jp_katakana_hi:
-    .incbin "bin/segment2/segment2.07950.ia1"
+    .incbin "textures/segment2/segment2.07950.ia1"
     
 texture_dialog_jp_katakana_hu:
-    .incbin "bin/segment2/segment2.07960.ia1"
+    .incbin "textures/segment2/segment2.07960.ia1"
     
 texture_dialog_jp_katakana_he:
-    .incbin "bin/segment2/segment2.07970.ia1"
+    .incbin "textures/segment2/segment2.07970.ia1"
     
 texture_dialog_jp_katakana_ho:
-    .incbin "bin/segment2/segment2.07980.ia1"
+    .incbin "textures/segment2/segment2.07980.ia1"
     
 texture_dialog_jp_katakana_ma:
-    .incbin "bin/segment2/segment2.07990.ia1"
+    .incbin "textures/segment2/segment2.07990.ia1"
     
 texture_dialog_jp_katakana_mi:
-    .incbin "bin/segment2/segment2.079A0.ia1"
+    .incbin "textures/segment2/segment2.079A0.ia1"
     
 texture_dialog_jp_katakana_mu:
-    .incbin "bin/segment2/segment2.079B0.ia1"
+    .incbin "textures/segment2/segment2.079B0.ia1"
     
 texture_dialog_jp_katakana_me:
-    .incbin "bin/segment2/segment2.079C0.ia1"
+    .incbin "textures/segment2/segment2.079C0.ia1"
     
 texture_dialog_jp_katakana_mo:
-    .incbin "bin/segment2/segment2.079D0.ia1"
+    .incbin "textures/segment2/segment2.079D0.ia1"
     
 texture_dialog_jp_katakana_ya:
-    .incbin "bin/segment2/segment2.079E0.ia1"
+    .incbin "textures/segment2/segment2.079E0.ia1"
     
 texture_dialog_jp_katakana_yu:
-    .incbin "bin/segment2/segment2.079F0.ia1"
+    .incbin "textures/segment2/segment2.079F0.ia1"
     
 texture_dialog_jp_katakana_yo:
-    .incbin "bin/segment2/segment2.07A00.ia1"
+    .incbin "textures/segment2/segment2.07A00.ia1"
     
 texture_dialog_jp_katakana_ra:
-    .incbin "bin/segment2/segment2.07A10.ia1"
+    .incbin "textures/segment2/segment2.07A10.ia1"
     
 texture_dialog_jp_katakana_ri:
-    .incbin "bin/segment2/segment2.07A20.ia1"
+    .incbin "textures/segment2/segment2.07A20.ia1"
     
 texture_dialog_jp_katakana_ru:
-    .incbin "bin/segment2/segment2.07A30.ia1"
+    .incbin "textures/segment2/segment2.07A30.ia1"
     
 texture_dialog_jp_katakana_re:
-    .incbin "bin/segment2/segment2.07A40.ia1"
+    .incbin "textures/segment2/segment2.07A40.ia1"
     
 texture_dialog_jp_katakana_ro:
-    .incbin "bin/segment2/segment2.07A50.ia1"
+    .incbin "textures/segment2/segment2.07A50.ia1"
     
 texture_dialog_jp_katakana_wa:
-    .incbin "bin/segment2/segment2.07A60.ia1"
+    .incbin "textures/segment2/segment2.07A60.ia1"
     
 texture_dialog_jp_katakana_n:
-    .incbin "bin/segment2/segment2.07A70.ia1"
+    .incbin "textures/segment2/segment2.07A70.ia1"
     
 texture_dialog_jp_katakana_small_e:
-    .incbin "bin/segment2/segment2.07A80.ia1"
+    .incbin "textures/segment2/segment2.07A80.ia1"
     
 texture_dialog_jp_katakana_small_tsu:
-    .incbin "bin/segment2/segment2.07A90.ia1"
+    .incbin "textures/segment2/segment2.07A90.ia1"
     
 texture_dialog_jp_katakana_small_ka:
-    .incbin "bin/segment2/segment2.07AA0.ia1"
+    .incbin "textures/segment2/segment2.07AA0.ia1"
     
 texture_dialog_jp_katakana_small_yu:
-    .incbin "bin/segment2/segment2.07AB0.ia1"
+    .incbin "textures/segment2/segment2.07AB0.ia1"
     
 texture_dialog_jp_katakana_small_yo:
-    .incbin "bin/segment2/segment2.07AC0.ia1"
+    .incbin "textures/segment2/segment2.07AC0.ia1"
     
 texture_dialog_jp_katakana_small_a:
-    .incbin "bin/segment2/segment2.07AD0.ia1"
+    .incbin "textures/segment2/segment2.07AD0.ia1"
     
 texture_dialog_jp_katakana_small_i:
-    .incbin "bin/segment2/segment2.07AE0.ia1"
+    .incbin "textures/segment2/segment2.07AE0.ia1"
     
 texture_dialog_jp_katakana_small_u:
-    .incbin "bin/segment2/segment2.07AF0.ia1"
+    .incbin "textures/segment2/segment2.07AF0.ia1"
     
 texture_dialog_jp_katakana_small_o:
-    .incbin "bin/segment2/segment2.07B00.ia1"
+    .incbin "textures/segment2/segment2.07B00.ia1"
     
 texture_dialog_jp_double_quotation_open:
-    .incbin "bin/segment2/segment2.07B10.ia1"
+    .incbin "textures/segment2/segment2.07B10.ia1"
     
 texture_dialog_jp_double_quotation_close:
-    .incbin "bin/segment2/segment2.07B20.ia1"
+    .incbin "textures/segment2/segment2.07B20.ia1"
     
 texture_dialog_jp_wave_dash:
-    .incbin "bin/segment2/segment2.07B30.ia1"
+    .incbin "textures/segment2/segment2.07B30.ia1"
     
 texture_dialog_jp_ellipsis:
-    .incbin "bin/segment2/segment2.07B40.ia1"
+    .incbin "textures/segment2/segment2.07B40.ia1"
 .elseif VERSION_EU == 1 # EU Small Font
 texture_dialog_eu_0:
-    .incbin "bin/segment2/font_graphics.05F00.ia1"
+    .incbin "textures/segment2/font_graphics.05F00.ia1"
 
 texture_dialog_eu_1:
-    .incbin "bin/segment2/font_graphics.05F10.ia1"
+    .incbin "textures/segment2/font_graphics.05F10.ia1"
 
 texture_dialog_eu_2:
-    .incbin "bin/segment2/font_graphics.05F20.ia1"
+    .incbin "textures/segment2/font_graphics.05F20.ia1"
 
 texture_dialog_eu_3:
-    .incbin "bin/segment2/font_graphics.05F30.ia1"
+    .incbin "textures/segment2/font_graphics.05F30.ia1"
 
 texture_dialog_eu_4:
-    .incbin "bin/segment2/font_graphics.05F40.ia1"
+    .incbin "textures/segment2/font_graphics.05F40.ia1"
 
 texture_dialog_eu_5:
-    .incbin "bin/segment2/font_graphics.05F50.ia1"
+    .incbin "textures/segment2/font_graphics.05F50.ia1"
 
 texture_dialog_eu_6:
-    .incbin "bin/segment2/font_graphics.05F60.ia1"
+    .incbin "textures/segment2/font_graphics.05F60.ia1"
 
 texture_dialog_eu_7:
-    .incbin "bin/segment2/font_graphics.05F70.ia1"
+    .incbin "textures/segment2/font_graphics.05F70.ia1"
 
 texture_dialog_eu_8:
-    .incbin "bin/segment2/font_graphics.05F80.ia1"
+    .incbin "textures/segment2/font_graphics.05F80.ia1"
 
 texture_dialog_eu_9:
-    .incbin "bin/segment2/font_graphics.05F90.ia1"
+    .incbin "textures/segment2/font_graphics.05F90.ia1"
 
 texture_dialog_eu_A:
-    .incbin "bin/segment2/font_graphics.05FA0.ia1"
+    .incbin "textures/segment2/font_graphics.05FA0.ia1"
 
 texture_dialog_eu_B:
-    .incbin "bin/segment2/font_graphics.05FB0.ia1"
+    .incbin "textures/segment2/font_graphics.05FB0.ia1"
 
 texture_dialog_eu_C:
-    .incbin "bin/segment2/font_graphics.05FC0.ia1"
+    .incbin "textures/segment2/font_graphics.05FC0.ia1"
 
 texture_dialog_eu_D:
-    .incbin "bin/segment2/font_graphics.05FD0.ia1"
+    .incbin "textures/segment2/font_graphics.05FD0.ia1"
 
 texture_dialog_eu_E:
-    .incbin "bin/segment2/font_graphics.05FE0.ia1"
+    .incbin "textures/segment2/font_graphics.05FE0.ia1"
 
 texture_dialog_eu_F:
-    .incbin "bin/segment2/font_graphics.05FF0.ia1"
+    .incbin "textures/segment2/font_graphics.05FF0.ia1"
 
 texture_dialog_eu_G:
-    .incbin "bin/segment2/font_graphics.06000.ia1"
+    .incbin "textures/segment2/font_graphics.06000.ia1"
 
 texture_dialog_eu_H:
-    .incbin "bin/segment2/font_graphics.06010.ia1"
+    .incbin "textures/segment2/font_graphics.06010.ia1"
 
 texture_dialog_eu_I:
-    .incbin "bin/segment2/font_graphics.06020.ia1"
+    .incbin "textures/segment2/font_graphics.06020.ia1"
 
 texture_dialog_eu_J:
-    .incbin "bin/segment2/font_graphics.06030.ia1"
+    .incbin "textures/segment2/font_graphics.06030.ia1"
 
 texture_dialog_eu_K:
-    .incbin "bin/segment2/font_graphics.06040.ia1"
+    .incbin "textures/segment2/font_graphics.06040.ia1"
 
 texture_dialog_eu_L:
-    .incbin "bin/segment2/font_graphics.06050.ia1"
+    .incbin "textures/segment2/font_graphics.06050.ia1"
 
 texture_dialog_eu_M:
-    .incbin "bin/segment2/font_graphics.06060.ia1"
+    .incbin "textures/segment2/font_graphics.06060.ia1"
 
 texture_dialog_eu_N:
-    .incbin "bin/segment2/font_graphics.06070.ia1"
+    .incbin "textures/segment2/font_graphics.06070.ia1"
 
 texture_dialog_eu_O:
-    .incbin "bin/segment2/font_graphics.06080.ia1"
+    .incbin "textures/segment2/font_graphics.06080.ia1"
 
 texture_dialog_eu_P:
-    .incbin "bin/segment2/font_graphics.06090.ia1"
+    .incbin "textures/segment2/font_graphics.06090.ia1"
 
 texture_dialog_eu_Q:
-    .incbin "bin/segment2/font_graphics.060A0.ia1"
+    .incbin "textures/segment2/font_graphics.060A0.ia1"
 
 texture_dialog_eu_R:
-    .incbin "bin/segment2/font_graphics.060B0.ia1"
+    .incbin "textures/segment2/font_graphics.060B0.ia1"
 
 texture_dialog_eu_S:
-    .incbin "bin/segment2/font_graphics.060C0.ia1"
+    .incbin "textures/segment2/font_graphics.060C0.ia1"
 
 texture_dialog_eu_T:
-    .incbin "bin/segment2/font_graphics.060D0.ia1"
+    .incbin "textures/segment2/font_graphics.060D0.ia1"
 
 texture_dialog_eu_U:
-    .incbin "bin/segment2/font_graphics.060E0.ia1"
+    .incbin "textures/segment2/font_graphics.060E0.ia1"
 
 texture_dialog_eu_V:
-    .incbin "bin/segment2/font_graphics.060F0.ia1"
+    .incbin "textures/segment2/font_graphics.060F0.ia1"
 
 texture_dialog_eu_W:
-    .incbin "bin/segment2/font_graphics.06100.ia1"
+    .incbin "textures/segment2/font_graphics.06100.ia1"
 
 texture_dialog_eu_X:
-    .incbin "bin/segment2/font_graphics.06110.ia1"
+    .incbin "textures/segment2/font_graphics.06110.ia1"
 
 texture_dialog_eu_Y:
-    .incbin "bin/segment2/font_graphics.06120.ia1"
+    .incbin "textures/segment2/font_graphics.06120.ia1"
 
 texture_dialog_eu_Z:
-    .incbin "bin/segment2/font_graphics.06130.ia1"
+    .incbin "textures/segment2/font_graphics.06130.ia1"
 
 texture_dialog_eu_a:
-    .incbin "bin/segment2/font_graphics.06140.ia1"
+    .incbin "textures/segment2/font_graphics.06140.ia1"
 
 texture_dialog_eu_b:
-    .incbin "bin/segment2/font_graphics.06150.ia1"
+    .incbin "textures/segment2/font_graphics.06150.ia1"
 
 texture_dialog_eu_c:
-    .incbin "bin/segment2/font_graphics.06160.ia1"
+    .incbin "textures/segment2/font_graphics.06160.ia1"
 
 texture_dialog_eu_d:
-    .incbin "bin/segment2/font_graphics.06170.ia1"
+    .incbin "textures/segment2/font_graphics.06170.ia1"
 
 texture_dialog_eu_e:
-    .incbin "bin/segment2/font_graphics.06180.ia1"
+    .incbin "textures/segment2/font_graphics.06180.ia1"
 
 texture_dialog_eu_f:
-    .incbin "bin/segment2/font_graphics.06190.ia1"
+    .incbin "textures/segment2/font_graphics.06190.ia1"
 
 texture_dialog_eu_g:
-    .incbin "bin/segment2/font_graphics.061A0.ia1"
+    .incbin "textures/segment2/font_graphics.061A0.ia1"
 
 texture_dialog_eu_h:
-    .incbin "bin/segment2/font_graphics.061B0.ia1"
+    .incbin "textures/segment2/font_graphics.061B0.ia1"
 
 texture_dialog_eu_i:
-    .incbin "bin/segment2/font_graphics.061C0.ia1"
+    .incbin "textures/segment2/font_graphics.061C0.ia1"
 
 texture_dialog_eu_j:
-    .incbin "bin/segment2/font_graphics.061D0.ia1"
+    .incbin "textures/segment2/font_graphics.061D0.ia1"
 
 texture_dialog_eu_k:
-    .incbin "bin/segment2/font_graphics.061E0.ia1"
+    .incbin "textures/segment2/font_graphics.061E0.ia1"
 
 texture_dialog_eu_l:
-    .incbin "bin/segment2/font_graphics.061F0.ia1"
+    .incbin "textures/segment2/font_graphics.061F0.ia1"
 
 texture_dialog_eu_m:
-    .incbin "bin/segment2/font_graphics.06200.ia1"
+    .incbin "textures/segment2/font_graphics.06200.ia1"
 
 texture_dialog_eu_n:
-    .incbin "bin/segment2/font_graphics.06210.ia1"
+    .incbin "textures/segment2/font_graphics.06210.ia1"
 
 texture_dialog_eu_o:
-    .incbin "bin/segment2/font_graphics.06220.ia1"
+    .incbin "textures/segment2/font_graphics.06220.ia1"
 
 texture_dialog_eu_p:
-    .incbin "bin/segment2/font_graphics.06230.ia1"
+    .incbin "textures/segment2/font_graphics.06230.ia1"
 
 texture_dialog_eu_q:
-    .incbin "bin/segment2/font_graphics.06240.ia1"
+    .incbin "textures/segment2/font_graphics.06240.ia1"
 
 texture_dialog_eu_r:
-    .incbin "bin/segment2/font_graphics.06250.ia1"
+    .incbin "textures/segment2/font_graphics.06250.ia1"
 
 texture_dialog_eu_s:
-    .incbin "bin/segment2/font_graphics.06260.ia1"
+    .incbin "textures/segment2/font_graphics.06260.ia1"
 
 texture_dialog_eu_t:
-    .incbin "bin/segment2/font_graphics.06270.ia1"
+    .incbin "textures/segment2/font_graphics.06270.ia1"
 
 texture_dialog_eu_u:
-    .incbin "bin/segment2/font_graphics.06280.ia1"
+    .incbin "textures/segment2/font_graphics.06280.ia1"
 
 texture_dialog_eu_v:
-    .incbin "bin/segment2/font_graphics.06290.ia1"
+    .incbin "textures/segment2/font_graphics.06290.ia1"
 
 texture_dialog_eu_w:
-    .incbin "bin/segment2/font_graphics.062A0.ia1"
+    .incbin "textures/segment2/font_graphics.062A0.ia1"
 
 texture_dialog_eu_x:
-    .incbin "bin/segment2/font_graphics.062B0.ia1"
+    .incbin "textures/segment2/font_graphics.062B0.ia1"
 
 texture_dialog_eu_y:
-    .incbin "bin/segment2/font_graphics.062C0.ia1"
+    .incbin "textures/segment2/font_graphics.062C0.ia1"
 
 texture_dialog_eu_z:
-    .incbin "bin/segment2/font_graphics.062D0.ia1"
+    .incbin "textures/segment2/font_graphics.062D0.ia1"
 
 texture_dialog_eu_left_right_arrow:
-    .incbin "bin/segment2/font_graphics.062E0.ia1"
+    .incbin "textures/segment2/font_graphics.062E0.ia1"
 
 texture_dialog_eu_ampersand:
-    .incbin "bin/segment2/font_graphics.062F0.ia1"
+    .incbin "textures/segment2/font_graphics.062F0.ia1"
 
 texture_dialog_eu_exclamation:
-    .incbin "bin/segment2/font_graphics.06300.ia1"
+    .incbin "textures/segment2/font_graphics.06300.ia1"
 
 texture_dialog_eu_coin:
-    .incbin "bin/segment2/font_graphics.06310.ia1"
+    .incbin "textures/segment2/font_graphics.06310.ia1"
 
 texture_dialog_eu_multiply:
-    .incbin "bin/segment2/font_graphics.06320.ia1"
+    .incbin "textures/segment2/font_graphics.06320.ia1"
 
 texture_dialog_eu_open_parentheses:
-    .incbin "bin/segment2/font_graphics.06330.ia1"
+    .incbin "textures/segment2/font_graphics.06330.ia1"
 
 texture_dialog_eu_close_open_parentheses:
-    .incbin "bin/segment2/font_graphics.06340.ia1"
+    .incbin "textures/segment2/font_graphics.06340.ia1"
 
 texture_dialog_eu_close_parentheses:
-    .incbin "bin/segment2/font_graphics.06350.ia1"
+    .incbin "textures/segment2/font_graphics.06350.ia1"
 
 texture_dialog_eu_tilde:
-    .incbin "bin/segment2/font_graphics.06360.ia1"
+    .incbin "textures/segment2/font_graphics.06360.ia1"
 
 texture_dialog_eu_period:
-    .incbin "bin/segment2/font_graphics.06370.ia1"
+    .incbin "textures/segment2/font_graphics.06370.ia1"
 
 texture_dialog_eu_percent:
-    .incbin "bin/segment2/font_graphics.06380.ia1"
+    .incbin "textures/segment2/font_graphics.06380.ia1"
 
 texture_dialog_eu_interpunct:
-    .incbin "bin/segment2/font_graphics.06390.ia1"
+    .incbin "textures/segment2/font_graphics.06390.ia1"
 
 texture_dialog_eu_comma:
-    .incbin "bin/segment2/font_graphics.063A0.ia1"
+    .incbin "textures/segment2/font_graphics.063A0.ia1"
 
 texture_dialog_eu_apostrophe:
-    .incbin "bin/segment2/font_graphics.063B0.ia1"
+    .incbin "textures/segment2/font_graphics.063B0.ia1"
 
 texture_dialog_eu_question:
-    .incbin "bin/segment2/font_graphics.063C0.ia1"
+    .incbin "textures/segment2/font_graphics.063C0.ia1"
 
 texture_dialog_eu_star_filled:
-    .incbin "bin/segment2/font_graphics.063D0.ia1"
+    .incbin "textures/segment2/font_graphics.063D0.ia1"
 
 texture_dialog_eu_star_hollow:
-    .incbin "bin/segment2/font_graphics.063E0.ia1"
+    .incbin "textures/segment2/font_graphics.063E0.ia1"
 
 texture_dialog_eu_double_quote_open:
-    .incbin "bin/segment2/font_graphics.063F0.ia1"
+    .incbin "textures/segment2/font_graphics.063F0.ia1"
 
 texture_dialog_eu_double_quote_close:
-    .incbin "bin/segment2/font_graphics.06400.ia1"
+    .incbin "textures/segment2/font_graphics.06400.ia1"
 
 texture_dialog_eu_colon:
-    .incbin "bin/segment2/font_graphics.06410.ia1"
+    .incbin "textures/segment2/font_graphics.06410.ia1"
 
 texture_dialog_eu_dash:
-    .incbin "bin/segment2/font_graphics.06420.ia1"
+    .incbin "textures/segment2/font_graphics.06420.ia1"
 
 texture_dialog_eu_button_A:
-    .incbin "bin/segment2/font_graphics.06430.ia1"
+    .incbin "textures/segment2/font_graphics.06430.ia1"
 
 texture_dialog_eu_button_B:
-    .incbin "bin/segment2/font_graphics.06440.ia1"
+    .incbin "textures/segment2/font_graphics.06440.ia1"
 
 texture_dialog_eu_button_C:
-    .incbin "bin/segment2/font_graphics.06450.ia1"
+    .incbin "textures/segment2/font_graphics.06450.ia1"
 
 texture_dialog_eu_button_Z:
-    .incbin "bin/segment2/font_graphics.06460.ia1"
+    .incbin "textures/segment2/font_graphics.06460.ia1"
 
 texture_dialog_eu_button_R:
-    .incbin "bin/segment2/font_graphics.06470.ia1"
+    .incbin "textures/segment2/font_graphics.06470.ia1"
 
 texture_dialog_eu_button_C_up:
-    .incbin "bin/segment2/font_graphics.06480.ia1"
+    .incbin "textures/segment2/font_graphics.06480.ia1"
 
 texture_dialog_eu_button_C_down:
-    .incbin "bin/segment2/font_graphics.06490.ia1"
+    .incbin "textures/segment2/font_graphics.06490.ia1"
 
 texture_dialog_eu_button_C_left:
-    .incbin "bin/segment2/font_graphics.064A0.ia1"
+    .incbin "textures/segment2/font_graphics.064A0.ia1"
 
 texture_dialog_eu_button_C_right:
-    .incbin "bin/segment2/font_graphics.064B0.ia1"
+    .incbin "textures/segment2/font_graphics.064B0.ia1"
 
 texture_dialog_eu_umlaut:
-    .incbin "bin/segment2/font_graphics.064C0.ia1"
+    .incbin "textures/segment2/font_graphics.064C0.ia1"
 
 texture_dialog_eu_circumflex:
-    .incbin "bin/segment2/font_graphics.064D0.ia1"
+    .incbin "textures/segment2/font_graphics.064D0.ia1"
 
 texture_dialog_eu_grave:
-    .incbin "bin/segment2/font_graphics.064E0.ia1"
+    .incbin "textures/segment2/font_graphics.064E0.ia1"
 
 texture_dialog_eu_acute:
-    .incbin "bin/segment2/font_graphics.064F0.ia1"
+    .incbin "textures/segment2/font_graphics.064F0.ia1"
 
 texture_dialog_eu_cedilla:
-    .incbin "bin/segment2/font_graphics.06500.ia1"
+    .incbin "textures/segment2/font_graphics.06500.ia1"
 
 texture_dialog_eu_unknown:
-    .incbin "bin/segment2/font_graphics.06510.ia1"
+    .incbin "textures/segment2/font_graphics.06510.ia1"
 
 texture_dialog_eu_Cedilla:
-    .incbin "bin/segment2/font_graphics.06520.ia1"
+    .incbin "textures/segment2/font_graphics.06520.ia1"
 
 texture_dialog_eu_sset:
-    .incbin "bin/segment2/font_graphics.06530.ia1"
+    .incbin "textures/segment2/font_graphics.06530.ia1"
 
 .else # US Small Font
 texture_dialog_us_0:
-    .incbin "bin/segment2/font_graphics.05900.ia4"
+    .incbin "textures/segment2/font_graphics.05900.ia4"
 
 texture_dialog_us_1:
-    .incbin "bin/segment2/font_graphics.05940.ia4"
+    .incbin "textures/segment2/font_graphics.05940.ia4"
 
 texture_dialog_us_2:
-    .incbin "bin/segment2/font_graphics.05980.ia4"
+    .incbin "textures/segment2/font_graphics.05980.ia4"
 
 texture_dialog_us_3:
-    .incbin "bin/segment2/font_graphics.059C0.ia4"
+    .incbin "textures/segment2/font_graphics.059C0.ia4"
 
 texture_dialog_us_4:
-    .incbin "bin/segment2/font_graphics.05A00.ia4"
+    .incbin "textures/segment2/font_graphics.05A00.ia4"
 
 texture_dialog_us_5:
-    .incbin "bin/segment2/font_graphics.05A40.ia4"
+    .incbin "textures/segment2/font_graphics.05A40.ia4"
 
 texture_dialog_us_6:
-    .incbin "bin/segment2/font_graphics.05A80.ia4"
+    .incbin "textures/segment2/font_graphics.05A80.ia4"
 
 texture_dialog_us_7:
-    .incbin "bin/segment2/font_graphics.05AC0.ia4"
+    .incbin "textures/segment2/font_graphics.05AC0.ia4"
 
 texture_dialog_us_8:
-    .incbin "bin/segment2/font_graphics.05B00.ia4"
+    .incbin "textures/segment2/font_graphics.05B00.ia4"
 
 texture_dialog_us_9:
-    .incbin "bin/segment2/font_graphics.05B40.ia4"
+    .incbin "textures/segment2/font_graphics.05B40.ia4"
 
 texture_dialog_us_A:
-    .incbin "bin/segment2/font_graphics.05B80.ia4"
+    .incbin "textures/segment2/font_graphics.05B80.ia4"
 
 texture_dialog_us_B:
-    .incbin "bin/segment2/font_graphics.05BC0.ia4"
+    .incbin "textures/segment2/font_graphics.05BC0.ia4"
 
 texture_dialog_us_C:
-    .incbin "bin/segment2/font_graphics.05C00.ia4"
+    .incbin "textures/segment2/font_graphics.05C00.ia4"
 
 texture_dialog_us_D:
-    .incbin "bin/segment2/font_graphics.05C40.ia4"
+    .incbin "textures/segment2/font_graphics.05C40.ia4"
 
 texture_dialog_us_E:
-    .incbin "bin/segment2/font_graphics.05C80.ia4"
+    .incbin "textures/segment2/font_graphics.05C80.ia4"
 
 texture_dialog_us_F:
-    .incbin "bin/segment2/font_graphics.05CC0.ia4"
+    .incbin "textures/segment2/font_graphics.05CC0.ia4"
 
 texture_dialog_us_G:
-    .incbin "bin/segment2/font_graphics.05D00.ia4"
+    .incbin "textures/segment2/font_graphics.05D00.ia4"
 
 texture_dialog_us_H:
-    .incbin "bin/segment2/font_graphics.05D40.ia4"
+    .incbin "textures/segment2/font_graphics.05D40.ia4"
 
 texture_dialog_us_I:
-    .incbin "bin/segment2/font_graphics.05D80.ia4"
+    .incbin "textures/segment2/font_graphics.05D80.ia4"
 
 texture_dialog_us_J:
-    .incbin "bin/segment2/font_graphics.05DC0.ia4"
+    .incbin "textures/segment2/font_graphics.05DC0.ia4"
 
 texture_dialog_us_K:
-    .incbin "bin/segment2/font_graphics.05E00.ia4"
+    .incbin "textures/segment2/font_graphics.05E00.ia4"
 
 texture_dialog_us_L:
-    .incbin "bin/segment2/font_graphics.05E40.ia4"
+    .incbin "textures/segment2/font_graphics.05E40.ia4"
 
 texture_dialog_us_M:
-    .incbin "bin/segment2/font_graphics.05E80.ia4"
+    .incbin "textures/segment2/font_graphics.05E80.ia4"
 
 texture_dialog_us_N:
-    .incbin "bin/segment2/font_graphics.05EC0.ia4"
+    .incbin "textures/segment2/font_graphics.05EC0.ia4"
 
 texture_dialog_us_O:
-    .incbin "bin/segment2/font_graphics.05F00.ia4"
+    .incbin "textures/segment2/font_graphics.05F00.ia4"
 
 texture_dialog_us_P:
-    .incbin "bin/segment2/font_graphics.05F40.ia4"
+    .incbin "textures/segment2/font_graphics.05F40.ia4"
 
 texture_dialog_us_Q:
-    .incbin "bin/segment2/font_graphics.05F80.ia4"
+    .incbin "textures/segment2/font_graphics.05F80.ia4"
 
 texture_dialog_us_R:
-    .incbin "bin/segment2/font_graphics.05FC0.ia4"
+    .incbin "textures/segment2/font_graphics.05FC0.ia4"
 
 texture_dialog_us_S:
-    .incbin "bin/segment2/font_graphics.06000.ia4"
+    .incbin "textures/segment2/font_graphics.06000.ia4"
 
 texture_dialog_us_T:
-    .incbin "bin/segment2/font_graphics.06040.ia4"
+    .incbin "textures/segment2/font_graphics.06040.ia4"
 
 texture_dialog_us_U:
-    .incbin "bin/segment2/font_graphics.06080.ia4"
+    .incbin "textures/segment2/font_graphics.06080.ia4"
 
 texture_dialog_us_V:
-    .incbin "bin/segment2/font_graphics.060C0.ia4"
+    .incbin "textures/segment2/font_graphics.060C0.ia4"
 
 texture_dialog_us_W:
-    .incbin "bin/segment2/font_graphics.06100.ia4"
+    .incbin "textures/segment2/font_graphics.06100.ia4"
 
 texture_dialog_us_X:
-    .incbin "bin/segment2/font_graphics.06140.ia4"
+    .incbin "textures/segment2/font_graphics.06140.ia4"
 
 texture_dialog_us_Y:
-    .incbin "bin/segment2/font_graphics.06180.ia4"
+    .incbin "textures/segment2/font_graphics.06180.ia4"
 
 texture_dialog_us_Z:
-    .incbin "bin/segment2/font_graphics.061C0.ia4"
+    .incbin "textures/segment2/font_graphics.061C0.ia4"
 
 texture_dialog_us_a:
-    .incbin "bin/segment2/font_graphics.06200.ia4"
+    .incbin "textures/segment2/font_graphics.06200.ia4"
 
 texture_dialog_us_b:
-    .incbin "bin/segment2/font_graphics.06240.ia4"
+    .incbin "textures/segment2/font_graphics.06240.ia4"
 
 texture_dialog_us_c:
-    .incbin "bin/segment2/font_graphics.06280.ia4"
+    .incbin "textures/segment2/font_graphics.06280.ia4"
 
 texture_dialog_us_d:
-    .incbin "bin/segment2/font_graphics.062C0.ia4"
+    .incbin "textures/segment2/font_graphics.062C0.ia4"
 
 texture_dialog_us_e:
-    .incbin "bin/segment2/font_graphics.06300.ia4"
+    .incbin "textures/segment2/font_graphics.06300.ia4"
 
 texture_dialog_us_f:
-    .incbin "bin/segment2/font_graphics.06340.ia4"
+    .incbin "textures/segment2/font_graphics.06340.ia4"
 
 texture_dialog_us_g:
-    .incbin "bin/segment2/font_graphics.06380.ia4"
+    .incbin "textures/segment2/font_graphics.06380.ia4"
 
 texture_dialog_us_h:
-    .incbin "bin/segment2/font_graphics.063C0.ia4"
+    .incbin "textures/segment2/font_graphics.063C0.ia4"
 
 texture_dialog_us_i:
-    .incbin "bin/segment2/font_graphics.06400.ia4"
+    .incbin "textures/segment2/font_graphics.06400.ia4"
 
 texture_dialog_us_j:
-    .incbin "bin/segment2/font_graphics.06440.ia4"
+    .incbin "textures/segment2/font_graphics.06440.ia4"
 
 texture_dialog_us_k:
-    .incbin "bin/segment2/font_graphics.06480.ia4"
+    .incbin "textures/segment2/font_graphics.06480.ia4"
 
 texture_dialog_us_l:
-    .incbin "bin/segment2/font_graphics.064C0.ia4"
+    .incbin "textures/segment2/font_graphics.064C0.ia4"
 
 texture_dialog_us_m:
-    .incbin "bin/segment2/font_graphics.06500.ia4"
+    .incbin "textures/segment2/font_graphics.06500.ia4"
 
 texture_dialog_us_n:
-    .incbin "bin/segment2/font_graphics.06540.ia4"
+    .incbin "textures/segment2/font_graphics.06540.ia4"
 
 texture_dialog_us_o:
-    .incbin "bin/segment2/font_graphics.06580.ia4"
+    .incbin "textures/segment2/font_graphics.06580.ia4"
 
 texture_dialog_us_p:
-    .incbin "bin/segment2/font_graphics.065C0.ia4"
+    .incbin "textures/segment2/font_graphics.065C0.ia4"
 
 texture_dialog_us_q:
-    .incbin "bin/segment2/font_graphics.06600.ia4"
+    .incbin "textures/segment2/font_graphics.06600.ia4"
 
 texture_dialog_us_r:
-    .incbin "bin/segment2/font_graphics.06640.ia4"
+    .incbin "textures/segment2/font_graphics.06640.ia4"
 
 texture_dialog_us_s:
-    .incbin "bin/segment2/font_graphics.06680.ia4"
+    .incbin "textures/segment2/font_graphics.06680.ia4"
 
 texture_dialog_us_t:
-    .incbin "bin/segment2/font_graphics.066C0.ia4"
+    .incbin "textures/segment2/font_graphics.066C0.ia4"
 
 texture_dialog_us_u:
-    .incbin "bin/segment2/font_graphics.06700.ia4"
+    .incbin "textures/segment2/font_graphics.06700.ia4"
 
 texture_dialog_us_v:
-    .incbin "bin/segment2/font_graphics.06740.ia4"
+    .incbin "textures/segment2/font_graphics.06740.ia4"
 
 texture_dialog_us_w:
-    .incbin "bin/segment2/font_graphics.06780.ia4"
+    .incbin "textures/segment2/font_graphics.06780.ia4"
 
 texture_dialog_us_x:
-    .incbin "bin/segment2/font_graphics.067C0.ia4"
+    .incbin "textures/segment2/font_graphics.067C0.ia4"
 
 texture_dialog_us_y:
-    .incbin "bin/segment2/font_graphics.06800.ia4"
+    .incbin "textures/segment2/font_graphics.06800.ia4"
 
 texture_dialog_us_z:
-    .incbin "bin/segment2/font_graphics.06840.ia4"
+    .incbin "textures/segment2/font_graphics.06840.ia4"
 
 texture_dialog_us_left_right_arrow:
-    .incbin "bin/segment2/font_graphics.06880.ia4"
+    .incbin "textures/segment2/font_graphics.06880.ia4"
 
 texture_dialog_us_exclamation:
-    .incbin "bin/segment2/font_graphics.068C0.ia4"
+    .incbin "textures/segment2/font_graphics.068C0.ia4"
 
 texture_dialog_us_coin:
-    .incbin "bin/segment2/font_graphics.06900.ia4"
+    .incbin "textures/segment2/font_graphics.06900.ia4"
 
 texture_dialog_us_multiply:
-    .incbin "bin/segment2/font_graphics.06940.ia4"
+    .incbin "textures/segment2/font_graphics.06940.ia4"
 
 texture_dialog_us_open_parentheses:
-    .incbin "bin/segment2/font_graphics.06980.ia4"
+    .incbin "textures/segment2/font_graphics.06980.ia4"
 
 texture_dialog_us_close_open_parentheses:
-    .incbin "bin/segment2/font_graphics.069C0.ia4"
+    .incbin "textures/segment2/font_graphics.069C0.ia4"
 
 texture_dialog_us_close_parentheses:
-    .incbin "bin/segment2/font_graphics.06A00.ia4"
+    .incbin "textures/segment2/font_graphics.06A00.ia4"
 
 texture_dialog_us_tilde:
-    .incbin "bin/segment2/font_graphics.06A40.ia4"
+    .incbin "textures/segment2/font_graphics.06A40.ia4"
 
 texture_dialog_us_period:
-    .incbin "bin/segment2/font_graphics.06A80.ia4"
+    .incbin "textures/segment2/font_graphics.06A80.ia4"
 
 texture_dialog_us_percent:
-    .incbin "bin/segment2/font_graphics.06AC0.ia4"
+    .incbin "textures/segment2/font_graphics.06AC0.ia4"
 
 texture_dialog_us_interpunct:
-    .incbin "bin/segment2/font_graphics.06B00.ia4"
+    .incbin "textures/segment2/font_graphics.06B00.ia4"
 
 texture_dialog_us_comma:
-    .incbin "bin/segment2/font_graphics.06B40.ia4"
+    .incbin "textures/segment2/font_graphics.06B40.ia4"
 
 texture_dialog_us_apostrophe:
-    .incbin "bin/segment2/font_graphics.06B80.ia4"
+    .incbin "textures/segment2/font_graphics.06B80.ia4"
 
 texture_dialog_us_question:
-    .incbin "bin/segment2/font_graphics.06BC0.ia4"
+    .incbin "textures/segment2/font_graphics.06BC0.ia4"
 
 texture_dialog_us_star_filled:
-    .incbin "bin/segment2/font_graphics.06C00.ia4"
+    .incbin "textures/segment2/font_graphics.06C00.ia4"
 
 texture_dialog_us_star_hollow:
-    .incbin "bin/segment2/font_graphics.06C40.ia4"
+    .incbin "textures/segment2/font_graphics.06C40.ia4"
 
 texture_dialog_us_double_quote_open:
-    .incbin "bin/segment2/font_graphics.06C80.ia4"
+    .incbin "textures/segment2/font_graphics.06C80.ia4"
 
 texture_dialog_us_double_quote_close:
-    .incbin "bin/segment2/font_graphics.06CC0.ia4"
+    .incbin "textures/segment2/font_graphics.06CC0.ia4"
 
 texture_dialog_us_ellipsis:
-    .incbin "bin/segment2/font_graphics.06D00.ia4"
+    .incbin "textures/segment2/font_graphics.06D00.ia4"
 
 texture_dialog_us_dash:
-    .incbin "bin/segment2/font_graphics.06D40.ia4"
+    .incbin "textures/segment2/font_graphics.06D40.ia4"
 
 texture_dialog_us_ampersand:
-    .incbin "bin/segment2/font_graphics.06D80.ia4"
+    .incbin "textures/segment2/font_graphics.06D80.ia4"
 
 texture_dialog_us_button_A:
-    .incbin "bin/segment2/font_graphics.06DC0.ia4"
+    .incbin "textures/segment2/font_graphics.06DC0.ia4"
 
 texture_dialog_us_button_B:
-    .incbin "bin/segment2/font_graphics.06E00.ia4"
+    .incbin "textures/segment2/font_graphics.06E00.ia4"
 
 texture_dialog_us_button_C:
-    .incbin "bin/segment2/font_graphics.06E40.ia4"
+    .incbin "textures/segment2/font_graphics.06E40.ia4"
 
 texture_dialog_us_button_Z:
-    .incbin "bin/segment2/font_graphics.06E80.ia4"
+    .incbin "textures/segment2/font_graphics.06E80.ia4"
 
 texture_dialog_us_button_R:
-    .incbin "bin/segment2/font_graphics.06EC0.ia4"
+    .incbin "textures/segment2/font_graphics.06EC0.ia4"
 
 texture_dialog_us_button_C_up:
-    .incbin "bin/segment2/font_graphics.06F00.ia4"
+    .incbin "textures/segment2/font_graphics.06F00.ia4"
 
 texture_dialog_us_button_C_down:
-    .incbin "bin/segment2/font_graphics.06F40.ia4"
+    .incbin "textures/segment2/font_graphics.06F40.ia4"
 
 texture_dialog_us_button_C_left:
-    .incbin "bin/segment2/font_graphics.06F80.ia4"
+    .incbin "textures/segment2/font_graphics.06F80.ia4"
 
 texture_dialog_us_button_C_right:
-    .incbin "bin/segment2/font_graphics.06FC0.ia4"
+    .incbin "textures/segment2/font_graphics.06FC0.ia4"
 .endif
 
 texture_colorful_char_camera:
-.incbin "bin/segment2/segment2.07B50.rgba16"
+.incbin "textures/segment2/segment2.07B50.rgba16"
 
 texture_colorful_char_lakitu:
-.incbin "bin/segment2/segment2.07D50.rgba16"
+.incbin "textures/segment2/segment2.07D50.rgba16"
 
 texture_colorful_char_no_camera:
-.incbin "bin/segment2/segment2.07F50.rgba16"
+.incbin "textures/segment2/segment2.07F50.rgba16"
 
 texture_colorful_char_arrow_up:
-.incbin "bin/segment2/segment2.08150.rgba16"
+.incbin "textures/segment2/segment2.08150.rgba16"
 
 texture_colorful_char_arrow_down:
-.incbin "bin/segment2/segment2.081D0.rgba16"
+.incbin "textures/segment2/segment2.081D0.rgba16"
 
 # HUD print table 0x02008250-0x02008337
 glabel seg2_hud_lut
@@ -1972,37 +1972,37 @@ gsSPDisplayList dl_billboard_num_end
 gsSPEndDisplayList
 
 texture_shadow_quarter_circle:
-.incbin "bin/segment2/shadow_quarter_circle.ia8"
+.incbin "textures/segment2/shadow_quarter_circle.ia8"
 
 texture_shadow_quarter_square:
-.incbin "bin/segment2/shadow_quarter_square.ia8"
+.incbin "textures/segment2/shadow_quarter_square.ia8"
 
 glabel texture_transition_star_half
-.incbin "bin/segment2/segment2.0F458.ia8"
+.incbin "textures/segment2/segment2.0F458.ia8"
 
 glabel texture_transition_circle_half
-.incbin "bin/segment2/segment2.0FC58.ia8"
+.incbin "textures/segment2/segment2.0FC58.ia8"
 
 glabel texture_transition_mario
-.incbin "bin/segment2/segment2.10458.ia8"
+.incbin "textures/segment2/segment2.10458.ia8"
 
 glabel texture_transition_bowser_half
-.incbin "bin/segment2/segment2.11458.ia8"
+.incbin "textures/segment2/segment2.11458.ia8"
 
 glabel texture_waterbox_water
-.incbin "bin/segment2/segment2.11C58.rgba16"
+.incbin "textures/segment2/segment2.11C58.rgba16"
 
 glabel texture_waterbox_jrb_water
-.incbin "bin/segment2/segment2.12458.rgba16"
+.incbin "textures/segment2/segment2.12458.rgba16"
 
 glabel texture_waterbox_unknown_water
-.incbin "bin/segment2/segment2.12C58.rgba16"
+.incbin "textures/segment2/segment2.12C58.rgba16"
 
 glabel texture_waterbox_mist
-.incbin "bin/segment2/segment2.13458.ia16"
+.incbin "textures/segment2/segment2.13458.ia16"
 
 glabel texture_waterbox_lava
-.incbin "bin/segment2/segment2.13C58.rgba16"
+.incbin "textures/segment2/segment2.13C58.rgba16"
 
 # 14458-178CF: TODO
 light_unused:
@@ -2152,7 +2152,7 @@ gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX
 gsSPEndDisplayList
 
 texture_ia8_up_arrow: # 0x02014838 - 0x02014878
-.incbin "bin/segment2/segment2.14838.ia8"
+.incbin "textures/segment2/segment2.14838.ia8"
 
 glabel dl_ia8_up_arrow_begin # 0x02014878 - 0x020148B0
 gsDPPipeSync

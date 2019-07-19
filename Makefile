@@ -264,74 +264,26 @@ $(BUILD_DIR)/src/game/file_select.o: $(BUILD_DIR)/include/text_strings.h
 $(BUILD_DIR)/src/game/ingame_menu.o: $(BUILD_DIR)/include/text_strings.h
 
 # texture generation
-$(BUILD_DIR)/bin/%.rgba16: textures/%.rgba16.png
+$(BUILD_DIR)/%.rgba16: %.rgba16.png
 	$(N64GRAPHICS) -i $@ -g $< -f rgba16
 
-$(BUILD_DIR)/bin/%.ia16: textures/%.ia16.png
+$(BUILD_DIR)/%.ia16: %.ia16.png
 	$(N64GRAPHICS) -i $@ -g $< -f ia16
 
-$(BUILD_DIR)/bin/%.ia8: textures/%.ia8.png
+$(BUILD_DIR)/%.ia8: %.ia8.png
 	$(N64GRAPHICS) -i $@ -g $< -f ia8
 
-$(BUILD_DIR)/bin/%.ia4: textures/%.ia4.png
+$(BUILD_DIR)/%.ia4: %.ia4.png
 	$(N64GRAPHICS) -i $@ -g $< -f ia4
 
-$(BUILD_DIR)/bin/%.ia1: textures/%.ia1.png
+$(BUILD_DIR)/%.ia1: %.ia1.png
 	$(N64GRAPHICS) -i $@ -g $< -f ia1
 
 # Color index textures (not used by SM64)
-$(BUILD_DIR)/bin/%.ci8: textures/%.ci8.png
+$(BUILD_DIR)/%.ci8: %.ci8.png
 	$(N64GRAPHICS_CI) -i $@ -g $< -f ci8
 
-$(BUILD_DIR)/bin/%.ci4: textures/%.ci4.png
-	$(N64GRAPHICS_CI) -i $@ -g $< -f ci4
-
-# texture generation 2nd method: rgba16s are preferred (and used
-# more often) over the ones listed below due to more colors.
-$(BUILD_DIR)/actors/%.rgba16: actors/%.rgba16.png
-	$(N64GRAPHICS) -i $@ -g $< -f rgba16
-
-$(BUILD_DIR)/actors/%.ia16: actors/%.ia16.png
-	$(N64GRAPHICS) -i $@ -g $< -f ia16
-
-$(BUILD_DIR)/actors/%.ia8: actors/%.ia8.png
-	$(N64GRAPHICS) -i $@ -g $< -f ia8
-
-$(BUILD_DIR)/actors/%.ia4: actors/%.ia4.png
-	$(N64GRAPHICS) -i $@ -g $< -f ia4
-
-$(BUILD_DIR)/actors/%.ia1: actors/%.ia1.png
-	$(N64GRAPHICS) -i $@ -g $< -f ia1
-
-# Color index textures (not used by SM64)
-$(BUILD_DIR)/actors/%.ci8: actors/%.ci8.png
-	$(N64GRAPHICS_CI) -i $@ -g $< -f ci8
-
-$(BUILD_DIR)/actors/%.ci4: actors/%.ci4.png
-	$(N64GRAPHICS_CI) -i $@ -g $< -f ci4
-
-# texture generation 3rd method: rgba16s are preferred (and used
-# more often) over the ones listed below due to more colors.
-$(BUILD_DIR)/levels/%.rgba16: levels/%.rgba16.png
-	$(N64GRAPHICS) -i $@ -g $< -f rgba16
-
-$(BUILD_DIR)/levels/%.ia16: levels/%.ia16.png
-	$(N64GRAPHICS) -i $@ -g $< -f ia16
-
-$(BUILD_DIR)/levels/%.ia8: levels/%.ia8.png
-	$(N64GRAPHICS) -i $@ -g $< -f ia8
-
-$(BUILD_DIR)/levels/%.ia4: levels/%.ia4.png
-	$(N64GRAPHICS) -i $@ -g $< -f ia4
-
-$(BUILD_DIR)/levels/%.ia1: levels/%.ia1.png
-	$(N64GRAPHICS) -i $@ -g $< -f ia1
-
-# Color index textures (not used by SM64)
-$(BUILD_DIR)/levels/%.ci8: levels/%.ci8.png
-	$(N64GRAPHICS_CI) -i $@ -g $< -f ci8
-
-$(BUILD_DIR)/levels/%.ci4: levels/%.ci4.png
+$(BUILD_DIR)/%.ci4: %.ci4.png
 	$(N64GRAPHICS_CI) -i $@ -g $< -f ci4
 
 # compressed segment generation

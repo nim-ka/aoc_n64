@@ -9,16 +9,16 @@
 # Flower (Unused)
 
 effect_0B000008: # 0x0B000008
-.incbin "bin/effect/flower.00008.rgba16"
+.incbin "textures/effect/flower.00008.rgba16"
 
 effect_0B000808: # 0x0B000808
-.incbin "bin/effect/flower.00808.rgba16"
+.incbin "textures/effect/flower.00808.rgba16"
 
 effect_0B001008: # 0x0B001008
-.incbin "bin/effect/flower.01008.rgba16"
+.incbin "textures/effect/flower.01008.rgba16"
 
 effect_0B001808: # 0x0B001808
-.incbin "bin/effect/flower.01808.rgba16"
+.incbin "textures/effect/flower.01808.rgba16"
 
 glabel flower_bubbles_textures_ptr_0B002008 # 0x0B002008
 .word effect_0B000008
@@ -31,28 +31,28 @@ glabel flower_bubbles_textures_ptr_0B002008 # 0x0B002008
 # Lava Bubble
 
 effect_0B002020: # 0x0B002020
-.incbin "bin/effect/lava_bubble.02020.rgba16"
+.incbin "textures/effect/lava_bubble.02020.rgba16"
 
 effect_0B002820: # 0x0B002820
-.incbin "bin/effect/lava_bubble.02820.rgba16"
+.incbin "textures/effect/lava_bubble.02820.rgba16"
 
 effect_0B003020: # 0x0B003020
-.incbin "bin/effect/lava_bubble.03020.rgba16"
+.incbin "textures/effect/lava_bubble.03020.rgba16"
 
 effect_0B003820: # 0x0B003820
-.incbin "bin/effect/lava_bubble.03820.rgba16"
+.incbin "textures/effect/lava_bubble.03820.rgba16"
 
 effect_0B004020: # 0x0B004020
-.incbin "bin/effect/lava_bubble.04020.rgba16"
+.incbin "textures/effect/lava_bubble.04020.rgba16"
 
 effect_0B004820: # 0x0B004820
-.incbin "bin/effect/lava_bubble.04820.rgba16"
+.incbin "textures/effect/lava_bubble.04820.rgba16"
 
 effect_0B005020: # 0x0B005020
-.incbin "bin/effect/lava_bubble.05020.rgba16"
+.incbin "textures/effect/lava_bubble.05020.rgba16"
 
 effect_0B005820: # 0x0B005820
-.incbin "bin/effect/lava_bubble.05820.rgba16"
+.incbin "textures/effect/lava_bubble.05820.rgba16"
 
 glabel lava_bubble_ptr_0B006020 # 0x0B006020
 .word effect_0B002020
@@ -69,7 +69,7 @@ glabel lava_bubble_ptr_0B006020 # 0x0B006020
 # Bubble
 
 effect_0B006048: # 0x0B006048
-.incbin "bin/effect/bubble.06048.rgba16"
+.incbin "textures/effect/bubble.06048.rgba16"
 
 glabel bubble_ptr_0B006848 # 0x0B006848
 .word effect_0B006048
@@ -77,7 +77,7 @@ glabel bubble_ptr_0B006848 # 0x0B006848
 # Tiny Bubble
 
 effect_0B00684C: # 0x0B00684C
-.incbin "bin/effect/tiny_bubble.0684C.rgba16"
+.incbin "textures/effect/tiny_bubble.0684C.rgba16"
 
 .word 0 # align?
 glabel tiny_bubble_dl_0B006A50 # 0x0B006A50 - 0x0B006AB0
@@ -118,7 +118,7 @@ gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPEndDisplayList
 
 effect_0B006AD8: # 0x0B006AD8
-.incbin "bin/effect/tiny_bubble.06AD8.rgba16"
+.incbin "textures/effect/tiny_bubble.06AD8.rgba16"
 
 glabel tiny_bubble_dl_0B006CD8 # 0x0B006CD8 - 0x0B006D38
 gsDPPipeSync

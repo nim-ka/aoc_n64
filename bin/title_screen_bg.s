@@ -68,28 +68,28 @@ gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
 gsSPEndDisplayList
 
 title_texture_0A0001C0: # 0x0A0001C0
-.incbin "bin/title_screen_bg/title_screen_bg.001C0.rgba16"
+.incbin "textures/title_screen_bg/title_screen_bg.001C0.rgba16"
 
 title_texture_0A000E40: # 0x0A000E40
-.incbin "bin/title_screen_bg/title_screen_bg.00E40.rgba16"
+.incbin "textures/title_screen_bg/title_screen_bg.00E40.rgba16"
 
 title_texture_0A001AC0: # 0x0A001AC0
-.incbin "bin/title_screen_bg/title_screen_bg.01AC0.rgba16"
+.incbin "textures/title_screen_bg/title_screen_bg.01AC0.rgba16"
 
 title_texture_0A002740: # 0x0A002740
-.incbin "bin/title_screen_bg/title_screen_bg.02740.rgba16"
+.incbin "textures/title_screen_bg/title_screen_bg.02740.rgba16"
 
 title_texture_0A0033C0: # 0x0A0033C0
-.incbin "bin/title_screen_bg/title_screen_bg.033C0.rgba16"
+.incbin "textures/title_screen_bg/title_screen_bg.033C0.rgba16"
 
 title_texture_0A004040: # 0x0A004040
-.incbin "bin/title_screen_bg/title_screen_bg.04040.rgba16"
+.incbin "textures/title_screen_bg/title_screen_bg.04040.rgba16"
 
 title_texture_0A004CC0: # 0x0A004CC0
-.incbin "bin/title_screen_bg/title_screen_bg.04CC0.rgba16"
+.incbin "textures/title_screen_bg/title_screen_bg.04CC0.rgba16"
 
 title_texture_0A005940: # 0x0A005940
-.incbin "bin/title_screen_bg/title_screen_bg.05940.rgba16"
+.incbin "textures/title_screen_bg/title_screen_bg.05940.rgba16"
 
 glabel mario_title_texture_table # 0x0A0065C0
 .word title_texture_0A0001C0, title_texture_0A000E40, title_texture_0A001AC0, title_texture_0A002740
