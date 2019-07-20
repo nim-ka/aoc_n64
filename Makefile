@@ -234,6 +234,9 @@ clean:
 	$(RM) -rf $(BUILD_DIR_BASE)
 	./extract_assets.py --clean
 
+tidy:
+	$(RM) -rf $(BUILD_DIR_BASE)
+
 test: $(ROM)
 	$(EMULATOR) $(EMU_FLAGS) $<
 
@@ -273,9 +276,19 @@ $(BUILD_DIR)/src/game/star_select.o: $(BUILD_DIR)/include/text_strings.h
 $(BUILD_DIR)/src/game/file_select.o: $(BUILD_DIR)/include/text_strings.h
 $(BUILD_DIR)/src/game/ingame_menu.o: $(BUILD_DIR)/include/text_strings.h
 
-# texture generation
+################################################################
+# TEXTURE GENERATION                                           #
+################################################################
+
+# RGBA
+
+$(BUILD_DIR)/%.rgba32: %.rgba32.png
+	$(N64GRAPHICS) -i $@ -g $< -f rgba32
+
 $(BUILD_DIR)/%.rgba16: %.rgba16.png
 	$(N64GRAPHICS) -i $@ -g $< -f rgba16
+
+# Intensity w/ alpha
 
 $(BUILD_DIR)/%.ia16: %.ia16.png
 	$(N64GRAPHICS) -i $@ -g $< -f ia16
@@ -289,12 +302,23 @@ $(BUILD_DIR)/%.ia4: %.ia4.png
 $(BUILD_DIR)/%.ia1: %.ia1.png
 	$(N64GRAPHICS) -i $@ -g $< -f ia1
 
-# Color index textures (not used by SM64)
+# Intensity
+
+$(BUILD_DIR)/%.i8: %.i8.png
+	$(N64GRAPHICS) -i $@ -g $< -f i8
+
+$(BUILD_DIR)/%.i4: %.i4.png
+	$(N64GRAPHICS) -i $@ -g $< -f i4
+
+# Color index
+
 $(BUILD_DIR)/%.ci8: %.ci8.png
 	$(N64GRAPHICS_CI) -i $@ -g $< -f ci8
 
 $(BUILD_DIR)/%.ci4: %.ci4.png
 	$(N64GRAPHICS_CI) -i $@ -g $< -f ci4
+
+################################################################
 
 # compressed segment generation
 $(BUILD_DIR)/bin/%.o: bin/%.s
@@ -383,7 +407,7 @@ $(BUILD_DIR)/$(TARGET).objdump: $(ELF)
 
 
 
-.PHONY: all clean default diff test load libultra
+.PHONY: all clean tidy default diff test load libultra
 .PRECIOUS: $(BUILD_DIR)/mio0/%.mio0 $(BUILD_DIR)/bin/%.elf $(BUILD_DIR)/mio0/%.mio0.s
 .DELETE_ON_ERROR:
 
