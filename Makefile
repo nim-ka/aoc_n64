@@ -5,8 +5,10 @@
 default: all
 
 ### Build Options ###
-# Version of the game to build and graphics microcode used
+
+# Version of the game to build
 VERSION ?= us
+# Graphics microcode used
 GRUCODE ?= f3d_old
 # If COMPARE is 1, check the output sha1sum when building 'all'
 COMPARE ?= 1
@@ -86,13 +88,31 @@ ifeq ($(ENDIAN_IND),1)
   COMPARE := 0
 endif
 
-################ Target Executable and Sources ###############
+################### Universal Dependencies ###################
+
+# (This is a bit hacky, but a lot of rules implicitly depend
+# on tools and assets, and we use directory globs further down
+# in the makefile that we want should cover assets.)
+
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(MAKECMDGOALS),tidy)
 
 # Make sure assets exist
 DUMMY != ./extract_assets.py $(VERSION) >&2 || echo FAIL
 ifeq ($(DUMMY),FAIL)
   $(error Failed to extract assets)
 endif
+
+# Make tools if out of date
+DUMMY != make -s -C tools >&2 || echo FAIL
+ifeq ($(DUMMY),FAIL)
+  $(error Failed to build tools)
+endif
+
+endif
+endif
+
+################ Target Executable and Sources ###############
 
 # BUILD_DIR is location where all build artifacts are placed
 BUILD_DIR_BASE := build
@@ -204,12 +224,6 @@ LOADER = loader64
 LOADER_FLAGS = -vwf
 SHA1SUM = sha1sum
 
-# Make tools if out of date
-DUMMY != make -s -C tools >&2 || echo FAIL
-ifeq ($(DUMMY),FAIL)
-  $(error Failed to build tools)
-endif
-
 ###################### Dependency Check #####################
 
 BINUTILS_VER_MAJOR := $(shell $(LD) --version | grep ^GNU | sed 's/^.* //; s/\..*//g')
@@ -231,11 +245,11 @@ ifeq ($(COMPARE),1)
 endif
 
 clean:
-	$(RM) -rf $(BUILD_DIR_BASE)
+	$(RM) -r $(BUILD_DIR_BASE)
 	./extract_assets.py --clean
 
 tidy:
-	$(RM) -rf $(BUILD_DIR_BASE)
+	$(RM) -r $(BUILD_DIR_BASE)
 
 test: $(ROM)
 	$(EMULATOR) $(EMU_FLAGS) $<
