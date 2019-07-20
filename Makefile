@@ -88,6 +88,12 @@ endif
 
 ################ Target Executable and Sources ###############
 
+# Make sure assets exist
+DUMMY != ./extract_assets.py $(VERSION) >&2 || echo FAIL
+ifeq ($(DUMMY),FAIL)
+  $(error Failed to extract assets)
+endif
+
 # BUILD_DIR is location where all build artifacts are placed
 BUILD_DIR_BASE := build
 BUILD_DIR := $(BUILD_DIR_BASE)/$(VERSION)
@@ -199,7 +205,10 @@ LOADER_FLAGS = -vwf
 SHA1SUM = sha1sum
 
 # Make tools if out of date
-DUMMY != make -s -C tools >&2
+DUMMY != make -s -C tools >&2 || echo FAIL
+ifeq ($(DUMMY),FAIL)
+  $(error Failed to build tools)
+endif
 
 ###################### Dependency Check #####################
 
@@ -222,7 +231,8 @@ ifeq ($(COMPARE),1)
 endif
 
 clean:
-	$(RM) -r $(BUILD_DIR_BASE)
+	$(RM) -rf $(BUILD_DIR_BASE)
+	./extract_assets.py --clean
 
 test: $(ROM)
 	$(EMULATOR) $(EMU_FLAGS) $<
@@ -375,6 +385,7 @@ $(BUILD_DIR)/$(TARGET).objdump: $(ELF)
 
 .PHONY: all clean default diff test load libultra
 .PRECIOUS: $(BUILD_DIR)/mio0/%.mio0 $(BUILD_DIR)/bin/%.elf $(BUILD_DIR)/mio0/%.mio0.s
+.DELETE_ON_ERROR:
 
 # Remove built-in rules, to improve performance
 MAKEFLAGS += --no-builtin-rules

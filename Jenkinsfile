@@ -6,6 +6,16 @@ pipeline {
         sh 'make -j4 -C tools/'
       }
     }
+    stage('Extract Assets') {
+      steps {
+        sh 'ln -s "$ROMS_DIR/Super Mario 64 (J) [!].z64" baserom.jp.z64'
+        sh 'ln -s "$ROMS_DIR/Super Mario 64 (U) [!].z64" baserom.us.z64'
+        sh 'ln -s "$ROMS_DIR/Super Mario 64 (E) (M3) [!].z64" baserom.eu.z64'
+        sh '[ -z "$(find -name \'*.png\' | grep -vE \'ipl3_font|doxygen\')" ]'
+        sh '[ -z "$(find assets/ -name \'*.m64\' -or \'*.bin\')" ]'
+        sh './extract_assets.py jp us eu'
+      }
+    }
     stage('Build J Source') {
       steps {
         sh 'make -j4 VERSION=jp'
@@ -28,6 +38,7 @@ pipeline {
     }
   }
   environment {
-    QEMU_IRIX = '/data/n64dev/irixsys/qemu-irix'
+    QEMU_IRIX = credentials('qemu-irix')
+    ROMS_DIR = credentials('roms')
   }
 }

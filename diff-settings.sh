@@ -1,23 +1,19 @@
 #!/usr/bin/env bash
 
-BASEROM=baseromus
 LANG=us
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do
 case "$1" in
     -j)
-        BASEROM=baserom
         LANG=jp
         shift
         ;;
     -u)
-        BASEROM=baseromus
         LANG=us
         shift
         ;;
     -e)
-        BASEROM=baseromeu
         LANG=eu
         shift
         ;;
@@ -29,6 +25,7 @@ esac
 done
 set -- "${POSITIONAL[@]}"
 
+BASEROM=baserom.$LANG
 MAPFILE="build/$LANG/sm64.map"
 MYDUMP=sm64.$LANG.dump
 MYIMG=build/$LANG/sm64.$LANG.z64
