@@ -280,41 +280,15 @@ $(BUILD_DIR)/src/game/ingame_menu.o: $(BUILD_DIR)/include/text_strings.h
 # TEXTURE GENERATION                                           #
 ################################################################
 
-# RGBA
+# RGBA32, RGBA16, IA16, IA8, IA4, IA1, I8, I4
+$(BUILD_DIR)/%: %.png
+	$(N64GRAPHICS) -i $@ -g $< -f $(lastword $(subst ., ,$@))
 
-$(BUILD_DIR)/%.rgba32: %.rgba32.png
-	$(N64GRAPHICS) -i $@ -g $< -f rgba32
-
-$(BUILD_DIR)/%.rgba16: %.rgba16.png
-	$(N64GRAPHICS) -i $@ -g $< -f rgba16
-
-# Intensity w/ alpha
-
-$(BUILD_DIR)/%.ia16: %.ia16.png
-	$(N64GRAPHICS) -i $@ -g $< -f ia16
-
-$(BUILD_DIR)/%.ia8: %.ia8.png
-	$(N64GRAPHICS) -i $@ -g $< -f ia8
-
-$(BUILD_DIR)/%.ia4: %.ia4.png
-	$(N64GRAPHICS) -i $@ -g $< -f ia4
-
-$(BUILD_DIR)/%.ia1: %.ia1.png
-	$(N64GRAPHICS) -i $@ -g $< -f ia1
-
-# Intensity
-
-$(BUILD_DIR)/%.i8: %.i8.png
-	$(N64GRAPHICS) -i $@ -g $< -f i8
-
-$(BUILD_DIR)/%.i4: %.i4.png
-	$(N64GRAPHICS) -i $@ -g $< -f i4
-
-# Color index
-
+# Color Index CI8
 $(BUILD_DIR)/%.ci8: %.ci8.png
 	$(N64GRAPHICS_CI) -i $@ -g $< -f ci8
 
+# Color Index CI4
 $(BUILD_DIR)/%.ci4: %.ci4.png
 	$(N64GRAPHICS_CI) -i $@ -g $< -f ci4
 
