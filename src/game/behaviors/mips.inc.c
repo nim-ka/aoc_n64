@@ -1,27 +1,40 @@
-// mips.c.inc
+/**
+ * Behavior for MIPS (everyone's favorite yellow rabbit).
+ */
 
+/**
+ * Initializes MIPS' physics parameters and checks if he should be active,
+ * hiding him if necessary.
+ */
 void bhv_mips_init(void) {
-    u8 sp1F;
-    sp1F = save_file_get_star_flags(gCurrSaveFileNum - 1, -1);
-    if (save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24) >= 15 
-        && (sp1F & 0x08) == 0) {
+    // Retrieve star flags for Castle Secret Stars on current save file.
+    u8 starFlags;
+    starFlags = save_file_get_star_flags(gCurrSaveFileNum - 1, -1);
+
+    // If the player has >= 15 stars and hasn't collected first MIPS star...
+    if (save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24) >= 15
+        && (starFlags & 0x08) == 0) {
         o->oBehParams2ndByte = 0;
 #ifndef VERSION_JP
-        o->oUnk1AC_F32 = 40.0f;
+        o->oMipsForwardVelocity = 40.0f;
 #endif
-    } 
+    }
+    // If the player has >= 50 stars and hasn't collected second MIPS star...
     else if (save_file_get_total_star_count(gCurrSaveFileNum-1, 0, 24) >= 50
-        && (sp1F & 0x10) == 0) {
+        && (starFlags & 0x10) == 0) {
         o->oBehParams2ndByte = 1;
 #ifndef VERSION_JP
-        o->oUnk1AC_F32 = 45.0f;
+        o->oMipsForwardVelocity = 45.0f;
 #endif
     }
     else {
+        // No MIPS stars are available, hide MIPS.
         o->activeFlags = 0;
     }
 
+    // This flag seems to make MIPS fall straight down when thrown.
     o->oUnk190 = 0x10;
+
 #ifndef VERSION_JP
     o->oGravity = 15.0f;
 #else
@@ -29,77 +42,106 @@ void bhv_mips_init(void) {
 #endif
     o->oFriction = 0.89f;
     o->oBuoyancy = 1.2f;
+
     SetObjAnimation(0);
 }
 
-s16 func_802F7528(void) {
-    s8 sp3F;
-    s16 sp3C, sp3A, sp38;
-    s16 sp36 = -1;
-    f32 sp30 = -10000.0f;
-    f32 sp2C;
-    void **sp28;
-    struct Waypoint *sp24;
+/**
+ * Helper function that finds the waypoint that is both within 800 units of MIPS
+ * and furthest from Mario's current location.
+ */
+s16 bhv_mips_find_furthest_waypoint_to_mario(void) {
+    s8 i;
+    s16 x, y, z;
+    s16 furthestWaypointIndex = -1;
+    f32 furthestWaypointDistance = -10000.0f;
+    f32 distanceToMario;
+    void **pathBase;
+    struct Waypoint *waypoint;
 
-    sp28 = segmented_to_virtual(&inside_castle_seg7_trajectory_mips);
+    pathBase = segmented_to_virtual(&inside_castle_seg7_trajectory_mips);
 
-    for (sp3F = 0; sp3F < 10; sp3F++) {
-        sp24 = (struct Waypoint *)segmented_to_virtual(*(sp28 + sp3F));
-        sp3C = sp24->pos[0];
-        sp3A = sp24->pos[1];
-        sp38 = sp24->pos[2];
-        if (IsPointCloseToObject(o, sp3C, sp3A, sp38, 800)) {
-            sp2C = sqr(sp3C - gMarioObject->header.gfx.pos[0]) + sqr(sp38 - gMarioObject->header.gfx.pos[2]);
-            if (sp30 < sp2C) {
-                sp36 = sp3F;
-                sp30 = sp2C;
+    // For each waypoint in MIPS path...
+    for (i = 0; i < 10; i++) {
+        waypoint = (struct Waypoint *)segmented_to_virtual(*(pathBase + i));
+        x = waypoint->pos[0];
+        y = waypoint->pos[1];
+        z = waypoint->pos[2];
+
+        // Is the waypoint within 800 units of MIPS?
+        if (IsPointCloseToObject(o, x, y, z, 800)) {
+            // Is this further from Mario than the last waypoint?
+            distanceToMario = sqr(x - gMarioObject->header.gfx.pos[0]) + sqr(z - gMarioObject->header.gfx.pos[2]);
+            if (furthestWaypointDistance < distanceToMario) {
+                furthestWaypointIndex = i;
+                furthestWaypointDistance = distanceToMario;
             }
         }
     }
 
-    o->oMipsUnkF8 = sp36;
-    return (s16)o->oMipsUnkF8;
+    // Set MIPS' next waypoint to be the closest waypoint to Mario.
+    o->oMipsStartWaypointIndex = furthestWaypointIndex;
+    return (s16)o->oMipsStartWaypointIndex;
 }
 
-void func_802F76A8(void) {
-    UNUSED s16 sp1E = 0;
+/**
+ * Wait until Mario comes close, then resume following our path.
+ */
+void bhv_mips_act_wait_for_nearby_mario(void) {
+    UNUSED s16 collisionFlags = 0;
 
     o->oForwardVel = 0.0f;
-    sp1E = ObjectStep();
+    collisionFlags = ObjectStep();
 
+    // If Mario is within 500 units...
     if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 500)) {
-        if (func_802F7528() == -1) {
-            o->oAction = 2;
+        // If we fail to find a suitable waypoint...
+        if (bhv_mips_find_furthest_waypoint_to_mario() == -1) {
+            // Call it quits.
+            o->oAction = MIPS_ACT_WAIT_FOR_ANIMATION_DONE;
         }
         else {
+            // Resume path following.
             SetObjAnimation(1);
-            o->oAction = 1;
+            o->oAction = MIPS_ACT_FOLLOW_PATH;
         }
     }
 }
 
-void func_802F7750(void) {
-    s16 sp26 = 0;
-    s32 sp20;
-    void **sp1C;
-    struct Waypoint *sp18;
+/**
+ * Continue to follow our path around the basement area.
+ */
+void bhv_mips_act_follow_path(void) {
+    s16 collisionFlags = 0;
+    s32 followStatus;
+    void **pathBase;
+    struct Waypoint *waypoint;
 
-    sp1C = segmented_to_virtual(&inside_castle_seg7_trajectory_mips);
-    sp18 = (struct Waypoint *)segmented_to_virtual(*(sp1C + o->oMipsUnkF8));
-    o->oMipsUnkFC = sp18;
-    sp20 = obj_follow_path(sp20);
+    // Retrieve current waypoint.
+    pathBase = segmented_to_virtual(&inside_castle_seg7_trajectory_mips);
+    waypoint = (struct Waypoint *)segmented_to_virtual(*(pathBase + o->oMipsStartWaypointIndex));
+
+    // Set start waypoint and follow the path from there.
+    o->oPathedStartWaypoint = waypoint;
+    followStatus = obj_follow_path(followStatus);
+
+    // Update velocity and angle and do movement.
 #ifndef VERSION_JP
-    o->oForwardVel = o->oUnk1AC_F32;
+    o->oForwardVel = o->oMipsForwardVelocity;
 #else
     o->oForwardVel = 45.0f;
 #endif
-    o->oMoveAngleYaw = o->oMipsUnk10C;
-    sp26 = ObjectStep();
-    if (sp20 == -1) {
+    o->oMoveAngleYaw = o->oPathedTargetYaw;
+    collisionFlags = ObjectStep();
+
+    // If we are at the end of the path, do idle animation and wait for Mario.
+    if (followStatus == PATH_REACHED_END) {
         SetObjAnimation(0);
-        o->oAction = 0;
+        o->oAction = MIPS_ACT_WAIT_FOR_NEARBY_MARIO;
     }
-    if (func_8029F788() == 1 && (sp26 & 0x04)) {
+
+    // Play sounds during walk animation.
+    if (func_8029F788() == 1 && (collisionFlags & OBJ_COL_FLAG_UNDERWATER)) {
         PlaySound2(SOUND_OBJECT_MIPSRABBITWATER);
         spawn_object(o, MODEL_NONE, bhvSurfaceWaveShrinking);
     } else if (func_8029F788() == 1) {
@@ -107,125 +149,158 @@ void func_802F7750(void) {
     }
 }
 
-void func_802F788C(void) {
+/**
+ * Seems to wait until the current animation is done, then go idle.
+ */
+void bhv_mips_act_wait_for_animation_done(void) {
     if (func_8029F788() == 1) {
         SetObjAnimation(0);
-        o->oAction = 4;
+        o->oAction = MIPS_ACT_IDLE;
     }
 }
 
-void func_802F78D8(void) {
-    s16 sp1E = 0;
+/**
+ * Handles MIPS falling down after being thrown.
+ */
+void bhv_mips_act_fall_down(void) {
+    s16 collisionFlags = 0;
 
-    sp1E = ObjectStep();
+    collisionFlags = ObjectStep();
     o->header.gfx.unk38.animFrame = 0;
-    if ((sp1E & 0x01) == 1) {
-        o->oAction = 2;
-        o->oFlags |= 0x08;
+
+    if ((collisionFlags & OBJ_COL_FLAG_GROUNDED) == 1) {
+        o->oAction = MIPS_ACT_WAIT_FOR_ANIMATION_DONE;
+
+        o->oFlags |= OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW;
         o->oMoveAngleYaw = o->oFaceAngleYaw;
-        if (sp1E & 0x04)
+
+        if (collisionFlags & OBJ_COL_FLAG_UNDERWATER)
             spawn_object(o, MODEL_NONE, bhvSurfaceWaveShrinking);
     }
 }
 
-void func_802F7984(void) {
-    UNUSED s16 sp1E = 0;
+/**
+ * Idle loop, after you catch MIPS and put him down.
+ */
+void bhv_mips_act_idle(void) {
+    UNUSED s16 collisionFlags = 0;
 
     o->oForwardVel = 0;
-    sp1E = ObjectStep();
-    if (o->oMipsUnkF4 == 1) {
+    collisionFlags = ObjectStep();
+
+    // Spawn a star if he was just picked up for the first time.
+    if (o->oMipsStarStatus == MIPS_STAR_STATUS_SHOULD_SPAWN_STAR) {
         bhv_spawn_star_objects(o->oBehParams2ndByte + 3);
-        o->oMipsUnkF4 = 2;
+        o->oMipsStarStatus = MIPS_STAR_STATUS_ALREADY_SPAWNED_STAR;
     }
 }
 
-void func_802F7A04(void) {
+/**
+ * Handles all the actions MIPS does when he is not held.
+ */
+void bhv_mips_free(void) {
     switch (o->oAction) {
-        case 0:
-            func_802F76A8();
+        case MIPS_ACT_WAIT_FOR_NEARBY_MARIO:
+            bhv_mips_act_wait_for_nearby_mario();
             break;
 
-        case 1:
-            func_802F7750();
+        case MIPS_ACT_FOLLOW_PATH:
+            bhv_mips_act_follow_path();
             break;
 
-        case 2:
-            func_802F788C();
+        case MIPS_ACT_WAIT_FOR_ANIMATION_DONE:
+            bhv_mips_act_wait_for_animation_done();
             break;
 
-        case 3:
-            func_802F78D8();
+        case MIPS_ACT_FALL_DOWN:
+            bhv_mips_act_fall_down();
             break;
 
-        case 4:
-            func_802F7984();
+        case MIPS_ACT_IDLE:
+            bhv_mips_act_idle();
             break;
     }
 }
 
-void func_802F7AA4(void) {
-    s16 sp1E;
+/**
+ * Handles MIPS being held by Mario.
+ */
+void bhv_mips_held(void) {
+    s16 dialogId;
 
-    o->header.gfx.node.flags |= 0x10;
-    SetObjAnimation(4);
+    o->header.gfx.node.flags |= GRAPH_RENDER_10;
+    SetObjAnimation(4); // Held animation.
     obj_set_pos_relative(gMarioObject, 0, 60.0f, 100.0f);
     obj_become_intangible();
-    if (o->oMipsUnkF4 == 0) {
-        if (o->oBehParams2ndByte == 0) 
-            sp1E = 84;
+
+    // If MIPS hasn't spawned his star yet...
+    if (o->oMipsStarStatus == MIPS_STAR_STATUS_HAVENT_SPAWNED_STAR) {
+        // Choose dialog based on which MIPS encounter this is.
+        if (o->oBehParams2ndByte == 0)
+            dialogId = 84;
         else
-            sp1E = 162;
+            dialogId = 162;
 
         if (set_mario_npc_dialog(1) == 2) {
-            o->activeFlags |= 0x20;
-            if (func_8028F8E0(162, o, sp1E)) {
+            o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
+            if (func_8028F8E0(162, o, dialogId)) {
                 o->oUnk190 |= 0x40;
-                o->activeFlags &= ~0x20;
-                o->oMipsUnkF4 = 1;
+                o->activeFlags &= ~ACTIVE_FLAG_INITIATED_TIME_STOP;
+                o->oMipsStarStatus = MIPS_STAR_STATUS_SHOULD_SPAWN_STAR;
                 set_mario_npc_dialog(0);
             }
         }
     }
 }
 
-void func_802F7BC4(void) {
+/**
+ * Handles MIPS being dropped by Mario.
+ */
+void bhv_mips_dropped(void) {
     obj_get_dropped();
-    o->header.gfx.node.flags &= ~0x10;
+    o->header.gfx.node.flags &= ~GRAPH_RENDER_10;
     SetObjAnimation(0);
-    o->oHeldState = 0;
+    o->oHeldState = HELD_FREE;
     obj_become_tangible();
     o->oForwardVel = 3.0f;
-    o->oAction = 4;
+    o->oAction = MIPS_ACT_IDLE;
 }
 
-void func_802F7C48(void) {
+/**
+ * Handles MIPS being thrown by Mario.
+ */
+void bhv_mips_thrown(void) {
     obj_enable_rendering_2();
-    o->header.gfx.node.flags &= ~0x10;
-    o->oHeldState = 0;
-    o->oFlags &= ~0x08;
+    o->header.gfx.node.flags &= ~GRAPH_RENDER_10;
+    o->oHeldState = HELD_FREE;
+    o->oFlags &= ~OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW;
     SetObjAnimation(2);
     obj_become_tangible();
     o->oForwardVel = 25.0f;
     o->oVelY = 20.0f;
-    o->oAction = 3;
+    o->oAction = MIPS_ACT_FALL_DOWN;
 }
 
+/**
+ * MIPS' main loop.
+ */
 void bhv_mips_loop(void) {
+    // Determine what to do based on MIPS' held status.
     switch (o->oHeldState) {
-        case 0:
-            func_802F7A04();
+        case HELD_FREE:
+            bhv_mips_free();
             break;
 
-        case 1:
-            func_802F7AA4();
+        case HELD_HELD:
+            bhv_mips_held();
             break;
 
-        case 2:
-            func_802F7C48();
+        case HELD_THROWN:
+            bhv_mips_thrown();
             break;
 
-        case 3:
-            func_802F7BC4();
+        case HELD_DROPPED:
+            bhv_mips_dropped();
             break;
     }
 }

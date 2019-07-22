@@ -103,6 +103,7 @@
 #define /*0x1AC*/ oUnk1AC_VPTR OBJECT_FIELD_VPTR(0x49)
 #define /*0x1AC*/ oUnk1AC_S32 OBJECT_FIELD_S32(0x49)
 #define /*0x1AC*/ oUnk1AC_F32 OBJECT_FIELD_F32(0x49)
+#define /*0x1AC*/ oMipsForwardVelocity OBJECT_FIELD_F32(0x49)
 #define /*0x1AC*/ oUnk1AC_S16 OBJECT_FIELD_S16(0x49, 0)
 #define /*0x1AE*/ oUnk1AE OBJECT_FIELD_S16(0x49, 1)
 #define /*0x1B0*/ oUnk1B0 OBJECT_FIELD_S32(0x4A)
@@ -1027,10 +1028,8 @@
 #define /*0x0FC*/ oTreasureChestUnkFC OBJECT_FIELD_S32(0x1D)
 
 /* Mips */
-#define /*0x0F4*/ oMipsUnkF4 OBJECT_FIELD_S32(0x1B)
-#define /*0x0F8*/ oMipsUnkF8 OBJECT_FIELD_S32(0x1C)
-#define /*0x0FC*/ oMipsUnkFC OBJECT_FIELD_VOIDP(0x1D)
-#define /*0x10C*/ oMipsUnk10C OBJECT_FIELD_S32(0x21)
+#define /*0x0F4*/ oMipsStarStatus OBJECT_FIELD_S32(0x1B)
+#define /*0x0F8*/ oMipsStartWaypointIndex OBJECT_FIELD_S32(0x1C)
 
 /* Yoshi */
 #define /*0x0F4*/ oYoshiUnkF4 OBJECT_FIELD_S32(0x1B)

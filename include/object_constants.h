@@ -783,4 +783,17 @@
     // After the water level has changed but Mario hasn't left its hitbox yet
     #define WATER_LEVEL_DIAMOND_ACT_IDLE_SPINNING 3
 
+/* Mips */
+    /* oAction */
+    #define MIPS_ACT_WAIT_FOR_NEARBY_MARIO 0
+    #define MIPS_ACT_FOLLOW_PATH 1
+    #define MIPS_ACT_WAIT_FOR_ANIMATION_DONE 2
+    #define MIPS_ACT_FALL_DOWN 3
+    #define MIPS_ACT_IDLE 4
+
+    /* oMipsStarStatus */
+    #define MIPS_STAR_STATUS_HAVENT_SPAWNED_STAR 0
+    #define MIPS_STAR_STATUS_SHOULD_SPAWN_STAR 1
+    #define MIPS_STAR_STATUS_ALREADY_SPAWNED_STAR 2
+
 #endif
