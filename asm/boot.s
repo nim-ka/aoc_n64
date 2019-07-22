@@ -10,8 +10,8 @@
     mtc0  $zero, $13
     mtc0  $zero, $9
     mtc0  $zero, $11
-    lui   $t0, 0xa470
-    addiu $t0, $t0, 0
+    lui   $t0, %hi(D_A4700000)
+    addiu $t0, %lo(D_A4700000)
     lw    $t1, 0xc($t0)
     bnez  $t1, .L000003D0
      nop
@@ -21,12 +21,12 @@
     sw    $s5, 8($sp)
     sw    $s6, 0xc($sp)
     sw    $s7, 0x10($sp)
-    lui   $t0, 0xa470
-    addiu $t0, $t0, 0
-    lui   $t2, %hi(D_A3F80004) # $t2, 0xa3f8
-    lui   $t3, 0xa3f0
-    lui   $t4, 0xa430
-    addiu $t4, $t4, 0
+    lui   $t0, %hi(D_A4700000)
+    addiu $t0, %lo(D_A4700000)
+    lui   $t2, (0xa3f80000 >> 16) # $t2, 0xa3f8
+    lui   $t3, (0xa3f00000 >> 16) # $t3, 0xa3f0
+    lui   $t4, %hi(D_A4300000)
+    addiu $t4, %lo(D_A4300000)
     ori   $t1, $zero, 64
     sw    $t1, 4($t0)
     li   $s1, 8000
@@ -55,21 +55,21 @@
     sw    $t1, ($t4)
     lui   $t1, (0x18082838 >> 16) # lui $t1, 0x1808
     ori   $t1, (0x18082838 & 0xFFFF) # ori $t1, $t1, 0x2838
-    sw    $t1, %lo(D_A3F80008)($t2)
-    sw    $zero, %lo(D_A3F80014)($t2)
+    sw    $t1, 0x8($t2)
+    sw    $zero, 0x14($t2)
     lui   $t1, 0x8000
-    sw    $t1, %lo(D_A3F80004)($t2)
+    sw    $t1, 0x4($t2)
     move  $t5, $zero
     move  $t6, $zero
-    lui   $t7, %hi(D_A3F00018) # $t7, 0xa3f0
+    lui   $t7, (0xA3F00000 >> 16) # $t7, 0xa3f0
     move  $t8, $zero
-    lui   $t9, 0xa3f0
-    lui   $s6, 0xa000
+    lui   $t9, (0xA3F00000 >> 16)
+    lui   $s6, (0xA0000000 >> 16)
     move  $s7, $zero
-    lui   $a2, 0xa3f0
-    lui   $a3, 0xa000
+    lui   $a2, (0xA3F00000 >> 16)
+    lui   $a3, (0xA0000000 >> 16)
     move  $s2, $zero
-    lui   $s4, 0xa000
+    lui   $s4, (0xA0000000 >> 16)
     addiu $sp, $sp, -0x48
     move  $fp, $sp
     lui   $s0, %hi(D_A4300004) # $s0, 0xa430
@@ -122,7 +122,7 @@
 .L000001A8:
     li    $t0, 8192
     sw    $t0, ($t4)
-    lw    $t1, %lo(D_A3F00024)($t7)
+    lw    $t1, 0x24($t7)
     lw    $k0, ($t7)
     li    $t0, 4096
     sw    $t0, ($t4)
@@ -136,12 +136,12 @@
      nop
     lui   $t0, (0x101C0A04 >> 16) # lui $t0, 0x101c
     ori   $t0, (0x101C0A04 & 0xFFFF) # ori $t0, $t0, 0xa04
-    sw    $t0, %lo(D_A3F00018)($t7)
+    sw    $t0, 0x18($t7)
     b     .L000001FC
 .L000001F0:
      lui   $t0, (0x080C1204 >> 16) # lui $t0, 0x80c
     ori   $t0, (0x080C1204 & 0xFFFF) # ori $t0, $t0, 0x1204
-    sw    $t0, %lo(D_A3F00018)($t7)
+    sw    $t0, 0x18($t7)
 .L000001FC:
     lui   $t0, 0x800
     add   $t6, $t6, $t0
@@ -152,10 +152,10 @@
     bnez  $t0, .L00000128
      nop
 .L0000021C:
-    lui   $t0, 0xc400
-    sw    $t0, %lo(D_A3F8000C)($t2)
-    lui   $t0, 0x8000
-    sw    $t0, %lo(D_A3F80004)($t2)
+    li    $t0, 0xc4000000
+    sw    $t0, 0xc($t2)
+    li    $t0, 0x80000000
+    sw    $t0, 0x4($t2)
     move  $sp, $fp
     move  $v1, $zero
 .L00000234:
@@ -230,12 +230,12 @@
     or    $t1, $t1, $s2
     sw    $t1, %lo(D_A4700010)($t2)
     lw    $t1, %lo(D_A4700010)($t2)
-    lui   $t0, %hi(D_A0000018) # $t0, 0xa000
+    lui   $t0, (0xA0000300 >> 16) # $t0, 0xa000
     ori   $t0, (0xA0000300 & 0xFFFF) # ori $t0, $t0, 0x300
     lui   $t1, (0x0FFFFFFF >> 16) # lui $t1, 0xfff
     ori   $t1, (0x0FFFFFFF & 0xFFFF) # ori $t1, $t1, 0xffff
     and   $s6, $s6, $t1
-    sw    $s6, %lo(D_A0000018)($t0)
+    sw    $s6, 0x18($t0)
     move  $sp, $fp
     addiu $sp, $sp, 0x48
     lw    $s3, ($sp)
@@ -244,8 +244,8 @@
     lw    $s6, 0xc($sp)
     lw    $s7, 0x10($sp)
     addiu $sp, $sp, 0x18
-    lui   $t0, 0x8000
-    addiu $t0, $t0, 0
+    lui   $t0, %hi(D_80000000)
+    addiu $t0, $t0, %lo(D_80000000)
     addiu $t1, $t0, 0x4000
     addiu $t1, $t1, -0x20
     mtc0  $zero, $28
@@ -255,8 +255,8 @@
     sltu  $at, $t0, $t1
     bnez  $at, .L00000398
      addiu $t0, $t0, 0x20
-    lui   $t0, 0x8000
-    addiu $t0, $t0, 0
+    lui   $t0, %hi(D_80000000)
+    addiu $t0, %lo(D_80000000)
     addiu $t1, $t0, 0x2000
     addiu $t1, $t1, -0x10
 .L000003B8:
@@ -267,8 +267,8 @@
     b     .L00000418
      nop
 .L000003D0:
-    lui   $t0, 0x8000
-    addiu $t0, $t0, 0
+    lui   $t0, %hi(D_80000000)
+    addiu $t0, %lo(D_80000000)
     addiu $t1, $t0, 0x4000
     addiu $t1, $t1, -0x20
     mtc0  $zero, $28
@@ -278,8 +278,8 @@
     sltu  $at, $t0, $t1
     bnez  $at, .L000003E8
      addiu $t0, $t0, 0x20
-    lui   $t0, 0x8000
-    addiu $t0, $t0, 0
+    lui   $t0, %hi(D_80000000)
+    addiu $t0, %lo(D_80000000)
     addiu $t1, $t0, 0x2000
     addiu $t1, $t1, -0x10
 .L00000408:
@@ -288,8 +288,8 @@
     bnez  $at, .L00000408
      addiu $t0, $t0, 0x10
 .L00000418:
-    lui   $t2, 0xa400
-    addiu $t2, $t2, 0
+    lui   $t2, %hi(D_A4000000)
+    addiu $t2, $t2, %lo(D_A4000000)
     lui   $t3, 0xfff0
     lui   $t1, 0x0010 # $t1, 0x10
     and   $t2, $t2, $t3
@@ -311,24 +311,24 @@
     addiu $t1, $t1, 4
     bnez  $at, .L00000458
      sw    $t5, -4($t1)
-    lui   $t4, 0x8000
-    addiu $t4, $t4, 0
+    lui   $t4, %hi(D_80000000)
+    addiu $t4, %lo(D_80000000)
     jr    $t4
      nop
     lui   $t3, %hi(D_B0000008) # $t3, 0xb000
     lw    $t1, %lo(D_B0000008)($t3)
     lui   $t2, (0x1FFFFFFF >> 16) # lui $t2, 0x1fff
     ori   $t2, (0x1FFFFFFF & 0xFFFF) # ori $t2, $t2, 0xffff
-    lui   $at, 0xa460
+    lui   $at, %hi(D_A4600000)
     and   $t1, $t1, $t2
-    sw    $t1, ($at)
+    sw    $t1, %lo(D_A4600000)($at)
     lui   $t0, %hi(D_A4600010) # $t0, 0xa460
 .L000004A0:
     lw    $t0, %lo(D_A4600010)($t0)
     andi  $t0, $t0, 2
     bnezl $t0, .L000004A0
-     lui   $t0, 0xa460
-    li    $t0, 4096
+     lui   $t0, %hi(D_A4600010)
+    li    $t0, 0x1000
     add   $t0, $t0, $t3
     and   $t0, $t0, $t2
     lui   $at, %hi(D_A4600004) # $at, 0xa460
@@ -427,7 +427,7 @@
     xor   $a3, $t6, $t3
     xor   $t8, $s0, $a2
     xor   $s0, $t8, $t4
-    lui   $t3, %hi(D_B0000014) # $t3, 0xb000
+    lui   $t3, %hi(D_B0000010) # $t3, 0xb000
     lw    $t0, %lo(D_B0000010)($t3)
     bne   $a3, $t0, .L00000648
      nop
@@ -443,8 +443,8 @@ func_00000648:
      nop
 
 func_00000650:
-    lui   $t1, 0xa408
-    lw    $t1, ($t1)
+    lui   $t1, %hi(D_A4080000)
+    lw    $t1, %lo(D_A4080000)($t1)
     lw    $s0, 0x14($sp)
     lw    $ra, 0x1c($sp)
     beqz  $t1, .L0000067C
@@ -452,8 +452,8 @@ func_00000650:
     li    $t2, 65
     lui   $at, %hi(D_A4040010) # $at, 0xa404
     sw    $t2, %lo(D_A4040010)($at)
-    lui   $at, 0xa408
-    sw    $zero, ($at)
+    lui   $at, %hi(D_A4080000)
+    sw    $zero, %lo(D_A4080000)($at)
 .L0000067C:
     lui   $t3, (0x00AAAAAE >> 16) # lui $t3, 0xaa
     ori   $t3, (0x00AAAAAE & 0xFFFF) # ori $t3, $t3, 0xaaae
@@ -466,17 +466,17 @@ func_00000650:
     sw    $zero, %lo(D_A4800018)($at)
     lui   $at, %hi(D_A450000C) # $at, 0xa450
     sw    $zero, %lo(D_A450000C)($at)
-    lui   $at, 0xa430
+    lui   $at, %hi(D_A4300000)
     li    $t1, 2048
-    sw    $t1, ($at)
+    sw    $t1, %lo(D_A4300000)($at)
     li    $t1, 2
     lui   $at, %hi(D_A4600010) # $at, 0xa460
-    lui   $t0, %hi(D_A0000008) # $t0, 0xa000
+    lui   $t0, (0xA0000300 >> 16) # $t0, 0xa000
     ori   $t0, (0xA0000300 & 0xFFFF) # ori $t0, $t0, 0x300
     sw    $t1, %lo(D_A4600010)($at)
-    sw    $s7, %lo(D_A0000014)($t0)
-    sw    $s5, %lo(D_A000000C)($t0)
-    sw    $s3, %lo(D_A0000004)($t0)
+    sw    $s7, 0x14($t0)
+    sw    $s5, 0xc($t0)
+    sw    $s3, 0x4($t0)
     beqz  $s3, .L000006E8
      sw    $s4, ($t0)
     lui   $t1, 0xa600
@@ -486,9 +486,9 @@ func_00000650:
     lui   $t1, 0xb000
     addiu $t1, $t1, 0
 .L000006F0:
-    sw    $t1, %lo(D_A0000008)($t0)
-    lui   $t0, 0xa400
-    addiu $t0, $t0, 0
+    sw    $t1, 0x8($t0)
+    lui   $t0, %hi(D_A4000000)
+    addiu $t0, %lo(D_A4000000)
     addi  $t1, $t0, 0x1000
 .L00000700:
     addiu $t0, $t0, 4
@@ -575,6 +575,7 @@ func_04000778:
     lw    $fp, 0x60($sp)
     jr    $ra
      addiu $sp, $sp, 0xa0
+
 func_04000880:
     addiu $sp, $sp, -0x20
     sw    $ra, 0x1c($sp)
@@ -605,7 +606,7 @@ func_04000880:
     subu  $a0, $a0, $t3
     sll   $a0, $a0, 1
     jal   func_04000980
-     addiu $a0, $a0, -0x370
+     addiu $a0, $a0, -0x370 # compute (t3 - 40) * 22
     b     .L000008C0
      lw    $ra, 0x1c($sp)
     move  $v0, $zero
@@ -649,6 +650,7 @@ func_0400090C:
     addiu $sp, $sp, 0x28
     jr    $ra
      nop
+
 func_04000980:
     addiu $sp, $sp, -0x28
     sw    $ra, 0x1c($sp)
@@ -737,8 +739,8 @@ func_04000A40:
     li    $k1, 1
     bne   $a1, $k1, .L00000A80
      sw    $t7, ($s5)
-    lui   $k0, 0xa430
-    sw    $zero, ($k0)
+    lui   $k0, %hi(D_A4300000)
+    sw    $zero, %lo(D_A4300000)($k0)
 .L00000A80:
     lw    $ra, 0x1c($sp)
     addiu $sp, $sp, 0x28
@@ -748,35 +750,35 @@ func_04000A40:
 func_04000AD0:
     addiu $sp, $sp, -0x28
     sw    $ra, 0x1c($sp)
-    li    $k0, 8192
-    lui   $k1, 0xa430
-    sw    $k0, ($k1)
+    li    $k0, 0x2000
+    lui   $k1, %hi(D_A4300000)
+    sw    $k0, %lo(D_A4300000)($k1)
     move  $fp, $zero
     lw    $fp, ($s5)
-    li    $k0, 4096
-    sw    $k0, ($k1)
-    li    $k1, 64
+    li    $k0, 0x1000
+    sw    $k0, %lo(D_A4300000)($k1)
+    li    $k1, 0x40
     and   $k1, $k1, $fp
     srl   $k1, $k1, 6
     move  $k0, $zero
     or    $k0, $k0, $k1
-    li    $k1, 16384
+    li    $k1, 0x4000
     and   $k1, $k1, $fp
     srl   $k1, $k1, 0xd
     or    $k0, $k0, $k1
-    lui   $k1, 0x40
+    li    $k1, 0x400000
     and   $k1, $k1, $fp
     srl   $k1, $k1, 0x14
     or    $k0, $k0, $k1
-    li    $k1, 128
+    li    $k1, 0x80
     and   $k1, $k1, $fp
     srl   $k1, $k1, 4
     or    $k0, $k0, $k1
-    li    $k1, 32768
+    li    $k1, 0x8000
     and   $k1, $k1, $fp
     srl   $k1, $k1, 0xb
     or    $k0, $k0, $k1
-    lui   $k1, 0x80
+    li    $k1, 0x800000
     and   $k1, $k1, $fp
     srl   $k1, $k1, 0x12
     or    $k0, $k0, $k1

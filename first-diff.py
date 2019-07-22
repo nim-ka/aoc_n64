@@ -27,8 +27,7 @@ if lang is None:
             pass
     print("Assuming language " + lang)
 
-baserom = 'baserom.' + lang + '.z64'
-baseimg = baserom + '.z64'
+baseimg = 'baserom.' + lang + '.z64'
 basemap = 'sm64.' + lang + '.map'
 
 myimg = 'build/' + lang + '/sm64.' + lang + '.z64'

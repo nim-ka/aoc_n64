@@ -6057,13 +6057,10 @@ CmdRet CutsceneIntroPeach2_1(UNUSED struct LevelCamera *a)
     func_8028B16C();
 }
 
-// TODO: What is this?
 #ifdef VERSION_EU
-extern void func_eu_802EC284(int, int, int);
-
 CmdRet CutsceneIntroPeach_unkEU(UNUSED struct LevelCamera *a)
 {
-    func_eu_802EC284(0, 60, 40);
+    func_8031FFB4(0, 60, 40);
 }
 #endif
 

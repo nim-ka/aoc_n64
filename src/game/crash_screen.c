@@ -124,7 +124,7 @@ const u32 gCrashScreenFont[7*9] = {
     0x20800020,  // ..#... ..#... ...... ...... ..#... ..
 };
 
-extern s64 D_EU_80302080;
+extern u64 osClockRate;
 
 struct {
     OSThread thread;
@@ -209,14 +209,14 @@ void crash_screen_print(s32 x, s32 y, const char *fmt, ...)
     va_end(args);
 }
 
-void crash_screen_sleep(s32 arg0)
+void crash_screen_sleep(s32 ms)
 {
-    u64 sp18 = arg0 * 1000LL * D_EU_80302080 / 1000000ULL;
+    u64 cycles = ms * 1000LL * osClockRate / 1000000ULL;
     osSetTime(0);
-    while (osGetTime() < sp18) {}
+    while (osGetTime() < cycles) {}
 }
 
-void crash_screen_print_float_reg(s32 arg0, s32 arg1, s32 regNum, void *addr)
+void crash_screen_print_float_reg(s32 x, s32 y, s32 regNum, void *addr)
 {
     u32 bits;
     s32 exponent;
@@ -225,24 +225,24 @@ void crash_screen_print_float_reg(s32 arg0, s32 arg1, s32 regNum, void *addr)
     exponent = ((bits & 0x7f800000U) >> 0x17) - 0x7f;
     if ((exponent >= -0x7e && exponent <= 0x7f) || bits == 0)
     {
-        crash_screen_print(arg0, arg1, "F%02d:%.3e", regNum, *(f32 *)addr);
+        crash_screen_print(x, y, "F%02d:%.3e", regNum, *(f32 *)addr);
     }
     else
     {
-        crash_screen_print(arg0, arg1, "F%02d:---------", regNum);
+        crash_screen_print(x, y, "F%02d:---------", regNum);
     }
 }
 
-void crash_screen_print_fpcsr(s32 arg0)
+void crash_screen_print_fpcsr(u32 fpcsr)
 {
     s32 i;
     u32 bit;
 
     bit = 1 << 17;
-    crash_screen_print(30, 155, "FPCSR:%08XH", arg0);
+    crash_screen_print(30, 155, "FPCSR:%08XH", fpcsr);
     for (i = 0; i < 6; i++)
     {
-        if (arg0 & bit)
+        if (fpcsr & bit)
         {
             crash_screen_print(132, 155, "(%s)", gFpcsrDesc[i]);
             return;

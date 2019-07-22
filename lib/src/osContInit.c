@@ -29,10 +29,10 @@ s32 osContInit(OSMesgQueue *mq, u8 *a1, OSContStatus *status)
     }
     D_80334810 = 1;
     currentTime = osGetTime();
-    if (0x0007A120 * osClockRate / 1000000 > currentTime)
+    if (500000 * osClockRate / 1000000 > currentTime)
     {
         osCreateMesgQueue(&sp38, &mesg, 1);
-        osSetTimer(&sp50, 0x0007A120 * osClockRate / 1000000 - currentTime, 0, &sp38, &mesg);
+        osSetTimer(&sp50, 500000 * osClockRate / 1000000 - currentTime, 0, &sp38, &mesg);
         osRecvMesg(&sp38, &mesg, OS_MESG_BLOCK);
     }
     _osCont_numControllers = 4; //TODO: figure out what it means

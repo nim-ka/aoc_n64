@@ -49,8 +49,15 @@ struct MainMenuSaveData
     u32 coinScoreAges[NUM_SAVE_FILES];
     u16 soundMode;
 
-    // Pad to match the EEPROM size of 0x200
-    u8 filler[EEPROM_SIZE / 2 - 6 - NUM_SAVE_FILES * (4 + sizeof(struct SaveFile))];
+#ifdef VERSION_EU
+    u16 language;
+#define SUBTRAHEND 8
+#else
+#define SUBTRAHEND 6
+#endif
+
+    // Pad to match the EEPROM size of 0x200 (10 bytes on JP/US, 8 bytes on EU)
+    u8 filler[EEPROM_SIZE / 2 - SUBTRAHEND - NUM_SAVE_FILES * (4 + sizeof(struct SaveFile))];
 
     struct SaveBlockSignature signature;
 };
@@ -731,20 +738,16 @@ void save_file_move_cap_to_default_location(void)
 }
 
 #ifdef VERSION_EU
-extern u16 gLanguage;
-extern s8 D_EU_80309765;
-extern void func_eu_8026A1FC(void);
-
 void eu_set_language(u16 language)
 {
-    gLanguage = language;
-    D_EU_80309765 = 1;
-    func_eu_8026A1FC();
+    gSaveBuffer.menuData[0].language = language;
+    gMainMenuDataModified = TRUE;
+    save_main_menu_data();
 }
 
 u16 eu_get_language(void)
 {
-    return gLanguage;
+    return gSaveBuffer.menuData[0].language;
 }
 #endif
 
