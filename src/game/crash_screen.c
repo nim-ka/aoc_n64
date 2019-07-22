@@ -6,7 +6,7 @@
 
 #ifdef VERSION_EU
 
-s32 func_eu_802EE9A0(void *(*writer)(void *, const char *, u32), void *state, const char *fmt, va_list args);
+s32 _Printf(char *(*prout)(char *, const char *, size_t), char *dst, const char *fmt, va_list args);
 
 const char *const gCauseDesc[18] = {
     "Interrupt",
@@ -179,9 +179,9 @@ void crash_screen_draw_glyph(s32 x, s32 y, s32 glyph)
     }
 }
 
-static void *write_to_buf(void *buffer, const char *data, u32 size)
+static char *write_to_buf(char *buffer, const char *data, size_t size)
 {
-    return (u8 *) memcpy(buffer, data, size) + size;
+    return (char *) memcpy(buffer, data, size) + size;
 }
 
 void crash_screen_print(s32 x, s32 y, const char *fmt, ...)
@@ -192,7 +192,7 @@ void crash_screen_print(s32 x, s32 y, const char *fmt, ...)
     va_list args;
 
     va_start(args, fmt);
-    if (func_eu_802EE9A0(write_to_buf, buf, fmt, args) > 0)
+    if (_Printf(write_to_buf, buf, fmt, args) > 0)
     {
         ptr = buf;
         while (*ptr)

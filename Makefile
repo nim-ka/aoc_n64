@@ -358,6 +358,12 @@ $(BUILD_DIR)/lib/src/string.o: OPT_FLAGS := -O2
 $(BUILD_DIR)/lib/src/gu%.o: OPT_FLAGS := -O3
 $(BUILD_DIR)/lib/src/al%.o: OPT_FLAGS := -O3
 
+ifeq ($(VERSION),eu)
+$(BUILD_DIR)/lib/src/_Litob.o: OPT_FLAGS := -O3
+$(BUILD_DIR)/lib/src/_Ldtob.o: OPT_FLAGS := -O3
+$(BUILD_DIR)/lib/src/_Printf.o: OPT_FLAGS := -O3
+endif
+
 # Rebuild files with '#ifdef NON_MATCHING' when that macro changes.
 $(NON_MATCHING_O_FILES): $(NON_MATCHING_DEP).$(NON_MATCHING)
 $(NON_MATCHING_DEP).$(NON_MATCHING):
