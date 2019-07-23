@@ -15,4 +15,4 @@ Freeware products are not supported by Silicon Graphics or any of its support pr
 
 ----
 
-**NOTE:** This license was copied verbatum from https://web.archive.org/web/19991008090202/http://toolbox.sgi.com/TasteOfDT/public/freeware1.0/legal_notice.html .
+**NOTE:** This license was copied verbatim from https://web.archive.org/web/19991008090202/http://toolbox.sgi.com/TasteOfDT/public/freeware1.0/legal_notice.html .
