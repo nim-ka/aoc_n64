@@ -105,7 +105,7 @@ static s32 beh_cmd_unhide(void)
 
 static s32 beh_cmd_graph_clear(void)
 {
-    gCurrentObject->header.gfx.node.flags &= ~GRAPH_RENDER_01;
+    gCurrentObject->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
     gBehCommand++;
     return BEH_CONTINUE;
 }
@@ -499,7 +499,7 @@ static s32 beh_cmd_obj_animate(void)
     s32 animIndex = (u8)((gBehCommand[0] >> 16) & 0xFF);
     u32* animations = gCurrentObject->oAnimations;
 
-    func_8037C658((struct GraphNodeObject *) gCurrentObject, &animations[animIndex]);
+    geo_obj_init_animation((struct GraphNodeObject *) gCurrentObject, &animations[animIndex]);
 
     gBehCommand++;
     return BEH_CONTINUE;
@@ -898,12 +898,12 @@ void cur_object_exec_behavior(void)
         {
             if (distanceFromMario > gCurrentObject->oDrawingDistance)
             {
-                gCurrentObject->header.gfx.node.flags &= ~GRAPH_RENDER_01;
+                gCurrentObject->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
                 gCurrentObject->activeFlags |= ACTIVE_FLAG_FAR_AWAY;
             }
             else if (gCurrentObject->oHeldState == HELD_FREE)
             {
-                gCurrentObject->header.gfx.node.flags |= GRAPH_RENDER_01;
+                gCurrentObject->header.gfx.node.flags |= GRAPH_RENDER_ACTIVE;
                 gCurrentObject->activeFlags &= ~ACTIVE_FLAG_FAR_AWAY;
             }
         }

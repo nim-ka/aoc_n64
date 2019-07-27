@@ -193,7 +193,7 @@ struct ObjectWarpNode *func_8027A478(struct Object *o)
 void func_8027A4C4(void)
 {
     struct ObjectWarpNode *sp24;
-    struct Object *sp20 = (struct Object *) D_8038BD88.children;
+    struct Object *sp20 = (struct Object *) gObjParentGraphNode.children;
 
     do
     {
@@ -206,7 +206,7 @@ void func_8027A4C4(void)
                 sp24->object = sp1C;
         }
     }
-    while ((sp20 = (struct Object *)sp20->header.gfx.node.next) != (struct Object *) D_8038BD88.children);
+    while ((sp20 = (struct Object *)sp20->header.gfx.node.next) != (struct Object *) gObjParentGraphNode.children);
 }
 
 void clear_areas(void)
@@ -248,7 +248,7 @@ void func_8027A7C4(void)
 
     if (gCurrentArea != NULL)
     {
-        func_8037C360(gCurrentArea->unk04, 2);
+        geo_call_global_function_nodes(gCurrentArea->unk04, GEO_CONTEXT_AREA_UNLOAD);
         gCurrentArea = NULL;
         gWarpTransition.isActive = 0;
     }
@@ -257,7 +257,7 @@ void func_8027A7C4(void)
     {
         if (gAreaData[i].unk04 != NULL)
         {
-            func_8037C360(gAreaData[i].unk04, 4);
+            geo_call_global_function_nodes(gAreaData[i].unk04, GEO_CONTEXT_AREA_INIT);
             gAreaData[i].unk04 = NULL;
         }
     }
@@ -283,7 +283,7 @@ void load_area(s32 index)
             spawn_objects_from_info(0, gCurrentArea->objectSpawnInfos);
         
         func_8027A4C4();
-        func_8037C360(gCurrentArea->unk04, 3);
+        geo_call_global_function_nodes(gCurrentArea->unk04, GEO_CONTEXT_AREA_LOAD);
     }
 }
 
@@ -292,7 +292,7 @@ void func_8027A998(void)
     if (gCurrentArea != NULL)
     {
         unload_objects_from_area(0, gCurrentArea->index);
-        func_8037C360(gCurrentArea->unk04, 2);
+        geo_call_global_function_nodes(gCurrentArea->unk04, GEO_CONTEXT_AREA_UNLOAD);
 
         gCurrentArea->flags = 0;
         gCurrentArea = NULL;
@@ -427,7 +427,7 @@ void render_game(void)
 {
     if (gCurrentArea != NULL && !gWarpTransition.pauseRendering)
     {
-        func_8027DB80(gCurrentArea->unk04, D_8032CE74, D_8032CE78, gFBSetColor);
+        geo_process_root(gCurrentArea->unk04, D_8032CE74, D_8032CE78, gFBSetColor);
         
         gSPViewport(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_8032CF00));
         

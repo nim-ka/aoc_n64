@@ -56,7 +56,7 @@ static void platform_on_track_mario_not_on_platform(void)
         if (obj_wait_then_blink(150, 40))
         {
             platform_on_track_reset();
-            o->header.gfx.node.flags &= ~GRAPH_RENDER_10;
+            o->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
         }
     }
 }
@@ -271,7 +271,7 @@ static void platform_on_track_act_move_along_track(void)
     else
     {
         o->oTimer = 0;
-        o->header.gfx.node.flags &= ~GRAPH_RENDER_10;
+        o->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
     }
 }
 

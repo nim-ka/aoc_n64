@@ -296,7 +296,7 @@ s32 update_objects_starting_at(
     {
         gCurrentObject = (struct Object *)firstObj;
 
-        gCurrentObject->header.gfx.node.flags |= GRAPH_RENDER_20;
+        gCurrentObject->header.gfx.node.flags |= GRAPH_RENDER_HAS_ANIMATION;
         cur_object_exec_behavior();
 
         firstObj = firstObj->next;
@@ -353,12 +353,12 @@ s32 update_objects_during_time_stop(
         // Only update if unfrozen
         if (unfrozen)
         {
-            gCurrentObject->header.gfx.node.flags |= GRAPH_RENDER_20;
+            gCurrentObject->header.gfx.node.flags |= GRAPH_RENDER_HAS_ANIMATION;
             cur_object_exec_behavior();
         }
         else
         {
-            gCurrentObject->header.gfx.node.flags &= ~GRAPH_RENDER_20;
+            gCurrentObject->header.gfx.node.flags &= ~GRAPH_RENDER_HAS_ANIMATION;
         }
 
         firstObj = firstObj->next;
@@ -528,10 +528,10 @@ void spawn_objects_from_info(UNUSED s32 unused, struct SpawnInfo *spawnInfo)
             if (spawnInfo->behaviorArg & 0x01)
             {
                 gMarioObject = object;
-                func_8037C138(&object->header.gfx.node);
+                geo_make_first_child(&object->header.gfx.node);
             }
 
-            func_8037C51C((struct GraphNodeObject *)object, spawnInfo);
+            geo_obj_init_spawninfo((struct GraphNodeObject *)object, spawnInfo);
 
             object->oPosX = spawnInfo->startPos[0];
             object->oPosY = spawnInfo->startPos[1];
@@ -585,7 +585,7 @@ void clear_objects(void)
     for (i = 0; i < OBJECT_POOL_CAPACITY; i++)
     {
         gObjectPool[i].activeFlags = ACTIVE_FLAGS_DEACTIVATED;
-        func_8037C3D0(&gObjectPool[i].header.gfx);
+        geo_reset_object_node(&gObjectPool[i].header.gfx);
     }
 
     gObjectMemoryPool = mem_pool_init(0x800, MEMORY_POOL_LEFT);

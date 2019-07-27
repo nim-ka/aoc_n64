@@ -3,17 +3,29 @@
 
 #include "engine/graph_node.h"
 
-extern struct GraphNodeScreenArea *D_8032CF90;
-extern struct GraphNodeToggleZBuffer *D_8032CF94;
-extern struct GraphNodeCamFrustum *D_8032CF98;
-extern struct GraphNode114 *D_8032CF9C;
-extern struct GraphNodeObject *D_8032CFA0;
-extern struct GraphNode12E *D_8032CFA4;
+extern struct GraphNodeRoot *gCurGraphNodeRoot;
+extern struct GraphNodeMasterList *gCurGraphNodeMasterList;
+extern struct GraphNodePerspective *gCurGraphNodeCamFrustum;
+extern struct GraphNodeCamera *gCurGraphNodeCamera;
+extern struct GraphNodeObject *gCurGraphNodeObject;
+extern struct GraphNodeHeldObject *gCurGraphNodeHeldObject;
 extern u16 gAreaUpdateCounter;
 
+// after processing an object, the type is reset to this
+#define ANIM_TYPE_NONE                  0
 
+// Not all parts have full animation: to save space, some animations only
+// have xz, y, or no translation at all. All animations have rotations though
+#define ANIM_TYPE_TRANSLATION           1
+#define ANIM_TYPE_VERTICAL_TRANSLATION  2
+#define ANIM_TYPE_LATERAL_TRANSLATION   3
+#define ANIM_TYPE_NO_TRANSLATION        4
 
-extern void func_8027D8F8(struct GraphNode *rootGraphNode);
-extern void func_8027DB80();
+// Every animation includes rotation, after processing any of the above
+// translation types the type is set to this
+#define ANIM_TYPE_ROTATION              5
+
+void geo_process_node_and_siblings(struct GraphNode *rootGraphNode);
+void geo_process_root();
 
 #endif // RENDERING_GRAPH_NODE_H

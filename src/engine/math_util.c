@@ -165,7 +165,7 @@ void mtxf_translate(f32 dest[4][4], Vec3f b)
     dest[3][2] = b[2];
 }
 
-void func_80378F84(f32 mtx[4][4], Vec3f b, Vec3f c, s16 d)
+void mtxf_lookat(f32 mtx[4][4], Vec3f from, Vec3f to, s16 roll)
 {
     register f32 f20;
     f32 sp48;
@@ -180,20 +180,20 @@ void func_80378F84(f32 mtx[4][4], Vec3f b, Vec3f c, s16 d)
     f32 sp24;
     f32 sp20;
 
-    sp48 = c[0] - b[0];
-    sp44 = c[2] - b[2];
+    sp48 = to[0] - from[0];
+    sp44 = to[2] - from[2];
 
     f20 = -1.0 / sqrtf(sp48 * sp48 + sp44 * sp44);
     sp48 *= f20;
     sp44 *= f20;
 
-    sp3C = coss(d);
-    sp40 = sins(d) * sp44;
-    sp38 = -sins(d) * sp48;
+    sp3C = coss(roll);
+    sp40 = sins(roll) * sp44;
+    sp38 = -sins(roll) * sp48;
 
-    sp34 = c[0] - b[0];
-    sp30 = c[1] - b[1];
-    sp2C = c[2] - b[2];
+    sp34 = to[0] - from[0];
+    sp30 = to[1] - from[1];
+    sp2C = to[2] - from[2];
 
     f20 = -1.0 / sqrtf(sp34 * sp34 + sp30 * sp30 + sp2C * sp2C);
     sp34 *= f20;
@@ -222,17 +222,17 @@ void func_80378F84(f32 mtx[4][4], Vec3f b, Vec3f c, s16 d)
     mtx[0][0] = sp28;
     mtx[1][0] = sp24;
     mtx[2][0] = sp20;
-    mtx[3][0] = -(b[0] * sp28 + b[1] * sp24 + b[2] * sp20);
+    mtx[3][0] = -(from[0] * sp28 + from[1] * sp24 + from[2] * sp20);
 
     mtx[0][1] = sp40;
     mtx[1][1] = sp3C;
     mtx[2][1] = sp38;
-    mtx[3][1] = -(b[0] * sp40 + b[1] * sp3C + b[2] * sp38);
+    mtx[3][1] = -(from[0] * sp40 + from[1] * sp3C + from[2] * sp38);
 
     mtx[0][2] = sp34;
     mtx[1][2] = sp30;
     mtx[2][2] = sp2C;
-    mtx[3][2] = -(b[0] * sp34 + b[1] * sp30 + b[2] * sp2C);
+    mtx[3][2] = -(from[0] * sp34 + from[1] * sp30 + from[2] * sp2C);
 
     mtx[0][3] = 0;
     mtx[1][3] = 0;
@@ -310,7 +310,7 @@ void mtxf_rotate_xyz_and_translate(f32 dest[4][4], Vec3f b, Vec3s c)
     dest[3][3] = 1;
 }
 
-void func_80379798(f32 dest[4][4], f32 mtx[4][4], Vec3f c, s16 angle)
+void mtxf_billboard(f32 dest[4][4], f32 mtx[4][4], Vec3f c, s16 angle)
 {
     dest[0][0] = coss(angle);
     dest[0][1] = sins(angle);
@@ -726,7 +726,7 @@ s32 func_8037AFE8(Vec3f a)
     s32 i;
     s32 sp28 = 0;
 
-    vec3f_copy(a, gVec3fZero);
+    vec3f_copy(a, gCurGeoPos);
     func_8037ABEC(sp30, D_8038BC94, D_8038BC98);
     for (i = 0; i < 4; i++)
     {

@@ -5,8 +5,8 @@ Gfx *Geo18_802BA2B0(s32 run, struct GraphNode* node, UNUSED f32 mtx[4][4])
     struct Object* sp4;
     if(run == TRUE)
     {
-        sp4 = (struct Object*)D_8032CFA0;
-        ((struct GraphNodeScaleOptionalDisplayList *)node->next)->scale = sp4->oUnknownUnkF4_F32;
+        sp4 = (struct Object*)gCurGraphNodeObject;
+        ((struct GraphNodeScale *)node->next)->scale = sp4->oUnknownUnkF4_F32;
     }
     return 0;
 }

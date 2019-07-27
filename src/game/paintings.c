@@ -758,7 +758,7 @@ struct Struct802D4E04
     u32 unk18; // the upper half is the painting's id
 };
 
-void func_802D4E04(struct GraphNode12A *a, struct PaintingData *b)
+void func_802D4E04(struct GraphNodeGenerated *a, struct PaintingData *b)
 {
     switch (b->brightness)
     {
@@ -842,9 +842,9 @@ void horizontal_painting_ripple(struct PaintingData *painting, struct PaintingDa
 
 Gfx *Geo18_802D5B98(s32 run, struct GraphNode *node, UNUSED s32 c)
 {
-    struct GraphNode12A *sp2C = (struct GraphNode12A *)node;
-    s32 sp28 = (sp2C->unk18 >> 8) & 0xFF;
-    s32 id = sp2C->unk18 & 0xFF;
+    struct GraphNodeGenerated *sp2C = (struct GraphNodeGenerated *)node;
+    s32 sp28 = (sp2C->parameter >> 8) & 0xFF;
+    s32 id = sp2C->parameter & 0xFF;
     Gfx *sp20 = NULL;
     struct PaintingData **paintingGroup = paintingGroups[sp28];
     struct PaintingData *painting = segmented_to_virtual(paintingGroup[id]);

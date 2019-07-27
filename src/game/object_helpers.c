@@ -55,10 +55,10 @@ Gfx *Geo18_8029D890(s32 run, UNUSED struct GraphNode *node, f32 mtx[4][4])
 
     if (run == TRUE)
     {
-        sp1C = (struct Object *)D_8032CFA0; // TODO: change global type to Object pointer
+        sp1C = (struct Object *)gCurGraphNodeObject; // TODO: change global type to Object pointer
         if (sp1C->prevObj)
         {
-            func_8029D704(sp20, mtx, D_8032CF9C->unk34);
+            func_8029D704(sp20, mtx, gCurGraphNodeCamera->matrixPtr);
             func_8029D558(sp20, sp1C->prevObj);
             func_8029EA0C(sp1C->prevObj);
         }
@@ -70,21 +70,21 @@ Gfx *Geo18_8029D924(s32 run, struct GraphNode *node, UNUSED s32 sp48)
 {
     Gfx *sp3C, *sp38;
     struct Object *sp34;
-    struct GraphNode12A *sp30;
-    UNUSED struct GraphNode12A *sp2C;
+    struct GraphNodeGenerated *sp30;
+    UNUSED struct GraphNodeGenerated *sp2C;
     s32 sp28;
 
     sp3C = NULL;
 
     if (run == TRUE)
     {
-        sp34 = (struct Object *) D_8032CFA0; // TODO: change this to object pointer?
-        sp30 = (struct GraphNode12A *)node;
-        sp2C = (struct GraphNode12A *)node;
+        sp34 = (struct Object *) gCurGraphNodeObject; // TODO: change this to object pointer?
+        sp30 = (struct GraphNodeGenerated *)node;
+        sp2C = (struct GraphNodeGenerated *)node;
 
-        if (D_8032CFA4)
+        if (gCurGraphNodeHeldObject)
         {
-            sp34 = (struct Object *) D_8032CFA4->unk1C; // TODO: change this to object pointer?
+            sp34 = (struct Object *) gCurGraphNodeHeldObject->objNode; // TODO: change this to object pointer?
         }
 
         sp28 = sp34->oOpacity;
@@ -94,7 +94,7 @@ Gfx *Geo18_8029D924(s32 run, struct GraphNode *node, UNUSED s32 sp48)
 
         if (sp28 == 0xFF)
         {
-            if (sp30->unk18 == 20)
+            if (sp30->parameter == 20)
             {
                 sp30->fnNode.node.flags = 0x600 | (sp30->fnNode.node.flags & 0xFF);
             }
@@ -107,7 +107,7 @@ Gfx *Geo18_8029D924(s32 run, struct GraphNode *node, UNUSED s32 sp48)
         }
         else
         {
-            if (sp30->unk18 == 20)
+            if (sp30->parameter == 20)
             {
                 sp30->fnNode.node.flags = 0x600 | (sp30->fnNode.node.flags & 0xFF);
             }
@@ -119,7 +119,7 @@ Gfx *Geo18_8029D924(s32 run, struct GraphNode *node, UNUSED s32 sp48)
             sp34->oAnimState = 1;
 
 #ifdef VERSION_JP
-            if (sp30->unk18 == 10)
+            if (sp30->parameter == 10)
             {
                 if (gDebugInfo[DEBUG_PAGE_ENEMYINFO][3])
                 {
@@ -141,7 +141,7 @@ Gfx *Geo18_8029D924(s32 run, struct GraphNode *node, UNUSED s32 sp48)
             // the debug info check was removed in US. so we need to
             // perform the only necessary check instead of the debuginfo
             // one.
-            if (sp30->unk18 != 10)
+            if (sp30->parameter != 10)
             {
                 if (sp34->activeFlags & ACTIVE_FLAG_UNK7)
                 {
@@ -170,15 +170,15 @@ s32 geo_switch_anim_state(s32 run, struct GraphNode *node)
 
     if (run == TRUE)
     {
-        obj = (struct Object *)D_8032CFA0; // TODO: change global type to Object pointer
+        obj = (struct Object *)gCurGraphNodeObject; // TODO: change global type to Object pointer
         
         // move to a local var because GraphNodes are passed in all geo functions.
         // cast the pointer.
         switchCase = (struct GraphNodeSwitchCase *)node;
 
-        if (D_8032CFA4 != 0)
+        if (gCurGraphNodeHeldObject != 0)
         {
-            obj = (struct Object *)D_8032CFA4->unk1C;
+            obj = (struct Object *)gCurGraphNodeHeldObject->objNode;
         }
 
         // if the case is greater than the number of cases, set to 0 to avoid overflowing
@@ -189,7 +189,7 @@ s32 geo_switch_anim_state(s32 run, struct GraphNode *node)
         }
 
         // assign the case number for execution.
-        switchCase->result = obj->oAnimState;
+        switchCase->selectedCase = obj->oAnimState;
     }
 
     return 0;
@@ -200,14 +200,14 @@ s32 geo_switch_area(s32 run, struct GraphNode *node)
 {
     s16 sp26;
     struct Surface *sp20;
-    UNUSED struct Object *sp1C = (struct Object *)D_8032CFA0; // TODO: change global type to Object pointer
+    UNUSED struct Object *sp1C = (struct Object *)gCurGraphNodeObject; // TODO: change global type to Object pointer
     struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
 
     if (run == TRUE)
     {
         if (gMarioObject == NULL)
         {
-            switchCase->result = 0;
+            switchCase->selectedCase = 0;
         }
         else
         {
@@ -223,14 +223,14 @@ s32 geo_switch_area(s32 run, struct GraphNode *node)
 
                 if (sp26 >= 0)
                 {
-                    switchCase->result = sp26;
+                    switchCase->selectedCase = sp26;
                 }
             }
         }
     }
     else
     {
-        switchCase->result = 0;
+        switchCase->selectedCase = 0;
     }
 
     return 0;
@@ -631,11 +631,11 @@ struct Object *spawn_object_at_origin(
     obj->header.gfx.unk18 = parent->header.gfx.unk18;
     obj->header.gfx.unk19 = parent->header.gfx.unk18;
 
-    func_8037C448(
+    geo_obj_init(
         (struct GraphNodeObject *)&obj->header.gfx,
         gLoadedGraphNodes[model],
-        gVec3fZero,
-        D_80385FDC);
+        gCurGeoPos,
+        gCurGeoAngle);
 
     return obj;
 }
@@ -784,7 +784,7 @@ void Unknown8029EA34(struct Object *sp20, u32 sp24)
     u32 *sp1C;
 
     sp1C = o->oAnimations;
-    func_8037C658(&sp20->header.gfx, sp24 + sp1C);
+    geo_obj_init_animation(&sp20->header.gfx, sp24 + sp1C);
 }
 
 /**
@@ -873,13 +873,13 @@ void obj_scale(f32 scale)
 void SetObjAnimation(s32 arg0)
 {
     u32 *sp1C = o->oAnimations;
-    func_8037C658(&o->header.gfx, sp1C + arg0);
+    geo_obj_init_animation(&o->header.gfx, sp1C + arg0);
 }
 
 void set_obj_animation_and_sound_state(s32 arg0)
 {
     u32 *sp1C = o->oAnimations;
-    func_8037C658(&o->header.gfx, sp1C + arg0);
+    geo_obj_init_animation(&o->header.gfx, sp1C + arg0);
     o->oSoundStateID = arg0;
 }
 
@@ -887,7 +887,7 @@ void func_8029ED98(u32 a0, f32 a1)
 {
     u32 *sp1C = o->oAnimations;
     s32 sp18 = (s32) (a1 * 65536.0f);
-    func_8037C708(&o->header.gfx, sp1C + a0, sp18);
+    geo_obj_init_animation_accel(&o->header.gfx, sp1C + a0, sp18);
     o->oSoundStateID = a0;
 }
 
@@ -895,40 +895,40 @@ void func_8029EE20(struct Object *a0, u32 *a1, u32 a2)
 {
     u32 *sp1C = a1;
     a0->oAnimations = a1;
-    func_8037C658(&a0->header.gfx, sp1C + a2);
+    geo_obj_init_animation(&a0->header.gfx, sp1C + a2);
     a0->oSoundStateID = a2;
 }
 
 void obj_enable_rendering_and_become_tangible(struct Object *a0)
 {
-    a0->header.gfx.node.flags |= GRAPH_RENDER_01;
+    a0->header.gfx.node.flags |= GRAPH_RENDER_ACTIVE;
     a0->oIntangibleTimer = 0;
 }
 
 void obj_enable_rendering(void)
 {
-    o->header.gfx.node.flags |= GRAPH_RENDER_01;
+    o->header.gfx.node.flags |= GRAPH_RENDER_ACTIVE;
 }
 
 void obj_disable_rendering_and_become_intangible(struct Object *a0)
 {
-    a0->header.gfx.node.flags &= ~GRAPH_RENDER_01;
+    a0->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
     a0->oIntangibleTimer = -1;
 }
 
 void obj_disable_rendering(void)
 {
-    o->header.gfx.node.flags &= ~GRAPH_RENDER_01;
+    o->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
 }
 
 void obj_unhide(void)
 {
-    o->header.gfx.node.flags &= ~GRAPH_RENDER_10;
+    o->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
 }
 
 void obj_hide(void)
 {
-    o->header.gfx.node.flags |= GRAPH_RENDER_10;
+    o->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
 }
 
 void obj_set_pos_relative(struct Object *other, f32 dleft, f32 dy, f32 dforward)
@@ -2659,7 +2659,7 @@ s32 obj_wait_then_blink(s32 timeUntilBlinking, s32 numBlinks)
     {
         if ((timeBlinking = o->oTimer - timeUntilBlinking) % 2 != 0)
         {
-            o->header.gfx.node.flags |= GRAPH_RENDER_10;
+            o->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
             if (timeBlinking / 2 > numBlinks)
             {
                 done = TRUE;
@@ -2667,7 +2667,7 @@ s32 obj_wait_then_blink(s32 timeUntilBlinking, s32 numBlinks)
         }
         else
         {
-            o->header.gfx.node.flags &= ~GRAPH_RENDER_10;
+            o->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
         }
     }
 
@@ -3080,9 +3080,9 @@ Gfx *Geo18_802A45E4(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
     if (run == TRUE)
     {
-        ((struct GraphNodeTranslationRotationOptionalDisplayList*)node->next)->translation[0] = 300;
-        ((struct GraphNodeTranslationRotationOptionalDisplayList*)node->next)->translation[1] = 300;
-        ((struct GraphNodeTranslationRotationOptionalDisplayList*)node->next)->translation[2] = 0;
+        ((struct GraphNodeTranslationRotation*)node->next)->translation[0] = 300;
+        ((struct GraphNodeTranslationRotation*)node->next)->translation[1] = 300;
+        ((struct GraphNodeTranslationRotation*)node->next)->translation[2] = 0;
     }
 
     return NULL;
@@ -3105,7 +3105,7 @@ s32 Unknown802A3E84(s32 a0, struct GraphNode *a1, UNUSED s32 sp8)
 
 s32 obj_is_hidden(struct Object *a0)
 {
-    if (a0->header.gfx.node.flags & GRAPH_RENDER_10)
+    if (a0->header.gfx.node.flags & GRAPH_RENDER_INVISIBLE)
     {
         return TRUE;
     }

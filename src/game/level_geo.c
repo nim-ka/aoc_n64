@@ -17,18 +17,18 @@ Gfx *geo_exec_level(s32 run, struct GraphNode *node, f32 c[4][4])
     void *sp3C;
     Gfx *sp38 = NULL;
 
-    if (run == TRUE && D_8032CF9C != NULL)
+    if (run == TRUE  && gCurGraphNodeCamera != NULL)
     {
-        struct GraphNode12A *execNode = (struct GraphNode12A *)node;
-        u32 *params = &execNode->unk18; // accessed a s32 as 2 u16s by pointing to the variable and casting to a local struct as necessary.
+        struct GraphNodeGenerated *execNode = (struct GraphNodeGenerated *)node;
+        u32 *params = &execNode->parameter; // accessed a s32 as 2 u16s by pointing to the variable and casting to a local struct as necessary.
 
         if (GET_HIGH_U16_OF_32(*params) != gAreaUpdateCounter)
         {
-            UNUSED s32 sp2C = D_8032CF9C->unk18;
+            UNUSED struct LevelCamera *sp2C = gCurGraphNodeCamera->levelCamera;
             s32 sp28 = GET_LOW_U16_OF_32(*params);
 
-            vec3f_to_vec3s(sp40, D_8032CF9C->unk28);
-            vec3f_to_vec3s(sp48, D_8032CF9C->unk1C);
+            vec3f_to_vec3s(sp40, gCurGraphNodeCamera->to);
+            vec3f_to_vec3s(sp48, gCurGraphNodeCamera->from);
             vec3f_to_vec3s(sp50, gPlayerStatusForCamera->pos);
             sp3C = envfx_update_particles(sp28, sp50, sp40, sp48);
             if (sp3C != NULL)
@@ -46,9 +46,9 @@ Gfx *geo_exec_level(s32 run, struct GraphNode *node, f32 c[4][4])
     }
     else if (run == 4)
     {
-        vec3s_copy(sp40, D_80385FDC);
-        vec3s_copy(sp48, D_80385FDC);
-        vec3s_copy(sp50, D_80385FDC);
+        vec3s_copy(sp40, gCurGeoAngle);
+        vec3s_copy(sp48, gCurGeoAngle);
+        vec3s_copy(sp50, gCurGeoAngle);
         envfx_update_particles(0, sp50, sp40, sp48);
     }
     return sp38;
@@ -65,8 +65,8 @@ Gfx *geo_skybox_main(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx)
     }
     else if (run == TRUE)
     {
-        struct GraphNode114 *sp34 = (struct GraphNode114 *)D_8032CF90->unk20[0];
-        struct GraphNodeCamFrustum *camFrustum = (struct GraphNodeCamFrustum *)sp34->fnNode.node.parent;
+        struct GraphNodeCamera *sp34 = (struct GraphNodeCamera *)gCurGraphNodeRoot->camera[0];
+        struct GraphNodePerspective *camFrustum = (struct GraphNodePerspective *)sp34->fnNode.node.parent;
 
         gfx = func_802CF414(0, backgroundNode->background, camFrustum->fov,
             gCameraStatus.pos[0], gCameraStatus.pos[1], gCameraStatus.pos[2],

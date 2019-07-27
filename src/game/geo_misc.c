@@ -84,7 +84,7 @@ Gfx *geo_exec_inside_castle_light(
     UNUSED f32 mtx[4][4]
 ) {
     s32 flags;
-    struct GraphNode12A *generatedNode;
+    struct GraphNodeGenerated *generatedNode;
     Gfx *displayListHead = NULL;
     Gfx *displayList = NULL;
 
@@ -101,7 +101,7 @@ Gfx *geo_exec_inside_castle_light(
                 displayListHead = displayList;
             }
 
-            generatedNode = (struct GraphNode12A *) node;
+            generatedNode = (struct GraphNodeGenerated *) node;
             generatedNode->fnNode.node.flags = (
                 generatedNode->fnNode.node.flags & 0xFF
             ) | 0x500;
@@ -148,7 +148,7 @@ Gfx *geo_exec_flying_carpet_create(
 ) {
     s16 n, row, col, x, y, z, tx, ty;
     Vtx *verts;
-    struct GraphNode12A *generatedNode = (struct GraphNode12A *) node;
+    struct GraphNodeGenerated *generatedNode = (struct GraphNodeGenerated *) node;
 
     s16 *sp64 = segmented_to_virtual(&flying_carpet_static_vertex_data);
     Gfx *displayList = NULL;
@@ -201,7 +201,7 @@ Gfx *geo_exec_flying_carpet_create(
         gSPDisplayList(displayListHead++, dl_flying_carpet_end);
         gSPEndDisplayList(displayListHead);
 
-        curGraphNodeObject = (struct Object *) D_8032CFA0;
+        curGraphNodeObject = (struct Object *) gCurGraphNodeObject;
         if (gMarioObject->platform == curGraphNodeObject) {
             gFlyingCarpetState = FLYING_CARPET_MOVING_WITH_MARIO;
         } else if (curGraphNodeObject->oForwardVel != 0.0) {
@@ -230,7 +230,7 @@ Gfx *geo_exec_cake_end_screen(
     struct GraphNode *node,
     UNUSED f32 mtx[4][4]
 ) {
-    struct GraphNode12A *generatedNode = (struct GraphNode12A *) node;
+    struct GraphNodeGenerated *generatedNode = (struct GraphNodeGenerated *) node;
     Gfx *displayList = NULL;
     Gfx *displayListHead = NULL;
 

@@ -435,7 +435,7 @@ Gfx *geo_exec_movtex_box(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
     Gfx *sp40 = NULL;
     Gfx *sp3C;
     void *sp38;
-    struct GraphNode12A *sp34;
+    struct GraphNodeGenerated *sp34;
     s16 sp32;
     s16 sp30;
     s16 sp2E;
@@ -452,27 +452,27 @@ Gfx *geo_exec_movtex_box(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
             return NULL;
         else
             sp40 = sp44;
-        sp34 = (struct GraphNode12A *)node;
-        if (sp34->unk18 == 0x1205) //  jrb_movtex_intial_mist
+        sp34 = (struct GraphNodeGenerated *)node;
+        if (sp34->parameter == 0x1205) //  jrb_movtex_intial_mist
         {
             if (gCameraStatus.camFocAndPosCurrAndGoal[3][1] < 1024.0)
                 return NULL;
             if (save_file_get_star_flags(gCurrSaveFileNum - 1, 2) & 1)
                 return NULL;
         }
-        else if (sp34->unk18 == 0x0702) // hmc_movtex_toxic_maze_mist
+        else if (sp34->parameter == 0x0702) // hmc_movtex_toxic_maze_mist
         {
             gMovTextVtxColor = MOVTEXT_VTX_COLOR_YELLOW;
         }
-        else if (sp34->unk18 == 0x0851) // ssl_movtex_toxbox_quicksand_mist
+        else if (sp34->parameter == 0x0851) // ssl_movtex_toxbox_quicksand_mist
         {
             gMovTextVtxColor = MOVTEXT_VTX_COLOR_RED;
         }
-        sp38 = load_moving_texture_box(sp34->unk18);
+        sp38 = load_moving_texture_box(sp34->parameter);
         if (sp38 == NULL)
             return NULL;
         sp34->fnNode.node.flags = (sp34->fnNode.node.flags & 0xFF) | 0x700;
-        change_movtex_texture_format(sp34->unk18, &sp40);
+        change_movtex_texture_format(sp34->parameter, &sp40);
         D_8035FF70 = -1;
         for (sp28 = 0; sp28 < sp32; sp28++)
         {
@@ -624,16 +624,16 @@ Gfx *Geo18_802D1B70(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
     s32 sp24;
     s16 *sp20;
-    struct GraphNode12A *sp1C;
+    struct GraphNodeGenerated *sp1C;
     Gfx *sp18 = NULL;
 
     if (run == TRUE)
     {
         sp24 = 0;
-        sp1C = (struct GraphNode12A *)node;
+        sp1C = (struct GraphNodeGenerated *)node;
         while (gMovingTextureTris[sp24].tris != 0)
         {
-            if (gMovingTextureTris[sp24].geo_id == sp1C->unk18)
+            if (gMovingTextureTris[sp24].geo_id == sp1C->parameter)
             {
                 sp1C->fnNode.node.flags = (sp1C->fnNode.node.flags & 0xFF) | (gMovingTextureTris[sp24].layer << 8);
                 sp20 = segmented_to_virtual(gMovingTextureTris[sp24].tris);
@@ -651,16 +651,16 @@ Gfx *Geo18_802D1CDC(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
     s32 sp24;
     s16 *sp20;
-    struct GraphNode12A *sp1C;
+    struct GraphNodeGenerated *sp1C;
     Gfx *sp18 = NULL;
 
     if (run == TRUE)
     {
         sp24 = 0;
-        sp1C = (struct GraphNode12A *)node;
+        sp1C = (struct GraphNodeGenerated *)node;
         while (gMovingTextureTrisWithRot[sp24].tris != 0)
         {
-            if (gMovingTextureTrisWithRot[sp24].geo_id == sp1C->unk18)
+            if (gMovingTextureTrisWithRot[sp24].geo_id == sp1C->parameter)
             {
                 sp1C->fnNode.node.flags = (sp1C->fnNode.node.flags & 0xFF) | (gMovingTextureTrisWithRot[sp24].layer << 8);
                 sp20 = segmented_to_virtual(gMovingTextureTrisWithRot[sp24].tris);
@@ -678,16 +678,16 @@ Gfx *Geo18_802D1E48(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
     s32 sp24;
     s16 *sp20;
-    struct GraphNode12A *sp1C;
+    struct GraphNodeGenerated *sp1C;
     Gfx *sp18 = NULL;
 
     if (run == TRUE)
     {
         sp24 = 0;
-        sp1C = (struct GraphNode12A *)node;
+        sp1C = (struct GraphNodeGenerated *)node;
         while (gMovingTextureTrisWithRot[sp24].tris != 0)
         {
-            if (gMovingTextureTrisWithRot[sp24].geo_id == sp1C->unk18)
+            if (gMovingTextureTrisWithRot[sp24].geo_id == sp1C->parameter)
             {
                 sp1C->fnNode.node.flags = (sp1C->fnNode.node.flags & 0xFF) | (gMovingTextureTrisWithRot[sp24].layer << 8);
                 sp20 = segmented_to_virtual(gMovingTextureTrisWithRot[sp24].tris);
@@ -704,16 +704,16 @@ Gfx *Geo18_802D1FA8(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
     s32 sp24;
     s16 *sp20;
-    struct GraphNode12A *sp1C;
+    struct GraphNodeGenerated *sp1C;
     Gfx *sp18 = NULL;
 
     if (run == TRUE)
     {
         sp24 = 0;
-        sp1C = (struct GraphNode12A *)node;
+        sp1C = (struct GraphNodeGenerated *)node;
         while (gMovingTextureTrisWithLight[sp24].tris != 0)
         {
-            if (gMovingTextureTrisWithLight[sp24].geo_id == sp1C->unk18)
+            if (gMovingTextureTrisWithLight[sp24].geo_id == sp1C->parameter)
             {
                 sp1C->fnNode.node.flags = (sp1C->fnNode.node.flags & 0xFF) | (gMovingTextureTrisWithLight[sp24].layer << 8);
                 sp20 = segmented_to_virtual(gMovingTextureTrisWithLight[sp24].tris);
@@ -732,9 +732,9 @@ Gfx *Geo18_802D2108(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 
     if (run == TRUE)
     {
-        struct GraphNode12A *sp28 = (struct GraphNode12A *)node;
+        struct GraphNodeGenerated *sp28 = (struct GraphNodeGenerated *)node;
 
-        switch (sp28->unk18)
+        switch (sp28->parameter)
         {
         case 0x0801: sp2C = segmented_to_virtual(ssl_movtex_tris_quicksand_pit);           break;
         case 0x0802: sp2C = segmented_to_virtual(ssl_movtex_tris_pyramid_quicksand_pit);   break;

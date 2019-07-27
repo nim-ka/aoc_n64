@@ -313,7 +313,7 @@ Gfx *func_802CC2E8(void)
 
 Gfx *Geo18_802CD1E8(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    struct GraphNode12A *sp1C = (struct GraphNode12A *)node;
+    struct GraphNodeGenerated *sp1C = (struct GraphNodeGenerated *)node;
     Gfx *dlist = NULL;
 
     if (run == TRUE && gCurrentArea != NULL && gCurrentArea->camera->currPreset == CAMERA_PRESET_INSIDE_CANNON)

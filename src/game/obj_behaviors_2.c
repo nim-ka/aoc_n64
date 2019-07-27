@@ -130,7 +130,7 @@ void huge_goomba_weakly_attacked(void);
 
 static s32 obj_is_rendering_enabled(void)
 {
-    if (o->header.gfx.node.flags & GRAPH_RENDER_01)
+    if (o->header.gfx.node.flags & GRAPH_RENDER_ACTIVE)
     {
         return TRUE;
     }
@@ -2440,12 +2440,12 @@ void BehFlyGuyFlameLoop(void)
 Gfx *Geo18_8030D93C(s32 arg0, struct GraphNode *node, UNUSED void *arg2)
 {
     struct Object *sp4;
-    struct GraphNodeTranslationRotationOptionalDisplayList *sp0;
+    struct GraphNodeTranslationRotation *sp0;
 
     if (arg0 == 1)
     {
-        sp4 = (struct Object *)D_8032CFA0;
-        sp0 = (struct GraphNodeTranslationRotationOptionalDisplayList *)node->next;
+        sp4 = (struct Object *)gCurGraphNodeObject;
+        sp0 = (struct GraphNodeTranslationRotation *)node->next;
 
         sp0->translation[0] = sp4->OBJECT_FIELD_S16(0x49, 0);
         sp0->translation[1] = sp4->OBJECT_FIELD_S16(0x49, 1);
@@ -2458,12 +2458,12 @@ Gfx *Geo18_8030D93C(s32 arg0, struct GraphNode *node, UNUSED void *arg2)
 Gfx *Geo18_8030D9AC(s32 arg0, struct GraphNode *node, UNUSED void *arg2)
 {
     struct Object *sp4;
-    struct GraphNodeScaleOptionalDisplayList *sp0;
+    struct GraphNodeScale *sp0;
 
     if (arg0 == 1)
     {
-        sp4 = (struct Object *)D_8032CFA0;
-        sp0 = (struct GraphNodeScaleOptionalDisplayList *)node->next;
+        sp4 = (struct Object *)gCurGraphNodeObject;
+        sp0 = (struct GraphNodeScale *)node->next;
 
         sp0->scale = sp4->OBJECT_FIELD_S16(0x4A, 1) / 1000.0f;
     }

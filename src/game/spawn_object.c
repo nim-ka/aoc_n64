@@ -108,8 +108,8 @@ static struct Object *try_allocate_object(
         return NULL;
     }
 
-    func_8037C0BC(&nextObj->gfx.node);
-    func_8037C044(&D_8038BD88, &nextObj->gfx.node);
+    geo_remove_child(&nextObj->gfx.node);
+    geo_add_child(&gObjParentGraphNode, &nextObj->gfx.node);
 
     return (struct Object *)nextObj;
 }
@@ -221,11 +221,11 @@ void unload_object(struct Object *obj)
 
     obj->header.gfx.throwMatrix = NULL;
     func_803206F8(obj->header.gfx.cameraToObject);
-    func_8037C0BC(&obj->header.gfx.node);
-    func_8037C044(&D_8038BD88, &obj->header.gfx.node);
+    geo_remove_child(&obj->header.gfx.node);
+    geo_add_child(&gObjParentGraphNode, &obj->header.gfx.node);
 
     obj->header.gfx.node.flags &= ~GRAPH_RENDER_BILLBOARD;
-    obj->header.gfx.node.flags &= ~GRAPH_RENDER_01;
+    obj->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
 
     deallocate_object(&gFreeObjectList, &obj->header);
 }
@@ -317,7 +317,7 @@ static struct Object *allocate_object(struct ObjectNode *objList)
     obj->oDistanceToMario = 19000.0f;
     obj->oRoom = -1;
 
-    obj->header.gfx.node.flags &= ~GRAPH_RENDER_10;
+    obj->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
     obj->header.gfx.pos[0] = -10000.0f;
     obj->header.gfx.pos[1] = -10000.0f;
     obj->header.gfx.pos[2] = -10000.0f;

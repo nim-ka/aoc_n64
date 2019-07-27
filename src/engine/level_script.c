@@ -353,7 +353,7 @@ static void level_cmd_1A(void)
 
 static void level_cmd_init_level(void)
 {
-    init_graph_node_start(NULL, (struct GraphNodeStart *) &D_8038BD88);
+    init_graph_node_start(NULL, (struct GraphNodeStart *) &gObjParentGraphNode);
     clear_objects();
     clear_areas();
     main_pool_push_state();
@@ -408,16 +408,16 @@ static void level_cmd_begin_area(void)
 
     if (areaIndex < 8)
     {
-        struct GraphNodeScreenArea *screenArea =
-            (struct GraphNodeScreenArea *) process_geo_layout(sLevelPool, geoLayoutAddr);
-        struct GraphNode114 *node = (struct GraphNode114 *) *screenArea->unk20;
+        struct GraphNodeRoot *screenArea =
+            (struct GraphNodeRoot *) process_geo_layout(sLevelPool, geoLayoutAddr);
+        struct GraphNodeCamera *node = (struct GraphNodeCamera *) *screenArea->camera;
 
         sCurrAreaIndex = areaIndex;
-        screenArea->unk14 = areaIndex;
+        screenArea->areaIndex = areaIndex;
         gAreas[areaIndex].unk04 = (struct GraphNode *) screenArea;
 
         if (node != NULL)
-            gAreas[areaIndex].camera = (struct LevelCamera *) node->unk18;
+            gAreas[areaIndex].camera = (struct LevelCamera *) node->levelCamera;
         else
             gAreas[areaIndex].camera = NULL;
     }
@@ -468,9 +468,9 @@ static void level_cmd_23(void)
     arg2.i = CMD_GET(s32, 8); // store the raw word as a union s32. this allows is to reinterpret the contents as a f32 without the value being converted implicitly.
 
     if (model < 256)
-        // GraphNodeScaleOptionalDisplayList has a GraphNode at the top. This
+        // GraphNodeScale has a GraphNode at the top. This
         // is being stored to the array, so cast the pointer.
-        gLoadedGraphNodes[model] = (struct GraphNode *)init_graph_node_scale_optional_display_list(sLevelPool, 0, arg0H, arg1, arg2.f);
+        gLoadedGraphNodes[model] = (struct GraphNode *)init_graph_node_scale(sLevelPool, 0, arg0H, arg1, arg2.f);
 
     sCurrentCmd = CMD_NEXT;
 }

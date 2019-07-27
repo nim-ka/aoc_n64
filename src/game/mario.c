@@ -178,15 +178,15 @@ s16 func_80250C84(struct Object *obj, s32 arg1, Vec3s arg2)
     f32 sp34;
     f32 sp30;
     struct Animation *curAnim = (void *) obj->header.gfx.unk38.curAnim;
-    s16 sp2A = func_8037C844(&obj->header.gfx.unk38, NULL);
+    s16 sp2A = geo_update_animation_frame(&obj->header.gfx.unk38, NULL);
     u16 *animIndex = (u16 *) segmented_to_virtual(curAnim->index);
     s16 *animValues = (s16 *) segmented_to_virtual(curAnim->values);
     f32 sp1C = (f32) sins(arg1);
     f32 sp18 = (f32) coss(arg1);
 
-    sp34 = *(animValues + (func_8037C7D8(sp2A, &animIndex))) / 4.0f;
-    arg2[1] = *(animValues + (func_8037C7D8(sp2A, &animIndex))) / 4.0f;
-    sp30 = *(animValues + (func_8037C7D8(sp2A, &animIndex))) / 4.0f;
+    sp34 = *(animValues + (retrieve_animation_index(sp2A, &animIndex))) / 4.0f;
+    arg2[1] = *(animValues + (retrieve_animation_index(sp2A, &animIndex))) / 4.0f;
+    sp30 = *(animValues + (retrieve_animation_index(sp2A, &animIndex))) / 4.0f;
     arg2[0] = (sp34 * sp18) + (sp30 * sp1C);
     arg2[2] = (-sp34 * sp1C) + (sp30 * sp18);
     return curAnim->flags;
@@ -1344,7 +1344,7 @@ s32 func_80254604(UNUSED struct Object *arg0)
 
     if (gMarioState->action)
     {
-        gMarioState->marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_10;
+        gMarioState->marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
         func_8025410C(gMarioState);
         func_80253B2C(gMarioState);
         mario_handle_special_floors(gMarioState);

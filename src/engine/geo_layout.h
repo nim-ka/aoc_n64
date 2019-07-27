@@ -31,7 +31,7 @@ extern s16 gGeoLayoutStackIndex;
 extern UNUSED s16 D_8038BD7C;
 extern s16 D_8038BD7E;
 extern u8 *gGeoLayoutCommand;
-extern struct GraphNode D_8038BD88;
+extern struct GraphNode gObjParentGraphNode;
 
 extern struct AllocOnlyPool *D_8038BCA0;
 extern struct GraphNode *D_8038BCA4;

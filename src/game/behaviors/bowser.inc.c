@@ -1373,10 +1373,10 @@ Gfx *Geo18_802B798C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx)
 
     if(run == TRUE)
     {
-        sp1C = (struct Object*)D_8032CFA0;
+        sp1C = (struct Object*)gCurGraphNodeObject;
         if(sp1C->prevObj != NULL)
         {
-            func_8029D704(sp20,mtx,D_8032CF9C->unk34);
+            func_8029D704(sp20,mtx,gCurGraphNodeCamera->matrixPtr);
             func_8029D558(sp20,sp1C->prevObj);
             func_8029EA0C(sp1C->prevObj);
         }
@@ -1389,60 +1389,60 @@ void func_802B70C8(struct Object* a0, struct GraphNodeSwitchCase * switchCase)
     s32 sp1C;
     s16 sp1A;
     sp1A = abs_angle_diff(a0->oMoveAngleYaw,a0->oAngleToMario);
-    sp1C = switchCase->result;
+    sp1C = switchCase->selectedCase;
     switch(sp1C)
     {
     case 0:
         if(sp1A > 0x2000)
         {
             if(a0->oAngleVelYaw > 0)
-                switchCase->result = 5;
+                switchCase->selectedCase = 5;
             if(a0->oAngleVelYaw < 0)
-                switchCase->result = 3;
+                switchCase->selectedCase = 3;
         }
         if(a0->oUnk1AE > 50)
-            switchCase->result = 1;
+            switchCase->selectedCase = 1;
         break;
     case 1:
         if(a0->oUnk1AE > 2)
-            switchCase->result = 2;
+            switchCase->selectedCase = 2;
         break;
     case 2:
         if(a0->oUnk1AE > 2)
-            switchCase->result = 9;
+            switchCase->selectedCase = 9;
         break;
     case 9:
         if(a0->oUnk1AE > 2)
-            switchCase->result = 0;
+            switchCase->selectedCase = 0;
         break;
     case 5:
         if(a0->oUnk1AE > 2)
         {
-            switchCase->result = 6;
+            switchCase->selectedCase = 6;
             if(a0->oAngleVelYaw <= 0)
-                switchCase->result = 0;
+                switchCase->selectedCase = 0;
         }
         break;
     case 6:
         if(a0->oAngleVelYaw <= 0)
-            switchCase->result = 5;
+            switchCase->selectedCase = 5;
         break;
     case 3:
         if(a0->oUnk1AE > 2)
         {
-            switchCase->result = 4;
+            switchCase->selectedCase = 4;
             if(a0->oAngleVelYaw >= 0)
-                switchCase->result = 0;
+                switchCase->selectedCase = 0;
         }
         break;
     case 4:
         if(a0->oAngleVelYaw >= 0)
-            switchCase->result = 3;
+            switchCase->selectedCase = 3;
         break;
     default:
-        switchCase->result = 0;
+        switchCase->selectedCase = 0;
     }
-    if(switchCase->result != sp1C)
+    if(switchCase->selectedCase != sp1C)
         a0->oUnk1AE = -1;
 }
 
@@ -1454,20 +1454,19 @@ s32 geo_switch_bowser_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx)
 {
     UNUSED s16 sp36;
     UNUSED s32 unused;
-    struct Object *obj = (struct Object *)D_8032CFA0;
+    struct Object* obj = (struct Object*)gCurGraphNodeObject;
     struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
-
     if(run == TRUE)
     {
-        if(D_8032CFA4 != NULL)
-            obj = (struct Object *)D_8032CFA4->unk1C;
+        if(gCurGraphNodeHeldObject != NULL)
+            obj = (struct Object*)gCurGraphNodeHeldObject->objNode;
         switch(sp36 = obj->oEyesShut)
         {
         case 0: // eyes open, handle eye looking direction
             func_802B70C8(obj, switchCase);
             break;
         case 1: // eyes closed, blinking
-            switchCase->result = 2;
+            switchCase->selectedCase = 2;
             break;
         }
         obj->oUnk1AE++;
@@ -1480,14 +1479,14 @@ Gfx *Geo18_802B7D44(s32 a0, struct GraphNode *node, UNUSED s32 a2)
     Gfx* sp2C = NULL;
     Gfx* sp28;
     struct Object* sp24;
-    struct GraphNode12A* sp20;
+    struct GraphNodeGenerated* sp20;
 
     if(a0 == 1)
     {
-        sp24 = (struct Object*)D_8032CFA0;
-        sp20 = (struct GraphNode12A *)node;
-        if(D_8032CFA4 != 0)
-            sp24 = (struct Object*)D_8032CFA4->unk1C;
+        sp24 = (struct Object*) gCurGraphNodeObject;
+        sp20 = (struct GraphNodeGenerated*) node;
+        if(gCurGraphNodeHeldObject != 0)
+            sp24 = (struct Object*)gCurGraphNodeHeldObject->objNode;
         if(sp24->oOpacity == 0xFF)
             sp20->fnNode.node.flags = (sp20->fnNode.node.flags & 0xFF) | 0x100;
         else

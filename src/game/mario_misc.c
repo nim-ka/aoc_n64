@@ -41,14 +41,14 @@ Gfx *Geo18_802764B0(s32 run, struct GraphNode *node, Mat4 *c)
 {
     Gfx *sp24 = NULL;
     s16 sp22 = 0;
-    struct GraphNode12A *sp1C = (struct GraphNode12A *)node;
+    struct GraphNodeGenerated *sp1C = (struct GraphNodeGenerated *)node;
     UNUSED Mat4 *sp18 = c;
 
     if (run == TRUE)
     {
         if (gPlayer1Controller->controllerData != NULL && gWarpTransition.isActive == 0)
             gd_copy_p1_contpad(gPlayer1Controller->controllerData);
-        sp24 = (Gfx *)PHYSICAL_TO_VIRTUAL(gdm_gettestdl(sp1C->unk18));
+        sp24 = (Gfx *)PHYSICAL_TO_VIRTUAL(gdm_gettestdl(sp1C->parameter));
         D_8032C6A0 = gd_vblank;
         sp22 = gd_sfx_to_play();
         play_menu_sounds(sp22);
@@ -260,7 +260,7 @@ void bhvUnlockDoorStar_loop(void)
 }
 
 
-static Gfx *func_802769E0(struct GraphNode12A *node, s16 b)
+static Gfx *func_802769E0(struct GraphNodeGenerated *node, s16 b)
 {
     Gfx *sp2C;
     Gfx *sp28 = NULL;
@@ -287,8 +287,8 @@ Gfx *Geo18_802770A4(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
     UNUSED u8 unused1[4];
     Gfx *sp28 = NULL;
-    struct GraphNode12A *sp24 = (struct GraphNode12A *)node;
-    struct MarioBodyState *sp20 = &D_8033A040[sp24->unk18];
+    struct GraphNodeGenerated *sp24 = (struct GraphNodeGenerated *)node;
+    struct MarioBodyState *sp20 = &D_8033A040[sp24->parameter];
     s16 sp1E;
     UNUSED u8 unused2[4];
 
@@ -307,7 +307,7 @@ s32 geo_switch_mario_stand_run(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx
 
     if (run == TRUE)
         // assign result. 0 if moving, 1 if stationary.
-        switchCase->result = ((sp0->action & ACT_FLAG_STATIONARY) == FALSE);
+        switchCase->selectedCase = ((sp0->action & ACT_FLAG_STATIONARY) == FALSE);
     return 0;
 }
 
@@ -323,13 +323,13 @@ s32 geo_switch_mario_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
         {
             sp6 = ((switchCase->numCases * 32 + gAreaUpdateCounter) >> 1) & 0x1F;
             if (sp6 < 7)
-                switchCase->result = D_8032CDF0[sp6];
+                switchCase->selectedCase = D_8032CDF0[sp6];
             else
-                switchCase->result = 0;
+                switchCase->selectedCase = 0;
         }
         else
         {
-            switchCase->result = sp8->eyeState - 1;
+            switchCase->selectedCase = sp8->eyeState - 1;
         }
     }
     return 0;
@@ -337,49 +337,49 @@ s32 geo_switch_mario_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 
 Gfx *Geo18_80277294(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
-    struct GraphNode12A *sp24 = (struct GraphNode12A *)node;
-    struct MarioBodyState *sp20 = &D_8033A040[sp24->unk18];
+    struct GraphNodeGenerated *sp24 = (struct GraphNodeGenerated *)node;
+    struct MarioBodyState *sp20 = &D_8033A040[sp24->parameter];
     s32 action = sp20->action;
 
     if (run == TRUE)
     {
-        struct GraphNode017 *sp18 = (struct GraphNode017 *)node->next;
+        struct GraphNodeRotation *sp18 = (struct GraphNodeRotation *)node->next;
 
         if (action != 0x00840452 && action != 0x00840454 && action != 0x04000440 && action != 0x20810446)
-            vec3s_copy(sp20->unkC, D_80385FDC);
-        sp18->unk18[0] = sp20->unkC[1];
-        sp18->unk18[1] = sp20->unkC[2];
-        sp18->unk18[2] = sp20->unkC[0];
+            vec3s_copy(sp20->unkC, gCurGeoAngle);
+        sp18->rotation[0] = sp20->unkC[1];
+        sp18->rotation[1] = sp20->unkC[2];
+        sp18->rotation[2] = sp20->unkC[0];
     }
     return NULL;
 }
 
 Gfx *Geo18_802773A4(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
-    struct GraphNode12A *sp2C = (struct GraphNode12A *)node;
-    struct MarioBodyState *sp28 = &D_8033A040[sp2C->unk18];
+    struct GraphNodeGenerated *sp2C = (struct GraphNodeGenerated *)node;
+    struct MarioBodyState *sp28 = &D_8033A040[sp2C->parameter];
     s32 action = sp28->action;
 
     if (run == TRUE)
     {
-        struct GraphNode017 *sp20 = (struct GraphNode017 *)node->next;
-        u8 *sp1C = (u8 *)D_8032CF9C->unk18;
+        struct GraphNodeRotation *sp20 = (struct GraphNodeRotation *)node->next;
+        u8 *sp1C = (u8 *)gCurGraphNodeCamera->levelCamera;
 
         if (*sp1C == 6)
         {
-            sp20->unk18[0] = gPlayerStatusForCamera->unk16[1];
-            sp20->unk18[2] = gPlayerStatusForCamera->unk16[0];
+            sp20->rotation[0] = gPlayerStatusForCamera->unk16[1];
+            sp20->rotation[2] = gPlayerStatusForCamera->unk16[0];
         }
         else if (action & 0x20000000)
         {
-            sp20->unk18[0] = sp28->unk12[1];
-            sp20->unk18[1] = sp28->unk12[2];
-            sp20->unk18[2] = sp28->unk12[0];
+            sp20->rotation[0] = sp28->unk12[1];
+            sp20->rotation[1] = sp28->unk12[2];
+            sp20->rotation[2] = sp28->unk12[0];
         }
         else
         {
             vec3s_set(sp28->unk12, 0, 0, 0);
-            vec3s_set(sp20->unk18, 0, 0, 0);
+            vec3s_set(sp20->rotation, 0, 0, 0);
         }
     }
     return NULL;
@@ -394,14 +394,14 @@ s32 geo_switch_mario_hand(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
     {
         if (sp0->handState == 0)
         {
-            switchCase->result = ((sp0->action & ACT_FLAG_SWIMMING_OR_FLYING) != 0);
+            switchCase->selectedCase = ((sp0->action & ACT_FLAG_SWIMMING_OR_FLYING) != 0);
         }
         else
         {
             if (switchCase->numCases == 0)
-                switchCase->result = (sp0->handState < 5) ? sp0->handState : 1;
+                switchCase->selectedCase = (sp0->handState < 5) ? sp0->handState : 1;
             else
-                switchCase->result = (sp0->handState < 2) ? sp0->handState : 0;
+                switchCase->selectedCase = (sp0->handState < 2) ? sp0->handState : 0;
         }
     }
     return 0;
@@ -410,21 +410,21 @@ s32 geo_switch_mario_hand(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 Gfx *Geo18_802775CC(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
     static s16 D_8032CE0C = 0;
-    struct GraphNode12A *spC = (struct GraphNode12A *)node;
-    struct GraphNodeScaleOptionalDisplayList *sp8 = (struct GraphNodeScaleOptionalDisplayList *)node->next;
+    struct GraphNodeGenerated *spC = (struct GraphNodeGenerated *)node;
+    struct GraphNodeScale *sp8 = (struct GraphNodeScale *)node->next;
     struct MarioBodyState *sp4 = &D_8033A040[0];
 
     if (run == TRUE)
     {
         sp8->scale = 1.0f;
-        if (spC->unk18 == sp4->unk0B >> 6)
+        if (spC->parameter == sp4->unk0B >> 6)
         {
             if (D_8032CE0C != gAreaUpdateCounter && (sp4->unk0B & 0x3F) > 0)
             {
                 sp4->unk0B -= 1;
                 D_8032CE0C = gAreaUpdateCounter;
             }
-            sp8->scale = D_8032CDF8[spC->unk18 * 6 + (sp4->unk0B & 0x3F)] / 10.0f;
+            sp8->scale = D_8032CDF8[spC->parameter * 6 + (sp4->unk0B & 0x3F)] / 10.0f;
         }
     }
     return NULL;
@@ -436,7 +436,7 @@ s32 geo_switch_mario_cap_effect(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
     struct MarioBodyState *sp0 = &D_8033A040[switchCase->numCases];
 
     if (run == TRUE)
-        switchCase->result = sp0->modelState >> 8;
+        switchCase->selectedCase = sp0->modelState >> 8;
     return 0;
 }
 
@@ -448,7 +448,7 @@ s32 geo_switch_mario_cap_on_off(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 
     if (run == TRUE)
     {
-        switchCase->result = sp4->capState & 1;
+        switchCase->selectedCase = sp4->capState & 1;
         while (next != node)
         {
             if (next->type == 21)
@@ -467,20 +467,20 @@ s32 geo_switch_mario_cap_on_off(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 Gfx *Geo18_80277824(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
     s16 spE;
-    struct GraphNode12A *sp8 = (struct GraphNode12A *)node;
+    struct GraphNodeGenerated *sp8 = (struct GraphNodeGenerated *)node;
 
     if (run == TRUE)
     {
-        struct GraphNode017 *sp4 = (struct GraphNode017 *)node->next;
+        struct GraphNodeRotation *sp4 = (struct GraphNodeRotation *)node->next;
 
-        if (D_8033A040[sp8->unk18 >> 1].unk07 == 0)
+        if (D_8033A040[sp8->parameter >> 1].unk07 == 0)
             spE = (coss((gAreaUpdateCounter & 0xF) << 12) + 1.0f) * 4096.0f;
         else
             spE = (coss((gAreaUpdateCounter & 7) << 13) + 1.0f) * 6144.0f;
-        if (!(sp8->unk18 & 1))
-            sp4->unk18[0] = -spE;
+        if (!(sp8->parameter & 1))
+            sp4->rotation[0] = -spE;
         else
-            sp4->unk18[0] = spE;
+            sp4->rotation[0] = spE;
     }
     return NULL;
 }
@@ -516,7 +516,7 @@ Gfx *geo_switch_mario_hand_grab_pos(s32 a, struct GraphNode *b, Mat4 *c)
     }
     else if (a == 5)
     {
-        func_8037A550(sp24->marioBodyState->unk18, *sp28, D_8032CF9C->unk34);
+        func_8037A550(sp24->marioBodyState->unk18, *sp28, gCurGraphNodeCamera->matrixPtr);
     }
     return NULL;
 }
@@ -529,13 +529,13 @@ Gfx *Geo18_80277B14(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
     switch (run)
     {
     case 0:
-        init_graph_node_object(NULL, &D_80339FE0, NULL, gVec3fZero, D_80385FDC, D_80385FE4);
+        init_graph_node_object(NULL, &D_80339FE0, NULL, gCurGeoPos, gCurGeoAngle, gCurGeoScale);
         break;
     case 3:
-        func_8037C044(node, &D_80339FE0.node);
+        geo_add_child(node, &D_80339FE0.node);
         break;
     case 2:
-        func_8037C0BC(&D_80339FE0.node);
+        geo_remove_child(&D_80339FE0.node);
         break;
     case 1:
         if (sp30->header.gfx.pos[0] > 1700.0f)
@@ -570,14 +570,14 @@ Gfx *Geo18_80277B14(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 
 Gfx *Geo18_80277D6C(s32 a, struct GraphNode *node, UNUSED Mat4 *c)
 {
-    struct GraphNode12A *sp34 = (struct GraphNode12A *)node;
+    struct GraphNodeGenerated *sp34 = (struct GraphNodeGenerated *)node;
     Gfx *sp30 = NULL;
 
-    if (a == 1 && D_8032CFA0 == &D_80339FE0)
+    if (a == 1 && gCurGraphNodeObject == &D_80339FE0)
     {
         sp30 = alloc_display_list(3 * sizeof(*sp30));
 
-        if (sp34->unk18 == 0)
+        if (sp34->parameter == 0)
         {
             gSPClearGeometryMode(&sp30[0], G_CULL_BACK);
             gSPSetGeometryMode(&sp30[1], G_CULL_FRONT);

@@ -67,10 +67,10 @@ Gfx *Geo18_802A719C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx)
 
     if(run == TRUE)
     {
-        sp1C = (struct Object*)D_8032CFA0;
+        sp1C = (struct Object*)gCurGraphNodeObject;
         if(sp1C->prevObj != NULL)
         {
-            func_8029D704(sp20,mtx,D_8032CF9C->unk34);
+            func_8029D704(sp20,mtx,gCurGraphNodeCamera->matrixPtr);
             func_8029D558(sp20,sp1C->prevObj);
             func_8029EA0C(sp1C->prevObj);
         }

@@ -61,10 +61,10 @@ s32 Unknown802B9F6C(s32 a0,UNUSED s32 a1,Mat4 a2)
     struct Object* sp1C;
     if(a0 == 1)
     {
-        sp1C = (struct Object*)D_8032CFA0;
+        sp1C = (struct Object*)gCurGraphNodeObject;
         if(sp1C->prevObj != NULL)
         {
-            func_8029D704(sp20,a2,D_8032CF9C->unk34);
+            func_8029D704(sp20,a2,gCurGraphNodeCamera->matrixPtr);
             func_8029D558(sp20,sp1C->prevObj);
             func_8029EA0C(sp1C->prevObj);
         }

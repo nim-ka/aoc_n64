@@ -70,10 +70,10 @@ struct Struct802E2F58 *func_802E2F58(s32 arg0, struct Object *arg1, UNUSED s32 a
 
     if (arg0 == 1)
     {
-        sp2c = (struct Object*)D_8032CFA0;
+        sp2c = (struct Object*)gCurGraphNodeObject;
         sp28 = arg1;
         sp24 = arg1;
-        if (D_8032CFA4 != NULL) sp2c = (struct Object*)D_8032CFA4->unk1C;
+        if (gCurGraphNodeHeldObject != NULL) sp2c = (struct Object*)gCurGraphNodeHeldObject->objNode;
         
         sp34 = (struct Struct802E2F58 *)alloc_display_list(0x18);
         sp30 = (Gfx*)sp34;

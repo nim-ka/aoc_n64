@@ -23,74 +23,82 @@ s16 zeroMtx[4][4] = {
     {0, 0, 0, 0}
 };
 
-Vec3f gVec3fZero = {0.0f, 0.0f, 0.0f};
-Vec3s D_80385FDC = {0, 0, 0};
-Vec3f D_80385FE4 = {1.0f, 1.0f, 1.0f};
-Vec3s unused80385FF0 = {1, 1, 1};
+Vec3f gCurGeoPos = {0.0f, 0.0f, 0.0f};
+Vec3s gCurGeoAngle = {0, 0, 0};
+Vec3f gCurGeoScale = {1.0f, 1.0f, 1.0f};
+Vec3s gCurGeoUnused = {1, 1, 1};
 
+/** Initialize a geo node with a given type. Sets all links such that there
+ *  are no siblings, parent or children for this node.
+ */
 void init_scene_graph_node_links(struct GraphNode *graphNode, s32 type)
 {
     graphNode->type = type;
-    graphNode->flags = GRAPH_RENDER_01;
+    graphNode->flags = GRAPH_RENDER_ACTIVE;
     graphNode->prev = graphNode;
     graphNode->next = graphNode;
     graphNode->parent = NULL;
     graphNode->children = NULL;
 }
 
-struct GraphNodeScreenArea *init_graph_node_screen_area(struct AllocOnlyPool *pool, struct GraphNodeScreenArea *graphNode,
-    s16 sp20, s16 x, s16 y, s16 width, s16 height)
+/** Allocated and returns a newly created root node
+ */
+struct GraphNodeRoot *init_graph_node_root(struct AllocOnlyPool *pool, struct GraphNodeRoot *graphNode,
+    s16 areaIndex, s16 x, s16 y, s16 width, s16 height)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeScreenArea));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeRoot));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_SCREEN_AREA);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_ROOT);
 
-        graphNode->unk14 = sp20;
+        graphNode->areaIndex = areaIndex;
         graphNode->unk15 = 0;
         graphNode->x = x;
         graphNode->y = y;
         graphNode->width = width;
         graphNode->height = height;
-        graphNode->unk20 = NULL;
+        graphNode->camera = NULL;
         graphNode->unk1E = 0;
     }
 
     return graphNode;
 }
 
-struct GraphNode002 *init_graph_node_002(struct AllocOnlyPool *pool, struct GraphNode002 *graphNode, f32 sp20)
+/** Allocates and returns a newly created otrhographic projection node
+ */
+struct GraphNodeOrthoProjection *init_graph_node_002(struct AllocOnlyPool *pool, struct GraphNodeOrthoProjection *graphNode, f32 scale)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode002));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeOrthoProjection));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_002);
-
-        graphNode->unk14 = sp20;
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_ORTHO_PROJECTION);
+        graphNode->scale = scale;
     }
 
     return graphNode;
 }
 
-struct GraphNodeCamFrustum *init_graph_node_cam_frustum(struct AllocOnlyPool *pool, struct GraphNodeCamFrustum *graphNode,
+/** Allocates and returns a newly created perspective node
+ */
+struct GraphNodePerspective *init_graph_node_cam_frustum(struct AllocOnlyPool *pool, struct GraphNodePerspective *graphNode,
     f32 fov, s16 near, s16 far, GraphNodeFunc nodeFunc, s32 sp30)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeCamFrustum));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodePerspective));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->fnNode.node, GRAPH_NODE_TYPE_103);
+        init_scene_graph_node_links(&graphNode->fnNode.node, GRAPH_NODE_TYPE_PERSPECTIVE);
 
         graphNode->fov = fov;
         graphNode->near = near;
@@ -100,13 +108,15 @@ struct GraphNodeCamFrustum *init_graph_node_cam_frustum(struct AllocOnlyPool *po
 
         if(nodeFunc != NULL)
         {
-            nodeFunc(0, &graphNode->fnNode.node, pool);
+            nodeFunc(GEO_CONTEXT_CREATE, &graphNode->fnNode.node, pool);
         }
     }
 
     return graphNode;
 }
 
+/** Allocates and returns a newly created start node
+ */
 struct GraphNodeStart *init_graph_node_start(struct AllocOnlyPool *pool, struct GraphNodeStart *graphNode)
 {
     if(pool != NULL)
@@ -122,16 +132,18 @@ struct GraphNodeStart *init_graph_node_start(struct AllocOnlyPool *pool, struct 
     return graphNode;
 }
 
-struct GraphNodeToggleZBuffer *init_graph_node_toggle_z_buffer(struct AllocOnlyPool *pool, struct GraphNodeToggleZBuffer *graphNode, s16 on)
+/** Allocates and returns a newly created master list node
+ */
+struct GraphNodeMasterList *init_graph_node_toggle_z_buffer(struct AllocOnlyPool *pool, struct GraphNodeMasterList *graphNode, s16 on)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeToggleZBuffer));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeMasterList));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_TOGGLE_Z_BUFFER);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_MASTER_LIST);
 
         if(on)
         {
@@ -142,17 +154,19 @@ struct GraphNodeToggleZBuffer *init_graph_node_toggle_z_buffer(struct AllocOnlyP
     return graphNode;
 }
 
-struct GraphNodeRenderRange *init_graph_node_render_range(struct AllocOnlyPool *pool, struct GraphNodeRenderRange *graphNode,
+/** Allocates and returns a newly created render range node
+ */
+struct GraphNodeLevelOfDetail *init_graph_node_render_range(struct AllocOnlyPool *pool, struct GraphNodeLevelOfDetail *graphNode,
     s16 minDistance, s16 maxDistance)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeRenderRange));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeLevelOfDetail));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_RENDER_RANGE);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_LEVEL_OF_DETAIL);
         graphNode->minDistance = minDistance;
         graphNode->maxDistance = maxDistance;
     }
@@ -160,9 +174,10 @@ struct GraphNodeRenderRange *init_graph_node_render_range(struct AllocOnlyPool *
     return graphNode;
 }
 
-// switch
+/** Allocates and returns a newly created switch case node
+ */
 struct GraphNodeSwitchCase *init_graph_node_switch_case(struct AllocOnlyPool *pool, struct GraphNodeSwitchCase *graphNode,
-    s16 numCases, s16 sp26, GraphNodeFunc nodeFunc, s32 sp2c)
+    s16 numCases, s16 selectedCase, GraphNodeFunc nodeFunc, s32 unused)
 {
     if(pool != NULL)
     {
@@ -173,57 +188,61 @@ struct GraphNodeSwitchCase *init_graph_node_switch_case(struct AllocOnlyPool *po
     {
         init_scene_graph_node_links(&graphNode->fnNode.node, GRAPH_NODE_TYPE_SWITCH_CASE);
         graphNode->numCases = numCases;
-        graphNode->result = sp26;
+        graphNode->selectedCase = selectedCase;
         graphNode->fnNode.func = nodeFunc;
-        graphNode->unk18 = sp2c;
+        graphNode->unused = unused;
 
         if(nodeFunc != NULL)
         {
-            nodeFunc(0, &graphNode->fnNode.node, pool);
+            nodeFunc(GEO_CONTEXT_CREATE, &graphNode->fnNode.node, pool);
         }
     }
 
     return graphNode;
 }
 
-struct GraphNode114 *init_graph_node_114(struct AllocOnlyPool *pool, struct GraphNode114 * graphNode,
-    f32 *sp20, f32 *sp24, GraphNodeFunc sp28, s32 sp2c)
+/** Allocates and returns a newly created camera node
+ */
+struct GraphNodeCamera *init_graph_node_camera(struct AllocOnlyPool *pool, struct GraphNodeCamera * graphNode,
+    f32 *fromPos, f32 *toPos, GraphNodeFunc func, s32 levelCamera)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode114));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeCamera));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->fnNode.node, GRAPH_NODE_TYPE_114);
-        vec3f_copy(graphNode->unk1C, sp20);
-        vec3f_copy(graphNode->unk28, sp24);
-        graphNode->fnNode.func = sp28;
-        graphNode->unk18 = sp2c;
-        graphNode->unk38 = 0;
-        graphNode->unk3A = 0;
+        init_scene_graph_node_links(&graphNode->fnNode.node, GRAPH_NODE_TYPE_CAMERA);
+        vec3f_copy(graphNode->from, fromPos);
+        vec3f_copy(graphNode->to, toPos);
+        graphNode->fnNode.func = func;
+        graphNode->levelCamera = (struct LevelCamera *) levelCamera;
+        graphNode->roll = 0;
+        graphNode->rollScreen = 0;
 
-        if(sp28 != NULL)
+        if(func != NULL)
         {
-            sp28(0, &graphNode->fnNode.node, pool);
+            func(GEO_CONTEXT_CREATE, &graphNode->fnNode.node, pool);
         }
     }
 
     return graphNode;
 }
 
-struct GraphNodeTranslationRotationOptionalDisplayList *init_graph_node_translation_rotation_optional_display_list(struct AllocOnlyPool *pool,
-    struct GraphNodeTranslationRotationOptionalDisplayList *graphNode, s32 drawingLayer, void *displayList, Vec3s translation, Vec3s rotation)
+/** Allocates and returns a newly created translation rotation node
+ */
+struct GraphNodeTranslationRotation *init_graph_node_translation_rotation(struct AllocOnlyPool *pool,
+    struct GraphNodeTranslationRotation *graphNode, s32 drawingLayer, void *displayList, Vec3s translation, Vec3s rotation)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeTranslationRotationOptionalDisplayList));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeTranslationRotation));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_TRANSLATION_ROTATION_OPTIONAL_DISPLAY_LIST);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_TRANSLATION_ROTATION);
 
         vec3s_copy(graphNode->translation, translation);
         vec3s_copy(graphNode->rotation, rotation);
@@ -234,19 +253,21 @@ struct GraphNodeTranslationRotationOptionalDisplayList *init_graph_node_translat
     return graphNode;
 }
 
-struct GraphNode016 *init_graph_node_016(struct AllocOnlyPool *pool, struct GraphNode016 *graphNode,
-    s32 drawingLayer, void *displayList, Vec3s sp28)
+/** Allocates and returns a newly created translation node
+ */
+struct GraphNodeTranslation *init_graph_node_translation(struct AllocOnlyPool *pool, struct GraphNodeTranslation *graphNode,
+    s32 drawingLayer, void *displayList, Vec3s translation)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode016));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeTranslation));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_016);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_TRANSLATION);
 
-        vec3s_copy(graphNode->unk18, sp28);
+        vec3s_copy(graphNode->translation, translation);
         graphNode->node.flags = (drawingLayer << 8) | (graphNode->node.flags & 0xFF);
         graphNode->displayList = displayList;
     }
@@ -254,18 +275,20 @@ struct GraphNode016 *init_graph_node_016(struct AllocOnlyPool *pool, struct Grap
     return graphNode;
 }
 
-struct GraphNode017 *init_graph_node_017(struct AllocOnlyPool *pool, struct GraphNode017 *graphNode,
-    s32 drawingLayer, void *displayList, Vec3s sp28)
+/** Allocates and returns a newly created rotation node
+ */
+struct GraphNodeRotation *init_graph_node_rotation(struct AllocOnlyPool *pool, struct GraphNodeRotation *graphNode,
+    s32 drawingLayer, void *displayList, Vec3s rotation)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode017));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeRotation));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_017);
-        vec3s_copy(graphNode->unk18, sp28);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_ROTATION);
+        vec3s_copy(graphNode->rotation, rotation);
         graphNode->node.flags = (drawingLayer << 8) | (graphNode->node.flags & 0xFF);
         graphNode->displayList = displayList;
     }
@@ -273,17 +296,19 @@ struct GraphNode017 *init_graph_node_017(struct AllocOnlyPool *pool, struct Grap
     return graphNode;
 }
 
-struct GraphNodeScaleOptionalDisplayList *init_graph_node_scale_optional_display_list(struct AllocOnlyPool *pool,
-    struct GraphNodeScaleOptionalDisplayList *graphNode, s32 drawingLayer, void *displayList, f32 scale)
+/** Allocates and returns a newly created scaling node
+ */
+struct GraphNodeScale *init_graph_node_scale(struct AllocOnlyPool *pool,
+    struct GraphNodeScale *graphNode, s32 drawingLayer, void *displayList, f32 scale)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeScaleOptionalDisplayList));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeScale));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_SCALE_OPTIONAL_DISPLAY_LIST);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_SCALE);
         graphNode->node.flags = (drawingLayer << 8) | (graphNode->node.flags & 0xFF);
         graphNode->scale = scale;
         graphNode->displayList = displayList;
@@ -292,6 +317,8 @@ struct GraphNodeScaleOptionalDisplayList *init_graph_node_scale_optional_display
     return graphNode;
 }
 
+/** Allocates and returns a newly created object node
+ */
 struct GraphNodeObject *init_graph_node_object(struct AllocOnlyPool *pool, struct GraphNodeObject *graphNode,
     struct GraphNode *sp20, Vec3f pos, Vec3s angle, Vec3f scale)
 {
@@ -314,40 +341,44 @@ struct GraphNodeObject *init_graph_node_object(struct AllocOnlyPool *pool, struc
         graphNode->unk38.animFrameAccelAssist = 0;
         graphNode->unk38.animAccel = 0x10000;
         graphNode->unk38.animTimer = 0;
-        graphNode->node.flags |= GRAPH_RENDER_20;
+        graphNode->node.flags |= GRAPH_RENDER_HAS_ANIMATION;
     }
 
     return graphNode;
 }
 
-struct GraphNode02F *init_graph_node_02F(struct AllocOnlyPool *pool, struct GraphNode02F *graphNode,
-    s16 sp22)
+/** Allocates and returns a newly created frustum culling radius node
+ */
+struct GraphNodeCullingRadius *init_graph_node_culling_radius(struct AllocOnlyPool *pool, struct GraphNodeCullingRadius *graphNode,
+    s16 radius)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode02F));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeCullingRadius));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_02F);
-        graphNode->unk14 = sp22;
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_CULLING_RADIUS);
+        graphNode->cullingRadius = radius;
     }
 
     return graphNode;
 }
 
-struct GraphNodeDisplayListTranslated *init_graph_node_display_list_translated(struct AllocOnlyPool *pool,
-    struct GraphNodeDisplayListTranslated * graphNode, s32 drawingLayer, void *displayList, Vec3s translation)
+/** Allocates and returns a newly created animated part node
+ */
+struct GraphNodeAnimatedPart *init_graph_node_animated_part(struct AllocOnlyPool *pool,
+    struct GraphNodeAnimatedPart *graphNode, s32 drawingLayer, void *displayList, Vec3s translation)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeDisplayListTranslated));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeAnimatedPart));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_DISPLAY_LIST_TRANSLATED);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_ANIMATED_PART);
         vec3s_copy(graphNode->translation, translation);
         graphNode->node.flags = (drawingLayer << 8) | (graphNode->node.flags & 0xFF);
         graphNode->displayList = displayList;
@@ -356,17 +387,19 @@ struct GraphNodeDisplayListTranslated *init_graph_node_display_list_translated(s
     return graphNode;
 }
 
-struct GraphNodeBillboardOptionalDisplayList *init_graph_node_billboard_optional_display_list(struct AllocOnlyPool *pool,
-    struct GraphNodeBillboardOptionalDisplayList *graphNode, s32 drawingLayer, void *displayList, Vec3s translation)
+/** Allocates and returns a newly created billboard node
+ */
+struct GraphNodeBillboard *init_graph_node_billboard(struct AllocOnlyPool *pool,
+    struct GraphNodeBillboard *graphNode, s32 drawingLayer, void *displayList, Vec3s translation)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeBillboardOptionalDisplayList));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeBillboard));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_BILLBOARD_OPTIONAL_DISPLAY_LIST);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_BILLBOARD);
         vec3s_copy(graphNode->translation, translation);
         graphNode->node.flags = (drawingLayer << 8) | (graphNode->node.flags & 0xFF);
         graphNode->displayList = displayList;
@@ -375,6 +408,8 @@ struct GraphNodeBillboardOptionalDisplayList *init_graph_node_billboard_optional
     return graphNode;
 }
 
+/** Allocates and returns a newly created displaylist node
+ */
 struct GraphNodeDisplayList *init_graph_node_display_list(struct AllocOnlyPool *pool, struct GraphNodeDisplayList *graphNode,
     s32 drawingLayer, void *displayList)
 {
@@ -393,6 +428,8 @@ struct GraphNodeDisplayList *init_graph_node_display_list(struct AllocOnlyPool *
     return graphNode;
 }
 
+/** Allocates and returns a newly created shadow node
+ */
 struct GraphNodeShadow *init_graph_node_shadow(struct AllocOnlyPool *pool, struct GraphNodeShadow *graphNode,
     s16 shadowScale, u8 shadowSolidity, u8 shadowType)
 {
@@ -412,47 +449,52 @@ struct GraphNodeShadow *init_graph_node_shadow(struct AllocOnlyPool *pool, struc
     return graphNode;
 }
 
-struct GraphNode029 *init_graph_node_029(struct AllocOnlyPool *pool, struct GraphNode029 *graphNode,
-    struct GraphNode *sp24)
+/** Allocates and returns a newly created object parent node
+ */
+struct GraphNodeObjectParent *init_graph_node_object_parent(struct AllocOnlyPool *pool, struct GraphNodeObjectParent *graphNode,
+    struct GraphNode *sharedChild)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode029));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeObjectParent));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_029);
-        graphNode->unk14 = sp24;
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_OBJECT_PARENT);
+        graphNode->sharedChild = sharedChild;
     }
 
     return graphNode;
 }
 
-struct GraphNode12A *init_graph_node_12A(struct AllocOnlyPool *pool, struct GraphNode12A *graphNode,
-    GraphNodeFunc sp20, s32 sp24)
+/** Allocates and returns a newly created generated node
+ */
+struct GraphNodeGenerated *init_graph_node_generated(struct AllocOnlyPool *pool, struct GraphNodeGenerated *graphNode,
+    GraphNodeFunc gfxFunc, s32 parameter)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode12A));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeGenerated));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->fnNode.node, GRAPH_NODE_TYPE_12A);
-        graphNode->fnNode.func = sp20;
-        graphNode->unk18 = sp24;
+        init_scene_graph_node_links(&graphNode->fnNode.node, GRAPH_NODE_TYPE_GENERATED_LIST);
+        graphNode->fnNode.func = gfxFunc;
+        graphNode->parameter = parameter;
 
-        if(sp20 != NULL)
+        if(gfxFunc != NULL)
         {
-            sp20(0, &graphNode->fnNode.node, pool);
+            gfxFunc(GEO_CONTEXT_CREATE, &graphNode->fnNode.node, pool);
         }
     }
 
     return graphNode;
 }
 
-// background
+/** Allocates and returns a newly created background node
+ */
 struct GraphNodeBackground *init_graph_node_background(struct AllocOnlyPool *pool, struct GraphNodeBackground *graphNode,
     u16 background, GraphNodeFunc backgroundFunc, s32 zero)
 {
@@ -471,202 +513,230 @@ struct GraphNodeBackground *init_graph_node_background(struct AllocOnlyPool *poo
 
         if(backgroundFunc != NULL)
         {
-            backgroundFunc(0, &graphNode->fnNode.node, pool);
+            backgroundFunc(GEO_CONTEXT_CREATE, &graphNode->fnNode.node, pool);
         }
     }
 
     return graphNode;
 }
 
-struct GraphNode12E *init_graph_node_12E(struct AllocOnlyPool *pool, struct GraphNode12E *graphNode,
-    s32 sp20, Vec3s sp24, GraphNodeFunc nodeFunc, s32 sp2c)
+/** Allocates and returns a newly created held object node
+ */
+struct GraphNodeHeldObject *init_graph_node_held_object(struct AllocOnlyPool *pool, struct GraphNodeHeldObject *graphNode,
+    s32 objNode, Vec3s translation, GraphNodeFunc nodeFunc, s32 unused)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode12E));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeHeldObject));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->fnNode.node, GRAPH_NODE_TYPE_12E);
-        vec3s_copy(graphNode->unk20, sp24);
-        graphNode->unk1C = (struct GraphNodeObject *) sp20; // assumed type
+        init_scene_graph_node_links(&graphNode->fnNode.node, GRAPH_NODE_TYPE_HELD_OBJ);
+        vec3s_copy(graphNode->translation, translation);
+        graphNode->objNode = (struct GraphNodeObject *) objNode; // assumed type
         graphNode->fnNode.func = nodeFunc;
-        graphNode->unk18 = sp2c;
+        graphNode->unused = unused;
 
         if(nodeFunc != NULL)
         {
-            nodeFunc(0, &graphNode->fnNode.node, pool);
+            nodeFunc(GEO_CONTEXT_CREATE, &graphNode->fnNode.node, pool);
         }
     }
 
     return graphNode;
 }
 
-struct GraphNode *func_8037C044(struct GraphNode *prevNode, struct GraphNode *node)
+/** Adds 'childNode' to the end of the list children from 'parent'
+ */
+struct GraphNode *geo_add_child(struct GraphNode *parent, struct GraphNode *childNode)
 {
-    struct GraphNode *sp04;
-    struct GraphNode *sp00;
+    struct GraphNode *parentFirstChild;
+    struct GraphNode *parentLastChild;
 
-    if(node != NULL)
+    if(childNode != NULL)
     {
-        node->parent = prevNode;
-        sp04 = prevNode->children;
+        childNode->parent = parent;
+        parentFirstChild = parent->children;
 
-        if(sp04 == NULL)
+        if(parentFirstChild == NULL)
         {
-            prevNode->children = node;
-            node->prev = node;
-            node->next = node;
+            parent->children = childNode;
+            childNode->prev = childNode;
+            childNode->next = childNode;
         }
         else
         {
-            sp00 = sp04->prev;
-            node->prev = sp00;
-            node->next = sp04;
-            sp04->prev = node;
-            sp00->next = node;
+            parentLastChild = parentFirstChild->prev;
+            childNode->prev = parentLastChild;
+            childNode->next = parentFirstChild;
+            parentFirstChild->prev = childNode;
+            parentLastChild->next = childNode;
         }
     }
 
-    return node;
+    return childNode;
 }
 
-struct GraphNode *func_8037C0BC(struct GraphNode *graphNode)
+/** Remove a node from the scene graph. It changes the links with its
+ *  siblings and with its parent, it doesn't deallocate the memory
+ *  since geo nodes are allocated in a pointer-bumping pool that
+ *  gets thrown out when changing areas.
+ */
+struct GraphNode *geo_remove_child(struct GraphNode *graphNode)
 {
-    struct GraphNode *sp04;
-    struct GraphNode **sp00;
+    struct GraphNode *parent;
+    struct GraphNode **firstChild;
 
-    sp04 = graphNode->parent;
-    sp00 = &sp04->children;
+    parent = graphNode->parent;
+    firstChild = &parent->children;
 
+    // Remove link with siblings
     graphNode->prev->next = graphNode->next;
     graphNode->next->prev = graphNode->prev;
 
-    if(*sp00 == graphNode)
+    // If this node was the first child, a new first child must be chosen
+    if(*firstChild == graphNode)
     {
+        // The list is circular, so this checks whether it was the only child
         if(graphNode->next == graphNode)
         {
-            *sp00 = NULL;
+            *firstChild = NULL; // Parent has no children anymore
         }
         else
         {
-            *sp00 = graphNode->next;
+            *firstChild = graphNode->next; // Choose a new first child
         }
     }
 
-    return sp04;
+    return parent;
 }
 
-struct GraphNode *func_8037C138(struct GraphNode *a0)
+/** Reorders the given node so it's the first child of its parent.
+ *  This is called on the Mario object when he is spawned. That's why Mario's
+ *  object is always drawn before any other objects. (Note that the geo order
+ *  is independent from processing group order, where Mario is not first.)
+ */
+struct GraphNode *geo_make_first_child(struct GraphNode *newFirstChild)
 {
-    struct GraphNode *sp0c;
-    struct GraphNode *sp08;
-    struct GraphNode **sp04;
+    struct GraphNode *lastSibling;
+    struct GraphNode *parent;
+    struct GraphNode **firstChild;
 
-    sp08 = a0->parent;
-    sp04 = &sp08->children;
+    parent = newFirstChild->parent;
+    firstChild = &parent->children;
 
-    if(*sp04 != a0)
+    if(*firstChild != newFirstChild)
     {
-        if((*sp04)->prev != a0)
+        if((*firstChild)->prev != newFirstChild)
         {
-            a0->prev->next = a0->next;
-            a0->next->prev = a0->prev;
-            sp0c = (*sp04)->prev;
-            a0->prev = sp0c;
-            a0->next = *sp04;
-            (*sp04)->prev = a0;
-            sp0c->next = a0;
+            newFirstChild->prev->next = newFirstChild->next;
+            newFirstChild->next->prev = newFirstChild->prev;
+            lastSibling = (*firstChild)->prev;
+            newFirstChild->prev = lastSibling;
+            newFirstChild->next = *firstChild;
+            (*firstChild)->prev = newFirstChild;
+            lastSibling->next = newFirstChild;
         }
-        *sp04 = a0;
+        *firstChild = newFirstChild;
     }
-    
-    return sp08;
+
+    return parent;
 }
 
-// recursive
-void func_8037C1E4(struct GraphNode *graphNode, s32 sp34)
+/** Helper function for geo_call_global_function_nodes that recursively
+ *  traverses the scene graph and calls the functions of global nodes.
+ */
+void geo_call_global_function_nodes_helper(struct GraphNode *graphNode, s32 callContext)
 {
-    struct GraphNode **sp2c;
-    struct GraphNode *sp28;
-    struct FnGraphNode *sp24;
-    
-    sp28 = graphNode;
+    struct GraphNode **globalPtr;
+    struct GraphNode *curNode;
+    struct FnGraphNode *asFnNode;
+
+    curNode = graphNode;
 
     do
     {
-        sp24 = (struct FnGraphNode *) sp28;
+        asFnNode = (struct FnGraphNode *) curNode;
 
-        if(sp28->type & GRAPH_NODE_TYPE_FUNCTIONAL)
+        if(curNode->type & GRAPH_NODE_TYPE_FUNCTIONAL)
         {
-            if(sp24->func != NULL)
+            if(asFnNode->func != NULL)
             {
-                sp24->func(sp34, sp28, 0);
+                asFnNode->func(callContext, curNode, NULL);
             }
         }
 
-        if(sp28->children != NULL)
+        if(curNode->children != NULL)
         {
-            switch(sp28->type)
+            switch(curNode->type)
             {
-            case GRAPH_NODE_TYPE_TOGGLE_Z_BUFFER: // zbuffer
-                sp2c = (struct GraphNode **) &D_8032CF94;
+            case GRAPH_NODE_TYPE_MASTER_LIST:
+                globalPtr = (struct GraphNode **) &gCurGraphNodeMasterList;
                 break;
-            case GRAPH_NODE_TYPE_103: // camera frustum
-                sp2c = (struct GraphNode **) &D_8032CF98;
+            case GRAPH_NODE_TYPE_PERSPECTIVE:
+                globalPtr = (struct GraphNode **) &gCurGraphNodeCamFrustum;
                 break;
-            case GRAPH_NODE_TYPE_114:
-                sp2c = (struct GraphNode **) &D_8032CF9C;
+            case GRAPH_NODE_TYPE_CAMERA:
+                globalPtr = (struct GraphNode **) &gCurGraphNodeCamera;
                 break;
-            case GRAPH_NODE_TYPE_OBJECT: // object
-                sp2c = (struct GraphNode **) &D_8032CFA0;
+            case GRAPH_NODE_TYPE_OBJECT:
+                globalPtr = (struct GraphNode **) &gCurGraphNodeObject;
                 break;
             default:
-                sp2c = NULL;
+                globalPtr = NULL;
                 break;
             }
 
-            if(sp2c != NULL)
+            if(globalPtr != NULL)
             {
-                *sp2c = sp28;
+                *globalPtr = curNode;
             }
 
-            func_8037C1E4(sp28->children, sp34);
+            geo_call_global_function_nodes_helper(curNode->children, callContext);
 
-            if(sp2c != NULL)
+            if(globalPtr != NULL)
             {
-                *sp2c = NULL;
+                *globalPtr = NULL;
             }
         }
-    } while((sp28 = sp28->next) != graphNode);
+    } while((curNode = curNode->next) != graphNode);
 }
 
-// a0 = GraphNodeScreenArea?
-void func_8037C360(struct GraphNode *graphNode, s32 sp1c)
+/** Call the update functions of geo nodes that are stored in global variables.
+ *  These variables include gCurGraphNodeMasterList, gCurGraphNodeCamFrustum, 
+ *  gCurGraphNodeCamera and gCurGraphNodeObject.
+ *  callContext is one of the GEO_CONTEXT_ defines.
+ *  The graphNode argument should be of type GraphNodeRoot.
+ */
+void geo_call_global_function_nodes(struct GraphNode *graphNode, s32 callContext)
 {
-    if(graphNode->flags & GRAPH_RENDER_01)
+    if(graphNode->flags & GRAPH_RENDER_ACTIVE)
     {
-        D_8032CF90 = (struct GraphNodeScreenArea *) graphNode;
+        gCurGraphNodeRoot = (struct GraphNodeRoot *) graphNode;
 
         if(graphNode->children != NULL)
         {
-            func_8037C1E4(graphNode->children, sp1c);
+            geo_call_global_function_nodes_helper(graphNode->children, callContext);
         }
 
-        D_8032CF90 = 0;
+        gCurGraphNodeRoot = 0;
     }
 }
 
-void func_8037C3D0(struct GraphNodeObject *graphNode)
+/** When objects are cleared, this is called on all object nodes (loaded or unloaded).
+ */
+void geo_reset_object_node(struct GraphNodeObject *graphNode)
 {
-    init_graph_node_object(NULL, graphNode, 0, gVec3fZero, D_80385FDC, D_80385FE4);
-    
-    func_8037C044(&D_8038BD88, &graphNode->node);
-    graphNode->node.flags &= ~GRAPH_RENDER_01;
+    init_graph_node_object(NULL, graphNode, 0, gCurGeoPos, gCurGeoAngle, gCurGeoScale);
+
+    geo_add_child(&gObjParentGraphNode, &graphNode->node);
+    graphNode->node.flags &= ~GRAPH_RENDER_ACTIVE;
 }
 
-void func_8037C448(struct GraphNodeObject *graphNode, void *sp1c, Vec3f pos, Vec3s angle)
+/** Initialize an object node using the given parameters
+ */
+void geo_obj_init(struct GraphNodeObject *graphNode, void *sp1c, Vec3f pos, Vec3s angle)
 {
     vec3f_set(graphNode->scale, 1.0f, 1.0f, 1.0f);
     vec3f_copy(graphNode->pos, pos);
@@ -677,198 +747,224 @@ void func_8037C448(struct GraphNodeObject *graphNode, void *sp1c, Vec3f pos, Vec
     graphNode->throwMatrix = NULL;
     graphNode->unk38.curAnim = NULL;
 
-    graphNode->node.flags |= GRAPH_RENDER_01;
-    graphNode->node.flags &= ~GRAPH_RENDER_10;
-    graphNode->node.flags |= GRAPH_RENDER_20;
+    graphNode->node.flags |= GRAPH_RENDER_ACTIVE;
+    graphNode->node.flags &= ~GRAPH_RENDER_INVISIBLE;
+    graphNode->node.flags |= GRAPH_RENDER_HAS_ANIMATION;
     graphNode->node.flags &= ~GRAPH_RENDER_BILLBOARD;
 }
 
-void func_8037C51C(struct GraphNodeObject *graphNode, struct SpawnInfo *sp1c)
+/** Initialize and object node using the given SpawnInfo struct
+ */
+void geo_obj_init_spawninfo(struct GraphNodeObject *graphNode, struct SpawnInfo *spawn)
 {
     vec3f_set(graphNode->scale, 1.0f, 1.0f, 1.0f);
-    vec3s_copy(graphNode->angle, sp1c->startAngle);
+    vec3s_copy(graphNode->angle, spawn->startAngle);
 
-    graphNode->pos[0] = (f32) sp1c->startPos[0];
-    graphNode->pos[1] = (f32) sp1c->startPos[1];
-    graphNode->pos[2] = (f32) sp1c->startPos[2];
+    graphNode->pos[0] = (f32) spawn->startPos[0];
+    graphNode->pos[1] = (f32) spawn->startPos[1];
+    graphNode->pos[2] = (f32) spawn->startPos[2];
 
-    graphNode->unk18 = sp1c->areaIndex;
-    graphNode->unk19 = sp1c->activeAreaIndex;
-    graphNode->asGraphNode = sp1c->unk18;
-    graphNode->unk4C = sp1c;
+    graphNode->unk18 = spawn->areaIndex;
+    graphNode->unk19 = spawn->activeAreaIndex;
+    graphNode->asGraphNode = spawn->unk18;
+    graphNode->unk4C = spawn;
     graphNode->throwMatrix = NULL;
     graphNode->unk38.curAnim = 0;
 
-    graphNode->node.flags |= GRAPH_RENDER_01;
-    graphNode->node.flags &= ~GRAPH_RENDER_10;
-    graphNode->node.flags |= GRAPH_RENDER_20;
+    graphNode->node.flags |= GRAPH_RENDER_ACTIVE;
+    graphNode->node.flags &= ~GRAPH_RENDER_INVISIBLE;
+    graphNode->node.flags |= GRAPH_RENDER_HAS_ANIMATION;
     graphNode->node.flags &= ~GRAPH_RENDER_BILLBOARD;
 }
 
-void func_8037C658(struct GraphNodeObject *graphNode, void *sp34)
+/** Initialize the animation of an object node
+ */
+void geo_obj_init_animation(struct GraphNodeObject *graphNode, void *sp34)
 {
-    void *sp2c = segmented_to_virtual(sp34);
-    struct Animation *sp28 = segmented_to_virtual((void*)*(s32*)sp2c);
+    void **animSegmented = segmented_to_virtual(sp34);
+    struct Animation *anim = segmented_to_virtual(animSegmented[0]);
 
-    if(graphNode->unk38.curAnim != sp28)
+    if(graphNode->unk38.curAnim != anim)
     {
-        graphNode->unk38.curAnim = sp28;
-        graphNode->unk38.animFrame = (sp28->unk04) + ((sp28->flags & ANIM_FLAG_1) ? 1 : -1);
+        graphNode->unk38.curAnim = anim;
+        graphNode->unk38.animFrame = (anim->unk04) + ((anim->flags & ANIM_FLAG_1) ? 1 : -1);
         graphNode->unk38.animAccel = 0;
         graphNode->unk38.animYTrans = 0;
     }
 }
 
-void func_8037C708(struct GraphNodeObject *graphNode, void *sp34, u32 sp38)
+/** Initialize the animation of an object node
+ */
+void geo_obj_init_animation_accel(struct GraphNodeObject *graphNode, void *sp34, u32 animAccel)
 {
-    void **sp2c = segmented_to_virtual(sp34);
-    struct Animation *sp28 = segmented_to_virtual(sp2c[0]);
+    void **animSegmented = segmented_to_virtual(sp34);
+    struct Animation *anim = segmented_to_virtual(animSegmented[0]);
 
-    if(graphNode->unk38.curAnim != sp28)
+    if(graphNode->unk38.curAnim != anim)
     {
-        graphNode->unk38.curAnim = sp28;
+        graphNode->unk38.curAnim = anim;
         graphNode->unk38.animYTrans = 0;
-        graphNode->unk38.animFrameAccelAssist = (sp28->unk04 << 16) + ((sp28->flags & ANIM_FLAG_1) ? sp38 : -sp38);
+        graphNode->unk38.animFrameAccelAssist = (anim->unk04 << 16) + ((anim->flags & ANIM_FLAG_1) ? animAccel : -animAccel);
         graphNode->unk38.animFrame = graphNode->unk38.animFrameAccelAssist >> 16;
     }
 
-    graphNode->unk38.animAccel = sp38;
+    graphNode->unk38.animAccel = animAccel;
 }
 
-s32 func_8037C7D8(s32 a0, u16 **a1)
+/** Retrieves an index into animation data based on the attribute pointer
+ *  An attribute is an x-, y- or z-component of the translation / rotation for a part
+ *  Each attribute is a pair of s16's, where the first s16 represents the maximum frame
+ *  and the second s16 the actual index. This index can be used to index in the array
+ *  with actual animation values.
+ */
+s32 retrieve_animation_index(s32 frame, u16 **attributes)
 {
-    s32 sp04;
+    s32 result;
 
-    if(a0 < (*a1)[0])
+    if(frame < (*attributes)[0])
     {
-        sp04 = (*a1)[1] + a0;
+        result = (*attributes)[1] + frame;
     }
     else
     {
-        sp04 = (*a1)[1] + (*a1)[0] - 1;
+        result = (*attributes)[1] + (*attributes)[0] - 1;
     }
 
-    *a1 += 2;
+    *attributes += 2;
 
-    return sp04;
+    return result;
 }
 
-s16 func_8037C844(struct GraphNodeObject_sub *a0, s32* a1)
+/** Update the animation frame of an object. The animation flags determine
+ *  whether it plays forwards or backwards, and whether it stops or loops at
+ *  the end etc.
+ */
+s16 geo_update_animation_frame(struct GraphNodeObject_sub *obj, s32* accelAssist)
 {
-    s32 sp04;
-    struct Animation *sp00;
-    
-    sp00 = a0->curAnim;
+    s32 result;
+    struct Animation *anim;
 
-    if(a0->animTimer == gAreaUpdateCounter || sp00->flags & ANIM_FLAG_2)
+    anim = obj->curAnim;
+
+    if(obj->animTimer == gAreaUpdateCounter || anim->flags & ANIM_FLAG_2)
     {
-        if(a1 != NULL)
+        if(accelAssist != NULL)
         {
-            a1[0] = a0->animFrameAccelAssist;
+            accelAssist[0] = obj->animFrameAccelAssist;
         }
 
-        return a0->animFrame;
+        return obj->animFrame;
     }
 
-    if(sp00->flags & ANIM_FLAG_1)
+    if(anim->flags & ANIM_FLAG_1)
     {
-        if(a0->animAccel)
+        if(obj->animAccel)
         {
-            sp04 = a0->animFrameAccelAssist - a0->animAccel;
+            result = obj->animFrameAccelAssist - obj->animAccel;
         }
         else
         {
-            sp04 = (a0->animFrame - 1) << 16;
+            result = (obj->animFrame - 1) << 16;
         }
 
-        if(GET_HIGH_S16_OF_32(sp04) < sp00->unk06)
+        if(GET_HIGH_S16_OF_32(result) < anim->unk06)
         {
-            if(sp00->flags & ANIM_FLAG_NOLOOP)
+            if(anim->flags & ANIM_FLAG_NOLOOP)
             {
-                SET_HIGH_S16_OF_32(sp04, sp00->unk06);
+                SET_HIGH_S16_OF_32(result, anim->unk06);
             }
             else
             {
-                SET_HIGH_S16_OF_32(sp04, sp00->unk08 - 1);
+                SET_HIGH_S16_OF_32(result, anim->unk08 - 1);
             }
         }
     }
     else
     {
-        if(a0->animAccel != 0)
+        if(obj->animAccel != 0)
         {
-            sp04 = a0->animFrameAccelAssist + a0->animAccel;
+            result = obj->animFrameAccelAssist + obj->animAccel;
         }
         else
         {
-            sp04 = (a0->animFrame + 1) << 16;
+            result = (obj->animFrame + 1) << 16;
         }
 
-        if(GET_HIGH_S16_OF_32(sp04) >= sp00->unk08)
+        if(GET_HIGH_S16_OF_32(result) >= anim->unk08)
         {
-            if(sp00->flags & ANIM_FLAG_NOLOOP)
+            if(anim->flags & ANIM_FLAG_NOLOOP)
             {
-                SET_HIGH_S16_OF_32(sp04, sp00->unk08 - 1);
+                SET_HIGH_S16_OF_32(result, anim->unk08 - 1);
             }
             else
             {
-                SET_HIGH_S16_OF_32(sp04, sp00->unk06);
+                SET_HIGH_S16_OF_32(result, anim->unk06);
             }
         }
     }
 
-    if(a1 != 0)
+    if(accelAssist != 0)
     {
-        a1[0] = sp04;
+        accelAssist[0] = result;
     }
 
-    return GET_HIGH_S16_OF_32(sp04);
+    return GET_HIGH_S16_OF_32(result);
 }
 
-void Unknown8037C9E8(struct GraphNodeObject *sp28, Vec3f sp2c)
+/** Unused function to retrieve an object's current animation translation
+ *  Assumes that it has x, y and z data in animations, which isn't always the
+ *  case since some animation types only have vertical or lateral translation.
+ *  This might have been used for positioning the shadow under an object, which
+ *  currently happens in-line in geo_process_shadow where it also accounts for
+ *  animations without lateral translation.
+ */
+void geo_retreive_animation_translation(struct GraphNodeObject *obj, Vec3f position)
 {
-    struct Animation *sp24 = sp28->unk38.curAnim;
-    u16 *sp20;
-    s16 *sp1c;
-    s16 sp1a;
-    
-    if(sp24 != NULL)
+    struct Animation *animation = obj->unk38.curAnim;
+    u16 *attribute;
+    s16 *values;
+    s16 frame;
+
+    if(animation != NULL)
     {
-        sp20 = segmented_to_virtual(sp24->index);
-        sp1c = segmented_to_virtual(sp24->values);
+        attribute = segmented_to_virtual(animation->index);
+        values = segmented_to_virtual(animation->values);
 
-        sp1a = sp28->unk38.animFrame;
+        frame = obj->unk38.animFrame;
 
-        if(sp1a < 0)
+        if(frame < 0)
         {
-            sp1a = 0;
+            frame = 0;
         }
 
         if(1) // ? necessary to match
         {
-            sp2c[0] = (f32) sp1c[func_8037C7D8(sp1a, &sp20)];
-            sp2c[1] = (f32) sp1c[func_8037C7D8(sp1a, &sp20)];
-            sp2c[2] = (f32) sp1c[func_8037C7D8(sp1a, &sp20)];
+            position[0] = (f32) values[retrieve_animation_index(frame, &attribute)];
+            position[1] = (f32) values[retrieve_animation_index(frame, &attribute)];
+            position[2] = (f32) values[retrieve_animation_index(frame, &attribute)];
         }
     }
     else
     {
-        vec3f_set(sp2c, 0, 0, 0);
+        vec3f_set(position, 0, 0, 0);
     }
 }
 
-struct GraphNodeScreenArea *Unknown8037CB10(struct GraphNode *graphNode)
+/** Unused function to find the root of the geo node tree, which should be a
+ *  GraphNodeRoot. If it is not for some reason, null is returned.
+ */
+struct GraphNodeRoot *geo_find_root(struct GraphNode *graphNode)
 {
-    struct GraphNodeScreenArea *resGraphNode = NULL;
+    struct GraphNodeRoot *resGraphNode = NULL;
 
     while(graphNode->parent != NULL)
     {
         graphNode = graphNode->parent;
     }
 
-    if(graphNode->type == GRAPH_NODE_TYPE_SCREEN_AREA)
+    if(graphNode->type == GRAPH_NODE_TYPE_ROOT)
     {
-        resGraphNode = (struct GraphNodeScreenArea *) graphNode;
+        resGraphNode = (struct GraphNodeRoot *) graphNode;
     }
 
     return resGraphNode;

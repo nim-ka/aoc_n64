@@ -245,12 +245,12 @@ s32 geo_switch_peach_eyes(s32 run, struct GraphNode *node, UNUSED s32 a2)
         {
             timer = (gAreaUpdateCounter + 0x20) >> 1 & 0x1F;
             if (timer < 7)
-                switchCase->result = D_8032CBE8 * 4 + D_8032CBEC[timer];
+                switchCase->selectedCase = D_8032CBE8 * 4 + D_8032CBEC[timer];
             else
-                switchCase->result = D_8032CBE8 * 4 + 1;
+                switchCase->selectedCase  = D_8032CBE8 * 4 + 1;
         }
         else
-            switchCase->result = D_8032CBE8 * 4 + D_8032CBE4 - 1;
+            switchCase->selectedCase = D_8032CBE8 * 4 + D_8032CBE4 - 1;
     }
 
     return 0;
@@ -510,7 +510,7 @@ s32 act_disappeared(struct MarioState *m)
 {
     set_mario_animation(m, MARIO_ANIM_A_POSE);
     stop_and_set_height_to_floor(m);
-    m->marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_01;
+    m->marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
     if (m->actionArg)
     {
         m->actionArg--;
@@ -877,7 +877,7 @@ s32 act_eaten_by_bubba(struct MarioState *m)
 {
     func_80250F50(m, SOUND_MARIO_DYING, MARIO_UNKNOWN_16);
     set_mario_animation(m, MARIO_ANIM_A_POSE);
-    m->marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_01;
+    m->marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
     m->health = 0xFF;
     if (m->actionTimer++ == 60)
         level_trigger_warp(m, WARP_OP_DEATH);
@@ -1128,11 +1128,11 @@ s32 act_emerge_from_pipe(struct MarioState *m)
 
     if (m->actionTimer++ < 11)
     {
-        marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_01;
+        marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
         return FALSE;
     }
 
-    marioObj->header.gfx.node.flags |= GRAPH_RENDER_01;
+    marioObj->header.gfx.node.flags |= GRAPH_RENDER_ACTIVE;
 
     func_80250F50(m, SOUND_MARIO_YAHOO, MARIO_UNKNOWN_17);
 
@@ -1397,7 +1397,7 @@ s32 act_special_exit_airborne(struct MarioState *m)
 
     if (m->actionTimer++ < 11)
     {
-        marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_01;
+        marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
         return FALSE;
     }
 
@@ -1416,7 +1416,7 @@ s32 act_special_exit_airborne(struct MarioState *m)
     // rotate mario to face away from the entrance
     marioObj->header.gfx.angle[1] += 0x8000;
     // show mario
-    marioObj->header.gfx.node.flags |= GRAPH_RENDER_01;
+    marioObj->header.gfx.node.flags |= GRAPH_RENDER_ACTIVE;
 
     return FALSE;
 }
@@ -1427,7 +1427,7 @@ s32 act_special_death_exit(struct MarioState *m)
 
     if (m->actionTimer++ < 11)
     {
-        marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_01;
+        marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
         return FALSE;
     }
 
@@ -1442,7 +1442,7 @@ s32 act_special_death_exit(struct MarioState *m)
         m->healCounter = 31;
     }
     // show mario
-    marioObj->header.gfx.node.flags |= GRAPH_RENDER_01;
+    marioObj->header.gfx.node.flags |= GRAPH_RENDER_ACTIVE;
     // one unit of health
     m->health = 0x0100;
 
@@ -1552,7 +1552,7 @@ s32 act_bbh_enter_spin(struct MarioState *m)
 
         case 4:
             stop_and_set_height_to_floor(m);
-            m->marioObj->header.gfx.node.flags |= GRAPH_RENDER_10;
+            m->marioObj->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
             break;
     }
 
@@ -1900,7 +1900,7 @@ static void intro_cutscene_hide_hud_and_mario(struct MarioState *m)
 {
     gHudDisplay.flags = HUD_DISPLAY_NONE;
     m->unk94->unk1C[1] = 9;
-    m->marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_01;
+    m->marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
     advance_cutscene_step(m);
 }
 
@@ -1941,7 +1941,7 @@ static void intro_cutscene_jump_out_of_pipe(struct MarioState *m)
 
     if (m->actionTimer++ >= 118)
     {
-        m->marioObj->header.gfx.node.flags |= GRAPH_RENDER_01;
+        m->marioObj->header.gfx.node.flags |= GRAPH_RENDER_ACTIVE;
 
         func_80250F50(m, SOUND_MARIO_YAHOO, MARIO_UNKNOWN_17);
         #ifndef VERSION_JP

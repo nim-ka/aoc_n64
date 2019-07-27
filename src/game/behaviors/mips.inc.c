@@ -228,7 +228,7 @@ void bhv_mips_free(void) {
 void bhv_mips_held(void) {
     s16 dialogId;
 
-    o->header.gfx.node.flags |= GRAPH_RENDER_10;
+    o->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
     SetObjAnimation(4); // Held animation.
     obj_set_pos_relative(gMarioObject, 0, 60.0f, 100.0f);
     obj_become_intangible();
@@ -258,7 +258,7 @@ void bhv_mips_held(void) {
  */
 void bhv_mips_dropped(void) {
     obj_get_dropped();
-    o->header.gfx.node.flags &= ~GRAPH_RENDER_10;
+    o->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
     SetObjAnimation(0);
     o->oHeldState = HELD_FREE;
     obj_become_tangible();
@@ -271,7 +271,7 @@ void bhv_mips_dropped(void) {
  */
 void bhv_mips_thrown(void) {
     obj_enable_rendering_2();
-    o->header.gfx.node.flags &= ~GRAPH_RENDER_10;
+    o->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
     o->oHeldState = HELD_FREE;
     o->oFlags &= ~OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW;
     SetObjAnimation(2);

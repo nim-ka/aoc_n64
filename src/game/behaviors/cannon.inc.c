@@ -139,7 +139,7 @@ void bhv_cannon_base_loop(void)
 void bhv_cannon_barrel_loop(void)
 {
     struct Object* parent = o->parentObj;
-    if(parent->header.gfx.node.flags & GRAPH_RENDER_01)
+    if(parent->header.gfx.node.flags & GRAPH_RENDER_ACTIVE)
     {
         obj_enable_rendering();
         copy_object_pos(o,o->parentObj);

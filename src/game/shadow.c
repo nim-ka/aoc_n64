@@ -118,7 +118,7 @@ s8 gMarioOnIceOrCarpet;
  * after a rotation equal to the yaw of the current graph node object.
  */
 void rotate_rectangle(f32 *newZ, f32 *newX, f32 oldZ, f32 oldX) {
-    struct Object *obj = (struct Object *) D_8032CFA0;
+    struct Object *obj = (struct Object *) gCurGraphNodeObject;
     *newZ = oldZ * coss(obj->oFaceAngleYaw) - oldX * sins(obj->oFaceAngleYaw);
     *newX = oldZ * sins(obj->oFaceAngleYaw) + oldX * coss(obj->oFaceAngleYaw);
 }
