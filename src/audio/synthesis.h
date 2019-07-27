@@ -12,8 +12,7 @@ struct struct_3920_sp1c
     s16 *unk4;
     s16 *unk8;
     s32 unkC;
-    s16 unk10;
-    s16 unk12;
+    s16 unk10[2];
 }; // size = 0x14
 
 struct Struct802211B0

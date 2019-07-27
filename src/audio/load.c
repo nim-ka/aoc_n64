@@ -398,6 +398,8 @@ struct AudioBank *bank_load_immediate(s32 bankId, s32 arg1)
     u8 *ctlData;
     s32 alloc;
 
+    // (This is broken if the length is 1 (mod 16), but that never happens --
+    // it's always divisible by 4.)
     alloc = gAlCtlHeader->seqArray[bankId].len + 0xf;
     alloc = ALIGN16(alloc);
     alloc -= 0x10;

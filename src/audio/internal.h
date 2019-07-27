@@ -105,13 +105,29 @@ struct AdsrEnvelope {
     s16 arg;
 }; // size = 0x4
 
+struct AdpcmLoop
+{
+    u32 start;
+    u32 end;
+    u32 count;
+    u32 pad;
+    s16 state[16];
+};
+
+struct AdpcmBook
+{
+    s32 order;
+    s32 npredictors;
+    s16 book[1]; // variable size, 8-byte aligned
+};
+
 struct AudioBankSample
 {
     u8 unused;
     u8 loaded;
     u8 *sampleAddr;
-    ALADPCMloop *loop;
-    ALADPCMBook *book;
+    struct AdpcmLoop *loop;
+    struct AdpcmBook *book;
     // u32 samplesize;
 };
 

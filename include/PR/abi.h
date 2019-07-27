@@ -240,9 +240,7 @@ typedef union {
 /*
  * ADPCM State
  */
-#define ADPCMVSIZE	8
-#define ADPCMFSIZE      16
-typedef short ADPCM_STATE[ADPCMFSIZE];
+typedef short ADPCM_STATE[16];
 
 /*
  * Pole filter state
@@ -404,7 +402,7 @@ typedef short ENVMIX_STATE[40];
 
 /* 
  * --------------------------------------------------------------------
- * The below commands are seemingly declared manually and used for the
+ * The below command is seemingly declared manually and used for the
  * sound driver.
  * --------------------------------------------------------------------
  */
@@ -420,20 +418,6 @@ typedef short ENVMIX_STATE[40];
     _a->words.w0 = (_SHIFTL(A_SETVOL, 24, 8) | _SHIFTL(f, 16, 16) | \
                     _SHIFTL(v, 0, 16));                             \
     _a->words.w1 = (unsigned int)(tr);                              \
-}
-
-// Like aSetBuffer, expect that the order of operands to the w1 bitor is
-// swapped. This is needed for the code to match... (In fact, it's almost
-// fine to redefine aSetBuffer itself this way, but there's a single function
-// whose bitor then get its order of operands messed up.)
-
-#define aSetBuffer2(pkt, f, i, o, c)                                \
-{                                                                   \
-    Acmd *_a = (Acmd *)pkt;                                         \
-                                                                    \
-    _a->words.w0 = (_SHIFTL(A_SETBUFF, 24, 8) | _SHIFTL(f, 16, 8) | \
-                    _SHIFTL(i, 0, 16));                             \
-    _a->words.w1 =  _SHIFTL(c, 0, 16) | _SHIFTL(o, 16, 16);         \
 }
 
 #endif /* _LANGUAGE_C */

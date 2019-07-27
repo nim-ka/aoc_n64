@@ -9,10 +9,16 @@
 #include "external.h"
 
 #define aSetLoadBufferPair(pkt, c, off)                  \
-    aSetBuffer(pkt, 0, c + 0x740, 0, 320 - c);           \
+    aSetBuffer(pkt, 0, c + 0x740, 0, 0x140 - c);           \
     aLoadBuffer(pkt, FIX(&D_802211B0.unk14.unk00[off])); \
-    aSetBuffer(pkt, 0, c + 0x880, 0, 320 - c);           \
+    aSetBuffer(pkt, 0, c + 0x880, 0, 0x140 - c);           \
     aLoadBuffer(pkt, FIX(&D_802211B0.unk14.unk04[off]));
+
+#define aSetSaveBufferPair(pkt, c, d, off)               \
+    aSetBuffer(pkt, 0, 0, c + 0x740, d);                 \
+    aSaveBuffer(pkt, FIX(&D_802211B0.unk14.unk00[off])); \
+    aSetBuffer(pkt, 0, 0, c + 0x880, d);                 \
+    aSaveBuffer(pkt, FIX(&D_802211B0.unk14.unk04[off]));
 
 #define ALIGN(val, amnt) (((val) + (1 << amnt) - 1) & ~((1 << amnt) - 1))
 #define FIX(a) (u16 *)((u8 *)(a) + 0x80000000U)
@@ -46,13 +52,13 @@ void func_80313920(s32 arg0, u32 updateIndex)
         if (D_802211B0.unk2 == 0)
         {
             sp1c = &D_802211B0.unk2C[D_802211B0.unk3][updateIndex];
-            osInvalDCache(sp1c->unk4, 640);
-            for (a1 = 0, v1 = 0; v1 < sp1c->unk10 / 2; a1 += D_802212A2, v1++)
+            osInvalDCache(sp1c->unk4, 0x280);
+            for (a1 = 0, v1 = 0; v1 < sp1c->unk10[0] / 2; a1 += D_802212A2, v1++)
             {
                 D_802211B0.unk14.unk00[v1 + sp1c->unkC] = sp1c->unk4[a1];
                 D_802211B0.unk14.unk04[v1 + sp1c->unkC] = sp1c->unk8[a1];
             }
-            for (v1 = 0; v1 < sp1c->unk12 / 2; a1 += D_802212A2, v1++)
+            for (v1 = 0; v1 < sp1c->unk10[1] / 2; a1 += D_802212A2, v1++)
             {
                 D_802211B0.unk14.unk00[v1] = sp1c->unk4[a1];
                 D_802211B0.unk14.unk04[v1] = sp1c->unk8[a1];
@@ -64,8 +70,8 @@ void func_80313920(s32 arg0, u32 updateIndex)
     v1_2 = v0 = arg0 / D_802212A2;
     if (((v0 + D_802211B0.unk8) - D_802211B0.unk10) < 0)
     {
-        sp1c->unk10 = v0 * 2;
-        sp1c->unk12 = 0;
+        sp1c->unk10[0] = v0 * 2;
+        sp1c->unk10[1] = 0;
         sp1c->unkC = (s32)D_802211B0.unk8;
         D_802211B0.unk8 += v0;
     }
@@ -73,8 +79,8 @@ void func_80313920(s32 arg0, u32 updateIndex)
     {
         a0 = (v0 + D_802211B0.unk8) - D_802211B0.unk10;
         v0 = v1_2 - a0;
-        sp1c->unk10 = (v0)*2;
-        sp1c->unk12 = a0 * 2;
+        sp1c->unk10[0] = v0 * 2;
+        sp1c->unk10[1] = a0 * 2;
         sp1c->unkC = D_802211B0.unk8;
         D_802211B0.unk8 = a0;
     }
@@ -163,7 +169,7 @@ u64 *func_80313E54(u16 *aiBuf, s32 bufLen, u64 *cmd, u32 updateIndex)
     if (D_802211B0.unk1 == 0)
     {
 
-        aClearBuffer(cmd++, 0x4c0, 640);
+        aClearBuffer(cmd++, 0x4c0, 0x280);
         cmd = func_80314480(aiBuf, bufLen, cmd);
     }
     else
@@ -171,20 +177,20 @@ u64 *func_80313E54(u16 *aiBuf, s32 bufLen, u64 *cmd, u32 updateIndex)
         if (D_802212A2 == 1)
         {
             aSetLoadBufferPair(cmd++, 0, v1->unkC);
-            if (v1->unk12 != 0)
+            if (v1->unk10[1] != 0)
             {
-                aSetLoadBufferPair(cmd++, v1->unk10, 0);
+                aSetLoadBufferPair(cmd++, v1->unk10[0], 0);
             }
             aDMEMMove(cmd++, 0x740, 0x4c0, 0x280);
-            aSetBuffer(cmd++, 0, 0, 0, 640);
+            aSetBuffer(cmd++, 0, 0, 0, 0x280);
             aMix(cmd++, 0, /*gain*/ D_802211B0.unk4 + 0x8000, /*in*/ 0x740, /*out*/ 0x740);
         }
         else
         {
-            t4 = (s16)((v1->unkC & 7) * 2);
-            ra = (s16)ALIGN(v1->unk10 + t4, 4);
+            t4 = (v1->unkC & 7) * 2;
+            ra = ALIGN(v1->unk10[0] + t4, 4);
             aSetLoadBufferPair(cmd++, 0, v1->unkC - t4 / 2);
-            if (v1->unk12 != 0)
+            if (v1->unk10[1] != 0)
             {
                 aSetLoadBufferPair(cmd++, ra, 0);
             }
@@ -192,24 +198,17 @@ u64 *func_80313E54(u16 *aiBuf, s32 bufLen, u64 *cmd, u32 updateIndex)
             aResample(cmd++, D_802211B0.unk0, (u16)D_802211B0.unk6, FIX(D_802211B0.unk1C));
             aSetBuffer(cmd++, 0, t4 + 0x880, 0x600, bufLen << 1);
             aResample(cmd++, D_802211B0.unk0, (u16)D_802211B0.unk6, FIX(D_802211B0.unk20));
-            aSetBuffer(cmd++, 0, 0, 0, 640);
+            aSetBuffer(cmd++, 0, 0, 0, 0x280);
             aMix(cmd++, 0, /*gain*/ D_802211B0.unk4 + 32768, /*in*/ 0x4c0, /*out*/ 0x4c0);
             aDMEMMove(cmd++, 0x4c0, 0x740, 0x280);
         }
         cmd = func_80314480(aiBuf, bufLen, cmd);
         if (D_802212A2 == 1)
         {
-            //maybe also macro?
-            aSetBuffer(cmd++, 0, 0, 0x740, v1->unk10);
-            aSaveBuffer(cmd++, FIX(&D_802211B0.unk14.unk00[v1->unkC]));
-            aSetBuffer(cmd++, 0, 0, 0x880, v1->unk10);
-            aSaveBuffer(cmd++, FIX(&D_802211B0.unk14.unk04[v1->unkC]));
-            if (v1->unk12 != 0)
+            aSetSaveBufferPair(cmd++, 0, v1->unk10[0], v1->unkC);
+            if (v1->unk10[1] != 0)
             {
-                aSetBuffer2(cmd++, 0, 0, v1->unk10 + 0x740, v1->unk12);
-                aSaveBuffer(cmd++, FIX(D_802211B0.unk14.unk00));
-                aSetBuffer2(cmd++, 0, 0, v1->unk10 + 0x880, v1->unk12);
-                aSaveBuffer(cmd++, FIX(D_802211B0.unk14.unk04));
+                aSetSaveBufferPair(cmd++, v1->unk10[0], v1->unk10[1], 0);
             }
         }
         else
@@ -228,7 +227,7 @@ u64 *func_80314480(u16 *aiBuf, s32 bufLen, u64 *cmd)
     s32 sp174;
     struct Note *s7;
     struct AudioBankSample *sp164;
-    ALADPCMloop *sp160;
+    struct AdpcmLoop *sp160;
     s16 *sp15C;
     s32 t2; //150
     s32 t3; //14c
@@ -437,7 +436,7 @@ u64 *func_80314480(u16 *aiBuf, s32 bufLen, u64 *cmd)
 
                         if (s7->unk0b20 != 0)
                         {
-                            aSetLoop(cmd++, FIX(sp164->loop + 8));
+                            aSetLoop(cmd++, FIX(sp164->loop->state));
                             sp148 = A_LOOP; // = 2
                             s7->unk0b20 = 0;
                         }
@@ -634,7 +633,7 @@ u64 *func_80315094(u64 *cmd, struct Note *note, s32 arg2, u16 arg3, s32 arg4, st
     s32 rampLeft, rampRight;
     if (note->usesStereo)
     {
-        aClearBuffer(cmd++, 0x200, 320);
+        aClearBuffer(cmd++, 0x200, 0x140);
 
         switch (arg4)
         {
@@ -656,13 +655,13 @@ u64 *func_80315094(u64 *cmd, struct Note *note, s32 arg2, u16 arg3, s32 arg4, st
     {
         if (note->stereoStrongRight)
         {
-            aClearBuffer(cmd++, 0x200, 640);
+            aClearBuffer(cmd++, 0x200, 0x280);
             aSetBuffer(cmd++, 0, arg3, 0x200, arg2 * 2);
             aSetBuffer(cmd++, 8, 0x600, 0x340, 0x880);
         }
         else if (note->stereoStrongLeft)
         {
-            aClearBuffer(cmd++, 0x200, 640);
+            aClearBuffer(cmd++, 0x200, 0x280);
             aSetBuffer(cmd++, 0, arg3, 0x4c0, arg2 * 2);
             aSetBuffer(cmd++, 8, 0x200, 0x740, 0x340);
         }

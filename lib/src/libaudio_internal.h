@@ -22,6 +22,21 @@ typedef struct
 
 typedef struct
 {
+    u32 start;
+    u32 end;
+    u32 count;
+    ADPCM_STATE state;
+} ALADPCMloop;
+
+typedef struct
+{
+    s32 order;
+    s32 npredictors;
+    s16 book[1]; // variable size, 8-byte aligned
+} ALADPCMBook;
+
+typedef struct
+{
     ALMicroTime attackTime;
     ALMicroTime decayTime;
     ALMicroTime releaseTime;
