@@ -86,38 +86,26 @@ void discard_sequence(s32 seqId)
     }
 }
 
-#ifdef NON_MATCHING
-void *soundAlloc(struct SoundAllocPool *pool, u32 size)
+void * soundAlloc(struct SoundAllocPool * pool, u32 size)
 {
-    // Has a bunch of register swaps: v1 -> a2/a0, a1 -> v1, a2 -> a1
-    // v1 = temp used for size + 15 and last + 1
-    s32 last; // a2
-    s32 i; // a3
-    u8 *ret; // a1, v0
-    s32 aligned; // t6
+    s32 last;
+    s32 i;
+    u8 *start;
 
-    ret = pool->cur;
-    aligned = ALIGN16(size);
-    if (pool->cur + aligned <= pool->size + pool->start)
-    {
-        pool->cur += aligned;
-        last = pool->cur - ret - 1;
+    if ((pool->cur + ALIGN16(size) <= pool->size + pool->start))
+    {    
+        start = pool->cur;
+        pool->cur += ALIGN16(size);
+        last = pool->cur - start - 1; 
         for (i = 0; i <= last; i++)
-        {
-            ret[i] = 0;
-        }
+            start[i] = 0;
     }
-    else
-    {
+    else {
         return NULL;
     }
 
-    return ret;
+    return start; 
 }
-
-#else
-GLOBAL_ASM("asm/non_matchings/soundAlloc.s")
-#endif
 
 void func_80316094(struct SoundAllocPool *pool, void *arg1, u32 arg2)
 {
