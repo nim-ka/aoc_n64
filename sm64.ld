@@ -544,21 +544,21 @@ SECTIONS
       BUILD_DIR/src/game/intro_geo.o(.text);
       BUILD_DIR/src/game/file_select.o(.text);
       BUILD_DIR/src/game/star_select.o(.text);
-      BUILD_DIR/src/goddard/gd_main.o(.text);
-      BUILD_DIR/src/goddard/gd_memory.o(.text);
-      BUILD_DIR/src/goddard/mhead_sfx.o(.text);
-      BUILD_DIR/src/goddard/draw_objects.o(.text);
-      BUILD_DIR/src/goddard/mario_head_1.o(.text);
-      BUILD_DIR/src/goddard/mario_head_2.o(.text);
-      BUILD_DIR/src/goddard/mario_head_3.o(.text);
-      BUILD_DIR/src/goddard/dynlist_proc.o(.text);
-      BUILD_DIR/src/goddard/old_obj_fn.o(.text);
-      BUILD_DIR/src/goddard/profiler_utils.o(.text);
-      BUILD_DIR/src/goddard/joint_fns.o(.text);
-      BUILD_DIR/src/goddard/skin_fns.o(.text);
-      BUILD_DIR/src/goddard/matrix_fns.o(.text);
-      BUILD_DIR/src/goddard/half_6.o(.text);
-      BUILD_DIR/src/goddard/mario_head_6.o(.text);
+      BUILD_DIR/libgoddard.a:gd_main.o(.text);
+      BUILD_DIR/libgoddard.a:gd_memory.o(.text);
+      BUILD_DIR/libgoddard.a:mhead_sfx.o(.text);
+      BUILD_DIR/libgoddard.a:draw_objects.o(.text);
+      BUILD_DIR/libgoddard.a:mario_head_1.o(.text);
+      BUILD_DIR/libgoddard.a:mario_head_2.o(.text);
+      BUILD_DIR/libgoddard.a:mario_head_3.o(.text);
+      BUILD_DIR/libgoddard.a:dynlist_proc.o(.text);
+      BUILD_DIR/libgoddard.a:old_obj_fn.o(.text);
+      BUILD_DIR/libgoddard.a:profiler_utils.o(.text);
+      BUILD_DIR/libgoddard.a:joint_fns.o(.text);
+      BUILD_DIR/libgoddard.a:skin_fns.o(.text);
+      BUILD_DIR/libgoddard.a:matrix_fns.o(.text);
+      BUILD_DIR/libgoddard.a:half_6.o(.text);
+      BUILD_DIR/libgoddard.a:mario_head_6.o(.text);
       /* data, rodata, per file */
       BUILD_DIR/src/game/level_select_menu.o(.data*);
       BUILD_DIR/src/game/level_select_menu.o(.rodata*);
@@ -568,32 +568,32 @@ SECTIONS
       BUILD_DIR/src/game/star_select.o(.data*);
       BUILD_DIR/src/game/star_select.o(.rodata*);
       /* goddard subsystem data */
-      BUILD_DIR/src/goddard/gd_main.o(.data*);
-      BUILD_DIR/src/goddard/draw_objects.o(.data*);
-      BUILD_DIR/src/goddard/mario_head_1.o(.data*);
-      BUILD_DIR/src/goddard/mario_head_3.o(.data*);
-      BUILD_DIR/src/goddard/dynlist_proc.o(.data*);
-      BUILD_DIR/src/goddard/profiler_utils.o(.data*);
-      BUILD_DIR/src/goddard/joint_fns.o(.data*);
-      BUILD_DIR/src/goddard/half_6.o(.data*);
-      BUILD_DIR/src/goddard/mario_head_6.o(.data*);
+      BUILD_DIR/libgoddard.a:gd_main.o(.data*);
+      BUILD_DIR/libgoddard.a:draw_objects.o(.data*);
+      BUILD_DIR/libgoddard.a:mario_head_1.o(.data*);
+      BUILD_DIR/libgoddard.a:mario_head_3.o(.data*);
+      BUILD_DIR/libgoddard.a:dynlist_proc.o(.data*);
+      BUILD_DIR/libgoddard.a:profiler_utils.o(.data*);
+      BUILD_DIR/libgoddard.a:joint_fns.o(.data*);
+      BUILD_DIR/libgoddard.a:half_6.o(.data*);
+      BUILD_DIR/libgoddard.a:mario_head_6.o(.data*);
       /* goddard texture and DLs */
       BUILD_DIR/data/goddard_tex_dl.o(.rodata*);
       /* goddard subsystem rodata */
-      BUILD_DIR/src/goddard/gd_main.o(.rodata*);
-      BUILD_DIR/src/goddard/gd_memory.o(.rodata*);
-      BUILD_DIR/src/goddard/draw_objects.o(.rodata*);
-      BUILD_DIR/src/goddard/mario_head_1.o(.rodata*);
-      BUILD_DIR/src/goddard/mario_head_2.o(.rodata*);
-      BUILD_DIR/src/goddard/mario_head_3.o(.rodata*);
-      BUILD_DIR/src/goddard/dynlist_proc.o(.rodata*);
-      BUILD_DIR/src/goddard/old_obj_fn.o(.rodata*);
-      BUILD_DIR/src/goddard/profiler_utils.o(.rodata*);
-      BUILD_DIR/src/goddard/joint_fns.o(.rodata*);
-      BUILD_DIR/src/goddard/skin_fns.o(.rodata*);
-      BUILD_DIR/src/goddard/matrix_fns.o(.rodata*);
-      BUILD_DIR/src/goddard/half_6.o(.rodata*);
-      BUILD_DIR/src/goddard/mario_head_6.o(.rodata*);
+      BUILD_DIR/libgoddard.a:gd_main.o(.rodata*);
+      BUILD_DIR/libgoddard.a:gd_memory.o(.rodata*);
+      BUILD_DIR/libgoddard.a:draw_objects.o(.rodata*);
+      BUILD_DIR/libgoddard.a:mario_head_1.o(.rodata*);
+      BUILD_DIR/libgoddard.a:mario_head_2.o(.rodata*);
+      BUILD_DIR/libgoddard.a:mario_head_3.o(.rodata*);
+      BUILD_DIR/libgoddard.a:dynlist_proc.o(.rodata*);
+      BUILD_DIR/libgoddard.a:old_obj_fn.o(.rodata*);
+      BUILD_DIR/libgoddard.a:profiler_utils.o(.rodata*);
+      BUILD_DIR/libgoddard.a:joint_fns.o(.rodata*);
+      BUILD_DIR/libgoddard.a:skin_fns.o(.rodata*);
+      BUILD_DIR/libgoddard.a:matrix_fns.o(.rodata*);
+      BUILD_DIR/libgoddard.a:half_6.o(.rodata*);
+      BUILD_DIR/libgoddard.a:mario_head_6.o(.rodata*);
    }
    END_SEG(goddard)
    BEGIN_NOLOAD(goddard)
@@ -601,20 +601,20 @@ SECTIONS
       BUILD_DIR/src/game/intro_geo.o(.bss*);
       BUILD_DIR/src/game/file_select.o(.bss*);
       BUILD_DIR/src/game/star_select.o(.bss*);
-      BUILD_DIR/src/goddard/gd_main.o(.bss*);
-      BUILD_DIR/src/goddard/gd_memory.o(.bss*);
-      BUILD_DIR/src/goddard/mhead_sfx.o(.bss*);
-      BUILD_DIR/src/goddard/draw_objects.o(.bss*);
-      BUILD_DIR/src/goddard/mario_head_1.o(.bss*);
-      BUILD_DIR/src/goddard/mario_head_2.o(.bss*);
-      BUILD_DIR/src/goddard/mario_head_3.o(.bss*);
-      BUILD_DIR/src/goddard/dynlist_proc.o(.bss*);
-      BUILD_DIR/src/goddard/old_obj_fn.o(.bss*);
-      BUILD_DIR/src/goddard/profiler_utils.o(.bss*);
-      BUILD_DIR/src/goddard/joint_fns.o(.bss*);
-      BUILD_DIR/src/goddard/skin_fns.o(.bss*);
-      BUILD_DIR/src/goddard/half_6.o(.bss*);
-      BUILD_DIR/src/goddard/mario_head_6.o(.bss*);
+      BUILD_DIR/libgoddard.a:gd_main.o(.bss*);
+      BUILD_DIR/libgoddard.a:gd_memory.o(.bss*);
+      BUILD_DIR/libgoddard.a:mhead_sfx.o(.bss*);
+      BUILD_DIR/libgoddard.a:draw_objects.o(.bss*);
+      BUILD_DIR/libgoddard.a:mario_head_1.o(.bss*);
+      BUILD_DIR/libgoddard.a:mario_head_2.o(.bss*);
+      BUILD_DIR/libgoddard.a:mario_head_3.o(.bss*);
+      BUILD_DIR/libgoddard.a:dynlist_proc.o(.bss*);
+      BUILD_DIR/libgoddard.a:old_obj_fn.o(.bss*);
+      BUILD_DIR/libgoddard.a:profiler_utils.o(.bss*);
+      BUILD_DIR/libgoddard.a:joint_fns.o(.bss*);
+      BUILD_DIR/libgoddard.a:skin_fns.o(.bss*);
+      BUILD_DIR/libgoddard.a:half_6.o(.bss*);
+      BUILD_DIR/libgoddard.a:mario_head_6.o(.bss*);
    }
    END_NOLOAD(goddard)
 
@@ -649,21 +649,21 @@ SECTIONS
    /* 271B20-2A42A0 [32780] */
    BEGIN_SEG(gd_dynlists, 0x04000000)
    {
-      BUILD_DIR/src/goddard/dynlists/dynlist_test_cube.o(.data);
-      BUILD_DIR/src/goddard/dynlists/dynlist_unused.o(.data);
-      BUILD_DIR/src/goddard/dynlists/dynlist_mario_face.o(.data);
-      BUILD_DIR/src/goddard/dynlists/dynlists_mario_eyes.o(.data);
-      BUILD_DIR/src/goddard/dynlists/dynlists_mario_eyebrows_mustache.o(.data);
-      BUILD_DIR/src/goddard/dynlists/dynlist_mario_master.o(.data);
-      BUILD_DIR/src/goddard/dynlists/anim_mario_mustache_right.o(.data);
-      BUILD_DIR/src/goddard/dynlists/anim_mario_mustache_left.o(.data);
-      BUILD_DIR/src/goddard/dynlists/anim_mario_lips_1.o(.data);
-      BUILD_DIR/src/goddard/dynlists/anim_mario_lips_2.o(.data);
-      BUILD_DIR/src/goddard/dynlists/anim_mario_eyebrows_1.o(.data);
-      BUILD_DIR/src/goddard/dynlists/anim_group_1.o(.data);
-      BUILD_DIR/src/goddard/dynlists/anim_group_2.o(.data);
-      BUILD_DIR/src/goddard/dynlists/dynlist_test_cube.o(.rodata);
-      BUILD_DIR/src/goddard/dynlists/dynlist_unused.o(.rodata);
+      BUILD_DIR/libgoddard.a:dynlist_test_cube.o(.data);
+      BUILD_DIR/libgoddard.a:dynlist_unused.o(.data);
+      BUILD_DIR/libgoddard.a:dynlist_mario_face.o(.data);
+      BUILD_DIR/libgoddard.a:dynlists_mario_eyes.o(.data);
+      BUILD_DIR/libgoddard.a:dynlists_mario_eyebrows_mustache.o(.data);
+      BUILD_DIR/libgoddard.a:dynlist_mario_master.o(.data);
+      BUILD_DIR/libgoddard.a:anim_mario_mustache_right.o(.data);
+      BUILD_DIR/libgoddard.a:anim_mario_mustache_left.o(.data);
+      BUILD_DIR/libgoddard.a:anim_mario_lips_1.o(.data);
+      BUILD_DIR/libgoddard.a:anim_mario_lips_2.o(.data);
+      BUILD_DIR/libgoddard.a:anim_mario_eyebrows_1.o(.data);
+      BUILD_DIR/libgoddard.a:anim_group_1.o(.data);
+      BUILD_DIR/libgoddard.a:anim_group_2.o(.data);
+      BUILD_DIR/libgoddard.a:dynlist_test_cube.o(.rodata);
+      BUILD_DIR/libgoddard.a:dynlist_unused.o(.rodata);
    }
    END_SEG(gd_dynlists)
 
