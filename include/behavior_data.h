@@ -438,7 +438,7 @@ extern u32 bhvArrowLift[];
 extern u32 bhvOrangeNumber[];
 extern u32 bhvMantaRay[];
 extern u32 bhvFallingPillar[];
-extern u32 bhvSomeSubojbjectOfFallingPillar[];
+extern u32 bhvFallingPillarHitbox[];
 extern u32 bhvPillarBase[];
 extern u32 bhvJrbFloatingBox[];
 extern u32 bhvDecorativePendulum[];

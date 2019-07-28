@@ -1017,7 +1017,7 @@
 #define /*0x0F4*/ oArrowLiftDisplacement OBJECT_FIELD_F32(0x1B)
 
 /* FallingPillar */
-#define /*0x0F4*/ oFallingPillarUnkF4 OBJECT_FIELD_F32(0x1B)
+#define /*0x0F4*/ oFallingPillarPitchAcceleration OBJECT_FIELD_F32(0x1B)
 
 /* TreasureChestJrb */
 #define /*0x0F4*/ oTreasureChestJrbUnkF4 OBJECT_FIELD_S32(0x1B)

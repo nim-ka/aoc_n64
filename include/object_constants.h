@@ -802,4 +802,10 @@
     #define MIPS_STAR_STATUS_SHOULD_SPAWN_STAR 1
     #define MIPS_STAR_STATUS_ALREADY_SPAWNED_STAR 2
 
+/* Falling Pillar */
+    /* oAction */
+    #define FALLING_PILLAR_ACT_IDLE 0
+    #define FALLING_PILLAR_ACT_TURNING 1
+    #define FALLING_PILLAR_ACT_FALLING 2
+
 #endif

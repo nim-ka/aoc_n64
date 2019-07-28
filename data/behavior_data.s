@@ -4509,12 +4509,12 @@ glabel bhvFallingPillar # 4380
         callnative bhv_falling_pillar_loop
     end_loop
 
-glabel bhvSomeSubojbjectOfFallingPillar # 43A4
+glabel bhvFallingPillarHitbox # 43A4
     begin OBJ_LIST_GENACTOR
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     obj_set_pos
     begin_loop
-        callnative bhv_some_subobject_falling_pillar_loop
+        callnative bhv_falling_pillar_hitbox_loop
     end_loop
 
 glabel bhvPillarBase # 43C0
@@ -5560,4 +5560,3 @@ glabel bhvIntroScene # 5684
 
     .align 4
 glabel behavior_data_end
-
