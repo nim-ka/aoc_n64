@@ -128,6 +128,12 @@
 #define OBJ_ACT_VERTICAL_KNOCKBACK 101
 #define OBJ_ACT_SQUISHED 102
 
+/* gTTCSpeedSetting */
+#define TTC_SPEED_SLOW    0
+#define TTC_SPEED_FAST    1
+#define TTC_SPEED_RANDOM  2
+#define TTC_SPEED_STOPPED 3
+
 /* Bob-omb */
     /* oBehParams2ndByte */
     #define BOBOMB_BP_STYPE_GENERIC 0

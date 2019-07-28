@@ -106,11 +106,6 @@ extern u8 bitfs_seg7_collision_07015124[];
 extern u32 spiny_seg5_anims_05016EAC[];
 
 
-#define TTC_SPEED_SLOW    0
-#define TTC_SPEED_FAST    1
-#define TTC_SPEED_RANDOM  2
-#define TTC_SPEED_STOPPED 3
-
 #define POS_OP_SAVE_POSITION 0
 #define POS_OP_COMPUTE_VELOCITY 1
 #define POS_OP_RESTORE_POSITION 2
