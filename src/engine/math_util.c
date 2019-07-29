@@ -726,7 +726,7 @@ s32 func_8037AFE8(Vec3f a)
     s32 i;
     s32 sp28 = 0;
 
-    vec3f_copy(a, gCurGeoPos);
+    vec3f_copy(a, gVec3fZero);
     func_8037ABEC(sp30, D_8038BC94, D_8038BC98);
     for (i = 0; i < 4; i++)
     {

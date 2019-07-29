@@ -25,7 +25,7 @@ glabel castle_geo_0015B8 # 0x0E0015B8
       geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_0704AA98
       geo_asm   0, Geo18_802D5D0C
       geo_asm 268, Geo18_802D5B98
-      geo_asm   0, Geo18_80277B14
+      geo_asm   0, geo_render_mirror_mario
    geo_close_node
    geo_return
 
@@ -86,7 +86,7 @@ glabel castle_geo_0016D8 # 0x0E0016D8
       geo_asm 264, Geo18_802D5B98
       geo_asm 266, Geo18_802D5B98
       geo_asm 268, Geo18_802D5B98
-      geo_asm   0, Geo18_80277B14
+      geo_asm   0, geo_render_mirror_mario
    geo_close_node
    geo_return
 
@@ -142,7 +142,7 @@ glabel castle_geo_001858 # 0x0E001858
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background 0x0001
          geo_close_node
@@ -168,7 +168,7 @@ glabel castle_geo_001858 # 0x0E001858
                   geo_branch 1, castle_geo_001800 # 0x0E001800
                geo_close_node
                geo_render_obj
-               geo_asm 0, geo_exec_level
+               geo_asm 0, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

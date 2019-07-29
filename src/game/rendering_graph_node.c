@@ -354,7 +354,7 @@ static void geo_process_translation(struct GraphNodeTranslation *node)
     Mtx *mtx = alloc_display_list(sizeof(*mtx));
 
     vec3s_to_vec3f(translation, node->translation);
-    mtxf_rotate_zxy_and_translate(mtxf, translation, gCurGeoAngle);
+    mtxf_rotate_zxy_and_translate(mtxf, translation, gVec3sZero);
     mtxf_mul(gMatStack[gMatStackIndex + 1], mtxf, gMatStack[gMatStackIndex]);
     gMatStackIndex++;
     mtxf_to_mtx(mtx, gMatStack[gMatStackIndex]);
@@ -375,7 +375,7 @@ static void geo_process_rotation(struct GraphNodeRotation *node)
     f32 mtxf[4][4];
     Mtx *mtx = alloc_display_list(sizeof(*mtx));
 
-    mtxf_rotate_zxy_and_translate(mtxf, gCurGeoPos, node->rotation);
+    mtxf_rotate_zxy_and_translate(mtxf, gVec3fZero, node->rotation);
     mtxf_mul(gMatStack[gMatStackIndex + 1], mtxf, gMatStack[gMatStackIndex]);
     gMatStackIndex++;
     mtxf_to_mtx(mtx, gMatStack[gMatStackIndex]);
@@ -509,7 +509,7 @@ static void geo_process_animated_part(struct GraphNodeAnimatedPart *node)
     Vec3f translation;
     Mtx *matrixPtr = alloc_display_list(sizeof(*matrixPtr));
 
-    vec3s_copy(rotation, gCurGeoAngle);
+    vec3s_copy(rotation, gVec3sZero);
     vec3f_set(translation, node->translation[0], node->translation[1], node->translation[2]);
     if (gCurAnimType == ANIM_TYPE_TRANSLATION)
     {
@@ -711,7 +711,11 @@ static int obj_is_in_view(struct GraphNodeObject *node, Mat4 matrix)
     if (node->node.flags & GRAPH_RENDER_INVISIBLE)
         return FALSE;
 
-    geo = node->asGraphNode;
+    geo = node->sharedChild;
+
+    // ! @bug The aspect ratio is not accounted for. When the fov value is 45,
+    // the horizontal effective fov is actually 60 degrees, so you can see objects
+    // visibly pop in or out at the edge of the screen.
     halfFov = (gCurGraphNodeCamFrustum->fov / 2.0f + 1.0f) * 32768.0f / 180.0f + 0.5f;
 
     hScreenEdge = -matrix[3][2] * sins(halfFov) / coss(halfFov);
@@ -730,7 +734,7 @@ static int obj_is_in_view(struct GraphNodeObject *node, Mat4 matrix)
 
     //! This makes the HOLP not update when the camera is far away, and it
     //  makes PU travel safe when the camera is locked on the main map.
-    //  If Mario where rendered with a depth over 65536 it would cause overflow
+    //  If Mario were rendered with a depth over 65536 it would cause overflow
     //  when converting the transformation matrix to a fixed point matrix.
     if (matrix[3][2] < -20000.0f - cullingRadius)
         return FALSE;
@@ -781,12 +785,12 @@ static void geo_process_object(struct Object *node)
 
             mtxf_to_mtx(mtx, gMatStack[gMatStackIndex]);
             gMatStackFixed[gMatStackIndex] = mtx;
-            if (node->header.gfx.asGraphNode != NULL)
+            if (node->header.gfx.sharedChild != NULL)
             {
                 gCurGraphNodeObject = (struct GraphNodeObject *)node;
-                node->header.gfx.asGraphNode->parent = &node->header.gfx.node;
-                geo_process_node_and_siblings(node->header.gfx.asGraphNode);
-                node->header.gfx.asGraphNode->parent = NULL;
+                node->header.gfx.sharedChild->parent = &node->header.gfx.node;
+                geo_process_node_and_siblings(node->header.gfx.sharedChild);
+                node->header.gfx.sharedChild->parent = NULL;
                 gCurGraphNodeObject = NULL;
             }
             if (node->header.gfx.node.children != NULL)
@@ -816,7 +820,6 @@ static void geo_process_object_parent(struct GraphNodeObjectParent *node)
 }
 
 /** Process a held object node.
- *
  */
 void geo_process_held_object(struct GraphNodeHeldObject *node)
 {
@@ -830,7 +833,7 @@ void geo_process_held_object(struct GraphNodeHeldObject *node)
 
     if (node->fnNode.func != NULL)
         node->fnNode.func(GEO_CONTEXT_RENDER, &node->fnNode.node, gMatStack[gMatStackIndex]);
-    if (node->objNode != NULL && node->objNode->asGraphNode != NULL)
+    if (node->objNode != NULL && node->objNode->sharedChild != NULL)
     {
         s32 hasAnimation = (node->objNode->node.flags & GRAPH_RENDER_HAS_ANIMATION) != 0;
 
@@ -861,7 +864,7 @@ void geo_process_held_object(struct GraphNodeHeldObject *node)
         if (node->objNode->unk38.curAnim != NULL)
             geo_set_animation_globals(&node->objNode->unk38, hasAnimation);
 
-        geo_process_node_and_siblings(node->objNode->asGraphNode);
+        geo_process_node_and_siblings(node->objNode->sharedChild);
         gCurGraphNodeHeldObject = NULL;
         gCurAnimType = gGeoTempState.type;
         gCurAnimEnabled = gGeoTempState.enabled;

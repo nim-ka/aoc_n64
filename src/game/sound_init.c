@@ -271,7 +271,7 @@ void thread4_sound(UNUSED void *arg)
     sound_init();
 
     // Zero-out unused vector
-    vec3f_copy(unused80339DC0, gCurGeoPos);
+    vec3f_copy(unused80339DC0, gVec3fZero);
 
     osCreateMesgQueue(&sSoundMesgQueue, sSoundMesgBuf, ARRAY_COUNT(sSoundMesgBuf));
     set_vblank_handler(1, &sSoundVblankHandler, &sSoundMesgQueue, (OSMesg)512);

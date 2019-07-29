@@ -23,10 +23,10 @@ s16 zeroMtx[4][4] = {
     {0, 0, 0, 0}
 };
 
-Vec3f gCurGeoPos = {0.0f, 0.0f, 0.0f};
-Vec3s gCurGeoAngle = {0, 0, 0};
-Vec3f gCurGeoScale = {1.0f, 1.0f, 1.0f};
-Vec3s gCurGeoUnused = {1, 1, 1};
+Vec3f gVec3fZero = {0.0f, 0.0f, 0.0f};
+Vec3s gVec3sZero = {0, 0, 0};
+Vec3f gVec3fOne = {1.0f, 1.0f, 1.0f};
+UNUSED Vec3s gVec3sOne = {1, 1, 1};
 
 /** Initialize a geo node with a given type. Sets all links such that there
  *  are no siblings, parent or children for this node.
@@ -61,8 +61,8 @@ struct GraphNodeRoot *init_graph_node_root(struct AllocOnlyPool *pool, struct Gr
         graphNode->y = y;
         graphNode->width = width;
         graphNode->height = height;
-        graphNode->camera = NULL;
-        graphNode->unk1E = 0;
+        graphNode->views = NULL;
+        graphNode->numViews = 0;
     }
 
     return graphNode;
@@ -70,7 +70,8 @@ struct GraphNodeRoot *init_graph_node_root(struct AllocOnlyPool *pool, struct Gr
 
 /** Allocates and returns a newly created otrhographic projection node
  */
-struct GraphNodeOrthoProjection *init_graph_node_002(struct AllocOnlyPool *pool, struct GraphNodeOrthoProjection *graphNode, f32 scale)
+struct GraphNodeOrthoProjection *init_graph_node_ortho_projection(
+    struct AllocOnlyPool *pool, struct GraphNodeOrthoProjection *graphNode, f32 scale)
 {
     if(pool != NULL)
     {
@@ -88,8 +89,8 @@ struct GraphNodeOrthoProjection *init_graph_node_002(struct AllocOnlyPool *pool,
 
 /** Allocates and returns a newly created perspective node
  */
-struct GraphNodePerspective *init_graph_node_cam_frustum(struct AllocOnlyPool *pool, struct GraphNodePerspective *graphNode,
-    f32 fov, s16 near, s16 far, GraphNodeFunc nodeFunc, s32 sp30)
+struct GraphNodePerspective *init_graph_node_perspective(struct AllocOnlyPool *pool, struct GraphNodePerspective *graphNode,
+    f32 fov, s16 near, s16 far, GraphNodeFunc nodeFunc, s32 unused)
 {
     if(pool != NULL)
     {
@@ -104,7 +105,7 @@ struct GraphNodePerspective *init_graph_node_cam_frustum(struct AllocOnlyPool *p
         graphNode->near = near;
         graphNode->far = far;
         graphNode->fnNode.func = nodeFunc;
-        graphNode->unk18 = sp30;
+        graphNode->unused = unused;
 
         if(nodeFunc != NULL)
         {
@@ -134,7 +135,7 @@ struct GraphNodeStart *init_graph_node_start(struct AllocOnlyPool *pool, struct 
 
 /** Allocates and returns a newly created master list node
  */
-struct GraphNodeMasterList *init_graph_node_toggle_z_buffer(struct AllocOnlyPool *pool, struct GraphNodeMasterList *graphNode, s16 on)
+struct GraphNodeMasterList *init_graph_node_master_list(struct AllocOnlyPool *pool, struct GraphNodeMasterList *graphNode, s16 on)
 {
     if(pool != NULL)
     {
@@ -204,7 +205,7 @@ struct GraphNodeSwitchCase *init_graph_node_switch_case(struct AllocOnlyPool *po
 /** Allocates and returns a newly created camera node
  */
 struct GraphNodeCamera *init_graph_node_camera(struct AllocOnlyPool *pool, struct GraphNodeCamera * graphNode,
-    f32 *fromPos, f32 *toPos, GraphNodeFunc func, s32 levelCamera)
+    f32 *fromPos, f32 *toPos, GraphNodeFunc func, s32 preset)
 {
     if(pool != NULL)
     {
@@ -217,7 +218,7 @@ struct GraphNodeCamera *init_graph_node_camera(struct AllocOnlyPool *pool, struc
         vec3f_copy(graphNode->from, fromPos);
         vec3f_copy(graphNode->to, toPos);
         graphNode->fnNode.func = func;
-        graphNode->levelCamera = (struct LevelCamera *) levelCamera;
+        graphNode->config.preset = preset;
         graphNode->roll = 0;
         graphNode->rollScreen = 0;
 
@@ -320,7 +321,7 @@ struct GraphNodeScale *init_graph_node_scale(struct AllocOnlyPool *pool,
 /** Allocates and returns a newly created object node
  */
 struct GraphNodeObject *init_graph_node_object(struct AllocOnlyPool *pool, struct GraphNodeObject *graphNode,
-    struct GraphNode *sp20, Vec3f pos, Vec3s angle, Vec3f scale)
+    struct GraphNode *sharedChild, Vec3f pos, Vec3s angle, Vec3f scale)
 {
     if(pool != NULL)
     {
@@ -333,7 +334,7 @@ struct GraphNodeObject *init_graph_node_object(struct AllocOnlyPool *pool, struc
         vec3f_copy(graphNode->pos, pos);
         vec3f_copy(graphNode->scale, scale);
         vec3s_copy(graphNode->angle, angle);
-        graphNode->asGraphNode = sp20;
+        graphNode->sharedChild = sharedChild;
         graphNode->throwMatrix = NULL;
         graphNode->unk38.animID = 0;
         graphNode->unk38.curAnim = NULL;
@@ -728,7 +729,7 @@ void geo_call_global_function_nodes(struct GraphNode *graphNode, s32 callContext
  */
 void geo_reset_object_node(struct GraphNodeObject *graphNode)
 {
-    init_graph_node_object(NULL, graphNode, 0, gCurGeoPos, gCurGeoAngle, gCurGeoScale);
+    init_graph_node_object(NULL, graphNode, 0, gVec3fZero, gVec3sZero, gVec3fOne);
 
     geo_add_child(&gObjParentGraphNode, &graphNode->node);
     graphNode->node.flags &= ~GRAPH_RENDER_ACTIVE;
@@ -736,13 +737,13 @@ void geo_reset_object_node(struct GraphNodeObject *graphNode)
 
 /** Initialize an object node using the given parameters
  */
-void geo_obj_init(struct GraphNodeObject *graphNode, void *sp1c, Vec3f pos, Vec3s angle)
+void geo_obj_init(struct GraphNodeObject *graphNode, void *sharedChild, Vec3f pos, Vec3s angle)
 {
     vec3f_set(graphNode->scale, 1.0f, 1.0f, 1.0f);
     vec3f_copy(graphNode->pos, pos);
     vec3s_copy(graphNode->angle, angle);
 
-    graphNode->asGraphNode = sp1c;
+    graphNode->sharedChild = sharedChild;
     graphNode->unk4C = 0;
     graphNode->throwMatrix = NULL;
     graphNode->unk38.curAnim = NULL;
@@ -766,7 +767,7 @@ void geo_obj_init_spawninfo(struct GraphNodeObject *graphNode, struct SpawnInfo 
 
     graphNode->unk18 = spawn->areaIndex;
     graphNode->unk19 = spawn->activeAreaIndex;
-    graphNode->asGraphNode = spawn->unk18;
+    graphNode->sharedChild = spawn->unk18;
     graphNode->unk4C = spawn;
     graphNode->throwMatrix = NULL;
     graphNode->unk38.curAnim = 0;

@@ -3,7 +3,7 @@ glabel totwc_geo_000188 # 0x0E000188
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background BACKGROUND_BELOW_CLOUDS, geo_skybox_main
          geo_close_node
@@ -18,7 +18,7 @@ glabel totwc_geo_000188 # 0x0E000188
                geo_display_list LAYER_TRANSPARENT, totwc_seg7_dl_07007048
                geo_display_list LAYER_TRANSPARENT, totwc_seg7_dl_070078B8
                geo_render_obj
-               geo_asm 0, geo_exec_level
+               geo_asm 0, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

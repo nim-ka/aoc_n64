@@ -11,9 +11,9 @@ glabel bowser_key_geo # 0x16000A84
 glabel bowser_key_cutscene_geo # 0x16000AB0
    geo_scale 0x00, 16384
    geo_open_node
-      geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+      geo_animated_part LAYER_OPAQUE, 0, 0, 0
       geo_open_node
-         geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+         geo_animated_part LAYER_OPAQUE, 0, 0, 0
          geo_open_node
             geo_asm 0, Geo18_802BA2B0
             geo_scale 0x00, 65536

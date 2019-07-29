@@ -3,7 +3,7 @@ glabel rr_geo_0009D0 # 0x0E0009D0
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background BACKGROUND_BELOW_CLOUDS, geo_skybox_main
          geo_close_node
@@ -17,7 +17,7 @@ glabel rr_geo_0009D0 # 0x0E0009D0
                geo_asm 0, geo_exec_flying_carpet_timer_update
                geo_display_list LAYER_ALPHA, dl_cruiser_metal_holes
                geo_render_obj
-               geo_asm 0, geo_exec_level
+               geo_asm 0, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

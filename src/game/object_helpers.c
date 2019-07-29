@@ -634,8 +634,8 @@ struct Object *spawn_object_at_origin(
     geo_obj_init(
         (struct GraphNodeObject *)&obj->header.gfx,
         gLoadedGraphNodes[model],
-        gCurGeoPos,
-        gCurGeoAngle);
+        gVec3fZero,
+        gVec3sZero);
 
     return obj;
 }
@@ -1369,7 +1369,7 @@ void obj_get_dropped(void)
 
 void obj_set_model(s32 a0)
 {
-    o->header.gfx.asGraphNode = gLoadedGraphNodes[a0];
+    o->header.gfx.sharedChild = gLoadedGraphNodes[a0];
 }
 
 void mario_set_flag(s32 flag)
@@ -3371,7 +3371,7 @@ s32 obj_update_dialog_unk2(s32 arg0, s32 dialogFlags, s32 dialogID, s32 arg3)
 
 s32 obj_has_model(u16 a0)
 {
-    if (o->header.gfx.asGraphNode == gLoadedGraphNodes[a0])
+    if (o->header.gfx.sharedChild == gLoadedGraphNodes[a0])
     {
         return TRUE;
     }

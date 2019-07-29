@@ -1,5 +1,5 @@
 glabel ssl_geo_0005D8 # 0x0E0005D8
-   geo_start_distance 2000
+   geo_culling_radius 2000
    geo_open_node
       geo_render_range -1000, 4000
       geo_open_node

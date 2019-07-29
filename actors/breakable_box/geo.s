@@ -1,5 +1,5 @@
 glabel breakable_box_geo # 0x0F0005D0
-   geo_start_distance 500
+   geo_culling_radius 500
    geo_open_node
       geo_shadow SHADOW_SQUARE_PERMANENT, 0xB4, 240
       geo_open_node
@@ -13,7 +13,7 @@ glabel breakable_box_geo # 0x0F0005D0
    geo_end
 
 glabel breakable_box_small_geo # 0x0F000610
-   geo_start_distance 500
+   geo_culling_radius 500
    geo_open_node
       geo_switch_case 2, geo_switch_anim_state
       geo_open_node

@@ -1,5 +1,5 @@
 glabel ssl_geo_000764 # 0x0E000764
-   geo_start_distance 550
+   geo_culling_radius 550
    geo_open_node
       geo_shadow 0x00 + SHADOW_RECTANGLE_HARDCODED_OFFSET, 0xB4, 0
       geo_open_node

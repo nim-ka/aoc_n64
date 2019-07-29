@@ -1,5 +1,5 @@
 glabel ssl_geo_000734 # 0x0E000734
-   geo_start_distance 700
+   geo_culling_radius 700
    geo_open_node
       geo_shadow SHADOW_SQUARE_SCALABLE, 0xB4, 550
       geo_open_node

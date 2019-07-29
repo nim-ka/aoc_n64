@@ -1,13 +1,13 @@
 glabel peach_geo_000098 # 0x0C000098
    geo_node_start
    geo_open_node
-      geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+      geo_animated_part LAYER_OPAQUE, 0, 0, 0
       geo_open_node
-         geo_dl_translated LAYER_OPAQUE, 0, 0, 0, peach_seg5_dl_05007230
+         geo_animated_part LAYER_OPAQUE, 0, 0, 0, peach_seg5_dl_05007230
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 78, 0, 0, peach_seg5_dl_05006A18
+            geo_animated_part LAYER_OPAQUE, 78, 0, 0, peach_seg5_dl_05006A18
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 132, 0, 0
+               geo_animated_part LAYER_OPAQUE, 132, 0, 0
                geo_open_node
                   geo_switch_case 8, geo_switch_peach_eyes
                   geo_open_node
@@ -20,40 +20,40 @@ glabel peach_geo_000098 # 0x0C000098
                      geo_display_list LAYER_OPAQUE, peach_seg5_dl_05005EF0
                      geo_display_list LAYER_OPAQUE, peach_seg5_dl_05005F48
                   geo_close_node
-                  geo_dl_translated LAYER_OPAQUE, 38, -78, 0
+                  geo_animated_part LAYER_OPAQUE, 38, -78, 0
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 0, 0, 0, peach_seg5_dl_05007AB8
+                     geo_animated_part LAYER_OPAQUE, 0, 0, 0, peach_seg5_dl_05007AB8
                   geo_close_node
                geo_close_node
-               geo_dl_translated LAYER_OPAQUE, 132, 0, 0, peach_seg5_dl_05009148
-               geo_dl_translated LAYER_OPAQUE, 132, 0, 0, peach_seg5_dl_05008F20
-               geo_dl_translated LAYER_OPAQUE, 63, 0, 84
+               geo_animated_part LAYER_OPAQUE, 132, 0, 0, peach_seg5_dl_05009148
+               geo_animated_part LAYER_OPAQUE, 132, 0, 0, peach_seg5_dl_05008F20
+               geo_animated_part LAYER_OPAQUE, 63, 0, 84
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, peach_seg5_dl_05007E58
+                  geo_animated_part LAYER_OPAQUE, 0, 0, 0, peach_seg5_dl_05007E58
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 104, 0, 0, peach_seg5_dl_050087A8
+                     geo_animated_part LAYER_OPAQUE, 104, 0, 0, peach_seg5_dl_050087A8
                      geo_open_node
-                        geo_dl_translated LAYER_OPAQUE, 87, 0, 0, peach_seg5_dl_05009500
+                        geo_animated_part LAYER_OPAQUE, 87, 0, 0, peach_seg5_dl_05009500
                      geo_close_node
                   geo_close_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, peach_seg5_dl_05008560
+                  geo_animated_part LAYER_OPAQUE, 0, 0, 0, peach_seg5_dl_05008560
                geo_close_node
-               geo_dl_translated LAYER_OPAQUE, 63, 0, -84
+               geo_animated_part LAYER_OPAQUE, 63, 0, -84
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, peach_seg5_dl_05008228
+                  geo_animated_part LAYER_OPAQUE, 0, 0, 0, peach_seg5_dl_05008228
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 104, 0, 0, peach_seg5_dl_05008CF8
+                     geo_animated_part LAYER_OPAQUE, 104, 0, 0, peach_seg5_dl_05008CF8
                      geo_open_node
-                        geo_dl_translated LAYER_OPAQUE, 87, 0, 0, peach_seg5_dl_05009940
+                        geo_animated_part LAYER_OPAQUE, 87, 0, 0, peach_seg5_dl_05009940
                      geo_close_node
                   geo_close_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, peach_seg5_dl_05008AB0
+                  geo_animated_part LAYER_OPAQUE, 0, 0, 0, peach_seg5_dl_05008AB0
                geo_close_node
             geo_close_node
-            geo_dl_translated LAYER_OPAQUE, 78, 0, 0, peach_seg5_dl_050060E0
-            geo_dl_translated LAYER_OPAQUE, -23, -1, 0
+            geo_animated_part LAYER_OPAQUE, 78, 0, 0, peach_seg5_dl_050060E0
+            geo_animated_part LAYER_OPAQUE, -23, -1, 0
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 0, 0, 0, peach_seg5_dl_0500A0A8
+               geo_animated_part LAYER_OPAQUE, 0, 0, 0, peach_seg5_dl_0500A0A8
             geo_close_node
          geo_close_node
       geo_close_node
@@ -63,17 +63,17 @@ glabel peach_geo_000098 # 0x0C000098
 glabel peach_geo_000254 # 0x0C000254
    geo_node_start
    geo_open_node
-      geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0
+      geo_animated_part LAYER_TRANSPARENT, 0, 0, 0
       geo_open_node
 .ifdef VERSION_JP
-         geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_dl_05007230
+         geo_animated_part LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_dl_05007230
 .else
-         geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_us_dl_05007288
+         geo_animated_part LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_us_dl_05007288
 .endif
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 78, 0, 0, peach_seg5_dl_05006A18
+            geo_animated_part LAYER_TRANSPARENT, 78, 0, 0, peach_seg5_dl_05006A18
             geo_open_node
-               geo_dl_translated LAYER_TRANSPARENT, 132, 0, 0
+               geo_animated_part LAYER_TRANSPARENT, 132, 0, 0
                geo_open_node
                   geo_switch_case 8, geo_switch_peach_eyes
                   geo_open_node
@@ -86,43 +86,43 @@ glabel peach_geo_000254 # 0x0C000254
                      geo_display_list LAYER_TRANSPARENT, peach_seg5_dl_05005EF0
                      geo_display_list LAYER_TRANSPARENT, peach_seg5_dl_05005F48
                   geo_close_node
-                  geo_dl_translated LAYER_TRANSPARENT, 38, -78, 0
+                  geo_animated_part LAYER_TRANSPARENT, 38, -78, 0
                   geo_open_node
-                     geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_dl_05007AB8
+                     geo_animated_part LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_dl_05007AB8
                   geo_close_node
                geo_close_node
-               geo_dl_translated LAYER_TRANSPARENT, 132, 0, 0, peach_seg5_dl_05009148
-               geo_dl_translated LAYER_TRANSPARENT, 132, 0, 0, peach_seg5_dl_05008F20
-               geo_dl_translated LAYER_TRANSPARENT, 63, 0, 84
+               geo_animated_part LAYER_TRANSPARENT, 132, 0, 0, peach_seg5_dl_05009148
+               geo_animated_part LAYER_TRANSPARENT, 132, 0, 0, peach_seg5_dl_05008F20
+               geo_animated_part LAYER_TRANSPARENT, 63, 0, 84
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_dl_05007E58
+                  geo_animated_part LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_dl_05007E58
                   geo_open_node
-                     geo_dl_translated LAYER_TRANSPARENT, 104, 0, 0, peach_seg5_dl_050087A8
+                     geo_animated_part LAYER_TRANSPARENT, 104, 0, 0, peach_seg5_dl_050087A8
                      geo_open_node
-                        geo_dl_translated LAYER_TRANSPARENT, 87, 0, 0, peach_seg5_dl_05009500
+                        geo_animated_part LAYER_TRANSPARENT, 87, 0, 0, peach_seg5_dl_05009500
                      geo_close_node
                   geo_close_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_dl_05008560
+                  geo_animated_part LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_dl_05008560
                geo_close_node
-               geo_dl_translated LAYER_TRANSPARENT, 63, 0, -84
+               geo_animated_part LAYER_TRANSPARENT, 63, 0, -84
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_dl_05008228
+                  geo_animated_part LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_dl_05008228
                   geo_open_node
-                     geo_dl_translated LAYER_TRANSPARENT, 104, 0, 0, peach_seg5_dl_05008CF8
+                     geo_animated_part LAYER_TRANSPARENT, 104, 0, 0, peach_seg5_dl_05008CF8
                      geo_open_node
-                        geo_dl_translated LAYER_TRANSPARENT, 87, 0, 0, peach_seg5_dl_05009940
+                        geo_animated_part LAYER_TRANSPARENT, 87, 0, 0, peach_seg5_dl_05009940
                      geo_close_node
                   geo_close_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_dl_05008AB0
+                  geo_animated_part LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_dl_05008AB0
                geo_close_node
             geo_close_node
-            geo_dl_translated LAYER_TRANSPARENT, 78, 0, 0, peach_seg5_dl_050060E0
-            geo_dl_translated LAYER_TRANSPARENT, -23, -1, 0
+            geo_animated_part LAYER_TRANSPARENT, 78, 0, 0, peach_seg5_dl_050060E0
+            geo_animated_part LAYER_TRANSPARENT, -23, -1, 0
             geo_open_node
 .ifdef VERSION_JP
-               geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_dl_0500A0A8
+               geo_animated_part LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_dl_0500A0A8
 .else
-               geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_us_dl_0500A188
+               geo_animated_part LAYER_TRANSPARENT, 0, 0, 0, peach_seg5_us_dl_0500A188
 .endif
             geo_close_node
          geo_close_node

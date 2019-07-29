@@ -98,7 +98,7 @@ struct GraphNodeObject_sub
 struct GraphNodeObject
 {
     /*0x00*/ struct GraphNode node;
-    /*0x14*/ struct GraphNode *asGraphNode;
+    /*0x14*/ struct GraphNode *sharedChild;
     /*0x18*/ s8 unk18;
     /*0x19*/ s8 unk19;
     /*0x1A*/ Vec3s angle;

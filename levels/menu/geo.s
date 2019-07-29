@@ -107,7 +107,7 @@ glabel main_menu_geo_000380 # 0x0E000380
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background 0x0001
          geo_close_node
@@ -134,7 +134,7 @@ glabel main_menu_geo_000408 # 0x0E000408
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background 0xFFFF
          geo_close_node

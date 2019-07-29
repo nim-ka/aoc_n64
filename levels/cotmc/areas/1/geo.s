@@ -3,7 +3,7 @@ glabel cotmc_geo_0001A0 # 0x0E0001A0
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background 0x0001
          geo_close_node
@@ -20,7 +20,7 @@ glabel cotmc_geo_0001A0 # 0x0E0001A0
                geo_asm 0x2801, Geo18_802D1B70
                geo_display_list LAYER_TRANSPARENT, cotmc_seg7_dl_0700A4B8
                geo_render_obj
-               geo_asm 0, geo_exec_level
+               geo_asm 0, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

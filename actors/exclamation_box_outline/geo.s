@@ -1,5 +1,5 @@
 glabel exclamation_box_outline_geo # 0x0F000A5A
-   geo_start_distance 300
+   geo_culling_radius 300
    geo_open_node
       geo_shadow SHADOW_SQUARE_PERMANENT, 0xB4, 70
       geo_open_node

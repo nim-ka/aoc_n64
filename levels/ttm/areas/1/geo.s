@@ -3,7 +3,7 @@ glabel ttm_geo_000A70 # 0x0E000A70
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background BACKGROUND_OCEAN_SKY, geo_skybox_main
          geo_close_node
@@ -26,7 +26,7 @@ glabel ttm_geo_000A70 # 0x0E000A70
                geo_asm 0x3604, Geo18_802D1B70
                geo_asm 0x3605, Geo18_802D1B70
                geo_asm 0x3601, geo_exec_movtex_box
-               geo_asm     0, geo_exec_level
+               geo_asm     0, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

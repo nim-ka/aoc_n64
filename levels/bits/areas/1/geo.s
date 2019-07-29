@@ -3,7 +3,7 @@ glabel bits_geo_000718 # 0x0E000718
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background BACKGROUND_PURPLE_SKY, geo_skybox_main
          geo_close_node
@@ -16,7 +16,7 @@ glabel bits_geo_000718 # 0x0E000718
             geo_open_node
                geo_display_list LAYER_ALPHA, bits_seg7_dl_07002918
                geo_render_obj
-               geo_asm 0, geo_exec_level
+               geo_asm 0, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

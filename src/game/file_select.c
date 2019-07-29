@@ -486,8 +486,8 @@ static void CopyMenuCopyFile(struct Object *copyButton, s32 copyFileButtonId)
             sFadeOutText = 1;
             sMainMenuTimer = 0;
             save_file_copy(sSelectedFile, copyFileButtonId - 14);
-            sMainMenuButtons[copyFileButtonId]->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE];
-            sMainMenuButtons[copyFileButtonId - 14]->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE];
+            sMainMenuButtons[copyFileButtonId]->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE];
+            sMainMenuButtons[copyFileButtonId - 14]->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE];
         }
         else
         {
@@ -1527,8 +1527,8 @@ static void erase_menu_yes_no_prompt(s16 x, s16 y)
             sFadeOutText = 1;
             sMainMenuTimer = 0;
             save_file_erase(sSelectedFile);
-            sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE];
-            sMainMenuButtons[sSelectedFile]->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE];
+            sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE];
+            sMainMenuButtons[sSelectedFile]->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE];
             D_801A7C04 = 0;
         }
         else if (D_801A7C04 == 2)

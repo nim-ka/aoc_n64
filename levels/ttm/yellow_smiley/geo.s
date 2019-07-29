@@ -1,5 +1,5 @@
 glabel ttm_geo_000D4C # 0x0E000D4C
-   geo_start_distance 1000
+   geo_culling_radius 1000
    geo_open_node
       geo_billboard
       geo_open_node

@@ -79,7 +79,7 @@ s16 round_float(f32 num) {
  * player where to look to enter Tower of the Wing Cap.
  */
 Gfx *geo_exec_inside_castle_light(
-    s32 run, 
+    s32 callContext, 
     struct GraphNode *node, 
     UNUSED f32 mtx[4][4]
 ) {
@@ -88,7 +88,7 @@ Gfx *geo_exec_inside_castle_light(
     Gfx *displayListHead = NULL;
     Gfx *displayList = NULL;
 
-    if (run == TRUE)
+    if (callContext == GEO_CONTEXT_RENDER)
     {
         flags = save_file_get_flags();
         if (gHudDisplay.stars >= 10 && (flags & SAVE_FLAG_HAVE_WING_CAP) == 0)
@@ -118,11 +118,11 @@ Gfx *geo_exec_inside_castle_light(
  * Update static timer variables that control the flying carpets' ripple effect.
  */
 Gfx *geo_exec_flying_carpet_timer_update(
-    s32 run, 
+    s32 callContext, 
     UNUSED struct GraphNode *node, 
     UNUSED f32 mtx[4][4]
 ) {
-    if (run != TRUE) {
+    if (callContext != GEO_CONTEXT_RENDER) {
         sFlyingCarpetRippleTimer = 0;
         sPrevAreaTimer = gAreaUpdateCounter - 1;
         sCurAreaTimer = gAreaUpdateCounter;
@@ -142,7 +142,7 @@ Gfx *geo_exec_flying_carpet_timer_update(
  * Create a display list for a flying carpet with dynamic ripples.
  */
 Gfx *geo_exec_flying_carpet_create(
-    s32 run, 
+    s32 callContext, 
     struct GraphNode *node, 
     UNUSED f32 mtx[4][4]
 ) {
@@ -156,7 +156,7 @@ Gfx *geo_exec_flying_carpet_create(
     struct Object *curGraphNodeObject;
     
 
-    if (run == TRUE)
+    if (callContext == GEO_CONTEXT_RENDER)
     {
         verts = alloc_display_list(NUM_FLYING_CARPET_VERTICES * sizeof(*verts));
         displayList = alloc_display_list(7 * sizeof(*displayList));
@@ -226,7 +226,7 @@ extern Gfx dl_cake_end_screen_eu_070297D8[];
  * Create a display list for the end screen with Peach's delicious cake.
  */
 Gfx *geo_exec_cake_end_screen(
-    s32 run,
+    s32 callContext,
     struct GraphNode *node,
     UNUSED f32 mtx[4][4]
 ) {
@@ -234,7 +234,7 @@ Gfx *geo_exec_cake_end_screen(
     Gfx *displayList = NULL;
     Gfx *displayListHead = NULL;
 
-    if (run == TRUE)
+    if (callContext == GEO_CONTEXT_RENDER)
     {
         displayList = alloc_display_list(3 * sizeof(*displayList));
         displayListHead = displayList;

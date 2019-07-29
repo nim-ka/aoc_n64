@@ -1,5 +1,5 @@
 glabel wf_geo_000900 # 0x0E000900
-   geo_start_distance 1600
+   geo_culling_radius 1600
    geo_open_node
       geo_render_range -2048, 5000
       geo_open_node

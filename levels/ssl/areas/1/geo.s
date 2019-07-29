@@ -3,7 +3,7 @@ glabel ssl_geo_000648 # 0x0E000648
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background BACKGROUND_DESERT, geo_skybox_main
          geo_close_node
@@ -26,7 +26,7 @@ glabel ssl_geo_000648 # 0x0E000648
                geo_asm 0x0802, Geo18_802D1CDC
                geo_asm 0x0803, Geo18_802D1CDC
                geo_render_obj
-               geo_asm    0, geo_exec_level
+               geo_asm    0, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

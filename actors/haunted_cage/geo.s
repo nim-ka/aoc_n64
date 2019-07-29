@@ -1,5 +1,5 @@
 glabel haunted_cage_geo # 0x0C000274
-   geo_start_distance 300
+   geo_culling_radius 300
    geo_open_node
       geo_shadow SHADOW_CIRCLE_9_VERTS, 0x96, 100
       geo_open_node

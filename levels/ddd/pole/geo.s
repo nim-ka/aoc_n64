@@ -1,5 +1,5 @@
 glabel ddd_geo_000450 # 0x0E000450
-   geo_start_distance 700
+   geo_culling_radius 700
    geo_open_node
       geo_shadow SHADOW_SQUARE_PERMANENT, 0xB4, 120
       geo_open_node

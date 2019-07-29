@@ -1,5 +1,5 @@
 glabel dirt_animation_geo # 0x16000ED4
-   geo_start_distance 300
+   geo_culling_radius 300
    geo_open_node
       geo_switch_case 6, geo_switch_anim_state
       geo_open_node
@@ -15,7 +15,7 @@ glabel dirt_animation_geo # 0x16000ED4
 
 # This is probably wrongly named according to the Bin IDs...
 glabel cartoon_star_geo # 0x16000F24
-   geo_start_distance 300
+   geo_culling_radius 300
    geo_open_node
       geo_switch_case 5, geo_switch_anim_state
       geo_open_node

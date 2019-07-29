@@ -405,7 +405,7 @@ glabel geo_bbh_000F00 # 0x0E000F00
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background BACKGROUND_HAUNTED, geo_skybox_main
          geo_close_node
@@ -452,7 +452,7 @@ glabel geo_bbh_000F00 # 0x0E000F00
                   geo_branch 1, geo_bbh_000EB0 # 0x0E000EB0
                geo_close_node
                geo_render_obj
-               geo_asm 0, geo_exec_level
+               geo_asm 0, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

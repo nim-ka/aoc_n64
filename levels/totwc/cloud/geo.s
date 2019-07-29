@@ -1,5 +1,5 @@
 glabel totwc_geo_000160 # 0x0E000160
-   geo_start_distance 2000
+   geo_culling_radius 2000
    geo_open_node
       geo_billboard
       geo_open_node

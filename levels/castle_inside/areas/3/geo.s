@@ -130,7 +130,7 @@ glabel castle_geo_001C10 # 0x0E001C10
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background 0x0001
          geo_close_node
@@ -155,7 +155,7 @@ glabel castle_geo_001C10 # 0x0E001C10
                   geo_branch 1, castle_geo_001BB0 # 0x0E001BB0
                geo_close_node
                geo_render_obj
-               geo_asm 0, geo_exec_level
+               geo_asm 0, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

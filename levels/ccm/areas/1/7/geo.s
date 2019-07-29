@@ -1,5 +1,5 @@
 glabel ccm_geo_00045C # 0x0E00045C
-   geo_start_distance 900
+   geo_culling_radius 900
    geo_open_node
       geo_render_range -1000, 7000
       geo_open_node

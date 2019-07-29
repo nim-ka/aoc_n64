@@ -3,7 +3,7 @@ glabel ssl_geo_0007CC # 0x0E0007CC
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background 0x0001
          geo_close_node
@@ -23,7 +23,7 @@ glabel ssl_geo_0007CC # 0x0E0007CC
                geo_asm 0x802, Geo18_802D1B70
                geo_asm 0x803, Geo18_802D1B70
                geo_render_obj
-               geo_asm    0, geo_exec_level
+               geo_asm    0, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

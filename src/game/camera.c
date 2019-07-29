@@ -27,6 +27,7 @@
 #include "object_list_processor.h"
 #include "paintings.h"
 #include "prevent_bss_reordering.h"
+#include "engine/graph_node.h"
 
 #define CBUTTON_MASK (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS)
 
@@ -2823,10 +2824,10 @@ s32 geo_camera_preset_and_pos(s32 a, struct Struct80287404 *b, struct AllocOnlyP
 
     switch (a)
     {
-    case 0:
+    case GEO_CONTEXT_CREATE:
         func_802875F8(sp2C, c);
         break;
-    case 1:
+    case GEO_CONTEXT_RENDER:
         func_802876D0(sp2C);
         break;
     }

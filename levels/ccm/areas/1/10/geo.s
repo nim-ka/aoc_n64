@@ -1,5 +1,5 @@
 glabel ccm_geo_0004E4 # 0x0E0004E4
-   geo_start_distance 3500
+   geo_culling_radius 3500
    geo_open_node
       geo_render_range -3000, 6000
       geo_open_node

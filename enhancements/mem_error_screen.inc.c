@@ -75,7 +75,7 @@
         geo_open_node
             geo_zbuffer 0
             geo_open_node
-                geo_todo_09 100
+                geo_node_ortho 100
                 geo_open_node
                     geo_background 0x0001
                 geo_close_node

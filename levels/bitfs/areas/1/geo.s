@@ -3,7 +3,7 @@ glabel bitfs_geo_0007A0 # 0x0E0007A0
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background BACKGROUND_FLAMING_SKY, geo_skybox_main
          geo_close_node
@@ -20,7 +20,7 @@ glabel bitfs_geo_0007A0 # 0x0E0007A0
                geo_asm 0x1902, Geo18_802D1B70
                geo_asm 0x1903, Geo18_802D1B70
                geo_render_obj
-               geo_asm   12, geo_exec_level
+               geo_asm   12, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

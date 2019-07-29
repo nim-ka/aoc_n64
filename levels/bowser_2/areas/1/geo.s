@@ -3,7 +3,7 @@ glabel bowser_2_geo_000188 # 0x0E000188
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background BACKGROUND_FLAMING_SKY, geo_skybox_main
          geo_close_node
@@ -16,7 +16,7 @@ glabel bowser_2_geo_000188 # 0x0E000188
             geo_open_node
                geo_display_list LAYER_OPAQUE, bowser_2_seg7_dl_07001930
                geo_render_obj
-               geo_asm 12, geo_exec_level
+               geo_asm 12, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

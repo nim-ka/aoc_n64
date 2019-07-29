@@ -3,7 +3,7 @@ glabel intro_geo_0002D0 # 0x0E0002D0
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background 0x0001
          geo_close_node
@@ -30,7 +30,7 @@ glabel intro_geo_00035C # 0x0E00035C
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_asm 0, geo18_intro_backdrop
          geo_close_node
@@ -50,7 +50,7 @@ glabel intro_geo_0003B8 # 0x0E0003B8
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_asm 0, geo18_game_over_tile
          geo_close_node
@@ -70,7 +70,7 @@ glabel intro_geo_000414 # 0x0E000414
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_asm 0, geo18_intro_backdrop
          geo_close_node

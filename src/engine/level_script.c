@@ -410,14 +410,14 @@ static void level_cmd_begin_area(void)
     {
         struct GraphNodeRoot *screenArea =
             (struct GraphNodeRoot *) process_geo_layout(sLevelPool, geoLayoutAddr);
-        struct GraphNodeCamera *node = (struct GraphNodeCamera *) *screenArea->camera;
+        struct GraphNodeCamera *node = (struct GraphNodeCamera *) screenArea->views[0];
 
         sCurrAreaIndex = areaIndex;
         screenArea->areaIndex = areaIndex;
         gAreas[areaIndex].unk04 = (struct GraphNode *) screenArea;
 
         if (node != NULL)
-            gAreas[areaIndex].camera = (struct LevelCamera *) node->levelCamera;
+            gAreas[areaIndex].camera = (struct LevelCamera *) node->config.levelCamera;
         else
             gAreas[areaIndex].camera = NULL;
     }

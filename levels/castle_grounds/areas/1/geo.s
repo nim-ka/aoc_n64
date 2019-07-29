@@ -3,7 +3,7 @@ glabel castle_grounds_geo_00073C # 0x0E00073C
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background BACKGROUND_OCEAN_SKY, geo_skybox_main
          geo_close_node
@@ -25,7 +25,7 @@ glabel castle_grounds_geo_00073C # 0x0E00073C
                geo_asm 0x1601, Geo18_802D1B70
                geo_asm 0x1601, geo_exec_movtex_box
                geo_render_obj
-               geo_asm 0, geo_exec_level
+               geo_asm 0, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

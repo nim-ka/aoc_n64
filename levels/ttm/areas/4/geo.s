@@ -3,7 +3,7 @@ glabel ttm_geo_000C84 # 0x0E000C84
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background 0x0001
          geo_close_node
@@ -17,7 +17,7 @@ glabel ttm_geo_000C84 # 0x0E000C84
                geo_display_list LAYER_OPAQUE, ttm_seg7_dl_0702A1B8
                geo_display_list LAYER_OPAQUE, ttm_seg7_dl_0702A8A0
                geo_render_obj
-               geo_asm 0, geo_exec_level
+               geo_asm 0, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

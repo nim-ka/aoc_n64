@@ -1,5 +1,5 @@
 glabel ttm_geo_000808 # 0x0E000808
-   geo_start_distance 650
+   geo_culling_radius 650
    geo_open_node
       geo_render_range -1650, 9500
       geo_open_node

@@ -3,7 +3,7 @@ glabel ccm_geo_0005E8 # 0x0E0005E8
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background 0x0001
          geo_close_node
@@ -22,7 +22,7 @@ glabel ccm_geo_0005E8 # 0x0E0005E8
                geo_display_list LAYER_TRANSPARENT, ccm_seg7_dl_0701FE60
                geo_display_list LAYER_TRANSPARENT, ccm_seg7_dl_070207F0
                geo_render_obj
-               geo_asm 0, geo_exec_level
+               geo_asm 0, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

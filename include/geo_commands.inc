@@ -62,10 +62,10 @@
     .byte 0x05, 0x00, 0x00, 0x00
 .endm
 
-# 0x06: TODO
+# 0x06: Register the current node at the given index in the gGeoViews array
 #   0x01: unused
-#   0x02: s16, index of some array
-.macro geo_todo_06 param
+#   0x02: s16 index
+.macro geo_assign_as_view param
     .byte 0x06, 0x00
     .hword \param
 .endm
@@ -91,9 +91,9 @@
     .hword \x, \y, \width, \height
 .endm
 
-# 0x09: TODO Create ? scene graph node
-#   0x02: s16 ?
-.macro geo_todo_09 param
+# 0x09: Create orthographic projection scene graph node
+#   0x02: s16 scale as percentage
+.macro geo_node_ortho param
     .byte 0x09, 0x00
     .hword \param
 .endm
@@ -149,19 +149,19 @@
     .word \function
 .endm
 
-# 0x0F: TODO Create ? scene graph node
+# 0x0F: Create a camera scene graph node.
 #   0x01: unused
-#   0x02: s16 ?
-#   0x04: s16 unkX
-#   0x06: s16 unkY
-#   0x08: s16 unkZ
-#   0x0A: s16 unkX_2
-#   0x0C: s16 unkY_2
-#   0x0E: s16 unkZ_2
+#   0x02: s16 camera type
+#   0x04: s16 fromX
+#   0x06: s16 fromY
+#   0x08: s16 fromZ
+#   0x0A: s16 toX
+#   0x0C: s16 toY
+#   0x0E: s16 toZ
 #   0x10: GraphNodeFunc function
-.macro geo_camera unknown, x1, y1, z1, x2, y2, z2, function
+.macro geo_camera type, x1, y1, z1, x2, y2, z2, function
     .byte 0x0F, 0x00
-    .hword \unknown, \x1, \y1, \z1, \x2, \y2, \z2
+    .hword \type, \x1, \y1, \z1, \x2, \y2, \z2
     .word \function
 .endm
 
@@ -251,9 +251,9 @@
 #   0x01: u8 params
 #     0b1000_0000: if set, enable displayList field and drawingLayer
 #     0b0000_1111: drawingLayer
-#   0x02: s16 unkX
-#   0x04: s16 unkY
-#   0x06: s16 unkZ
+#   0x02: s16 translationX
+#   0x04: s16 translationY
+#   0x06: s16 translationZ
 #   0x08: [u32 displayList: if MSbit of params set, display list segmented address]
 .macro geo_translate_node layer, ux, uy, uz, displayList=0
     .byte 0x11
@@ -272,9 +272,9 @@
 #   0x01: u8 params
 #      0b1000_0000: if set, enable displayList field and drawingLayer
 #      0b0000_1111: drawingLayer
-#   0x02: s16 unkX
-#   0x04: s16 unkY
-#   0x06: s16 unkZ
+#   0x02: s16 rotationX
+#   0x04: s16 rotationY
+#   0x06: s16 rotationZ
 #   0x08: [u32 displayList: if MSbit of params set, display list segmented address]
 .macro geo_rotation_node layer, ux, uy, uz, displayList=0
     .byte 0x12
@@ -289,13 +289,13 @@
     .endif
 .endm
 
-# 0x13: Create display list scene graph node with translation
+# 0x13: Create a scene graph node that is rotated by the object's animation.
 #   0x01: u8 drawingLayer
 #   0x02: s16 xTranslation
 #   0x04: s16 yTranslation
 #   0x06: s16 zTranslation
 #   0x08: u32 displayList: dislay list segmented address
-.macro geo_dl_translated layer, x, y, z, displayList=0
+.macro geo_animated_part layer, x, y, z, displayList=0
     .byte 0x13, \layer
     .hword \x, \y, \z
     .word \displayList
@@ -355,7 +355,7 @@
     .byte 0x17, 0x00, 0x00, 0x00
 .endm
 
-# 0x18: Create polygons address scene graph node
+# 0x18: Create dynamically generated displaylist scene graph node
 #   0x01: unused
 #   0x02: s16 parameter
 #   0x04: GraphNodeFunc function
@@ -379,20 +379,21 @@
     .byte 0x1A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 .endm
 
-# 0x1B: TODO Create ? scene graph node
+# 0x1B: Copy the shared children from an object parent node from a specific view
+# to a newly created object parent.
 #   0x02: s16 index of array
-.macro geo_todo_1B param
+.macro geo_copy_view param
     .byte 0x1B, 0x00
     .hword \param
 .endm
 
-# 0x1C: TODO Create ? scene graph node
-#   0x01: u8 unk01
-#   0x02: s16 unkX
-#   0x04: s16 unkY
-#   0x06: s16 unkZ
-#   0x08: GraphNodeFunc nodeFunc
-.macro geo_todo_1C param, ux, uy, uz, nodeFunc
+# 0x1C: Create a held object scene graph node
+#  cmd+0x01: u8 unused
+#  cmd+0x02: s16 offsetX
+#  cmd+0x04: s16 offsetY
+#  cmd+0x06: s16 offsetZ
+#  cmd+0x08: GraphNodeFunc nodeFunc
+.macro geo_held_object param, ux, uy, uz, nodeFunc
     .byte 0x1C, \param
     .hword \ux, \uy, \uz
     .word \nodeFunc
@@ -433,11 +434,11 @@
     .byte 0x00, 0x00, 0x00, 0x00
 .endm
 
-# 0x20: Create render distance scene graph node (unconfirmed?)
+# 0x20: Create a scene graph node that specifies for an object the radius that
+# is used for frustum culling.
 #   0x01: unused
-#   0x02: s16 renderDistance?
-.macro geo_start_distance renderDistance
+#   0x02: s16 cullingRadius
+.macro geo_culling_radius cullingRadius
     .byte 0x20, 0x00
-    .hword \renderDistance
+    .hword \cullingRadius
 .endm
-

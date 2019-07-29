@@ -19,10 +19,10 @@ extern s16 gCurGraphNodeIndex;
 
 extern struct GraphNode gObjParentGraphNode;
 
-extern Vec3f gCurGeoPos;
-extern Vec3s gCurGeoAngle;
-extern Vec3f gCurGeoScale;
-extern Vec3s gCurGeoUnused;
+extern Vec3f gVec3fZero;
+extern Vec3s gVec3sZero;
+extern Vec3f gVec3fOne;
+extern Vec3s gVec3sOne;
 
 #define GRAPH_RENDER_ACTIVE         (1 << 0)
 #define GRAPH_RENDER_CHILDREN_FIRST (1 << 1)
@@ -72,7 +72,11 @@ extern Vec3s gCurGeoUnused;
 #define GEO_CONTEXT_HELD_OBJ      5 // called when processing a GraphNodeHeldObj
 
 // The signature for a function stored in a geo node
-typedef s32 (*GraphNodeFunc)(s32 context, struct GraphNode *node, void *transform);
+// The context argument depends on the callContext:
+// - for GEO_CONTEXT_CREATE it is the AllocOnlyPool from which the node was allocated
+// - for GEO_CONTEXT_RENDER or GEO_CONTEXT_HELD_OBJ it is the top of the float matrix stack with type Mat4
+// - for GEO_CONTEXT_AREA_* it is the root geo node
+typedef s32 (*GraphNodeFunc)(s32 callContext, struct GraphNode *node, void *context);
 
 /** An extension of a graph node that includes a function pointer.
  *  Many graph node types have an update function that gets called
@@ -95,8 +99,8 @@ struct GraphNodeRoot
     /*0x18*/ s16 y;
     /*0x1A*/ s16 width; // half width, 160
     /*0x1C*/ s16 height; // half height
-    /*0x1E*/ s16 unk1E; // number of entries in mystery array
-    /*0x20*/ struct GraphNode **camera; // camera
+    /*0x1E*/ s16 numViews; // number of entries in mystery array
+    /*0x20*/ struct GraphNode **views;
 };
 
 /** A node that sets up an orthographic projection based on the global
@@ -115,7 +119,7 @@ struct GraphNodeOrthoProjection
 struct GraphNodePerspective
 {
     /*0x00*/ struct FnGraphNode fnNode;
-    /*0x18*/ s32 unk18; // ?
+    /*0x18*/ s32 unused;
     /*0x1C*/ f32 fov;   // horizontal field of view in degrees
     /*0x20*/ s16 near;  // near clipping plane
     /*0x22*/ s16 far;   // far clipping plane
@@ -183,7 +187,14 @@ struct GraphNodeSwitchCase
 struct GraphNodeCamera
 {
     /*0x00*/ struct FnGraphNode fnNode;
-    /*0x18*/ struct LevelCamera *levelCamera;
+    /*0x18*/ union {
+        // When the node is created, a preset is assigned to the node.
+        // Later in geo_camera_preset_and_pos a LevelCamera is allocated,
+        // the preset is passed to the struct, and the field is overridden
+        // by a pointer to the struct. Gotta save those 4 bytes.
+        s32 preset;
+        struct LevelCamera *levelCamera;
+    } config;
     /*0x1C*/ Vec3f from;
     /*0x28*/ Vec3f to;
     /*0x34*/ void *matrixPtr; // pointer to look-at matrix of this camera as a Mat4
@@ -270,6 +281,7 @@ struct GraphNodeDisplayList
  *  be done with an animated part sine animation data doesn't support scaling.
  *  Note that many scaling animations (like a goomba getting stomped) happen on
  *  the entire object. This node is only used when a single part needs to be scaled.
+ *  There is also a level command that scales the entire level, used for THI.
  *  The display list can be null, in which case it won't draw anything itself.
  */
 struct GraphNodeScale
@@ -337,7 +349,8 @@ struct GraphNodeHeldObject
 
 /** A node that allows an object to specify a different culling radius than the
  *  default one of 300. For this to work, it needs to be a direct child of the
- *  object node. Never actually used.
+ *  object node. Used for very large objects, such as shockwave rings that Bowser 
+ *  creates, tornados, the big eel.
  */
 struct GraphNodeCullingRadius
 {
@@ -350,11 +363,11 @@ void init_scene_graph_node_links(struct GraphNode *, s32);
 
 struct GraphNodeRoot *init_graph_node_root(struct AllocOnlyPool *, struct GraphNodeRoot *,
     s16, s16 x, s16 y, s16 width, s16 height);
-struct GraphNodeOrthoProjection *init_graph_node_002(struct AllocOnlyPool *, struct GraphNodeOrthoProjection *, f32);
-struct GraphNodePerspective *init_graph_node_cam_frustum(struct AllocOnlyPool *pool, struct GraphNodePerspective *sp1c,
+struct GraphNodeOrthoProjection *init_graph_node_ortho_projection(struct AllocOnlyPool *, struct GraphNodeOrthoProjection *, f32);
+struct GraphNodePerspective *init_graph_node_perspective(struct AllocOnlyPool *pool, struct GraphNodePerspective *sp1c,
     f32 sp20, s16 sp26, s16 sp2a, GraphNodeFunc sp2c, s32 sp30);
 struct GraphNodeStart *init_graph_node_start(struct AllocOnlyPool *pool, struct GraphNodeStart *sp1c);
-struct GraphNodeMasterList *init_graph_node_toggle_z_buffer(struct AllocOnlyPool *pool, struct GraphNodeMasterList *, s16 sp22);
+struct GraphNodeMasterList *init_graph_node_master_list(struct AllocOnlyPool *pool, struct GraphNodeMasterList *, s16 sp22);
 struct GraphNodeLevelOfDetail *init_graph_node_render_range(struct AllocOnlyPool *pool, struct GraphNodeLevelOfDetail *graphNode,
     s16 minDistance, s16 maxDistance);
 struct GraphNodeSwitchCase *init_graph_node_switch_case(struct AllocOnlyPool *pool, struct GraphNodeSwitchCase *graphNode,

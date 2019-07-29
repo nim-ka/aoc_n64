@@ -397,7 +397,7 @@ void update_hang_stationary(struct MarioState *m)
     m->slideVelZ = 0.0f;
 
     m->pos[1] = m->ceilHeight - 160.0f;
-    vec3f_copy(m->vel, gCurGeoPos);
+    vec3f_copy(m->vel, gVec3fZero);
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
 }
 

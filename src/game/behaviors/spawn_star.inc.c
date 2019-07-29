@@ -20,10 +20,10 @@ void bhv_collect_star_init(void) {
     sp1F = (o->oBehParams >> 24) & 0xFF;
     sp1E = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
     if (sp1E & (1 << sp1F)) {
-        o->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_TRANSPARENT_STAR];
+        o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_TRANSPARENT_STAR];
     }
     else {
-        o->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_STAR];
+        o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_STAR];
     }
 
     set_object_hitbox(o, &sCollectStarHitbox);

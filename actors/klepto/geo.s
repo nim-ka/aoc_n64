@@ -3,25 +3,25 @@ glabel klepto_geo # 0x0C000000
    geo_open_node
       geo_scale 0x00, 65536
       geo_open_node
-         geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+         geo_animated_part LAYER_OPAQUE, 0, 0, 0
          geo_open_node
-            geo_dl_translated LAYER_ALPHA, 0, 0, 0, klepto_seg5_dl_050041E8
+            geo_animated_part LAYER_ALPHA, 0, 0, 0, klepto_seg5_dl_050041E8
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 62, 0, 0, klepto_seg5_dl_05003F20
+               geo_animated_part LAYER_OPAQUE, 62, 0, 0, klepto_seg5_dl_05003F20
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 44, 0, 0, klepto_seg5_dl_05003D80
+                  geo_animated_part LAYER_OPAQUE, 44, 0, 0, klepto_seg5_dl_05003D80
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 58, 0, 0, klepto_seg5_dl_05003BD0
+                     geo_animated_part LAYER_OPAQUE, 58, 0, 0, klepto_seg5_dl_05003BD0
                   geo_close_node
                geo_close_node
-               geo_dl_translated LAYER_OPAQUE, -3, 17, 17
+               geo_animated_part LAYER_OPAQUE, -3, 17, 17
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, klepto_seg5_dl_05004330
+                  geo_animated_part LAYER_OPAQUE, 0, 0, 0, klepto_seg5_dl_05004330
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 68, 0, 0, klepto_seg5_dl_050047C8
-                     geo_dl_translated LAYER_OPAQUE, 0, 0, 0
-                     geo_dl_translated LAYER_OPAQUE, 0, 0, 0
-                     geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+                     geo_animated_part LAYER_OPAQUE, 68, 0, 0, klepto_seg5_dl_050047C8
+                     geo_animated_part LAYER_OPAQUE, 0, 0, 0
+                     geo_animated_part LAYER_OPAQUE, 0, 0, 0
+                     geo_animated_part LAYER_OPAQUE, 0, 0, 0
                      geo_open_node
                         geo_switch_case 4, geo_switch_anim_state
                         geo_open_node
@@ -56,38 +56,38 @@ glabel klepto_geo # 0x0C000000
                      geo_close_node
                   geo_close_node
                geo_close_node
-               geo_dl_translated LAYER_OPAQUE, -3, 17, -17
+               geo_animated_part LAYER_OPAQUE, -3, 17, -17
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, klepto_seg5_dl_05004438
+                  geo_animated_part LAYER_OPAQUE, 0, 0, 0, klepto_seg5_dl_05004438
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 68, 0, 0, klepto_seg5_dl_05004B58
-                     geo_dl_translated LAYER_OPAQUE, 0, 0, 0
-                     geo_dl_translated LAYER_OPAQUE, 0, 0, 0
-                     geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+                     geo_animated_part LAYER_OPAQUE, 68, 0, 0, klepto_seg5_dl_05004B58
+                     geo_animated_part LAYER_OPAQUE, 0, 0, 0
+                     geo_animated_part LAYER_OPAQUE, 0, 0, 0
+                     geo_animated_part LAYER_OPAQUE, 0, 0, 0
                   geo_close_node
                geo_close_node
-               geo_dl_translated LAYER_OPAQUE, 49, -9, -17
+               geo_animated_part LAYER_OPAQUE, 49, -9, -17
                geo_open_node
-                  geo_dl_translated LAYER_ALPHA, 0, 0, 0, klepto_seg5_dl_05004D38
+                  geo_animated_part LAYER_ALPHA, 0, 0, 0, klepto_seg5_dl_05004D38
                   geo_open_node
-                     geo_dl_translated LAYER_ALPHA, 34, 0, 0, klepto_seg5_dl_05004F58
+                     geo_animated_part LAYER_ALPHA, 34, 0, 0, klepto_seg5_dl_05004F58
                      geo_open_node
-                        geo_dl_translated LAYER_ALPHA, 79, 0, 0, klepto_seg5_dl_05005178
+                        geo_animated_part LAYER_ALPHA, 79, 0, 0, klepto_seg5_dl_05005178
                      geo_close_node
                   geo_close_node
                geo_close_node
-               geo_dl_translated LAYER_OPAQUE, 49, -9, 17
+               geo_animated_part LAYER_OPAQUE, 49, -9, 17
                geo_open_node
-                  geo_dl_translated LAYER_ALPHA, 0, 0, 0, klepto_seg5_dl_05004C28
+                  geo_animated_part LAYER_ALPHA, 0, 0, 0, klepto_seg5_dl_05004C28
                   geo_open_node
-                     geo_dl_translated LAYER_ALPHA, 34, 0, 0, klepto_seg5_dl_05004E48
+                     geo_animated_part LAYER_ALPHA, 34, 0, 0, klepto_seg5_dl_05004E48
                      geo_open_node
-                        geo_dl_translated LAYER_ALPHA, 79, 0, 0, klepto_seg5_dl_05005068
+                        geo_animated_part LAYER_ALPHA, 79, 0, 0, klepto_seg5_dl_05005068
                      geo_close_node
                   geo_close_node
                geo_close_node
             geo_close_node
-            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, klepto_seg5_dl_05004118
+            geo_animated_part LAYER_OPAQUE, 0, 0, 0, klepto_seg5_dl_05004118
          geo_close_node
       geo_close_node
    geo_close_node

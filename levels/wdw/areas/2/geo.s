@@ -3,7 +3,7 @@ glabel wdw_geo_000724 # 0x0E000724
    geo_open_node
       geo_zbuffer 0
       geo_open_node
-         geo_todo_09 100
+         geo_node_ortho 100
          geo_open_node
             geo_background 0x0001
          geo_close_node
@@ -20,7 +20,7 @@ glabel wdw_geo_000724 # 0x0E000724
                geo_asm    0, Geo18_802D01E0
                geo_asm 0x1102, geo_exec_movtex_box
                geo_render_obj
-               geo_asm    0, geo_exec_level
+               geo_asm    0, geo_enfvx_main
             geo_close_node
          geo_close_node
       geo_close_node

@@ -120,7 +120,7 @@ static s32 beh_cmd_billboard(void)
 static s32 beh_cmd_graph_node(void)
 {
     s32 index = (s16)(gBehCommand[0] & 0xFFFF);
-    gCurrentObject->header.gfx.asGraphNode = gLoadedGraphNodes[index];
+    gCurrentObject->header.gfx.sharedChild = gLoadedGraphNodes[index];
     gBehCommand++;
     return BEH_CONTINUE;
 }

@@ -3,28 +3,28 @@ glabel king_bobomb_geo # 0x0C000000
    geo_open_node
       geo_scale 0x00, 16384
       geo_open_node
-         geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+         geo_animated_part LAYER_OPAQUE, 0, 0, 0
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+            geo_animated_part LAYER_OPAQUE, 0, 0, 0
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+               geo_animated_part LAYER_OPAQUE, 0, 0, 0
                geo_open_node
                   geo_billboard
                   geo_open_node
                      geo_display_list LAYER_ALPHA, king_bobomb_seg5_dl_0500B188
                   geo_close_node
                geo_close_node
-               geo_dl_translated LAYER_OPAQUE, 0, -243, 0
+               geo_animated_part LAYER_OPAQUE, 0, -243, 0
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+                  geo_animated_part LAYER_OPAQUE, 0, 0, 0
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 488, 0, 0
+                     geo_animated_part LAYER_OPAQUE, 488, 0, 0
                      geo_open_node
-                        geo_dl_translated LAYER_OPAQUE, 110, 0, 0
+                        geo_animated_part LAYER_OPAQUE, 110, 0, 0
                         geo_open_node
-                           geo_dl_translated LAYER_OPAQUE, 0, 0, 0, king_bobomb_seg5_dl_0500AD08
+                           geo_animated_part LAYER_OPAQUE, 0, 0, 0, king_bobomb_seg5_dl_0500AD08
                         geo_close_node
-                        geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+                        geo_animated_part LAYER_OPAQUE, 0, 0, 0
                         geo_open_node
                            geo_billboard
                            geo_open_node
@@ -34,20 +34,20 @@ glabel king_bobomb_geo # 0x0C000000
                      geo_close_node
                   geo_close_node
                geo_close_node
-               geo_dl_translated LAYER_ALPHA, 0, 0, 0, king_bobomb_seg5_dl_0500B2D0
-               geo_dl_translated LAYER_OPAQUE, 0, 0, 0, king_bobomb_seg5_dl_0500B418
-               geo_dl_translated LAYER_OPAQUE, 0, 0, 0, king_bobomb_seg5_dl_0500B6C0
-               geo_dl_translated LAYER_OPAQUE, 0, 243, 0
+               geo_animated_part LAYER_ALPHA, 0, 0, 0, king_bobomb_seg5_dl_0500B2D0
+               geo_animated_part LAYER_OPAQUE, 0, 0, 0, king_bobomb_seg5_dl_0500B418
+               geo_animated_part LAYER_OPAQUE, 0, 0, 0, king_bobomb_seg5_dl_0500B6C0
+               geo_animated_part LAYER_OPAQUE, 0, 243, 0
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+                  geo_animated_part LAYER_OPAQUE, 0, 0, 0
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 488, 0, 0
+                     geo_animated_part LAYER_OPAQUE, 488, 0, 0
                      geo_open_node
-                        geo_dl_translated LAYER_OPAQUE, 110, 0, 0
+                        geo_animated_part LAYER_OPAQUE, 110, 0, 0
                         geo_open_node
-                           geo_dl_translated LAYER_OPAQUE, 0, 0, 0, king_bobomb_seg5_dl_0500B068
+                           geo_animated_part LAYER_OPAQUE, 0, 0, 0, king_bobomb_seg5_dl_0500B068
                         geo_close_node
-                        geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+                        geo_animated_part LAYER_OPAQUE, 0, 0, 0
                         geo_open_node
                            geo_billboard
                            geo_open_node
@@ -57,22 +57,22 @@ glabel king_bobomb_geo # 0x0C000000
                      geo_close_node
                   geo_close_node
                geo_close_node
-               geo_dl_translated LAYER_OPAQUE, 0, -1, 36
+               geo_animated_part LAYER_OPAQUE, 0, -1, 36
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+                  geo_animated_part LAYER_OPAQUE, 0, 0, 0
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 548, 0, 0
+                     geo_animated_part LAYER_OPAQUE, 548, 0, 0
                      geo_open_node
-                        geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+                        geo_animated_part LAYER_OPAQUE, 0, 0, 0
                         geo_open_node
                            geo_billboard
                            geo_open_node
                               geo_display_list LAYER_ALPHA, king_bobomb_seg5_dl_0500A4F0
                            geo_close_node
                         geo_close_node
-                        geo_dl_translated LAYER_OPAQUE, 189, 0, 0
+                        geo_animated_part LAYER_OPAQUE, 189, 0, 0
                         geo_open_node
-                           geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+                           geo_animated_part LAYER_OPAQUE, 0, 0, 0
                            geo_open_node
                               geo_billboard
                               geo_open_node
@@ -84,22 +84,22 @@ glabel king_bobomb_geo # 0x0C000000
                      geo_close_node
                   geo_close_node
                geo_close_node
-               geo_dl_translated LAYER_OPAQUE, 0, 1, 36
+               geo_animated_part LAYER_OPAQUE, 0, 1, 36
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+                  geo_animated_part LAYER_OPAQUE, 0, 0, 0
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 548, 0, 0
+                     geo_animated_part LAYER_OPAQUE, 548, 0, 0
                      geo_open_node
-                        geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+                        geo_animated_part LAYER_OPAQUE, 0, 0, 0
                         geo_open_node
                            geo_billboard
                            geo_open_node
                               geo_display_list LAYER_ALPHA, king_bobomb_seg5_dl_0500A7A8
                            geo_close_node
                         geo_close_node
-                        geo_dl_translated LAYER_OPAQUE, 189, 0, 0
+                        geo_animated_part LAYER_OPAQUE, 189, 0, 0
                         geo_open_node
-                           geo_dl_translated LAYER_OPAQUE, 0, 0, 0
+                           geo_animated_part LAYER_OPAQUE, 0, 0, 0
                            geo_open_node
                               geo_billboard
                               geo_open_node
