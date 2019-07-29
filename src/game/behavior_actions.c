@@ -57,14 +57,6 @@ struct Struct8032F34C {
     void* segAddr;
 };
 
-struct Struct8032FB4C {
-    u8 unk0;
-    s8 unk1;
-    s8 unk2;
-    s8 unk3;
-    s8* unk4;
-};
-
 struct Struct8032F698 {
     void* unk0;
     s16 unk1;

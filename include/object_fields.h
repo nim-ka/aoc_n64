@@ -428,15 +428,15 @@
 #define /*0x0F8*/ oPiranhaPlantScale OBJECT_FIELD_F32(0x1C)
 
 /* BowserPuzzle */
-#define /*0x0F4*/ oBowserPuzzleUnkF4 OBJECT_FIELD_S32(0x1B)
+#define /*0x0F4*/ oBowserPuzzleCompletionFlags OBJECT_FIELD_S32(0x1B)
 
 /* BowserPuzzlePiece */
-#define /*0x0FC*/ oBowserPuzzlePieceUnkFC OBJECT_FIELD_F32(0x1D)
-#define /*0x100*/ oBowserPuzzlePieceUnk100 OBJECT_FIELD_F32(0x1E)
-#define /*0x104*/ oBowserPuzzlePieceUnk104 OBJECT_FIELD_F32(0x1F)
-#define /*0x108*/ oBowserPuzzlePieceUnk108 OBJECT_FIELD_S32(0x20)
-#define /*0x10C*/ oBowserPuzzlePieceUnk10C OBJECT_FIELD_VPTR(0x21)
-#define /*0x110*/ oBowserPuzzlePieceUnk110 OBJECT_FIELD_VPTR(0x22)
+#define /*0x0FC*/ oBowserPuzzlePieceOffsetX OBJECT_FIELD_F32(0x1D)
+#define /*0x100*/ oBowserPuzzlePieceOffsetY OBJECT_FIELD_F32(0x1E)
+#define /*0x104*/ oBowserPuzzlePieceOffsetZ OBJECT_FIELD_F32(0x1F)
+#define /*0x108*/ oBowserPuzzlePieceContinuePerformingAction OBJECT_FIELD_S32(0x20)
+#define /*0x10C*/ oBowserPuzzlePieceActionList OBJECT_FIELD_VPTR(0x21)
+#define /*0x110*/ oBowserPuzzlePieceNextAction OBJECT_FIELD_VPTR(0x22)
 
 /* SmallPenguin */
 #define /*0x100*/ oSmallPenguinUnk100 OBJECT_FIELD_S32(0x1E) // angle?

@@ -643,7 +643,7 @@
 /* not verified */ #define SOUND_CH9_UNK04      SOUND_ARG_LOAD(9, 0, 0x04, 0x00, 8)
 #define SOUND_PIRANHA_PLANT_BITE      SOUND_ARG_LOAD(9, 0, 0x10, 0x50, 8)
 #define SOUND_PIRANHA_PLANT_DYING      SOUND_ARG_LOAD(9, 0, 0x11, 0x60, 8)
-/* not verified */ #define SOUND_CH9_UNK19      SOUND_ARG_LOAD(9, 0, 0x19, 0x20, 8)
+#define SOUND_BOWSER_PUZZLE_PIECE_MOVE          SOUND_ARG_LOAD(9, 0, 0x19, 0x20, 8)
 /* not verified */ #define SOUND_CH9_UNK1C      SOUND_ARG_LOAD(9, 0, 0x1C, 0x00, 8)
 /* not verified */ #define SOUND_CH9_UNK42      SOUND_ARG_LOAD(9, 1, 0x42, 0x40, 8)
 /* not verified */ #define SOUND_CH9_UNK43      SOUND_ARG_LOAD(9, 0, 0x43, 0x40, 8)

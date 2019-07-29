@@ -808,4 +808,10 @@
     #define FALLING_PILLAR_ACT_TURNING 1
     #define FALLING_PILLAR_ACT_FALLING 2
 
+/* Bowser Puzzle */
+    /* oAction */
+    #define BOWSER_PUZZLE_ACT_SPAWN_PIECES 0
+    #define BOWSER_PUZZLE_ACT_WAIT_FOR_COMPLETE 1
+    #define BOWSER_PUZZLE_ACT_DONE 2
+
 #endif
