@@ -1,0 +1,105 @@
+{
+    "date": "1996-03-19",
+    "sample_bank": "nlist_B",
+    "envelopes": {
+        "envelope0": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope1": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope2": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope3": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope4": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope5": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope6": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ]
+    },
+    "instruments": {
+        "inst0": {
+            "release_rate": 19,
+            "normal_range_lo": 29,
+            "normal_range_hi": 63,
+            "envelope": "envelope0",
+            "sound_lo": {"sample": "3B", "tuning": 2.378414},
+            "sound": {"sample": "3C", "tuning": 0.793701},
+            "sound_hi": {"sample": "3D", "tuning": 0.06836361}
+        },
+        "inst1": {
+            "release_rate": 208,
+            "envelope": "envelope1",
+            "sound": {"sample": "2E", "tuning": 0.5}
+        },
+        "inst2": {
+            "release_rate": 208,
+            "envelope": "envelope2",
+            "sound": {"sample": "2E", "tuning": 0.5}
+        },
+        "inst3": {
+            "release_rate": 208,
+            "envelope": "envelope3",
+            "sound": {"sample": "16", "tuning": 1.0}
+        },
+        "inst4": {
+            "release_rate": 208,
+            "envelope": "envelope4",
+            "sound": {"sample": "16", "tuning": 1.0}
+        },
+        "inst5": {
+            "release_rate": 10,
+            "normal_range_lo": 24,
+            "envelope": "envelope5",
+            "sound_lo": {"sample": "0E", "tuning": 3.174803},
+            "sound": {"sample": "0F", "tuning": 2.244924}
+        },
+        "inst6": {
+            "release_rate": 208,
+            "envelope": "envelope6",
+            "sound": {"sample": "2F", "tuning": 0.264866}
+        }
+    },
+    "instrument_list": [
+        "inst0",
+        "inst1",
+        "inst2",
+        null,
+        null,
+        null,
+        "inst3",
+        "inst4",
+        null,
+        null,
+        "inst5",
+        "inst6"
+    ]
+}

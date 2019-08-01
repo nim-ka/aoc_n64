@@ -76,7 +76,7 @@ def search_map(rom_addr):
             if '0x' in fn:
                 ram_offset = None
                 continue
-            if rom > rom_addr:
+            if rom > rom_addr or (rom_addr & 0x80000000 and ram > rom_addr):
                 return 'in {} (ram 0x{:08x}, rom 0x{:x}, {})'.format(last_fn, last_ram, last_rom, last_file)
             last_ram = ram
             last_rom = rom

@@ -1,0 +1,47 @@
+{
+    "date": "1996-03-19",
+    "sample_bank": "nlist_B",
+    "envelopes": {
+        "envelope0": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope1": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope2": [
+            [6, 32700],
+            [298, 0],
+            [1, 0],
+            "hang"
+        ]
+    },
+    "instruments": {
+        "inst0": {
+            "release_rate": 208,
+            "envelope": "envelope0",
+            "sound": {"sample": "2E", "tuning": 0.5}
+        },
+        "inst1": {
+            "release_rate": 208,
+            "envelope": "envelope1",
+            "sound": {"sample": "2E", "tuning": 0.5}
+        },
+        "inst2": {
+            "release_rate": 10,
+            "envelope": "envelope2",
+            "sound": {"sample": "26", "tuning": 0.5}
+        }
+    },
+    "instrument_list": [
+        "inst0",
+        null,
+        "inst1",
+        "inst2"
+    ]
+}

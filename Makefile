@@ -123,12 +123,13 @@ ROM := $(BUILD_DIR)/$(TARGET).z64
 ELF := $(BUILD_DIR)/$(TARGET).elf
 LD_SCRIPT := sm64.ld
 MIO0_DIR := $(BUILD_DIR)/mio0
+SOUND_BIN_DIR := $(BUILD_DIR)/sound
 TEXTURE_DIR := textures
 ACTOR_DIR := actors
 
 # Directories containing source files
 SRC_DIRS := src src/engine src/game src/audio
-ASM_DIRS := asm actors lib data levels assets text
+ASM_DIRS := asm actors lib data levels assets sound text
 BIN_DIRS := bin bin/$(VERSION)
 
 ULTRA_SRC_DIRS := lib/src lib/src/math
@@ -157,6 +158,10 @@ ULTRA_C_FILES := $(foreach dir,$(ULTRA_SRC_DIRS),$(wildcard $(dir)/*.c))
 GODDARD_C_FILES := $(foreach dir,$(GODDARD_SRC_DIRS),$(wildcard $(dir)/*.c))
 ULTRA_S_FILES := $(foreach dir,$(ULTRA_ASM_DIRS),$(wildcard $(dir)/*.s))
 LEVEL_S_FILES := $(addsuffix header.s,$(addprefix bin/,$(LEVEL_DIRS)))
+
+SOUND_FILES := $(shell find sound/ -type f -iname '*')
+SOUND_OBJ_FILES := $(SOUND_BIN_DIR)/sound_data.ctl.o $(SOUND_BIN_DIR)/sound_data.tbl.o
+
 
 # Object files
 O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
@@ -286,7 +291,7 @@ else
 $(BUILD_DIR)/bin/segment2.o: $(BUILD_DIR)/text/debug.s $(BUILD_DIR)/text/dialog.s $(BUILD_DIR)/text/level.s $(BUILD_DIR)/text/star.s
 endif
 
-ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(GODDARD_SRC_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) $(addprefix bin/,$(LEVEL_DIRS)) include) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(LEVEL_DIRS)) $(addprefix $(MIO0_DIR)/,$(VERSION))
+ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(GODDARD_SRC_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) $(addprefix bin/,$(LEVEL_DIRS)) include) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(LEVEL_DIRS)) $(addprefix $(MIO0_DIR)/,$(VERSION)) $(SOUND_BIN_DIR)
 
 # Make sure build directory exists before compiling anything
 DUMMY != mkdir -p $(ALL_DIRS)
@@ -348,6 +353,17 @@ $(MIO0_DIR)/%.mio0.o: $(MIO0_DIR)/%.mio0.s
 $(MIO0_DIR)/%.mio0.s: $(MIO0_DIR)/%.mio0
 	printf ".section .data\n\n.incbin \"$<\"\n" > $@
 
+$(SOUND_BIN_DIR)/sound_data.ctl: $(SOUND_FILES)
+	python3 tools/assemble_sound.py sound/samples/ sound/sound_banks/ $(SOUND_BIN_DIR)/sound_data.ctl $(SOUND_BIN_DIR)/sound_data.tbl $(VERSION_CFLAGS)
+
+$(SOUND_BIN_DIR)/sound_data.tbl: $(SOUND_BIN_DIR)/sound_data.ctl
+
+$(SOUND_BIN_DIR)/%.o: $(SOUND_BIN_DIR)/%.s
+	$(AS) $(ASFLAGS) -o $@ $<
+
+$(SOUND_BIN_DIR)/%.s: $(SOUND_BIN_DIR)/%
+	printf ".section .data\n\n.incbin \"$<\"\n" > $@
+
 # Source code
 $(BUILD_DIR)/src/goddard/%.o: OPT_FLAGS := -g
 $(BUILD_DIR)/src/goddard/%.o: MIPSISET := -mips1
@@ -397,7 +413,7 @@ $(BUILD_DIR)/libultra.a: $(ULTRA_O_FILES)
 $(BUILD_DIR)/libgoddard.a: $(GODDARD_O_FILES)
 	$(AR) rcs -o $@ $(GODDARD_O_FILES)
 
-$(ELF): $(O_FILES) $(MIO0_OBJ_FILES) $(SEG_FILES) $(BUILD_DIR)/$(LD_SCRIPT) undefined_syms.txt $(BUILD_DIR)/libultra.a $(BUILD_DIR)/libgoddard.a
+$(ELF): $(O_FILES) $(MIO0_OBJ_FILES) $(SOUND_OBJ_FILES) $(SEG_FILES) $(BUILD_DIR)/$(LD_SCRIPT) undefined_syms.txt $(BUILD_DIR)/libultra.a $(BUILD_DIR)/libgoddard.a
 	$(LD) -L $(BUILD_DIR) $(LDFLAGS) -o $@ $(O_FILES)$(LIBS) -lultra -lgoddard
 
 $(ROM): $(ELF)
@@ -410,7 +426,7 @@ $(BUILD_DIR)/$(TARGET).objdump: $(ELF)
 
 
 .PHONY: all clean tidy default diff test load libultra
-.PRECIOUS: $(BUILD_DIR)/mio0/%.mio0 $(BUILD_DIR)/bin/%.elf $(BUILD_DIR)/mio0/%.mio0.s
+.PRECIOUS: $(MIO0_DIR)/%.mio0 $(MIO0_DIR)/%.mio0.s $(BUILD_DIR)/bin/%.elf $(SOUND_BIN_DIR)/%.ctl $(SOUND_BIN_DIR)/%.tbl $(SOUND_BIN_DIR)/%.s
 .DELETE_ON_ERROR:
 
 # Remove built-in rules, to improve performance

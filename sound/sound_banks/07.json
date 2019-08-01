@@ -1,0 +1,132 @@
+{
+    "date": "1996-02-14",
+    "sample_bank": "nlist_7",
+    "envelopes": {
+        "envelope0": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope1": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope2": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope3": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope4": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope5": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ]
+    },
+    "instruments": {
+        "inst0": {
+            "release_rate": 29,
+            "envelope": "envelope0",
+            "sound": {"sample": "00", "tuning": 0.25}
+        },
+        "inst1": {
+            "release_rate": 48,
+            "envelope": "envelope1",
+            "sound": {"sample": "01", "tuning": 0.5}
+        },
+        "inst2": {
+            "release_rate": 90,
+            "envelope": "envelope2",
+            "sound": {"sample": "02", "tuning": 0.5}
+        },
+        "inst3": {
+            "release_rate": 48,
+            "envelope": "envelope1",
+            "sound": {"sample": "03", "tuning": 0.5}
+        },
+        "inst4": {
+            "release_rate": 24,
+            "envelope": "envelope3",
+            "sound": {"sample": "04", "tuning": 0.375}
+        },
+        "inst5": {
+            "release_rate": 109,
+            "envelope": "envelope4",
+            "sound": {"sample": "05", "tuning": 0.25}
+        },
+        "inst6": {
+            "release_rate": 208,
+            "envelope": "envelope5",
+            "sound": {"sample": "06", "tuning": 0.5}
+        },
+        "inst7": {
+            "release_rate": 208,
+            "envelope": "envelope5",
+            "sound": {"sample": "07", "tuning": 0.5}
+        },
+        "inst8": {
+            "release_rate": 208,
+            "envelope": "envelope5",
+            "sound": {"sample": "08", "tuning": 0.25}
+        },
+        "inst9": {
+            "release_rate": 208,
+            "envelope": "envelope5",
+            "sound": {"sample": "09", "tuning": 0.25}
+        },
+        "inst10": {
+            "release_rate": 208,
+            "envelope": "envelope5",
+            "sound": {"sample": "0A", "tuning": 0.34453124}
+        },
+        "inst11": {
+            "release_rate": 208,
+            "envelope": "envelope5",
+            "sound": {"sample": "0B", "tuning": 0.5}
+        },
+        "inst12": {
+            "release_rate": 208,
+            "envelope": "envelope5",
+            "sound": {"sample": "0C", "tuning": 0.5}
+        },
+        "inst13": {
+            "ifdef": ["VERSION_US", "VERSION_EU"],
+            "release_rate": 208,
+            "envelope": "envelope5",
+            "sound": {"sample": "0D", "tuning": 0.5}
+        }
+    },
+    "instrument_list": [
+        "inst0",
+        "inst1",
+        "inst2",
+        "inst3",
+        null,
+        "inst4",
+        "inst5",
+        "inst6",
+        "inst7",
+        "inst8",
+        "inst9",
+        "inst10",
+        "inst11",
+        "inst12",
+        "inst13"
+    ]
+}

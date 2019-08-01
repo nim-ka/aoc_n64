@@ -1,3 +1,5 @@
+# This file maps each sequence to a set of sound banks it needs.
+
 .include "macros.inc"
 
 .section .data

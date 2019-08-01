@@ -7,7 +7,6 @@ import json
 def read_asset_map():
     with open("assets.json") as f:
         ret = json.load(f)
-    del ret["comment"]
     return ret
 
 
@@ -28,6 +27,8 @@ def clean_assets():
     assets = set(read_asset_map().keys())
     assets.update(read_local_asset_list()[1])
     for fname in list(assets) + [".assets-local.txt"]:
+        if fname.startswith("@"):
+            continue
         try:
             os.remove(fname)
         except FileNotFoundError:
@@ -35,14 +36,14 @@ def clean_assets():
 
 
 def main():
-    args = sys.argv[1:]
-    if args == ["--clean"]:
+    langs = sys.argv[1:]
+    if langs == ["--clean"]:
         clean_assets()
         sys.exit(0)
 
-    langs = ["jp", "us", "eu"]
-    if not args or not all(a in langs for a in args):
-        langs_str = " ".join("[" + lang + "]" for lang in langs)
+    all_langs = ["jp", "us", "eu"]
+    if not langs or not all(a in all_langs for a in langs):
+        langs_str = " ".join("[" + lang + "]" for lang in all_langs)
         print("Usage: " + sys.argv[0] + " " + langs_str)
         print("For each version, baserom.<version>.z64 must exist")
         sys.exit(1)
@@ -51,11 +52,13 @@ def main():
     all_assets = []
     any_missing_assets = False
     for asset, data in asset_map.items():
+        if asset.startswith("@"):
+            continue
         if os.path.isfile(asset):
             all_assets.append((asset, data, True))
         else:
             all_assets.append((asset, data, False))
-            if not any_missing_assets and any(lang in data[-1] for lang in args):
+            if not any_missing_assets and any(lang in data[-1] for lang in langs):
                 any_missing_assets = True
 
     if not any_missing_assets:
@@ -66,6 +69,7 @@ def main():
     # Late imports (to optimize startup perf)
     import subprocess
     import hashlib
+    import tempfile
     from collections import defaultdict
 
     # In case we ever need to change formats of generated files, we keep a
@@ -91,13 +95,13 @@ def main():
         for lang, pos in positions.items():
             mio0 = None if len(pos) == 1 else pos[0]
             pos = pos[-1]
-            if lang in args:
+            if lang in langs:
                 todo[(lang, mio0)].append((asset, pos, size, meta))
                 break
 
     # Load ROMs
     roms = {}
-    for lang in args:
+    for lang in langs:
         fname = "baserom." + lang + ".z64"
         try:
             with open(fname, "rb") as f:
@@ -128,6 +132,29 @@ def main():
     for key in keys:
         assets = todo[key]
         lang, mio0 = key
+        if mio0 == "@sound":
+            with tempfile.NamedTemporaryFile(prefix="ctl") as ctl_file:
+                with tempfile.NamedTemporaryFile(prefix="tbl") as tbl_file:
+                    rom = roms[lang]
+                    size, locs = asset_map["@sound ctl " + lang]
+                    offset = locs[lang][0]
+                    ctl_file.write(rom[offset : offset + size])
+                    size, locs = asset_map["@sound tbl " + lang]
+                    offset = locs[lang][0]
+                    tbl_file.write(rom[offset : offset + size])
+                    args = [
+                        "python3",
+                        "tools/disassemble_sound.py",
+                        ctl_file.name,
+                        tbl_file.name,
+                        "--only-samples",
+                    ]
+                    for (asset, pos, size, meta) in assets:
+                        print("extracting", asset)
+                        args.append(asset + ":" + str(pos))
+                    subprocess.run(args, check=True)
+            continue
+
         if mio0 is not None:
             image = subprocess.run(
                 [

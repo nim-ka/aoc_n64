@@ -1,0 +1,62 @@
+{
+    "date": "1996-03-19",
+    "sample_bank": "nlist_B",
+    "envelopes": {
+        "envelope0": [
+            [2, 32700],
+            [187, 0],
+            [32700, 0],
+            "hang"
+        ],
+        "envelope1": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope2": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope3": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ]
+    },
+    "instruments": {
+        "inst0": {
+            "release_rate": 100,
+            "normal_range_lo": 55,
+            "normal_range_hi": 56,
+            "envelope": "envelope0",
+            "sound_lo": {"sample": "2A", "tuning": 0.35395277},
+            "sound": {"sample": "2B", "tuning": 0.28093272},
+            "sound_hi": {"sample": "2C", "tuning": 0.25028253}
+        },
+        "inst1": {
+            "release_rate": 10,
+            "envelope": "envelope1",
+            "sound": {"sample": "22", "tuning": 0.28093272}
+        },
+        "inst2": {
+            "release_rate": 90,
+            "envelope": "envelope2",
+            "sound": {"sample": "28", "tuning": 1.1905508}
+        },
+        "inst3": {
+            "release_rate": 10,
+            "envelope": "envelope3",
+            "sound": {"sample": "39", "tuning": 0.9449407}
+        }
+    },
+    "instrument_list": [
+        "inst0",
+        "inst1",
+        "inst2",
+        "inst3"
+    ]
+}

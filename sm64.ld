@@ -751,13 +751,15 @@ SECTIONS
       . = ALIGN(0x10);
       BUILD_DIR/assets/demo_data.o(.data);
       . = ALIGN(0x10);
-      BUILD_DIR/assets/sound_data.ctl.o(.data);
+      gSoundDataADSR = .;
+      BUILD_DIR/sound/sound_data.ctl.o(.data);
       . = ALIGN(0x10);
-      BUILD_DIR/assets/sound_data.tbl.o(.data);
+      gSoundDataRaw = .;
+      BUILD_DIR/sound/sound_data.tbl.o(.data);
       . = ALIGN(0x10);
-      BUILD_DIR/assets/music_data.sbk.o(.data);
+      BUILD_DIR/sound/sequences.o(.data);
       . = ALIGN(0x10);
-      BUILD_DIR/assets/bank_sets.o(.data);
+      BUILD_DIR/sound/bank_sets.o(.data);
       . = ALIGN(0x10);
    }
    END_SEG(assets)

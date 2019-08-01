@@ -111,14 +111,14 @@ struct AdpcmLoop
     u32 end;
     u32 count;
     u32 pad;
-    s16 state[16];
+    s16 state[16]; // only exists if count != 0. 8-byte aligned
 };
 
 struct AdpcmBook
 {
     s32 order;
     s32 npredictors;
-    s16 book[1]; // variable size, 8-byte aligned
+    s16 book[1]; // size 8 * order * npredictors. 8-byte aligned
 };
 
 struct AudioBankSample
@@ -128,7 +128,7 @@ struct AudioBankSample
     u8 *sampleAddr;
     struct AdpcmLoop *loop;
     struct AdpcmBook *book;
-    // u32 samplesize;
+    u32 sampleSize; // never read. either 0 or 1 mod 9, depending on padding
 };
 
 struct AudioBankSound

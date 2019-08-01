@@ -59,10 +59,10 @@ music_sequence_table_end:
 .macro sequence name
 \name:
 .ifdef VERSION_JP
-.incbin "assets/music/jp/\name\().m64"
+.incbin "sound/sequences/jp/\name\().m64"
 .endif
 .ifndef VERSION_JP
-.incbin "assets/music/us/\name\().m64"
+.incbin "sound/sequences/us/\name\().m64"
 .endif
 \name\()_end:
 .endm
