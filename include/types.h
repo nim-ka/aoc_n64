@@ -4,6 +4,8 @@
 // This file contains various data types used in Super Mario 64 that don't yet
 // have an appropriate header.
 
+#include <ultra64.h>
+
 struct Controller
 {
   /*0x00*/ s16 rawStickX;       //
