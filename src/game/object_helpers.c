@@ -3398,7 +3398,7 @@ void obj_align_gfx_with_floor(void)
         floorNormal[1] = floor->normal.y;
         floorNormal[2] = floor->normal.z;
 
-        mtxf_from_up_direction(o->transform, floorNormal, position, o->oFaceAngleYaw);
+        mtxf_align_terrain_normal(o->transform, floorNormal, position, o->oFaceAngleYaw);
         o->header.gfx.throwMatrix = o->transform;
     }
 }

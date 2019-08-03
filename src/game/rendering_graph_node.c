@@ -294,7 +294,7 @@ static void geo_process_switch(struct GraphNodeSwitchCase *node)
  */
 static void geo_process_camera(struct GraphNodeCamera *node)
 {
-    f32 cameraTransform[4][4];
+    Mat4 cameraTransform;
     Mtx *rollMtx = alloc_display_list(sizeof(*rollMtx));
     Mtx *mtx = alloc_display_list(sizeof(*mtx));
 
@@ -326,7 +326,7 @@ static void geo_process_camera(struct GraphNodeCamera *node)
  */
 static void geo_process_translation_rotation(struct GraphNodeTranslationRotation *node)
 {
-    f32 mtxf[4][4];
+    Mat4 mtxf;
     Vec3f translation;
     Mtx *mtx = alloc_display_list(sizeof(*mtx));
 
@@ -349,7 +349,7 @@ static void geo_process_translation_rotation(struct GraphNodeTranslationRotation
  */
 static void geo_process_translation(struct GraphNodeTranslation *node)
 {
-    f32 mtxf[4][4];
+    Mat4 mtxf;
     Vec3f translation;
     Mtx *mtx = alloc_display_list(sizeof(*mtx));
 
@@ -372,7 +372,7 @@ static void geo_process_translation(struct GraphNodeTranslation *node)
  */
 static void geo_process_rotation(struct GraphNodeRotation *node)
 {
-    f32 mtxf[4][4];
+    Mat4 mtxf;
     Mtx *mtx = alloc_display_list(sizeof(*mtx));
 
     mtxf_rotate_zxy_and_translate(mtxf, gVec3fZero, node->rotation);
@@ -393,7 +393,7 @@ static void geo_process_rotation(struct GraphNodeRotation *node)
  */
 static void geo_process_scale(struct GraphNodeScale *node)
 {
-    UNUSED f32 transform[4][4];
+    UNUSED Mat4 transform;
     Vec3f scaleVec;
     Mtx *mtx = alloc_display_list(sizeof(*mtx));
 
@@ -504,7 +504,7 @@ static void geo_process_background(struct GraphNodeBackground *node)
  */
 static void geo_process_animated_part(struct GraphNodeAnimatedPart *node)
 {
-    f32 matrix[4][4];
+    Mat4 matrix;
     Vec3s rotation;
     Vec3f translation;
     Mtx *matrixPtr = alloc_display_list(sizeof(*matrixPtr));
@@ -599,7 +599,7 @@ void geo_set_animation_globals(struct GraphNodeObject_sub *node, s32 hasAnimatio
 static void geo_process_shadow(struct GraphNodeShadow *node)
 {
     Gfx *shadowList;
-    f32 sp54[4][4];
+    Mat4 mtxf;
     Vec3f shadowPos;
     Vec3f animOffset;
     f32 objScale;
@@ -613,7 +613,7 @@ static void geo_process_shadow(struct GraphNodeShadow *node)
     {
         if (gCurGraphNodeHeldObject != NULL)
         {
-            func_8037A550(shadowPos, gMatStack[gMatStackIndex], gCurGraphNodeCamera->matrixPtr);
+            get_pos_from_transform_mtx(shadowPos, gMatStack[gMatStackIndex], gCurGraphNodeCamera->matrixPtr);
             shadowScale = node->shadowScale;
         }
         else
@@ -654,8 +654,8 @@ static void geo_process_shadow(struct GraphNodeShadow *node)
         {
             mtx = alloc_display_list(sizeof(*mtx));
             gMatStackIndex++;
-            mtxf_translate(sp54, shadowPos);
-            mtxf_mul(gMatStack[gMatStackIndex], sp54, gCurGraphNodeCamera->matrixPtr);
+            mtxf_translate(mtxf, shadowPos);
+            mtxf_mul(gMatStack[gMatStackIndex], mtxf, gCurGraphNodeCamera->matrixPtr);
             mtxf_to_mtx(mtx, gMatStack[gMatStackIndex]);
             gMatStackFixed[gMatStackIndex] = mtx;
             if (gShadowAboveWaterOrLava == 1)
@@ -751,7 +751,7 @@ static int obj_is_in_view(struct GraphNodeObject *node, Mat4 matrix)
  */
 static void geo_process_object(struct Object *node)
 {
-    Mat4 sp30;
+    Mat4 mtxf;
     s32 hasAnimation = (node->header.gfx.node.flags & GRAPH_RENDER_HAS_ANIMATION) != 0;
 
     if (node->header.gfx.unk18 == gCurGraphNodeRoot->areaIndex)
@@ -766,8 +766,8 @@ static void geo_process_object(struct Object *node)
         }
         else
         {
-            mtxf_rotate_zxy_and_translate(sp30, node->header.gfx.pos, node->header.gfx.angle);
-            mtxf_mul(gMatStack[gMatStackIndex + 1], sp30, gMatStack[gMatStackIndex]);
+            mtxf_rotate_zxy_and_translate(mtxf, node->header.gfx.pos, node->header.gfx.angle);
+            mtxf_mul(gMatStack[gMatStackIndex + 1], mtxf, gMatStack[gMatStackIndex]);
         }
 
         mtxf_scale_vec3f(gMatStack[gMatStackIndex + 1], gMatStack[gMatStackIndex + 1], node->header.gfx.scale);

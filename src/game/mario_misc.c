@@ -516,7 +516,7 @@ Gfx *geo_switch_mario_hand_grab_pos(s32 callContext, struct GraphNode *b, Mat4 *
     }
     else if (callContext == GEO_CONTEXT_HELD_OBJ)
     {
-        func_8037A550(sp24->marioBodyState->unk18, *sp28, gCurGraphNodeCamera->matrixPtr);
+        get_pos_from_transform_mtx(sp24->marioBodyState->unk18, *sp28, gCurGraphNodeCamera->matrixPtr);
     }
     return NULL;
 }

@@ -5125,7 +5125,7 @@ glabel gCosineTable
 .word 0x3F7FFFB1
 .word 0x3F7FFFEC
 
-glabel D_8038B000
+glabel gArctanTable
 .hword 0x0000
 .hword 0x000A
 .hword 0x0014

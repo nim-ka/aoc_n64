@@ -52,7 +52,15 @@ static s8 D_8032CBEC[7] = { 2, 3, 2, 1, 2, 3, 2 };
 
 static u8 sStarsNeededForDialog[6] = { 1, 3, 8, 30, 50, 70 };
 
-// data for the jumbo star cutscene
+/** Data for the jumbo star cutscene. It specifies the flight path after triple
+ *  jumping. Each entry is one keyframe. 
+ *  The first number is playback speed, 1000 is the maximum and means it lasts
+ *  1 frame. 20 means that it lasts 1000/20 = 50 frames. 
+ *  Speed 0 marks the last keyframe. Since the cubic spline looks 3 keyframes
+ *  ahead, there should be at least 2 more entries afterwards.
+ *  The last three numbers of each entry are x, y and z coordinates of points
+ *  that define the curve.
+ */
 static Vec4s sJumboStarKeyframes[27] =
 {
     {     20,      0,    678,  -2916 },
@@ -2133,11 +2141,11 @@ static s32 jumbo_star_cutscene_flying(struct MarioState *m)
     {
         case 0:
             set_mario_animation(m, MARIO_ANIM_WING_CAP_FLY);
-            func_8037AFB8(sJumboStarKeyframes);
+            anim_spline_init(sJumboStarKeyframes);
             m->actionState++;
             // fall through
         case 1:
-            if (func_8037AFE8(targetPos))
+            if (anim_spline_poll(targetPos))
             {
                 // lol does this twice
                 set_mario_action(m, ACT_FREEFALL, 0);

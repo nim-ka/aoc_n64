@@ -10,7 +10,7 @@ void func_802BC544(Mat4 a0,f32 a1,f32 a2,f32 a3)
     sp24[0] = a1;
     sp24[1] = a2;
     sp24[2] = a3;
-    mtxf_from_up_direction(a0,sp24,sp18,0);
+    mtxf_align_terrain_normal(a0,sp24,sp18,0);
 }
 
 void bhv_tilting_platform_init(void)

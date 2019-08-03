@@ -162,7 +162,7 @@ void func_80263AD4(struct MarioState *m, s16 arg1, s16 arg2)
 void func_80263C14(struct MarioState *m)
 {
     m->pos[1] = m->floorHeight;
-    func_80379AA4(D_80339F50[m->unk00], m->pos, m->faceAngle[1], 40.0f);
+    mtxf_align_terrain_triangle(D_80339F50[m->unk00], m->pos, m->faceAngle[1], 40.0f);
     m->marioObj->header.gfx.throwMatrix = &D_80339F50[m->unk00];
 }
 

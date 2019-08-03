@@ -33,22 +33,22 @@ void mtxf_lookat(f32 mtx[4][4], Vec3f b, Vec3f c, s16 d);
 void mtxf_rotate_zxy_and_translate(f32 mtx[4][4], Vec3f b, Vec3s c);
 void mtxf_rotate_xyz_and_translate(f32 mtx[4][4], Vec3f b, Vec3s c);
 void mtxf_billboard(f32 mtx1[4][4], f32 mtx2[4][4], Vec3f c, s16 d);
-void mtxf_from_up_direction(f32 mtx[4][4], Vec3f b, Vec3f c, s16 d);
-void func_80379AA4(f32 mtx[4][4], Vec3f b, s16 c, f32 d);
+void mtxf_align_terrain_normal(f32 mtx[4][4], Vec3f b, Vec3f c, s16 d);
+void mtxf_align_terrain_triangle(f32 mtx[4][4], Vec3f b, s16 c, f32 d);
 void mtxf_mul(f32 dest[4][4], f32 a[4][4], f32 b[4][4]);
 void mtxf_scale_vec3f(f32 a[4][4], f32 b[4][4], Vec3f c);
 void mtxf_mul_vec3s(f32 a[4][4], Vec3s b);
 void mtxf_to_mtx(Mtx *a, f32 b[4][4]);
 void mtxf_rotate_xy(Mtx *a, s16 b);
-void func_8037A550(Vec3f a, f32 b[4][4], f32 c[4][4]);
+void get_pos_from_transform_mtx(Vec3f a, f32 b[4][4], f32 c[4][4]);
 void vec3f_get_dist_and_angle(Vec3f a, Vec3f b, f32 *c, s16 *d, s16 *e);
 void vec3f_set_dist_and_angle(Vec3f a, Vec3f b, f32 c, s16 d, s16 e);
 s32 approach_s32(s32 a, s32 b, s32 c, s32 d);
 f32 approach_f32(f32 a, f32 b, f32 c, f32 d);
 s16 atan2s(f32 a, f32 b);
 f32 atan2f(f32 a, f32 b);
-void func_8037ABEC(Vec4f a, f32 b, UNUSED s32 c);
-void func_8037AFB8(Vec4s *a);
-s32 func_8037AFE8(Vec3f a);
+void spline_get_weights(Vec4f a, f32 b, UNUSED s32 c);
+void anim_spline_init(Vec4s *a);
+s32 anim_spline_poll(Vec3f a);
 
 #endif

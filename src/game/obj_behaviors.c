@@ -204,7 +204,7 @@ void ObjOrientGraph(struct Object *obj, f32 normalX, f32 normalY, f32 normalZ)
     sp20[1] = normalY;
     sp20[2] = normalZ;
 
-    mtxf_from_up_direction(*throwMatrix, sp20, sp2c, obj->oFaceAngleYaw);
+    mtxf_align_terrain_normal(*throwMatrix, sp20, sp2c, obj->oFaceAngleYaw);
     obj->header.gfx.throwMatrix = (void *)throwMatrix;
 }
 
