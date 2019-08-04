@@ -17,7 +17,8 @@ NON_MATCHING ?= 0
 # If ENDIAN_IND is 1, enable non-matching code changes that try to ensure
 # endianness independence
 ENDIAN_IND ?= 0
-
+# Python command to use, can be changed for a different python version
+PYTHON ?= python3
 # Release
 
 ifeq ($(VERSION),jp)
@@ -354,7 +355,7 @@ $(MIO0_DIR)/%.mio0.s: $(MIO0_DIR)/%.mio0
 	printf ".section .data\n\n.incbin \"$<\"\n" > $@
 
 $(SOUND_BIN_DIR)/sound_data.ctl: $(SOUND_FILES)
-	python3 tools/assemble_sound.py sound/samples/ sound/sound_banks/ $(SOUND_BIN_DIR)/sound_data.ctl $(SOUND_BIN_DIR)/sound_data.tbl $(VERSION_CFLAGS)
+	$(PYTHON) tools/assemble_sound.py sound/samples/ sound/sound_banks/ $(SOUND_BIN_DIR)/sound_data.ctl $(SOUND_BIN_DIR)/sound_data.tbl $(VERSION_CFLAGS)
 
 $(SOUND_BIN_DIR)/sound_data.tbl: $(SOUND_BIN_DIR)/sound_data.ctl
 
@@ -367,7 +368,7 @@ $(SOUND_BIN_DIR)/%.s: $(SOUND_BIN_DIR)/%
 # Source code
 $(BUILD_DIR)/src/goddard/%.o: OPT_FLAGS := -g
 $(BUILD_DIR)/src/goddard/%.o: MIPSISET := -mips1
-$(NON_MATCHING_O_FILES): CC := python3 tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
+$(NON_MATCHING_O_FILES): CC := $(PYTHON) tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
 $(BUILD_DIR)/src/audio/%.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0
 $(BUILD_DIR)/src/audio/load.o: OPT_FLAGS := -O2 -framepointer -Wo,-loopunroll,0
 $(BUILD_DIR)/lib/src/%.o: OPT_FLAGS :=

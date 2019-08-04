@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from collections import namedtuple
-import json
+from collections import namedtuple, OrderedDict
+from json import JSONDecoder
 import os
 import re
 import struct
@@ -13,6 +13,7 @@ TYPE_TBL = 2
 STACK_TRACES = False
 DUMP_INDIVIDUAL_BINS = False
 
+orderedJsonDecoder = JSONDecoder(object_pairs_hook=OrderedDict)
 
 class Aifc:
     def __init__(self, name, fname, data, book, loop):
@@ -30,7 +31,7 @@ class SampleBank:
         self.name = name
         self.uses = 0
         self.entries = entries
-        self.name_to_entry = {}
+        self.name_to_entry = OrderedDict()
         for e in entries:
             self.name_to_entry[e.name] = e
 
@@ -317,7 +318,7 @@ def validate_bank(json, sample_bank):
             "drum",
         )
 
-    no_sound = {}
+    no_sound = OrderedDict()
 
     for name, inst in instruments:
         forstr = "instrument " + name
@@ -472,7 +473,7 @@ def serialize_ctl(bank, base_ser):
             if "sound_hi" in inst:
                 used_samples.append(inst["sound_hi"]["sample"])
 
-    sample_name_to_addr = {}
+    sample_name_to_addr = OrderedDict()
     for name in used_samples:
         if name in sample_name_to_addr:
             continue
@@ -509,7 +510,7 @@ def serialize_ctl(bank, base_ser):
                 ser.add(struct.pack(">h", x))
         ser.align(16)
 
-    env_name_to_addr = {}
+    env_name_to_addr = OrderedDict()
     for name, env in json["envelopes"].items():
         env_name_to_addr[name] = ser.size
         for entry in env:
@@ -532,7 +533,7 @@ def serialize_ctl(bank, base_ser):
 
     no_sound = {"sample": None, "tuning": 0.0}
 
-    inst_name_to_pos = {}
+    inst_name_to_pos = OrderedDict()
     for name, inst in json["instruments"].items():
         if isinstance(inst, list):
             continue
@@ -665,7 +666,7 @@ def main():
 
     banks = []
     sample_banks = []
-    name_to_sample_bank = {}
+    name_to_sample_bank = OrderedDict()
 
     sample_bank_names = sorted(os.listdir(sample_bank_dir))
     for name in sample_bank_names:
@@ -705,7 +706,7 @@ def main():
                 with open(fname, "r") as inf:
                     data = inf.read()
                 data = strip_comments(data)
-            bank_json = json.loads(data)
+            bank_json = orderedJsonDecoder.decode(data)
 
             validate(isinstance(bank_json, dict), "must have a top-level object")
             validate_json_format(bank_json, {"sample_bank": str})
@@ -727,7 +728,7 @@ def main():
             fail("failed to parse bank " + fname + ": " + str(e))
 
     sample_banks = [b for b in sample_banks if b.uses > 0]
-    sample_bank_index = {}
+    sample_bank_index = OrderedDict()
     for sample_bank in sample_banks:
         sample_bank_index[sample_bank] = len(sample_bank_index)
 
