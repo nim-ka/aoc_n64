@@ -1,248 +1,248 @@
 .late_rodata
 .late_rodata_alignment 8
 glabel jtbl_80337D08 # US: 80338EC0
-	.word L_U_8031D3A8
-	.word L_U_8031D354
-	.word L_U_8031D3C4
-	.word L_U_8031D3D4
-	.word L_U_8031D370
-	.word L_U_8031D5E4
-	.word L_U_8031D640
-	.word L_U_8031D678
-	.word L_U_8031D678
-	.word L_U_8031D6C4
-	.word L_U_8031D6D4
-	.word L_U_8031D678
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D6F4
-	.word L_U_8031D718
-	.word L_U_8031D728
-	.word L_U_8031D44C
-	.word L_U_8031D5D4
-	.word L_U_8031D144
-	.word L_U_8031D5B4
-	.word L_U_8031D51C
-	.word L_U_8031D500
-	.word L_U_8031D4F0
-	.word L_U_8031D4D4
-	.word L_U_8031D4BC
-	.word L_U_8031D498
-	.word L_U_8031D474
-	.word L_U_8031D424
-	.word L_U_8031D3E4
-	.word L_U_8031D400
-	.word L_U_8031D56C
-	.word L_U_8031D538
-	.word L_U_8031D5A0
-	.word L_U_8031D73C
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D344
-	.word L_U_8031D31C
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D2C4
-	.word L_U_8031D2B4
-	.word L_U_8031D26C
-	.word L_U_8031D234
-	.word L_U_8031D2C4
-	.word L_U_8031D2C4
-	.word L_U_8031D2C4
-	.word L_U_8031D1F8
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
+    .word L_U_8031D3A8
+    .word L_U_8031D354
+    .word L_U_8031D3C4
+    .word L_U_8031D3D4
+    .word L_U_8031D370
+    .word L_U_8031D5E4
+    .word L_U_8031D640
+    .word L_U_8031D678
+    .word L_U_8031D678
+    .word L_U_8031D6C4
+    .word L_U_8031D6D4
+    .word L_U_8031D678
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D6F4
+    .word L_U_8031D718
+    .word L_U_8031D728
+    .word L_U_8031D44C
+    .word L_U_8031D5D4
+    .word L_U_8031D144
+    .word L_U_8031D5B4
+    .word L_U_8031D51C
+    .word L_U_8031D500
+    .word L_U_8031D4F0
+    .word L_U_8031D4D4
+    .word L_U_8031D4BC
+    .word L_U_8031D498
+    .word L_U_8031D474
+    .word L_U_8031D424
+    .word L_U_8031D3E4
+    .word L_U_8031D400
+    .word L_U_8031D56C
+    .word L_U_8031D538
+    .word L_U_8031D5A0
+    .word L_U_8031D73C
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D344
+    .word L_U_8031D31C
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D2C4
+    .word L_U_8031D2B4
+    .word L_U_8031D26C
+    .word L_U_8031D234
+    .word L_U_8031D2C4
+    .word L_U_8031D2C4
+    .word L_U_8031D2C4
+    .word L_U_8031D1F8
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
 
 glabel jtbl_80337E04 # US: 80338FBC
-	.word L_U_8031D7B8
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D900
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D930
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D94C
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D974
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D814
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D8F8
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D7E8
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D7F8
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D830
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D87C
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D144
-	.word L_U_8031D898
+    .word L_U_8031D7B8
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D900
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D930
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D94C
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D974
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D814
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D8F8
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D7E8
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D7F8
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D830
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D87C
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D144
+    .word L_U_8031D898
 
 .text
 glabel sequence_channel_process_script
@@ -268,7 +268,7 @@ glabel sequence_channel_process_script
 /* 0D80D4 8031D0D4 50800004 */  beql  $a0, $zero, .L8031D0E8
 /* 0D80D8 8031D0D8 26100004 */   addiu $s0, $s0, 4
 /* 0D80DC 8031D0DC 0C0C7031 */  jal   seq_channel_layer_process_script
-/* 0D80E0 8031D0E0 00000000 */   nop   
+/* 0D80E0 8031D0E0 00000000 */   nop
 /* 0D80E4 8031D0E4 26100004 */  addiu $s0, $s0, 4
 .L8031D0E8:
 /* 0D80E8 8031D0E8 1612FFF9 */  bne   $s0, $s2, .L8031D0D0
@@ -347,7 +347,7 @@ glabel L_U_8031D144
 /* 0D81E8 8031D1E8 002D0821 */  addu  $at, $at, $t5
 /* 0D81EC 8031D1EC 8C2D8EC0 */  lw    $t5, %lo(jtbl_80337D08)($at)
 /* 0D81F0 8031D1F0 01A00008 */  jr    $t5
-/* 0D81F4 8031D1F4 00000000 */   nop   
+/* 0D81F4 8031D1F4 00000000 */   nop
 glabel L_U_8031D1F8
 /* 0D81F8 8031D1F8 0C0C7014 */  jal   m64_read_s16
 /* 0D81FC 8031D1FC 02002025 */   move  $a0, $s0
@@ -411,19 +411,19 @@ glabel L_U_8031D2C4
 /* 0D82D0 8031D2D0 16210003 */  bne   $s1, $at, .L8031D2E0
 /* 0D82D4 8031D2D4 02201825 */   move  $v1, $s1
 /* 0D82D8 8031D2D8 1660FF9A */  bnez  $s3, .L8031D144
-/* 0D82DC 8031D2DC 00000000 */   nop   
+/* 0D82DC 8031D2DC 00000000 */   nop
 .L8031D2E0:
 /* 0D82E0 8031D2E0 240100F9 */  li    $at, 249
 /* 0D82E4 8031D2E4 54610004 */  bnel  $v1, $at, .L8031D2F8
 /* 0D82E8 8031D2E8 240100F5 */   li    $at, 245
 /* 0D82EC 8031D2EC 0661FF95 */  bgez  $s3, .L8031D144
-/* 0D82F0 8031D2F0 00000000 */   nop   
+/* 0D82F0 8031D2F0 00000000 */   nop
 /* 0D82F4 8031D2F4 240100F5 */  li    $at, 245
 .L8031D2F8:
 /* 0D82F8 8031D2F8 54610004 */  bnel  $v1, $at, .L8031D30C
 /* 0D82FC 8031D2FC 8E8F0014 */   lw    $t7, 0x14($s4)
 /* 0D8300 8031D300 0660FF90 */  bltz  $s3, .L8031D144
-/* 0D8304 8031D304 00000000 */   nop   
+/* 0D8304 8031D304 00000000 */   nop
 /* 0D8308 8031D308 8E8F0014 */  lw    $t7, 0x14($s4)
 .L8031D30C:
 /* 0D830C 8031D30C 3059FFFF */  andi  $t9, $v0, 0xffff
@@ -440,12 +440,12 @@ glabel L_U_8031D31C
 /* 0D8334 8031D334 0C0C6925 */  jal   note_pool_fill
 /* 0D8338 8031D338 00402825 */   move  $a1, $v0
 /* 0D833C 8031D33C 1000FF81 */  b     .L8031D144
-/* 0D8340 8031D340 00000000 */   nop   
+/* 0D8340 8031D340 00000000 */   nop
 glabel L_U_8031D344
 /* 0D8344 8031D344 0C0C68DA */  jal   note_pool_clear
 /* 0D8348 8031D348 26440080 */   addiu $a0, $s2, 0x80
 /* 0D834C 8031D34C 1000FF7D */  b     .L8031D144
-/* 0D8350 8031D350 00000000 */   nop   
+/* 0D8350 8031D350 00000000 */   nop
 glabel L_U_8031D354
 /* 0D8354 8031D354 0C0C7014 */  jal   m64_read_s16
 /* 0D8358 8031D358 02002025 */   move  $a0, $s0
@@ -456,7 +456,7 @@ glabel L_U_8031D354
 /* 0D836C 8031D36C AE580030 */   sw    $t8, 0x30($s2)
 glabel L_U_8031D370
 /* 0D8370 8031D370 1275FF74 */  beq   $s3, $s5, .L8031D144
-/* 0D8374 8031D374 00000000 */   nop   
+/* 0D8374 8031D374 00000000 */   nop
 /* 0D8378 8031D378 8E4C0030 */  lw    $t4, 0x30($s2)
 /* 0D837C 8031D37C 00136840 */  sll   $t5, $s3, 1
 /* 0D8380 8031D380 8E8A0014 */  lw    $t2, 0x14($s4)
@@ -476,7 +476,7 @@ glabel L_U_8031D3A8
 /* 0D83B4 8031D3B4 0C0C73F5 */  jal   set_instrument
 /* 0D83B8 8031D3B8 304500FF */   andi  $a1, $v0, 0xff
 /* 0D83BC 8031D3BC 1000FF61 */  b     .L8031D144
-/* 0D83C0 8031D3C0 00000000 */   nop   
+/* 0D83C0 8031D3C0 00000000 */   nop
 glabel L_U_8031D3C4
 /* 0D83C4 8031D3C4 92580000 */  lbu   $t8, ($s2)
 /* 0D83C8 8031D3C8 330CFFFD */  andi  $t4, $t8, 0xfffd
@@ -494,7 +494,7 @@ glabel L_U_8031D3E4
 /* 0D83F0 8031D3F0 0C0C741A */  jal   sequence_channel_set_volume
 /* 0D83F4 8031D3F4 304500FF */   andi  $a1, $v0, 0xff
 /* 0D83F8 8031D3F8 1000FF52 */  b     .L8031D144
-/* 0D83FC 8031D3FC 00000000 */   nop   
+/* 0D83FC 8031D3FC 00000000 */   nop
 glabel L_U_8031D400
 /* 0D8400 8031D400 0C0C700F */  jal   m64_read_u8
 /* 0D8404 8031D404 02002025 */   move  $a0, $s0
@@ -653,7 +653,7 @@ glabel L_U_8031D5E4
 /* 0D8628 8031D628 0C0C5E0B */  jal   get_bank_or_seq
 /* 0D862C 8031D62C 02203025 */   move  $a2, $s1
 /* 0D8630 8031D630 1040FEC4 */  beqz  $v0, .L8031D144
-/* 0D8634 8031D634 00000000 */   nop   
+/* 0D8634 8031D634 00000000 */   nop
 /* 0D8638 8031D638 1000FEC2 */  b     .L8031D144
 /* 0D863C 8031D63C A2510005 */   sb    $s1, 5($s2)
 glabel L_U_8031D640
@@ -760,14 +760,14 @@ glabel L_U_8031D73C
 /* 0D87A8 8031D7A8 00390821 */  addu  $at, $at, $t9
 /* 0D87AC 8031D7AC 8C398FBC */  lw    $t9, %lo(jtbl_80337E04)($at)
 /* 0D87B0 8031D7B0 03200008 */  jr    $t9
-/* 0D87B4 8031D7B4 00000000 */   nop   
+/* 0D87B4 8031D7B4 00000000 */   nop
 glabel L_U_8031D7B8
 /* 0D87B8 8031D7B8 308E00FF */  andi  $t6, $a0, 0xff
 /* 0D87BC 8031D7BC 000E5080 */  sll   $t2, $t6, 2
 /* 0D87C0 8031D7C0 024A5821 */  addu  $t3, $s2, $t2
 /* 0D87C4 8031D7C4 8D630044 */  lw    $v1, 0x44($t3)
 /* 0D87C8 8031D7C8 1060FE5E */  beqz  $v1, .L8031D144
-/* 0D87CC 8031D7CC 00000000 */   nop   
+/* 0D87CC 8031D7CC 00000000 */   nop
 /* 0D87D0 8031D7D0 8C730000 */  lw    $s3, ($v1)
 /* 0D87D4 8031D7D4 00134840 */  sll   $t1, $s3, 1
 /* 0D87D8 8031D7D8 0009C7C2 */  srl   $t8, $t1, 0x1f
@@ -822,7 +822,7 @@ glabel L_U_8031D87C
 /* 0D8888 8031D888 0C0C6E9B */  jal   seq_channel_layer_free
 /* 0D888C 8031D88C 02402025 */   move  $a0, $s2
 /* 0D8890 8031D890 1000FE2C */  b     .L8031D144
-/* 0D8894 8031D894 00000000 */   nop   
+/* 0D8894 8031D894 00000000 */   nop
 glabel L_U_8031D898
 /* 0D8898 8031D898 1275FE2A */  beq   $s3, $s5, .L8031D144
 /* 0D889C 8031D89C 02402025 */   move  $a0, $s2
@@ -863,7 +863,7 @@ glabel L_U_8031D900
 /* 0D8920 8031D920 0C0C6F68 */  jal   sequence_channel_enable
 /* 0D8924 8031D924 01AE3021 */   addu  $a2, $t5, $t6
 /* 0D8928 8031D928 1000FE06 */  b     .L8031D144
-/* 0D892C 8031D92C 00000000 */   nop   
+/* 0D892C 8031D92C 00000000 */   nop
 glabel L_U_8031D930
 /* 0D8930 8031D930 322A000F */  andi  $t2, $s1, 0xf
 /* 0D8934 8031D934 000A4880 */  sll   $t1, $t2, 2
@@ -871,7 +871,7 @@ glabel L_U_8031D930
 /* 0D893C 8031D93C 0C0C6EBC */  jal   sequence_channel_disable
 /* 0D8940 8031D940 8F04002C */   lw    $a0, 0x2c($t8)
 /* 0D8944 8031D944 1000FDFF */  b     .L8031D144
-/* 0D8948 8031D948 00000000 */   nop   
+/* 0D8948 8031D948 00000000 */   nop
 glabel L_U_8031D94C
 /* 0D894C 8031D94C 02002025 */  move  $a0, $s0
 /* 0D8950 8031D950 0C0C700F */  jal   m64_read_u8
@@ -904,7 +904,7 @@ glabel L_U_8031D974
 /* 0D89AC 8031D9AC 50800004 */  beql  $a0, $zero, .L8031D9C0
 /* 0D89B0 8031D9B0 26100004 */   addiu $s0, $s0, 4
 /* 0D89B4 8031D9B4 0C0C7031 */  jal   seq_channel_layer_process_script
-/* 0D89B8 8031D9B8 00000000 */   nop   
+/* 0D89B8 8031D9B8 00000000 */   nop
 /* 0D89BC 8031D9BC 26100004 */  addiu $s0, $s0, 4
 .L8031D9C0:
 /* 0D89C0 8031D9C0 1612FFF9 */  bne   $s0, $s2, .L8031D9A8

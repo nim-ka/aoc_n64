@@ -10,8 +10,8 @@
 #include "geo_layout.h"
 
 
-/** Takes a pointer to three shorts (supplied by a geo layout script) and 
- *  copies it to the destination float vector. 
+/** Takes a pointer to three shorts (supplied by a geo layout script) and
+ *  copies it to the destination float vector.
  */
 s16 *read_vec3s_to_vec3f(Vec3f dst, s16 *src)
 {
@@ -21,7 +21,7 @@ s16 *read_vec3s_to_vec3f(Vec3f dst, s16 *src)
     return src;
 }
 
-/** Takes a pointer to three shorts (supplied by a geo layout script) and 
+/** Takes a pointer to three shorts (supplied by a geo layout script) and
  *  copies it to the destination vector. It's essentially a memcpy but consistent
  *  with the other two 'geo-script vector to internal vector' functions.
  */
@@ -34,7 +34,7 @@ s16 *read_vec3s(Vec3s dst, s16 *src)
 }
 
 /** Takes a pointer to three angles in degrees (supplied by a geo layout script)
- *  and converts it to a vector of three in-game angle units in [-32768, 32767] 
+ *  and converts it to a vector of three in-game angle units in [-32768, 32767]
  *  range.
  */
 s16 *read_vec3s_angle(Vec3s dst, s16 *src)

@@ -39,7 +39,7 @@ struct GdFile {
     ** 1 : write mode
     ** 2 : binary mode
     ** 4 : eof */
-    /* 0x0C */ u32 flags;   
+    /* 0x0C */ u32 flags;
     /* 0x10 */ u8  pad10[0x50-0x10];
     /* 0x50 */ u32 size;
 }; /* sizeof() = 0x54 */

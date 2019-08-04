@@ -370,7 +370,7 @@ gsDPSetAlphaCompare G_AC_NONE
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
 gsDPSetRenderMode G_RM_OPA_SURF, G_RM_OPA_SURF2
-# It could also be one of these: 
+# It could also be one of these:
 # G_RM_OPA_SURF, G_RM_OPA_CI2; G_RM_OPA_CI, G_RM_OPA_SURF2; G_RM_PASS, G_RM_OPA_SURF2;
 
 gsDPNoOp
@@ -405,7 +405,7 @@ gsDPPipeSync
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
 gsDPSetRenderMode G_RM_OPA_SURF, G_RM_OPA_SURF2
-# It could also be one of these: 
+# It could also be one of these:
 # G_RM_OPA_SURF, G_RM_OPA_CI2; G_RM_OPA_CI, G_RM_OPA_SURF2; G_RM_PASS, G_RM_OPA_SURF2;
 gsSPGeometryMode 0xFFFFFFFF, G_SHADING_SMOOTH | G_SHADE, G_ORDER_CFIRST
 gsDPPipeSync

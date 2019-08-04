@@ -201,17 +201,17 @@ void func_802D6440(void)
     matrix->m[1][0] = 0x00000000;
     matrix->m[2][0] = 0x00000000;
     matrix->m[3][0] = 0x00000000;
-    
+
     matrix->m[0][1] = 0x00000000;
     matrix->m[1][1] = 0x00010000;
     matrix->m[2][1] = 0x00000000;
     matrix->m[3][1] = 0x00000000;
-    
+
     matrix->m[0][2] = 0x00000001;
     matrix->m[1][2] = 0x00000000;
     matrix->m[2][2] = 0x00000000;
     matrix->m[3][2] = 0x00000000;
-    
+
     matrix->m[0][3] = 0x00000000;
     matrix->m[1][3] = 0x00000001;
     matrix->m[2][3] = 0x00000000;
@@ -278,7 +278,7 @@ void dl_add_new_ortho_matrix(void)
 
     func_802D6440();
 
-    guOrtho(matrix, 0.0f, 320.0f, 0.0f, 240.0f, -10.0f, 10.0f, 1.0f); 
+    guOrtho(matrix, 0.0f, 320.0f, 0.0f, 240.0f, -10.0f, 10.0f, 1.0f);
 
     // Should produce G_RDPHALF_1 in Fast3D
     gSPPerspNormalize((Gfx *)(gDisplayListHead++), 0x0000FFFF);
@@ -293,7 +293,7 @@ static u8* func_802D69A0(u16* in, s16 width, s16 height)
     u16 bitMask;
     u8 *out;
     s16 outPos;
-    
+
     outPos = 0;
     out = alloc_display_list(width * height);
 
@@ -669,17 +669,17 @@ void PutString(s8 font, s16 x, s16 y, const u8 *str)
         {
 #endif
             gDPPipeSync(gDisplayListHead++);
-            
+
             if(font == 1)
                 gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fontLUT1[str[strPos]]);
-            
+
             if(font == 2)
                 gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fontLUT2[str[strPos]]);
-            
+
             gSPDisplayList(gDisplayListHead++, dl_rgba16_load_tex_block);
             gSPTextureRectangle(gDisplayListHead++, curX<<2, curY<<2,
                 (curX+16)<<2, (curY+16)<<2, 0, 0, 0, 0x400, 0x400);
-            
+
             curX += xStride;
 #ifdef VERSION_EU
             break;
@@ -935,7 +935,7 @@ void ShowCoins(s32 useCourseCoinScore, s8 sp27, s8 sp2b, s16 x, s16 y)
 {
     u8 strNumCoins[4];
     s16 numCoins;
-    
+
     if(!useCourseCoinScore)
         numCoins = (u16)(save_file_get_max_coin_score(sp2b) & 0xFFFF);
     else
@@ -957,7 +957,7 @@ void ShowStars(s8 sp2b, s8 sp2f, s16 x, s16 y)
     u8 textSymStar[] = {HUD_CHAR_SYM_STAR, 0xFF};
     UNUSED u16 unused;
     u8 textSymX[] = {HUD_CHAR_SYM_X, 0xFF};
-    
+
     starCount = save_file_get_course_star_count(sp2b, sp2f);
 
     if(starCount != 0)
@@ -1076,7 +1076,7 @@ void func_802D8134(struct DialogEntry *dialog, s8 sp47)
         break;
     case DIALOG_TYPE_ZOOM:
         if(gDialogBoxState == DIALOG_STATE_OPENING || gDialogBoxState == DIALOG_STATE_CLOSING)
-        {                
+        {
             dl_add_new_translation_matrix(2, 65.0 - (65.0 / gDialogBoxScale),
                 (40.0 / gDialogBoxScale) - 40, 0);
             dl_add_new_scale_matrix(2, 1.0 / gDialogBoxScale, 1.0 / gDialogBoxScale, 1.0f);
@@ -1283,7 +1283,7 @@ void func_u_802D9634(s8 multiTextId, s8 a1, s16 *a2, s8 a3, s8 sp10, s8 lowerBou
         }
 #endif
         for (i = 0; i < textLengths[multiTextId].length; i++)
-        {    
+        {
 #ifdef VERSION_EU
             func_eu_802AF1B8(dialog, gDialogX, gDialogY, textLengths[multiTextId].str[i]);
             gDialogX += gDialogCharWidths[textLengths[multiTextId].str[i]];
@@ -2061,8 +2061,8 @@ void do_cutscene_handler(void)
         gCutsceneMsgFade += 50;
 
     // if the cutscene frame length + the fade-in counter is
-    // less than the timer, it means we have exceeded the 
-    // time that the message is supposed to remain on 
+    // less than the timer, it means we have exceeded the
+    // time that the message is supposed to remain on
     // screen. if (message_duration = 50) and (msg_timer = 55)
     // then after the first 5 frames, the message will remain
     // on screen for another 50 frames until it starts fading.
@@ -2499,7 +2499,7 @@ void PauseCastleMenuBox(s16 sp42, s16 sp46)
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
     gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-    
+
     dl_add_new_translation_matrix(1, sp42-9, sp46-101, 0);
     dl_add_new_rotation_matrix(2, 270.0f, 0, 0, 1.0f);
     gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
@@ -2544,7 +2544,7 @@ void PauseScreen1(void)
 void func_802DB698(s16 sp4a, s16 sp4e, s16 sp52, s16 sp56)
 {
     s16 sp46 = 0;
-    
+
     u8 sp28[COURSE_STAGES_COUNT * 2];
 
     u8 textStar[] = {TEXT_STAR};
@@ -2639,7 +2639,7 @@ void func_802DB840(s16 x, s16 y)
                 D_80330430++;
             else
                 D_80330430--;
-            
+
             if(D_80330430 == COURSE_STAGES_COUNT || D_80330430 == -1)
             {
                 D_80330430 = COURSE_STAGES_COUNT;

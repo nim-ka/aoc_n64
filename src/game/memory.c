@@ -464,7 +464,7 @@ struct MemoryPool *mem_pool_init(u32 size, u32 side)
     if (addr != NULL)
     {
         pool = (struct MemoryPool *)addr;
-        
+
         pool->totalSpace = size;
         pool->firstBlock = (struct MemoryBlock *)((u8 *)addr + 16);
         pool->freeList = (struct MemoryBlock *)((u8 *)addr + 16);

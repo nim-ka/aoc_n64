@@ -47,11 +47,11 @@ static void triplet_butterfly_act_init(void)
         // Default butterfly type is TRIPLET_BUTTERFLY_TYPE_EXPLODES
 
         o->oAction = TRIPLET_BUTTERFLY_ACT_WANDER;
-        
+
         o->oTripletButterflyBaseYaw = o->oBehParams2ndByte * (0x10000 / 3);
         o->oMoveAngleYaw = (s32)(o->oTripletButterflyBaseYaw + random_linear_offset(0, 0x5555));
         o->oTripletButterflySpeed = random_linear_offset(15, 15);
-        
+
         obj_unhide();
     }
 }
@@ -72,7 +72,7 @@ static void triplet_butterfly_act_wander(void)
         else
         {
             o->oTripletButterflyTargetYaw = (s32)o->oTripletButterflyBaseYaw;
-            
+
             if (o->oTimer > 110 &&
                 o->oDistanceToMario < 200.0f &&
                 o->oTripletButterflyType > TRIPLET_BUTTERFLY_TYPE_NORMAL)

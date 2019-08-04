@@ -258,7 +258,7 @@ void draw_profiler_mode_0(void)
     }
 
     // Draw top profilers.
-    
+
     // draw sound duration as the first bar. (red)
     clock_start = 0;
     draw_profiler_bar(0, clock_start, clock_start + task_start, 212, GPACK_RGBA5551(255, 40, 40, 1));

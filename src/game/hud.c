@@ -11,7 +11,7 @@
 #include "segment2.h"
 #include "area.h"
 
-/* Originally hud_print.c 
+/* Originally hud_print.c
  * This file seems to draw the in-game HUD
 **/
 
@@ -82,7 +82,7 @@ void func_802E21A4(s16 numHealthWedges)
     u8* (*sp34)[];
 
     sp34 = segmented_to_virtual(&power_meter_seg3_health_icons_030293E0);
-    
+
     gDPPipeSync(gDisplayListHead++);
     gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, (*sp34)[numHealthWedges - 1]);
     gDPLoadSync(gDisplayListHead++);
@@ -133,16 +133,16 @@ static void animate_power_meter_emphasized(void)
 static void animate_power_meter_deemphasizing(void)
 {
     s16 speed = 5;
-    
+
     if (sPowerMeterHUD.y >= 181)
         speed = 3;
-    
+
     if (sPowerMeterHUD.y >= 191)
         speed = 2;
-    
+
     if (sPowerMeterHUD.y >= 196)
         speed = 1;
-    
+
     sPowerMeterHUD.y += speed;
 
     if (sPowerMeterHUD.y >= 201)
@@ -172,10 +172,10 @@ void func_802E261C(s16 numHealthWedges)
 
     if (numHealthWedges == 8 && D_803600D0 == 7)
         sPowerMeterHUD.d_EC = 0;
-    
+
     if (numHealthWedges == 8 && sPowerMeterHUD.d_EC > 45.0)
         sPowerMeterHUD.animation = POWER_METER_HIDING;
-    
+
     D_803600D0 = numHealthWedges;
 
     if (gPlayerStatusForCamera->action & 0x2000)
@@ -195,7 +195,7 @@ void render_hud_hp(void)
 
     if (sPowerMeterHUD.animation != POWER_METER_HIDING)
         func_802E261C(shownHealthWedges);
-    
+
     if (sPowerMeterHUD.animation == POWER_METER_HIDDEN)
         return;
 
@@ -310,7 +310,7 @@ void show_camera_status(void)
 
     if (sCameraHUD.d_F8 == 0)
         return;
-    
+
     gSPDisplayList(gDisplayListHead++, dl_hud_img_begin);
     render_hud_camera(x, y, (*cameraLUT)[0]);
 
@@ -356,19 +356,19 @@ void render_hud(void)
 
         if (gCurrentArea != NULL && gCurrentArea->camera->currPreset == CAMERA_PRESET_INSIDE_CANNON)
             RenderHudCannonReticle();
-        
+
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_LIVES)
             render_hud_mario_lives();
-        
+
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_COIN_COUNT)
             render_hud_coins();
-        
+
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_STAR_COUNT)
             render_hud_stars();
-        
+
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_UNKNOWN_0010)
             func_802E29D4();
-        
+
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_CAMERA_AND_POWER)
         {
             render_hud_hp();

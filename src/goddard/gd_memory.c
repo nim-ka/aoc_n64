@@ -7,10 +7,10 @@
 
 /**
  * @file gd_memory.c
- * 
+ *
  * This file contains the functions need to manage allocation in
  * goddard's heap. However, the actual, useable allocation functions
- * are `gd_malloc()`, `gd_malloc_perm()`, and `gd_malloc_temp()`, as 
+ * are `gd_malloc()`, `gd_malloc_perm()`, and `gd_malloc_temp()`, as
  * well as `gd_free()`. This file is for managing the underlying memory
  * block lists.
  */
@@ -28,10 +28,10 @@ u32 print_list_stats(struct GMemBlock *, s32, s32);
 
 /**
  * Empty a `GMemBlock` into a default state. This empty block
- * doesn't point to any data, nor does it have any size. The 
+ * doesn't point to any data, nor does it have any size. The
  * block is removed from whatever list is was in, and is added
  * to the empty block list.
- */ 
+ */
 void empty_mem_block(struct GMemBlock *block)
 {
     if (block->next != NULL)
@@ -55,7 +55,7 @@ void empty_mem_block(struct GMemBlock *block)
     block->next = sEmptyBlockListHead;
     if (block->next != NULL)
         sEmptyBlockListHead->prev = block;
-    
+
     sEmptyBlockListHead = block;
     block->prev = NULL;
     block->data.ptr = NULL;
@@ -64,8 +64,8 @@ void empty_mem_block(struct GMemBlock *block)
 
 /**
  * Transform a `GMemBlock` into a free block that points to memory available
- * for allocation. 
- * 
+ * for allocation.
+ *
  * @returns pointer to the free `GMemBlock` */
 struct GMemBlock *into_free_memblock(struct GMemBlock *block)
 {
@@ -120,7 +120,7 @@ struct GMemBlock *make_mem_block(u32 blockType, u8 permFlag)
     {
         case G_MEM_BLOCK_FREE:
             newMemBlock->next = sFreeBlockListHead;
-            if (newMemBlock->next != NULL) 
+            if (newMemBlock->next != NULL)
                sFreeBlockListHead->prev = newMemBlock;
             sFreeBlockListHead = newMemBlock;
             break;
@@ -142,7 +142,7 @@ struct GMemBlock *make_mem_block(u32 blockType, u8 permFlag)
 
 /**
  * Free memory allocated on the goddard heap.
- * 
+ *
  * @param ptr pointer to heap allocated memory
  * @returns size of memory freed
  * @retval  0    `ptr` did not point to a valid memory block
@@ -172,7 +172,7 @@ u32 gd_free_mem(void *ptr)
 /**
  * Request a pointer to goddard heap memory of at least `size` and
  * of the same `permanence`.
- * 
+ *
  * @return pointer to heap
  * @retval NULL could not fulfill the request
  */
@@ -196,9 +196,9 @@ void *gd_request_mem(u32 size, u8 permanence)
             } else {
                 if (curBlock->size > size)
                 {
-                    if (foundBlock != NULL) 
+                    if (foundBlock != NULL)
                     {   /* find closest sized block */
-                        if (curBlock->size < foundBlock->size) 
+                        if (curBlock->size < foundBlock->size)
                             foundBlock = curBlock;
                     } else {
                         foundBlock = curBlock;
@@ -219,8 +219,8 @@ void *gd_request_mem(u32 size, u8 permanence)
 
         foundBlock->size -= size;
         foundBlock->data.addr += size;
-    } 
-    else if (foundBlock->size == size) 
+    }
+    else if (foundBlock->size == size)
     {   /* recycle whole free block */
         newBlock->data.ptr = foundBlock->data.ptr;
         newBlock->size = size;
@@ -231,14 +231,14 @@ void *gd_request_mem(u32 size, u8 permanence)
 }
 
 /**
- * Add memory of `size` at `addr` to the goddard heap for later allocation. 
- * 
+ * Add memory of `size` at `addr` to the goddard heap for later allocation.
+ *
  * @returns `GMemBlock` that contains info about the new heap memory
  */
 struct GMemBlock *gd_add_mem_to_heap(u32 size, u32 addr, u8 permanence)
 { //TODO: uintptr_t addr
     struct GMemBlock *newBlock;
-    /* eight-byte align the new block's data stats */ 
+    /* eight-byte align the new block's data stats */
     size = (size - 8) & ~7;
     addr = (addr + 8) & ~7;
 
@@ -262,7 +262,7 @@ void init_mem_block_lists(void)
 /**
  * Print information (size, entries) about the `GMemBlock` list. It can print
  * information for individual blocks as well as summary info for the entry list.
- * 
+ *
  * @param block          `GMemBlock` to start reading the list
  * @param printBlockInfo If `TRUE`, print information about every block
  *                       in the list
@@ -280,7 +280,7 @@ u32 print_list_stats(struct GMemBlock *block, s32 printBlockInfo, s32 permanence
         {
             entries++;
             if (printBlockInfo)
-                gd_printf("     %6.2fk (%d bytes)\n", 
+                gd_printf("     %6.2fk (%d bytes)\n",
                        (f32) block->size / 1024.0,  //? 1024.0f
                        block->size
                     );
@@ -288,10 +288,10 @@ u32 print_list_stats(struct GMemBlock *block, s32 printBlockInfo, s32 permanence
         }
         block = block->next;
     }
-    
-    gd_printf("Total %6.2fk (%d bytes) in %d entries\n", 
+
+    gd_printf("Total %6.2fk (%d bytes) in %d entries\n",
            (f32) totalSize / 1024.0,    //? 1024.0f
-           totalSize, 
+           totalSize,
            entries
         );
 

@@ -14,7 +14,7 @@
 
 // static types
 typedef union {
-    struct ObjVertex *vtx; 
+    struct ObjVertex *vtx;
     struct ObjParticle *ptc;
 } VtxPtc;
 
@@ -212,8 +212,8 @@ void func_801823A0(struct ObjNet *net)
         D_801B9EF0 = NULL;
 
         apply_to_obj_types_in_group(
-            OBJ_TYPE_FACES, 
-            (applyproc_t) Unknown80181D14, 
+            OBJ_TYPE_FACES,
+            (applyproc_t) Unknown80181D14,
             ((struct ObjShape *)net->unk1A8)->faceGroup
         );
         net->unk3C = 2;
@@ -272,11 +272,11 @@ struct Connection *func_801825FC(struct ObjVertex *vtx1, struct ObjVertex *vtx2)
     sp28.y -= sp1C.y;
     sp28.z -= sp1C.z;
     sp34->unk24 = magnitude_vec3f(&sp28);
-    // Duplicate conditional. Possibly should've checked `vtx2`; 
+    // Duplicate conditional. Possibly should've checked `vtx2`;
     // Also, this shouldn't be called with particle types...
     if (vtx1->header.type == OBJ_TYPE_PARTICLES && vtx1->header.type == OBJ_TYPE_PARTICLES)
     {
-        if ( (((struct ObjParticle*) vtx1)->unk54 & 4) && 
+        if ( (((struct ObjParticle*) vtx1)->unk54 & 4) &&
              (((struct ObjParticle*) vtx2)->unk54 & 4) )
             sp34->unk28 |= 1;
     }

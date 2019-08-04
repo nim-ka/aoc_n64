@@ -6,7 +6,7 @@ f32 WaterRingCalcMarioDistInFront(void)
     f32 marioDistY = o->oPosY - (gMarioObject->header.gfx.pos[1] + 80.0f);
     f32 marioDistZ = o->oPosZ - gMarioObject->header.gfx.pos[2];
     f32 marioDistInFront = marioDistX * o->oWaterRingNormalX + marioDistY * o->oWaterRingNormalY + marioDistZ * o->oWaterRingNormalZ;
-    
+
     return marioDistInFront;
 }
 
@@ -16,18 +16,18 @@ void WaterRingInit(void)
     o->oWaterRingScalePhaseX = (s32)(RandomFloat() * 4096.0f) + 0x1000;
     o->oWaterRingScalePhaseY = (s32)(RandomFloat() * 4096.0f) + 0x1000;
     o->oWaterRingScalePhaseZ = (s32)(RandomFloat() * 4096.0f) + 0x1000;
-    
+
     //! This normal calculation assumes a facing yaw of 0, which is not the case
     //  for the manta ray rings. It also errs by multiplying the normal X by -1.
-    //  This cause the ring's orientation for the purposes of collision to be 
+    //  This cause the ring's orientation for the purposes of collision to be
     //  different than the graphical orientation, which means that Mario won't
     //  necessarily collect a ring even if he appears to swim through it.
     o->oWaterRingNormalX = coss(o->oFaceAnglePitch) * sins(o->oFaceAngleRoll) * -1.0f;
     o->oWaterRingNormalY = coss(o->oFaceAnglePitch) * coss(o->oFaceAngleRoll);
     o->oWaterRingNormalZ = sins(o->oFaceAnglePitch);
-    
+
     o->oWaterRingMarioDistInFront = WaterRingCalcMarioDistInFront();
-    
+
     // Adding this code will alter the ring's graphical orientation to align with the faulty
     // collision orientation:
     //
@@ -50,7 +50,7 @@ void CheckWaterRingCollection(f32 avgScale, struct Object* ringManager)
 {
     f32 marioDistInFront = WaterRingCalcMarioDistInFront();
     struct Object *ringSpawner;
-    
+
     if (!IsPointCloseToObject(o, gMarioObject->header.gfx.pos[0], gMarioObject->header.gfx.pos[1] + 80.0f, gMarioObject->header.gfx.pos[2], (avgScale + 0.2) * 120.0))
     {
         o->oWaterRingMarioDistInFront = marioDistInFront;
@@ -75,15 +75,15 @@ void CheckWaterRingCollection(f32 avgScale, struct Object* ringManager)
                     play_sound(SOUND_MENU_COLLECTSECRET + (((u8)ringSpawner->oWaterRingSpawnerRingsCollected - 1) << 16), gDefaultSoundArgs);
 #endif
                 }
-                
+
                 ringManager->oWaterRingMgrLastRingCollected = o->oWaterRingIndex;
             }
             else ringSpawner->oWaterRingSpawnerRingsCollected = 0;
         }
-        
+
         o->oAction = WATER_RING_ACT_COLLECTED;
     }
-    
+
     o->oWaterRingMarioDistInFront = marioDistInFront;
 }
 
@@ -100,40 +100,40 @@ void SetWaterRingScale(f32 avgScale)
 void WaterRingCollectedLoop(void)
 {
     f32 avgScale = (f32)o->oTimer * 0.2 + o->oWaterRingAvgScale;
-    
+
     if (o->oTimer >= 21) o->activeFlags = 0;
-    
+
     o->oOpacity -= 10;
     if (o->oOpacity < 0) o->oOpacity = 0;
-    
+
     SetWaterRingScale(avgScale);
 }
 
 void JetStreamWaterRingNotCollectedLoop(void)
 {
     f32 avgScale = (f32)o->oTimer / 225.0 * 3.0 + 0.5;
-    
+
     //! In this case ringSpawner and ringManager are the same object,
     //  because the Jet Stream Ring Spawner is its own parent object.
     struct Object *ringSpawner = o->parentObj;
     struct Object *ringManager = ringSpawner->parentObj;
-    
+
     if (o->oTimer >= 226)
     {
         o->oOpacity -= 2;
         if (o->oOpacity < 3) o->activeFlags = 0;
     }
-    
+
     CheckWaterRingCollection(avgScale, ringManager);
     SetWaterRingScale(avgScale);
-    
+
     o->oPosY += 10.0f;
     o->oFaceAngleYaw += 0x100;
     SetObjectVisibility(o, 5000);
-    
+
     if (ringSpawner->oWaterRingSpawnerRingsCollected == 4 && o->oWaterRingIndex == ringManager->oWaterRingMgrLastRingCollected + 1)
         o->oOpacity = sins(o->oTimer * 0x1000) * 200.0f + 50.0f;
-    
+
     o->oWaterRingAvgScale = avgScale;
 }
 
@@ -144,7 +144,7 @@ void bhv_jet_stream_water_ring_loop(void)
         case WATER_RING_ACT_NOT_COLLECTED:
             JetStreamWaterRingNotCollectedLoop();
             break;
-            
+
         case WATER_RING_ACT_COLLECTED:
             WaterRingCollectedLoop();
             break;
@@ -164,7 +164,7 @@ void JetStreamRingSpawnerActiveLoop(void)
     //  parent. The Jet Stream Ring Spawner functions as both a spawner and a Ring Manager.
     struct Object *currentObj = o->parentObj;
     struct Object *waterRing;
-    
+
     //! Because the index counter overflows at 10000, it's possible to wait
     //  for about 4 hours and 38 minutes if you miss a ring, and the index will
     //  come around again.
@@ -188,17 +188,17 @@ void bhv_jet_stream_ring_spawner_loop(void)
     {
         case JS_RING_SPAWNER_ACT_ACTIVE:
             JetStreamRingSpawnerActiveLoop();
-            
+
             if (o->oWaterRingSpawnerRingsCollected == 5)
             {
                 func_802A3004();
-                
+
                 CreateStar(3400.0f, -3200.0f, -500.0f);
-                
+
                 o->oAction = JS_RING_SPAWNER_ACT_INACTIVE;
             }
             break;
-            
+
         case JS_RING_SPAWNER_ACT_INACTIVE:
             break;
     }
@@ -215,22 +215,22 @@ void MantaRayWaterRingNotCollectedLoop(void)
     f32 avgScale = (f32)o->oTimer / 50.0f * 1.3 + 0.1;
     struct Object *ringSpawner = o->parentObj;
     struct Object *ringManager = ringSpawner->parentObj;
-    
+
     if (avgScale > 1.3) avgScale = 1.3;
-    
+
     if (o->oTimer >= 151)
     {
         o->oOpacity -= 2;
         if (o->oOpacity < 3) o->activeFlags = 0;
     }
-    
+
     CheckWaterRingCollection(avgScale, ringManager);
     SetWaterRingScale(avgScale);
     SetObjectVisibility(o, 5000);
-    
+
     if (ringSpawner->oWaterRingSpawnerRingsCollected == 4 && o->oWaterRingIndex == ringManager->oWaterRingMgrLastRingCollected + 1)
         o->oOpacity = sins(o->oTimer * 0x1000) * 200.0f + 50.0f;
-    
+
     o->oWaterRingAvgScale = avgScale;
 }
 
@@ -241,7 +241,7 @@ void bhv_manta_ray_water_ring_loop(void)
         case WATER_RING_ACT_NOT_COLLECTED:
             MantaRayWaterRingNotCollectedLoop();
             break;
-            
+
         case WATER_RING_ACT_COLLECTED:
             WaterRingCollectedLoop();
             break;

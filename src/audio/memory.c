@@ -93,10 +93,10 @@ void * soundAlloc(struct SoundAllocPool * pool, u32 size)
     u8 *start;
 
     if ((pool->cur + ALIGN16(size) <= pool->size + pool->start))
-    {    
+    {
         start = pool->cur;
         pool->cur += ALIGN16(size);
-        last = pool->cur - start - 1; 
+        last = pool->cur - start - 1;
         for (i = 0; i <= last; i++)
             start[i] = 0;
     }
@@ -104,7 +104,7 @@ void * soundAlloc(struct SoundAllocPool * pool, u32 size)
         return NULL;
     }
 
-    return start; 
+    return start;
 }
 
 void func_80316094(struct SoundAllocPool *pool, void *arg1, u32 arg2)

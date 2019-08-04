@@ -171,7 +171,7 @@ s32 geo_switch_anim_state(s32 run, struct GraphNode *node)
     if (run == TRUE)
     {
         obj = (struct Object *)gCurGraphNodeObject; // TODO: change global type to Object pointer
-        
+
         // move to a local var because GraphNodes are passed in all geo functions.
         // cast the pointer.
         switchCase = (struct GraphNodeSwitchCase *)node;

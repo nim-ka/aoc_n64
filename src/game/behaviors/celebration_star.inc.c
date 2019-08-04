@@ -39,7 +39,7 @@ void CelebrationStarSpinAroundMarioLoop(void)
     o->oPosY += 5.0f;
     o->oFaceAngleYaw += 0x1000;
     o->oMoveAngleYaw += 0x2000;
-    
+
     if (o-> oTimer == 40) o->oAction = CELEB_STAR_ACT_FACE_CAMERA;
     if (o-> oTimer < 35)
     {
@@ -72,7 +72,7 @@ void CelebrationStarFaceCameraLoop(void)
     {
         o->oFaceAngleYaw = gMarioObject->header.gfx.angle[1];
     }
-    
+
     if (o->oTimer == 59) o->activeFlags = 0;
 }
 
@@ -83,7 +83,7 @@ void bhv_celebration_star_loop(void)
         case CELEB_STAR_ACT_SPIN_AROUND_MARIO:
             CelebrationStarSpinAroundMarioLoop();
             break;
-            
+
         case CELEB_STAR_ACT_FACE_CAMERA:
             CelebrationStarFaceCameraLoop();
             break;
@@ -93,7 +93,7 @@ void bhv_celebration_star_loop(void)
 void bhv_celebration_star_sparkle_loop(void)
 {
     o->oPosY -= 15.0f;
-    
+
     if (o->oTimer == 12) o->activeFlags = 0;
 }
 

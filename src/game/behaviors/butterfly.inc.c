@@ -20,22 +20,22 @@ void ButterflyStep(s32 speed)
     s16 pitch = o->oMoveAnglePitch;
     s16 yPhase = o->oButterflyYPhase;
     f32 floorY;
-    
+
     o->oVelX = sins(yaw) * (f32)speed;
     o->oVelY = sins(pitch) * (f32)speed;
     o->oVelZ = coss(yaw) * (f32)speed;
-    
+
     o->oPosX += o->oVelX;
     o->oPosZ += o->oVelZ;
-    
+
     if (o->oAction == BUTTERFLY_ACT_FOLLOW_MARIO)
         o->oPosY -= o->oVelY + coss((s32)(yPhase * 655.36)) * 20.0f / 4.0f;
     else o->oPosY -= o->oVelY;
-    
+
     floorY = find_floor_height_and_data(o->oPosX, o->oPosY, o->oPosZ, &sp24);
-    
+
     if (o->oPosY < floorY + 2.0f) o->oPosY = floorY + 2.0f;
-    
+
     o->oButterflyYPhase++;
     if (o->oButterflyYPhase >= 101) o->oButterflyYPhase = 0;
 }
@@ -67,9 +67,9 @@ void ButterflyRestingLoop(void)
 void ButterflyFollowMarioLoop(void)
 {
     CalculateButterflyAngle();
-    
+
     ButterflyStep(7);
-    
+
     if (!is_point_within_radius_of_mario(o->oHomeX, o->oHomeY, o->oHomeZ, 1200))
         o->oAction = BUTTERFLY_ACT_RETURN_HOME;
 }
@@ -81,16 +81,16 @@ void ButterflyReturnHomeLoop(void)
     f32 homeDistZ = o->oHomeZ - o->oPosZ;
     s16 hAngleToHome = atan2s(homeDistZ, homeDistX);
     s16 vAngleToHome = atan2s(sqrtf(homeDistX * homeDistX + homeDistZ * homeDistZ), -homeDistY);
-    
+
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, hAngleToHome, 0x800);
     o->oMoveAnglePitch = approach_s16_symmetric(o->oMoveAnglePitch, vAngleToHome, 0x50);
-    
+
     ButterflyStep(7);
-    
+
     if (homeDistX * homeDistX + homeDistY * homeDistY + homeDistZ * homeDistZ < 144.0f)
     {
         SetObjAnimation(1);
-        
+
         o->oAction = BUTTERFLY_ACT_RESTING;
         o->oPosX = o->oHomeX;
         o->oPosY = o->oHomeY;
@@ -105,11 +105,11 @@ void bhv_butterfly_loop(void)
         case BUTTERFLY_ACT_RESTING:
             ButterflyRestingLoop();
             break;
-            
+
         case BUTTERFLY_ACT_FOLLOW_MARIO:
             ButterflyFollowMarioLoop();
             break;
-            
+
         case BUTTERFLY_ACT_RETURN_HOME:
             ButterflyReturnHomeLoop();
             break;

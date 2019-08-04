@@ -500,11 +500,11 @@ static void level_cmd_place_object(void)
     {
         model = CMD_GET(u8, 3);
         spawnInfo = alloc_only_pool_alloc(sLevelPool, sizeof(struct SpawnInfo));
-        
+
         spawnInfo->startPos[0] = CMD_GET(s16, 4);
         spawnInfo->startPos[1] = CMD_GET(s16, 6);
         spawnInfo->startPos[2] = CMD_GET(s16, 8);
-        
+
         spawnInfo->startAngle[0] = CMD_GET(s16, 10) * 0x8000 / 180;
         spawnInfo->startAngle[1] = CMD_GET(s16, 12) * 0x8000 / 180;
         spawnInfo->startAngle[2] = CMD_GET(s16, 14) * 0x8000 / 180;
@@ -516,7 +516,7 @@ static void level_cmd_place_object(void)
         spawnInfo->behaviorScript = CMD_GET(void *, 20);
         spawnInfo->unk18 = gLoadedGraphNodes[model];
         spawnInfo->next = gAreas[sCurrAreaIndex].objectSpawnInfos;
-        
+
         gAreas[sCurrAreaIndex].objectSpawnInfos = spawnInfo;
     }
 
@@ -528,12 +528,12 @@ static void level_cmd_create_warp_node(void)
     if (sCurrAreaIndex != -1)
     {
         struct ObjectWarpNode *warpNode = alloc_only_pool_alloc(sLevelPool, sizeof(struct ObjectWarpNode));
-        
+
         warpNode->node.id = CMD_GET(u8, 2);
         warpNode->node.destLevel = CMD_GET(u8, 3) + CMD_GET(u8, 6);
         warpNode->node.destArea = CMD_GET(u8, 4);
         warpNode->node.destNode = CMD_GET(u8, 5);
-        
+
         warpNode->object = NULL;
 
         warpNode->next = gAreas[sCurrAreaIndex].warpNodes;
@@ -553,13 +553,13 @@ static void level_cmd_create_instant_warp(void)
         if (gAreas[sCurrAreaIndex].instantWarps == NULL)
         {
             gAreas[sCurrAreaIndex].instantWarps = alloc_only_pool_alloc(sLevelPool, 4 * sizeof(struct InstantWarp));
-            
+
             for (i = 0; i < 4; i++)
                 gAreas[sCurrAreaIndex].instantWarps[i].unk00 = 0;
         }
 
         warp = gAreas[sCurrAreaIndex].instantWarps + CMD_GET(u8, 2);
-        
+
         warp[0].unk00 = 1;
         warp[0].area = CMD_GET(u8, 3);
 
@@ -590,7 +590,7 @@ static void level_cmd_create_painting_warp_node(void)
         {
             gAreas[sCurrAreaIndex].paintingWarpNodes =
                 alloc_only_pool_alloc(sLevelPool, 45 * sizeof(struct WarpNode));
-            
+
             for (i = 0; i < 45; i++)
                 gAreas[sCurrAreaIndex].paintingWarpNodes[i].id = 0;
         }
@@ -615,7 +615,7 @@ static void level_cmd_3A(void)
         if ((val4 = gAreas[sCurrAreaIndex].unused28) == NULL)
             val4 = gAreas[sCurrAreaIndex].unused28 =
                 alloc_only_pool_alloc(sLevelPool, sizeof(struct UnusedArea28));
-        
+
         val4->unk00 = CMD_GET(s16, 2);
         val4->unk02 = CMD_GET(s16, 4);
         val4->unk04 = CMD_GET(s16, 6);
@@ -631,7 +631,7 @@ static void level_cmd_create_whirlpool(void)
     struct Whirlpool *whirlpool;
     s32 index = CMD_GET(u8, 2);
     s32 beatBowser2 = (save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_2 | SAVE_FLAG_UNLOCKED_UPSTAIRS_DOOR)) != 0;
-    
+
     if (CMD_GET(u8, 3) == 0 ||
         (CMD_GET(u8, 3) == 1 && !beatBowser2) ||
         (CMD_GET(u8, 3) == 2 && beatBowser2) ||

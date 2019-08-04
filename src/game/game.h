@@ -4,8 +4,8 @@
 #include "memory.h"
 struct DemoInput
 { // TODO: see if timer matches with s8
- /*0x00*/ u8 timer; // until next input: if this value 
-                    // is 0 proceeding on the demo input, it 
+ /*0x00*/ u8 timer; // until next input: if this value
+                    // is 0 proceeding on the demo input, it
                     // means the demo is over.
  /*0x01*/ s8 rawStickX;
  /*0x02*/ s8 rawStickY;

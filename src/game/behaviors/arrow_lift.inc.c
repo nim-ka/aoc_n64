@@ -14,22 +14,22 @@
  */
 static s32 arrow_lift_move_away(void) {
     s8 status = ARROW_LIFT_NOT_DONE_MOVING;
-    
+
     o->oMoveAngleYaw = o->oFaceAngleYaw - 0x4000;
     o->oVelY = 0;
     o->oForwardVel = 12.0f;
-    
+
     // Cumulative displacement is used to keep track of how far the platform
     // has travelled, so that it can stop.
     o->oArrowLiftDisplacement += o->oForwardVel;
-    
+
     // Stop the platform after moving 384 units.
     if (o->oArrowLiftDisplacement > 384.0f) {
         o->oForwardVel = 0.0f;
         o->oArrowLiftDisplacement = 384.0f;
         status = ARROW_LIFT_DONE_MOVING;
     }
-    
+
     obj_move_xyz_using_fvel_and_yaw(o);
     return status;
 }
@@ -39,20 +39,20 @@ static s32 arrow_lift_move_away(void) {
  */
 static s8 arrow_lift_move_back(void) {
     s8 status = ARROW_LIFT_NOT_DONE_MOVING;
-    
+
     o->oMoveAngleYaw = o->oFaceAngleYaw + 0x4000;
     o->oVelY = 0;
     o->oForwardVel = 12.0f;
-    
+
     o->oArrowLiftDisplacement -= o->oForwardVel;
-    
+
     // Stop the platform after returning back to its original position.
     if (o->oArrowLiftDisplacement < 0.0f) {
         o->oForwardVel = 0.0f;
         o->oArrowLiftDisplacement = 0.0f;
         status = ARROW_LIFT_DONE_MOVING;
     }
-    
+
     obj_move_xyz_using_fvel_and_yaw(o);
     return status;
 }
@@ -69,14 +69,14 @@ void bhv_arrow_lift_loop(void) {
                     o->oAction = ARROW_LIFT_ACT_MOVING_AWAY;
                 }
             }
-            
+
             break;
 
         case ARROW_LIFT_ACT_MOVING_AWAY:
             if (arrow_lift_move_away() == ARROW_LIFT_DONE_MOVING) {
                 o->oAction = ARROW_LIFT_ACT_MOVING_BACK;
             }
-            
+
             break;
 
         case ARROW_LIFT_ACT_MOVING_BACK:
@@ -86,7 +86,7 @@ void bhv_arrow_lift_loop(void) {
                     o->oAction = ARROW_LIFT_ACT_IDLE;
                 }
             }
-            
+
             break;
     }
 }

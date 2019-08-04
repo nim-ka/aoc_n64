@@ -275,7 +275,7 @@ static void sm64_calc_checksums(unsigned char *buf, unsigned int cksum[]) {
    a3 = t6 ^ t3;       // 658: 01cb3826    xor   a3,t6,t3
    t8 = s0 ^ a2;       // 65c: 0206c026    xor   t8,s0,a2
    s0 = t8 ^ t4;       // 660: 030c8026    xor   s0,t8,t4
-   
+
    cksum[0] = a3;
    cksum[1] = s0;
 }

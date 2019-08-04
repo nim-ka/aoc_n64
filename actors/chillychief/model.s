@@ -420,8 +420,8 @@ chilly_chief_seg6_anim_0600373C: # 0x0600373C
 actorgeo chillychief
 
 glabel chilly_chief_seg6_anims_06003994 # 0x06003994
-	.word chilly_chief_seg6_anim_060035E0
-	.word chilly_chief_seg6_anim_06003420
-	.word chilly_chief_seg6_anim_060032EC
-	.word chilly_chief_seg6_anim_0600373C
-	.word 0
+.word chilly_chief_seg6_anim_060035E0
+.word chilly_chief_seg6_anim_06003420
+.word chilly_chief_seg6_anim_060032EC
+.word chilly_chief_seg6_anim_0600373C
+.word 0

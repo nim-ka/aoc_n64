@@ -36,7 +36,7 @@ glabel level_wmotr_entry
         warp_node /*id*/ 0xF3, /*destLevel*/ 0x10, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*unk6*/ 0x0000
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
-        terrain /*terrainData*/ wmotr_seg7_collision 
+        terrain /*terrainData*/ wmotr_seg7_collision
         macro_objects /*objList*/ wmotr_seg7_macro_objs
         set_background_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_SLIDE
         terrain_type /*terrainType*/ 0x0002

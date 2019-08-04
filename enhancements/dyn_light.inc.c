@@ -1,6 +1,6 @@
-/* 
+/*
  * This file demonstrates how to manipulate display list data from C. *
- * To use it, #include "../../enhancements/dyn_light.inc.c" and hook it on to a function that is called once per frame. 
+ * To use it, #include "../../enhancements/dyn_light.inc.c" and hook it on to a function that is called once per frame.
  */
 
 #ifndef _DYNLIGHTS_H
@@ -11,7 +11,7 @@
 #include "../src/game/memory.h"
 #include "../src/game/print.h"
 
-/* 
+/*
  * Common values for shading, which are manipulated with the SHADE_* defines
  * in combination with the set_mario_shade_light function.
  */
@@ -109,9 +109,9 @@ void point_light(s16 x, s16 y, s16 z, s16 size, f32 shade, s16 size1, f32 shade1
 }
 
 
-/* 
- * Sets up the automatic shading for levels and sets up point lights. 
- * BBH is already done for you. 
+/*
+ * Sets up the automatic shading for levels and sets up point lights.
+ * BBH is already done for you.
  */
 
 void set_level_shading(void)
@@ -122,7 +122,7 @@ void set_level_shading(void)
     print_text_fmt_int(40, 40, "Y: %d", gMarioState->pos[1]);
     print_text_fmt_int(40, 20, "Z: %d", gMarioState->pos[2]);
 #endif
-    switch(gCurrLevelNum) 
+    switch(gCurrLevelNum)
     {
         case LEVEL_BBH:
             set_mario_shade_light(SHADE_25);

@@ -2,17 +2,17 @@
 
 # Collision Data Routine Initiate
 .macro colInit
-	.hword 0x0040
+    .hword 0x0040
 .endm
 
 # Collision Verteces Read Initiate
 .macro colVertexInit vtxNum
-	.hword \vtxNum
+    .hword \vtxNum
 .endm
 
 # Collision Vertex
 .macro colVertex x, y, z
-	.hword \x, \y, \z
+    .hword \x, \y, \z
 .endm
 
 # Collision Surface Types (shamelessly copied from Hack64 wiki)
@@ -163,48 +163,48 @@
 
 # Collision Tris Initiate
 .macro colTriInit surfType, triNum
-	.byte 0x00
-	.byte \surfType
-	.hword \triNum
+    .byte 0x00
+    .byte \surfType
+    .hword \triNum
 .endm
 
 # Collision Tri
 .macro colTri v1, v2, v3
-	.hword \v1, \v2, \v3
+    .hword \v1, \v2, \v3
 .endm
 
 # Collision Tri With Special Params
 .macro colTriSpecial v1, v2, v3, param
-	.hword \v1, \v2, \v3, \param
+    .hword \v1, \v2, \v3, \param
 .endm
 
 # Collision Tris Stop Loading
 .macro colTriStop
-	.hword 0x0041
+    .hword 0x0041
 .endm
 
 # Special Object Initiate
 .macro colSpecialInit num
-	.hword 0x0043
-	.hword \num
+    .hword 0x0043
+    .hword \num
 .endm
 
 # Water Boxes Initiate
 .macro colWaterBoxInit num
-	.hword 0x0044
-	.hword \num
+    .hword 0x0044
+    .hword \num
 .endm
 
 
 # Water Box
 .macro colWaterBox id, x1, z1, x2, z2, y
-	.hword \id
-	.hword \x1, \z1
-	.hword \x2, \z2
-	.hword \y
+    .hword \id
+    .hword \x1, \z1
+    .hword \x2, \z2
+    .hword \y
 .endm
 
 # End Collision Data
 .macro colEnd
-	.hword 0x0042
+    .hword 0x0042
 .endm

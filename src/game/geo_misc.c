@@ -15,11 +15,11 @@
 
 /**
  * @file geo_misc.c
- * This file contains miscellaneous geo_asm scripts. 
- * 
+ * This file contains miscellaneous geo_asm scripts.
+ *
  * In particular, it builds:
- *   - the light that shows the player where to look for Tower of the Wing Cap, 
- *   - the flying carpets seen in Rainbow Ride, and 
+ *   - the light that shows the player where to look for Tower of the Wing Cap,
+ *   - the flying carpets seen in Rainbow Ride, and
  *   - the end screen displaying Peach's delicious cake.
  */
 
@@ -35,13 +35,13 @@ extern Gfx dl_flying_carpet_end[];
 extern Gfx dl_cake_end_screen[];
 
 static s16 sCurAreaTimer = 1;
-static s16 sPrevAreaTimer = 0; 
+static s16 sPrevAreaTimer = 0;
 static s16 sFlyingCarpetRippleTimer = 0;
 
 s8 gFlyingCarpetState;
 
 /**
- * Create a vertex with the given parameters and insert it into `vtx` at 
+ * Create a vertex with the given parameters and insert it into `vtx` at
  * position `n`.
  */
 void make_vertex(
@@ -79,8 +79,8 @@ s16 round_float(f32 num) {
  * player where to look to enter Tower of the Wing Cap.
  */
 Gfx *geo_exec_inside_castle_light(
-    s32 callContext, 
-    struct GraphNode *node, 
+    s32 callContext,
+    struct GraphNode *node,
     UNUSED f32 mtx[4][4]
 ) {
     s32 flags;
@@ -94,7 +94,7 @@ Gfx *geo_exec_inside_castle_light(
         if (gHudDisplay.stars >= 10 && (flags & SAVE_FLAG_HAVE_WING_CAP) == 0)
         {
             displayList = alloc_display_list(2 * sizeof(*displayList));
-            
+
             if (displayList == NULL) {
                 return NULL;
             } else {
@@ -105,7 +105,7 @@ Gfx *geo_exec_inside_castle_light(
             generatedNode->fnNode.node.flags = (
                 generatedNode->fnNode.node.flags & 0xFF
             ) | 0x500;
-            
+
             gSPDisplayList(displayListHead++, dl_castle_lobby_wing_cap_light);
             gSPEndDisplayList(displayListHead);
         }
@@ -118,8 +118,8 @@ Gfx *geo_exec_inside_castle_light(
  * Update static timer variables that control the flying carpets' ripple effect.
  */
 Gfx *geo_exec_flying_carpet_timer_update(
-    s32 callContext, 
-    UNUSED struct GraphNode *node, 
+    s32 callContext,
+    UNUSED struct GraphNode *node,
     UNUSED f32 mtx[4][4]
 ) {
     if (callContext != GEO_CONTEXT_RENDER) {
@@ -142,8 +142,8 @@ Gfx *geo_exec_flying_carpet_timer_update(
  * Create a display list for a flying carpet with dynamic ripples.
  */
 Gfx *geo_exec_flying_carpet_create(
-    s32 callContext, 
-    struct GraphNode *node, 
+    s32 callContext,
+    struct GraphNode *node,
     UNUSED f32 mtx[4][4]
 ) {
     s16 n, row, col, x, y, z, tx, ty;
@@ -154,7 +154,7 @@ Gfx *geo_exec_flying_carpet_create(
     Gfx *displayList = NULL;
     Gfx *displayListHead = NULL;
     struct Object *curGraphNodeObject;
-    
+
 
     if (callContext == GEO_CONTEXT_RENDER)
     {
@@ -209,10 +209,10 @@ Gfx *geo_exec_flying_carpet_create(
         } else {
             gFlyingCarpetState = FLYING_CARPET_IDLE;
         }
-        
+
     }
 
-    return displayList; 
+    return displayList;
 }
 
 #ifdef VERSION_EU

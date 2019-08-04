@@ -153,7 +153,7 @@ void bhv_dorrie_update(void)
     if (!(o->activeFlags & 0x0008))
     {
         o->oDorrieForwardDistToMario = o->oDistanceToMario * coss(o->oAngleToMario - o->oMoveAngleYaw);
-        
+
         obj_perform_position_op(0);
         obj_move_using_fvel_and_gravity();
 

@@ -4,9 +4,9 @@
 // Note that this doesn't contain the Y coordinate since the castle roof is flat,
 // so o->oHomeY is never updated.
 static s16 sYoshiHomeLocations[] = {
-     0,     -5625, 
-    -1364,  -5912, 
-    -1403,  -4609, 
+     0,     -5625,
+    -1364,  -5912,
+    -1403,  -4609,
     -1004,  -5308
 };
 
@@ -16,7 +16,7 @@ void bhv_yoshi_init(void) {
     o->oBuoyancy = 1.3f;
     o->oUnk190 = 0x4000;
 
-    if (save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24) < 120 
+    if (save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24) < 120
         || D_80331508 == 1) {
         o->activeFlags = 0;
     }
@@ -33,7 +33,7 @@ void yoshi_walk_loop(void) {
         o->oAction = YOSHI_ACT_IDLE;
 
     SetObjAnimation(1);
-    if (sp24 == 0 || sp24 == 15) 
+    if (sp24 == 0 || sp24 == 15)
         PlaySound2(SOUND_GENERAL_YOSHIWALK);
 
     if (o->oInteractStatus == INT_STATUS_INTERACTED)
@@ -51,7 +51,7 @@ void yoshi_idle_loop(void) {
 
     if (o->oTimer > 90) {
         chosenHome = RandomFloat() * 3.99;
-        
+
         if (o->oYoshiChosenHome == chosenHome) {
             return;
         }
@@ -62,11 +62,11 @@ void yoshi_idle_loop(void) {
         o->oHomeX = sYoshiHomeLocations[o->oYoshiChosenHome * 2];
         o->oHomeZ = sYoshiHomeLocations[o->oYoshiChosenHome * 2 + 1];
         o->oYoshiTargetYaw = atan2s(o->oHomeZ - o->oPosZ, o->oHomeX - o->oPosX);
-        o->oAction = YOSHI_ACT_WALK; 
+        o->oAction = YOSHI_ACT_WALK;
     }
 
     SetObjAnimation(0);
-    if (o->oInteractStatus == INT_STATUS_INTERACTED) 
+    if (o->oInteractStatus == INT_STATUS_INTERACTED)
         o->oAction = YOSHI_ACT_TALK;
 
     // Credits; Yoshi appears at this position overlooking the castle near the end of the credits
@@ -138,7 +138,7 @@ void yoshi_finish_jumping_and_despawn_loop(void) {
 
 void yoshi_give_present_loop(void) {
     s32 sp1C = gGlobalTimer;
-    
+
     if (gHudDisplay.lives == 100) {
         play_sound(SOUND_GENERAL_1UP, gDefaultSoundArgs);
         gSpecialTripleJump = 1;
@@ -170,7 +170,7 @@ void BehYoshiLoop(void) {
             yoshi_walk_and_jump_off_roof_loop();
             break;
 
-        case YOSHI_ACT_FINISH_JUMPING_AND_DESPAWN: 
+        case YOSHI_ACT_FINISH_JUMPING_AND_DESPAWN:
             yoshi_finish_jumping_and_despawn_loop();
             break;
 

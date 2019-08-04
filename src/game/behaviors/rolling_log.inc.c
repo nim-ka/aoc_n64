@@ -22,22 +22,22 @@ void func_802F238C(void) {
     f32 sp24;
 
     if (gMarioObject->platform == o) {
-        sp24 = (gMarioObject->header.gfx.pos[2] - o->oPosZ) * coss(-o->oMoveAngleYaw) 
-             - (gMarioObject->header.gfx.pos[0] - o->oPosX) * sins(-o->oMoveAngleYaw); 
-        if (sp24 > 0) 
+        sp24 = (gMarioObject->header.gfx.pos[2] - o->oPosZ) * coss(-o->oMoveAngleYaw)
+             - (gMarioObject->header.gfx.pos[0] - o->oPosX) * sins(-o->oMoveAngleYaw);
+        if (sp24 > 0)
             o->oAngleVelPitch += 0x10;
         else
             o->oAngleVelPitch -= 0x10;
 
-        if (o->oAngleVelPitch > 0x200) 
+        if (o->oAngleVelPitch > 0x200)
             o->oAngleVelPitch = 0x200;
 
-        if (o->oAngleVelPitch < -0x200) 
+        if (o->oAngleVelPitch < -0x200)
             o->oAngleVelPitch = -0x200;
     } else {
         if (IsPointCloseToObject(o, o->oHomeX, o->oHomeY, o->oHomeZ, 100)) {
             if (o->oAngleVelPitch != 0) {
-                if (o->oAngleVelPitch > 0) 
+                if (o->oAngleVelPitch > 0)
                     o->oAngleVelPitch -= 0x10;
                 else
                     o->oAngleVelPitch += 0x10;
@@ -48,7 +48,7 @@ void func_802F238C(void) {
         }
         else {
             if (o->oAngleVelPitch != 0x100) {
-                if (o->oAngleVelPitch > 0x100) 
+                if (o->oAngleVelPitch > 0x100)
                     o->oAngleVelPitch -= 0x10;
                 else
                     o->oAngleVelPitch += 0x10;
@@ -106,7 +106,7 @@ void func_802F2820(void) {
 void func_802F2924(void) {
     o->oAngleVelPitch = 0x90;
     o->oFaceAnglePitch += o->oAngleVelPitch;
-    if (o->oFaceAnglePitch > 0) 
+    if (o->oFaceAnglePitch > 0)
         o->oFaceAnglePitch = 0;
 
     if (o->oTimer == 200)

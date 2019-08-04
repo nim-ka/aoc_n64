@@ -440,7 +440,7 @@ void bhv_klepto_update(void)
         if (obj_handle_attacks(&sKleptoHitbox, o->oAction, sKleptoAttackHandlers))
         {
             PlaySound2(SOUND_OBJECT_KLEPTO2);
-            
+
             if (o->oAnimState == KLEPTO_ANIM_STATE_HOLDING_CAP)
             {
                 save_file_clear_flags(SAVE_FLAG_CAP_ON_KLEPTO);

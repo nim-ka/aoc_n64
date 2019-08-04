@@ -40,26 +40,26 @@ s32 boo_should_be_stopped(void) {
         if (o->activeFlags & ACTIVE_FLAG_IN_DIFFERENT_ROOM) {
             return TRUE;
         }
-        
+
         if (o->oRoom == 10) {
             if (gTimeStopState & TIME_STOP_MARIO_OPENED_DOOR) {
                 return TRUE;
             }
         }
     }
-    
+
     return FALSE;
 }
 
 s32 boo_should_be_active(void) {
     f32 activationRadius;
-    
+
     if (obj_has_behavior(bhvBalconyBigBoo)) {
         activationRadius = 5000.0f;
     } else {
         activationRadius = 1500.0f;
     }
-    
+
     if (obj_has_behavior(bhvMerryGoRoundBigBoo) || obj_has_behavior(bhvMerryGoRoundBoo)) {
         if (gMarioOnMerryGoRound == TRUE) {
             return TRUE;
@@ -78,14 +78,14 @@ s32 boo_should_be_active(void) {
             return TRUE;
         }
     }
-    
+
     return FALSE;
 }
 
 void bhv_courtyard_boo_triplet_init(void) {
     s32 i;
     struct Object *boo;
-    
+
     if (gHudDisplay.stars < 12) {
         mark_object_for_deletion(o);
     } else {
@@ -99,7 +99,7 @@ void bhv_courtyard_boo_triplet_init(void) {
                 MODEL_BOO,
                 bhvGhostHuntBoo
             );
-            
+
             boo->oMoveAngleYaw = RandomU16();
         }
     }
@@ -107,23 +107,23 @@ void bhv_courtyard_boo_triplet_init(void) {
 
 void boo_approach_target_opacity_and_update_scale(void) {
     f32 scale;
-    
+
     if (o->oBooTargetOpacity != o->oOpacity) {
         if (o->oBooTargetOpacity > o->oOpacity) {
             o->oOpacity += 20;
-            
+
             if (o->oBooTargetOpacity < o->oOpacity) {
                 o->oOpacity = o->oBooTargetOpacity;
             }
         } else {
             o->oOpacity -= 20;
-            
+
             if (o->oBooTargetOpacity > o->oOpacity) {
                 o->oOpacity = o->oBooTargetOpacity;
             }
         }
     }
-    
+
     // doubles
     scale = (o->oOpacity/255.0f * 0.4 + 0.6) * o->oBooBaseScale;
     scale_object(o, scale); // why no obj_scale? was obj_scale written later?
@@ -131,7 +131,7 @@ void boo_approach_target_opacity_and_update_scale(void) {
 
 void boo_oscillate(s32 ignoreOpacity) {
     o->oFaceAnglePitch = sins(o->oBooOscillationTimer) * 0x400;
-    
+
     if (o->oOpacity == 0xFF || ignoreOpacity == TRUE) {
         // more doubles
         o->header.gfx.scale[0] = sins(o->oBooOscillationTimer) * 0.08 + o->oBooBaseScale;
@@ -150,9 +150,9 @@ s32 func_802C3008(void) {
     s16 relativeAngleToMarioThreshhold = 0x1568;
     s16 relativeMarioFaceAngleThreshhold = 0x6b58;
     s32 doneAppearing = FALSE;
-    
+
     o->oVelY = 0.0f;
-    
+
     if (
         relativeAngleToMario > relativeAngleToMarioThreshhold ||
         relativeMarioFaceAngle < relativeMarioFaceAngleThreshhold
@@ -161,23 +161,23 @@ s32 func_802C3008(void) {
             o->oBooTargetOpacity = 255;
             PlaySound2(SOUND_OBJECT_BOOLAUGH2);
         }
-        
+
         if (o->oOpacity > 180) {
             doneAppearing = TRUE;
         }
     } else if (o->oOpacity == 255) {
         o->oBooTargetOpacity = 40;
     }
-    
+
     return doneAppearing;
 }
 
 void func_802C313C(s32 a0) {
     obj_become_intangible();
-    
+
     o->oFlags &= ~OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW;
     o->oBooUnk104 = (f32) o->oMoveAngleYaw;
-    
+
     if (a0 != FALSE) {
         o->oBooMoveYawAfterHit = gMarioObject->oMoveAngleYaw;
     } else if (coss((s16)o->oMoveAngleYaw - (s16)o->oAngleToMario) < 0.0f) {
@@ -193,7 +193,7 @@ void func_802C3238(s32 roll, f32 fVel) {
     o->oForwardVel = fVel;
     o->oVelY = coss(sp4);
     o->oMoveAngleYaw = o->oBooMoveYawAfterHit;
-    
+
     if (roll != FALSE) {
         o->oFaceAngleYaw  += D_8032F0CC[o->oTimer];
         o->oFaceAngleRoll += D_8032F0CC[o->oTimer];
@@ -215,11 +215,11 @@ void func_802C3384(void) {
 s32 func_802C33D0(f32 a0)
 {
     boo_stop();
-    
+
     if (o->oTimer == 0) {
         func_802C313C(FALSE);
     }
-    
+
     if (o->oTimer < 32) {
         func_802C3238(FALSE, D_8032F0CC[o->oTimer]/5000.0f * a0);
     } else {
@@ -228,7 +228,7 @@ s32 func_802C33D0(f32 a0)
         o->oAction = 1;
         return 1;
     }
-    
+
     return 0;
 }
 
@@ -258,7 +258,7 @@ s32 func_802C34B4(f32 a0)
 s32 func_802C35C0(void)
 {
     struct Object *parentBigBoo;
-    
+
     if (o->oTimer == 0) {
         o->oForwardVel = 40.0f;
         o->oMoveAngleYaw = gMarioObject->oMoveAngleYaw;
@@ -268,7 +268,7 @@ s32 func_802C35C0(void)
         if (o->oTimer == 5) {
             o->oBooTargetOpacity = 0;
         }
-        
+
         if (o->oTimer > 30 || o->oMoveFlags & 0x200) {
             func_802A3004();
             o->oBooDeathStatus = BOO_DEATH_STATUS_DEAD;
@@ -288,11 +288,11 @@ s32 func_802C35C0(void)
             return TRUE;
         }
     }
-    
+
     o->oVelY = 5.0f;
     o->oFaceAngleRoll += 0x800;
     o->oFaceAngleYaw += 0x800;
-    
+
     return FALSE;
 }
 
@@ -444,13 +444,13 @@ void ActionBoo3(void)
 void ActionBoo4(void)
 {
     s32 dialogID;
-    
+
     // If there are no remaining "minion" boos, show the dialog of the Big Boo
     if(obj_nearest_object_with_behavior(bhvGhostHuntBoo) == NULL)
         dialogID = 108;
     else
         dialogID = 107;
-    
+
     if(obj_update_dialog_unk1(2,2,dialogID,0))
     {
         create_sound_spawner(SOUND_OBJECT_DYINGENEMY1);
@@ -567,11 +567,11 @@ void func_802C41E4(void)
 void func_802C4220(void)
 {
     struct Object *merryGoRound;
-    
+
     CreateStar(-1600.0f,-2100.0f,205.0f);
-    
+
     merryGoRound = obj_nearest_object_with_behavior(bhvMerryGoRound);
-    
+
     if(merryGoRound != NULL)
         merryGoRound->oMerryGoRoundStopped = TRUE;
 }

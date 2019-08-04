@@ -85,15 +85,15 @@ void Proc8018E520(struct ObjJoint *self)
                     self->mat128[3][1] -= sp64.y;
                     self->mat128[3][2] -= sp64.z;
                 }
-            } 
+            }
 
             if (self->unk1BC & 0x2000) { gd_play_sfx(GD_SFX_LET_GO_FACE); }
 
             self->unk1BC &= ~0x2000;
             ; //necessary?
-        } else { 
+        } else {
             self->unk78.x = self->unk78.y = self->unk78.z = 0.0f;
-        } 
+        }
     }
 
     self->mat128[3][0] += self->unk78.x;
@@ -183,9 +183,9 @@ void Unknown8018EE5C(struct ObjJoint *j1, struct ObjJoint *j2, struct ObjJoint *
     while (curj != NULL)
     {
         set_joint_vecs(
-            curj, 
-            curj->unk14.x + vec.z, 
-            curj->unk14.y + vec.y, 
+            curj,
+            curj->unk14.x + vec.z,
+            curj->unk14.y + vec.y,
             curj->unk14.z + vec.x
         );
         if (curj == j2) { break; }
@@ -243,7 +243,7 @@ struct ObjJoint *make_joint(s32 flags, f32 x, f32 y, f32 z)
 
     if (!(j->unk1BC & 0x1)) { sJointNotF1Count++; }
 
-    if (j->unk1BC & 0x1) { j->unk1C8 = 2; } 
+    if (j->unk1BC & 0x1) { j->unk1C8 = 2; }
     else { j->unk1C8 = 9; }
 
     j->unk1C4 = NULL;
@@ -489,7 +489,7 @@ struct ObjBone *make_bone(s32 a0, struct ObjJoint *j1, struct ObjJoint *j2, UNUS
     struct ObjBone *b;  // sp34
     struct ObjBone *oldhead;
     UNUSED u32 pad1C[5];
-    
+
     b = (struct ObjBone *)make_object(OBJ_TYPE_BONES);
     sBoneCount++;
     b->id = sBoneCount;
@@ -570,7 +570,7 @@ s32 func_8018FFE8(struct ObjBone **a0, struct ObjJoint **a1, struct ObjJoint *a2
         {
             bonegrp = b->unk10C;
             bonelink = bonegrp->link1C;
-        
+
             while (bonelink != NULL)
             {
                 sp18 = (struct ObjJoint *)bonelink->obj;
@@ -723,7 +723,7 @@ void func_80190574(s32 a0, struct ObjJoint *a1, struct ObjJoint *a2, f32 x, f32 
         sp274 = a2;
         sp26C = sp120[sp234];
         func_80190168(sp20[sp234], sp274, sp26C, &sp24C);
-        do 
+        do
         {
             sp220 = func_8018FFE8(&sp20[0x20], &sp120[0x20], sp274, sp26C);
             sp270 = sp120[0x20];
@@ -783,7 +783,7 @@ void func_80190574(s32 a0, struct ObjJoint *a1, struct ObjJoint *a2, f32 x, f32 
     printf("\n\n");
 }
 
-/* 23F184 -> 23F1F0 */ 
+/* 23F184 -> 23F1F0 */
 void func_801909B4(void)
 {
     struct ObjJoint *node;
@@ -809,7 +809,7 @@ void Unknown80190A20(void)
 
     j = gGdJointList;
     while (j != NULL)
-    { 
+    {
         if (j->unk1BC & 0x40)
         {
             grp = j->unk1C4;
@@ -821,7 +821,7 @@ void Unknown80190A20(void)
             vec.x = b->unk40.z * 100.0f;
             func_80190574(1, NULL, j, vec.z, vec.y, vec.x);
         }
-        
+
         j = j->nextjoint;
     }
 }
@@ -874,12 +874,12 @@ void func_80190B54(struct ObjJoint *a0, struct ObjJoint *a1, struct MyVec3f *a2)
         func_801961F4(&sp38, &sp80, sp78);
         multiply_mat4(&a0->matE8, &sp38, &a0->matE8);
 
-    } else { 
+    } else {
         D_801BAAE0.x = a2->x;
         D_801BAAE0.y = a2->y;
         D_801BAAE0.z = a2->z;
     }
-    
+
     a0->unk3C.x += D_801BAAE0.x;
     a0->unk3C.y += D_801BAAE0.y;
     a0->unk3C.z += D_801BAAE0.z;
@@ -904,9 +904,9 @@ void Unknown80190E68(struct GdObj *obj, f32 x, f32 y, f32 z)
     sp44 = NULL;
     sp40 = obj;
     while (sp40 != NULL)
-    { 
+    {
         if (sp40->type != OBJ_TYPE_JOINTS) { break; }
-        
+
         func_80190B54(((struct ObjJoint *)sp40), sp44, &vec);
         sp44 = ((struct ObjJoint *)sp40);
         sp40 = ((struct ObjJoint *)sp40)->unk20C;   //"attached object"
@@ -929,25 +929,25 @@ f32 func_80190F3C(struct ObjJoint *a0, f32 a1, f32 a2, f32 a3)
     func_80190574(1, NULL, a0, a1, a2, a3);
 
     for (i = 1; i <= sJointArrLen; i++)
-    { 
+    {
         sJointArr2[i] = sJointArr[i];
         sJointArr2Vecs[i].x = sJointArrVecs[i].x;
         sJointArr2Vecs[i].y = sJointArrVecs[i].y;
         sJointArr2Vecs[i].z = sJointArrVecs[i].z;
     }
     printf("Num return joints (pass 1): %d\n", i);
-    
+
     sJointArr2Len = sJointArrLen;
     sJointArrLen = 0;
 
     for (i = 1; i <= sJointArr2Len; i++)
-    { 
+    {
         func_801909B4();
         curj = sJointArr2[i];
         func_80190574(1, NULL, curj, sJointArr2Vecs[i].x, sJointArr2Vecs[i].y, sJointArr2Vecs[i].z);
     }
     printf("Num return joints (pass 2): %d\n", i);
-    
+
     sp24.x -= a0->unk3C.x;
     sp24.y -= a0->unk3C.y;
     sp24.z -= a0->unk3C.z;
@@ -1102,7 +1102,7 @@ void Unknown801918F4(struct ObjJoint *j)
 
     if (!(j->unk1BC & 0x41))
     {
-        j->unk78.y += sp4 * 0.2;    //? 0.2f 
+        j->unk78.y += sp4 * 0.2;    //? 0.2f
 
         j->unk3C.x += j->unk78.x;
         j->unk3C.y += j->unk78.y;
@@ -1142,13 +1142,13 @@ void Unknown80191A1C(struct ObjBone *a0)
         if (!(((struct ObjJoint *)argjoint)->unk1BC & 0x1))
         {
             func_80190F3C(
-                (struct ObjJoint *)argjoint, 
+                (struct ObjJoint *)argjoint,
                 sp24.x * sp3C,
                 sp24.y * sp3C,
                 sp24.z * sp3C
             );
         }
-    } 
+    }
     gGdTempBone = a0;
 }
 
@@ -1162,7 +1162,7 @@ void Unknown80191BF8(struct ObjJoint *j)
     {
         j->unk3C.y += sp18;
     }
-    
+
     if ((sp1C = j->unk3C.y - (D_801A8058 + 30.0f)) < 0.0f && j->unk78.y < 0.0f)
     {
         sp1C += j->unk78.y;
@@ -1174,7 +1174,7 @@ void Unknown80191BF8(struct ObjJoint *j)
             -j->unk78.z * 0.7
         );
     }
-    
+
     func_80190F3C(j, 0.0f, 0.0f, 0.0f);
 }
 

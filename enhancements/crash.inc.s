@@ -6,20 +6,20 @@
 .set COP0_BADVADDR, 8
 
 /* ---------------------------------------------------------------
- * IMPORTANT README: 
+ * IMPORTANT README:
  * ---------------------------------------------------------------
  * To use this crash screen, in lib/__osExceptionPreamble.s, change
  * the function to use the following assembly:
- * 
+ *
  *     lui   $k0, %hi(__crash_handler_entry)
  *     addiu $k0, $k0, %lo(__crash_handler_entry)
  *     jr    $k0
  *     nop
- * 
+ *
  * Doing just a jal __crash_handler_entry will cause mupen recompiler
  * errors, so be sure to use the original exception style assembly
  * above!
- * 
+ *
  * Be sure to add #include "../../enhancements/crash.inc.c" to
  * the top of game.c. Add .include "../enhancements/crash.inc.s" to
  * the bottom of asm/decompress.s. Add "../enhancements/crash.h" to
@@ -57,7 +57,7 @@ glabel _n64_assert
     beqz $a3, .end_2
     nop
     syscall # trigger crash screen
-    .end_2:
+.end_2:
     jr $ra
     nop
 

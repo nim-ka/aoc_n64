@@ -215,7 +215,7 @@ void print_text_centered(s32 x, s32 y, const char *str)
     UNUSED s32 sp30 = 0;
     s32 len = 0;
     s32 srcIndex = 0;
-    
+
     if ((sTextLabels[sTextLabelsCount] = (struct TextLabel *)mem_pool_alloc(D_8033A124, 60)) == NULL)
         return;
 
@@ -351,7 +351,7 @@ void func_802D61A8(void)
         }
         mem_pool_free(D_8033A124, (void *)sTextLabels[i]);
     }
-    
+
     gSPDisplayList(gDisplayListHead++, dl_hud_img_end);
 
     sTextLabelsCount = 0;

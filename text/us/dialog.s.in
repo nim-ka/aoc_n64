@@ -2103,7 +2103,7 @@ Dialog159: # 0x0200D078
         "can perform a Backward\n"
         "Somersault. To do a Long\n"
         "Jump, run fast, press [Z],\n"
-        "then jump.")        
+        "then jump.")
 
 .balign 4
 Dialog160: # 0x0200D0F8

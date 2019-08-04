@@ -173,7 +173,7 @@ glabel mario_geo_medium_poly_left_hand # 0x170006F8
          geo_close_node
       geo_close_node
       geo_animated_part LAYER_OPAQUE, 60, 0, 0, mario_left_hand_open
-      geo_animated_part LAYER_OPAQUE, 60, 0, 0, mario_medium_poly_left_hand_closed 
+      geo_animated_part LAYER_OPAQUE, 60, 0, 0, mario_medium_poly_left_hand_closed
       geo_animated_part LAYER_OPAQUE, 60, 0, 0, mario_medium_poly_left_hand_closed
       geo_animated_part LAYER_OPAQUE, 60, 0, 0, mario_medium_poly_left_hand_closed
    geo_close_node

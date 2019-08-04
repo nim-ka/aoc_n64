@@ -52,8 +52,8 @@ struct GdDisplayList {
     /*0x14*/ Mtx *mtx;
     /* Lights */
     /*0x18*/ s32 curLightIdx;
-    /*0x1C*/ s32 totalLights;  
-    /*0x20*/ Lights4 *light; 
+    /*0x1C*/ s32 totalLights;
+    /*0x20*/ Lights4 *light;
     /* Gfx-es */
     /*0x24*/ s32 curGfxIdx;
     /*0x28*/ s32 totalGfx;
@@ -67,7 +67,7 @@ struct GdDisplayList {
     /*0x40*/ u32 id;      // user specified
     /*0x44*/ u32 number;  // count
     /*0x48*/ u8 pad48[4];
-    /*0x4C*/ struct GdDisplayList *parent; // not quite sure? 
+    /*0x4C*/ struct GdDisplayList *parent; // not quite sure?
 }; /* sizeof = 0x50 */
 // accessor macros for gd dl
 #define DL_CURRENT_VTX(dl) ((dl)->vtx[(dl)->curVtxIdx])
@@ -168,7 +168,7 @@ static OSMesg sGdMesgBuf[1];                   // @ 801BE944
 static u32 unref_801be948[13];
 static OSMesg D_801BE97C;                      // msg buf for D_801BE8B0 queue
 static OSIoMesg D_801BE980;
-static struct ObjView *D_801BE994;             // store if View flag 0x40 set 
+static struct ObjView *D_801BE994;             // store if View flag 0x40 set
 
 // data
 static u32 unref_801a8670 = 0;
@@ -213,8 +213,8 @@ static struct DynListBankInfo sDynLists[] = {     // @ 801A8704
     { TABLE_END, NULL }
 };
 /*  It doesn't really make sense for this DL command to be here,
- * unless all of goddard's texture data were also in C... 
- * So, to avoid that, throw a stray gsSPEndDisplayList here */ 
+ * unless all of goddard's texture data were also in C...
+ * So, to avoid that, throw a stray gsSPEndDisplayList here */
 static u64 strayDlEndCmd = 0xB800000000000000; // @ 801A8728
 
 // linker (ROM addresses)
@@ -233,7 +233,7 @@ void func_801A3370(f32, f32, f32);
 void gd_put_sprite(u16 *, s32, s32, s32, s32);
 void reset_cur_dl_indices(void);
 
-// TODO: make a gddl_num_t? 
+// TODO: make a gddl_num_t?
 
 
 u32 get_alloc_mem_amt(void)
@@ -254,10 +254,10 @@ f32 get_time_scale(void)
 void dump_disp_list(void)
 {
     gd_printf("%d\n", sCurrentGdDl->id);
-    gd_printf("Vtx=%d/%d, Mtx=%d/%d, Light=%d/%d, Gfx=%d/%d\n", 
-        sCurrentGdDl->curVtxIdx,   sCurrentGdDl->totalVtx, 
-        sCurrentGdDl->curMtxIdx,   sCurrentGdDl->totalMtx, 
-        sCurrentGdDl->curLightIdx, sCurrentGdDl->totalLights, 
+    gd_printf("Vtx=%d/%d, Mtx=%d/%d, Light=%d/%d, Gfx=%d/%d\n",
+        sCurrentGdDl->curVtxIdx,   sCurrentGdDl->totalVtx,
+        sCurrentGdDl->curMtxIdx,   sCurrentGdDl->totalMtx,
+        sCurrentGdDl->curLightIdx, sCurrentGdDl->totalLights,
         sCurrentGdDl->curGfxIdx,   sCurrentGdDl->totalGfx
     );
 }
@@ -362,7 +362,7 @@ void gd_printf(const char *format, ...)
     va_start(args, format);
     while ((c = *format++))
     {
-        switch (c) 
+        switch (c)
         {
         case '%':
             f = *format++;
@@ -380,11 +380,11 @@ void gd_printf(const char *format, ...)
                     {
                         break;
                     }
-                    
+
                     f = *format++;
                 }
             }
-            
+
             spec[i] = f;
             i++;
             spec[i] = '\0';
@@ -845,7 +845,7 @@ void *gdm_gettestdl(s32 id)
     struct GdDisplayList *gddl;
     UNUSED u32 pad28[2];
     struct MyVec3f vec;
-    
+
     start_timer("dlgen");
     vec.x = vec.y = vec.z = 0.0f;
     gddl = NULL;
@@ -990,12 +990,12 @@ struct GdDisplayList *alloc_displaylist(u32 id)
     {
         fatal_no_dl_mem();
     }
-    
+
     gdDl->number = sGdDlCount++;
     if (sGdDlCount >= MAX_GD_DLS)
     {
-        fatal_printf("alloc_displaylist() too many display lists %d (MAX %d)", 
-            sGdDlCount + 1, 
+        fatal_printf("alloc_displaylist() too many display lists %d (MAX %d)",
+            sGdDlCount + 1,
             MAX_GD_DLS
         );
     }
@@ -1032,7 +1032,7 @@ struct GdDisplayList *create_child_gdl(s32 id, struct GdDisplayList *srcDl)
     newDl = alloc_displaylist(id);
     newDl->parent = srcDl;
     cpy_remaining_gddl(newDl, srcDl);
-    //! @bug No return statement, despite return value being used. 
+    //! @bug No return statement, despite return value being used.
     //!      Goddard lucked out that `v0` return from alloc_displaylist()
     //!      is not overwriten, as that pointer is what should be returned
     #if BUGFIX_GODDARD_MISSING_RETURN
@@ -1191,7 +1191,7 @@ void gd_set_view_zbuf(void)
     gDPSetDepthImage(
         next_gfx(),
         GD_LOWER_24(sActiveView->parent->zbuf)
-    ); 
+    );
 }
 
 /* 24CE10 -> 24CF2C; orig name: func_8019E640 */
@@ -1445,9 +1445,9 @@ void func_8019F2C4(f32 arg0, s8 arg1)
 }
 
 /* 24DAE8 -> 24E1A8 */
-void func_8019F318(struct ObjCamera *cam, 
-    f32 arg1, f32 arg2, f32 arg3, 
-    f32 arg4, f32 arg5, f32 arg6, 
+void func_8019F318(struct ObjCamera *cam,
+    f32 arg1, f32 arg2, f32 arg3,
+    f32 arg4, f32 arg5, f32 arg6,
     f32 arg7
 )
 {
@@ -1479,11 +1479,11 @@ void func_8019F318(struct ObjCamera *cam,
     lookat->l[0].l.dir[0] = LOOKAT_PACK(cam->unkE8[0][0]);
     lookat->l[0].l.dir[1] = LOOKAT_PACK(cam->unkE8[1][0]);
     lookat->l[0].l.dir[2] = LOOKAT_PACK(cam->unkE8[2][0]);
-    
+
     lookat->l[1].l.dir[0] = LOOKAT_PACK(cam->unkE8[0][1]);
     lookat->l[1].l.dir[1] = LOOKAT_PACK(cam->unkE8[1][1]);
     lookat->l[1].l.dir[2] = LOOKAT_PACK(cam->unkE8[2][1]);
-    
+
     lookat->l[0].l.col[0] = 0;
     lookat->l[0].l.col[1] = 0;
     lookat->l[0].l.col[2] = 0;
@@ -1577,7 +1577,7 @@ Vtx *make_Vtx_if_new(f32 x, f32 y, f32 z, f32 alpha)
     DL_CURRENT_VTX(sCurrentGdDl).n.n[1] = sVtxCvrtNormBuf[1];
     DL_CURRENT_VTX(sCurrentGdDl).n.n[2] = sVtxCvrtNormBuf[2];
     DL_CURRENT_VTX(sCurrentGdDl).n.a = (u8)(alpha * 255.0f);
-    
+
     vtx = &DL_CURRENT_VTX(sCurrentGdDl);
     next_vtx();
     return vtx;
@@ -1597,8 +1597,8 @@ void func_8019FEF0(void)
 
 /* 24E724 -> 24E808; orig name: func_8019FF54 */
 void add_tri_to_dl(
-    f32 x1, f32 y1, f32 z1, 
-    f32 x2, f32 y2, f32 z2, 
+    f32 x1, f32 y1, f32 z1,
+    f32 x2, f32 y2, f32 z2,
     f32 x3, f32 y3, f32 z3
 )
 {
@@ -1632,8 +1632,8 @@ void func_801A0070(void)
     if (D_801BB0BC != 0)
     {
         gSPVertex(
-            next_gfx(), 
-            osVirtualToPhysical(&sCurrentGdDl->vtx[D_801BB0CC]), 
+            next_gfx(),
+            osVirtualToPhysical(&sCurrentGdDl->vtx[D_801BB0CC]),
             D_801BB0BC,
             0
         );
@@ -1760,10 +1760,10 @@ void func_801A0478(
         sp40.y *= sp3C;
         sp40.x *= sp3C;
 
-        hilite->h.x1 = (((sp40.z * cam->unkE8[0][0]) + (sp40.y * cam->unkE8[1][0]) + (sp40.x * cam->unkE8[2][0])) 
+        hilite->h.x1 = (((sp40.z * cam->unkE8[0][0]) + (sp40.y * cam->unkE8[1][0]) + (sp40.x * cam->unkE8[2][0]))
             * sp38 * 2.0f)
             + (sp38 * 4.0f);
-        hilite->h.y1 = (((sp40.z * cam->unkE8[0][1]) + (sp40.y * cam->unkE8[1][1]) + (sp40.x * cam->unkE8[2][1])) 
+        hilite->h.y1 = (((sp40.z * cam->unkE8[0][1]) + (sp40.y * cam->unkE8[1][1]) + (sp40.x * cam->unkE8[2][1]))
             * sp34 * 2.0f)
             + (sp34 * 4.0f);
     }
@@ -1811,7 +1811,7 @@ s32 func_801A086C(s32 id, struct GdColour *colour, s32 arg2)
         {
             fatal_printf("too many hilites");
         }
-        // the macro does the 0xFFF mask, 
+        // the macro does the 0xFFF mask,
         // but it seems goddard unnecessarily masked the parameters as well
         gDPSetTileSize(
             next_gfx(),
@@ -1889,7 +1889,7 @@ s32 func_801A086C(s32 id, struct GdColour *colour, s32 arg2)
         DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.colc[0] = sp4C[0];
         DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.colc[1] = sp4C[1];
         DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.colc[2] = sp4C[2];
-        
+
         // 801A13B0
         sp40[0] = D_801BB1B8[i].u0.bytes.b3;
         sp40[1] = D_801BB1B8[i].u4.bytes.b3;
@@ -1950,7 +1950,7 @@ void set_gd_mtx_parameters(s32 paramType)
     }
 }
 
-/* 24FFDC -> 2501D0 */ 
+/* 24FFDC -> 2501D0 */
 void func_801A180C(void)
 {
     Vp *vp; // 1c
@@ -2158,7 +2158,7 @@ void parse_p1_controller(void)
     }
 
     gdctrl->unk50 = gdctrl->unk4C = gdctrl->dup = gdctrl->ddown = 0;
-    
+
     p1cont = &sGdContPads[0];
     p1contPrev = &sPrevFrameCont[0];
     // stick values
@@ -2189,7 +2189,7 @@ void parse_p1_controller(void)
     {
         gdctrl->btnAnewPress = TRUE;
     }
-    else 
+    else
     {
         gdctrl->btnAnewPress = FALSE;
     }
@@ -2331,8 +2331,8 @@ void func_801A3370(f32 x, f32 y, f32 z)
 void Unknown801A33F8(f32 x, f32 y, f32 z)
 {
     translate_mtx_gddl(
-        x - D_801BD768.x, 
-        y - D_801BD768.y, 
+        x - D_801BD768.x,
+        y - D_801BD768.y,
         z - D_801BD768.z
     );
 
@@ -2376,7 +2376,7 @@ s32 gd_getproperty(s32 prop, UNUSED void *arg1)
 {
     s32 got = FALSE;
 
-    switch (prop) 
+    switch (prop)
     {
         case 3: got = TRUE; break;
         default: fatal_printf("gd_getproperty(): Unkown property");
@@ -2509,7 +2509,7 @@ void func_801A3C8C(f32 fovy, f32 aspect, f32 near, f32 far)
 
 /* 25262C -> 252AF8 */
 s32 setup_view_buffers(
-    const char *name, struct ObjView *view, 
+    const char *name, struct ObjView *view,
     UNUSED s32 ulx, UNUSED s32 uly, UNUSED s32 lrx, UNUSED s32 lry
 )
 {
@@ -2542,7 +2542,7 @@ s32 setup_view_buffers(
             }
             view->parent = view;
         }
-        else 
+        else
         {
             view->parent = sScreenView2;
         }
@@ -2554,24 +2554,24 @@ s32 setup_view_buffers(
             if (view->flags & VIEW_ALLOC_ZBUF)
             {
                 view->zbuf = gd_malloc((u32) (2.0f * view->lowerRight.x * view->lowerRight.y + 64.0f), 0x40);
-                if (view->zbuf == NULL) 
+                if (view->zbuf == NULL)
                 {
                     fatal_printf("Not enough DRAM for Z buffer\n");
                 }
                 view->zbuf = (void *) ALIGN((uintptr_t) view->zbuf, 64);
             }
             stop_memtracker(buf);
-        } 
+        }
         else
         {
             view->zbuf = sScreenView2->zbuf;
-        } 
-    } 
-    else 
+        }
+    }
+    else
     {
         view->parent = sScreenView2;
     }
-    
+
     view->gdDlNum = 0;
     view->unk74 = 0;
 
@@ -2583,7 +2583,7 @@ s32 setup_view_buffers(
     //! @bug No actual return, but the return value is used.
     //!      There is no obvious value to return. Since the function
     //!      doesn't use four of its parameters, this function may have
-    //!      had a fair amount of its code commented out. In game, the 
+    //!      had a fair amount of its code commented out. In game, the
     //!      returned value is always 0, so the fix returns that value
     #if BUGFIX_GODDARD_MISSING_RETURN
     return 0;
@@ -2614,7 +2614,7 @@ void Proc801A43DC(UNUSED struct GdObj *obj)
 
 /* 252BC0 -> 252BE0 */
 void *func_801A43F0(UNUSED const char *menufmt, ...)
-{ 
+{
     //! @bug no return; function was stubbed
 }
 
@@ -2652,7 +2652,7 @@ s32 gd_gentexture(void *texture, s32 fmt, s32 size, UNUSED u32 arg3, UNUSED u32 
 
     switch (size)
     {
-        case 33: 
+        case 33:
             size = 2;
             sp2C = 16;
             break;
@@ -2772,7 +2772,7 @@ void set_active_view(struct ObjView *v)
 {
     sActiveView = v;
 }
- 
+
 void stub_801A4908(void)
 {
 }
@@ -2793,8 +2793,8 @@ void func_801A4918(void)
         x < sMenuView->upperLeft.x + sMenuView->lowerRight.x &&
         y > sMenuView->upperLeft.y &&
         y < sMenuView->upperLeft.y + sMenuView->lowerRight.y))
-    { 
-        return; 
+    {
+        return;
     }
     ydiff = (y - sMenuView->upperLeft.y) / 25.0f;
 
@@ -2833,8 +2833,8 @@ void update_cursor(void)
     if (gGdCtrl.frameCount - gGdCtrl.frameAbtnPressed < 300)
     {
         sHandView->flags |= VIEW_UPDATE;
-        // by playing the sfx every frame, it will only play once as it 
-        // never leaves the "sfx played last frame" buffer 
+        // by playing the sfx every frame, it will only play once as it
+        // never leaves the "sfx played last frame" buffer
         gd_play_sfx(GD_SFX_HAND_APPEAR);
     }
     else
@@ -2923,8 +2923,8 @@ void Proc801A5110(struct ObjView *view)
     if (view->flags & VIEW_UPDATE)
     {
         apply_to_obj_types_in_group(
-            OBJ_TYPE_NETS, 
-            (applyproc_t) convert_net_verts, 
+            OBJ_TYPE_NETS,
+            (applyproc_t) convert_net_verts,
             view->components
         );
     }
@@ -3058,8 +3058,8 @@ void gd_init(void)
         D_801BD7C8[i][1] = create_child_gdl(1, sDynDlSet1[1]);
     }
 
-    sScreenView2 = make_view("screenview2", 
-        (VIEW_2_COL_BUF | VIEW_UNK_1000 | VIEW_COLOUR_BUF | VIEW_Z_BUF), 
+    sScreenView2 = make_view("screenview2",
+        (VIEW_2_COL_BUF | VIEW_UNK_1000 | VIEW_COLOUR_BUF | VIEW_Z_BUF),
         0, 0, 0, 320, 240, NULL
     );
     sScreenView2->colour.r = 0.0f;
@@ -3141,7 +3141,7 @@ void store_in_pickbuf(s16 data)
 
 /* 25421C -> 254250; orig name: func_801A5A4C
 ** Divides by 3, since in the final game, only thing stored
-** in the pick buf is a tupple of three halves: (datasize, objtype, objnumber) 
+** in the pick buf is a tupple of three halves: (datasize, objtype, objnumber)
 ** (datasize is always 2) */
 s32 get_cur_pickbuf_offset(UNUSED s16 *arg0)
 {
@@ -3217,11 +3217,11 @@ void Unknown801A5C80(struct ObjGroup *parentGroup)
     d_end_group("debugg");
 
     debugGroup = (struct ObjGroup *)d_use_obj("debugg");
-    make_view("debugview", 
-        (VIEW_2_COL_BUF | VIEW_ALLOC_ZBUF | VIEW_1_CYCLE | VIEW_DRAW), 
+    make_view("debugview",
+        (VIEW_2_COL_BUF | VIEW_ALLOC_ZBUF | VIEW_1_CYCLE | VIEW_DRAW),
         2, 0, 0, 320, 240, debugGroup
     );
-    
+
     if (parentGroup != NULL)
     {
         addto_group(parentGroup, &debugGroup->header);
@@ -3281,10 +3281,10 @@ void Unknown801A5D90(struct ObjGroup *arg0)
         d_end_group(AsDynId(groupId));
         labelgrp = (struct ObjGroup *)d_use_obj(AsDynId(groupId));
 
-        if (sp23C) 
+        if (sp23C)
         {
-            memview = make_view("memview", 
-                (VIEW_2_COL_BUF | VIEW_ALLOC_ZBUF | VIEW_UNK_2000 | VIEW_UNK_4000 | VIEW_1_CYCLE | VIEW_DRAW), 
+            memview = make_view("memview",
+                (VIEW_2_COL_BUF | VIEW_ALLOC_ZBUF | VIEW_UNK_2000 | VIEW_UNK_4000 | VIEW_1_CYCLE | VIEW_DRAW),
                 2, 0, 10, 320, 200, labelgrp
             );
             memview->colour.r = 0.0f;
@@ -3342,7 +3342,7 @@ void Unknown801A5FF8(struct ObjGroup *arg0)
     d_end_group("menug");
 
     menugrp = (struct ObjGroup *)d_use_obj("menug");
-    menuview = make_view("menuview", 
+    menuview = make_view("menuview",
         (VIEW_2_COL_BUF | VIEW_ALLOC_ZBUF | VIEW_BORDERED | VIEW_UNK_2000 | VIEW_UNK_4000),
         2, 100, 20, 110, 150, menugrp
     );
@@ -3368,7 +3368,7 @@ void gd_put_sprite(u16 *sprite, s32 x, s32 y, s32 wx, s32 wy)
             // gDPLoadTextureBlock? (pkt, timg, fmt, siz, width, height, pal, cms, cmt, masks, maskt, shifts, shiftt)
             //? texture offset has to be written like that
             gDPSetTextureImage(next_gfx(), G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, (r*0x20) + sprite + c);
-            gDPSetTile(next_gfx(), G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0, 
+            gDPSetTile(next_gfx(), G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0,
                 (G_TX_NOMIRROR| G_TX_WRAP), G_TX_NOMASK, G_TX_NOLOD,
                 (G_TX_NOMIRROR| G_TX_WRAP), G_TX_NOMASK, G_TX_NOLOD
             );
@@ -3380,8 +3380,8 @@ void gd_put_sprite(u16 *sprite, s32 x, s32 y, s32 wx, s32 wy)
                 (G_TX_NOMIRROR| G_TX_WRAP), G_TX_NOMASK, G_TX_NOLOD
             );
             gDPSetTileSize(next_gfx(), 0, 0, 0, 124, 124);
-            gSPTextureRectangle(next_gfx(), 
-                x << 2, (y + r) << 2, 
+            gSPTextureRectangle(next_gfx(),
+                x << 2, (y + r) << 2,
                 (x + 0x20) << 2, (y + r + 0x20) << 2,
                 0, 0, 0, 1024, 1024
             );
@@ -3417,7 +3417,7 @@ void gd_setup_cursor(struct ObjGroup *parentgrp)
     d_end_group("mouseg");
 
     mousegrp = (struct ObjGroup *)d_use_obj("mouseg");
-    mouseview = make_view("mouseview", 
+    mouseview = make_view("mouseview",
         (VIEW_2_COL_BUF | VIEW_ALLOC_ZBUF | VIEW_1_CYCLE | VIEW_MOVEMENT | VIEW_DRAW),
         2, 0, 0, 32, 32, mousegrp
     );
@@ -3429,8 +3429,8 @@ void gd_setup_cursor(struct ObjGroup *parentgrp)
     }
 }
 
-/** 
- * 254F94 -> 254FE4; orig name: Proc801A67C4 
+/**
+ * 254F94 -> 254FE4; orig name: Proc801A67C4
  * This prints all timers if the view was not updated for a frame
 **/
 void view_proc_print_timers(struct ObjView *self)
@@ -3527,7 +3527,7 @@ void make_timer_gadgets(void)
     for (i = 0; i < GD_NUM_TIMERS; i++)
     {
         sprintf(timerNameBuf, "tim%d\n", i);
-        timer = get_timernum(i); 
+        timer = get_timernum(i);
         d_makeobj(D_GADGET, timerNameBuf);
         d_set_obj_draw_flag(OBJ_IS_GRABBALE);
         d_set_world_pos(20.0f, (f32) ((i * 15) + 15), 0.0f);
@@ -3582,7 +3582,7 @@ void gd_block_dma(u32 devAddr, void *vAddr, s32 size)
         if ((transfer = size) > 0x1000)
         {
             transfer = 0x1000;
-        } 
+        }
 
         osPiStartDma(&D_801BE980, OS_MESG_PRI_NORMAL, OS_READ, devAddr, vAddr, transfer, &sGdDMAQueue);
         osRecvMesg(&sGdDMAQueue, &D_801BE97C, OS_MESG_BLOCK);
@@ -3610,7 +3610,7 @@ struct GdObj *load_dynlist(struct DynList *dynlist)
     while (sDynLists[++i].list != NULL)
     {
         if (sDynLists[i].list == dynlist) { break; }
-    } 
+    }
 
     if (sDynLists[i].list == NULL)
     {
@@ -3640,16 +3640,16 @@ struct GdObj *load_dynlist(struct DynList *dynlist)
     osUnmapTLBAll();
 
     sp34 = (segSize / 0x10000) / 2 + 1; //? has to be written this way
-    if (sp34 >= 31) 
+    if (sp34 >= 31)
     {
         fatal_printf("load_dynlist() too many TLBs");
     }
 
     for (i = 0; i < sp34; i++)
     {
-        osMapTLB(i, OS_PM_64K, 
+        osMapTLB(i, OS_PM_64K,
             (void *) (0x04000000 + (i * 2 * 0x10000)),
-            GD_LOWER_24(((uintptr_t) allocSegSpace) + (i * 2 * 0x10000)), 
+            GD_LOWER_24(((uintptr_t) allocSegSpace) + (i * 2 * 0x10000)),
             GD_LOWER_24(((uintptr_t) allocSegSpace) + (i * 2 * 0x10000) + 0x10000),
             -1
         );
@@ -3704,7 +3704,7 @@ void func_801A71CC(struct ObjNet *net)
     sp64.z = (ABS(net->unkBC.vec0.z) + ABS(net->unkBC.vec1.z)) / 16.0f;
 
     spA8 = net->unkBC.vec0.z + sp64.z / 2.0f;
-    
+
     for (i = 0; i < 16; i++)
     {
         spAC = net->unkBC.vec0.x + sp64.x / 2.0f;
@@ -3758,7 +3758,7 @@ void func_801A71CC(struct ObjNet *net)
         {
             func_8017BED0(net->unk21C, &linkedZone->header); // stubbed fatal function?
         }
-        else 
+        else
         {
             gd_printf("%d/%d planes in zone %d\n", sp80, sp7C, i++);
         }

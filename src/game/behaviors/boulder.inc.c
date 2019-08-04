@@ -17,7 +17,7 @@ void func_802F05DC(void) {
     if ((sp1E & 0x09) == 0x01 && o->oVelY > 10.0f) {
         PlaySound2(SOUND_GENERAL_GRINDELROLL);
         func_802A3004();
-    } 
+    }
 
     if (o->oForwardVel > 70.0)
         o->oForwardVel = 70.0f;
@@ -59,7 +59,7 @@ void bhv_big_boulder_generator_loop(void) {
             sp1C = spawn_object(o, MODEL_HMC_ROLLING_ROCK, bhvBigBoulder);
             sp1C->oMoveAngleYaw = RandomFloat() * 4096.0f;
         }
-    } 
+    }
     else {
         if ((o->oTimer & 0x7F) == 0) {
             sp1C = spawn_object(o, MODEL_HMC_ROLLING_ROCK, bhvBigBoulder);

@@ -9,7 +9,7 @@
  */
 void bhv_bbh_tilting_trap_platform_loop(void) {
     UNUSED s32 unused;
-    
+
     // US (and probably later) versions use oAction for the
     // if statement, while immediately setting it over here.
     // This was done so that Mario leaving or getting on the platform
@@ -20,7 +20,7 @@ void bhv_bbh_tilting_trap_platform_loop(void) {
     } else {
         o->oAction = BBH_TILTING_TRAP_PLATFORM_ACT_MARIO_OFF;
     }
-    
+
     if (o->oAction == BBH_TILTING_TRAP_PLATFORM_ACT_MARIO_ON) {
 #else
     if (gMarioObject->platform == o) {
@@ -42,7 +42,7 @@ void bhv_bbh_tilting_trap_platform_loop(void) {
         // Make the platform return to the horizontal at a speed of
         // 200 angle units/frame, and clamp it to 0 if it's within 200 units of 0.
         o->oAngleVelPitch = 0;
-        
+
         if ((s16)o->oFaceAnglePitch > 0) {
             if (o->oFaceAnglePitch < 200) {
                 o->oFaceAnglePitch = 0;
@@ -57,7 +57,7 @@ void bhv_bbh_tilting_trap_platform_loop(void) {
             }
         }
     }
-    
+
     // Update angle
     o->oFaceAnglePitch += o->oAngleVelPitch;
 }

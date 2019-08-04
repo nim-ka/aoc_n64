@@ -28,7 +28,7 @@ static void *sActivatedBackAndForthPlatformCollisionModels[] = {
 void bhv_activated_back_and_forth_platform_init(void) {
     // Equivalent to the first behavior param byte & 3 (last 2 bits of the byte).
     s32 platformType = ((u16)(o->oBehParams >> 16) & 0x0300) >> 8;
-    
+
     // The BitS arrow platform should flip 180º (0x8000 angle units), but
     // there is no reason for the other platforms to flip.
     if (platformType != ACTIVATED_BF_PLAT_TYPE_BITS_ARROW_PLAT) {
@@ -44,7 +44,7 @@ void bhv_activated_back_and_forth_platform_init(void) {
     // The maximum possible value of this is 50 * 127 = 6350.
     // It's 50 * 97 = 4850 in BitS and 50 * 31 = 1550 in BitFS.
     o->oActivatedBackAndForthPlatformMaxOffset = 50.0f * ((u16)(o->oBehParams >> 16) & 0x007F);
-    
+
     if (platformType == ACTIVATED_BF_PLAT_TYPE_BITFS_ELEVATOR) {
         o->oActivatedBackAndForthPlatformMaxOffset -= 12.0f;
     }
@@ -52,7 +52,7 @@ void bhv_activated_back_and_forth_platform_init(void) {
     // Truthy/falsy value that determines the direction of movement.
     // Equivalent to oBehParams2ndByte & 0x80, i.e. the most significant bit of oBehParams2ndByte.
     o->oActivatedBackAndForthPlatformVertical = (u16)(o->oBehParams >> 16) & 0x0080;
-    
+
     o->oActivatedBackAndForthPlatformStartYaw = o->oFaceAngleYaw;
 }
 
@@ -114,14 +114,14 @@ void bhv_activated_back_and_forth_platform_update(void) {
         if (o->oVelY < 0.0f) {
             o->oActivatedBackAndForthPlatformVel = 10.0f;
         }
-        
+
         // Set waiting countdown to 20 frames
         o->oActivatedBackAndForthPlatformCountdown = 20;
     }
 
     // Save the object's current position to a safe location.
     obj_perform_position_op(POS_OP_SAVE_POSITION);
-    
+
     // Update the object's position.
     // If the platform moves vertically...
     if (o->oActivatedBackAndForthPlatformVertical != FALSE) {
@@ -131,13 +131,13 @@ void bhv_activated_back_and_forth_platform_update(void) {
         // Otherwise, dip down 20 units if Mario gets on the horizontal platform, and undo if he gets off.
         o->oPosY += o->oVelY;
         clamp_f32(&o->oPosY, o->oHomeY - 20.0f, o->oHomeY);
-        
+
         // Update the position using the object's home (original position), facing angle, and offset.
         // This has to be done manually when the platform is vertical because only the yaw is used
         // by this function; it doesn't update the Y position.
         obj_set_dist_from_home(-o->oActivatedBackAndForthPlatformOffset);
     }
- 
+
     // Compute the object's velocity using the old saved position.
     obj_perform_position_op(POS_OP_COMPUTE_VELOCITY);
 }

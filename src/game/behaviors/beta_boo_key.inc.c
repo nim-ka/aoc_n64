@@ -24,7 +24,7 @@ void bhv_alpha_boo_key_loop(void) {
     // Rotate the key
     o->oFaceAngleRoll += 0x200;
     o->oFaceAngleYaw += 0x200;
-    
+
     if (are_objects_collided(o, gMarioObject)) {
         // This line makes the object inside the key's parent boo drop.
         // Was this intended to make the boo die when the key is collected?
@@ -36,7 +36,7 @@ void bhv_alpha_boo_key_loop(void) {
         // spawner that used object field 0x00 for something else. This
         // is elaborated on more in beta_boo_key_dropped_loop.
         o->parentObj->oBooDeathStatus = BOO_DEATH_STATUS_DYING;
-        
+
         // Delete the object and spawn sparkles
         mark_object_for_deletion(o);
         spawn_object(o, MODEL_SPARKLES, bhvGoldenCoinSparkles);
@@ -53,13 +53,13 @@ static void beta_boo_key_dropped_loop(void) {
     // Apply standard physics to the key
     obj_update_floor_and_walls();
     obj_move_standard(78);
-    
+
     // Slowly increase the Y offset to make the model aligned correctly.
     // This is spread out over 13 frames so that it's not noticable.
     if (o->oGraphYOffset < 26.0f) {
         o->oGraphYOffset += 2.0f;
     }
-    
+
     // Transition from rotating in both the yaw and the roll axes
     // to just in the yaw axis. This is done by truncating the key's roll
     // to the nearest multiple of 0x800, then continuously adding 0x800
@@ -69,21 +69,21 @@ static void beta_boo_key_dropped_loop(void) {
         o->oFaceAngleRoll &= 0xF800;
         o->oFaceAngleRoll += 0x800;
     }
-    
+
     // Once the key stops bouncing, stop its horizontal movement on the ground.
     if (o->oMoveFlags & OBJ_MOVE_ON_GROUND) {
         o->oVelX = 0.0f;
         o->oVelZ = 0.0f;
     }
-    
+
     // Rotate the key
     o->oFaceAngleYaw += 0x800;
-    
+
     // If the key hits the floor or 90 frames have elapsed since it was dropped,
     // become tangible and handle collision.
     if (o->oTimer > 90 || o->oMoveFlags & OBJ_MOVE_LANDED) {
         obj_become_tangible();
-        
+
         if (are_objects_collided(o, gMarioObject)) {
             // This interaction status is 0x01, the first interaction status flag.
             // It was only used for Hoot in the final game, but it seems it could've
@@ -95,7 +95,7 @@ static void beta_boo_key_dropped_loop(void) {
             // spawned "false" boos and one "true" boo with the key, and the player
             // was intended to find the one with the key to progress.
             o->parentObj->oInteractStatus = INT_STATUS_HOOT_GRABBED_BY_MARIO;
-            
+
             // Delete the object and spawn sparkles
             mark_object_for_deletion(o);
             spawn_object(o, MODEL_SPARKLES, bhvGoldenCoinSparkles);
@@ -110,32 +110,32 @@ static void beta_boo_key_dropped_loop(void) {
 static void beta_boo_key_drop(void) {
     s16 velocityDirection;
     f32 velocityMagnitude;
-    
+
     // Update the key to be inside the boo
     struct Object *parent = o->parentObj;
     copy_object_pos(o, parent);
-    
+
     // This if statement to only run this code on the first frame
     // is redundant, since it instantly sets the action to BETA_BOO_KEY_ACT_DROPPED
     // which stops this function from running again.
     if (o->oTimer == 0) {
         // Separate from the parent boo
         o->parentObj = parent->parentObj;
-        
+
         o->oAction = BETA_BOO_KEY_ACT_DROPPED;
-        
+
         // Make the key move laterally away from Mario at 3 units/frame
         // (as if he transferred kinetic energy to it)
         velocityDirection = gMarioObject->oMoveAngleYaw;
         velocityMagnitude = 3.0f;
-        
+
         o->oVelX = sins(velocityDirection) * velocityMagnitude;
         o->oVelZ = coss(velocityDirection) * velocityMagnitude;
-        
+
         // Give it an initial Y velocity of 40 units/frame
         o->oVelY = 40.0f;
     }
-    
+
     // Rotate the key
     o->oFaceAngleYaw += 0x200;
     o->oFaceAngleRoll += 0x200;
@@ -148,16 +148,16 @@ static void beta_boo_key_inside_boo_loop(void) {
     // Update the key to be inside the boo at all times
     struct Object *parent = o->parentObj;
     copy_object_pos(o, parent);
-    
+
     // Use a Y offset of 40 to make the key model aligned correctly.
     // (Why didn't they use oGraphYOffset?)
     o->oPosY += 40.0f;
-    
+
     // If the boo is dying/dead, set the action to BETA_BOO_KEY_ACT_DROPPING.
     if (parent->oBooDeathStatus != BOO_DEATH_STATUS_ALIVE) {
         o->oAction = BETA_BOO_KEY_ACT_DROPPING;
     }
-    
+
     // Rotate the key
     o->oFaceAngleRoll += 0x200;
     o->oFaceAngleYaw += 0x200;

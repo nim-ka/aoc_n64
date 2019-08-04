@@ -116,7 +116,7 @@ void ActionExclamationBox3(void)
 void func_802C0DF0(struct Struct802C0DF0 *a0, u8 a1)
 {
     struct Object *sp1C = NULL;
-    
+
     while(a0->unk0 != 99)
     {
         if(a1 == a0->unk0)

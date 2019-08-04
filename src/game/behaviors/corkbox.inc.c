@@ -4,14 +4,14 @@
 void bhv_bobomb_bully_death_smoke_init(void)
 {
     o->oPosY -= 300.0f;
-    
+
     obj_scale(10.0f);
 }
 
 void bhv_bobomb_explosion_bubble_init(void)
 {
     scale_object_xyz(o, 2.0f, 2.0f, 1.0f);
-    
+
     o->oBobombExpBubGfxExpRateX = (s32)(RandomFloat() * 2048.0f) + 0x800;
     o->oBobombExpBubGfxExpRateY = (s32)(RandomFloat() * 2048.0f) + 0x800;
     o->oTimer = RandomFloat() * 10.0f;
@@ -21,22 +21,22 @@ void bhv_bobomb_explosion_bubble_init(void)
 void bhv_bobomb_explosion_bubble_loop(void)
 {
     f32 waterY = gMarioStates[0].waterLevel;
-    
+
     o->header.gfx.scale[0] = sins(o->oBobombExpBubGfxScaleFacX) * 0.5 + 2.0;
     o->oBobombExpBubGfxScaleFacX += o->oBobombExpBubGfxExpRateX;
-    
+
     o->header.gfx.scale[1] = sins(o->oBobombExpBubGfxScaleFacY) * 0.5 + 2.0;
     o->oBobombExpBubGfxScaleFacY += o->oBobombExpBubGfxExpRateY;
-    
+
     if (o->oPosY > waterY)
     {
         o->activeFlags = 0;
         o->oPosY += 5.0f;
         spawn_object(o, MODEL_SPOT_ON_GROUND, bhvWaterSurfaceWhiteWave2);
     }
-    
+
     if (o->oTimer >= 61) o->activeFlags = 0;
-    
+
     o->oPosY += o->oVelY;
     o->oTimer++;
 }
@@ -44,7 +44,7 @@ void bhv_bobomb_explosion_bubble_loop(void)
 void bhv_respawner_loop(void)
 {
     struct Object *spawnedObject;
-    
+
     if (!is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, o->oRespawnerMinSpawnDist))
     {
         spawnedObject = spawn_object(o, o->oRespawnerModelToRespawn, o->oRespawnerBehaviorToRespawn);

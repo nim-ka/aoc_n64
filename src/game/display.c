@@ -142,7 +142,7 @@ void draw_screen_borders(void)
 
     gDPSetFillColor(gDisplayListHead++,
         GPACK_RGBA5551(0, 0, 0, 0) << 16 | GPACK_RGBA5551(0, 0, 0, 0));
-    
+
     #if BORDER_HEIGHT != 0
         gDPFillRectangle(gDisplayListHead++, 0, 0, SCREEN_WIDTH-1, BORDER_HEIGHT-1);
         gDPFillRectangle(gDisplayListHead++, 0, SCREEN_HEIGHT-BORDER_HEIGHT, SCREEN_WIDTH-1, SCREEN_HEIGHT-1);
@@ -159,10 +159,10 @@ void make_viewport_clip_rect(Vp *viewport)
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, vpUlx, vpPly, vpLrx, vpLry);
 }
 
-/** 
-  * Loads the F3D microcodes. 
-  * Refer to this function if you would like to load 
-  * other microcodes (i.e. S2DEX). 
+/**
+  * Loads the F3D microcodes.
+  * Refer to this function if you would like to load
+  * other microcodes (i.e. S2DEX).
  */
 void create_task_structure(void)
 {

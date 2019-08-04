@@ -184,7 +184,7 @@ void adjust_gadget(struct ObjGadget *gdgt, s32 a1, s32 a2)
     else if (gdgt->unk24 == 2)
         gdgt->unk28 += a1 * (-sCurrentMoveCamera->unk40.z * 1.0E-5);
 
-    if (gdgt->unk28 < 0.0f)      { gdgt->unk28 = 0.0f; } 
+    if (gdgt->unk28 < 0.0f)      { gdgt->unk28 = 0.0f; }
     else if (gdgt->unk28 > 1.0f) { gdgt->unk28 = 1.0f; }
 
     sp2C = gdgt->unk3C - gdgt->unk38;
@@ -204,7 +204,7 @@ void adjust_gadget(struct ObjGadget *gdgt, s32 a1, s32 a2)
             default:
                 fatal_printf("%s: Undefined ValueType","adjust_gadget");
         }
-    } 
+    }
 
     func_8018BCB8(gdgt);
 }

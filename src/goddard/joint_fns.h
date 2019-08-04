@@ -4,7 +4,7 @@
 #include <types.h>
 #include "gd_types.h"
 
-// bss 
+// bss
 extern s32 sTargetWeightID;
 
 // functions

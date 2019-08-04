@@ -23,15 +23,15 @@ static void handle_merry_go_round_music(void) {
         // Get Mario's floor and floor surface type
         struct Surface *marioFloor;
         u16 marioFloorType;
-        
+
         find_floor(gMarioObject->oPosX, gMarioObject->oPosY, gMarioObject->oPosZ, &marioFloor);
-        
+
         if (marioFloor == NULL) {
             marioFloorType = 0;
         } else {
             marioFloorType = marioFloor->type;
         }
-        
+
         // All floors in the merry-go-round's enclosure have surface type 0x1A.
         // The obj_is_mario_on_platform check is redundant since the merry-go-round
         // has surface type 0x1A, so Mario cannot be on the merry-go-round
@@ -46,7 +46,7 @@ static void handle_merry_go_round_music(void) {
             play_secondary_music(SEQ_EVENT_MERRY_GO_ROUND, 45, 20, 200);
             gMarioOnMerryGoRound = FALSE;
         }
-        
+
         // If Mario is not in the merry-go-round's area of the basement anymore,
         // stop playing the music.
         // If he is, play the creaking sound.
@@ -76,7 +76,7 @@ void bhv_merry_go_round_loop(void) {
         }
     } else {
         play_sound(SOUND_CH6_HOWLINGWIND, gDefaultSoundArgs);
-        
+
         if (
             // There are objects outside BBH, such as corkboxes.
             // The howling wind should not stop when Mario stands on a cork box.
@@ -89,7 +89,7 @@ void bhv_merry_go_round_loop(void) {
             o->oMerryGoRoundMarioIsOutside = FALSE;
         }
     }
-    
+
     // Rotate the merry-go-round and play appropriate music if it's not stopped.
     if (o->oMerryGoRoundStopped == FALSE) {
         o->oAngleVelYaw = 0x80;

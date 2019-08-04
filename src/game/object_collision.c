@@ -125,17 +125,17 @@ void func_802C89CC(void)
     while (sp18 != sp1C)
     {
         func_802C8918(sp18, (struct Object *)sp18->header.next, sp1C);
-        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_POLELIKE].next, 
+        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_POLELIKE].next,
                             (struct Object *)&gObjectLists[OBJ_LIST_POLELIKE]);
-        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_LEVEL].next, 
+        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_LEVEL].next,
                             (struct Object *)&gObjectLists[OBJ_LIST_LEVEL]);
-        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_GENACTOR].next, 
+        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_GENACTOR].next,
                             (struct Object *)&gObjectLists[OBJ_LIST_GENACTOR]);
-        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_PUSHABLE].next, 
+        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_PUSHABLE].next,
                             (struct Object *)&gObjectLists[OBJ_LIST_PUSHABLE]);
-        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_SURFACE].next, 
+        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_SURFACE].next,
                             (struct Object *)&gObjectLists[OBJ_LIST_SURFACE]);
-        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_DESTRUCTIVE].next, 
+        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_DESTRUCTIVE].next,
                             (struct Object *)&gObjectLists[OBJ_LIST_DESTRUCTIVE]);
         sp18 = (struct Object *)sp18->header.next;
     }
@@ -163,11 +163,11 @@ void func_802C8B50(void)
         if (sp18->oDistanceToMario < 2000.0f && !(sp18->activeFlags & ACTIVE_FLAG_UNK9))
         {
             func_802C8918(sp18, (struct Object *)sp18->header.next, sp1C);
-            func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_GENACTOR].next, 
+            func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_GENACTOR].next,
                                 (struct Object *)&gObjectLists[OBJ_LIST_GENACTOR]);
-            func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_PUSHABLE].next, 
+            func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_PUSHABLE].next,
                                 (struct Object *)&gObjectLists[OBJ_LIST_PUSHABLE]);
-            func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_SURFACE].next, 
+            func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_SURFACE].next,
                                 (struct Object *)&gObjectLists[OBJ_LIST_SURFACE]);
         }
         sp18 = (struct Object *)sp18->header.next;

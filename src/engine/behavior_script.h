@@ -2,7 +2,7 @@
 #define _BEHAVIOR_SCRIPT_H_
 
 #define BEH_BREAK    1
-#define BEH_CONTINUE 0 
+#define BEH_CONTINUE 0
 
 #define cur_object_get_int(offset) gCurrentObject->OBJECT_FIELD_S32(offset)
 #define cur_object_get_float(offset) gCurrentObject->OBJECT_FIELD_F32(offset)

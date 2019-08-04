@@ -21,4 +21,4 @@ extern void PlaySound2(s32);
 extern void create_sound_spawner(s32);
 extern void exec_anim_sound_state(struct SoundState *soundStates);
 
-#endif 
+#endif

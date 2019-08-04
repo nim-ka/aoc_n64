@@ -19,11 +19,11 @@ void bhv_red_coin_init(void) {
     struct Object *sp1C;
 
     sp1C = obj_nearest_object_with_behavior(bhvHiddenRedCoinStar);
-    if (sp1C != NULL) 
+    if (sp1C != NULL)
         o->parentObj = sp1C;
     else {
         sp1C = obj_nearest_object_with_behavior(bhvBowserCourseRedCoinStar);
-        if (sp1C != NULL) 
+        if (sp1C != NULL)
             o->parentObj = sp1C;
         else
             o->parentObj = NULL;

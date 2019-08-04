@@ -9,7 +9,7 @@
 /// @{
 /// A new type for identification of `GdObj`s in the dynamic object list.
 typedef void *DynId;
-/// Macros for casting between types of ids, 
+/// Macros for casting between types of ids,
 /// as the id can be either a number or a string.
 /// @{
 #define DynIdAsStr(id) ((char *)(id))

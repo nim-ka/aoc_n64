@@ -19,9 +19,9 @@ f32 gd_sqrt_f(f32 val)
 }
 
 /* 242338 -> 24292C */
-void func_80193B68(Mat4 *mtx, 
-    f32 a1, f32 a2, f32 a3, 
-    f32 sp78, f32 sp7C, f32 sp80, 
+void func_80193B68(Mat4 *mtx,
+    f32 a1, f32 a2, f32 a3,
+    f32 sp78, f32 sp7C, f32 sp80,
     f32 sp84, f32 sp88, f32 sp8C)
 {
     f32 sp64;
@@ -143,7 +143,7 @@ void func_801942E4(Mat4 *mtx, struct MyVec3f *vec)
 void func_80194358(Mat4 *mtx, struct MyVec3f *vec, f32 a2)
 {
     f32 sp34;
-    f32 sp30; // distance between unit vec.x and unit vec.y 
+    f32 sp30; // distance between unit vec.x and unit vec.y
     f32 sp2C; // cos(a2)
     f32 sp28; // sin(a2)
     f32 sp24 = 1.0f/DEG_PER_RAD; // rad/degree
@@ -203,7 +203,7 @@ f32 func_80194728(f32 a, f32 b)
 {
     if (b < a) { a = b; }
     else if (a < -b) { a = -b; }
-    
+
     return a;
 }
 
@@ -239,7 +239,7 @@ void Unknown8019498C(Mat4 *a0, s32 row, f32 a2)
 {
     Mat4 sp28;
     struct MyVec3f vec;
-    
+
     vec.x = (*a0)[row][0];
     vec.y = (*a0)[row][1];
     vec.z = (*a0)[row][2];
@@ -272,7 +272,7 @@ void absrot_mat4(Mat4 *mtx, s32 axisnum, f32 a2)
             rot.y = 0.0f;
             rot.z = 1.0f;
             break;
-        default: 
+        default:
             fatal_printf("absrot_matrix4(): Bad axis num");
     }
 
@@ -299,7 +299,7 @@ s32 into_unit_vec3f(struct MyVec3f *vec)
         vec->y = 0.0f;
         vec->z = 0.0f;
         return FALSE;
-    } 
+    }
 
     vec->x /= mag;
     vec->y /= mag;
@@ -369,7 +369,7 @@ void inverse_mat4(Mat4 *src, Mat4 *dst)
         }
     }
 }
- 
+
 /* self */ f32 func_80195844(f32, f32, f32, f32, f32, f32, f32, f32, f32);
 
 struct Row4 { f32 c0, c1, c2, c3; };
@@ -519,7 +519,7 @@ f32 func_80195578(Mat4 *mtx)
     inv.r1.c0 = (*mtx)[3][2];
     inv.r0.c0 = (*mtx)[3][3];
 
-    det = 
+    det =
     (
         inv.r3.c3 * func_80195844(
             inv.r2.c2, inv.r2.c1, inv.r2.c0,
@@ -640,7 +640,7 @@ void Unknown80195B04(f32 *a0, UNUSED s32 a1, f32 a2, f32 a3, s32 sp28, s32 sp2C)
     sp0C = a0[sp28];
     a0[sp28] = ((f32) sp2C) * a3 * a0[0] + sp0C * a2;
     a0[0] = a0[0] * a2 - ((f32) sp2C) * a3 * sp0C;
-    
+
     sp0C = a0[sp14];
     a0[sp14] = a0[sp10] * a3 + sp0C * a2;
     a0[sp10] = a0[sp10] * a2 - a3 * sp0C;
@@ -694,7 +694,7 @@ void Unknown80195D98(f32 *a0, UNUSED s32 a1, Mat4 *mtx)
     {
         if ((sp20 = i + 1) >= 4) { sp20 = 1; }
         if ((sp1C = sp20 + 1) >= 4) { sp1C = 1; }
-        
+
         sp3C = 2.0 * a0[i] * a0[sp20]; //? 2.0f
         sp38 = 2.0 * a0[sp1C] * a0[0]; //? 2.0f
 
@@ -746,7 +746,7 @@ void func_801961F4(Mat4 *mtx, struct MyVec3f *vec, f32 ang)
     // probably is "(angle * pi / 180) / 2"
     ycmp = gd_sin_d(ang / (DEG_PER_RAD / 2.0));
     xcmp = gd_cos_d(ang / (DEG_PER_RAD / 2.0));
-    
+
     func_80195FD4(mtx, vec, ycmp, xcmp);
 }
 
@@ -796,7 +796,7 @@ void cpy_mat4(const Mat4 *src, Mat4 *dst)
 void func_80196430(struct MyVec3f *vec, const Mat4 *mtx)
 {
     struct MyVec3f dot;
-    
+
     dot.x = (*mtx)[0][0] * vec->x + (*mtx)[1][0] * vec->y + (*mtx)[2][0] * vec->z;
     dot.y = (*mtx)[0][1] * vec->x + (*mtx)[1][1] * vec->y + (*mtx)[2][1] * vec->z;
     dot.z = (*mtx)[0][2] * vec->x + (*mtx)[1][2] * vec->y + (*mtx)[2][2] * vec->z;
@@ -925,7 +925,7 @@ void Unknown801970F0(Mat4 *dst, f32 x, f32 y, f32 z, s32 copy)
 
     mag = gd_sqrt_f(SQ(x) + SQ(y) + SQ(z));
 
-    if (mag == 0.0f) 
+    if (mag == 0.0f)
     {
         if (copy) { set_identity_mat4(dst); }
         return;

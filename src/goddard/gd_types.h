@@ -65,7 +65,7 @@ enum ObjTypeFlag {
 #define OBJ_TYPE_ALL 0x00FFFFFF
 
 
-/// Function pointer for a `GdObj`'s drawing routine 
+/// Function pointer for a `GdObj`'s drawing routine
 typedef void (*drawmethod_t)(void *);
 /// Flags for the drawFlags field of an GdObj
 enum ObjDrawingFlags {
@@ -79,7 +79,7 @@ enum ObjDrawingFlags {
 /**
  * The base of structure of all of Goddard's objects. It is present as a "header"
  * at the beginning of all `ObjX` structures, and as such, this type is used
- * when he need to generalize code to take different `ObjX`es. 
+ * when he need to generalize code to take different `ObjX`es.
  * It is also a linked list node structure with `prev` and `next` pointers.
  */
 struct GdObj {
@@ -100,7 +100,7 @@ struct Links {
     /* 0x08 */ struct GdObj *obj;
 };
 
-/* These are the compressed versions of ObjFace or ObjVertex that are 
+/* These are the compressed versions of ObjFace or ObjVertex that are
 ** pointed to by Links in the faceGroup and vtxGroup, if Group.linkType
 ** is set to 0x01. See `chk_shapegen` */
 struct GdFaceData {
@@ -142,7 +142,7 @@ struct ObjBone {
     /* 0x000 */ struct GdObj header;
     /* 0x014 */ struct MyVec3f unk14;   // "position"?? from dead code in draw_bone
     /* 0x020 */ struct ObjBone *prev;   // maybe, based on make_bone
-    /* 0x024 */ struct ObjBone *next;   // maybe, based on make_bone 
+    /* 0x024 */ struct ObjBone *next;   // maybe, based on make_bone
     /* 0x028 */ struct MyVec3f unk28;   // "rotation"?? from dead code in draw_bone
     /* 0x034 */ u8  pad34[0x40-0x34];
     /* 0x040 */ struct MyVec3f unk40;
@@ -268,7 +268,7 @@ struct ObjShape {
 }; /* sizeof = 0x9C */
 
 /* 0x44 Flag Values
- * 0x01 - 
+ * 0x01 -
  * 0x10 - Use vtx position as vtx normal? (`chk_shapegen`)
  */
 
@@ -280,7 +280,7 @@ struct ObjShape {
  * 4 - dynamic net? bone net?
  * 5 - particle net?
  * 6 - stub
- * 7 - 
+ * 7 -
  */
 
 struct ObjNet {
@@ -493,7 +493,7 @@ struct ObjView {
     /* 0x4C */ f32 unk4C;
     /* 0x50 */ u8  pad50[0x4];
     /* 0x54 */ struct MyVec3f lowerRight;
-    /* 0x60 */ struct MyVec3f clipping; // z-coordinate of (x: near, y: far) clipping plane? 
+    /* 0x60 */ struct MyVec3f clipping; // z-coordinate of (x: near, y: far) clipping plane?
     /* 0x6C */ const char *namePtr;
     /* 0x70 */ s32 gdDlNum;   // gd dl number
     /* 0x74 */ s32 unk74;
@@ -537,7 +537,7 @@ struct ObjAnimator {
     /* 0x38 */ u8  pad38[0x44-0x38];
     /* 0x44 */ struct GdObj* unk44;   //attached object? Normally another Objanimator?
     /* 0x48 */ void (*fn48) (struct ObjAnimator*);
-    /* 0x4C */ s32 unk4C;   //state enum? 
+    /* 0x4C */ s32 unk4C;   //state enum?
     /* 0x50 */ s32 unk50;
     /* 0x54 */ s32 unk54;
 }; /* sizeof = 0x58 */
@@ -549,7 +549,7 @@ enum GdAnimations {
     GD_ANIM_TRI_F_2   = 2,  // f32[3][3]
     GD_ANIM_9H        = 3,  // s16[9]
     GD_ANIM_TRI_F_4   = 4,  // f32[3][3]
-    GD_ANIM_STUB      = 5,  
+    GD_ANIM_STUB      = 5,
     GD_ANIM_3H_SCALED = 6,  // s16[3]
     GD_ANIM_3H        = 7,  // s16[3]
     GD_ANIM_6H_SCALED = 8,  // s16[6]
@@ -585,7 +585,7 @@ enum GdLightFlags {
     LIGHT_UNK02 = 0x02, // old type of light?
     LIGHT_NEW_UNCOUNTED = 0x10,
     LIGHT_UNK20 = 0x20 // new, actually used type of light? used for phong shading?
-}; 
+};
 
 struct ObjLight {
     /* 0x00 */ struct GdObj header;

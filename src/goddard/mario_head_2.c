@@ -53,7 +53,7 @@ void func_80181760(struct ObjGroup *a0)
     register f32 sp1C;
     register struct Links* link;
     Mat4* mtx;
-    
+
     for (link = a0->link1C; link != NULL; link = link->next)
     {
         mtx = (Mat4 *)link->obj;
@@ -63,7 +63,7 @@ void func_80181760(struct ObjGroup *a0)
             (*mtx)[2][0] = (*mtx)[1][1] * sp1C;
             (*mtx)[2][1] = (*mtx)[1][2] * sp1C;
             (*mtx)[2][2] = (*mtx)[1][3] * sp1C;
-        } 
+        }
         else
             (*mtx)[2][0] = (*mtx)[2][1] = (*mtx)[2][2] = 0.0f;
     }
@@ -80,7 +80,7 @@ void move_skin(struct ObjNet* net)
 
 /* @ 230064 for 0x13C*/
 void func_80181894(struct ObjJoint* joint)
-{   
+{
     register struct ObjGroup* weightGroup;  //baseGroup? weights Only?
     struct MyVec3f stackVec;
     register struct ObjWeight* curWeight;
@@ -152,7 +152,7 @@ void reset_weight(struct ObjWeight* weight)
             (applyproc_t) Unknown801819D0,
             skinGroup
         );
-    else 
+    else
         fatal_printf("reset_weight(): Skin net has no SkinGroup");
 
     if (weight->unk3C == NULL)

@@ -50,13 +50,13 @@ void func_802F4DB4(void) {
         create_sound_spawner(SOUND_GENERAL_BREAKBOX);
         o->activeFlags = 0;
     }
-    
+
     ObjCheckFloorDeath(sp1E, D_803600E0);
 }
 
 void breakable_box_small_released_loop(void) {
     o->oBreakableBoxSmallFramesSinceReleased++;
-    
+
     // Begin flashing
     if (o->oBreakableBoxSmallFramesSinceReleased > 810) {
         if (o->oBreakableBoxSmallFramesSinceReleased & 1)
@@ -74,7 +74,7 @@ void breakable_box_small_released_loop(void) {
 
 void breakable_box_small_idle_loop(void) {
     switch(o->oAction) {
-        case 0: 
+        case 0:
             func_802F4DB4();
             break;
 

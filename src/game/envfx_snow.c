@@ -13,13 +13,13 @@
 #include "obj_behaviors.h"
 
 /** This file contains the function that handles 'environment effects',
- *  which are particle effects related to the level type that, unlike 
+ *  which are particle effects related to the level type that, unlike
  *  object-based particle effects, are rendered more efficiently by manually
- *  generating display lists instead of drawing each particle separately. 
- *  This file implements snow effects, while in 'envfx_bubbles.c' the 
+ *  generating display lists instead of drawing each particle separately.
+ *  This file implements snow effects, while in 'envfx_bubbles.c' the
  *  implementation for flowers (unused), lava bubbles and jetstream bubbles
- *  can be found. 
- *  The main entry point for envfx is at the bottom of this file, which is 
+ *  can be found.
+ *  The main entry point for envfx is at the bottom of this file, which is
  *  called from geo_enfvx_main in level_geo.c
  */
 
@@ -105,9 +105,9 @@ s32 envfx_init_snow(s32 mode) {
     return 1;
 }
 
-/** Update the amount of snow particles on screen. 
+/** Update the amount of snow particles on screen.
  *  Normal snow starts with few flakes and slowly increases to the maximum.
- *  For water snow, this is dependent on how deep underwater you are. 
+ *  For water snow, this is dependent on how deep underwater you are.
  *  Blizzard snows starts at the maximum amount and doesn't change.
  */
 void envfx_update_snowflake_count(s32 mode, Vec3s marioPos) {
@@ -153,7 +153,7 @@ void envfx_cleanup_snow(void *snowParticleArray) {
 }
 
 /** Given two points, return the vector from one to the other represented
- *  as euler angles and a length 
+ *  as euler angles and a length
  */
 void orbit_from_positions(Vec3s from, Vec3s to, s16 *radius, s16 *pitch, s16 *yaw) {
     f32 dx = to[0] - from[0];
@@ -166,7 +166,7 @@ void orbit_from_positions(Vec3s from, Vec3s to, s16 *radius, s16 *pitch, s16 *ya
 }
 
 /** Calculate the 'result' vector as the position of the 'origin' vector
- *  with a vector added represented by radius, pitch and yaw. 
+ *  with a vector added represented by radius, pitch and yaw.
  */
 void pos_from_orbit(Vec3s origin, Vec3s result, s16 radius, s16 pitch, s16 yaw) {
     result[0] = origin[0] + radius * coss(pitch) * sins(yaw);
@@ -174,7 +174,7 @@ void pos_from_orbit(Vec3s origin, Vec3s result, s16 radius, s16 pitch, s16 yaw) 
     result[2] = origin[2] + radius * coss(pitch) * coss(yaw);
 }
 
-/** Check whether the snowflake with the given index is inside view, where 
+/** Check whether the snowflake with the given index is inside view, where
  *  'view' is a cylinder of radius 300 and height 400 centered at the input
  *  x, y and z.
  */
@@ -194,15 +194,15 @@ s32 envfx_is_snowflake_alive(s32 index, s32 snowCylinderX, s32 snowCylinderY, s3
 
 
 /** Update the position of each snowflake. Snowflakes wiggle by having a
- *  random value added to their position each frame. If snowflakes get out 
- *  of view (where view = a small cylinder in front of the camera) their 
- *  position is reset to somewhere in view. 
+ *  random value added to their position each frame. If snowflakes get out
+ *  of view (where view = a small cylinder in front of the camera) their
+ *  position is reset to somewhere in view.
  *  Since the cylinder of snow is so close to the camera, snow flakes would
- *  move out of view very quickly when the camera moves. To mitigate this, 
- *  a portion of the difference between the previous and current snowCylinder 
+ *  move out of view very quickly when the camera moves. To mitigate this,
+ *  a portion of the difference between the previous and current snowCylinder
  *  position is added to snowflakes to keep them in view for longer. That's
  *  why the snow looks a bit off in 3d, it's a lot closer than you'd think
- *  but appears to be further by means of hacky position updates. This might 
+ *  but appears to be further by means of hacky position updates. This might
  *  have been done because larger, further away snowflakes are occluded easily
  *  by level geometry, wasting many particles.
  */
@@ -236,8 +236,8 @@ void envfx_update_snow_normal(s32 snowCylinderX, s32 snowCylinderY, s32 snowCyli
 }
 
 
-/** Unused function. Basically a copy-paste of envfx_update_snow_normal, 
- *  but an extra 20 units is added to each snowflake x and snowflakes can 
+/** Unused function. Basically a copy-paste of envfx_update_snow_normal,
+ *  but an extra 20 units is added to each snowflake x and snowflakes can
  *  respawn in y-range [-200, 200] instead of [0, 200] relative to snowCylinderY
  *  They also fall a bit faster (with vertical speed -5 instead of -2).
  */
@@ -339,8 +339,8 @@ void rotate_triangle_vertices(Vec3s vertex1, Vec3s vertex2, Vec3s vertex3, s16 p
 }
 
 /** Append 15 vertices to 'gfx', which is enough for 5 snowflakes starting at
- *  'index' in the buffer. The 3 input vertices represent the roated triangle 
- *  around (0,0,0) that will be translated to snowflake positions to draw the 
+ *  'index' in the buffer. The 3 input vertices represent the roated triangle
+ *  around (0,0,0) that will be translated to snowflake positions to draw the
  *  snowflake image.
  */
 #if defined(VERSION_EU) && !defined(NON_MATCHING)
@@ -404,7 +404,7 @@ Gfx *envfx_update_snow(s32 snowMode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo)
 
     switch (snowMode) {
         case ENVFX_SNOW_NORMAL:
-            // ensure the snow cylinder is no further than 250 units in front 
+            // ensure the snow cylinder is no further than 250 units in front
             // of the camera, and no closer than 1 unit.
             if (radius > 250)
                 radius -= 250;

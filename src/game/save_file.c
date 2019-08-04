@@ -247,7 +247,7 @@ static void restore_main_menu_data(s32 srcSlot)
         &gSaveBuffer.menuData[destSlot],
         sizeof(gSaveBuffer.menuData[destSlot]));
 
-    // Write destination data to eeprom 
+    // Write destination data to eeprom
     write_eeprom_data(
         &gSaveBuffer.menuData[destSlot],
         sizeof(gSaveBuffer.menuData[destSlot]));
@@ -262,7 +262,7 @@ static void save_main_menu_data(void)
             &gSaveBuffer.menuData[0],
             sizeof(gSaveBuffer.menuData[0]),
             MENU_DATA_MAGIC);
-        
+
         // Back up data
         bcopy(
             &gSaveBuffer.menuData[0],
@@ -281,7 +281,7 @@ static void save_main_menu_data(void)
 static void wipe_main_menu_data(void)
 {
     bzero(&gSaveBuffer.menuData[0], sizeof(gSaveBuffer.menuData[0]));
-    
+
     // Set score ages for all courses to 3, 2, 1, and 0, respectively.
     gSaveBuffer.menuData[0].coinScoreAges[0] = 0x3FFFFFFF;
     gSaveBuffer.menuData[0].coinScoreAges[1] = 0x2AAAAAAA;
@@ -356,7 +356,7 @@ static void restore_save_file_data(s32 fileIndex, s32 srcSlot)
         &gSaveBuffer.files[fileIndex][srcSlot],
         &gSaveBuffer.files[fileIndex][destSlot],
         sizeof(gSaveBuffer.files[fileIndex][destSlot]));
-    
+
     // Write destination data to eeprom
     write_eeprom_data(
         &gSaveBuffer.files[fileIndex][destSlot],
@@ -487,7 +487,7 @@ void save_file_reload(void)
     gSaveFileModified = FALSE;
 }
 
-/** 
+/**
  * Update the current save file after collecting a star or a key.
  * If coin score is greater than the current high score, update it.
  */
@@ -508,7 +508,7 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex)
     {
         //! Compares the coin score as a 16 bit value, but only writes the 8 bit
         // truncation. This can allow a high score to decrease.
-        
+
         if (coinScore > ((u16)save_file_get_max_coin_score(courseIndex) & 0xFFFF))
             sUnusedGotGlobalCoinHiScore = 1;
 
@@ -528,15 +528,15 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex)
         if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_1 | SAVE_FLAG_UNLOCKED_BASEMENT_DOOR)))
             save_file_set_flags(SAVE_FLAG_HAVE_KEY_1);
         break;
-    
+
     case LEVEL_BOWSER_2:
         if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_2 | SAVE_FLAG_UNLOCKED_UPSTAIRS_DOOR)))
             save_file_set_flags(SAVE_FLAG_HAVE_KEY_2);
         break;
-    
+
     case LEVEL_BOWSER_3:
         break;
-    
+
     default:
         if (!(save_file_get_star_flags(fileIndex, courseIndex) & starFlag))
             save_file_set_star_flags(fileIndex, courseIndex, starFlag);
@@ -758,7 +758,7 @@ void disable_warp_checkpoint(void)
 }
 
 /**
- * Checks the upper bit of the WarpNode->destLevel byte to see if the 
+ * Checks the upper bit of the WarpNode->destLevel byte to see if the
  * game should set a warp checkpoint.
  */
 void check_if_should_set_warp_checkpoint(struct WarpNode *warpNode)
@@ -784,7 +784,7 @@ s32 check_warp_checkpoint(struct WarpNode *warpNode)
     s16 isWarpCheckpointActive = FALSE;
     s16 currCourseNum = gLevelToCourseNumTable[(warpNode->destLevel & 0x7F) - 1];
 
-    // gSavedCourseNum is only used in this function. 
+    // gSavedCourseNum is only used in this function.
     if (gWarpCheckpoint.courseNum != 0 && gSavedCourseNum == currCourseNum && gWarpCheckpoint.actNum == gCurrActNum)
     {
         warpNode->destLevel = gWarpCheckpoint.levelID;

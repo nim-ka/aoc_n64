@@ -6,7 +6,7 @@
 
 // In various files of the Goddard subsystem, there are miscellaneous
 // unused rodata strings. These can be generated via a printf call that
-// is stubbed out, but not via define printf(...), as IDO 5.3 C 
+// is stubbed out, but not via define printf(...), as IDO 5.3 C
 // preprocessor did not support va_arg defines. Goddard, however, did
 // use gd_printf, which is distinct from this type of stubbed call, as
 // gd_printf actually is called. This could be because gd_printf could

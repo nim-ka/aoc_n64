@@ -1,248 +1,248 @@
 .late_rodata
 .late_rodata_alignment 8
 glabel jtbl_80337D08 # US: 80338EC0
-	.word L8031C430
-	.word L8031C3DC
-	.word L8031C44C
-	.word L8031C45C
-	.word L8031C3F8
-	.word L8031C6C8
-	.word L8031C724
-	.word L8031C75C
-	.word L8031C75C
-	.word L8031C7A8
-	.word L8031C7B8
-	.word L8031C75C
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C7D8
-	.word L8031C7FC
-	.word L8031C80C
-	.word L8031C508
-	.word L8031C6B8
-	.word L8031C1CC
-	.word L8031C698
-	.word L8031C600
-	.word L8031C5E4
-	.word L8031C5D4
-	.word L8031C5B8
-	.word L8031C5A0
-	.word L8031C568
-	.word L8031C530
-	.word L8031C4C0
-	.word L8031C46C
-	.word L8031C488
-	.word L8031C650
-	.word L8031C61C
-	.word L8031C684
-	.word L8031C820
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C3CC
-	.word L8031C3A4
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C34C
-	.word L8031C33C
-	.word L8031C2F4
-	.word L8031C2BC
-	.word L8031C34C
-	.word L8031C34C
-	.word L8031C34C
-	.word L8031C280
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
+    .word L8031C430
+    .word L8031C3DC
+    .word L8031C44C
+    .word L8031C45C
+    .word L8031C3F8
+    .word L8031C6C8
+    .word L8031C724
+    .word L8031C75C
+    .word L8031C75C
+    .word L8031C7A8
+    .word L8031C7B8
+    .word L8031C75C
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C7D8
+    .word L8031C7FC
+    .word L8031C80C
+    .word L8031C508
+    .word L8031C6B8
+    .word L8031C1CC
+    .word L8031C698
+    .word L8031C600
+    .word L8031C5E4
+    .word L8031C5D4
+    .word L8031C5B8
+    .word L8031C5A0
+    .word L8031C568
+    .word L8031C530
+    .word L8031C4C0
+    .word L8031C46C
+    .word L8031C488
+    .word L8031C650
+    .word L8031C61C
+    .word L8031C684
+    .word L8031C820
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C3CC
+    .word L8031C3A4
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C34C
+    .word L8031C33C
+    .word L8031C2F4
+    .word L8031C2BC
+    .word L8031C34C
+    .word L8031C34C
+    .word L8031C34C
+    .word L8031C280
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
 
 glabel jtbl_80337E04 # US: 80338FBC
-	.word L8031C89C
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C9E4
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031CA14
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031CA30
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031CA58
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C8F8
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C9DC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C8CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C8DC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C914
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C960
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C1CC
-	.word L8031C97C
+    .word L8031C89C
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C9E4
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031CA14
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031CA30
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031CA58
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C8F8
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C9DC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C8CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C8DC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C914
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C960
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C1CC
+    .word L8031C97C
 
 .text
 glabel sequence_channel_process_script
@@ -269,7 +269,7 @@ glabel sequence_channel_process_script
 /* 0D7150 8031C150 50800004 */  beql  $a0, $zero, .L8031C164
 /* 0D7154 8031C154 26100004 */   addiu $s0, $s0, 4
 /* 0D7158 8031C158 0C0C6C29 */  jal   seq_channel_layer_process_script
-/* 0D715C 8031C15C 00000000 */   nop   
+/* 0D715C 8031C15C 00000000 */   nop
 /* 0D7160 8031C160 26100004 */  addiu $s0, $s0, 4
 .L8031C164:
 /* 0D7164 8031C164 1612FFF9 */  bne   $s0, $s2, .L8031C14C
@@ -351,7 +351,7 @@ glabel L8031C1CC
 /* 0D7270 8031C270 002D0821 */  addu  $at, $at, $t5
 /* 0D7274 8031C274 8C2D7D08 */  lw    $t5, %lo(jtbl_80337D08)($at)
 /* 0D7278 8031C278 01A00008 */  jr    $t5
-/* 0D727C 8031C27C 00000000 */   nop   
+/* 0D727C 8031C27C 00000000 */   nop
 glabel L8031C280
 /* 0D7280 8031C280 0C0C6C0C */  jal   m64_read_s16
 /* 0D7284 8031C284 02002025 */   move  $a0, $s0
@@ -415,19 +415,19 @@ glabel L8031C34C
 /* 0D7358 8031C358 16210003 */  bne   $s1, $at, .L8031C368
 /* 0D735C 8031C35C 02201825 */   move  $v1, $s1
 /* 0D7360 8031C360 1660FF9A */  bnez  $s3, .L8031C1CC
-/* 0D7364 8031C364 00000000 */   nop   
+/* 0D7364 8031C364 00000000 */   nop
 .L8031C368:
 /* 0D7368 8031C368 240100F9 */  li    $at, 249
 /* 0D736C 8031C36C 54610004 */  bnel  $v1, $at, .L8031C380
 /* 0D7370 8031C370 240100F5 */   li    $at, 245
 /* 0D7374 8031C374 0661FF95 */  bgez  $s3, .L8031C1CC
-/* 0D7378 8031C378 00000000 */   nop   
+/* 0D7378 8031C378 00000000 */   nop
 /* 0D737C 8031C37C 240100F5 */  li    $at, 245
 .L8031C380:
 /* 0D7380 8031C380 54610004 */  bnel  $v1, $at, .L8031C394
 /* 0D7384 8031C384 8E8F0014 */   lw    $t7, 0x14($s4)
 /* 0D7388 8031C388 0660FF90 */  bltz  $s3, .L8031C1CC
-/* 0D738C 8031C38C 00000000 */   nop   
+/* 0D738C 8031C38C 00000000 */   nop
 /* 0D7390 8031C390 8E8F0014 */  lw    $t7, 0x14($s4)
 .L8031C394:
 /* 0D7394 8031C394 3059FFFF */  andi  $t9, $v0, 0xffff
@@ -444,12 +444,12 @@ glabel L8031C3A4
 /* 0D73BC 8031C3BC 0C0C650A */  jal   note_pool_fill
 /* 0D73C0 8031C3C0 00402825 */   move  $a1, $v0
 /* 0D73C4 8031C3C4 1000FF81 */  b     .L8031C1CC
-/* 0D73C8 8031C3C8 00000000 */   nop   
+/* 0D73C8 8031C3C8 00000000 */   nop
 glabel L8031C3CC
 /* 0D73CC 8031C3CC 0C0C64BF */  jal   note_pool_clear
 /* 0D73D0 8031C3D0 26440080 */   addiu $a0, $s2, 0x80
 /* 0D73D4 8031C3D4 1000FF7D */  b     .L8031C1CC
-/* 0D73D8 8031C3D8 00000000 */   nop   
+/* 0D73D8 8031C3D8 00000000 */   nop
 glabel L8031C3DC
 /* 0D73DC 8031C3DC 0C0C6C0C */  jal   m64_read_s16
 /* 0D73E0 8031C3E0 02002025 */   move  $a0, $s0
@@ -460,7 +460,7 @@ glabel L8031C3DC
 /* 0D73F4 8031C3F4 AE580030 */   sw    $t8, 0x30($s2)
 glabel L8031C3F8
 /* 0D73F8 8031C3F8 1275FF74 */  beq   $s3, $s5, .L8031C1CC
-/* 0D73FC 8031C3FC 00000000 */   nop   
+/* 0D73FC 8031C3FC 00000000 */   nop
 /* 0D7400 8031C400 8E4C0030 */  lw    $t4, 0x30($s2)
 /* 0D7404 8031C404 00136840 */  sll   $t5, $s3, 1
 /* 0D7408 8031C408 8E8A0014 */  lw    $t2, 0x14($s4)
@@ -480,7 +480,7 @@ glabel L8031C430
 /* 0D743C 8031C43C 0C0C700C */  jal   set_instrument
 /* 0D7440 8031C440 304500FF */   andi  $a1, $v0, 0xff
 /* 0D7444 8031C444 1000FF61 */  b     .L8031C1CC
-/* 0D7448 8031C448 00000000 */   nop   
+/* 0D7448 8031C448 00000000 */   nop
 glabel L8031C44C
 /* 0D744C 8031C44C 92580000 */  lbu   $t8, ($s2)
 /* 0D7450 8031C450 330CFFFD */  andi  $t4, $t8, 0xfffd
@@ -498,7 +498,7 @@ glabel L8031C46C
 /* 0D7478 8031C478 0C0C7031 */  jal   sequence_channel_set_volume
 /* 0D747C 8031C47C 304500FF */   andi  $a1, $v0, 0xff
 /* 0D7480 8031C480 1000FF52 */  b     .L8031C1CC
-/* 0D7484 8031C484 00000000 */   nop   
+/* 0D7484 8031C484 00000000 */   nop
 glabel L8031C488
 /* 0D7488 8031C488 0C0C6C07 */  jal   m64_read_u8
 /* 0D748C 8031C48C 02002025 */   move  $a0, $s0
@@ -507,7 +507,7 @@ glabel L8031C488
 /* 0D7498 8031C498 04410004 */  bgez  $v0, .L8031C4AC
 /* 0D749C 8031C49C 468021A0 */   cvt.s.w $f6, $f4
 /* 0D74A0 8031C4A0 44814000 */  mtc1  $at, $f8
-/* 0D74A4 8031C4A4 00000000 */  nop   
+/* 0D74A4 8031C4A4 00000000 */  nop
 /* 0D74A8 8031C4A8 46083180 */  add.s $f6, $f6, $f8
 .L8031C4AC:
 /* 0D74AC 8031C4AC 460032A1 */  cvt.d.s $f10, $f6
@@ -525,7 +525,7 @@ glabel L8031C4C0
 /* 0D74D8 8031C4D8 46802220 */   cvt.s.w $f8, $f4
 /* 0D74DC 8031C4DC 3C014F80 */  li    $at, 0x4F800000 # 4294967296.000000
 /* 0D74E0 8031C4E0 44813000 */  mtc1  $at, $f6
-/* 0D74E4 8031C4E4 00000000 */  nop   
+/* 0D74E4 8031C4E4 00000000 */  nop
 /* 0D74E8 8031C4E8 46064200 */  add.s $f8, $f8, $f6
 .L8031C4EC:
 /* 0D74EC 8031C4EC 3C0140E0 */  li    $at, 0x40E00000 # 7.000000
@@ -554,7 +554,7 @@ glabel L8031C530
 /* 0D7540 8031C540 04410004 */  bgez  $v0, .L8031C554
 /* 0D7544 8031C544 468042A0 */   cvt.s.w $f10, $f8
 /* 0D7548 8031C548 44818000 */  mtc1  $at, $f16
-/* 0D754C 8031C54C 00000000 */  nop   
+/* 0D754C 8031C54C 00000000 */  nop
 /* 0D7550 8031C550 46105280 */  add.s $f10, $f10, $f16
 .L8031C554:
 /* 0D7554 8031C554 460054A1 */  cvt.d.s $f18, $f10
@@ -570,7 +570,7 @@ glabel L8031C568
 /* 0D7578 8031C578 04410004 */  bgez  $v0, .L8031C58C
 /* 0D757C 8031C57C 46804420 */   cvt.s.w $f16, $f8
 /* 0D7580 8031C580 44815000 */  mtc1  $at, $f10
-/* 0D7584 8031C584 00000000 */  nop   
+/* 0D7584 8031C584 00000000 */  nop
 /* 0D7588 8031C588 460A8400 */  add.s $f16, $f16, $f10
 .L8031C58C:
 /* 0D758C 8031C58C 460084A1 */  cvt.d.s $f18, $f16
@@ -684,7 +684,7 @@ glabel L8031C6C8
 /* 0D770C 8031C70C 0C0C5A03 */  jal   get_bank_or_seq
 /* 0D7710 8031C710 02203025 */   move  $a2, $s1
 /* 0D7714 8031C714 1040FEAD */  beqz  $v0, .L8031C1CC
-/* 0D7718 8031C718 00000000 */   nop   
+/* 0D7718 8031C718 00000000 */   nop
 /* 0D771C 8031C71C 1000FEAB */  b     .L8031C1CC
 /* 0D7720 8031C720 A2510005 */   sb    $s1, 5($s2)
 glabel L8031C724
@@ -791,14 +791,14 @@ glabel L8031C820
 /* 0D788C 8031C88C 00390821 */  addu  $at, $at, $t9
 /* 0D7890 8031C890 8C397E04 */  lw    $t9, %lo(jtbl_80337E04)($at)
 /* 0D7894 8031C894 03200008 */  jr    $t9
-/* 0D7898 8031C898 00000000 */   nop   
+/* 0D7898 8031C898 00000000 */   nop
 glabel L8031C89C
 /* 0D789C 8031C89C 308E00FF */  andi  $t6, $a0, 0xff
 /* 0D78A0 8031C8A0 000E5080 */  sll   $t2, $t6, 2
 /* 0D78A4 8031C8A4 024A5821 */  addu  $t3, $s2, $t2
 /* 0D78A8 8031C8A8 8D630044 */  lw    $v1, 0x44($t3)
 /* 0D78AC 8031C8AC 1060FE47 */  beqz  $v1, .L8031C1CC
-/* 0D78B0 8031C8B0 00000000 */   nop   
+/* 0D78B0 8031C8B0 00000000 */   nop
 /* 0D78B4 8031C8B4 8C730000 */  lw    $s3, ($v1)
 /* 0D78B8 8031C8B8 00134840 */  sll   $t1, $s3, 1
 /* 0D78BC 8031C8BC 0009C7C2 */  srl   $t8, $t1, 0x1f
@@ -853,7 +853,7 @@ glabel L8031C960
 /* 0D796C 8031C96C 0C0C6A93 */  jal   seq_channel_layer_free
 /* 0D7970 8031C970 02402025 */   move  $a0, $s2
 /* 0D7974 8031C974 1000FE15 */  b     .L8031C1CC
-/* 0D7978 8031C978 00000000 */   nop   
+/* 0D7978 8031C978 00000000 */   nop
 glabel L8031C97C
 /* 0D797C 8031C97C 1275FE13 */  beq   $s3, $s5, .L8031C1CC
 /* 0D7980 8031C980 02402025 */   move  $a0, $s2
@@ -894,7 +894,7 @@ glabel L8031C9E4
 /* 0D7A04 8031CA04 0C0C6B60 */  jal   sequence_channel_enable
 /* 0D7A08 8031CA08 01AE3021 */   addu  $a2, $t5, $t6
 /* 0D7A0C 8031CA0C 1000FDEF */  b     .L8031C1CC
-/* 0D7A10 8031CA10 00000000 */   nop   
+/* 0D7A10 8031CA10 00000000 */   nop
 glabel L8031CA14
 /* 0D7A14 8031CA14 322A000F */  andi  $t2, $s1, 0xf
 /* 0D7A18 8031CA18 000A4880 */  sll   $t1, $t2, 2
@@ -902,7 +902,7 @@ glabel L8031CA14
 /* 0D7A20 8031CA20 0C0C6AB4 */  jal   sequence_channel_disable
 /* 0D7A24 8031CA24 8F04002C */   lw    $a0, 0x2c($t8)
 /* 0D7A28 8031CA28 1000FDE8 */  b     .L8031C1CC
-/* 0D7A2C 8031CA2C 00000000 */   nop   
+/* 0D7A2C 8031CA2C 00000000 */   nop
 glabel L8031CA30
 /* 0D7A30 8031CA30 02002025 */  move  $a0, $s0
 /* 0D7A34 8031CA34 0C0C6C07 */  jal   m64_read_u8
@@ -935,7 +935,7 @@ glabel L8031CA58
 /* 0D7A90 8031CA90 50800004 */  beql  $a0, $zero, .L8031CAA4
 /* 0D7A94 8031CA94 26100004 */   addiu $s0, $s0, 4
 /* 0D7A98 8031CA98 0C0C6C29 */  jal   seq_channel_layer_process_script
-/* 0D7A9C 8031CA9C 00000000 */   nop   
+/* 0D7A9C 8031CA9C 00000000 */   nop
 /* 0D7AA0 8031CAA0 26100004 */  addiu $s0, $s0, 4
 .L8031CAA4:
 /* 0D7AA4 8031CAA4 1612FFF9 */  bne   $s0, $s2, .L8031CA8C

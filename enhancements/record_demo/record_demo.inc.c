@@ -5,13 +5,13 @@
  * This enhancement does require the lastest versions of PJ64 from the nightly builds,
  * because it uses the javascript API to automatically dump the demo files from RAM
  * once the demo is completed. See RecordDemo.js for more info
- * 
+ *
  * SETUP:
  *
  * First add the following above the 'thread5_game_loop' function in src/game/game.c
     #include "../enhancements/record_demo/record_demo.inc.c"
- * 
- * Then, inside thread5_game_loop(), add the recordingDemo function call RIGHT AFTER 
+ *
+ * Then, inside thread5_game_loop(), add the recordingDemo function call RIGHT AFTER
  * read_controller_inputs like so:
     func_802494A8();
     func_80247FAC();
@@ -32,15 +32,15 @@
 #define DEMOREC_PRINT_X 10
 #define DEMOREC_PRINT_Y 10
 
-#define DEMOREC_DONE_DELAY 60 // Show "DONE" message for 2 seconds. 
+#define DEMOREC_DONE_DELAY 60 // Show "DONE" message for 2 seconds.
 
 #define DEMOREC_MAX_INPUTS 1025 // Max number of recorded inputs.
 
-/* 
-    DO NOT REMOVE, MODIFY, OR MAKE A COPY OF THIS EXACT STRING! 
+/*
+    DO NOT REMOVE, MODIFY, OR MAKE A COPY OF THIS EXACT STRING!
     This is here so that the js dump script can find the control variables easily.
 */
-char gDemoRecTag[] = "DEMORECVARS"; 
+char gDemoRecTag[] = "DEMORECVARS";
 
 // Control variables. It is easier if they are each 4 byte aligned, which is why they are u32.
 u32 gRecordingStatus = DEMOREC_STATUS_NOT_RECORDING;
@@ -74,13 +74,13 @@ void copy_gRecordedDemoInput(void) {
 
 // Runs when the demo is recording.
 void recording(void) {
-    
+
     // Force-stop when someone makes too many inputs.
     if(gNumOfRecordedInputs + 1 > DEMOREC_MAX_INPUTS) {
         gRecordingStatus = DEMOREC_STATUS_STOPPING;
         return;
     }
-    
+
     copy_gRecordedDemoInput();
     record_demo(); // Defined in game.c
     record_new_demo_input();
@@ -92,7 +92,7 @@ void record_cleanup(void) {
     gRecordedInputs[gNumOfRecordedInputs].rawStickX = 0;
     gRecordedInputs[gNumOfRecordedInputs].rawStickY = 0;
     gRecordedInputs[gNumOfRecordedInputs].button = 0;
-    
+
     // Make sure the done delay is reset before moving to DONE status.
     gDoneDelay = 0;
 }
@@ -104,7 +104,7 @@ void record_run(void) {
         case DEMOREC_STATUS_PREPARING:
             if(gMarioObject != NULL && gCurrLevelNum >= 5) { // If the game is in an active level
                 gRecordingStatus = DEMOREC_STATUS_RECORDING;
-                
+
                 // A bit of a hack, but it works.
                 gNumOfRecordedInputs = 1;
                 gRecordedInputs[0].timer = gCurrLevelNum;
@@ -148,7 +148,7 @@ void recordingDemo(void) {
     // Mario needs to enter directly into a level and not from a warp,
     // so the debug level select is used for that.
     gDebugLevelSelect = TRUE;
-    
+
     if(gPlayer1Controller->buttonPressed & L_TRIG) {
         if(gRecordingStatus == DEMOREC_STATUS_NOT_RECORDING) {
             gRecordingStatus = DEMOREC_STATUS_PREPARING;
@@ -157,7 +157,7 @@ void recordingDemo(void) {
             record_cleanup();
         }
     }
-    
+
     record_run();
     print_status();
 }

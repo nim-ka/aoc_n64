@@ -29,7 +29,7 @@
 # Entry in trajectory
 .macro trajectory_pos x, y, z
     .hword TRAJ_ID, \x, \y, \z
-	.set TRAJ_ID, TRAJ_ID + 1
+    .set TRAJ_ID, TRAJ_ID + 1
 .endm
 
 # Skips an ID (used for CCM)

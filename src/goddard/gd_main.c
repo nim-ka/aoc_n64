@@ -8,7 +8,7 @@
 #include "mario_head_6.h"
 
 /* This file was spilt out of debug_memory.asm based on rodata.
- * The rodata for functions after this "__main__" function have string literals following 
+ * The rodata for functions after this "__main__" function have string literals following
  * f32 literal, which implies that this is its own file
  */
 
@@ -44,7 +44,7 @@ u32 __main__(void)
     //TODO: rename to "make_scene"?; called function does nothing, though
     func_8017E20C();
     imout();
-    
+
     gd_init_controllers();
     print_all_memtrackers();
 
@@ -54,7 +54,7 @@ u32 __main__(void)
 
     while (TRUE)
         func_801A520C();
-    
+
     imout();
     return 0;
 }

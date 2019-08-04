@@ -17,14 +17,14 @@ struct UnkBufThing {
 static s32 sNumRoutinesInStack = 0;     // @ 801A8280
 static s32 D_801A8284[7] = {            // TODO: what is this array?
     2, 1, 3, 4, 5, 8, 9
-};         
+};
 static s32 sNumActiveMemTrackers = 0;   // @ 801A82A0
 static u32 sPrimarySeed = 0x12345678;   // @ 801A82A4
 static u32 sSecondarySeed = 0x58374895; // @ 801A82A8
 static char sHexNumerals[17] = {        // @ 801A82AC
-    '0', '1', '2', '3', 
-    '4', '5', '6', '7', 
-    '8', '9', 'A', 'B', 
+    '0', '1', '2', '3',
+    '4', '5', '6', '7',
+    '8', '9', 'A', 'B',
     'C', 'D', 'E', 'F',
     '\0'
 };
@@ -162,8 +162,8 @@ void print_all_memtrackers(void)
     {
         if (sMemTrackers[i].name != NULL)
         {
-            gd_printf("'%s' = %dk\n", 
-                sMemTrackers[i].name, 
+            gd_printf("'%s' = %dk\n",
+                sMemTrackers[i].name,
                 (s32) (sMemTrackers[i].total / 1024.0f)
             );
         }
@@ -180,8 +180,8 @@ void print_all_timers(void)
     {
         if (sTimers[i].name != NULL)
         {
-            gd_printf("'%s' = %f (%d)\n", 
-                sTimers[i].name, 
+            gd_printf("'%s' = %f (%d)\n",
+                sTimers[i].name,
                 sTimers[i].scaledTotal,
                 sTimers[i].resetCount
             );
@@ -276,7 +276,7 @@ struct GdTimer *get_timernum(s32 id)
 {
     if (id >= ARRAY_COUNT(sTimers))
     {
-        fatal_printf("get_timernum(): Timer number %d out of range (MAX %d)", 
+        fatal_printf("get_timernum(): Timer number %d out of range (MAX %d)",
             id,
             ARRAY_COUNT(sTimers)
         );
@@ -345,7 +345,7 @@ void start_timer(const char *name)
     if (timer == NULL)
     {
         timer = new_timer(name);
-        if (timer == NULL) 
+        if (timer == NULL)
         {
             fatal_printf("start_timer(): Unable to make timer '%s'", name);
         }
@@ -368,7 +368,7 @@ void restart_timer(const char *name)
     if (timer == NULL)
     {
         timer = new_timer(name);
-        if (timer == NULL) 
+        if (timer == NULL)
         {
             fatal_printf("restart_timer(): Unable to make timer '%s'", name);
         }
@@ -508,8 +508,8 @@ void imout(void)
             if (sRoutineNames[i] != NULL)
             {
                 gd_printf(" - %s\n", sRoutineNames[i]);
-            } else { 
-                break; 
+            } else {
+                break;
             }
         }
 
@@ -532,7 +532,7 @@ f32 func_8018D560(void)
             sPrimarySeed = sPrimarySeed << 1 | 1;
         } else {
             sPrimarySeed <<= 1;
-        } 
+        }
     }
     sPrimarySeed += 4;
 
@@ -583,7 +583,7 @@ s32 gd_atoi(const char *str)
             }
 
             out *= 10;
-        } 
+        }
     }
 
     if (isNegative)
@@ -720,7 +720,7 @@ char *sprint_val_withspecifiers(char *str, union PrintVal val, char *specifiers)
                 fracPrec = (*specifiers++) - '0';
             }
         }
-        else 
+        else
         {
             gd_strcpy(str, "<BAD TYPE>");
             str += 10;
@@ -859,7 +859,7 @@ struct GdFile *gd_fopen(const char *filename, const char *mode)
         if (!gd_str_not_equal(filename, loadedname)) { break; }
     }
 
-    if (buf.size == 0) 
+    if (buf.size == 0)
     {
         fatal_printf("gd_fopen() File not found '%s'", filename);
         return NULL;
@@ -929,8 +929,8 @@ s32 gd_fread_line(char *buf, u32 size, struct GdFile *f)
     u32 pos = 0;
     UNUSED u32 pad1c;
 
-    do { if (gd_fread(&c, 1, 1, f) == -1) { break; } } 
-    while (is_newline(c)); 
+    do { if (gd_fread(&c, 1, 1, f) == -1) { break; } }
+    while (is_newline(c));
 
     while (!is_newline(c))
     {

@@ -100,7 +100,7 @@ void bhv_bowser_body_anchor_loop(void)
         if(o->parentObj->oSubAction == 11)
             o->oInteractType = 0;
         else
-        o->oInteractType = 0x800000;    
+        o->oInteractType = 0x800000;
 #else
         o->oInteractType = 0x800000;
 #endif

@@ -18,14 +18,14 @@ void bhv_small_bomp_loop(void)
                 o->oForwardVel = 30.0f;
             }
             break;
-            
+
         case BOMP_ACT_POKE_OUT:
             if (o->oPosX > 3450.0f)
             {
                 o->oPosX = 3450.0f;
                 o->oForwardVel = 0;
             }
-            
+
             if (o->oTimer == 15.0)
             {
                 o->oAction = BOMP_ACT_EXTEND;
@@ -33,14 +33,14 @@ void bhv_small_bomp_loop(void)
                 PlaySound2(SOUND_OBJECT_UNKNOWN2);
             }
             break;
-            
+
         case BOMP_ACT_EXTEND:
             if (o->oPosX > 3830.0f)
             {
                 o->oPosX = 3830.0f;
                 o->oForwardVel = 0;
             }
-            
+
             if (o->oTimer == 60)
             {
                 o->oAction = BOMP_ACT_RETRACT;
@@ -49,14 +49,14 @@ void bhv_small_bomp_loop(void)
                 PlaySound2(SOUND_OBJECT_UNKNOWN2);
             }
             break;
-            
+
         case BOMP_ACT_RETRACT:
             if (o->oPosX < 3330.0f)
             {
                 o->oPosX = 3330.0f;
                 o->oForwardVel = 0;
             }
-            
+
             if (o->oTimer == 90)
             {
                 o->oAction = BOMP_ACT_POKE_OUT;
@@ -84,14 +84,14 @@ void bhv_large_bomp_loop(void)
                 o->oForwardVel = 30.0f;
             }
             break;
-            
+
         case BOMP_ACT_POKE_OUT:
             if (o->oPosX > 3450.0f)
             {
                 o->oPosX = 3450.0f;
                 o->oForwardVel = 0;
             }
-            
+
             if (o->oTimer == 15.0)
             {
                 o->oAction = BOMP_ACT_EXTEND;
@@ -99,14 +99,14 @@ void bhv_large_bomp_loop(void)
                 PlaySound2(SOUND_OBJECT_UNKNOWN2);
             }
             break;
-            
+
         case BOMP_ACT_EXTEND:
             if (o->oPosX > 3830.0f)
             {
                 o->oPosX = 3830.0f;
                 o->oForwardVel = 0;
             }
-            
+
             if (o->oTimer == 60)
             {
                 o->oAction = BOMP_ACT_RETRACT;
@@ -115,14 +115,14 @@ void bhv_large_bomp_loop(void)
                 PlaySound2(SOUND_OBJECT_UNKNOWN2);
             }
             break;
-            
+
         case BOMP_ACT_RETRACT:
             if (o->oPosX < 3330.0f)
             {
                 o->oPosX = 3330.0f;
                 o->oForwardVel = 0;
             }
-            
+
             if (o->oTimer == 90)
             {
                 o->oAction = BOMP_ACT_POKE_OUT;

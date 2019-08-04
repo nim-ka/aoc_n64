@@ -4,7 +4,7 @@
 #include "types.h"
 #include "gd_types.h"
 
-/* This file was hidden at the end of mario_head_4. It seems to deal with 
+/* This file was hidden at the end of mario_head_4. It seems to deal with
 ** GD Object types that are no longer used in the final game */
 
 extern void get_objvalue(union ObjVarVal *, enum ValPtrType, void *, s32);

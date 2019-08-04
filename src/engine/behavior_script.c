@@ -129,11 +129,11 @@ static s32 beh_cmd_obj_load_chill(void)
 {
     u32 model = gBehCommand[1];
     void *arg1 = (void *) gBehCommand[2];
-    
+
     struct Object *object = spawn_object_at_origin(gCurrentObject, 0, model, arg1);
-    
+
     copy_object_pos_and_angle(object, gCurrentObject);
-    
+
     gBehCommand += 3;
     return BEH_CONTINUE;
 }
@@ -142,13 +142,13 @@ static s32 beh_cmd_obj_spawn(void)
 {
     u32 model = gBehCommand[1];
     void *arg1 = (void *) gBehCommand[2];
-    
+
     struct Object *object = spawn_object_at_origin(gCurrentObject, 0, model, arg1);
-    
+
     copy_object_pos_and_angle(object, gCurrentObject);
-    
+
     gCurrentObject->prevObj = object;
-    
+
     gBehCommand += 3;
     return BEH_CONTINUE;
 }
@@ -158,13 +158,13 @@ static s32 beh_cmd_obj_load_chill_param(void)
     u32 behParam = (s16)(gBehCommand[0] & 0xFFFF);
     u32 model = gBehCommand[1];
     void *arg2 = (void *) gBehCommand[2];
-    
+
     struct Object *object = spawn_object_at_origin(gCurrentObject, 0, model, arg2);
-    
+
     copy_object_pos_and_angle(object, gCurrentObject);
-    
+
     object->oBehParams2ndByte = behParam;
-    
+
     gBehCommand += 3;
     return BEH_CONTINUE;
 }
@@ -250,24 +250,24 @@ static s32 beh_cmd_goto(void)
 static s32 Behavior26(void)
 {
     s32 value = (u8)(gBehCommand[0] >> 16) & 0xFF;
-    
+
     cur_object_stack_push((u32)(gBehCommand + 1));
     cur_object_stack_push(value);
-    
+
     gBehCommand++;
-    
+
     return BEH_CONTINUE;
 }
 
 static s32 beh_cmd_begin_repeat(void)
 {
     s32 count = (s16)(gBehCommand[0] & 0xFFFF);
-    
+
     cur_object_stack_push((u32)(gBehCommand + 1));
     cur_object_stack_push(count);
-    
+
     gBehCommand++;
-    
+
     return BEH_CONTINUE;
 }
 
@@ -332,9 +332,9 @@ typedef void (*BehaviorCallProc)(void);
 static s32 beh_cmd_callnative(void)
 {
     BehaviorCallProc behavior_proc = (BehaviorCallProc)gBehCommand[1];
-    
+
     behavior_proc();
-    
+
     gBehCommand += 2;
     return BEH_CONTINUE;
 }
@@ -441,9 +441,9 @@ static s32 beh_cmd_obj_add_float(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     f32 value = (s16)(gBehCommand[0] & 0xFFFF);
-    
+
     cur_object_add_float(objectOffset, value);
-    
+
     gBehCommand++;
     return BEH_CONTINUE;
 }
@@ -466,7 +466,7 @@ static s32 beh_cmd_obj_or_int(void)
 
     value &= 0xFFFF;
     cur_object_or_int(objectOffset, value);
-    
+
     gBehCommand++;
     return BEH_CONTINUE;
 }
@@ -495,7 +495,7 @@ static s32 beh_cmd_obj_set_int32(void)
 }
 
 static s32 beh_cmd_obj_animate(void)
-{    
+{
     s32 animIndex = (u8)((gBehCommand[0] >> 16) & 0xFF);
     u32* animations = gCurrentObject->oAnimations;
 
@@ -857,7 +857,7 @@ void cur_object_exec_behavior(void)
     if (gCurrentObject->oTimer < 0x3FFFFFFF)
         gCurrentObject->oTimer++;
 
-    if (gCurrentObject->oAction != gCurrentObject->oPrevAction) 
+    if (gCurrentObject->oAction != gCurrentObject->oPrevAction)
     {
         (void) (gCurrentObject->oTimer = 0,
         gCurrentObject->oSubAction = 0,

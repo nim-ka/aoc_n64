@@ -132,7 +132,7 @@ void print_text_array_info(s16 *printState, const char *str, s32 number)
 {
     if(!printState[DEBUG_PSTATE_DISABLED])
     {
-        if((printState[DEBUG_PSTATE_Y_CURSOR] < printState[DEBUG_PSTATE_MIN_Y_CURSOR]) 
+        if((printState[DEBUG_PSTATE_Y_CURSOR] < printState[DEBUG_PSTATE_MIN_Y_CURSOR])
         || (printState[DEBUG_PSTATE_MAX_X_CURSOR] < printState[DEBUG_PSTATE_Y_CURSOR]))
         {
             print_text(printState[DEBUG_PSTATE_X_CURSOR], printState[DEBUG_PSTATE_Y_CURSOR], "DPRINT OVER");
@@ -385,7 +385,7 @@ static void check_debug_button_seq(void)
 {
     s16 *buttonArr;
     s16 cButtonMask;
-    
+
     buttonArr = sDebugInfoButtonSeq;
 
     if(!(gPlayer1Controller->buttonDown & L_TRIG))
@@ -425,7 +425,7 @@ static void try_change_debug_page(void)
 {
     if(gDebugInfoFlags & DEBUG_INFO_FLAG_DPRINT)
     {
-        if((gPlayer1Controller->buttonPressed &  L_JPAD) 
+        if((gPlayer1Controller->buttonPressed &  L_JPAD)
         && (gPlayer1Controller->buttonDown    & (L_TRIG | R_TRIG)))
         {
             sDebugPage += 1;

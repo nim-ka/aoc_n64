@@ -26,7 +26,7 @@ void bhv_controllable_platform_sub_loop(void) {
         case 0:
             if (o->oTimer < 30)
                 break;
-            
+
             if (gMarioObject->platform == o) {
                 D_80331694 = o->oBehParams2ndByte;
                 o->oAction = 1;
@@ -79,20 +79,20 @@ void func_802F3FD8(s8 sp1B, s8 sp1C[3], Vec3f sp20, UNUSED Vec3f sp24, Vec3f sp2
         func_802F3F80(sp1B);
     else {
         if (sp1C[0] == 1) {
-            if (((sp1B == 1 || sp1B == 2) && (s32)sp20[2] != 0) 
+            if (((sp1B == 1 || sp1B == 2) && (s32)sp20[2] != 0)
                 || ((sp1B == 3 || sp1B == 4) && (s32)sp20[0] != 0)) {
-                func_802F3F80(sp1B);    
+                func_802F3F80(sp1B);
             }
             else {
                 o->oPosX += sp20[0];
                 o->oPosZ += sp20[2];
             }
-        } 
-            
+        }
+
         if (sp1C[2] == 1) {
-            if (((sp1B == 1 || sp1B == 2) && (s32)sp28[2] != 0) 
+            if (((sp1B == 1 || sp1B == 2) && (s32)sp28[2] != 0)
                 || ((sp1B == 3 || sp1B == 4) && (s32)sp28[0] != 0)) {
-                func_802F3F80(sp1B);    
+                func_802F3F80(sp1B);
             }
             else {
                 o->oPosX += sp28[0];
@@ -116,8 +116,8 @@ void func_802F4230(void) {
     else {
         o->oFaceAngleRoll = sins(o->oTimer * 0x1000) * 182.04444 * 10.0;
         o->oPosY = o->oUnknownUnkFC_F32 + sins(o->oTimer * 0x2000) * 20.0f;
-    } 
-        
+    }
+
     if (o->oTimer == 32) {
         D_80331694 = o->oUnknownUnkF8_S32;
         o->oFaceAnglePitch = 0;
@@ -130,7 +130,7 @@ void func_802F43EC(void) {
     s16 sp1E = gMarioObject->header.gfx.pos[0] - o->oPosX;
     s16 sp1C = gMarioObject->header.gfx.pos[2] - o->oPosZ;
 
-    if (gMarioObject->platform == o || gMarioObject->platform 
+    if (gMarioObject->platform == o || gMarioObject->platform
             == obj_nearest_object_with_behavior(bhvControllablePlatformSub)) {
         o->oFaceAnglePitch = sp1C * 4;
         o->oFaceAngleRoll = -sp1E * 4;
@@ -153,7 +153,7 @@ void bhv_controllable_platform_loop(void) {
     o->oAngleVelPitch = 0;
     o->oVelX = 0;
     o->oVelZ = 0;
-    
+
     switch (D_80331694) {
         case 0:
             o->oFaceAnglePitch /= 2;
@@ -172,7 +172,7 @@ void bhv_controllable_platform_loop(void) {
             func_802F3FD8(2, sp54, sp48, sp3C, sp30);
             break;
 
-        case 2:            
+        case 2:
             o->oVelZ = -10.0f;
             sp54[0] = func_802E478C(sp48, o->oPosX + 250.0, o->oPosY, o->oPosZ - 300.0, 50.0f);
             sp54[1] = func_802E478C(sp3C, o->oPosX, o->oPosY, o->oPosZ - 300.0, 50.0f);
@@ -188,7 +188,7 @@ void bhv_controllable_platform_loop(void) {
             func_802F3FD8(4, sp54, sp48, sp3C, sp30);
             break;
 
-        case 4:            
+        case 4:
             o->oVelX = -10.0f;
             sp54[0] = func_802E478C(sp48, o->oPosX - 300.0, o->oPosY, o->oPosZ + 250.0, 50.0f);
             sp54[1] = func_802E478C(sp3C, o->oPosX - 300.0, o->oPosY, o->oPosZ, 50.0f);

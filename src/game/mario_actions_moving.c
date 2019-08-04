@@ -605,7 +605,7 @@ void func_802652F0(struct MarioState *m)
     s32 val0C = TRUE;
     s16 targetPitch = 0;
     f32 val04;
-    
+
     val04 = m->intendedMag > m->forwardVel ? m->intendedMag : m->forwardVel;
 
     if (val04 < 4.0f)
@@ -1202,7 +1202,7 @@ s32 act_decelerating(struct MarioState *m)
     {
         if ((val0C = (s32)(m->forwardVel / 4.0f * 0x10000)) < 0x1000)
             val0C = 0x1000;
-        
+
         func_80250934(m, MARIO_ANIM_WALKING, val0C);
         func_80263AD4(m, 0x000A, 0x0031);
     }
@@ -1263,7 +1263,7 @@ s32 act_hold_decelerating(struct MarioState *m)
     {
         if ((val0C = (s32)(m->forwardVel * 0x10000)) < 0x1000)
             val0C = 0x1000;
-        
+
         func_80250934(m, MARIO_ANIM_WALK_WITH_LIGHT_OBJ, val0C);
         func_80263AD4(m, 0x000C, 0x003E);
     }

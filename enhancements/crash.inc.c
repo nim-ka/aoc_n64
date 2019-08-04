@@ -104,7 +104,7 @@ void show_crash_screen_and_hang(void)
     epc = cop0_get_epc();
 
     errno = (cause >> 2) & 0x1F;
-    
+
     if(nAssertStopProgram == 0)
     {
         fbFillColor = 0x6253;
@@ -123,7 +123,7 @@ void show_crash_screen_and_hang(void)
             5 BAD STORE ADDR
             */
             u32 badvaddr = cop0_get_badvaddr();
-        
+
             fb_print_str(188, 50, "VA");
             fb_print_int_hex(215, 50, badvaddr, 32);
         }
@@ -136,7 +136,7 @@ void show_crash_screen_and_hang(void)
         fb_fill(10, 10, 300, 220);
 
         fb_print_str(80, 20, "ASSERTION FAILED!");
-        
+
         afterFileX = fb_print_str(80, 30, pAssertFile);
         fb_print_str(afterFileX, 30, ":");
         fb_print_uint(afterFileX + 5, 30, nAssertLine);

@@ -45,8 +45,8 @@ extern struct SkyboxList bits_skybox_ptrlist_0A020000;
 // TODO: These should be defined here
 struct Struct8035FF50 D_8035FF50[2];
 
-struct SkyboxList *gSkyboxLists[10] = 
-{ 
+struct SkyboxList *gSkyboxLists[10] =
+{
     &water_skybox_ptrlist_0A020000,       // water_skybox
     &bitfs_skybox_ptrlist_0A018800,       // bitfs_skybox
     &wdw_skybox_ptrlist_0A020000,         // wdw_skybox
@@ -58,7 +58,7 @@ struct SkyboxList *gSkyboxLists[10] =
     &clouds_skybox_ptrlist_0A014800,      // clouds_skybox
     &bits_skybox_ptrlist_0A020000,        // bits_skybox
 };
-u8 gSkyboxColors[][3] = 
+u8 gSkyboxColors[][3] =
 {
     { 0x50, 0x64, 0x5A },
     { 0xFF, 0xFF, 0xFF },

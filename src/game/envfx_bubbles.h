@@ -5,7 +5,7 @@
 
 #define ENVFX_STATE_UNUSED          0
 #define ENVFX_STATE_SRC_X           1 // whirlpool / jetsream bubble source position
-#define ENVFX_STATE_SRC_Y           2 
+#define ENVFX_STATE_SRC_Y           2
 #define ENVFX_STATE_SRC_Z           3
 #define ENVFX_STATE_DEST_X          4 // only for whirlpool, where bubbles get sucked in
 #define ENVFX_STATE_DEST_Y          5

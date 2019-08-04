@@ -16,7 +16,7 @@ enum MovingTextureIdList
     TEX_PYRAMID_SAND_SSL,
     TEX_YELLOW_TRI_TTC
 };
- 
+
 extern f32 D_8032FFDC;
 
 #endif /* _MOVING_TEXTURE_H */

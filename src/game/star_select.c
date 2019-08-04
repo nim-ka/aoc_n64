@@ -146,7 +146,7 @@ void BehActSelectorLoop(void)
         handleMenuScrolling(MENU_SCROLL_HORIZONTAL, &sSelectedStarIndex, 0, sVisibleStars - 1);
         sSelectedAct = sSelectedStarIndex;
     }
-    
+
     for (i = 0; i < sVisibleStars; i++)
     {
         if (sSelectedAct == i)
@@ -221,7 +221,7 @@ static void ShowActSelectorMenu(void)
 
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
-    
+
     // Display the name of the selected act.
     if (sVisibleStars != 0)
     {

@@ -272,496 +272,496 @@ texture_credits_char_period:
 .ifdef VERSION_JP # JP Small Font
 texture_dialog_jp_0:
     .incbin "textures/segment2/segment2.07100.ia1"
-    
+
 texture_dialog_jp_1:
     .incbin "textures/segment2/segment2.07110.ia1"
-    
+
 texture_dialog_jp_2:
     .incbin "textures/segment2/segment2.07120.ia1"
-    
+
 texture_dialog_jp_3:
     .incbin "textures/segment2/segment2.07130.ia1"
-    
+
 texture_dialog_jp_4:
     .incbin "textures/segment2/segment2.07140.ia1"
-    
+
 texture_dialog_jp_5:
     .incbin "textures/segment2/segment2.07150.ia1"
-    
+
 texture_dialog_jp_6:
     .incbin "textures/segment2/segment2.07160.ia1"
-    
+
 texture_dialog_jp_7:
     .incbin "textures/segment2/segment2.07170.ia1"
-    
+
 texture_dialog_jp_8:
     .incbin "textures/segment2/segment2.07180.ia1"
-    
+
 texture_dialog_jp_9:
     .incbin "textures/segment2/segment2.07190.ia1"
-    
+
 texture_dialog_jp_A:
     .incbin "textures/segment2/segment2.071A0.ia1"
-    
+
 texture_dialog_jp_B:
     .incbin "textures/segment2/segment2.071B0.ia1"
-    
+
 texture_dialog_jp_C:
     .incbin "textures/segment2/segment2.071C0.ia1"
-    
+
 texture_dialog_jp_D:
     .incbin "textures/segment2/segment2.071D0.ia1"
-    
+
 texture_dialog_jp_E:
     .incbin "textures/segment2/segment2.071E0.ia1"
-    
+
 texture_dialog_jp_F:
     .incbin "textures/segment2/segment2.071F0.ia1"
-    
+
 texture_dialog_jp_G:
     .incbin "textures/segment2/segment2.07200.ia1"
-    
+
 texture_dialog_jp_H:
     .incbin "textures/segment2/segment2.07210.ia1"
-    
+
 texture_dialog_jp_I:
     .incbin "textures/segment2/segment2.07220.ia1"
-    
+
 texture_dialog_jp_J:
     .incbin "textures/segment2/segment2.07230.ia1"
-    
+
 texture_dialog_jp_K:
     .incbin "textures/segment2/segment2.07240.ia1"
-    
+
 texture_dialog_jp_L:
     .incbin "textures/segment2/segment2.07250.ia1"
-    
+
 texture_dialog_jp_M:
     .incbin "textures/segment2/segment2.07260.ia1"
-    
+
 texture_dialog_jp_N:
     .incbin "textures/segment2/segment2.07270.ia1"
-    
+
 texture_dialog_jp_O:
     .incbin "textures/segment2/segment2.07280.ia1"
-    
+
 texture_dialog_jp_P:
     .incbin "textures/segment2/segment2.07290.ia1"
-    
+
 texture_dialog_jp_Q:
     .incbin "textures/segment2/segment2.072A0.ia1"
-    
+
 texture_dialog_jp_R:
     .incbin "textures/segment2/segment2.072B0.ia1"
-    
+
 texture_dialog_jp_S:
     .incbin "textures/segment2/segment2.072C0.ia1"
-    
+
 texture_dialog_jp_T:
     .incbin "textures/segment2/segment2.072D0.ia1"
-    
+
 texture_dialog_jp_U:
     .incbin "textures/segment2/segment2.072E0.ia1"
-    
+
 texture_dialog_jp_V:
     .incbin "textures/segment2/segment2.072F0.ia1"
-    
+
 texture_dialog_jp_W:
     .incbin "textures/segment2/segment2.07300.ia1"
-    
+
 texture_dialog_jp_X:
     .incbin "textures/segment2/segment2.07310.ia1"
-    
+
 texture_dialog_jp_Y:
     .incbin "textures/segment2/segment2.07320.ia1"
-    
+
 texture_dialog_jp_Z:
     .incbin "textures/segment2/segment2.07330.ia1"
-    
+
 texture_dialog_jp_long_vowel:
     .incbin "textures/segment2/segment2.07340.ia1"
-    
+
 texture_dialog_jp_exclamation:
     .incbin "textures/segment2/segment2.07350.ia1"
-    
+
 texture_dialog_jp_dakuten:
     .incbin "textures/segment2/segment2.07360.ia1"
-    
+
 texture_dialog_jp_handakuten:
     .incbin "textures/segment2/segment2.07370.ia1"
-    
+
 texture_dialog_jp_percent:
     .incbin "textures/segment2/segment2.07380.ia1"
-    
+
 texture_dialog_jp_question:
     .incbin "textures/segment2/segment2.07390.ia1"
-    
+
 texture_dialog_jp_left_right_arrow:
     .incbin "textures/segment2/segment2.073A0.ia1"
-    
+
 texture_dialog_jp_open_parentheses:
     .incbin "textures/segment2/segment2.073B0.ia1"
-    
+
 texture_dialog_jp_close_open_parentheses:
     .incbin "textures/segment2/segment2.073C0.ia1"
-    
+
 texture_dialog_jp_close_parentheses:
     .incbin "textures/segment2/segment2.073D0.ia1"
-    
+
 texture_dialog_jp_coin:
     .incbin "textures/segment2/segment2.073E0.ia1"
-    
+
 texture_dialog_jp_multiply:
     .incbin "textures/segment2/segment2.073F0.ia1"
-    
+
 texture_dialog_jp_star_filled:
     .incbin "textures/segment2/segment2.07400.ia1"
-    
+
 texture_dialog_jp_star_hollow:
     .incbin "textures/segment2/segment2.07410.ia1"
-    
+
 texture_dialog_jp_hiragana_a:
     .incbin "textures/segment2/segment2.07420.ia1"
-    
+
 texture_dialog_jp_hiragana_i:
     .incbin "textures/segment2/segment2.07430.ia1"
-    
+
 texture_dialog_jp_hiragana_u:
     .incbin "textures/segment2/segment2.07440.ia1"
-    
+
 texture_dialog_jp_hiragana_c:
     .incbin "textures/segment2/segment2.07450.ia1"
-    
+
 texture_dialog_jp_hiragana_o:
     .incbin "textures/segment2/segment2.07460.ia1"
-    
+
 texture_dialog_jp_hiragana_ka:
     .incbin "textures/segment2/segment2.07470.ia1"
-    
+
 texture_dialog_jp_hiragana_ki:
     .incbin "textures/segment2/segment2.07480.ia1"
-    
+
 texture_dialog_jp_hiragana_ku:
     .incbin "textures/segment2/segment2.07490.ia1"
-    
+
 texture_dialog_jp_hiragana_ke:
     .incbin "textures/segment2/segment2.074A0.ia1"
-    
+
 texture_dialog_jp_hiragana_ko:
     .incbin "textures/segment2/segment2.074B0.ia1"
-    
+
 texture_dialog_jp_hiragana_sa:
     .incbin "textures/segment2/segment2.074C0.ia1"
-    
+
 texture_dialog_jp_hiragana_shi:
     .incbin "textures/segment2/segment2.074D0.ia1"
-    
+
 texture_dialog_jp_hiragana_su:
     .incbin "textures/segment2/segment2.074E0.ia1"
-    
+
 texture_dialog_jp_hiragana_se:
     .incbin "textures/segment2/segment2.074F0.ia1"
-    
+
 texture_dialog_jp_hiragana_so:
     .incbin "textures/segment2/segment2.07500.ia1"
-    
+
 texture_dialog_jp_hiragana_ta:
     .incbin "textures/segment2/segment2.07510.ia1"
-    
+
 texture_dialog_jp_hiragana_chi:
     .incbin "textures/segment2/segment2.07520.ia1"
-    
+
 texture_dialog_jp_hiragana_tsu:
     .incbin "textures/segment2/segment2.07530.ia1"
-    
+
 texture_dialog_jp_hiragana_te:
     .incbin "textures/segment2/segment2.07540.ia1"
-    
+
 texture_dialog_jp_hiragana_to:
     .incbin "textures/segment2/segment2.07550.ia1"
-    
+
 texture_dialog_jp_hiragana_na:
     .incbin "textures/segment2/segment2.07560.ia1"
-    
+
 texture_dialog_jp_hiragana_ni:
     .incbin "textures/segment2/segment2.07570.ia1"
-    
+
 texture_dialog_jp_hiragana_nu:
     .incbin "textures/segment2/segment2.07580.ia1"
-    
+
 texture_dialog_jp_hiragana_ne:
     .incbin "textures/segment2/segment2.07590.ia1"
-    
+
 texture_dialog_jp_hiragana_no:
     .incbin "textures/segment2/segment2.075A0.ia1"
-    
+
 texture_dialog_jp_hiragana_ha:
     .incbin "textures/segment2/segment2.075B0.ia1"
-    
+
 texture_dialog_jp_hiragana_hi:
     .incbin "textures/segment2/segment2.075C0.ia1"
-    
+
 texture_dialog_jp_hiragana_hu:
     .incbin "textures/segment2/segment2.075D0.ia1"
-    
+
 texture_dialog_jp_hiragana_he:
     .incbin "textures/segment2/segment2.075E0.ia1"
-    
+
 texture_dialog_jp_hiragana_ho:
     .incbin "textures/segment2/segment2.075F0.ia1"
-    
+
 texture_dialog_jp_hiragana_ma:
     .incbin "textures/segment2/segment2.07600.ia1"
-    
+
 texture_dialog_jp_hiragana_mi:
     .incbin "textures/segment2/segment2.07610.ia1"
-    
+
 texture_dialog_jp_hiragana_mu:
     .incbin "textures/segment2/segment2.07620.ia1"
-    
+
 texture_dialog_jp_hiragana_me:
     .incbin "textures/segment2/segment2.07630.ia1"
-    
+
 texture_dialog_jp_hiragana_mo:
     .incbin "textures/segment2/segment2.07640.ia1"
-    
+
 texture_dialog_jp_hiragana_ya:
     .incbin "textures/segment2/segment2.07650.ia1"
-    
+
 texture_dialog_jp_hiragana_yu:
     .incbin "textures/segment2/segment2.07660.ia1"
-    
+
 texture_dialog_jp_hiragana_yo:
     .incbin "textures/segment2/segment2.07670.ia1"
-    
+
 texture_dialog_jp_hiragana_ra:
     .incbin "textures/segment2/segment2.07680.ia1"
-    
+
 texture_dialog_jp_hiragana_ri:
     .incbin "textures/segment2/segment2.07690.ia1"
-    
+
 texture_dialog_jp_hiragana_ru:
     .incbin "textures/segment2/segment2.076A0.ia1"
-    
+
 texture_dialog_jp_hiragana_re:
     .incbin "textures/segment2/segment2.076B0.ia1"
-    
+
 texture_dialog_jp_hiragana_ro:
     .incbin "textures/segment2/segment2.076C0.ia1"
-    
+
 texture_dialog_jp_hiragana_wa:
     .incbin "textures/segment2/segment2.076D0.ia1"
-    
+
 texture_dialog_jp_hiragana_wo:
     .incbin "textures/segment2/segment2.076E0.ia1"
-    
+
 texture_dialog_jp_hiragana_n:
     .incbin "textures/segment2/segment2.076F0.ia1"
-    
+
 texture_dialog_jp_hiragana_small_e:
     .incbin "textures/segment2/segment2.07700.ia1"
-    
+
 texture_dialog_jp_hiragana_small_tsu:
     .incbin "textures/segment2/segment2.07710.ia1"
-    
+
 texture_dialog_jp_hiragana_small_ka:
     .incbin "textures/segment2/segment2.07720.ia1"
-    
+
 texture_dialog_jp_hiragana_small_yu:
     .incbin "textures/segment2/segment2.07730.ia1"
-    
+
 texture_dialog_jp_hiragana_small_yo:
     .incbin "textures/segment2/segment2.07740.ia1"
-    
+
 texture_dialog_jp_hiragana_small_a:
     .incbin "textures/segment2/segment2.07750.ia1"
-    
+
 texture_dialog_jp_hiragana_small_i:
     .incbin "textures/segment2/segment2.07760.ia1"
-    
+
 texture_dialog_jp_hiragana_small_o:
     .incbin "textures/segment2/segment2.07770.ia1"
-    
+
 texture_dialog_jp_hiragana_small_u:
     .incbin "textures/segment2/segment2.07780.ia1"
-    
+
 texture_dialog_jp_interpunct:
     .incbin "textures/segment2/segment2.07790.ia1"
-    
+
 texture_dialog_jp_comma:
     .incbin "textures/segment2/segment2.077A0.ia1"
-    
+
 texture_dialog_jp_katakana_a:
     .incbin "textures/segment2/segment2.077B0.ia1"
-    
+
 texture_dialog_jp_katakana_i:
     .incbin "textures/segment2/segment2.077C0.ia1"
-    
+
 texture_dialog_jp_katakana_u:
     .incbin "textures/segment2/segment2.077D0.ia1"
-    
+
 texture_dialog_jp_katakana_e:
     .incbin "textures/segment2/segment2.077E0.ia1"
-    
+
 texture_dialog_jp_katakana_o:
     .incbin "textures/segment2/segment2.077F0.ia1"
-    
+
 texture_dialog_jp_katakana_ka:
     .incbin "textures/segment2/segment2.07800.ia1"
-    
+
 texture_dialog_jp_katakana_ki:
     .incbin "textures/segment2/segment2.07810.ia1"
-    
+
 texture_dialog_jp_katakana_ku:
     .incbin "textures/segment2/segment2.07820.ia1"
-    
+
 texture_dialog_jp_katakana_ke:
     .incbin "textures/segment2/segment2.07830.ia1"
-    
+
 texture_dialog_jp_katakana_ko:
     .incbin "textures/segment2/segment2.07840.ia1"
-    
+
 texture_dialog_jp_katakana_sa:
     .incbin "textures/segment2/segment2.07850.ia1"
-    
+
 texture_dialog_jp_katakana_shi:
     .incbin "textures/segment2/segment2.07860.ia1"
-    
+
 texture_dialog_jp_katakana_su:
     .incbin "textures/segment2/segment2.07870.ia1"
-    
+
 texture_dialog_jp_katakana_se:
     .incbin "textures/segment2/segment2.07880.ia1"
-    
+
 texture_dialog_jp_katakana_so:
     .incbin "textures/segment2/segment2.07890.ia1"
-    
+
 texture_dialog_jp_katakana_ta:
     .incbin "textures/segment2/segment2.078A0.ia1"
-    
+
 texture_dialog_jp_katakana_chi:
     .incbin "textures/segment2/segment2.078B0.ia1"
-    
+
 texture_dialog_jp_katakana_tsu:
     .incbin "textures/segment2/segment2.078C0.ia1"
-    
+
 texture_dialog_jp_katakana_te:
     .incbin "textures/segment2/segment2.078D0.ia1"
-    
+
 texture_dialog_jp_katakana_to:
     .incbin "textures/segment2/segment2.078E0.ia1"
-    
+
 texture_dialog_jp_katakana_na:
     .incbin "textures/segment2/segment2.078F0.ia1"
-    
+
 texture_dialog_jp_katakana_ni:
     .incbin "textures/segment2/segment2.07900.ia1"
-    
+
 texture_dialog_jp_katakana_nu:
     .incbin "textures/segment2/segment2.07910.ia1"
-    
+
 texture_dialog_jp_katakana_ne:
     .incbin "textures/segment2/segment2.07920.ia1"
-    
+
 texture_dialog_jp_katakana_no:
     .incbin "textures/segment2/segment2.07930.ia1"
-    
+
 texture_dialog_jp_katakana_ha:
     .incbin "textures/segment2/segment2.07940.ia1"
-    
+
 texture_dialog_jp_katakana_hi:
     .incbin "textures/segment2/segment2.07950.ia1"
-    
+
 texture_dialog_jp_katakana_hu:
     .incbin "textures/segment2/segment2.07960.ia1"
-    
+
 texture_dialog_jp_katakana_he:
     .incbin "textures/segment2/segment2.07970.ia1"
-    
+
 texture_dialog_jp_katakana_ho:
     .incbin "textures/segment2/segment2.07980.ia1"
-    
+
 texture_dialog_jp_katakana_ma:
     .incbin "textures/segment2/segment2.07990.ia1"
-    
+
 texture_dialog_jp_katakana_mi:
     .incbin "textures/segment2/segment2.079A0.ia1"
-    
+
 texture_dialog_jp_katakana_mu:
     .incbin "textures/segment2/segment2.079B0.ia1"
-    
+
 texture_dialog_jp_katakana_me:
     .incbin "textures/segment2/segment2.079C0.ia1"
-    
+
 texture_dialog_jp_katakana_mo:
     .incbin "textures/segment2/segment2.079D0.ia1"
-    
+
 texture_dialog_jp_katakana_ya:
     .incbin "textures/segment2/segment2.079E0.ia1"
-    
+
 texture_dialog_jp_katakana_yu:
     .incbin "textures/segment2/segment2.079F0.ia1"
-    
+
 texture_dialog_jp_katakana_yo:
     .incbin "textures/segment2/segment2.07A00.ia1"
-    
+
 texture_dialog_jp_katakana_ra:
     .incbin "textures/segment2/segment2.07A10.ia1"
-    
+
 texture_dialog_jp_katakana_ri:
     .incbin "textures/segment2/segment2.07A20.ia1"
-    
+
 texture_dialog_jp_katakana_ru:
     .incbin "textures/segment2/segment2.07A30.ia1"
-    
+
 texture_dialog_jp_katakana_re:
     .incbin "textures/segment2/segment2.07A40.ia1"
-    
+
 texture_dialog_jp_katakana_ro:
     .incbin "textures/segment2/segment2.07A50.ia1"
-    
+
 texture_dialog_jp_katakana_wa:
     .incbin "textures/segment2/segment2.07A60.ia1"
-    
+
 texture_dialog_jp_katakana_n:
     .incbin "textures/segment2/segment2.07A70.ia1"
-    
+
 texture_dialog_jp_katakana_small_e:
     .incbin "textures/segment2/segment2.07A80.ia1"
-    
+
 texture_dialog_jp_katakana_small_tsu:
     .incbin "textures/segment2/segment2.07A90.ia1"
-    
+
 texture_dialog_jp_katakana_small_ka:
     .incbin "textures/segment2/segment2.07AA0.ia1"
-    
+
 texture_dialog_jp_katakana_small_yu:
     .incbin "textures/segment2/segment2.07AB0.ia1"
-    
+
 texture_dialog_jp_katakana_small_yo:
     .incbin "textures/segment2/segment2.07AC0.ia1"
-    
+
 texture_dialog_jp_katakana_small_a:
     .incbin "textures/segment2/segment2.07AD0.ia1"
-    
+
 texture_dialog_jp_katakana_small_i:
     .incbin "textures/segment2/segment2.07AE0.ia1"
-    
+
 texture_dialog_jp_katakana_small_u:
     .incbin "textures/segment2/segment2.07AF0.ia1"
-    
+
 texture_dialog_jp_katakana_small_o:
     .incbin "textures/segment2/segment2.07B00.ia1"
-    
+
 texture_dialog_jp_double_quotation_open:
     .incbin "textures/segment2/segment2.07B10.ia1"
-    
+
 texture_dialog_jp_double_quotation_close:
     .incbin "textures/segment2/segment2.07B20.ia1"
-    
+
 texture_dialog_jp_wave_dash:
     .incbin "textures/segment2/segment2.07B30.ia1"
-    
+
 texture_dialog_jp_ellipsis:
     .incbin "textures/segment2/segment2.07B40.ia1"
 .elseif VERSION_EU == 1 # EU Small Font
@@ -1673,8 +1673,8 @@ gsDPPipeSync
 gsDPSetTexturePersp G_TP_PERSP
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
-gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2 
-# It could also be one of these: 
+gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
+# It could also be one of these:
 # G_RM_AA_ZB_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_AA_ZB_OPA_SURF, G_RM_AA_OPA_SURF2; G_RM_AA_ZB_OPA_SURF, G_RM_RA_OPA_SURF2;
 # G_RM_RA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2; G_RM_RA_ZB_OPA_SURF, G_RM_AA_OPA_SURF2; G_RM_AA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2;
 # G_RM_AA_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_RA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
@@ -1711,8 +1711,8 @@ gsDPPipeSync
 gsDPSetTexturePersp G_TP_PERSP
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
-gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2 
-# It could also be one of these: 
+gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
+# It could also be one of these:
 # G_RM_AA_ZB_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_AA_ZB_OPA_SURF, G_RM_AA_OPA_SURF2; G_RM_AA_ZB_OPA_SURF, G_RM_RA_OPA_SURF2;
 # G_RM_RA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2; G_RM_RA_ZB_OPA_SURF, G_RM_AA_OPA_SURF2; G_RM_AA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2;
 # G_RM_AA_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_RA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
@@ -1774,7 +1774,7 @@ glabel dl_ia8_render_char # 0x020073E8 - 0x02007418
 glabel dl_ia8_text_end # 0x02007418 - 0x02007450
     gsDPPipeSync
     gsDPSetTexturePersp G_TP_PERSP
-    gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2 
+    gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
     gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
     gsDPSetEnvColor 255, 255, 255, 255
     gsDPSetTextureFilter G_TF_BILERP
@@ -1831,8 +1831,8 @@ gsDPSetEnvColor 255, 255, 255, 255
 gsSPSetGeometryMode G_LIGHTING | G_SHADING_SMOOTH
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
-gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2 
-# It could also be one of these: 
+gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
+# It could also be one of these:
 # G_RM_AA_ZB_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_AA_ZB_OPA_SURF, G_RM_AA_OPA_SURF2; G_RM_AA_ZB_OPA_SURF, G_RM_RA_OPA_SURF2;
 # G_RM_RA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2; G_RM_RA_ZB_OPA_SURF, G_RM_AA_OPA_SURF2; G_RM_AA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2;
 # G_RM_AA_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_RA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
@@ -1856,8 +1856,8 @@ gsSP1Triangle  0,  1,  2, 0x0
 gsSPSetGeometryMode G_LIGHTING
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
-gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2 
-# It could also be one of these: 
+gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
+# It could also be one of these:
 # G_RM_AA_ZB_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_AA_ZB_OPA_SURF, G_RM_AA_OPA_SURF2; G_RM_AA_ZB_OPA_SURF, G_RM_RA_OPA_SURF2;
 # G_RM_RA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2; G_RM_RA_ZB_OPA_SURF, G_RM_AA_OPA_SURF2; G_RM_AA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2;
 # G_RM_AA_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_RA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
@@ -2089,7 +2089,7 @@ gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
 gsDPSetRenderMode G_RM_OPA_SURF, G_RM_OPA_SURF2
-# It could also be one of these: 
+# It could also be one of these:
 # G_RM_OPA_SURF, G_RM_OPA_CI2; G_RM_OPA_CI, G_RM_OPA_SURF2; G_RM_PASS, G_RM_OPA_SURF2;
 
 gsSPEndDisplayList

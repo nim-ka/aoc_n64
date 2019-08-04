@@ -25,7 +25,7 @@
     {
         end = (void *)SEG_POOL_END_4MB;
     }
- * 
+ *
  * Then in thread3_main(), replace the create_thread for thread 5 with this if/else statement:
     if(!gNotEnoughMemory)
     {
@@ -36,7 +36,7 @@
         create_thread(&gGameLoopThread, 5, thread5_mem_error_message_loop, NULL, gThread5Stack + 0x2000, 10);
     }
  *
- * In src/engine/level_script.h, add this line below 'extern u8 level_script_entry[];' 
+ * In src/engine/level_script.h, add this line below 'extern u8 level_script_entry[];'
     extern u8 level_script_entry_error_screen[];
  *
  * In include/text_strings.h.in, add these 3 lines at the top. You can also add more strings if you want.
@@ -63,7 +63,7 @@
 
         area 1, intro_geo_error_screen
         end_area
-        
+
         free_level_pool
         load_area 1
         sleep 32767
@@ -92,7 +92,7 @@
 #ifndef USE_EXT_RAM
 #error You have to define USE_EXT_RAM in 'include/segments.h'
 #endif
- 
+
 #include <types.h>
 #include <text_strings.h>
 #include "../src/game/display.h"
@@ -102,7 +102,7 @@
 #include "../src/engine/level_script.h"
 
 // Require 8 MB of RAM, even if the pool doesn't go into extended memory.
-// Change the '8' to whatever MB limit you want. 
+// Change the '8' to whatever MB limit you want.
 // Note: only special emulators allow for RAM sizes above 8 MB.
 #define REQUIRED_MIN_MEM_SIZE 1048576 * 8
 
@@ -113,7 +113,7 @@ u8 does_pool_end_lie_out_of_bounds(void *end)
 {
     u32 endPhy = ((u32)end) & 0x1FFFFFFF;
     u32 memSize = *((u32*)0x80000318);
-    
+
     if(endPhy > memSize)
     {
         gNotEnoughMemory = TRUE;
@@ -146,18 +146,18 @@ Gfx *geo18_display_error_message(u32 run, UNUSED struct GraphNode *sp44, UNUSED 
       {
           // Draw color text title.
           print_text(10, 210, "ERROR    Need more memory");
-      
+
           // Init generic text rendering
           dl_add_new_ortho_matrix();
           gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin); // Init rendering stuff for generic text
-          
+
           // Set text color to white
           gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
-          
+
           PrintGenericText(8, 170, text_console_8mb);
           PrintGenericText(8, 120, text_pj64);
           PrintGenericText(8, 54, text_pj64_2);
-          
+
           // Cleanup
           gSPDisplayList(gDisplayListHead++, dl_ia8_text_end); // Reset back to default render settings.
           gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -167,7 +167,7 @@ Gfx *geo18_display_error_message(u32 run, UNUSED struct GraphNode *sp44, UNUSED 
           gDelayForErrorMessage += 1;
       }
    }
-   
+
    return 0;
 }
 
@@ -178,11 +178,11 @@ void thread5_mem_error_message_loop(UNUSED void *arg)
 
     setup_game_memory();
     set_vblank_handler(2, &gGameVblankHandler, &gGameVblankQueue, (OSMesg)1);
-    
+
     addr = (struct LevelCommand *) segmented_to_virtual(level_script_entry_error_screen);
-    
+
     func_80247ED8();
-    
+
     while(1)
     {
         func_80247FAC();

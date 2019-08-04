@@ -17,7 +17,7 @@ enum ShadowType
     SHADOW_SQUARE_SCALABLE = 11,
     SHADOW_SQUARE_TOGGLABLE = 12,
     /**
-     * This defines an offset after which rectangular shadows with custom 
+     * This defines an offset after which rectangular shadows with custom
      * widths and heights can be defined.
      */
     SHADOW_RECTANGLE_HARDCODED_OFFSET = 50,

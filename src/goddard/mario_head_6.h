@@ -99,9 +99,9 @@ extern void func_801A48D8(char *);
 extern void set_active_view(struct ObjView *);
 extern void func_801A520C(void);
 extern void gd_init(void);
-extern void func_801A5998(s8 *);    /* convert LE bytes to BE word? */ 
+extern void func_801A5998(s8 *);    /* convert LE bytes to BE word? */
 extern void func_801A59AC(void *);
-extern void func_801A59C0(s8 *);    /* convert LE bytes to BE f32? */ 
+extern void func_801A59C0(s8 *);    /* convert LE bytes to BE f32? */
 extern void init_pick_buf(s16 *, s32);
 extern void store_in_pickbuf(s16);
 extern s32 get_cur_pickbuf_offset(s16 *);

@@ -12,7 +12,7 @@
 #include "special_presets.h"
 
 /*
- * Converts the rotation value supplied by macro objects into one 
+ * Converts the rotation value supplied by macro objects into one
  * that can be used by in-game objects.
  */
 s16 convert_rotation(s16 inRotation)
@@ -22,21 +22,21 @@ s16 convert_rotation(s16 inRotation)
 
     if (rotation == 0x3F00)
         rotation = 0x4000;
-    
+
     if (rotation == 0x7F00)
         rotation = 0x8000;
-    
+
     if (rotation == 0xBF00)
         rotation = 0xC000;
-    
+
     if (rotation == 0xFF00)
         rotation = 0x0000;
-    
+
     return (s16)rotation;
 }
 
 /*
- * Spawns an object at an absolute location with rotation around the y-axis and 
+ * Spawns an object at an absolute location with rotation around the y-axis and
  * parameters filling up the upper 2 bytes of newObj->oBehParams.
  * The object will not spawn if 'behavior' is NULL.
  */
@@ -78,19 +78,19 @@ void spawn_macro_abs_special(u32 model, u32 *behavior, s16 x, s16 y, s16 z, s16 
 }
 
 static void Unknown802E142C(u32 (*a0)[], s16 a1[])
-{    
+{
     struct Object *sp3C;
     s16 model;
-        
+
     model = &bhvYellowCoin == a0 ? MODEL_YELLOW_COIN : MODEL_NONE;
-    
+
     sp3C = spawn_object_abs_with_rot(&gMacroObjectDefaultParent, 0, model, a0, a1[1], a1[2], a1[3], 0, convert_rotation(a1[0]), 0);
 
     sp3C->oUnk1A8 = a1[4];
     sp3C->oBehParams = (a1[4] & 0xFF) >> 16;
 }
 
-struct LoadedPreset 
+struct LoadedPreset
 {
     /*0x00*/ u32 *beh;
     /*0x04*/ s16 param; // huh? why does the below function swap these.. just use the struct..
@@ -191,7 +191,7 @@ void spawn_macro_objects_hardcoded(s16 areaIndex, s16* macroObjList)
 
         if (macroObjPreset < 0)
             break;
-        
+
         macroObjX = *macroObjList++;
         macroObjY = *macroObjList++;
         macroObjZ = *macroObjList++;
@@ -225,7 +225,7 @@ void spawn_macro_objects_hardcoded(s16 areaIndex, s16* macroObjList)
             default:
                 break;
         }
-    }   
+    }
 }
 
 void spawn_special_objects(s16 areaIndex, s16** specialObjList)
@@ -302,7 +302,7 @@ void spawn_special_objects(s16 areaIndex, s16** specialObjList)
                 (*specialObjList)++;
                 extraParams[1] = **specialObjList; // Unknown, gets put into obj->oUnknownUnk10C_F32 as a float
                 (*specialObjList)++;
-                extraParams[2] = **specialObjList; // Unknown, gets put into obj->oUnknownUnk110_F32 as a f32 
+                extraParams[2] = **specialObjList; // Unknown, gets put into obj->oUnknownUnk110_F32 as a f32
                 (*specialObjList)++;
                 spawn_macro_abs_special(model, behavior, x, y, z, extraParams[0], extraParams[1], extraParams[2]);
                 break;

@@ -217,7 +217,7 @@ void clear_areas(void)
     gWarpTransition.isActive = FALSE;
     gWarpTransition.pauseRendering = FALSE;
     gMarioSpawnInfo->areaIndex = -1;
-    
+
     for (i = 0; i < 8; i++)
     {
         gAreaData[i].index = i;
@@ -269,7 +269,7 @@ void load_area(s32 index)
     {
         gCurrentArea = &gAreaData[index];
         gCurrAreaIndex = gCurrentArea->index;
-        
+
         if (gCurrentArea->terrainData != NULL)
         {
             load_area_terrain(
@@ -278,10 +278,10 @@ void load_area(s32 index)
                 gCurrentArea->surfaceRooms,
                 gCurrentArea->macroObjects);
         }
-        
+
         if (gCurrentArea->objectSpawnInfos != NULL)
             spawn_objects_from_info(0, gCurrentArea->objectSpawnInfos);
-        
+
         func_8027A4C4();
         geo_call_global_function_nodes(gCurrentArea->unk04, GEO_CONTEXT_AREA_LOAD);
     }
@@ -304,7 +304,7 @@ void load_mario_area(void)
 {
     func_80320890();
     load_area(gMarioSpawnInfo->areaIndex);
-    
+
     if (gCurrentArea->index == gMarioSpawnInfo->areaIndex)
     {
         gCurrentArea->flags |= 0x01;
@@ -332,7 +332,7 @@ void change_area(s32 index)
     {
         func_8027A998();
         load_area(index);
-        
+
         gCurrentArea->flags = areaFlags;
         gMarioObject->oActiveParticleFlags = 0;
     }
@@ -383,7 +383,7 @@ void play_transition(s16 transType, s16 time, u8 red, u8 green, u8 blue)
         gWarpTransition.data.blue = blue;
 
         // Both the start and end circles are always located in the middle of the screen.
-        // If you really wanted to, you could place the start at one corner and the end at 
+        // If you really wanted to, you could place the start at one corner and the end at
         // the opposite corner. This will make the transition image look like it is moving
         // across the screen.
         gWarpTransition.data.startCircleX = 160;
@@ -392,7 +392,7 @@ void play_transition(s16 transType, s16 time, u8 red, u8 green, u8 blue)
         gWarpTransition.data.endCircleY = 120;
 
         gWarpTransition.data.unk10 = 0;
-        
+
         if (transType & 1) // Is the image fading in?
         {
             gWarpTransition.data.startCircleRadius = 320;
@@ -428,27 +428,27 @@ void render_game(void)
     if (gCurrentArea != NULL && !gWarpTransition.pauseRendering)
     {
         geo_process_root(gCurrentArea->unk04, D_8032CE74, D_8032CE78, gFBSetColor);
-        
+
         gSPViewport(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_8032CF00));
-        
+
         gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, 320, 240-BORDER_HEIGHT);
         render_hud();
-        
+
         gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, 320, 240);
         func_802D61A8();
         do_cutscene_handler();
         print_displaying_credits_entry();
         gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, 320, 240-BORDER_HEIGHT);
         D_8033A75E = func_802DCD98();
-        
+
         if (D_8033A75E != 0)
             D_8033A760 = D_8033A75E;
-        
+
         if (D_8032CE78 != NULL)
             make_viewport_clip_rect(D_8032CE78);
         else
             gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, 320, 240-BORDER_HEIGHT);
-        
+
         if (gWarpTransition.isActive)
         {
             if (gWarpTransDelay == 0)

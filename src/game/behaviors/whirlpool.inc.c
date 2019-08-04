@@ -54,9 +54,9 @@ void bhv_whirlpool_loop(void)
         gEnvFxBubbleConfig[ENVFX_STATE_SRC_Y] = o->oPosY + 800.0f;
         gEnvFxBubbleConfig[ENVFX_STATE_PITCH] = o->oWhirlpoolInitFacePitch;
         gEnvFxBubbleConfig[ENVFX_STATE_YAW] = o->oWhirlpoolInitFaceRoll;
-        
+
         func_802E70DC();
-        
+
         o->oFaceAngleYaw += 0x1F40;
     }
     else

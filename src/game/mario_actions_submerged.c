@@ -128,7 +128,7 @@ static void apply_water_current(struct MarioState *m, Vec3f step)
     {
         s16 currentAngle = m->floor->force << 8;
         f32 currentSpeed = sWaterCurrentSpeeds[m->floor->force >> 8];
-        
+
         step[0] += currentSpeed * sins(currentAngle);
         step[2] += currentSpeed * coss(currentAngle);
     }
@@ -143,13 +143,13 @@ static void apply_water_current(struct MarioState *m, Vec3f step)
             f32 dx = whirlpool->pos[0] - m->pos[0];
             f32 dy = whirlpool->pos[1] - m->pos[1];
             f32 dz = whirlpool->pos[2] - m->pos[2];
-            
+
             f32 lateralDist = sqrtf(dx*dx + dz*dz);
             f32 distance = sqrtf(lateralDist*lateralDist + dy*dy);
-            
+
             s16 pitchToWhirlpool = atan2s(lateralDist, dy);
             s16 yawToWhirlpool = atan2s(dz, dx);
-            
+
             yawToWhirlpool -= (s16) (0x2000 * 1000.0f / (distance + 1000.0f));
 
             if (whirlpool->strength >= 0)
@@ -209,10 +209,10 @@ static void func_80270504(struct MarioState *m)
 
     if (marioObj->header.gfx.angle[0] > 0)
         marioObj->header.gfx.pos[1] += 60.0f * sins(marioObj->header.gfx.angle[0]) * sins(marioObj->header.gfx.angle[0]);
-    
+
     if (marioObj->header.gfx.angle[0] < 0)
         marioObj->header.gfx.angle[0] = marioObj->header.gfx.angle[0] * 6 / 10;
-    
+
     if (marioObj->header.gfx.angle[0] > 0)
         marioObj->header.gfx.angle[0] = marioObj->header.gfx.angle[0] * 10 / 8;
 }
@@ -497,7 +497,7 @@ static s32 check_water_jump(struct MarioState *m)
     s32 probe = (s32) (m->pos[1] + 1.5f);
 
     if (m->input & INPUT_A_PRESSED)
-    { 
+    {
         if (probe >= m->waterLevel - 80 && m->faceAngle[0] >= 0 && m->controller->stickY < -60.0f)
         {
             vec3s_set(m->angleVel, 0, 0, 0);
@@ -941,7 +941,7 @@ static s32 act_water_plunge(struct MarioState *m)
 {
     u32 stepResult;
     s32 stateFlags = m->heldObj != NULL;
-    
+
     f32 endVSpeed;
     if (swimming_near_surface(m))
         endVSpeed = 0.0f;
@@ -1006,7 +1006,7 @@ static s32 act_caught_in_whirlpool(struct MarioState *m)
 
     struct Object *marioObj = m->marioObj;
     struct Object *whirlpool = m->usedObj;
-    
+
     f32 dx = m->pos[0] - whirlpool->oPosX;
     f32 dz = m->pos[2] - whirlpool->oPosZ;
     f32 distance = sqrtf(dx*dx + dz*dz);
@@ -1038,7 +1038,7 @@ static s32 act_caught_in_whirlpool(struct MarioState *m)
 
     sinAngleChange = sins(angleChange);
     cosAngleChange = coss(angleChange);
-    
+
     if (distance < 1.0f)
     {
         dx = newDistance * sins(m->faceAngle[1]);
@@ -1055,7 +1055,7 @@ static s32 act_caught_in_whirlpool(struct MarioState *m)
     m->pos[1] = whirlpool->oPosY + marioObj->oMarioWhirlpoolPosY;
 
     m->faceAngle[1] = atan2s(dz, dx) + 0x8000;
-    
+
     set_mario_animation(m, MARIO_ANIM_GENERAL_FALL);
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
@@ -1109,7 +1109,7 @@ static s32 update_metal_water_jump_speed(struct MarioState *m)
 {
     UNUSED f32 nextY = m->pos[1] + m->vel[1];
     f32 waterSurface = m->waterLevel - 100;
-    
+
     if (m->vel[1] > 0.0f && m->pos[1] > waterSurface)
         return TRUE;
 
@@ -1450,7 +1450,7 @@ static s32 check_common_submerged_cancels(struct MarioState *m)
                 m->heldObj = NULL;
                 stop_shell_music();
             }
-            
+
             return func_802531B8(m);
         }
     }

@@ -200,7 +200,7 @@ static s32 eyerok_hand_check_attacked(void)
         abs_angle_diff(o->oAngleToMario, o->oFaceAngleYaw) < 0x3000)
     {
         PlaySound2(SOUND_CH9_UNK5A_LOWPRIO);
-        
+
         if (--o->oHealth >= 2)
         {
             o->oAction = EYEROK_HAND_ACT_ATTACKED;
@@ -482,7 +482,7 @@ static void eyerok_hand_act_retreat(void)
     o->oPosZ = o->oHomeZ - distToHome * coss(angleToHome);
 
     obj_face_yaw_approach(0, 400);
-    
+
     if (approach_f32_ptr(&o->oPosY, o->oHomeY, 20.0f) &&
         distToHome == 0.0f &&
         o->oFaceAngleYaw == 0)
@@ -657,7 +657,7 @@ static void eyerok_hand_act_double_pound(void)
 void bhv_eyerok_hand_loop(void)
 {
     o->header.gfx.scale[0] = 1.5f;
-    
+
     if (o->oAction == EYEROK_HAND_ACT_SLEEP)
     {
         eyerok_hand_act_sleep();

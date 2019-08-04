@@ -33,7 +33,7 @@ void func_802B95A4(void)
             if(sp1C->oAction > 1)
             {
                 o->oAction++;
-                
+
                 save_file_set_flags(SAVE_FLAG_MOAT_DRAINED);
                 play_puzzle_jingle();
             }

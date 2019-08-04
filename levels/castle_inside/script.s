@@ -220,8 +220,8 @@ glabel level_castle_entry
     load_model_from_geo /*model*/ MODEL_CASTLE_DOOR_1_STAR,        /*geo*/ castle_door_1_star_geo
     load_model_from_geo /*model*/ MODEL_CASTLE_DOOR_3_STARS,       /*geo*/ castle_door_3_stars_geo
     load_model_from_geo /*model*/ MODEL_CASTLE_KEY_DOOR,           /*geo*/ key_door_geo
-	# The different sets of star doors all use different model IDs, despite them all loading the same geo layout.
-	# It is possible that star doors were originally going to have numbers on them, similar to the other locked doors.
+    # The different sets of star doors all use different model IDs, despite them all loading the same geo layout.
+    # It is possible that star doors were originally going to have numbers on them, similar to the other locked doors.
     load_model_from_geo /*model*/ MODEL_CASTLE_STAR_DOOR_30_STARS, /*geo*/ castle_geo_000F00
     load_model_from_geo /*model*/ MODEL_CASTLE_STAR_DOOR_8_STARS,  /*geo*/ castle_geo_000F00
     load_model_from_geo /*model*/ MODEL_CASTLE_STAR_DOOR_50_STARS, /*geo*/ castle_geo_000F00

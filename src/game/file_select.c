@@ -55,13 +55,13 @@ static unsigned char textMarioD[] = {TEXT_FILE_MARIO_D};
 static unsigned char textNew[] = {TEXT_NEW};
 static unsigned char starIcon[] = {0x35, 0xff};
 static unsigned char xIcon[] = {0x32, 0xff};
-static unsigned char textSelectFile[] = {TEXT_SELECT_FILE};    
+static unsigned char textSelectFile[] = {TEXT_SELECT_FILE};
 static unsigned char textScore[] = {TEXT_SCORE};
 static unsigned char textCopy[] = {TEXT_COPY};
 static unsigned char textErase[] = {TEXT_ERASE};
-static unsigned char textCheckFile[] = {TEXT_CHECK_FILE};    
+static unsigned char textCheckFile[] = {TEXT_CHECK_FILE};
 static unsigned char textNoSavedDataExists[] = {TEXT_NO_SAVED_DATA_EXISTS};
-static unsigned char textCopyFile[] = {TEXT_COPY_FILE};    
+static unsigned char textCopyFile[] = {TEXT_COPY_FILE};
 static unsigned char textCopyItToWhere[] = {TEXT_COPY_IT_TO_WHERE};
 static unsigned char textNoSavedDataExists2[] = {TEXT_NO_SAVED_DATA_EXISTS};
 static unsigned char textCopyFinished[] = {TEXT_COPYING_COMPLETED};
@@ -1311,7 +1311,7 @@ static void score_menu_display_message(s8 messageID)
         break;
     case 1:
         menu_print_generic_text(99, 190, textNoSavedDataExists);
-        break;    
+        break;
 #endif
     }
 }
@@ -1469,7 +1469,7 @@ static void draw_copy_menu(void)
 #else
     PrintGenericText(44, 35, textReturn);
     PrintGenericText(128, 35, textViewScore);
-    PrintGenericText(230, 35, textEraseFileButton);    
+    PrintGenericText(230, 35, textEraseFileButton);
 #endif
     // Display file names
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
@@ -1815,7 +1815,7 @@ static void draw_file_scores(s8 fileNum)
     unsigned char textFileLetter[] = {TEXT_0};
     void **levelNameTable = segmented_to_virtual(seg2_level_name_table);
 #endif
-    
+
 
     textFileLetter[0] = fileNum + 0x0A; // get letter of file
     // Print file name at top
@@ -1847,7 +1847,7 @@ static void draw_file_scores(s8 fileNum)
 #define PRINT_COURSE_SCORES(course, pad) \
     PrintRegularText(23 + (pad * 3), 35 + 12 * course, segmented_to_virtual(levelNameTable[course])); \
     score_file_print_course_star_score(fileNum, course, 171, 35 + 12 * course); \
-    score_file_print_course_coin_score(fileNum, course, 213, 35 + 12 * course);    
+    score_file_print_course_coin_score(fileNum, course, 213, 35 + 12 * course);
 #endif
 
     PRINT_COURSE_SCORES(0, PADDING)

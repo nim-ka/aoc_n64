@@ -18,12 +18,12 @@
 void bhv_beta_trampoline_spring_loop(void) {
     f32 yScale;
     f32 yDisplacement;
-    
+
     // Update to be 75 units under the trampoline top
     copy_object_pos_and_angle(o, o->parentObj);
     copy_object_graph_y_offset(o, o->parentObj);
     o->oPosY -= 75.0f;
-    
+
     // If the trampoline top is above its original position,
     // scale the spring by (the displacement)/10 + 1.
     // For this to work correctly, the arbitrary value of 10
@@ -40,7 +40,7 @@ void bhv_beta_trampoline_spring_loop(void) {
         yDisplacement = -yDisplacement;
         yScale = 1.0 - yDisplacement / 500.0;
     }
-    
+
     // Scale the spring
     scale_object_xyz(o, 1.0f, yScale, 1.0f);
 }
@@ -54,18 +54,18 @@ void bhv_beta_trampoline_spring_loop(void) {
  */
 void bhv_beta_trampoline_top_loop(void) {
     obj_set_model(MODEL_TRAMPOLINE);
-    
+
     // When initialized, spawn the rest of the trampoline
     if (o->oTimer == 0) {
         struct Object *trampolinePart;
-        
+
         trampolinePart = spawn_object(o, MODEL_TRAMPOLINE_CENTER, bhvBetaTrampolineSpring);
         trampolinePart->oPosY -= 75.0f;
-        
+
         trampolinePart = spawn_object(o, MODEL_TRAMPOLINE_BASE, bhvStaticObject);
         trampolinePart->oPosY -= 150.0f;
     }
-    
+
     // Update o->oBetaTrampolineMarioOnTrampoline, and reset
     // the trampoline's position if Mario's not on it.
     // Since the trampoline never moves, this doesn't do anything.
@@ -77,7 +77,7 @@ void bhv_beta_trampoline_top_loop(void) {
         o->oBetaTrampolineMarioOnTrampoline = FALSE;
         o->oPosY = o->oHomeY;
     }
-    
+
     // This function is from mario_step.c, and is empty.
     // It was probably intended to be used to "let the game know"
     // that the trampoline is currently in use. This potential

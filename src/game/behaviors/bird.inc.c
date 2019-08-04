@@ -20,7 +20,7 @@ static void bird_act_inactive(void) {
         // and spawn 6 spawned birds (which will start flying on the next frame).
         if (o->oBehParams2ndByte != BIRD_BP_SPAWNED) {
             s32 i;
-            
+
             PlaySound2(SOUND_GENERAL_BIRDSFLYAWAY);
 
             for (i = 0; i < 6; i++) {
@@ -34,12 +34,12 @@ static void bird_act_inactive(void) {
 
         // Start flying
         o->oAction = BIRD_ACT_FLY;
-        
+
         // Start with a random yaw, and a random pitch from 1000 to 5000.
         // Positive pitch is downwards.
         o->oMoveAnglePitch = 5000 - (s32)(4000.0f * RandomFloat());
         o->oMoveAngleYaw = RandomU16();
-        
+
         o->oBirdSpeed = 40.0f;
 
         obj_unhide();
@@ -57,7 +57,7 @@ static void bird_act_fly(void) {
 
     // Compute forward velocity and vertical velocity from oBirdSpeed and pitch
     obj_compute_vel_from_move_pitch(o->oBirdSpeed);
-    
+
     // If the bird's parent is higher than 8000 units, despawn the bird.
     // A spawned bird's parent is its spawner bird. A spawner bird's parent
     // is itself. In other words, when a group of birds has its spawner bird
@@ -69,7 +69,7 @@ static void bird_act_fly(void) {
         // fly towards the bird's spawner bird.
         if (o->oBehParams2ndByte != BIRD_BP_SPAWNED) {
             distance = obj_lateral_dist_to_home();
-            
+
             // The spawner bird will start with its downwards (positive) pitch
             // and will continuously decrease its pitch (i.e. make itself face more upwards)
             // until it reaches its home, at which point it will face directly up.
@@ -79,11 +79,11 @@ static void bird_act_fly(void) {
             o->oBirdTargetYaw = obj_angle_to_home();
         } else {
             distance = lateral_dist_between_objects(o, o->parentObj);
-            
+
             // The bird's target pitch will face directly to its spawner bird.
             o->oBirdTargetPitch = atan2s(distance, o->oPosY - o->parentObj->oPosY);
             o->oBirdTargetYaw = angle_to_object(o, o->parentObj);
-            
+
             // The bird goes faster the farther it is from its spawner bird so it can catch up.
             o->oBirdSpeed = 0.04f * dist_between_objects(o, o->parentObj) + 20.0f;
         }

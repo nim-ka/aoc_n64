@@ -766,8 +766,8 @@ f32 atan2f(f32 y, f32 x)
  *  weights are for P[0], P[1], P[2] and P[3] to obtain an interpolated point.
  *  The weights naturally sum to 1, and they are also always in range [0, 1] so
  *  the inteprolated point will never overshoot. The curve is guaranteed to go
- *  through the first and last point, but not through intermediate points. 
- *  
+ *  through the first and last point, but not through intermediate points.
+ *
  *  gSplineState ensures that the curve is clamped: the first two points
  *  and last two points have different weight formulas. These are the weights
  *  just before gSplineState transitions:
@@ -791,7 +791,7 @@ void spline_get_weights(Vec4f result, f32 t, UNUSED s32 c)
     f32 tinv3 = tinv2 * tinv;
     f32 t2 = t * t;
     f32 t3 = t2 * t;
-    
+
     switch (gSplineState)
     {
     case CURVE_BEGIN_1:

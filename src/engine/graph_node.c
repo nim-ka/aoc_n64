@@ -705,7 +705,7 @@ void geo_call_global_function_nodes_helper(struct GraphNode *graphNode, s32 call
 }
 
 /** Call the update functions of geo nodes that are stored in global variables.
- *  These variables include gCurGraphNodeMasterList, gCurGraphNodeCamFrustum, 
+ *  These variables include gCurGraphNodeMasterList, gCurGraphNodeCamFrustum,
  *  gCurGraphNodeCamera and gCurGraphNodeObject.
  *  callContext is one of the GEO_CONTEXT_ defines.
  *  The graphNode argument should be of type GraphNodeRoot.

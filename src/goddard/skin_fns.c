@@ -69,7 +69,7 @@ void reset_net(struct ObjNet *net)
     net->unk14.z = net->unk20.z;
     net->unk50.x = net->unk50.y = net->unk50.z = 0.0f;
     net->unkA4.x = net->unkA4.y = net->unkA4.z = 0.0f;
-    
+
     func_80191F10(net);
     gd_print_vec("net scale: ", &net->unk1AC);
     gd_print_plane("net box: ", &net->unkBC);
@@ -154,7 +154,7 @@ struct ObjNet *make_net(UNUSED s32 a0, struct ObjShape *shapedata, struct ObjGro
     net = (struct ObjNet *)make_object(OBJ_TYPE_NETS);
     set_identity_mat4(&net->mat128);
     net->unk20.x = net->unk20.y = net->unk20.z = 0.0f;
-    net->unk38 = ++sNetCount; 
+    net->unk38 = ++sNetCount;
     net->unk1AC.x = net->unk1AC.y = net->unk1AC.z = 1.0f;
     net->unk1A8 = shapedata;
     net->unk1C8 = a2;
@@ -221,7 +221,7 @@ void func_801926A4(struct ObjNet *net)
 
         func_8017E584(gGdSkinNet, &D_801B9E28, &D_801B9E18);
         func_8017E838(gGdSkinNet, &D_801B9E28, &D_801B9E18);
-    } 
+    }
 
     net->unkA4.x += net->unk80.x;
     net->unkA4.y += net->unk80.y;
@@ -332,9 +332,9 @@ void func_80192CCC(struct ObjNet *net)
     }
 
     if (gGdCtrl.newStartPress) { return; } // start was pressed
-    
+
     switch (net->unk210) { case 2: break; }
-    
+
     func_80192528(net);
     if ((group = net->unk1C8) != NULL)
     {
@@ -408,7 +408,7 @@ void convert_gd_verts_to_Vn(struct ObjGroup *grp)
 
         for (vtxlink = vtx->gbiVerts; vtxlink != NULL; vtxlink = vtxlink->prev)
         {
-            vnPos = vtxlink->data->n.ob; 
+            vnPos = vtxlink->data->n.ob;
             vn = vtxlink->data;
             *vnPos++ = x;
             *vnPos++ = y;
@@ -465,7 +465,7 @@ void convert_net_verts(struct ObjNet *net)
     switch (net->netType)
     {
         case 2:
-            if (net->unk1A8 != NULL) 
+            if (net->unk1A8 != NULL)
             {
                 convert_gd_verts_to_Vtx(net->unk1A8->unk24);
             }
@@ -507,8 +507,8 @@ void move_net(struct ObjNet *net)
     switch (net->netType)
     {
         case 1: break;
-        case 7: 
-            func_80192CCC(net); 
+        case 7:
+            func_80192CCC(net);
             break;
         case 4:
             restart_timer("move_bones");

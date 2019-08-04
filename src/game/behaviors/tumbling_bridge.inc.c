@@ -58,12 +58,12 @@ void ActionTumblingBridge1(void)
     s32 relativePlatformZ;
     s32 relativePlatformY = 0;
     s32 relativeInitialPlatformY = 0;
-    
+
     for (i = 0; i < sTumblingBridgeParams[bridgeID].numBridgeSections; i++)
     {
         relativePlatformX = 0;
         relativePlatformZ = 0;
-        
+
         if (bridgeID == 3)
             relativePlatformX =
                 sTumblingBridgeParams[bridgeID].bridgeRelativeStartingXorZ +
@@ -72,14 +72,14 @@ void ActionTumblingBridge1(void)
             relativePlatformZ =
                 sTumblingBridgeParams[bridgeID].bridgeRelativeStartingXorZ +
                 sTumblingBridgeParams[bridgeID].platformWidth * i;
-        
+
         if (obj_has_behavior(bhvLllTumblingBridge))
         {
             if (i % 3 == 0)
                 relativePlatformY -= 150;
             relativeInitialPlatformY = 450;
         }
-        
+
         platformObj = spawn_object_relative(
             0,
             relativePlatformX,
@@ -89,10 +89,10 @@ void ActionTumblingBridge1(void)
             sTumblingBridgeParams[bridgeID].model,
             bhvTumblingBridgePlatform
         );
-        
+
         set_object_collision_data(platformObj, sTumblingBridgeParams[bridgeID].segAddr);
     }
-    
+
     o->oAction = 2;
 }
 

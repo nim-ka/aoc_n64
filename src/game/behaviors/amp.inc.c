@@ -28,11 +28,11 @@ void bhv_homing_amp_init(void) {
     o->oFriction = 1.0;
     o->oBuoyancy = 1.0;
     o->oHomingAmpAvgY = o->oHomeY;
-    
+
     // Homing amps start at 1/10th their normal size.
     // They grow when they "appear" to Mario.
     obj_scale(0.1f);
-    
+
     // Hide the amp (until Mario gets near).
     o->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
 }
@@ -45,7 +45,7 @@ static void check_amp_attack(void) {
     // For perspective, this code is run every frame of bhv_circling_amp_loop
     // and every frame of a homing amp's HOMING_AMP_ACT_CHASE action.
     set_object_hitbox(o, &sAmpHitbox);
-    
+
     if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         // Unnecessary if statement, maybe caused by a macro for
         //     if (o->oInteractStatus & INT_STATUS_INTERACTED)
@@ -56,7 +56,7 @@ static void check_amp_attack(void) {
             // AMP_ACT_ATTACK_COOLDOWN == HOMING_AMP_ACT_ATTACK_COOLDOWN
             o->oAction = AMP_ACT_ATTACK_COOLDOWN;
         }
-        
+
         // Clear interact status
         o->oInteractStatus = 0;
     }
@@ -73,9 +73,9 @@ static void homing_amp_appear_loop(void) {
     f32 relativeTargetX = gCameraStatus.camFocAndPosCurrAndGoal[3][0] - o->oPosX;
     f32 relativeTargetZ = gCameraStatus.camFocAndPosCurrAndGoal[3][2] - o->oPosZ;
     s16 targetYaw = atan2s(relativeTargetZ, relativeTargetX);
-    
+
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, targetYaw, 0x1000);
-    
+
     // For 30 frames, make the amp "appear" by increasing its size by 0.03 each frame,
     // except for the first frame (when oTimer == 0) because the expression in obj_scale
     // evaluates to 0.1, which is the same as it was before. After 30 frames, it ends at
@@ -85,7 +85,7 @@ static void homing_amp_appear_loop(void) {
     } else {
         o->oAnimState = 1;
     }
-    
+
     // Once the timer becomes greater than 90, i.e. 91 frames have passed,
     // reset the amp's size and start chasing Mario.
     if (o->oTimer >= 91) {
@@ -156,10 +156,10 @@ static void homing_amp_chase_loop(void) {
  */
 static void homing_amp_give_up_loop(void) {
     UNUSED u8 filler[8];
-    
+
     // Move forward for 152 frames
     o->oForwardVel = 15.0f;
-    
+
     if (o->oTimer >= 151) {
         // Hide the amp and reset it back to its inactive state
         o->oPosX = o->oHomeX;
@@ -186,7 +186,7 @@ static void amp_attack_cooldown_loop(void) {
     if (o->oTimer >= 31) {
         o->oAnimState = 0;
     }
-    
+
     if (o->oTimer >= 91) {
         o->oAnimState = 1;
         obj_become_tangible();
@@ -215,18 +215,18 @@ void bhv_homing_amp_loop(void) {
             homing_amp_chase_loop();
             PlaySound(SOUND_CH6_AMPBUZZ);
             break;
-            
+
         case HOMING_AMP_ACT_GIVE_UP:
             homing_amp_give_up_loop();
             break;
-            
+
         case HOMING_AMP_ACT_ATTACK_COOLDOWN:
             amp_attack_cooldown_loop();
             break;
     }
-    
+
     ObjectStep();
-    
+
     // Oscillate
     o->oAmpYPhase++;
 }
@@ -239,29 +239,29 @@ void bhv_circling_amp_init(void) {
     o->oHomeY = o->oPosY;
     o->oHomeZ = o->oPosZ;
     o->oAnimState = 1;
-    
+
     // Determine the radius of the circling amp's circle
     switch (o->oBehParams2ndByte) {
         case AMP_BP_ROT_RADIUS_200:
             o->oAmpRadiusOfRotation = 200.0f;
             break;
-            
+
         case AMP_BP_ROT_RADIUS_300:
             o->oAmpRadiusOfRotation = 300.0f;
             break;
-            
+
         case AMP_BP_ROT_RADIUS_400:
             o->oAmpRadiusOfRotation = 400.0f;
             break;
-            
+
         case AMP_BP_ROT_RADIUS_0:
             break;
     }
-    
+
     // Choose a random point along the amp's circle.
     // The amp's move angle represents its angle along the circle.
     o->oMoveAngleYaw = RandomU16();
-    
+
     o->oAction = AMP_ACT_IDLE;
 }
 
@@ -291,7 +291,7 @@ static void fixed_circling_amp_idle_loop(void) {
 
     // Oscillate
     o->oAmpYPhase++;
-    
+
     // Where there is a PlaySound call in the main circling amp update function,
     // there is nothing here. Fixed amps are the only amps that never play
     // the "amp buzzing" sound.
@@ -311,13 +311,13 @@ static void circling_amp_idle_loop(void) {
     o->oPosY = o->oHomeY + coss(o->oAmpYPhase * 0x8B0) * 30.0f;
     o->oMoveAngleYaw += 0x400;
     o->oFaceAngleYaw = o->oMoveAngleYaw + 0x4000;
-    
+
     // Handle attacks
     check_amp_attack();
-    
+
     // Oscillate
     o->oAmpYPhase++;
-    
+
     PlaySound(SOUND_CH6_AMPBUZZ);
 }
 
@@ -334,7 +334,7 @@ void bhv_circling_amp_loop(void) {
             } else {
                 circling_amp_idle_loop();
             }
-            
+
             break;
 
         case AMP_ACT_ATTACK_COOLDOWN:

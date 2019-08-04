@@ -349,7 +349,7 @@ struct GraphNodeHeldObject
 
 /** A node that allows an object to specify a different culling radius than the
  *  default one of 300. For this to work, it needs to be a direct child of the
- *  object node. Used for very large objects, such as shockwave rings that Bowser 
+ *  object node. Used for very large objects, such as shockwave rings that Bowser
  *  creates, tornados, the big eel.
  */
 struct GraphNodeCullingRadius

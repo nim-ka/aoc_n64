@@ -83,8 +83,8 @@ glabel level_wdw_entry
         warp_node /*id*/ 0xF0, /*destLevel*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x32, /*unk6*/ 0x0000
         warp_node /*id*/ 0xF1, /*destLevel*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x64, /*unk6*/ 0x0000
         instant_warp /*index*/ 1, /*destArea*/ 2, /*displace*/ 0, 0, 0
-        terrain /*terrainData*/ wdw_seg7_area_1_collision 
-        macro_objects /*objList*/ wdw_seg7_area_1_macro_objs 
+        terrain /*terrainData*/ wdw_seg7_area_1_collision
+        macro_objects /*objList*/ wdw_seg7_area_1_macro_objs
         set_background_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_UNDERGROUND
         terrain_type /*terrainType*/ 0x0001
     end_area
@@ -95,8 +95,8 @@ glabel level_wdw_entry
         warp_node /*id*/ 0xF0, /*destLevel*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x32, /*unk6*/ 0x0000
         warp_node /*id*/ 0xF1, /*destLevel*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x64, /*unk6*/ 0x0000
         instant_warp /*index*/ 0, /*destArea*/ 1, /*displace*/ 0, 0, 0
-        terrain /*terrainData*/ wdw_seg7_area_2_collision 
-        macro_objects /*objList*/ wdw_seg7_area_2_macro_objs 
+        terrain /*terrainData*/ wdw_seg7_area_2_collision
+        macro_objects /*objList*/ wdw_seg7_area_2_macro_objs
         set_background_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_UNDERGROUND
         terrain_type /*terrainType*/ 0x0005
     end_area

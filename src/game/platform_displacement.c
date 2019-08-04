@@ -129,7 +129,7 @@ void apply_platform_displacement(u32 isMario, struct Object *platform)
     z += platform->oVelZ;
 
     if (rotation[0] != 0 || rotation[1] != 0 || rotation[2] != 0)
-    {        
+    {
         unused1 = rotation[0];
         unused2 = rotation[2];
         unused3 = platform->oFaceAngleYaw;

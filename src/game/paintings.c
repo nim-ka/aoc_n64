@@ -79,7 +79,7 @@ float find_mario_y_position_on_painting(struct PaintingData *painting)
 {
     //! unnecessary use of double constants
     float marioYOffsetFromPainting = gPaintingMarioYPos - painting->vYPos + 50.0;
-    
+
     if (marioYOffsetFromPainting < 0.0)
         marioYOffsetFromPainting = 0.0; // If Mario is below the bottom, return the bottom
     else if (marioYOffsetFromPainting > painting->vSize) // If Mario is above the top, return the top

@@ -114,7 +114,7 @@ static void add_surface_to_cell(s16 dynamic, s16 cellX, s16 cellZ, struct Surfac
         priority = list->next->surface->vertex1[1] * sortDir;
         if (surfacePriority > priority)
             break;
-        
+
         list = list->next;
     }
 

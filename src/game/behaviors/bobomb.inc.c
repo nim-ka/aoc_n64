@@ -39,7 +39,7 @@ void BobombExplodeLoop(void)
     {
         explosion = spawn_object(o, MODEL_EXPLOSION, bhvExplosion);
         explosion->oGraphYOffset += 100.0f;
-        
+
         func_802E5B7C();
         create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
         o->activeFlags = 0;
@@ -117,31 +117,31 @@ void GenericBobombFreeLoop(void)
         case BOBOMB_ACT_PATROL:
             BobombPatrolLoop();
             break;
-            
+
         case BOBOMB_ACT_LAUNCHED:
             BobombLaunchedLoop();
             break;
-            
+
         case BOBOMB_ACT_CHASE_MARIO:
             BobombChaseMarioLoop();
             break;
-            
+
         case BOBOMB_ACT_EXPLODE:
             BobombExplodeLoop();
             break;
-            
+
         case BOBOMB_ACT_LAVA_DEATH:
             if (ObjLavaDeath() == 1) create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
             break;
-            
+
         case BOBOMB_ACT_DEATH_PLANE_DEATH:
             o->activeFlags = 0;
             create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
             break;
     }
-    
+
     CheckBobombInteractions();
-    
+
     if (o->oBobombFuseTimer >= 151) o->oAction = 3;
 }
 
@@ -152,23 +152,23 @@ void StationaryBobombFreeLoop(void)
         case BOBOMB_ACT_LAUNCHED:
             BobombLaunchedLoop();
             break;
-            
+
         case BOBOMB_ACT_EXPLODE:
             BobombExplodeLoop();
             break;
-            
+
         case BOBOMB_ACT_LAVA_DEATH:
             if (ObjLavaDeath() == 1) create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
             break;
-            
+
         case BOBOMB_ACT_DEATH_PLANE_DEATH:
             o->activeFlags = 0;
             create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
             break;
     }
-    
+
     CheckBobombInteractions();
-    
+
     if (o->oBobombFuseTimer >= 151) o->oAction = 3;
 }
 
@@ -188,9 +188,9 @@ void BobombHeldLoop(void)
     if (o->oBobombFuseTimer >= 151)
     {
         //! Although the Bob-omb's action is set to explode when the fuse timer expires,
-        //  BobombExplodeLoop() will not execute until the bob-omb's held state changes. 
-        //  This allows the Bob-omb to be regrabbed indefinitely.                        
-            
+        //  BobombExplodeLoop() will not execute until the bob-omb's held state changes.
+        //  This allows the Bob-omb to be regrabbed indefinitely.
+
         gMarioObject->oInteractStatus |= INTERACT_DAMAGE; /* bit 3 */
         o->oAction = BOBOMB_ACT_EXPLODE;
     }
@@ -236,7 +236,7 @@ void ObjRandomBlink(s32 *blinkTimer)
         (*blinkTimer)++;
         if (*blinkTimer >= 6) o->oAnimState = 0;
         if (*blinkTimer >= 11) o->oAnimState = 1;
-        if (*blinkTimer >= 16) 
+        if (*blinkTimer >= 16)
         {
             o->oAnimState = 0;
             *blinkTimer = 0;
@@ -254,32 +254,32 @@ void bhv_bobomb_loop(void)
             case HELD_FREE:
                 BobombFreeLoop();
                 break;
-                
+
             case HELD_HELD:
                 BobombHeldLoop();
                 break;
-                
+
             case HELD_THROWN:
                 BobombThrownLoop();
                 break;
-                
+
             case HELD_DROPPED:
                 BobombDroppedLoop();
                 break;
         }
-    
+
         ObjRandomBlink(&o->oBobombBlinkTimer);
-        
+
         if (o->oBobombFuseLit == 1)
         {
             if (o->oBobombFuseTimer >= 121) dustPeriodMinus1 = 1;
             else dustPeriodMinus1 = 7;
-        
+
             if ((dustPeriodMinus1 & o->oBobombFuseTimer) == 0) /* oBobombFuseTimer % 2 or oBobombFuseTimer % 8 */
                 spawn_object(o, MODEL_SMOKE, bhvBobombFuseSmoke);
-                
+
             PlaySound(SOUND_CH6_BOBOMBLITFUSE);
-            
+
             o->oBobombFuseTimer++;
         }
     }
@@ -328,7 +328,7 @@ void BobombBuddyCannonLoop(s16 arg0, s16 arg1)
 {
     struct Object* sp2c;
     s16 sp2a, sp28;
-    
+
     switch (o->oBobombBuddyCannonStatus)
     {
         case BOBOMB_BUDDY_CANNON_UNOPENED:
@@ -341,21 +341,21 @@ void BobombBuddyCannonLoop(s16 arg0, s16 arg1)
                 else o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_STOP_TALKING;
             }
             break;
-            
+
         case BOBOMB_BUDDY_CANNON_OPENING:
             sp2c = obj_nearest_object_with_behavior(bhvCannonClosed);
             sp28 = func_8028F9E8(150, sp2c);
             if (sp28 == -1) o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_OPENED;
             break;
-            
+
         case BOBOMB_BUDDY_CANNON_OPENED:
             sp2a = func_8028F8E0(162, o, arg1);
             if (sp2a != 0) o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_STOP_TALKING;
             break;
-            
+
         case BOBOMB_BUDDY_CANNON_STOP_TALKING:
             set_mario_npc_dialog(0);
-            
+
             o->activeFlags &= ~0x20; /* bit 5 */
             o->oBobombBuddyHasTalkedToMario = BOBOMB_BUDDY_HAS_TALKED;
             o->oInteractStatus = 0;
@@ -397,11 +397,11 @@ void BobombBuddyTurnToTalkLoop(void)
 {
     s16 sp1e = o->header.gfx.unk38.animFrame;
     if ((sp1e == 5) || (sp1e == 16)) PlaySound2(SOUND_OBJECT_BOBOMBWALK);
-    
+
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x1000);
     if ((s16)o->oMoveAngleYaw == (s16)o->oAngleToMario)
         o->oAction = BOBOMB_BUDDY_ACT_TALK;
-    
+
     PlaySound2(SOUND_ACTION_UNKNOWN45B);
 }
 
@@ -412,11 +412,11 @@ void BobombBuddyActionLoop(void)
         case BOBOMB_BUDDY_ACT_IDLE:
             BobombBuddyIdleLoop();
             break;
-            
+
         case BOBOMB_BUDDY_ACT_TURN_TO_TALK:
             BobombBuddyTurnToTalkLoop();
             break;
-            
+
         case BOBOMB_BUDDY_ACT_TALK:
             BobombBuddyTalkLoop();
             break;
@@ -428,8 +428,8 @@ void BobombBuddyActionLoop(void)
 void bhv_bobomb_buddy_loop(void)
 {
     BobombBuddyActionLoop();
-    
+
     ObjRandomBlink(&o->oBobombBuddyBlinkTimer);
-    
+
     o->oInteractStatus = 0;
 }

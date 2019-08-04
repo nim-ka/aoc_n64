@@ -348,7 +348,7 @@ gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMU
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
 gsDPSetRenderMode G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2
-# It could also be one of these: 
+# It could also be one of these:
 # G_RM_RA_OPA_SURF, G_RM_AA_TEX_EDGE2; G_RM_AA_TEX_EDGE, G_RM_AA_OPA_SURF2; G_RM_AA_TEX_EDGE, G_RM_RA_OPA_SURF2;
 # G_RM_AA_OPA_SURF, G_RM_AA_TEX_EDGE2;
 
@@ -363,8 +363,8 @@ gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPTexture 1, 1, 0, 0, 0
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
-gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2 
-# It could also be one of these: 
+gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
+# It could also be one of these:
 # G_RM_AA_ZB_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_AA_ZB_OPA_SURF, G_RM_AA_OPA_SURF2; G_RM_AA_ZB_OPA_SURF, G_RM_RA_OPA_SURF2;
 # G_RM_RA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2; G_RM_RA_ZB_OPA_SURF, G_RM_AA_OPA_SURF2; G_RM_AA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2;
 # G_RM_AA_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_RA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
@@ -1039,8 +1039,8 @@ gsDPPipeSync
 gsDPSetTexturePersp G_TP_PERSP
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
-gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2 
-# It could also be one of these: 
+gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
+# It could also be one of these:
 # G_RM_AA_ZB_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_AA_ZB_OPA_SURF, G_RM_AA_OPA_SURF2; G_RM_AA_ZB_OPA_SURF, G_RM_RA_OPA_SURF2;
 # G_RM_RA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2; G_RM_RA_ZB_OPA_SURF, G_RM_AA_OPA_SURF2; G_RM_AA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2;
 # G_RM_AA_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_RA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
@@ -1096,7 +1096,7 @@ gsSPTexture -32768, -32768, 0, 0, 1
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
 gsDPSetRenderMode G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2
-# It could also be one of these: 
+# It could also be one of these:
 # G_RM_RA_OPA_SURF, G_RM_AA_TEX_EDGE2; G_RM_AA_TEX_EDGE, G_RM_AA_OPA_SURF2; G_RM_AA_TEX_EDGE, G_RM_RA_OPA_SURF2;
 # G_RM_AA_OPA_SURF, G_RM_AA_TEX_EDGE2;
 
@@ -1122,8 +1122,8 @@ gsSPVertex main_menu_seg7_vertex_0700F1E8, 4, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
-gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2 
-# It could also be one of these: 
+gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
+# It could also be one of these:
 # G_RM_AA_ZB_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_AA_ZB_OPA_SURF, G_RM_AA_OPA_SURF2; G_RM_AA_ZB_OPA_SURF, G_RM_RA_OPA_SURF2;
 # G_RM_RA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2; G_RM_RA_ZB_OPA_SURF, G_RM_AA_OPA_SURF2; G_RM_AA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2;
 # G_RM_AA_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_RA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2

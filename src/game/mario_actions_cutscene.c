@@ -53,9 +53,9 @@ static s8 D_8032CBEC[7] = { 2, 3, 2, 1, 2, 3, 2 };
 static u8 sStarsNeededForDialog[6] = { 1, 3, 8, 30, 50, 70 };
 
 /** Data for the jumbo star cutscene. It specifies the flight path after triple
- *  jumping. Each entry is one keyframe. 
+ *  jumping. Each entry is one keyframe.
  *  The first number is playback speed, 1000 is the maximum and means it lasts
- *  1 frame. 20 means that it lasts 1000/20 = 50 frames. 
+ *  1 frame. 20 means that it lasts 1000/20 = 50 frames.
  *  Speed 0 marks the last keyframe. Since the cubic spline looks 3 keyframes
  *  ahead, there should be at least 2 more entries afterwards.
  *  The last three numbers of each entry are x, y and z coordinates of points

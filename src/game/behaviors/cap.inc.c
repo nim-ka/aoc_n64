@@ -1,6 +1,6 @@
 // cap.c.inc
 
-static struct ObjectHitbox sCapHitbox = 
+static struct ObjectHitbox sCapHitbox =
 {
     /* interactType:      */ INTERACT_CAP,
     /* downOffset:        */ 0,
@@ -40,7 +40,7 @@ void func_802F09C0(void) {
             break;
 
         case SURFACE_SHALLOW_QUICKSAND:
-        case SURFACE_DEEP_QUICKSAND: 
+        case SURFACE_DEEP_QUICKSAND:
         case SURFACE_QUICKSAND:
             o->oAction = 10;
             o->oForwardVel = 0.0f;
@@ -58,7 +58,7 @@ void func_802F09C0(void) {
             o->oAction = 12;
             o->oForwardVel = 0;
             break;
-            
+
         case SURFACE_INSTANT_MOVING_QUICKSAND:
             o->oAction = 13;
             o->oMoveAngleYaw = (D_803600E0->force & 0xFF) << 8;
@@ -78,7 +78,7 @@ void func_802F0B68(void) {
             break;
 
         case 11:
-            if (o->oTimer < 10) 
+            if (o->oTimer < 10)
                 o->oGraphYOffset += -3.0f;
 
             o->oFaceAnglePitch = 0x2000;
@@ -137,7 +137,7 @@ void func_802F0E0C(void) {
 }
 
 void bhv_wing_vanish_cap_loop(void) {
-    switch (o->oAction) { 
+    switch (o->oAction) {
         case 0:
             func_802F0E0C();
             break;
@@ -172,7 +172,7 @@ void func_802F0FE0(void) {
 }
 
 void bhv_metal_cap_loop(void) {
-    switch (o->oAction) { 
+    switch (o->oAction) {
         case 0:
             func_802F0FE0();
             break;
@@ -182,7 +182,7 @@ void bhv_metal_cap_loop(void) {
             func_802F0B68();
             break;
     }
-    
+
     if (o->oTimer > 20)
         obj_become_tangible();
 
@@ -242,7 +242,7 @@ void func_802F1234(void) {
 }
 
 void bhv_normal_cap_loop(void) {
-    switch (o->oAction) { 
+    switch (o->oAction) {
         case 0:
             func_802F1234();
             break;
@@ -252,7 +252,7 @@ void bhv_normal_cap_loop(void) {
             func_802F0B68();
             break;
     }
-    
+
     if ((s32)o->oForwardVel != 0)
         save_file_set_cap_pos(o->oPosX, o->oPosY, o->oPosZ);
 

@@ -69,7 +69,7 @@ void func_802EFC44(void) {
         if (func_802E46C0(o->oMoveAngleYaw, o->oAngleToMario, 0x2000) == 1
             && o->oUnk1AC_S32 == 1) {
             o->oSnowmansBottomUnkF8 = o->oAngleToMario;
-        } 
+        }
         else {
             o->oSnowmansBottomUnkF8 = o->oMoveAngleYaw;
         }
@@ -105,12 +105,12 @@ void func_802EFDA0(void) {
 
 void func_802EFF58(void) {
     UNUSED s16 sp1E;
-    
+
     sp1E = func_802E4204();
     if ((sp1E & 0x09) == 0x09) {
         o->oAction = 4;
         obj_become_intangible();
-    } 
+    }
 
     if ((sp1E & 0x01) != 0) {
         func_802AA618(0, 0, 70.0f);
@@ -173,7 +173,7 @@ void bhv_snowmans_head_init(void) {
 
     obj_scale(0.7f);
 
-    o->oGravity = 5.0f; 
+    o->oGravity = 5.0f;
     o->oFriction = 0.999f;
     o->oBuoyancy = 2.0f;
 
@@ -234,6 +234,6 @@ void bhv_snowmans_body_checkpoint_loop(void) {
         o->activeFlags = 0;
     }
 
-    if (o->parentObj->activeFlags == 0) 
+    if (o->parentObj->activeFlags == 0)
         o->activeFlags = 0;
 }

@@ -18,8 +18,8 @@
  *  using the function geo_process_node_and_siblings, which switches over all
  *  geo node types and calls a specialized function accordingly.
  *  The types are defined in engine/graph_node.h
- * 
- *  The scene graph typically looks like: 
+ *
+ *  The scene graph typically looks like:
  *  - Root (viewport)
  *   - Master list
  *    - Ortho projection
@@ -32,7 +32,7 @@
  *       - <group with 240 object nodes>
  *   - Master list
  *    - Script node (Cannon overlay)
- * 
+ *
  */
 
 s16 gMatStackIndex;

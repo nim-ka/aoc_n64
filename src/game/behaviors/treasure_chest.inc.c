@@ -122,7 +122,7 @@ void bhv_treasure_chest_ship_init(void) {
 
 void bhv_treasure_chest_ship_loop(void) {
     switch (o->oAction) {
-        case 0: 
+        case 0:
             if (o->oUnknownUnkF4_S32 == 5) {
                 play_puzzle_jingle();
                 fade_volume_scale(0, 127, 1000);
