@@ -11,7 +11,8 @@ pipeline {
         sh 'ln -s "$ROMS_DIR/Super Mario 64 (J) [!].z64" baserom.jp.z64'
         sh 'ln -s "$ROMS_DIR/Super Mario 64 (U) [!].z64" baserom.us.z64'
         sh 'ln -s "$ROMS_DIR/Super Mario 64 (E) (M3) [!].z64" baserom.eu.z64'
-        sh '[ -z "$(find -name \'*.png\' | grep -vE \'ipl3_font|doxygen\')" ]'
+        // verify no assets were committed to repo
+        sh '[ -z "$(find {actors,levels,textures}/ -name \'*.png\')" ]'
         sh '[ -z "$(find assets/ -name \'*.m64\' -or \'*.bin\')" ]'
         sh './extract_assets.py jp us eu'
       }
