@@ -16,8 +16,8 @@ glabel cotmc_geo_0001A0 # 0x0E0001A0
             geo_open_node
                geo_display_list LAYER_OPAQUE, cotmc_seg7_dl_07007D48
                geo_display_list LAYER_OPAQUE, cotmc_seg7_dl_0700A160
-               geo_asm     0, Geo18_802D01E0
-               geo_asm 0x2801, Geo18_802D1B70
+               geo_asm     0, geo_movtex_pause_control
+               geo_asm 0x2801, geo_movtex_draw_nocolor
                geo_display_list LAYER_TRANSPARENT, cotmc_seg7_dl_0700A4B8
                geo_render_obj
                geo_asm 0, geo_enfvx_main

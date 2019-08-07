@@ -18,9 +18,9 @@ glabel wdw_geo_000658 # 0x0E000658
                geo_display_list LAYER_ALPHA, wdw_seg7_dl_0700A138
                geo_display_list LAYER_TRANSPARENT, wdw_seg7_dl_07012798
                geo_display_list LAYER_TRANSPARENT_DECAL, wdw_seg7_dl_07012908
-               geo_asm    0, Geo18_802D0080
-               geo_asm    0, Geo18_802D01E0
-               geo_asm 0x1101, geo_exec_movtex_box
+               geo_asm    0, geo_wdw_set_initial_water_level
+               geo_asm    0, geo_movtex_pause_control
+               geo_asm 0x1101, geo_movtex_draw_water_regions
                geo_render_obj
                geo_asm    0, geo_enfvx_main
             geo_close_node

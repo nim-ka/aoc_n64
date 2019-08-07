@@ -19,9 +19,9 @@ glabel lll_geo_000EC0 # 0x0E000EC0
                geo_display_list LAYER_TRANSPARENT, lll_seg7_dl_070255D8
                geo_display_list LAYER_OPAQUE, lll_seg7_dl_07025A48
                geo_display_list LAYER_ALPHA, lll_seg7_dl_07025BD8
-               geo_asm    0, Geo18_802D01E0
-               geo_asm 0x2202, Geo18_802D1B70
-               geo_asm 0x2202, geo_exec_movtex_box
+               geo_asm    0, geo_movtex_pause_control
+               geo_asm 0x2202, geo_movtex_draw_nocolor
+               geo_asm 0x2202, geo_movtex_draw_water_regions
                geo_render_obj
                geo_asm    0, geo_enfvx_main
             geo_close_node

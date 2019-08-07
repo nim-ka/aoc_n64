@@ -19,8 +19,8 @@ glabel wf_geo_000BF8 # 0x0E000BF8
                geo_display_list LAYER_TRANSPARENT_DECAL, wf_seg7_dl_07005538
                geo_display_list LAYER_TRANSPARENT, wf_seg7_dl_07005690
                geo_render_obj
-               geo_asm    0, Geo18_802D01E0
-               geo_asm 0x2401, geo_exec_movtex_box
+               geo_asm    0, geo_movtex_pause_control
+               geo_asm 0x2401, geo_movtex_draw_water_regions
                geo_asm    0, geo_enfvx_main
             geo_close_node
          geo_close_node

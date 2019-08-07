@@ -17,11 +17,11 @@ glabel ssl_geo_0007CC # 0x0E0007CC
                geo_display_list LAYER_OPAQUE, ssl_seg7_dl_0701EE80
                geo_display_list LAYER_ALPHA, ssl_seg7_dl_0701F920
                geo_display_list LAYER_TRANSPARENT_DECAL, ssl_seg7_dl_0701FCE0
-               geo_asm 0x802, Geo18_802D2108
-               geo_asm    0, Geo18_802D01E0
-               geo_asm 0x801, Geo18_802D1B70
-               geo_asm 0x802, Geo18_802D1B70
-               geo_asm 0x803, Geo18_802D1B70
+               geo_asm 0x802, geo_movtex_update_horizontal
+               geo_asm    0, geo_movtex_pause_control
+               geo_asm 0x801, geo_movtex_draw_nocolor
+               geo_asm 0x802, geo_movtex_draw_nocolor
+               geo_asm 0x803, geo_movtex_draw_nocolor
                geo_render_obj
                geo_asm    0, geo_enfvx_main
             geo_close_node

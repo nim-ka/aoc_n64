@@ -24,8 +24,8 @@ glabel thi_geo_0006D4 # 0x0E0006D4
                   geo_display_list LAYER_TRANSPARENT, thi_seg7_dl_070072E8
                geo_close_node
                geo_display_list LAYER_TRANSPARENT_DECAL, thi_seg7_dl_07007538
-               geo_asm    0, Geo18_802D01E0
-               geo_asm 0x1302, geo_exec_movtex_box
+               geo_asm    0, geo_movtex_pause_control
+               geo_asm 0x1302, geo_movtex_draw_water_regions
                geo_render_obj
                geo_asm    0, geo_enfvx_main
             geo_close_node

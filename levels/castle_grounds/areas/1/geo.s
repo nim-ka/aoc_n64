@@ -21,9 +21,9 @@ glabel castle_grounds_geo_00073C # 0x0E00073C
                geo_display_list LAYER_ALPHA, castle_grounds_seg7_dl_0700BA20
                geo_display_list LAYER_OPAQUE_DECAL, castle_grounds_seg7_dl_0700C430
                geo_display_list LAYER_OPAQUE, castle_grounds_seg7_dl_0700C210
-               geo_asm    0, Geo18_802D01E0
-               geo_asm 0x1601, Geo18_802D1B70
-               geo_asm 0x1601, geo_exec_movtex_box
+               geo_asm    0, geo_movtex_pause_control
+               geo_asm 0x1601, geo_movtex_draw_nocolor
+               geo_asm 0x1601, geo_movtex_draw_water_regions
                geo_render_obj
                geo_asm 0, geo_enfvx_main
             geo_close_node

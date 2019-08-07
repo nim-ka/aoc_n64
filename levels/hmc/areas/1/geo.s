@@ -29,8 +29,8 @@ glabel hmc_geo_000658 # 0x0E000658
       geo_display_list LAYER_TRANSPARENT, hmc_seg7_dl_07014B08
       geo_display_list LAYER_OPAQUE, hmc_seg7_dl_07014C00
       geo_display_list LAYER_TRANSPARENT, hmc_seg7_dl_07014E48
-      geo_asm    0, Geo18_802D01E0
-      geo_asm 0x0702, geo_exec_movtex_box
+      geo_asm    0, geo_movtex_pause_control
+      geo_asm 0x0702, geo_movtex_draw_water_regions
    geo_close_node
    geo_return
 
@@ -61,8 +61,8 @@ glabel hmc_geo_000700 # 0x0E000700
       geo_display_list LAYER_TRANSPARENT, hmc_seg7_dl_0701F690
       geo_display_list LAYER_TRANSPARENT, hmc_seg7_dl_0701F818
       geo_display_list LAYER_OPAQUE, hmc_seg7_dl_0701FD58
-      geo_asm 0, Geo18_802D01E0
-      geo_asm 0x0701, geo_exec_movtex_box
+      geo_asm 0, geo_movtex_pause_control
+      geo_asm 0x0701, geo_movtex_draw_water_regions
    geo_close_node
    geo_return
 
@@ -130,8 +130,8 @@ glabel hmc_geo_000850 # 0x0E000850
       geo_display_list LAYER_TRANSPARENT, hmc_seg7_dl_07014B08
       geo_display_list LAYER_OPAQUE, hmc_seg7_dl_07014C00
       geo_display_list LAYER_TRANSPARENT, hmc_seg7_dl_07014E48
-      geo_asm    0, Geo18_802D01E0
-      geo_asm 0x0702, geo_exec_movtex_box
+      geo_asm    0, geo_movtex_pause_control
+      geo_asm 0x0702, geo_movtex_draw_water_regions
    geo_close_node
    geo_return
 
@@ -163,8 +163,8 @@ glabel hmc_geo_000938 # 0x0E000938
       geo_display_list LAYER_TRANSPARENT, hmc_seg7_dl_07014E48
       geo_display_list LAYER_OPAQUE, hmc_seg7_dl_0701A080
       geo_display_list LAYER_ALPHA, hmc_seg7_dl_0701A400
-      geo_asm    0, Geo18_802D01E0
-      geo_asm 0x0702, geo_exec_movtex_box
+      geo_asm    0, geo_movtex_pause_control
+      geo_asm 0x0702, geo_movtex_draw_water_regions
    geo_close_node
    geo_return
 
@@ -182,9 +182,9 @@ glabel hmc_geo_000998 # 0x0E000998
       geo_display_list LAYER_TRANSPARENT, hmc_seg7_dl_0701F690
       geo_display_list LAYER_TRANSPARENT, hmc_seg7_dl_0701F818
       geo_display_list LAYER_OPAQUE, hmc_seg7_dl_0701FD58
-      geo_asm    0, Geo18_802D01E0
-      geo_asm 0x0701, geo_exec_movtex_box
-      geo_asm 0x0702, geo_exec_movtex_box
+      geo_asm    0, geo_movtex_pause_control
+      geo_asm 0x0701, geo_movtex_draw_water_regions
+      geo_asm 0x0702, geo_movtex_draw_water_regions
    geo_close_node
    geo_return
 
@@ -201,8 +201,8 @@ glabel hmc_geo_000A18 # 0x0E000A18
       geo_display_list LAYER_TRANSPARENT, hmc_seg7_dl_0701F690
       geo_display_list LAYER_TRANSPARENT, hmc_seg7_dl_0701F818
       geo_display_list LAYER_OPAQUE, hmc_seg7_dl_0701FD58
-      geo_asm    0, Geo18_802D01E0
-      geo_asm 0x0701, geo_exec_movtex_box
+      geo_asm    0, geo_movtex_pause_control
+      geo_asm 0x0701, geo_movtex_draw_water_regions
    geo_close_node
    geo_return
 
@@ -217,8 +217,8 @@ glabel hmc_geo_000A88 # 0x0E000A88
       geo_display_list LAYER_OPAQUE, hmc_seg7_dl_07020FD0
       geo_asm    0, Geo18_802D5D0C
       geo_asm    0, Geo18_802D5B98
-      geo_asm    0, Geo18_802D01E0
-      geo_asm 0x0701, geo_exec_movtex_box
+      geo_asm    0, geo_movtex_pause_control
+      geo_asm 0x0701, geo_movtex_draw_water_regions
    geo_close_node
    geo_return
 
@@ -233,8 +233,8 @@ glabel hmc_geo_000AE8 # 0x0E000AE8
       geo_display_list LAYER_OPAQUE, hmc_seg7_dl_07021760
       geo_display_list LAYER_TRANSPARENT, hmc_seg7_dl_07021BA0
       geo_display_list LAYER_OPAQUE, hmc_seg7_dl_070228A0
-      geo_asm    0, Geo18_802D01E0
-      geo_asm 0x0701, geo_exec_movtex_box
+      geo_asm    0, geo_movtex_pause_control
+      geo_asm 0x0701, geo_movtex_draw_water_regions
    geo_close_node
    geo_return
 

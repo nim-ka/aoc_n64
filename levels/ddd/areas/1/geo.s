@@ -18,8 +18,8 @@ glabel ddd_geo_0004C0 # 0x0E0004C0
                geo_display_list LAYER_OPAQUE, ddd_seg7_dl_070057E8
                geo_display_list LAYER_ALPHA, ddd_seg7_dl_07005C40
                geo_display_list LAYER_TRANSPARENT, ddd_seg7_dl_07005F78
-               geo_asm    0, Geo18_802D01E0
-               geo_asm 0x2301, geo_exec_movtex_box
+               geo_asm    0, geo_movtex_pause_control
+               geo_asm 0x2301, geo_movtex_draw_water_regions
                geo_render_obj
                geo_asm   13, geo_enfvx_main
             geo_close_node

@@ -19,8 +19,8 @@ glabel ccm_geo_00051C # 0x0E00051C
                geo_display_list LAYER_OPAQUE, ccm_seg7_dl_0700C380
                geo_display_list LAYER_ALPHA, ccm_seg7_dl_0700D578
                geo_display_list LAYER_TRANSPARENT_DECAL, ccm_seg7_dl_0700DDF0
-               geo_asm    0, Geo18_802D01E0
-               geo_asm 0x0501, geo_exec_movtex_box
+               geo_asm    0, geo_movtex_pause_control
+               geo_asm 0x0501, geo_movtex_draw_water_regions
                geo_render_obj
                geo_asm    1, geo_enfvx_main
             geo_close_node

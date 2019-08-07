@@ -116,7 +116,7 @@ extern struct PaintingData thi_huge_painting[];
 extern struct PaintingData ttm_slide_painting[];
 
 extern u16 gAreaUpdateCounter;
-extern float D_8032FFDC;
+extern float gPaintingMarioYEntry;
 
 // defined in file
 extern s16 gPaintingMarioFloorType;

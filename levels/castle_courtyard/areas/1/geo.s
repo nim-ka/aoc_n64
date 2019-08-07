@@ -17,8 +17,8 @@ glabel castle_courtyard_geo_000218 # 0x0E000218
                geo_display_list LAYER_OPAQUE, castle_courtyard_seg7_dl_070048B8
                geo_display_list LAYER_TRANSPARENT_DECAL, castle_courtyard_seg7_dl_07005698
                geo_display_list LAYER_ALPHA, castle_courtyard_seg7_dl_07005938
-               geo_asm    0, Geo18_802D01E0
-               geo_asm 0x2601, geo_exec_movtex_box
+               geo_asm    0, geo_movtex_pause_control
+               geo_asm 0x2601, geo_movtex_draw_water_regions
                geo_render_obj
                geo_asm 0, geo_enfvx_main
             geo_close_node

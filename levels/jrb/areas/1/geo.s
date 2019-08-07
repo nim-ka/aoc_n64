@@ -21,9 +21,9 @@ glabel jrb_geo_000A18 # 0x0E000A18
                geo_display_list LAYER_OPAQUE, jrb_seg7_dl_070069B0
                geo_display_list LAYER_OPAQUE, jrb_seg7_dl_07007570
                geo_display_list LAYER_ALPHA, jrb_seg7_dl_07007718
-               geo_asm    0, Geo18_802D01E0
-               geo_asm 0x1201, geo_exec_movtex_box
-               geo_asm 0x1205, geo_exec_movtex_box
+               geo_asm    0, geo_movtex_pause_control
+               geo_asm 0x1201, geo_movtex_draw_water_regions
+               geo_asm 0x1205, geo_movtex_draw_water_regions
                geo_render_obj
                geo_asm   14, geo_enfvx_main
             geo_close_node

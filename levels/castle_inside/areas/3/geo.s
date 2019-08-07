@@ -15,8 +15,8 @@ glabel castle_geo_001980 # 0x0E001980
       geo_asm    0, Geo18_802D5D0C
       geo_asm  260, Geo18_802D5B98
       geo_asm  261, Geo18_802D5B98
-      geo_asm    0, Geo18_802D01E0
-      geo_asm 0x0600, geo_exec_movtex_box
+      geo_asm    0, geo_movtex_pause_control
+      geo_asm 0x0600, geo_movtex_draw_water_regions
    geo_close_node
    geo_return
 
@@ -36,8 +36,8 @@ glabel castle_geo_0019F8 # 0x0E0019F8
       geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_07066CE0
       geo_display_list LAYER_TRANSPARENT, inside_castle_seg7_dl_07066E90
       geo_display_list LAYER_ALPHA, inside_castle_seg7_dl_07066FA0
-      geo_asm    0, Geo18_802D01E0
-      geo_asm 0x0612, geo_exec_movtex_box
+      geo_asm    0, geo_movtex_pause_control
+      geo_asm 0x0612, geo_movtex_draw_water_regions
    geo_close_node
    geo_return
 
@@ -61,8 +61,8 @@ glabel castle_geo_001A58 # 0x0E001A58
       geo_asm    0, Geo18_802D5D0C
       geo_asm  260, Geo18_802D5B98
       geo_asm  261, Geo18_802D5B98
-      geo_asm    0, Geo18_802D01E0
-      geo_asm 0x0600, geo_exec_movtex_box
+      geo_asm    0, geo_movtex_pause_control
+      geo_asm 0x0600, geo_movtex_draw_water_regions
    geo_close_node
    geo_return
 
@@ -87,8 +87,8 @@ glabel castle_geo_001AF8 # 0x0E001AF8
       geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_07066CE0
       geo_display_list LAYER_TRANSPARENT, inside_castle_seg7_dl_07066E90
       geo_display_list LAYER_ALPHA, inside_castle_seg7_dl_07066FA0
-      geo_asm    0, Geo18_802D01E0
-      geo_asm 0x0612, geo_exec_movtex_box
+      geo_asm    0, geo_movtex_pause_control
+      geo_asm 0x0612, geo_movtex_draw_water_regions
    geo_close_node
    geo_return
 
@@ -103,9 +103,9 @@ glabel castle_geo_001B48 # 0x0E001B48
       geo_asm    0, Geo18_802D5D0C
       geo_asm  260, Geo18_802D5B98
       geo_asm  261, Geo18_802D5B98
-      geo_asm    0, Geo18_802D01E0
-      geo_asm 0x0600, geo_exec_movtex_box
-      geo_asm 0x0612, geo_exec_movtex_box
+      geo_asm    0, geo_movtex_pause_control
+      geo_asm 0x0600, geo_movtex_draw_water_regions
+      geo_asm 0x0612, geo_movtex_draw_water_regions
    geo_close_node
    geo_return
 
@@ -120,8 +120,8 @@ glabel castle_geo_001BB0 # 0x0E001BB0
       geo_asm  260, Geo18_802D5B98
       geo_asm  261, Geo18_802D5B98
       geo_asm  262, Geo18_802D5B98
-      geo_asm    0, Geo18_802D01E0
-      geo_asm 0x0600, geo_exec_movtex_box
+      geo_asm    0, geo_movtex_pause_control
+      geo_asm 0x0600, geo_movtex_draw_water_regions
    geo_close_node
    geo_return
 

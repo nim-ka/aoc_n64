@@ -182,7 +182,7 @@ void painting_set_ripple_type(s8 intendedStatus, struct PaintingData *painting, 
     painting->rippleStatus = intendedStatus;
     painting->horizontalRippleSpot = painting_find_horizontal_ripple_location(painting, hRippleSpot); // find the ripple location
     painting->verticalRippleSpot = painting_find_vertical_ripple_location(painting, vRippleSpot);
-    D_8032FFDC = gPaintingMarioYPos;
+    gPaintingMarioYEntry = gPaintingMarioYPos;
     if (resetTimer == RESET_TIMER)
         painting->rippleTimer = 0.0f;
     ripplingPainting = painting;

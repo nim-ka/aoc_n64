@@ -14,37 +14,119 @@
 #include "rendering_graph_node.h"
 #include "room.h"
 
-#define MOVTEXT_VTX_COLOR_DEFAULT 0
-#define MOVTEXT_VTX_COLOR_YELLOW  1
-#define MOVTEXT_VTX_COLOR_RED     2
+/** This file contains functions for generating display lists with moving textures
+ *  (abbreviated movtex). This is used for water, sand, haze, mist and treadmills.
+ *  Each mesh using this system has the animated vertices stored as an array of shorts.
+ *  The first entry is the texture movement speed. After that the vertices are stored
+ *  in one of two layouts: one without per-vertex color attributes and one with.
+ *  [speed, v0(x,y,z, s,t)      , v1(x,y,z, s,t)      , ...]
+ *  [speed, v0(x,y,z, r,g,b s,t), v1(x,y,z, r,g,b s,t), ...]
+ *  x, y, z = vertex position as integers
+ *  s, t = texture coordinatea as 6.10 fixed point number. That means coordinates in
+ *  range [0, 1024] are a unique part of the image, after that it repeats the image.
+ *
+ *  The first vertex 'v0' is special because all subsequent vertices inherit its
+ *  texture offset. So to animate e.g. a treadmill, the speed component arr[0] is
+ *  simply added to the s component arr[7] every frame and the texture scrolls
+ *  horizontally over the entire mesh without changing the rest of the array.
+ *  Note that while the system allows many kinds of vertex animations, in
+ *  practice the only animation used is horizontally scrolling textures.
+ *
+ *  After updating the base mesh, the vertices are converted to the format the RSP
+ *  understands and a display list is generated. The RSP can buffer 16 vertices at
+ *  a time, and this code assumes everything fits in one buffer, so every moving
+ *  texture mesh must have at most 16 vertices. As a result some meshes are split
+ *  up into multiple parts, like the sand pathway inside the pyramid which has 3
+ *  parts. The water stream in the Cavern of the Metal Cap fits in one mesh.
+ *
+ *  Apart from this general system, there is also a simpler system for flat
+ *  quads with a rotating texture. This is often used for water, but also
+ *  for mist, toxic haze and lava inside the volcano. One quad is described
+ *  by the struct MovtexQuad, and multiple MovtexQuads form a MovtexQuadCollection.
+ *  A geo node has an id that corresponds to the id of a certain MovtexQuadCollection,
+ *  which will then be matched with the id of entries in gWaterRegions to get the
+ *  y-position. The x and z coordinates are stored in the MovtexQuads themself,
+ *  so the water rectangle is separate from the actually drawn rectangle.
+ */
 
-struct MovingTextureGeoList
+// First entry in array is texture movement speed for both layouts
+#define MOVTEX_ATTR_SPEED 0
+
+// Different layouts for vertices
+#define MOVTEX_LAYOUT_NOCOLOR 0
+#define MOVTEX_LAYOUT_COLORED 1
+
+// Attributes for movtex vertices
+#define MOVTEX_ATTR_X 1
+#define MOVTEX_ATTR_Y 2
+#define MOVTEX_ATTR_Z 3
+
+// For MOVTEX_LAYOUT_NOCOLOR only
+#define MOVTEX_ATTR_NOCOLOR_S 4
+#define MOVTEX_ATTR_NOCOLOR_T 5
+
+// For MOVTEX_LAYOUT_COLORED only
+#define MOVTEX_ATTR_COLORED_R 4
+#define MOVTEX_ATTR_COLORED_G 5
+#define MOVTEX_ATTR_COLORED_B 6
+#define MOVTEX_ATTR_COLORED_S 7
+#define MOVTEX_ATTR_COLORED_T 8
+
+/** An object containing all info for a mesh with moving textures.
+ *  Contains the vertices that are animated, but also the display list which
+ *  determines the connectivity, as well as the texture, texture blend color
+ *  and drawing layer.
+ */
+struct MovtexObject
 {
-    u32 geo_id;
-    s32 texture_num;
+    /// number that geo nodes have as parameter to refer to this mesh
+    u32 geoId;
+    /// which texture to use for this mesh, index into gMovtexIdToTexture
+    s32 textureId;
+    /// amount of moving vertices
     s32 vtx_count;
-    s16 *tris;
-    Gfx *begin_dl;
-    Gfx *end_dl;
-    Gfx *tri_dl;
-    u8 r;
-    u8 g;
-    u8 b;
-    u8 a;
-    s32 layer;
+    /// segmented address to movtex mesh with vertices
+    void *movtexVerts;
+    /// display list inserted before moving triangles
+    Gfx *beginDl;
+    /// display list inserted after moving triangles
+    Gfx *endDl;
+    /// display list with the actual moving texture triangles.
+    /// Assumes the animated vertices are buffered and correct texture is set
+    Gfx *triDl;
+    // if the list does not have per-vertex colors, all vertices have these colors
+    u8 r; /// red
+    u8 g; /// green
+    u8 b; /// blue
+    u8 a; /// alpha
+    s32 layer; /// the drawing layer for this mesh
 };
 
-s16 D_8032FFD0 = 1;
-s16 D_8032FFD4 = 0;
-s8 gMovTextVtxColor = MOVTEXT_VTX_COLOR_DEFAULT;
-float D_8032FFDC = 0.0f;
-s32 D_8032FFE0 = 0;
+/// Counters to make textures move iff the game is not paused.
+s16 gMovtexCounter = 1;
+s16 gMovtexCounterPrev = 0;
+
+// Vertex colors for rectangles. Used to give mist a tint
+#define MOVTEX_VTX_COLOR_DEFAULT 0  // no tint (white vertex colors)
+#define MOVTEX_VTX_COLOR_YELLOW  1  // used for Hazy Maze Cave toxic haze
+#define MOVTEX_VTX_COLOR_RED     2  // used for Shifting Sand Land around the Tox box maze
+
+s8 gMovtexVtxColor = MOVTEX_VTX_COLOR_DEFAULT;
+
+/// The height at which Mario entered the last painting. Used for Wet-Dry World only.
+float gPaintingMarioYEntry = 0.0f;
+
+/// Variable to ensure the initial Wet-Dry World water level is set only once
+s32 gWdwWaterLevelSet = FALSE;
 
 extern u8 ssl_quicksand[];
 extern u8 ssl_pyramid_sand[];
 extern u8 ttc_yellow_triangle[];
 
-u8 *gMovingTextureIdList[] =
+/** An array for converting a movtex texture id to a pointer that can
+ *  be passed to gDPSetTextureImage.
+ */
+u8 *gMovtexIdToTexture[] =
 {
     texture_waterbox_water,
     texture_waterbox_mist,
@@ -109,104 +191,267 @@ extern s16 ssl_movtex_tris_pyramid_quicksand_pit[];
 extern Gfx ssl_dl_pyramid_quicksand_pit_begin[];
 extern Gfx ssl_dl_pyramid_quicksand_pit_end[];
 
-struct MovingTextureGeoList gMovingTextureTris[] =
+/** MovtexObjects that have no color attributes per vertex (though the mesh
+ *  as a whole can have a blend color).
+ */
+struct MovtexObject gMovtexNonColored[] =
 {
-    {0x0801, TEX_PYRAMID_SAND_SSL, 8, ssl_movtex_tris_pyramid_sand_pathway_front, ssl_dl_pyramid_sand_pathway_begin, ssl_dl_pyramid_sand_pathway_end, ssl_dl_pyramid_sand_pathway_front_end, 0xff, 0xff, 0xff, 0xff, LAYER_TRANSPARENT_INTER},
-    {0x0802, TEX_PYRAMID_SAND_SSL, 8, ssl_movtex_tris_pyramid_sand_pathway_floor, ssl_dl_pyramid_sand_pathway_floor_begin, ssl_dl_pyramid_sand_pathway_floor_end, ssl_dl_pyramid_sand_pathway_front_end, 0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE_INTER},
-    {0x0803, TEX_PYRAMID_SAND_SSL, 6, ssl_movtex_tris_pyramid_sand_pathway_side, ssl_dl_pyramid_sand_pathway_begin, ssl_dl_pyramid_sand_pathway_end, ssl_dl_pyramid_sand_pathway_side_end, 0xff, 0xff, 0xff, 0xff, LAYER_TRANSPARENT_INTER},
-    {0x1601, TEXTURE_WATER, 15, castle_grounds_movtex_tris_waterfall, dl_waterbox_rgba16_begin, dl_waterbox_end, castle_grounds_dl_waterfall, 0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT_INTER},
-    {0x1901, TEXTURE_LAVA, 4, bitfs_movtex_tris_lava_first_section, dl_waterbox_rgba16_begin, dl_waterbox_end, bitfs_dl_lava_sections, 0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
-    {0x1902, TEXTURE_LAVA, 4, bitfs_movtex_tris_lava_second_section, dl_waterbox_rgba16_begin, dl_waterbox_end, bitfs_dl_lava_sections, 0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT},
-    {0x1903, TEXTURE_LAVA, 9, bitfs_movtex_tris_lava_floor, dl_waterbox_rgba16_begin, dl_waterbox_end, bitfs_dl_lava_floor, 0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT},
-    {0x2201, TEXTURE_LAVA, 9, lll_movtex_tris_lava_floor, dl_waterbox_rgba16_begin, dl_waterbox_end, lll_dl_lava_floor, 0xff, 0xff, 0xff, 0xc8, LAYER_TRANSPARENT},
-    {0x2202, TEXTURE_LAVA, 16, lll_movtex_tris_lavafall_volcano, dl_waterbox_rgba16_begin, dl_waterbox_end, lll_dl_lavafall_volcano, 0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT_INTER},
-    {0x2801, TEXTURE_WATER, 14, cotmc_movtex_tris_water, cotmc_dl_water_begin, cotmc_dl_water_end, cotmc_dl_water, 0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT_INTER},
-    {0x3601, TEXTURE_WATER, 6, ttm_movtex_tris_begin_waterfall, dl_waterbox_rgba16_begin, dl_waterbox_end, ttm_dl_waterfall, 0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT},
-    {0x3602, TEXTURE_WATER, 6, ttm_movtex_tris_end_waterfall, dl_waterbox_rgba16_begin, dl_waterbox_end, ttm_dl_waterfall, 0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT},
-    {0x3603, TEXTURE_WATER, 4, ttm_movtex_tris_begin_puddle_waterfall, dl_waterbox_rgba16_begin, dl_waterbox_end, ttm_dl_bottom_waterfall, 0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT_INTER},
-    {0x3604, TEXTURE_WATER, 4, ttm_movtex_tris_end_puddle_waterfall, dl_waterbox_rgba16_begin, dl_waterbox_end, ttm_dl_bottom_waterfall, 0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT_INTER},
-    {0x3605, TEXTURE_WATER, 8, ttm_movtex_tris_puddle_waterfall, dl_waterbox_rgba16_begin, dl_waterbox_end, ttm_dl_puddle_waterfall, 0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT_INTER},
-    {0x00000000, 0x00000000,                  0, NULL,       NULL,             NULL,             NULL,       0x00, 0x00, 0x00, 0x00, 0x00000000},
+    // Inside the pyramid there is a sand pathway with the 5 secrets on it.
+    // pathway_front is the highest 'sand fall', pathway_floor is the horizontal
+    // sand stream and pathway_side is the lower 'sand fall'.
+    {MOVTEX_PYRAMID_SAND_PATHWAY_FRONT, TEX_PYRAMID_SAND_SSL, 8,
+        ssl_movtex_tris_pyramid_sand_pathway_front,
+        ssl_dl_pyramid_sand_pathway_begin,
+        ssl_dl_pyramid_sand_pathway_end,
+        ssl_dl_pyramid_sand_pathway_front_end,
+        0xff, 0xff, 0xff, 0xff, LAYER_TRANSPARENT_INTER},
+    {MOVTEX_PYRAMID_SAND_PATHWAY_FLOOR, TEX_PYRAMID_SAND_SSL, 8,
+        ssl_movtex_tris_pyramid_sand_pathway_floor,
+        ssl_dl_pyramid_sand_pathway_floor_begin,
+        ssl_dl_pyramid_sand_pathway_floor_end,
+        ssl_dl_pyramid_sand_pathway_front_end,
+        0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE_INTER},
+    {MOVTEX_PYRAMID_SAND_PATHWAY_SIDE, TEX_PYRAMID_SAND_SSL, 6,
+        ssl_movtex_tris_pyramid_sand_pathway_side,
+        ssl_dl_pyramid_sand_pathway_begin,
+        ssl_dl_pyramid_sand_pathway_end,
+        ssl_dl_pyramid_sand_pathway_side_end,
+        0xff, 0xff, 0xff, 0xff, LAYER_TRANSPARENT_INTER},
+
+    // The waterfall outside the castle
+    {MOVTEX_CASTLE_WATERFALL, TEXTURE_WATER, 15,
+        castle_grounds_movtex_tris_waterfall,
+        dl_waterbox_rgba16_begin,
+        dl_waterbox_end,
+        castle_grounds_dl_waterfall,
+        0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT_INTER},
+
+    // Bowser in the Fire Sea has lava at 3 heights, lava_floor is the lowest
+    // and lava_second_section is the highest
+    {MOVTEX_BITFS_LAVA_FIRST, TEXTURE_LAVA, 4,
+        bitfs_movtex_tris_lava_first_section,
+        dl_waterbox_rgba16_begin,
+        dl_waterbox_end,
+        bitfs_dl_lava_sections,
+        0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
+    {MOVTEX_BITFS_LAVA_SECOND, TEXTURE_LAVA, 4,
+        bitfs_movtex_tris_lava_second_section,
+        dl_waterbox_rgba16_begin,
+        dl_waterbox_end,
+        bitfs_dl_lava_sections,
+        0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT},
+    {MOVTEX_BITFS_LAVA_FLOOR, TEXTURE_LAVA, 9,
+        bitfs_movtex_tris_lava_floor, dl_waterbox_rgba16_begin,
+        dl_waterbox_end,
+        bitfs_dl_lava_floor,
+        0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT},
+
+    // Lava floor in Lethal Lava Land and the lava fall in the volcano
+    //! Note that the lava floor in the volcano is actually a quad.
+    // The quad collection index LLL_MOVTEX_VOLCANO_FLOOR_LAVA is actually
+    // 2 | MOVTEX_AREA_LLL, suggesting that the lava floor of LLL used to be a
+    // quad too, with index 1.
+    // It was probably too large however, resulting in overflowing texture
+    // coordinates or other artifacts, so they converted it to a movtex
+    // mesh with 9 vertices, subdividing the rectangle into 4 smaller ones.
+    {MOVTEX_LLL_LAVA_FLOOR, TEXTURE_LAVA, 9,
+        lll_movtex_tris_lava_floor,
+        dl_waterbox_rgba16_begin,
+        dl_waterbox_end,
+        lll_dl_lava_floor,
+        0xff, 0xff, 0xff, 0xc8, LAYER_TRANSPARENT},
+    {MOVTEX_VOLCANO_LAVA_FALL, TEXTURE_LAVA, 16,
+        lll_movtex_tris_lavafall_volcano,
+        dl_waterbox_rgba16_begin,
+        dl_waterbox_end,
+        lll_dl_lavafall_volcano,
+        0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT_INTER},
+
+    // Cavern of the metal Cap has a waterfall source above the switch platform,
+    // the stream, around the switch, and the waterfall that's the same as the one
+    // outside the castle. They are all part of the same mesh.
+    {MOVTEX_COTMC_WATER, TEXTURE_WATER, 14,
+        cotmc_movtex_tris_water,
+        cotmc_dl_water_begin,
+        cotmc_dl_water_end,
+        cotmc_dl_water,
+        0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT_INTER},
+
+    // Tall Tall mountain has water going from the top to the bottom of the mountain.
+    {MOVTEX_TTM_BEGIN_WATERFALL, TEXTURE_WATER, 6,
+        ttm_movtex_tris_begin_waterfall,
+        dl_waterbox_rgba16_begin,
+        dl_waterbox_end,
+        ttm_dl_waterfall,
+        0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT},
+    {MOVTEX_TTM_END_WATERFALL, TEXTURE_WATER, 6,
+        ttm_movtex_tris_end_waterfall,
+        dl_waterbox_rgba16_begin,
+        dl_waterbox_end,
+        ttm_dl_waterfall,
+        0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT},
+    {MOVTEX_TTM_BEGIN_PUDDLE_WATERFALL, TEXTURE_WATER, 4,
+        ttm_movtex_tris_begin_puddle_waterfall,
+        dl_waterbox_rgba16_begin,
+        dl_waterbox_end,
+        ttm_dl_bottom_waterfall,
+        0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT_INTER},
+    {MOVTEX_TTM_END_PUDDLE_WATERFALL, TEXTURE_WATER, 4,
+        ttm_movtex_tris_end_puddle_waterfall,
+        dl_waterbox_rgba16_begin,
+        dl_waterbox_end,
+        ttm_dl_bottom_waterfall,
+        0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT_INTER},
+    {MOVTEX_TTM_PUDDLE_WATERFALL, TEXTURE_WATER, 8,
+        ttm_movtex_tris_puddle_waterfall,
+        dl_waterbox_rgba16_begin,
+        dl_waterbox_end,
+        ttm_dl_puddle_waterfall,
+        0xff, 0xff, 0xff, 0xb4, LAYER_TRANSPARENT_INTER},
+    {0x00000000, 0x00000000, 0, NULL, NULL, NULL, NULL, 0x00, 0x00, 0x00, 0x00, 0x00000000},
 };
 
-struct MovingTextureGeoList gMovingTextureTrisWithRot[] =
+/** MovtexObjects that have color attributes per vertex.
+ */
+struct MovtexObject gMovtexColored[] =
 {
-    {0x0801, TEX_QUICKSAND_SSL,  12, ssl_movtex_tris_pyramid_quicksand, ssl_dl_quicksand_begin, ssl_dl_quicksand_end, ssl_dl_pyramid_quicksand, 0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
-    {0x0802, TEX_QUICKSAND_SSL,  16, ssl_movtex_tris_pyramid_corners_quicksand, ssl_dl_quicksand_begin, ssl_dl_quicksand_end, ssl_dl_pyramid_corners_quicksand, 0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
-    {0x0803, TEX_QUICKSAND_SSL,  15, ssl_movtex_tris_sides_quicksand, ssl_dl_quicksand_begin, ssl_dl_quicksand_end, ssl_dl_sides_quicksand, 0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
-    {0x1400, TEX_YELLOW_TRI_TTC, 12, ttc_movtex_tris_big_surface_treadmill, ttc_dl_surface_treadmill_begin, ttc_dl_surface_treadmill_end, ttc_dl_surface_treadmill, 0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
-    {0x1401, TEX_YELLOW_TRI_TTC, 12, ttc_movtex_tris_small_surface_treadmill, ttc_dl_surface_treadmill_begin, ttc_dl_surface_treadmill_end, ttc_dl_surface_treadmill, 0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
-    {0x00000000, 0x00000000,                        0, NULL,       NULL,       NULL,       NULL,       0x00, 0x00, 0x00, 0x00, 0x00000000},
+    {MOVTEX_SSL_PYRAMID_SIDE, TEX_QUICKSAND_SSL, 12,
+        ssl_movtex_tris_pyramid_quicksand,
+        ssl_dl_quicksand_begin,
+        ssl_dl_quicksand_end,
+        ssl_dl_pyramid_quicksand,
+        0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
+    {MOVTEX_SSL_PYRAMID_CORNER, TEX_QUICKSAND_SSL, 16,
+        ssl_movtex_tris_pyramid_corners_quicksand,
+        ssl_dl_quicksand_begin,
+        ssl_dl_quicksand_end,
+        ssl_dl_pyramid_corners_quicksand,
+        0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
+    {MOVTEX_SSL_COURSE_EDGE, TEX_QUICKSAND_SSL, 15,
+        ssl_movtex_tris_sides_quicksand,
+        ssl_dl_quicksand_begin,
+        ssl_dl_quicksand_end,
+        ssl_dl_sides_quicksand,
+        0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
+    {MOVTEX_TREADMILL_BIG, TEX_YELLOW_TRI_TTC, 12,
+        ttc_movtex_tris_big_surface_treadmill,
+        ttc_dl_surface_treadmill_begin,
+        ttc_dl_surface_treadmill_end,
+        ttc_dl_surface_treadmill,
+        0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
+    {MOVTEX_TREADMILL_SMALL, TEX_YELLOW_TRI_TTC, 12,
+        ttc_movtex_tris_small_surface_treadmill,
+        ttc_dl_surface_treadmill_begin,
+        ttc_dl_surface_treadmill_end,
+        ttc_dl_surface_treadmill,
+        0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
+    {0x00000000, 0x00000000, 0, NULL, NULL, NULL, NULL, 0x00, 0x00, 0x00, 0x00, 0x00000000},
 };
 
-struct MovingTextureGeoList gMovingTextureTrisWithLight[] =
+/** Treated identically to gMovtexColored.
+ */
+struct MovtexObject gMovtexColored2[] =
 {
-    {0x0801, TEX_QUICKSAND_SSL,    8, ssl_movtex_tris_quicksand_pit, ssl_dl_quicksand_pit_begin, ssl_dl_quicksand_pit_end, ssl_dl_quicksand_pit, 0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
-    {0x0802, TEX_PYRAMID_SAND_SSL, 8, ssl_movtex_tris_pyramid_quicksand_pit, ssl_dl_pyramid_quicksand_pit_begin, ssl_dl_pyramid_quicksand_pit_end, ssl_dl_quicksand_pit, 0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
-    {0x00000000, 0x00000000,                         0, NULL,       NULL,       NULL,       NULL,       0x00, 0x00, 0x00, 0x00, 0x00000000},
+    {MOVTEX_SSL_SAND_PIT_OUTSIDE, TEX_QUICKSAND_SSL, 8,
+        ssl_movtex_tris_quicksand_pit,
+        ssl_dl_quicksand_pit_begin,
+        ssl_dl_quicksand_pit_end,
+        ssl_dl_quicksand_pit,
+        0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
+    {MOVTEX_SSL_SAND_PIT_PYRAMID, TEX_PYRAMID_SAND_SSL, 8,
+        ssl_movtex_tris_pyramid_quicksand_pit,
+        ssl_dl_pyramid_quicksand_pit_begin,
+        ssl_dl_pyramid_quicksand_pit_end,
+        ssl_dl_quicksand_pit,
+        0xff, 0xff, 0xff, 0xff, LAYER_OPAQUE},
+    {0x00000000, 0x00000000, 0, NULL, NULL, NULL, NULL, 0x00, 0x00, 0x00, 0x00, 0x00000000},
 };
 
-Gfx *Geo18_802D0080(s32 run, UNUSED struct GraphNode *node, UNUSED f32 mtx[4][4])
+/** Sets the initial water level in Wet-Dry World based on how high Mario
+ *  jumped into the painting.
+ */
+Gfx *geo_wdw_set_initial_water_level(s32 callContext, UNUSED struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    s32 spC;
+    s32 i;
     UNUSED u8 unused[] = {1, 0, 4, 0, 7, 0, 10, 0};
-    s16 sp2;
+    s16 wdwWaterHeight;
 
-    if (run != TRUE)
+    // Why was this global variable needed when they could just check for GEO_CONTEXT_AREA_LOAD?
+    if (callContext != GEO_CONTEXT_RENDER)
     {
-        D_8032FFE0 = 0;
+        gWdwWaterLevelSet = 0;
     }
-    else if (run == TRUE && gWaterRegions != NULL && D_8032FFE0 == 0)
+    else if (callContext == GEO_CONTEXT_RENDER && gWaterRegions != NULL && gWdwWaterLevelSet == 0)
     {
-        if (D_8032FFDC <= 1382.4)
-            sp2 = 31;
-        else if (D_8032FFDC >= 1600.0)
-            sp2 = 2816;
+        if (gPaintingMarioYEntry <= 1382.4)
+            wdwWaterHeight = 31;
+        else if (gPaintingMarioYEntry >= 1600.0)
+            wdwWaterHeight = 2816;
         else
-            sp2 = 1024;
-        for (spC = 0; spC < *gWaterRegions; spC++)
+            wdwWaterHeight = 1024;
+        for (i = 0; i < *gWaterRegions; i++)
         {
-            gWaterRegions[spC * 6 + 6] = sp2;
+            gWaterRegions[i * 6 + 6] = wdwWaterHeight;
         }
-        D_8032FFE0 = 1;
+        gWdwWaterLevelSet = 1;
     }
     return NULL;
 }
 
-Gfx *Geo18_802D01E0(s32 run, UNUSED struct GraphNode *node, UNUSED f32 mtx[4][4])
+/** Update moving texture counters that determine when to update the coordinates.
+ *  Textures update when gMovtexCounterPrev != gMovtexCounter.
+ *  This ensures water / sand flow stops when the game pauses.
+ */
+Gfx *geo_movtex_pause_control(s32 callContext, UNUSED struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    if (run != TRUE)
+    if (callContext != GEO_CONTEXT_RENDER)
     {
-        D_8032FFD4 = gAreaUpdateCounter - 1;
-        D_8032FFD0 = gAreaUpdateCounter;
+        gMovtexCounterPrev = gAreaUpdateCounter - 1;
+        gMovtexCounter = gAreaUpdateCounter;
     }
     else
     {
-        D_8032FFD4 = D_8032FFD0;
-        D_8032FFD0 = gAreaUpdateCounter;
+        gMovtexCounterPrev = gMovtexCounter;
+        gMovtexCounter = gAreaUpdateCounter;
     }
     return NULL;
 }
 
-void vertex_control_movtext(Vtx *verts, s32 n, s16 x, s16 y, s16 z, s16 f, s16 g,
-    f32 h, u8 alpha)
+/** Make a vertex that's part of a quad with rotating texture.
+ *  verts: array of RSP vertices
+ *  n: index in 'verts' where the vertex is written
+ *  x, y, z: position
+ *  rot: base rotation of the texture
+ *  rotOffset: gets added to base rotation
+ *  scale: how often the texture repeats, 1 = no repeat
+ */
+void movtex_make_quad_vertex(Vtx *verts, s32 index, s16 x, s16 y, s16 z, s16 rot, s16 rotOffset,
+    f32 scale, u8 alpha)
 {
-    s16 s = 32.0 * (32.0 * h - 1.0) * sins(f + g);
-    s16 t = 32.0 * (32.0 * h - 1.0) * coss(f + g);
+    s16 s = 32.0 * (32.0 * scale - 1.0) * sins(rot + rotOffset);
+    s16 t = 32.0 * (32.0 * scale - 1.0) * coss(rot + rotOffset);
 
-    if (gMovTextVtxColor == MOVTEXT_VTX_COLOR_YELLOW)
-        make_vertex(verts, n, x, y, z, s, t, 255, 255, 0, alpha);
-    else if (gMovTextVtxColor == MOVTEXT_VTX_COLOR_RED)
-        make_vertex(verts, n, x, y, z, s, t, 255, 0, 0, alpha);
+    if (gMovtexVtxColor == MOVTEX_VTX_COLOR_YELLOW)
+        make_vertex(verts, index, x, y, z, s, t, 255, 255, 0, alpha);
+    else if (gMovtexVtxColor == MOVTEX_VTX_COLOR_RED)
+        make_vertex(verts, index, x, y, z, s, t, 255, 0, 0, alpha);
     else
-        make_vertex(verts, n, x, y, z, s, t, 255, 255, 255, alpha);
+        make_vertex(verts, index, x, y, z, s, t, 255, 255, 255, alpha);
 }
 
-struct MovingTexureQuadBox
+/** Represents a single flat quad with a rotating texture
+ *  Stores x and z for 4 vertices, though it is often just a rectangle.
+ *  Does not store the y-position, since that can be dynamic for water levels.
+ */
+struct MovtexQuad
 {
-    s16 visibility;
+    /// the current texture rotation in this quad
+    s16 rot;
+    /// gets added to rot every frame
     s16 rotspeed;
-    s16 rotscale;
+    /// the amount of times the texture repeats. 1 = no repeat.
+    s16 scale;
+    /// Coordinates of vertices
     s16 x1;
     s16 z1;
     s16 x2;
@@ -215,132 +460,155 @@ struct MovingTexureQuadBox
     s16 z3;
     s16 x4;
     s16 z4;
-    s16 rot;
-    s16 alpha;
-    s16 text_id;
+    s16 rotDir; /// if 1, it rotates counter-clockwise
+    s16 alpha; /// opacity, 255 = fully opaque
+    s16 textureId; /// texture id
 };
 
-struct MovingTextureBox
+/** Contains an id and an array of MovtexQuad structs.
+ *
+ */
+struct MovtexQuadCollection
 {
+    /// identifier for geo nodes to refer to this MovtexQuad collection
     s16 id;
     s16 filler;
-    void *addr_data;
+    /// points to a short 'n' followed by an array of n MovtexQuad structs
+    void *quadArraySegmented;
 };
 
-s16 D_8035FF70;
+/// Variable for a little optimization: only set the texture when it differs from the previous texture
+s16 gMovetexLastTextureId;
 
-Gfx *func_802CF9A4(s16 y, struct MovingTexureQuadBox *b)
+/** Generates and returns a display list for a single MovtexQuad at height y.
+ */
+Gfx *movtex_gen_from_quad(s16 y, struct MovtexQuad *quad)
 {
-    s16 visibility;
-    s16 rotspeed = b->rotspeed;
-    s16 rotscale = b->rotscale;
-    s16 x1 = b->x1;
-    s16 z1 = b->z1;
-    s16 x2 = b->x2;
-    s16 z2 = b->z2;
-    s16 x3 = b->x3;
-    s16 z3 = b->z3;
-    s16 x4 = b->x4;
-    s16 z4 = b->z4;
-    s16 rot = b->rot;
-    s16 alpha = b->alpha;
-    s16 text_id = b->text_id;
+    s16 rot;
+    s16 rotspeed = quad->rotspeed;
+    s16 scale = quad->scale;
+    s16 x1 = quad->x1;
+    s16 z1 = quad->z1;
+    s16 x2 = quad->x2;
+    s16 z2 = quad->z2;
+    s16 x3 = quad->x3;
+    s16 z3 = quad->z3;
+    s16 x4 = quad->x4;
+    s16 z4 = quad->z4;
+    s16 rotDir = quad->rotDir;
+    s16 alpha = quad->alpha;
+    s16 textureId = quad->textureId;
     Vtx *verts = alloc_display_list(4 * sizeof(*verts));
-    Gfx *sp6C;
-    Gfx *sp68;
+    Gfx *gfxHead;
+    Gfx *gfx;
 
-    if (text_id == D_8035FF70)
-        sp6C = alloc_display_list(3 * sizeof(*sp6C));
+    if (textureId == gMovetexLastTextureId)
+        gfxHead = alloc_display_list(3 * sizeof(*gfxHead));
     else
-        sp6C = alloc_display_list(8 * sizeof(*sp6C));
-    if (sp6C == NULL || verts == NULL)
+        gfxHead = alloc_display_list(8 * sizeof(*gfxHead));
+
+    if (gfxHead == NULL || verts == NULL)
         return NULL;
-    sp68 = sp6C;
-    if (D_8032FFD0 != D_8032FFD4)
-        b->visibility += rotspeed;
-    visibility = b->visibility;
-    if (rot == ROTATE_CLOCKWISE)
+    gfx = gfxHead;
+    if (gMovtexCounter != gMovtexCounterPrev)
+        quad->rot += rotspeed;
+    rot = quad->rot;
+    if (rotDir == ROTATE_CLOCKWISE)
     {
-        vertex_control_movtext(verts, 0, x1, y, z1, visibility,      0, rotscale, alpha);
-        vertex_control_movtext(verts, 1, x2, y, z2, visibility,  16384, rotscale, alpha);
-        vertex_control_movtext(verts, 2, x3, y, z3, visibility, -32768, rotscale, alpha);
-        vertex_control_movtext(verts, 3, x4, y, z4, visibility, -16384, rotscale, alpha);
+        movtex_make_quad_vertex(verts, 0, x1, y, z1, rot,      0, scale, alpha);
+        movtex_make_quad_vertex(verts, 1, x2, y, z2, rot,  16384, scale, alpha);
+        movtex_make_quad_vertex(verts, 2, x3, y, z3, rot, -32768, scale, alpha);
+        movtex_make_quad_vertex(verts, 3, x4, y, z4, rot, -16384, scale, alpha);
     }
     else // ROTATE_COUNTER_CLOCKWISE
     {
-        vertex_control_movtext(verts, 0, x1, y, z1, visibility,      0, rotscale, alpha);
-        vertex_control_movtext(verts, 1, x2, y, z2, visibility, -16384, rotscale, alpha);
-        vertex_control_movtext(verts, 2, x3, y, z3, visibility, -32768, rotscale, alpha);
-        vertex_control_movtext(verts, 3, x4, y, z4, visibility,  16384, rotscale, alpha);
+        movtex_make_quad_vertex(verts, 0, x1, y, z1, rot,      0, scale, alpha);
+        movtex_make_quad_vertex(verts, 1, x2, y, z2, rot, -16384, scale, alpha);
+        movtex_make_quad_vertex(verts, 2, x3, y, z3, rot, -32768, scale, alpha);
+        movtex_make_quad_vertex(verts, 3, x4, y, z4, rot,  16384, scale, alpha);
     }
-    if (text_id != D_8035FF70)
+
+    // Only add commands to change the texture when necessary
+    if (textureId != gMovetexLastTextureId)
     {
-        if (text_id == TEXTURE_MIST)
+        if (textureId == TEXTURE_MIST) // an G_IM_FMT_IA texture
         {
             if (0)
             {
             }
-            gDPSetTextureImage(sp68++, G_IM_FMT_IA, G_IM_SIZ_16b, 1, gMovingTextureIdList[text_id])
-            gDPTileSync(sp68++)
-            gDPSetTile(sp68++, G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, 7, 0,
+            gDPSetTextureImage(gfx++, G_IM_FMT_IA, G_IM_SIZ_16b, 1, gMovtexIdToTexture[textureId])
+            gDPTileSync(gfx++)
+            gDPSetTile(gfx++, G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, 7, 0,
                 G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD,
                 G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD)
-            gDPLoadSync(sp68++)
-            gDPLoadBlock(sp68++, 7, 0, 0, 1023, 256)
+            gDPLoadSync(gfx++)
+            gDPLoadBlock(gfx++, 7, 0, 0, 1023, 256)
         }
         else // any rgba16 texture
         {
-            gDPSetTextureImage(sp68++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gMovingTextureIdList[text_id])
-            gDPTileSync(sp68++)
-            gDPSetTile(sp68++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0,
+            gDPSetTextureImage(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gMovtexIdToTexture[textureId])
+            gDPTileSync(gfx++)
+            gDPSetTile(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0,
                 G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD,
                 G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD)
-            gDPLoadSync(sp68++)
-            gDPLoadBlock(sp68++, 7, 0, 0, 1023, 256)
+            gDPLoadSync(gfx++)
+            gDPLoadBlock(gfx++, 7, 0, 0, 1023, 256)
             if (0)
             {
             }
         }
-        D_8035FF70 = text_id;
+        gMovetexLastTextureId = textureId;
     }
-    gSPVertex(sp68++, 0x80000000 + (u32)verts, 4, 0)
-    gSPDisplayList(sp68++, dl_draw_quad_verts_0123)
-    gSPEndDisplayList(sp68)
-    return sp6C;
+    gSPVertex(gfx++, 0x80000000 + (u32)verts, 4, 0)
+    gSPDisplayList(gfx++, dl_draw_quad_verts_0123)
+    gSPEndDisplayList(gfx)
+    return gfxHead;
 }
 
-Gfx *func_802CFFA4(s16 a, void *b)
+/** Generate a display list drawing an array of MoxtexQuad at height 'y'.
+ *  y: y position of the quads
+ *  quadArrSegmented: a segmented address to an array of s16. The first number
+ *  is the number of entries, followed by that number of MovtexQuad structs.
+ */
+Gfx *movtex_gen_from_quad_array(s16 y, void *quadArrSegmented)
 {
-    s16 *sp34 = segmented_to_virtual(b);
-    s16 sp32 = sp34[0];
-    Gfx *sp2C = alloc_display_list((sp32 + 1) * sizeof(*sp2C));
-    Gfx *sp28 = sp2C;
-    Gfx *sp24;
-    s32 sp20;
+    s16 *quadArr = segmented_to_virtual(quadArrSegmented);
+    s16 numLists = quadArr[0];
+    Gfx *gfxHead = alloc_display_list((numLists + 1) * sizeof(*gfxHead));
+    Gfx *gfx = gfxHead;
+    Gfx *subList;
+    s32 i;
 
-    if (sp2C == NULL)
+    if (gfxHead == NULL)
         return NULL;
-    for (sp20 = 0; sp20 < sp32; sp20++)
+    for (i = 0; i < numLists; i++)
     {
-        sp24 = func_802CF9A4(a, (struct MovingTexureQuadBox *)(&sp34[sp20 * 14 + 1]));
-        if (sp24 != NULL)
-            gSPDisplayList(sp28++, VIRTUAL_TO_PHYSICAL(sp24))
+        // quadArr is an array of s16, so sizeof(MovtexQuad) gets divided by 2
+        subList = movtex_gen_from_quad(y, (struct MovtexQuad *)(&quadArr[i * (sizeof(struct MovtexQuad)/2) + 1]));
+        if (subList != NULL)
+            gSPDisplayList(gfx++, VIRTUAL_TO_PHYSICAL(subList))
     }
-    gSPEndDisplayList(sp28);
-    return sp2C;
+    gSPEndDisplayList(gfx);
+    return gfxHead;
 }
 
- // search_moving_texture_id?, seems to be related to movTexJump
-Gfx *func_802D00D0(s16 id, s16 b, void *addr_data)
+/** Generate the display list for a list of quads by searching through a collection
+ *  for a given id.
+ *  id: id of quad array to generate a list for
+ *  y: height at which the quads are drawn
+ *  movetexQuadsSegmented: segmented address to the MovtexQuadCollection array
+ *  that will be searched.
+ */
+Gfx *movtex_gen_quads_id(s16 id, s16 y, void *movetexQuadsSegmented)
 {
-    struct MovingTextureBox *sp1C = segmented_to_virtual(addr_data);
-    s32 sp18 = 0;
+    struct MovtexQuadCollection *collection = segmented_to_virtual(movetexQuadsSegmented);
+    s32 i = 0;
 
-    while (sp1C[sp18].id != -1)
+    while (collection[i].id != -1)
     {
-        if (sp1C[sp18].id == id)
-            return func_802CFFA4(b, sp1C[sp18].addr_data);
-        sp18++;
+        if (collection[i].id == id)
+            return movtex_gen_from_quad_array(y, collection[i].quadArraySegmented);
+        i++;
     }
     return NULL;
 }
@@ -370,144 +638,184 @@ extern u8 wf_movtex_water[];
 extern u8 castle_courtyard_movtex_star_statue_water[];
 extern u8 ttm_movtex_puddle[];
 
-void *load_moving_texture_box(u32 a)
+/** Find the quadCollection for a given quad collection id.
+ */
+void *get_quad_collection_from_id(u32 id)
 {
-    switch (a)
+    switch (id)
     {
-    case 0x0400: return bbh_movtex_merry_go_round_water_entrance;
-    case 0x0401: return bbh_movtex_merry_go_round_water_side;
-    case 0x0501: return ccm_movtex_penguin_puddle_water;
-    case 0x0600: return inside_castle_movtex_green_room_water;
-    case 0x0612: return inside_castle_movtex_moat_water;
-    case 0x0701: return hmc_movtex_dorrie_pool_water;
-    case 0x0702: return hmc_movtex_toxic_maze_mist;
-    case 0x0801: return ssl_movtex_puddle_water;
-    case 0x0851: return ssl_movtex_toxbox_quicksand_mist;
-    case 0x1001: return sl_movtex_water;
-    case 0x1101: return wdw_movtex_area1_water;
-    case 0x1102: return wdw_movtex_area2_water;
-    case 0x1201: return jrb_movtex_water;
-    case 0x1205: return jrb_movtex_intial_mist;
-    case 0x1202: return jrb_movtex_sinked_boat_water;
-    case 0x1301: return thi_movtex_area1_water;
-    case 0x1302: return thi_movtex_area2_water;
-    case 0x1601: return castle_grounds_movtex_water;
-    case 0x2202: return lll_movtex_volcano_floor_lava;
-    case 0x2301: return ddd_movtex_area1_water;
-    case 0x2302: return ddd_movtex_area2_water;
-    case 0x2401: return wf_movtex_water;
-    case 0x2601: return castle_courtyard_movtex_star_statue_water;
-    case 0x3601: return ttm_movtex_puddle;
-    default:     return NULL;
+    case BBH_MOVTEX_MERRY_GO_ROUND_WATER_ENTRANCE:
+        return bbh_movtex_merry_go_round_water_entrance;
+    case BBH_MOVTEX_MERRY_GO_ROUND_WATER_SIDE:
+        return bbh_movtex_merry_go_round_water_side;
+    case CCM_MOVTEX_PENGUIN_PUDDLE_WATER:
+        return ccm_movtex_penguin_puddle_water;
+    case INSIDE_CASTLE_MOVTEX_GREEN_ROOM_WATER:
+        return inside_castle_movtex_green_room_water;
+    case INSIDE_CASTLE_MOVTEX_MOAT_WATER:
+        return inside_castle_movtex_moat_water;
+    case HMC_MOVTEX_DORRIE_POOL_WATER:
+        return hmc_movtex_dorrie_pool_water;
+    case HMC_MOVTEX_TOXIC_MAZE_MIST:
+        return hmc_movtex_toxic_maze_mist;
+    case SSL_MOVTEX_PUDDLE_WATER:
+        return ssl_movtex_puddle_water;
+    case SSL_MOVTEX_TOXBOX_QUICKSAND_MIST:
+        return ssl_movtex_toxbox_quicksand_mist;
+    case SL_MOVTEX_WATER:
+        return sl_movtex_water;
+    case WDW_MOVTEX_AREA1_WATER:
+        return wdw_movtex_area1_water;
+    case WDW_MOVTEX_AREA2_WATER:
+        return wdw_movtex_area2_water;
+    case JRB_MOVTEX_WATER:
+        return jrb_movtex_water;
+    case JRB_MOVTEX_INTIAL_MIST:
+        return jrb_movtex_intial_mist;
+    case JRB_MOVTEX_SINKED_BOAT_WATER:
+        return jrb_movtex_sinked_boat_water;
+    case THI_MOVTEX_AREA1_WATER:
+        return thi_movtex_area1_water;
+    case THI_MOVTEX_AREA2_WATER:
+        return thi_movtex_area2_water;
+    case CASTLE_GROUNDS_MOVTEX_WATER:
+        return castle_grounds_movtex_water;
+    case LLL_MOVTEX_VOLCANO_FLOOR_LAVA:
+        return lll_movtex_volcano_floor_lava;
+    case DDD_MOVTEX_AREA1_WATER:
+        return ddd_movtex_area1_water;
+    case DDD_MOVTEX_AREA2_WATER:
+        return ddd_movtex_area2_water;
+    case WF_MOVTEX_WATER:
+        return wf_movtex_water;
+    case CASTLE_COURTYARD_MOVTEX_STAR_STATUE_WATER:
+        return castle_courtyard_movtex_star_statue_water;
+    case TTM_MOVTEX_PUDDLE:
+        return ttm_movtex_puddle;
+    default:
+        return NULL;
     }
 }
 
-void change_movtex_texture_format(u32 a, Gfx **b)
+/** Write to 'gfx' a command to set the current texture format for the given
+ *  quadCollection.
+ */
+void movtex_change_texture_format(u32 quadCollectionId, Gfx **gfx)
 {
-    switch (a)
+    switch (quadCollectionId)
     {
-    case 0x0702: // hmc_movtex_toxic_maze_mist
-        gSPDisplayList((*b)++, dl_waterbox_ia16_begin)
+    case HMC_MOVTEX_TOXIC_MAZE_MIST:
+        gSPDisplayList((*gfx)++, dl_waterbox_ia16_begin)
         break;
-    case 0x0851: // ssl_movtex_toxbox_quicksand_mist
-        gSPDisplayList((*b)++, dl_waterbox_ia16_begin)
+    case SSL_MOVTEX_TOXBOX_QUICKSAND_MIST:
+        gSPDisplayList((*gfx)++, dl_waterbox_ia16_begin)
         break;
-    case 0x1205: // jrb_movtex_intial_mist
-        gSPDisplayList((*b)++, dl_waterbox_ia16_begin)
+    case JRB_MOVTEX_INTIAL_MIST:
+        gSPDisplayList((*gfx)++, dl_waterbox_ia16_begin)
         break;
     default:
-        gSPDisplayList((*b)++, dl_waterbox_rgba16_begin)
+        gSPDisplayList((*gfx)++, dl_waterbox_rgba16_begin)
         break;
     }
 }
 
-struct Struct802D104C
+/** Geo script responsible for drawing quads with a moving texture at the height
+ *  of the corresponding water region. The node's parameter determines which quad
+ *  collection is drawn, see moving_texture.h.
+ */
+Gfx *geo_movtex_draw_water_regions(s32 callContext, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    u8 filler0[2];
-    s16 unk2;
-    u8 filler4[0x18-0x4];
-    u32 unk18;
-};
+    Gfx *gfxHead = NULL;
+    Gfx *gfx = NULL;
+    Gfx *subList;
+    void *quadCollection;
+    struct GraphNodeGenerated *asGenerated;
+    s16 numWaterBoxes;
+    s16 waterId;
+    s16 waterY;
+    s32 i;
 
-Gfx *geo_exec_movtex_box(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
-{
-    Gfx *sp44 = NULL;
-    Gfx *sp40 = NULL;
-    Gfx *sp3C;
-    void *sp38;
-    struct GraphNodeGenerated *sp34;
-    s16 sp32;
-    s16 sp30;
-    s16 sp2E;
-    s32 sp28;
-
-    if (run == TRUE)
+    if (callContext == GEO_CONTEXT_RENDER)
     {
-        gMovTextVtxColor = MOVTEXT_VTX_COLOR_DEFAULT;
+        gMovtexVtxColor = MOVTEX_VTX_COLOR_DEFAULT;
         if (gWaterRegions == NULL)
             return NULL;
-        sp32 = gWaterRegions[0];
-        sp44 = alloc_display_list((sp32 + 3) * sizeof(*sp44));
-        if (sp44 == NULL)
+        numWaterBoxes = gWaterRegions[0];
+        gfxHead = alloc_display_list((numWaterBoxes + 3) * sizeof(*gfxHead));
+        if (gfxHead == NULL)
             return NULL;
         else
-            sp40 = sp44;
-        sp34 = (struct GraphNodeGenerated *)node;
-        if (sp34->parameter == 0x1205) //  jrb_movtex_intial_mist
+            gfx = gfxHead;
+        asGenerated = (struct GraphNodeGenerated *)node;
+        if (asGenerated->parameter == JRB_MOVTEX_INTIAL_MIST)
         {
-            if (gCameraStatus.camFocAndPosCurrAndGoal[3][1] < 1024.0)
+            if (gCameraStatus.camFocAndPosCurrAndGoal[3][1] < 1024.0) // if camera under water
                 return NULL;
-            if (save_file_get_star_flags(gCurrSaveFileNum - 1, 2) & 1)
+            if (save_file_get_star_flags(gCurrSaveFileNum - 1, 2) & 1) // first level in JRB complete
                 return NULL;
         }
-        else if (sp34->parameter == 0x0702) // hmc_movtex_toxic_maze_mist
+        else if (asGenerated->parameter == HMC_MOVTEX_TOXIC_MAZE_MIST)
         {
-            gMovTextVtxColor = MOVTEXT_VTX_COLOR_YELLOW;
+            gMovtexVtxColor = MOVTEX_VTX_COLOR_YELLOW;
         }
-        else if (sp34->parameter == 0x0851) // ssl_movtex_toxbox_quicksand_mist
+        else if (asGenerated->parameter == SSL_MOVTEX_TOXBOX_QUICKSAND_MIST)
         {
-            gMovTextVtxColor = MOVTEXT_VTX_COLOR_RED;
+            gMovtexVtxColor = MOVTEX_VTX_COLOR_RED;
         }
-        sp38 = load_moving_texture_box(sp34->parameter);
-        if (sp38 == NULL)
+        quadCollection = get_quad_collection_from_id(asGenerated->parameter);
+        if (quadCollection == NULL)
             return NULL;
-        sp34->fnNode.node.flags = (sp34->fnNode.node.flags & 0xFF) | 0x700;
-        change_movtex_texture_format(sp34->parameter, &sp40);
-        D_8035FF70 = -1;
-        for (sp28 = 0; sp28 < sp32; sp28++)
+
+        asGenerated->fnNode.node.flags =
+            (asGenerated->fnNode.node.flags & 0xFF) | (LAYER_TRANSPARENT_INTER << 8);
+
+        movtex_change_texture_format(asGenerated->parameter, &gfx);
+        gMovetexLastTextureId = -1;
+        for (i = 0; i < numWaterBoxes; i++)
         {
-            sp30 = gWaterRegions[sp28 * 6 + 1];
-            sp2E = gWaterRegions[sp28 * 6 + 6];
-            sp3C = func_802D00D0(sp30, sp2E, sp38);
-            if (sp3C != NULL)
-                gSPDisplayList(sp40++, VIRTUAL_TO_PHYSICAL(sp3C));
+            waterId = gWaterRegions[i * 6 + 1];
+            waterY = gWaterRegions[i * 6 + 6];
+            subList = movtex_gen_quads_id(waterId, waterY, quadCollection);
+            if (subList != NULL)
+                gSPDisplayList(gfx++, VIRTUAL_TO_PHYSICAL(subList));
         }
-        gSPDisplayList(sp40++, dl_waterbox_end);
-        gSPEndDisplayList(sp40);
+        gSPDisplayList(gfx++, dl_waterbox_end);
+        gSPEndDisplayList(gfx);
     }
-    return sp44;
+    return gfxHead;
 }
 
-void func_802D0850(s16 *a, s32 b)
+/** Updates a movtex mesh by adding the movtex's speed to the horizontal or
+ *  vertical texture coordinates depending on 'attr'.
+ *  movtexVerts: vertices to update
+ *  attr: which attribute to change
+ */
+void update_moving_texture_offset(s16 *movtexVerts, s32 attr)
 {
-    s16 sp6 = a[0];
-    s16 *sp0 = a + b;
+    s16 movSpeed = movtexVerts[MOVTEX_ATTR_SPEED];
+    s16 *curOffset = movtexVerts + attr;
 
-    if (D_8032FFD0 != D_8032FFD4)
+    if (gMovtexCounter != gMovtexCounterPrev)
     {
-        *sp0 += sp6;
-        if (*sp0 >= 0x400)
-            *sp0 -= 0x400;
-        if (*sp0 <= -0x400)
-            *sp0 += 0x400;
+        *curOffset += movSpeed;
+        // note that texture coordinates are 6.10 fixed point, so this does modulo 1
+        if (*curOffset >= 1024)
+            *curOffset -= 1024;
+        if (*curOffset <= -1024)
+            *curOffset += 1024;
     }
 }
 
-void func_802D08EC(Vtx *vtx, s16 *b, struct MovingTextureGeoList *c, s8 d)
+/** Make the first vertex of a moving texture with index 0.
+ *  This vertex is the base of all vertices with index > 0, which use this
+ *  vertex's coordinates as base on which to apply offset.
+ *  The first vertex has offset 0 by definition, simplifying the calculations a bit.
+ */
+void movtex_write_vertex_first(Vtx *vtx, s16 *movtexVerts, struct MovtexObject *c, s8 attrLayout)
 {
-    s16 x = b[1];
-    s16 y = b[2];
-    s16 z = b[3];
+    s16 x = movtexVerts[MOVTEX_ATTR_X];
+    s16 y = movtexVerts[MOVTEX_ATTR_Y];
+    s16 z = movtexVerts[MOVTEX_ATTR_Z];
     u8 alpha = c->a;
     u8 r1;
     u8 g1;
@@ -518,39 +826,43 @@ void func_802D08EC(Vtx *vtx, s16 *b, struct MovingTextureGeoList *c, s8 d)
     s16 s;
     s16 t;
 
-    switch (d)
+    switch (attrLayout)
     {
-    case 0:
+    case MOVTEX_LAYOUT_NOCOLOR:
         r1 = c->r;
         g1 = c->g;
         b1 = c->b;
-        s = b[4];
-        t = b[5];
+        s = movtexVerts[MOVTEX_ATTR_NOCOLOR_S];
+        t = movtexVerts[MOVTEX_ATTR_NOCOLOR_T];
         make_vertex(vtx, 0, x, y, z, s, t, r1, g1, b1, alpha);
         break;
-    case 1:
-        r2 = b[4];
-        g2 = b[5];
-        b2 = b[6];
-        s = b[7];
-        t = b[8];
+    case MOVTEX_LAYOUT_COLORED:
+        r2 = movtexVerts[MOVTEX_ATTR_COLORED_R];
+        g2 = movtexVerts[MOVTEX_ATTR_COLORED_G];
+        b2 = movtexVerts[MOVTEX_ATTR_COLORED_B];
+        s = movtexVerts[MOVTEX_ATTR_COLORED_S];
+        t = movtexVerts[MOVTEX_ATTR_COLORED_T];
         make_vertex(vtx, 0, x, y, z, s, t, r2, g2, b2, alpha);
         break;
     }
 }
 
-void func_802D0A94(Vtx *verts, s32 n, s16 *c, struct MovingTextureGeoList *d, s8 e)
+/** Make a vertex with index > 0. The vertex with index 0 is made in
+ *  movtex_write_vertex_first and subsequent vertices use vertex 0 as a base
+ *  for their texture coordinates.
+ */
+void movtex_write_vertex_index(Vtx *verts, s32 index, s16 *movtexVerts, struct MovtexObject *d, s8 attrLayout)
 {
     u8 alpha = d->a;
     s16 x;
     s16 y;
     s16 z;
-    s16 sp56;
-    s16 sp54;
+    s16 baseS;
+    s16 baseT;
     s16 s;
     s16 t;
-    s16 sp4E;
-    s16 sp4C;
+    s16 offS;
+    s16 offT;
     u8 r1;
     u8 g1;
     u8 b1;
@@ -558,190 +870,223 @@ void func_802D0A94(Vtx *verts, s32 n, s16 *c, struct MovingTextureGeoList *d, s8
     s8 g2;
     s8 b2;
 
-    switch (e)
+    switch (attrLayout)
     {
-    case 0:
-        x = c[n * 5 + 1];
-        y = c[n * 5 + 2];
-        z = c[n * 5 + 3];
-        sp56 = c[4];
-        sp54 = c[5];
-        sp4E = c[n * 5 + 4];
-        sp4C = c[n * 5 + 5];
-        s = sp56 + ((sp4E * 32) * 32U);
-        t = sp54 + ((sp4C * 32) * 32U);
+    case MOVTEX_LAYOUT_NOCOLOR:
+        x = movtexVerts[index * 5 + MOVTEX_ATTR_X];
+        y = movtexVerts[index * 5 + MOVTEX_ATTR_Y];
+        z = movtexVerts[index * 5 + MOVTEX_ATTR_Z];
+        baseS = movtexVerts[MOVTEX_ATTR_NOCOLOR_S];
+        baseT = movtexVerts[MOVTEX_ATTR_NOCOLOR_T];
+        offS = movtexVerts[index * 5 + MOVTEX_ATTR_NOCOLOR_S];
+        offT = movtexVerts[index * 5 + MOVTEX_ATTR_NOCOLOR_T];
+        s = baseS + ((offS * 32) * 32U);
+        t = baseT + ((offT * 32) * 32U);
         r1 = d->r;
         g1 = d->g;
         b1 = d->b;
-        make_vertex(verts, n, x, y, z, s, t, r1, g1, b1, alpha);
+        make_vertex(verts, index, x, y, z, s, t, r1, g1, b1, alpha);
         break;
-    case 1:
-        x = c[n * 8 + 1];
-        y = c[n * 8 + 2];
-        z = c[n * 8 + 3];
-        sp56 = c[7];
-        sp54 = c[8];
-        sp4E = c[n * 8 + 7];
-        sp4C = c[n * 8 + 8];
-        s = sp56 + ((sp4E * 32) * 32U);
-        t = sp54 + ((sp4C * 32) * 32U);
-        r2 = c[n * 8 + 4];
-        g2 = c[n * 8 + 5];
-        b2 = c[n * 8 + 6];
-        make_vertex(verts, n, x, y, z, s, t, r2, g2, b2, alpha);
+    case MOVTEX_LAYOUT_COLORED:
+        x = movtexVerts[index * 8 + MOVTEX_ATTR_X];
+        y = movtexVerts[index * 8 + MOVTEX_ATTR_Y];
+        z = movtexVerts[index * 8 + MOVTEX_ATTR_Z];
+        baseS = movtexVerts[7];
+        baseT = movtexVerts[8];
+        offS = movtexVerts[index * 8 + 7];
+        offT = movtexVerts[index * 8 + 8];
+        s = baseS + ((offS * 32) * 32U);
+        t = baseT + ((offT * 32) * 32U);
+        r2 = movtexVerts[index * 8 + MOVTEX_ATTR_COLORED_R];
+        g2 = movtexVerts[index * 8 + MOVTEX_ATTR_COLORED_G];
+        b2 = movtexVerts[index * 8 + MOVTEX_ATTR_COLORED_B];
+        make_vertex(verts, index, x, y, z, s, t, r2, g2, b2, alpha);
         break;
     }
 }
 
-Gfx *func_802D0DD4(s16 *a, struct MovingTextureGeoList *b, s8 c)
+/** Generate a displaylist for a MovtexObject.
+ *  'attrLayout' is one of MOVTEX_LAYOUT_NOCOLOR and MOVTEX_LAYOUT_COLORED.
+ */
+Gfx *movtex_gen_list(s16 *movtexVerts, struct MovtexObject *movtexList, s8 attrLayout)
 {
-    Vtx *verts = alloc_display_list(b->vtx_count * sizeof(*verts));
-    Gfx *sp50 = alloc_display_list(11 * sizeof(*sp50));
-    Gfx *sp4C = sp50;
-    s32 sp48;
+    Vtx *verts = alloc_display_list(movtexList->vtx_count * sizeof(*verts));
+    Gfx *gfxHead = alloc_display_list(11 * sizeof(*gfxHead));
+    Gfx *gfx = gfxHead;
+    s32 i;
 
-    if (verts == NULL || sp50 == NULL)
+    if (verts == NULL || gfxHead == NULL)
         return NULL;
-    func_802D08EC(verts, a, b, c);
-    for (sp48 = 1; sp48 < b->vtx_count; sp48++)
-        func_802D0A94(verts, sp48, a, b, c);
-    gSPDisplayList(sp4C++, b->begin_dl)
-    gDPSetTextureImage(sp4C++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gMovingTextureIdList[b->texture_num])
-    gDPTileSync(sp4C++)
-    gDPSetTile(sp4C++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0,
+
+    movtex_write_vertex_first(verts, movtexVerts, movtexList, attrLayout);
+    for (i = 1; i < movtexList->vtx_count; i++)
+        movtex_write_vertex_index(verts, i, movtexVerts, movtexList, attrLayout);
+
+    gSPDisplayList(gfx++, movtexList->beginDl)
+    gDPSetTextureImage(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gMovtexIdToTexture[movtexList->textureId])
+    gDPTileSync(gfx++)
+    gDPSetTile(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0,
                 G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD,
                 G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD)
-    gDPLoadSync(sp4C++)
-    gDPLoadBlock(sp4C++, 7, 0, 0, 1023, 256)
-    gSPVertex(sp4C++, 0x80000000 + (u32)verts, b->vtx_count, 0)
-    gSPDisplayList(sp4C++, b->tri_dl)
-    gSPDisplayList(sp4C++, b->end_dl)
-    gSPEndDisplayList(sp4C)
-    return sp50;
+    gDPLoadSync(gfx++)
+    gDPLoadBlock(gfx++, 7, 0, 0, 1023, 256)
+    gSPVertex(gfx++, 0x80000000 + (u32)verts, movtexList->vtx_count, 0)
+    gSPDisplayList(gfx++, movtexList->triDl)
+    gSPDisplayList(gfx++, movtexList->endDl)
+    gSPEndDisplayList(gfx)
+    return gfxHead;
 }
 
-Gfx *Geo18_802D1B70(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
+/** Function for a geo node that draws a MovtexObject in the gMovtexNonColored list.
+ */
+Gfx *geo_movtex_draw_nocolor(s32 callContext, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    s32 sp24;
-    s16 *sp20;
-    struct GraphNodeGenerated *sp1C;
-    Gfx *sp18 = NULL;
+    s32 i;
+    s16 *movtexVerts;
+    struct GraphNodeGenerated *asGenerated;
+    Gfx *gfx = NULL;
 
-    if (run == TRUE)
+    if (callContext == GEO_CONTEXT_RENDER)
     {
-        sp24 = 0;
-        sp1C = (struct GraphNodeGenerated *)node;
-        while (gMovingTextureTris[sp24].tris != 0)
+        i = 0;
+        asGenerated = (struct GraphNodeGenerated *)node;
+        while (gMovtexNonColored[i].movtexVerts != 0)
         {
-            if (gMovingTextureTris[sp24].geo_id == sp1C->parameter)
+            if (gMovtexNonColored[i].geoId == asGenerated->parameter)
             {
-                sp1C->fnNode.node.flags = (sp1C->fnNode.node.flags & 0xFF) | (gMovingTextureTris[sp24].layer << 8);
-                sp20 = segmented_to_virtual(gMovingTextureTris[sp24].tris);
-                func_802D0850(sp20, 4);
-                sp18 = func_802D0DD4(sp20, &gMovingTextureTris[sp24], 0);
+                asGenerated->fnNode.node.flags = (asGenerated->fnNode.node.flags & 0xFF) | (gMovtexNonColored[i].layer << 8);
+                movtexVerts = segmented_to_virtual(gMovtexNonColored[i].movtexVerts);
+                update_moving_texture_offset(movtexVerts, MOVTEX_ATTR_NOCOLOR_S);
+                gfx = movtex_gen_list(movtexVerts, &gMovtexNonColored[i], MOVTEX_LAYOUT_NOCOLOR); // no perVertex colors
                 break;
             }
-            sp24++;
+            i++;
         }
     }
-    return sp18;
+    return gfx;
 }
 
-Gfx *Geo18_802D1CDC(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
+/** Function for a geo node that draws a MovtexObject in the gMovtexColored list.
+ */
+Gfx *geo_movtex_draw_colored(s32 callContext, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    s32 sp24;
-    s16 *sp20;
-    struct GraphNodeGenerated *sp1C;
-    Gfx *sp18 = NULL;
+    s32 i;
+    s16 *movtexVerts;
+    struct GraphNodeGenerated *asGenerated;
+    Gfx *gfx = NULL;
 
-    if (run == TRUE)
+    if (callContext == GEO_CONTEXT_RENDER)
     {
-        sp24 = 0;
-        sp1C = (struct GraphNodeGenerated *)node;
-        while (gMovingTextureTrisWithRot[sp24].tris != 0)
+        i = 0;
+        asGenerated = (struct GraphNodeGenerated *)node;
+        while (gMovtexColored[i].movtexVerts != 0)
         {
-            if (gMovingTextureTrisWithRot[sp24].geo_id == sp1C->parameter)
+            if (gMovtexColored[i].geoId == asGenerated->parameter)
             {
-                sp1C->fnNode.node.flags = (sp1C->fnNode.node.flags & 0xFF) | (gMovingTextureTrisWithRot[sp24].layer << 8);
-                sp20 = segmented_to_virtual(gMovingTextureTrisWithRot[sp24].tris);
-                func_802D0850(sp20, 7);
-                sp18 = func_802D0DD4(sp20, &gMovingTextureTrisWithRot[sp24], 1);
+                asGenerated->fnNode.node.flags = (asGenerated->fnNode.node.flags & 0xFF) | (gMovtexColored[i].layer << 8);
+                movtexVerts = segmented_to_virtual(gMovtexColored[i].movtexVerts);
+                update_moving_texture_offset(movtexVerts, MOVTEX_ATTR_COLORED_S);
+                gfx = movtex_gen_list(movtexVerts, &gMovtexColored[i], MOVTEX_LAYOUT_COLORED);
                 break;
             }
-            sp24++;
+            i++;
         }
     }
-    return sp18;
+    return gfx;
 }
 
-Gfx *Geo18_802D1E48(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
+/** Function for a geo node that draws a MovtexObject in the gMovtexColored list, 
+ *  but it doesn't call update_moving_texture_offset since that happens in 
+ *  geo_movtex_update_horizontal. This is for when a MovtexObject has multiple
+ *  instances (like TTC treadmills) so you don't want the animation speed to
+ *  increase the more instances there are.
+ */
+Gfx *geo_movtex_draw_colored_no_update(s32 callContext, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    s32 sp24;
-    s16 *sp20;
-    struct GraphNodeGenerated *sp1C;
-    Gfx *sp18 = NULL;
+    s32 i;
+    s16 *movtexVerts;
+    struct GraphNodeGenerated *asGenerated;
+    Gfx *gfx = NULL;
 
-    if (run == TRUE)
+    if (callContext == GEO_CONTEXT_RENDER)
     {
-        sp24 = 0;
-        sp1C = (struct GraphNodeGenerated *)node;
-        while (gMovingTextureTrisWithRot[sp24].tris != 0)
+        i = 0;
+        asGenerated = (struct GraphNodeGenerated *)node;
+        while (gMovtexColored[i].movtexVerts != 0)
         {
-            if (gMovingTextureTrisWithRot[sp24].geo_id == sp1C->parameter)
+            if (gMovtexColored[i].geoId == asGenerated->parameter)
             {
-                sp1C->fnNode.node.flags = (sp1C->fnNode.node.flags & 0xFF) | (gMovingTextureTrisWithRot[sp24].layer << 8);
-                sp20 = segmented_to_virtual(gMovingTextureTrisWithRot[sp24].tris);
-                sp18 = func_802D0DD4(sp20, &gMovingTextureTrisWithRot[sp24], 1);
+                asGenerated->fnNode.node.flags = (asGenerated->fnNode.node.flags & 0xFF) | (gMovtexColored[i].layer << 8);
+                movtexVerts = segmented_to_virtual(gMovtexColored[i].movtexVerts);
+                gfx = movtex_gen_list(movtexVerts, &gMovtexColored[i], MOVTEX_LAYOUT_COLORED);
                 break;
             }
-            sp24++;
+            i++;
         }
     }
-    return sp18;
+    return gfx;
 }
 
-Gfx *Geo18_802D1FA8(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
+/** Exact copy of geo_movtex_draw_colored_no_update, but now using the gMovtexColored2 array.
+ *  Used for the sand pits in SSL, both outside and inside the pyramid.
+ */
+Gfx *geo_movtex_draw_colored_2_no_update(s32 callContext, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    s32 sp24;
-    s16 *sp20;
-    struct GraphNodeGenerated *sp1C;
-    Gfx *sp18 = NULL;
+    s32 i;
+    s16 *movtexVerts;
+    struct GraphNodeGenerated *asGenerated;
+    Gfx *gfx = NULL;
 
-    if (run == TRUE)
+    if (callContext == GEO_CONTEXT_RENDER)
     {
-        sp24 = 0;
-        sp1C = (struct GraphNodeGenerated *)node;
-        while (gMovingTextureTrisWithLight[sp24].tris != 0)
+        i = 0;
+        asGenerated = (struct GraphNodeGenerated *)node;
+        while (gMovtexColored2[i].movtexVerts != 0)
         {
-            if (gMovingTextureTrisWithLight[sp24].geo_id == sp1C->parameter)
+            if (gMovtexColored2[i].geoId == asGenerated->parameter)
             {
-                sp1C->fnNode.node.flags = (sp1C->fnNode.node.flags & 0xFF) | (gMovingTextureTrisWithLight[sp24].layer << 8);
-                sp20 = segmented_to_virtual(gMovingTextureTrisWithLight[sp24].tris);
-                sp18 = func_802D0DD4(sp20, &gMovingTextureTrisWithLight[sp24], 1);
+                asGenerated->fnNode.node.flags = (asGenerated->fnNode.node.flags & 0xFF) | (gMovtexColored2[i].layer << 8);
+                movtexVerts = segmented_to_virtual(gMovtexColored2[i].movtexVerts);
+                gfx = movtex_gen_list(movtexVerts, &gMovtexColored2[i], MOVTEX_LAYOUT_COLORED);
                 break;
             }
-            sp24++;
+            i++;
         }
     }
-    return sp18;
+    return gfx;
 }
 
-Gfx *Geo18_802D2108(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
+/** Make textures move horizontally by simply adding a number to the 's' texture coordinate.
+ *  Used for:
+ *  - treadmills in Tick Tock Clock
+ *  - sand pits outside and inside the pyramid in Shifting Sand
+ *  Note that the drawing for these happen in different nodes with functions
+ *  geo_movtex_draw_colored_no_update and geo_movtex_draw_colored_2_no_update.
+ *  Usually the updating happens in the same function that draws it, but in
+ *  these cases the same model has multiple instances, and you don't want the
+ *  model to update multiple times.
+ *  Note that the final TTC only has one big treadmill though.
+ */
+Gfx *geo_movtex_update_horizontal(s32 callContext, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    void *sp2C;
+    void *movtexVerts;
 
-    if (run == TRUE)
+    if (callContext == GEO_CONTEXT_RENDER)
     {
-        struct GraphNodeGenerated *sp28 = (struct GraphNodeGenerated *)node;
+        struct GraphNodeGenerated *asGenerated = (struct GraphNodeGenerated *)node;
 
-        switch (sp28->parameter)
+        switch (asGenerated->parameter)
         {
-        case 0x0801: sp2C = segmented_to_virtual(ssl_movtex_tris_quicksand_pit);           break;
-        case 0x0802: sp2C = segmented_to_virtual(ssl_movtex_tris_pyramid_quicksand_pit);   break;
-        case 0x1400: sp2C = segmented_to_virtual(ttc_movtex_tris_big_surface_treadmill);   break;
-        case 0x1401: sp2C = segmented_to_virtual(ttc_movtex_tris_small_surface_treadmill); break;
+        case MOVTEX_SSL_SAND_PIT_OUTSIDE:
+            movtexVerts = segmented_to_virtual(ssl_movtex_tris_quicksand_pit);           break;
+        case MOVTEX_SSL_SAND_PIT_PYRAMID:
+            movtexVerts = segmented_to_virtual(ssl_movtex_tris_pyramid_quicksand_pit);   break;
+        case MOVTEX_TREADMILL_BIG:
+            movtexVerts = segmented_to_virtual(ttc_movtex_tris_big_surface_treadmill);   break;
+        case MOVTEX_TREADMILL_SMALL:
+            movtexVerts = segmented_to_virtual(ttc_movtex_tris_small_surface_treadmill); break;
         }
-        func_802D0850(sp2C, 7);
+        update_moving_texture_offset(movtexVerts, MOVTEX_ATTR_COLORED_S);
     }
     return NULL;
 }

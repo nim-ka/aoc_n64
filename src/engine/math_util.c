@@ -481,7 +481,6 @@ void mtxf_align_terrain_triangle(Mat4 mtx, Vec3f pos, s16 yaw, f32 radius)
     mtx[3][3] = 1;
 }
 
-// Multiplies b * a, where b is an affine matrix and a is linear.
 /** Sets matrix 'dest' to the matrix product b * a assuming they are both
  *  transformation matrices with a w-component of 1. Since the bottom row
  *  is assumed to equal [0, 0, 0, 1], it saves some multiplications and
@@ -568,7 +567,7 @@ void mtxf_mul_vec3s(Mat4 mtx, Vec3s b)
  *  The float matrix may not contain entries larger than 65536 or the console
  *  crashes. The fixed point matrix has entries with a 16-bit integer part, so
  *  the floating point numbers are multipled by 2^16 before being cast to a s32
- *  integer. If this doesn't fix, the N64 and iQue consoles will throw an
+ *  integer. If this doesn't fit, the N64 and iQue consoles will throw an
  *  exception. On Wii and Wii U Virtual Console the value will simply be clamped
  *  and no crashes occur.
  */
