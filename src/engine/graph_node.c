@@ -788,7 +788,7 @@ void geo_obj_init_animation(struct GraphNodeObject *graphNode, void *sp34)
     if(graphNode->unk38.curAnim != anim)
     {
         graphNode->unk38.curAnim = anim;
-        graphNode->unk38.animFrame = (anim->unk04) + ((anim->flags & ANIM_FLAG_1) ? 1 : -1);
+        graphNode->unk38.animFrame = (anim->unk04) + ((anim->flags & ANIM_FLAG_FORWARD) ? 1 : -1);
         graphNode->unk38.animAccel = 0;
         graphNode->unk38.animYTrans = 0;
     }
@@ -805,7 +805,7 @@ void geo_obj_init_animation_accel(struct GraphNodeObject *graphNode, void *sp34,
     {
         graphNode->unk38.curAnim = anim;
         graphNode->unk38.animYTrans = 0;
-        graphNode->unk38.animFrameAccelAssist = (anim->unk04 << 16) + ((anim->flags & ANIM_FLAG_1) ? animAccel : -animAccel);
+        graphNode->unk38.animFrameAccelAssist = (anim->unk04 << 16) + ((anim->flags & ANIM_FLAG_FORWARD) ? animAccel : -animAccel);
         graphNode->unk38.animFrame = graphNode->unk38.animFrameAccelAssist >> 16;
     }
 
@@ -857,7 +857,7 @@ s16 geo_update_animation_frame(struct GraphNodeObject_sub *obj, s32* accelAssist
         return obj->animFrame;
     }
 
-    if(anim->flags & ANIM_FLAG_1)
+    if(anim->flags & ANIM_FLAG_FORWARD)
     {
         if(obj->animAccel)
         {

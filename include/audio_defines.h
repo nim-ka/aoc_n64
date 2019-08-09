@@ -54,7 +54,7 @@
 /* Terrain sounds */
 
 /**
- * Terrain-dependent sounds. func_8025167C computes a sound terrain type
+ * Terrain-dependent sounds. mario_get_step_noise computes a sound terrain type
  * between 0 and 7, depending on the terrain type of the level and the
  * floor type that Mario is standing on. That value is then added to the
  * sound ID for the six SOUND_TERRAIN_* sounds.

@@ -261,7 +261,7 @@ void bhv_mario_update(void)
     u32 particleFlags = 0;
     s32 i;
 
-    particleFlags = func_80254604(gCurrentObject);
+    particleFlags = execute_mario_action(gCurrentObject);
     gCurrentObject->oMarioParticleFlags = particleFlags;
 
     // Mario code updates MarioState's versions of position etc, so we need

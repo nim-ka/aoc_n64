@@ -572,9 +572,9 @@ void geo_set_animation_globals(struct GraphNodeObject_sub *node, s32 hasAnimatio
     if (hasAnimation != 0)
         node->animFrame = geo_update_animation_frame(node, &node->animFrameAccelAssist);
     node->animTimer = gAreaUpdateCounter;
-    if (anim->flags & ANIM_FLAG_3)
+    if (anim->flags & ANIM_FLAG_HOR_TRANS)
         gCurAnimType = ANIM_TYPE_VERTICAL_TRANSLATION;
-    else if (anim->flags & ANIM_FLAG_4)
+    else if (anim->flags & ANIM_FLAG_VERT_TRANS)
         gCurAnimType = ANIM_TYPE_LATERAL_TRANSLATION;
     else if (anim->flags & ANIM_FLAG_6)
         gCurAnimType = ANIM_TYPE_NO_TRANSLATION;

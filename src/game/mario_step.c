@@ -42,7 +42,7 @@ f32 get_additive_y_vel_for_jumps(void) {
 
 /**
  * Does nothing, but takes in a MarioState. This is only ever
- * called by func_80253B2C, which is called as part of Mario's
+ * called by update_mario_inputs, which is called as part of Mario's
  * update routine. Due to its proximity to nop_80254E50, an
  * incomplete trampoline function, and get_additive_y_vel_for_jumps,
  * a potentially trampoline-related function, it is plausible that
@@ -156,14 +156,14 @@ u32 mario_update_quicksand(struct MarioState *m, f32 sinkingSpeed)
         case SURFACE_DEEP_MOVING_QUICKSAND:
             if ((m->quicksandDepth += sinkingSpeed) >= 160.0f)
             {
-                func_80251F74(m);
+                update_mario_sound_and_camera(m);
                 return drop_and_set_mario_action(m, ACT_QUICKSAND_DEATH, 0);
             }
             break;
 
         case SURFACE_INSTANT_QUICKSAND:
         case SURFACE_INSTANT_MOVING_QUICKSAND:
-            func_80251F74(m);
+            update_mario_sound_and_camera(m);
             return drop_and_set_mario_action(m, ACT_QUICKSAND_DEATH, 0);
             break;
 
@@ -303,11 +303,11 @@ static s32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos)
     f32 floorHeight;
     f32 waterLevel;
 
-    lowerWall = func_8025181C(nextPos, 30.0f, 24.0f);
-    upperWall = func_8025181C(nextPos, 60.0f, 50.0f);
+    lowerWall = resolve_and_return_wall_collisions(nextPos, 30.0f, 24.0f);
+    upperWall = resolve_and_return_wall_collisions(nextPos, 60.0f, 50.0f);
 
     floorHeight = find_floor(nextPos[0], nextPos[1], nextPos[2], &floor);
-    ceilHeight = func_802518D0(nextPos, floorHeight, &ceil);
+    ceilHeight = vec3f_find_ceil(nextPos, floorHeight, &ceil);
 
     waterLevel = find_water_level(nextPos[0], nextPos[2]);
 
@@ -376,7 +376,7 @@ s32 perform_ground_step(struct MarioState *m)
         }
     }
 
-    m->unk14 = func_8025167C(m);
+    m->stepSound = mario_get_step_noise(m);
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
 
@@ -440,11 +440,11 @@ s32 perform_air_quarter_step(
 
     vec3f_copy(nextPos, intendedPos);
 
-    upperWall = func_8025181C(nextPos, 150.0f, 50.0f);
-    lowerWall = func_8025181C(nextPos, 30.0f, 50.0f);
+    upperWall = resolve_and_return_wall_collisions(nextPos, 150.0f, 50.0f);
+    lowerWall = resolve_and_return_wall_collisions(nextPos, 30.0f, 50.0f);
 
     floorHeight = find_floor(nextPos[0], nextPos[1], nextPos[2], &floor);
-    ceilHeight = func_802518D0(nextPos, floorHeight, &ceil);
+    ceilHeight = vec3f_find_ceil(nextPos, floorHeight, &ceil);
 
     waterLevel = find_water_level(nextPos[0], nextPos[2]);
 
@@ -708,7 +708,7 @@ s32 perform_air_step(struct MarioState *m, u32 stepArg)
     if (m->vel[1] >= 0.0f)
         m->peakHeight = m->pos[1];
 
-    m->unk14 = func_8025167C(m);
+    m->stepSound = mario_get_step_noise(m);
 
     if (m->action != ACT_FLYING)
         apply_gravity(m);

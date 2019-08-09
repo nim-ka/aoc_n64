@@ -150,7 +150,7 @@ u32 get_mario_cap_flag(struct Object *capObject)
     void *script = virtual_to_segmented(0x13, capObject->behavior);
 
     if (script == bhvNormalCap)
-        return MARIO_UNKNOWN_00;
+        return MARIO_NORMAL_CAP;
     else if (script == bhvMetalCap)
         return MARIO_METAL_CAP;
     else if (script == bhvWingCap)
@@ -342,7 +342,7 @@ void mario_stop_riding_and_holding(struct MarioState *m)
 
 u32 func_8024C75C(struct MarioState *m)
 {
-    return (m->flags & MARIO_CAP_FLAGS) == (MARIO_UNKNOWN_00 | MARIO_CAP_ON_HEAD);
+    return (m->flags & MARIO_CAP_FLAGS) == (MARIO_NORMAL_CAP | MARIO_CAP_ON_HEAD);
 }
 
 void mario_blow_off_cap(struct MarioState *m, f32 capSpeed)
@@ -353,7 +353,7 @@ void mario_blow_off_cap(struct MarioState *m, f32 capSpeed)
     {
         save_file_set_cap_pos(m->pos[0], m->pos[1], m->pos[2]);
 
-        m->flags &= ~(MARIO_UNKNOWN_00 | MARIO_CAP_ON_HEAD);
+        m->flags &= ~(MARIO_NORMAL_CAP | MARIO_CAP_ON_HEAD);
 
         capObject = spawn_object(m->marioObj, MODEL_MARIOS_CAP, bhvNormalCap);
 
@@ -373,7 +373,7 @@ u32 mario_lose_cap_to_enemy(u32 arg)
     if (func_8024C75C(gMarioState))
     {
         save_file_set_flags(arg == 1 ? SAVE_FLAG_CAP_ON_KLEPTO : SAVE_FLAG_CAP_ON_UKIKI);
-        gMarioState->flags &= ~(MARIO_UNKNOWN_00 | MARIO_CAP_ON_HEAD);
+        gMarioState->flags &= ~(MARIO_NORMAL_CAP | MARIO_CAP_ON_HEAD);
         wasWearingCap = TRUE;
     }
 
@@ -385,7 +385,7 @@ void mario_retrieve_cap(void)
     mario_drop_held_object(gMarioState);
     save_file_clear_flags(SAVE_FLAG_CAP_ON_KLEPTO | SAVE_FLAG_CAP_ON_UKIKI);
     gMarioState->flags &= ~MARIO_CAP_ON_HEAD;
-    gMarioState->flags |= MARIO_UNKNOWN_00 | MARIO_CAP_IN_HAND;
+    gMarioState->flags |= MARIO_NORMAL_CAP | MARIO_CAP_IN_HAND;
 }
 
 u32 able_to_grab_object(struct MarioState *m, UNUSED struct Object *o)
@@ -759,7 +759,7 @@ u32 take_damage_and_knock_back(struct MarioState *m, struct Object *o)
         if (o->oDamageOrCoinValue > 0)
             play_sound(SOUND_MARIO_ATTACKED, m->marioObj->header.gfx.cameraToObject);
 
-        func_80251F74(m);
+        update_mario_sound_and_camera(m);
         return drop_and_set_mario_action(m, determine_knockback_action(m, o->oDamageOrCoinValue), damage);
     }
 
@@ -850,7 +850,7 @@ u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, struct O
 
         play_sound(SOUND_MENU_STARSOUND, m->marioObj->header.gfx.cameraToObject);
 #ifndef VERSION_JP
-        func_80251F74(m);
+        update_mario_sound_and_camera(m);
         //func_802521A0
 #endif
 
@@ -1121,7 +1121,7 @@ u32 interact_tornado(struct MarioState *m, UNUSED u32 interactType, struct Objec
     {
         mario_stop_riding_and_holding(m);
         mario_set_forward_vel(m, 0.0f);
-        func_80251F74(m);
+        update_mario_sound_and_camera(m);
 
         o->oInteractStatus = INT_STATUS_INTERACTED;
         m->interactObj = o;
@@ -1176,7 +1176,7 @@ u32 interact_wind(struct MarioState *m, UNUSED u32 interactType, struct Object *
         m->vel[1] = 12.0f;
 
         play_sound(SOUND_MARIO_WAAAOOOW, m->marioObj->header.gfx.cameraToObject);
-        func_80251F74(m);
+        update_mario_sound_and_camera(m);
         return set_mario_action(m, ACT_GETTING_BLOWN, 0);
     }
 
@@ -1203,7 +1203,7 @@ u32 interact_flame(struct MarioState *m, UNUSED u32 interactType, struct Object 
         else
         {
             m->marioObj->oMarioBurnTimer = 0;
-            func_80251F74(m);
+            update_mario_sound_and_camera(m);
             play_sound(SOUND_MARIO_ONFIRE, m->marioObj->header.gfx.cameraToObject);
 
             if ((m->action & ACT_FLAG_AIR) && m->vel[1] <= 0.0f)
@@ -1232,7 +1232,7 @@ u32 interact_snufit_bullet(struct MarioState *m, UNUSED u32 interactType, struct
             take_damage_from_interact_object(m);
 
             play_sound(SOUND_MARIO_ATTACKED, m->marioObj->header.gfx.cameraToObject);
-            func_80251F74(m);
+            update_mario_sound_and_camera(m);
 
             return drop_and_set_mario_action(m, determine_knockback_action(m, o->oDamageOrCoinValue), o->oDamageOrCoinValue);
         }
@@ -1293,7 +1293,7 @@ u32 interact_bully(struct MarioState *m, UNUSED u32 interactType, struct Object 
         o->oInteractStatus = INT_STATUS_INTERACTED;
         m->invincTimer = 2;
 
-        func_80251F74(m);
+        update_mario_sound_and_camera(m);
         play_sound(SOUND_MARIO_EEUH, m->marioObj->header.gfx.cameraToObject);
         play_sound(SOUND_OBJECT_BULLYMETAL, m->marioObj->header.gfx.cameraToObject);
 
@@ -1323,7 +1323,7 @@ u32 interact_shock(struct MarioState *m, UNUSED u32 interactType, struct Object 
         }
         else
         {
-            func_80251F74(m);
+            update_mario_sound_and_camera(m);
             return drop_and_set_mario_action(m, ACT_SHOCKED, actionArg);
         }
     }
@@ -1508,7 +1508,7 @@ u32 interact_koopa_shell(struct MarioState *m, UNUSED u32 interactType, struct O
             m->riddenObj = o;
 
             attack_object(o, interaction);
-            func_80251F74(m);
+            update_mario_sound_and_camera(m);
             play_shell_music();
             mario_drop_held_object(m);
 
@@ -1538,7 +1538,7 @@ u32 check_object_grab_mario(struct MarioState *m, UNUSED u32 interactType, struc
             m->interactObj = o;
             m->usedObj = o;
 
-            func_80251F74(m);
+            update_mario_sound_and_camera(m);
             play_sound(SOUND_MARIO_OOOF, m->marioObj->header.gfx.cameraToObject);
             return set_mario_action(m, ACT_GRABBED, 0);
         }
@@ -1595,7 +1595,7 @@ u32 interact_hoot(struct MarioState *m, UNUSED u32 interactType, struct Object *
         m->interactObj = o;
         m->usedObj = o;
 
-        func_80251F74(m);
+        update_mario_sound_and_camera(m);
         return set_mario_action(m, ACT_RIDING_HOOT, 0);
     }
 
@@ -1793,7 +1793,7 @@ void check_kick_or_punch_wall(struct MarioState *m)
         detector[2] = m->pos[2] + 50.0f * coss(m->faceAngle[1]);
         detector[1] = m->pos[1];
 
-        if (func_8025181C(detector, 80.0f, 5.0f) != NULL)
+        if (resolve_and_return_wall_collisions(detector, 80.0f, 5.0f) != NULL)
         {
             if (m->action != ACT_MOVE_PUNCHING || m->forwardVel >= 0.0f)
             {
@@ -1873,7 +1873,7 @@ void check_lava_boost(struct MarioState *m)
         if (!(m->flags & MARIO_METAL_CAP))
             m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 12 : 18;
 
-        func_80251F74(m);
+        update_mario_sound_and_camera(m);
         drop_and_set_mario_action(m, ACT_LAVA_BOOST, 0);
     }
 }

@@ -50,6 +50,8 @@
 #define INT_STATUS_MARIO_UNK1            (1 <<  1) /* 0x00000002 */
 #define INT_STATUS_MARIO_UNK2            (1 <<  2) /* 0x00000004 */
 #define INT_STATUS_MARIO_DROP_OBJECT     (1 <<  3) /* 0x00000008 */
+#define INT_STATUS_MARIO_UNK4            (1 <<  4) /* 0x00000010 */
+#define INT_STATUS_MARIO_UNK5            (1 <<  5) /* 0x00000020 */
 #define INT_STATUS_MARIO_UNK6            (1 <<  6) /* 0x00000040 */
 #define INT_STATUS_MARIO_UNK7            (1 <<  7) /* 0x00000080 */
 #define INT_STATUS_GRABBED_MARIO         (1 << 11) /* 0x00000800 */

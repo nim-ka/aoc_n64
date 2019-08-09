@@ -128,21 +128,21 @@ Mat4 D_80339F50[2];
 
 s16 func_80263A50(struct MarioState *m)
 {
-    s16 pitch = func_80251DD4(m, 0);
+    s16 pitch = find_floor_slope(m, 0);
     pitch = pitch * m->forwardVel / 40.0f;
     return -pitch;
 }
 
 void func_80263AD4(struct MarioState *m, s16 arg1, s16 arg2)
 {
-    if (func_80250B68(m, arg1) || func_80250B68(m, arg2))
+    if (is_anim_past_frame(m, arg1) || is_anim_past_frame(m, arg2))
     {
         if (m->flags & MARIO_METAL_CAP)
         {
             if (m->marioObj->header.gfx.unk38.animID == 0x0092)
-                func_802510E4(m, SOUND_ACTION_UNKNOWN42F, 0);
+                play_sound_and_spawn_particles(m, SOUND_ACTION_UNKNOWN42F, 0);
             else
-                func_802510E4(m, SOUND_ACTION_UNKNOWN42A, 0);
+                play_sound_and_spawn_particles(m, SOUND_ACTION_UNKNOWN42A, 0);
         }
         else if (m->quicksandDepth > 50.0f)
         {
@@ -150,11 +150,11 @@ void func_80263AD4(struct MarioState *m, s16 arg1, s16 arg2)
         }
         else if (m->marioObj->header.gfx.unk38.animID == 0x0092)
         {
-            func_802510E4(m, SOUND_TERRAIN_5, 0);
+            play_sound_and_spawn_particles(m, SOUND_TERRAIN_5, 0);
         }
         else
         {
-            func_802510E4(m, SOUND_TERRAIN_3, 0);
+            play_sound_and_spawn_particles(m, SOUND_TERRAIN_3, 0);
         }
     }
 }
@@ -614,7 +614,7 @@ void func_802652F0(struct MarioState *m)
     if (m->quicksandDepth > 50.0f)
     {
         val14 = (s32)(val04 / 4.0f * 0x10000);
-        func_80250934(m, MARIO_ANIM_MOVE_IN_QUICKSAND, val14);
+        set_mario_anim_with_accel(m, MARIO_ANIM_MOVE_IN_QUICKSAND, val14);
         func_80263AD4(m, 0x0013, 0x005D);
         m->actionTimer = 0;
     }
@@ -633,9 +633,9 @@ void func_802652F0(struct MarioState *m)
                 {
                     if ((val14 = (s32)(val04 / 4.0f * 0x10000)) < 0x1000)
                         val14 = 0x1000;
-                    func_80250934(m, MARIO_ANIM_START_TIPTOE, val14);
+                    set_mario_anim_with_accel(m, MARIO_ANIM_START_TIPTOE, val14);
                     func_80263AD4(m, 0x0007, 0x0016);
-                    if (func_80250B68(m, 0x0017))
+                    if (is_anim_past_frame(m, 0x0017))
                         m->actionTimer = 2;
 
                     val0C = FALSE;
@@ -651,7 +651,7 @@ void func_802652F0(struct MarioState *m)
                 {
                     if ((val14 = (s32)(val04 * 0x10000)) < 0x1000)
                         val14 = 0x1000;
-                    func_80250934(m, MARIO_ANIM_TIPTOE, val14);
+                    set_mario_anim_with_accel(m, MARIO_ANIM_TIPTOE, val14);
                     func_80263AD4(m, 0x000E, 0x0048);
 
                     val0C = FALSE;
@@ -670,7 +670,7 @@ void func_802652F0(struct MarioState *m)
                 else
                 {
                     val14 = (s32)(val04 / 4.0f * 0x10000);
-                    func_80250934(m, MARIO_ANIM_WALKING, val14);
+                    set_mario_anim_with_accel(m, MARIO_ANIM_WALKING, val14);
                     func_80263AD4(m, 0x000A, 0x0031);
 
                     val0C = FALSE;
@@ -685,7 +685,7 @@ void func_802652F0(struct MarioState *m)
                 else
                 {
                     val14 = (s32)(val04 / 4.0f * 0x10000);
-                    func_80250934(m, MARIO_ANIM_RUNNING, val14);
+                    set_mario_anim_with_accel(m, MARIO_ANIM_RUNNING, val14);
                     func_80263AD4(m, 0x0009, 0x002D);
                     targetPitch = func_80263A50(m);
 
@@ -724,7 +724,7 @@ void func_8026570C(struct MarioState *m)
             else
             {
                 val0C = (s32)(val04 * 0x10000);
-                func_80250934(m, MARIO_ANIM_SLOW_WALK_WITH_LIGHT_OBJ, val0C);
+                set_mario_anim_with_accel(m, MARIO_ANIM_SLOW_WALK_WITH_LIGHT_OBJ, val0C);
                 func_80263AD4(m, 0x000C, 0x003E);
 
                 val08 = FALSE;
@@ -743,7 +743,7 @@ void func_8026570C(struct MarioState *m)
             else
             {
                 val0C = (s32)(val04 * 0x10000);
-                func_80250934(m, MARIO_ANIM_WALK_WITH_LIGHT_OBJ, val0C);
+                set_mario_anim_with_accel(m, MARIO_ANIM_WALK_WITH_LIGHT_OBJ, val0C);
                 func_80263AD4(m, 0x000C, 0x003E);
 
                 val08 = FALSE;
@@ -758,7 +758,7 @@ void func_8026570C(struct MarioState *m)
             else
             {
                 val0C = (s32)(val04 / 2.0f * 0x10000);
-                func_80250934(m, MARIO_ANIM_RUN_WITH_LIGHT_OBJ, val0C);
+                set_mario_anim_with_accel(m, MARIO_ANIM_RUN_WITH_LIGHT_OBJ, val0C);
                 func_80263AD4(m, 0x000A, 0x0031);
 
                 val08 = FALSE;
@@ -771,7 +771,7 @@ void func_8026570C(struct MarioState *m)
 void func_80265980(struct MarioState *m)
 {
     s32 val04 = (s32)(m->intendedMag * 0x10000);
-    func_80250934(m, MARIO_ANIM_WALK_WITH_HEAVY_OBJ, val04);
+    set_mario_anim_with_accel(m, MARIO_ANIM_WALK_WITH_HEAVY_OBJ, val04);
     func_80263AD4(m, 0x001A, 0x004F);
 }
 
@@ -802,20 +802,20 @@ void func_802659E8(struct MarioState *m, Vec3f startPos)
     else
     {
         if (dWallAngle < 0)
-            func_80250934(m, MARIO_ANIM_SIDESTEP_RIGHT, val04);
+            set_mario_anim_with_accel(m, MARIO_ANIM_SIDESTEP_RIGHT, val04);
         else
-            func_80250934(m, MARIO_ANIM_SIDESTEP_LEFT, val04);
+            set_mario_anim_with_accel(m, MARIO_ANIM_SIDESTEP_LEFT, val04);
 
         if (m->marioObj->header.gfx.unk38.animFrame < 20)
         {
-            play_sound(SOUND_UNKNOWN_UNK1400 + m->unk14, m->marioObj->header.gfx.cameraToObject);
+            play_sound(SOUND_UNKNOWN_UNK1400 + m->stepSound, m->marioObj->header.gfx.cameraToObject);
             m->particleFlags |= PARTICLE_DUST;
         }
 
         m->actionState = 1;
         m->actionArg = wallAngle + 0x8000;
         m->marioObj->header.gfx.angle[1] = wallAngle + 0x8000;
-        m->marioObj->header.gfx.angle[2] = func_80251DD4(m, 0x4000);
+        m->marioObj->header.gfx.angle[2] = find_floor_slope(m, 0x4000);
     }
 }
 
@@ -886,7 +886,7 @@ s32 act_walking(struct MarioState *m)
         return begin_braking_action(m);
 
     if (m->input & INPUT_A_PRESSED)
-        return func_80252C30(m);
+        return set_jump_from_landing(m);
 
     if (check_ground_dive_or_punch(m))
         return TRUE;
@@ -981,7 +981,7 @@ s32 act_hold_walking(struct MarioState *m)
         return set_mario_action(m, ACT_THROWING, 0);
 
     if (m->input & INPUT_A_PRESSED)
-        return func_80252E74(m, ACT_HOLD_JUMP, 0);
+        return set_jumping_action(m, ACT_HOLD_JUMP, 0);
 
     if (m->input & INPUT_UNKNOWN_5)
         return set_mario_action(m, ACT_HOLD_DECELERATING, 0);
@@ -1050,7 +1050,7 @@ s32 act_turning_around(struct MarioState *m)
         return set_mario_action(m, ACT_BEGIN_SLIDING, 0);
 
     if (m->input & INPUT_A_PRESSED)
-        return func_80252E74(m, ACT_SIDE_FLIP, 0);
+        return set_jumping_action(m, ACT_SIDE_FLIP, 0);
 
     if (m->input & INPUT_UNKNOWN_5)
         return set_mario_action(m, ACT_BRAKING, 0);
@@ -1061,9 +1061,9 @@ s32 act_turning_around(struct MarioState *m)
     if (apply_slope_decel(m, 2.0f))
         return begin_walking_action(m, 8.0f, ACT_FINISH_TURNING_AROUND, 0);
 
-    play_sound(SOUND_UNKNOWN_UNK1400 + m->unk14, m->marioObj->header.gfx.cameraToObject);
+    play_sound(SOUND_UNKNOWN_UNK1400 + m->stepSound, m->marioObj->header.gfx.cameraToObject);
 
-    func_80251048(m);
+    adjust_sound_for_speed(m);
 
     switch (perform_ground_step(m))
     {
@@ -1083,7 +1083,7 @@ s32 act_turning_around(struct MarioState *m)
     else
     {
         set_mario_animation(m, MARIO_ANIM_TURNING_PART2);
-        if (func_80250770(m))
+        if (is_anim_at_end(m))
         {
             if (m->forwardVel > 0.0f)
                 begin_walking_action(m, -m->forwardVel, ACT_WALKING, 0);
@@ -1101,7 +1101,7 @@ s32 act_finish_turning_around(struct MarioState *m)
         return set_mario_action(m, ACT_BEGIN_SLIDING, 0);
 
     if (m->input & INPUT_A_PRESSED)
-        return func_80252E74(m, ACT_SIDE_FLIP, 0);
+        return set_jumping_action(m, ACT_SIDE_FLIP, 0);
 
     update_walking_speed(m);
     set_mario_animation(m, MARIO_ANIM_TURNING_PART2);
@@ -1109,7 +1109,7 @@ s32 act_finish_turning_around(struct MarioState *m)
     if (perform_ground_step(m) == GROUND_STEP_LEFT_GROUND)
         set_mario_action(m, ACT_FREEFALL, 0);
 
-    if (func_80250770(m))
+    if (is_anim_at_end(m))
         set_mario_action(m, ACT_WALKING, 0);
 
     m->marioObj->header.gfx.angle[1] += 0x8000;
@@ -1121,7 +1121,7 @@ s32 act_braking(struct MarioState *m)
     if (!(m->input & INPUT_FIRST_PERSON) &&
         (m->input & (INPUT_NONZERO_ANALOG | INPUT_A_PRESSED | INPUT_OFF_FLOOR | INPUT_ABOVE_SLIDE)))
     {
-        return func_80252FEC(m);
+        return check_common_action_exits(m);
     }
 
     if (apply_slope_decel(m, 2.0f))
@@ -1145,8 +1145,8 @@ s32 act_braking(struct MarioState *m)
         break;
     }
 
-    play_sound(SOUND_UNKNOWN_UNK1400 + m->unk14, m->marioObj->header.gfx.cameraToObject);
-    func_80251048(m);
+    play_sound(SOUND_UNKNOWN_UNK1400 + m->stepSound, m->marioObj->header.gfx.cameraToObject);
+    adjust_sound_for_speed(m);
     set_mario_animation(m, MARIO_ANIM_SKID_ON_GROUND);
     return FALSE;
 }
@@ -1162,7 +1162,7 @@ s32 act_decelerating(struct MarioState *m)
             return set_mario_action(m, ACT_BEGIN_SLIDING, 0);
 
         if (m->input & INPUT_A_PRESSED)
-            return func_80252C30(m);
+            return set_jump_from_landing(m);
 
         if (check_ground_dive_or_punch(m))
             return TRUE;
@@ -1194,8 +1194,8 @@ s32 act_decelerating(struct MarioState *m)
     if (slopeClass == SURFACE_CLASS_SLIDE)
     {
         set_mario_animation(m, MARIO_ANIM_IDLE_HEAD_LEFT);
-        play_sound(SOUND_UNKNOWN_UNK1400 + m->unk14, m->marioObj->header.gfx.cameraToObject);
-        func_80251048(m);
+        play_sound(SOUND_UNKNOWN_UNK1400 + m->stepSound, m->marioObj->header.gfx.cameraToObject);
+        adjust_sound_for_speed(m);
         m->particleFlags |= PARTICLE_DUST;
     }
     else
@@ -1203,7 +1203,7 @@ s32 act_decelerating(struct MarioState *m)
         if ((val0C = (s32)(m->forwardVel / 4.0f * 0x10000)) < 0x1000)
             val0C = 0x1000;
 
-        func_80250934(m, MARIO_ANIM_WALKING, val0C);
+        set_mario_anim_with_accel(m, MARIO_ANIM_WALKING, val0C);
         func_80263AD4(m, 0x000A, 0x0031);
     }
 
@@ -1225,7 +1225,7 @@ s32 act_hold_decelerating(struct MarioState *m)
         return set_mario_action(m, ACT_THROWING, 0);
 
     if (m->input & INPUT_A_PRESSED)
-        return func_80252E74(m, ACT_HOLD_JUMP, 0);
+        return set_jumping_action(m, ACT_HOLD_JUMP, 0);
 
     if (m->input & INPUT_Z_PRESSED)
         return drop_and_set_mario_action(m, ACT_CROUCH_SLIDE, 0);
@@ -1255,8 +1255,8 @@ s32 act_hold_decelerating(struct MarioState *m)
     if (slopeClass == SURFACE_CLASS_SLIDE)
     {
         set_mario_animation(m, MARIO_ANIM_IDLE_WITH_LIGHT_OBJ);
-        play_sound(SOUND_UNKNOWN_UNK1400 + m->unk14, m->marioObj->header.gfx.cameraToObject);
-        func_80251048(m);
+        play_sound(SOUND_UNKNOWN_UNK1400 + m->stepSound, m->marioObj->header.gfx.cameraToObject);
+        adjust_sound_for_speed(m);
         m->particleFlags |= PARTICLE_DUST;
     }
     else
@@ -1264,7 +1264,7 @@ s32 act_hold_decelerating(struct MarioState *m)
         if ((val0C = (s32)(m->forwardVel * 0x10000)) < 0x1000)
             val0C = 0x1000;
 
-        func_80250934(m, MARIO_ANIM_WALK_WITH_LIGHT_OBJ, val0C);
+        set_mario_anim_with_accel(m, MARIO_ANIM_WALK_WITH_LIGHT_OBJ, val0C);
         func_80263AD4(m, 0x000C, 0x003E);
     }
 
@@ -1307,9 +1307,9 @@ s32 act_riding_shell_ground(struct MarioState *m)
     if (m->floor->type == SURFACE_LAVA)
         play_sound(SOUND_UNKNOWN_UNK1428, m->marioObj->header.gfx.cameraToObject);
     else
-        play_sound(SOUND_UNKNOWN_UNK1420 + m->unk14, m->marioObj->header.gfx.cameraToObject);
+        play_sound(SOUND_UNKNOWN_UNK1420 + m->stepSound, m->marioObj->header.gfx.cameraToObject);
 
-    func_80251048(m);
+    adjust_sound_for_speed(m);
     return FALSE;
 }
 
@@ -1324,7 +1324,7 @@ s32 act_crawling(struct MarioState *m)
         return set_mario_action(m, ACT_UNKNOWN_024, 0);
 
     if (m->input & INPUT_A_PRESSED)
-        return func_80252E74(m, ACT_JUMP, 0);
+        return set_jumping_action(m, ACT_JUMP, 0);
 
     if (check_ground_dive_or_punch(m))
         return TRUE;
@@ -1356,7 +1356,7 @@ s32 act_crawling(struct MarioState *m)
     }
 
     val04 = (s32)(m->intendedMag * 2.0f * 0x10000);
-    func_80250934(m, MARIO_ANIM_CRAWLING, val04);
+    set_mario_anim_with_accel(m, MARIO_ANIM_CRAWLING, val04);
     func_80263AD4(m, 0x001A, 0x004F);
     return FALSE;
 }
@@ -1392,7 +1392,7 @@ s32 act_burning_ground(struct MarioState *m)
     if (perform_ground_step(m) == GROUND_STEP_LEFT_GROUND)
         set_mario_action(m, ACT_BURNING_FALL, 0);
 
-    func_80250934(m, MARIO_ANIM_RUNNING, (s32)(m->forwardVel / 2.0f * 0x10000));
+    set_mario_anim_with_accel(m, MARIO_ANIM_RUNNING, (s32)(m->forwardVel / 2.0f * 0x10000));
     func_80263AD4(m, 0x0009, 0x002D);
 
     m->particleFlags |= PARTICLE_11;
@@ -1419,9 +1419,9 @@ void common_slide_action(
     Vec3f val14;
 
     vec3f_copy(val14, m->pos);
-    play_sound(SOUND_UNKNOWN_UNK1400 + m->unk14, m->marioObj->header.gfx.cameraToObject);
+    play_sound(SOUND_UNKNOWN_UNK1400 + m->stepSound, m->marioObj->header.gfx.cameraToObject);
 
-    func_80251048(m);
+    adjust_sound_for_speed(m);
 
     switch (perform_ground_step(m))
     {
@@ -1438,7 +1438,7 @@ void common_slide_action(
         break;
 
     case GROUND_STEP_HIT_WALL:
-        if (!func_802519A8(m))
+        if (!mario_floor_is_slippery(m))
         {
 #ifdef VERSION_JP
             m->particleFlags |= PARTICLE_1;
@@ -1473,7 +1473,7 @@ s32 common_slide_action_with_jump(
     if (m->actionTimer == 5)
     {
         if (m->input & INPUT_A_PRESSED)
-            return func_80252E74(m, jumpAction, 0);
+            return set_jumping_action(m, jumpAction, 0);
     }
     else
     {
@@ -1521,7 +1521,7 @@ s32 act_crouch_slide(struct MarioState *m)
         if (m->input & INPUT_A_PRESSED)
         {
             if (m->forwardVel > 10.0f)
-                return func_80252E74(m, ACT_LONG_JUMP, 0);
+                return set_jumping_action(m, ACT_LONG_JUMP, 0);
         }
     }
 
@@ -1534,7 +1534,7 @@ s32 act_crouch_slide(struct MarioState *m)
     }
 
     if (m->input & INPUT_A_PRESSED)
-        return func_80252E74(m, ACT_JUMP, 0);
+        return set_jumping_action(m, ACT_JUMP, 0);
 
     if (m->input & INPUT_FIRST_PERSON)
         return set_mario_action(m, ACT_BRAKING, 0);
@@ -1547,10 +1547,10 @@ s32 act_crouch_slide(struct MarioState *m)
 s32 act_slide_kick_slide(struct MarioState *m)
 {
     if (m->input & INPUT_A_PRESSED)
-        return func_80252E74(m, ACT_FORWARD_ROLLOUT, 0);
+        return set_jumping_action(m, ACT_FORWARD_ROLLOUT, 0);
 
     set_mario_animation(m, MARIO_ANIM_SLIDE_KICK);
-    if (func_80250770(m) && m->forwardVel < 1.0f)
+    if (is_anim_at_end(m) && m->forwardVel < 1.0f)
         return set_mario_action(m, ACT_SLIDE_KICK_SLIDE_STOP, 0);
 
     update_sliding(m, 1.0f);
@@ -1567,7 +1567,7 @@ s32 act_slide_kick_slide(struct MarioState *m)
         break;
     }
 
-    play_sound(SOUND_UNKNOWN_UNK1400 + m->unk14, m->marioObj->header.gfx.cameraToObject);
+    play_sound(SOUND_UNKNOWN_UNK1400 + m->stepSound, m->marioObj->header.gfx.cameraToObject);
     m->particleFlags |= PARTICLE_DUST;
     return FALSE;
 }
@@ -1622,14 +1622,14 @@ s32 act_dive_slide(struct MarioState *m)
             m, m->forwardVel > 0.0f ? ACT_FORWARD_ROLLOUT : ACT_BACKWARD_ROLLOUT, 0);
     }
 
-    func_802512E4(m, SOUND_TERRAIN_4);
+    play_mario_landing_sound(m, SOUND_TERRAIN_4);
 
     //! If the dive slide ends on the same frame that we pick up on object,
     // mario will not be in the dive slide action for the call to
     // mario_check_object_grab, and so will end up in the regular picking action,
     // rather than the picking up after dive action.
 
-    if (update_sliding(m, 8.0f) && func_80250770(m))
+    if (update_sliding(m, 8.0f) && is_anim_at_end(m))
     {
         mario_set_forward_vel(m, 0.0f);
         set_mario_action(m, ACT_STOMACH_SLIDE_STOP, 0);
@@ -1652,15 +1652,15 @@ s32 common_ground_knockback_action(
     s32 val04;
 
     if (arg3)
-        func_802513AC(m, SOUND_TERRAIN_4);
+        play_mario_knockback_sound(m, SOUND_TERRAIN_4);
 
     if (arg4 > 0)
-        func_80250F50(m, SOUND_MARIO_ATTACKED, MARIO_UNKNOWN_17);
+        play_sound_if_no_flag(m, SOUND_MARIO_ATTACKED, MARIO_ACTION_NOISE_PLAYED);
     else
 #ifdef VERSION_JP
-        func_80250F50(m, SOUND_MARIO_OOOF, MARIO_UNKNOWN_17);
+        play_sound_if_no_flag(m, SOUND_MARIO_OOOF, MARIO_ACTION_NOISE_PLAYED);
 #else
-        func_80250F50(m, SOUND_MARIO_OOOF2, MARIO_UNKNOWN_17);
+        play_sound_if_no_flag(m, SOUND_MARIO_OOOF2, MARIO_ACTION_NOISE_PLAYED);
 #endif
 
     if (m->forwardVel > 32.0f) m->forwardVel = 32.0f;
@@ -1681,7 +1681,7 @@ s32 common_ground_knockback_action(
         else
             set_mario_action(m, ACT_BACKWARD_AIR_KB, arg4);
     }
-    else if (func_80250770(m))
+    else if (is_anim_at_end(m))
     {
         if (m->health < 0x100)
         {
@@ -1710,7 +1710,7 @@ s32 act_hard_backward_ground_kb(struct MarioState *m)
 #endif
 
     if (val04 == 0x45)
-        func_802512E4(m, SOUND_TERRAIN_2);
+        play_mario_landing_sound(m, SOUND_TERRAIN_2);
 
     return FALSE;
 }
@@ -1752,7 +1752,7 @@ s32 act_ground_bonk(struct MarioState *m)
 {
     s32 val04 = common_ground_knockback_action(m, MARIO_ANIM_GROUND_BONK, 0x20, TRUE, m->actionArg);
     if (val04 == 0x20)
-        func_80251280(m, SOUND_TERRAIN_2);
+        play_mario_step_sound(m, SOUND_TERRAIN_2);
     return FALSE;
 }
 
@@ -1761,16 +1761,16 @@ s32 act_death_exit_land(struct MarioState *m)
     s32 val04;
 
     apply_landing_accel(m, 0.9f);
-    func_802513AC(m, SOUND_TERRAIN_4);
+    play_mario_knockback_sound(m, SOUND_TERRAIN_4);
 
     val04 = set_mario_animation(m, MARIO_ANIM_FALL_OVER_BACKWARDS);
 
     if (val04 == 0x36)
         play_sound(SOUND_MARIO_MAMAMIA, m->marioObj->header.gfx.cameraToObject);
     if (val04 == 0x44)
-        func_80251280(m, SOUND_TERRAIN_2);
+        play_mario_step_sound(m, SOUND_TERRAIN_2);
 
-    if (func_80250770(m))
+    if (is_anim_at_end(m))
         set_mario_action(m, ACT_IDLE, 0);
 
     return FALSE;
@@ -1803,7 +1803,7 @@ u32 common_landing_action(struct MarioState *m, s16 animation, u32 airAction)
         m->particleFlags |= PARTICLE_DUST;
 
     set_mario_animation(m, animation);
-    func_802512E4(m, SOUND_TERRAIN_2);
+    play_mario_landing_sound(m, SOUND_TERRAIN_2);
 
     if (m->floor->type >= SURFACE_SHALLOW_QUICKSAND && m->floor->type <= SURFACE_MOVING_QUICKSAND)
         m->quicksandDepth += (4 - m->actionTimer) * 3.5f - 0.5f;
@@ -1844,7 +1844,7 @@ s32 common_landing_cancels(
 
 s32 act_jump_land(struct MarioState *m)
 {
-    if (common_landing_cancels(m, &sJumpLandAction, func_80252E74))
+    if (common_landing_cancels(m, &sJumpLandAction, set_jumping_action))
         return TRUE;
 
     common_landing_action(m, MARIO_ANIM_LAND_FROM_SINGLE_JUMP, ACT_FREEFALL);
@@ -1853,7 +1853,7 @@ s32 act_jump_land(struct MarioState *m)
 
 s32 act_freefall_land(struct MarioState *m)
 {
-    if (common_landing_cancels(m, &sFreefallLandAction, func_80252E74))
+    if (common_landing_cancels(m, &sFreefallLandAction, set_jumping_action))
         return TRUE;
 
     common_landing_action(m, MARIO_ANIM_GENERAL_LAND, ACT_FREEFALL);
@@ -1862,7 +1862,7 @@ s32 act_freefall_land(struct MarioState *m)
 
 s32 act_side_flip_land(struct MarioState *m)
 {
-    if (common_landing_cancels(m, &sSideFlipLandAction, func_80252E74))
+    if (common_landing_cancels(m, &sSideFlipLandAction, set_jumping_action))
         return TRUE;
 
     if (common_landing_action(m, MARIO_ANIM_SLIDEFLIP_LAND, ACT_FREEFALL) != GROUND_STEP_HIT_WALL)
@@ -1875,7 +1875,7 @@ s32 act_hold_jump_land(struct MarioState *m)
     if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_JUMP_LAND_STOP, 0);
 
-    if (common_landing_cancels(m, &sHoldJumpLandAction, func_80252E74))
+    if (common_landing_cancels(m, &sHoldJumpLandAction, set_jumping_action))
         return TRUE;
 
     common_landing_action(m, MARIO_ANIM_JUMP_LAND_WITH_LIGHT_OBJ, ACT_HOLD_FREEFALL);
@@ -1887,7 +1887,7 @@ s32 act_hold_freefall_land(struct MarioState *m)
     if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_FREEFALL_LAND_STOP, 0);
 
-    if (common_landing_cancels(m, &sHoldFreefallLandAction, func_80252E74))
+    if (common_landing_cancels(m, &sHoldFreefallLandAction, set_jumping_action))
         return TRUE;
 
     common_landing_action(m, MARIO_ANIM_FALL_LAND_WITH_LIGHT_OBJ, ACT_HOLD_FREEFALL);
@@ -1899,11 +1899,11 @@ s32 act_long_jump_land(struct MarioState *m)
     if (!(m->input & INPUT_Z_DOWN))
         m->input &= ~INPUT_A_PRESSED;
 
-    if (common_landing_cancels(m, &sLongJumpLandAction, func_80252E74))
+    if (common_landing_cancels(m, &sLongJumpLandAction, set_jumping_action))
         return TRUE;
 
     if (!(m->input & INPUT_NONZERO_ANALOG))
-        func_80250F50(m, SOUND_MARIO_UH2_2, MARIO_UNKNOWN_17);
+        play_sound_if_no_flag(m, SOUND_MARIO_UH2_2, MARIO_ACTION_NOISE_PLAYED);
 
     common_landing_action(m, !m->marioObj->oMarioLongJumpIsSlow ? MARIO_ANIM_CROUCH_FROM_FAST_LONGJUMP : MARIO_ANIM_CROUCH_FROM_SLOW_LONGJUMP, ACT_FREEFALL);
     return FALSE;
@@ -1921,11 +1921,11 @@ s32 act_triple_jump_land(struct MarioState *m)
 {
     m->input &= ~INPUT_A_PRESSED;
 
-    if (common_landing_cancels(m, &sTripleJumpLandAction, func_80252E74))
+    if (common_landing_cancels(m, &sTripleJumpLandAction, set_jumping_action))
         return TRUE;
 
     if (!(m->input & INPUT_NONZERO_ANALOG))
-        func_80250F50(m, SOUND_MARIO_HAHA, MARIO_UNKNOWN_17);
+        play_sound_if_no_flag(m, SOUND_MARIO_HAHA, MARIO_ACTION_NOISE_PLAYED);
 
     common_landing_action(m, MARIO_ANIM_TRIPLE_JUMP_LAND, ACT_FREEFALL);
     return FALSE;
@@ -1936,11 +1936,11 @@ s32 act_backflip_land(struct MarioState *m)
     if (!(m->input & INPUT_Z_DOWN))
         m->input &= ~INPUT_A_PRESSED;
 
-    if (common_landing_cancels(m, &sBackflipLandAction, func_80252E74))
+    if (common_landing_cancels(m, &sBackflipLandAction, set_jumping_action))
         return TRUE;
 
     if (!(m->input & INPUT_NONZERO_ANALOG))
-        func_80250F50(m, SOUND_MARIO_HAHA, MARIO_UNKNOWN_17);
+        play_sound_if_no_flag(m, SOUND_MARIO_HAHA, MARIO_ACTION_NOISE_PLAYED);
 
     common_landing_action(m, MARIO_ANIM_TRIPLE_JUMP_LAND, ACT_FREEFALL);
     return FALSE;
@@ -1955,7 +1955,7 @@ s32 quicksand_jump_land_action(
         if (m->quicksandDepth < 1.0f)
             m->quicksandDepth = 1.1f;
 
-        func_80250FBC(m);
+        play_mario_action_sound(m);
         set_mario_animation(m, animation1);
     }
     else
@@ -1990,7 +1990,7 @@ s32 act_hold_quicksand_jump_land(struct MarioState *m)
 s32 check_common_moving_cancels(struct MarioState *m)
 {
     if (m->pos[1] < m->waterLevel - 100)
-        return func_8025325C(m);
+        return set_water_plunge_action(m);
 
     if (!(m->action & ACT_FLAG_INVULNERABLE) && (m->input & INPUT_UNKNOWN_10))
         return drop_and_set_mario_action(m, ACT_UNKNOWN_026, 0);

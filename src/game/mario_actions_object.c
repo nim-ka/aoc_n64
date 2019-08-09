@@ -21,7 +21,7 @@ void animated_stationary_ground_step(struct MarioState *m, s32 animation, u32 en
 {
     stationary_ground_step(m);
     set_mario_animation(m, animation);
-    if (func_80250770(m))
+    if (is_anim_at_end(m))
         set_mario_action(m, endAction, 0);
 }
 
@@ -42,7 +42,7 @@ s32 mario_update_punch_sequence(struct MarioState *m)
         // Fall-through:
     case 1:
         set_mario_animation(m, MARIO_ANIM_FIRST_PUNCH);
-        if (func_802507AC(m))
+        if (is_anim_past_end(m))
             m->actionArg = 2;
         else
             m->actionArg = 1;
@@ -68,7 +68,7 @@ s32 mario_update_punch_sequence(struct MarioState *m)
         if (m->input & INPUT_B_PRESSED)
             m->actionArg = 3;
 
-        if (func_80250770(m))
+        if (is_anim_at_end(m))
             set_mario_action(m, endAction, 0);
         break;
 
@@ -77,7 +77,7 @@ s32 mario_update_punch_sequence(struct MarioState *m)
         // Fall-through:
     case 4:
         set_mario_animation(m, MARIO_ANIM_SECOND_PUNCH);
-        if (func_802507AC(m))
+        if (is_anim_past_end(m))
             m->actionArg = 5;
         else
             m->actionArg = 4;
@@ -97,12 +97,12 @@ s32 mario_update_punch_sequence(struct MarioState *m)
         if (m->input & INPUT_B_PRESSED)
             m->actionArg = 6;
 
-        if (func_80250770(m))
+        if (is_anim_at_end(m))
             set_mario_action(m, endAction, 0);
         break;
 
     case 6:
-        func_80251218(m, SOUND_MARIO_HOO6, 1);
+        play_mario_environment_sound(m, SOUND_MARIO_HOO6, 1);
         animFrame = set_mario_animation(m, MARIO_ANIM_GROUND_KICK);
         if (animFrame == 0)
             m->marioBodyState->unk0B = 134;
@@ -110,19 +110,19 @@ s32 mario_update_punch_sequence(struct MarioState *m)
         if (animFrame >= 0 && animFrame < 8)
             m->flags |= MARIO_KICKING;
 
-        if (func_80250770(m))
+        if (is_anim_at_end(m))
             set_mario_action(m, endAction, 0);
         break;
 
     case 9:
-        func_80251218(m, SOUND_MARIO_HOO6, 1);
+        play_mario_environment_sound(m, SOUND_MARIO_HOO6, 1);
         set_mario_animation(m, MARIO_ANIM_BREAKDANCE);
         animFrame = m->marioObj->header.gfx.unk38.animFrame;
 
         if (animFrame >= 2 && animFrame < 8)
             m->flags |= MARIO_TRIPPING;
 
-        if (func_80250770(m))
+        if (is_anim_at_end(m))
             set_mario_action(m, crouchEndAction, 0);
         break;
     }
@@ -137,7 +137,7 @@ s32 act_punching(struct MarioState *m)
 
     if (m->input & (INPUT_NONZERO_ANALOG | INPUT_A_PRESSED |
                     INPUT_OFF_FLOOR      | INPUT_ABOVE_SLIDE))
-        return func_80252FEC(m);
+        return check_common_action_exits(m);
 
     if (m->actionState == 0 && (m->input & INPUT_A_DOWN))
         return set_mario_action(m, ACT_JUMP_KICK, 0);
@@ -163,13 +163,13 @@ s32 act_picking_up(struct MarioState *m)
     if (m->input & INPUT_OFF_FLOOR)
         return drop_and_set_mario_action(m, ACT_FREEFALL, 0);
 
-    if (m->actionState == 0 && func_80250770(m))
+    if (m->actionState == 0 && is_anim_at_end(m))
     {
         //! While the animation is playing, it is possible for the used object
         // to unload. This allows you to pick up a vacant or newly loaded object
         // slot (cloning via fake object).
         mario_grab_used_object(m);
-        func_80250F50(m, SOUND_MARIO_HRMM, MARIO_UNKNOWN_17);
+        play_sound_if_no_flag(m, SOUND_MARIO_HRMM, MARIO_ACTION_NOISE_PLAYED);
         m->actionState = 1;
     }
 
@@ -179,14 +179,14 @@ s32 act_picking_up(struct MarioState *m)
         {
             m->marioBodyState->grabPos = GRAB_POS_HEAVY_OBJ;
             set_mario_animation(m, MARIO_ANIM_GRAB_HEAVY_OBJECT);
-            if (func_80250770(m))
+            if (is_anim_at_end(m))
                 set_mario_action(m, ACT_UNKNOWN_008, 0);
         }
         else
         {
             m->marioBodyState->grabPos = GRAB_POS_LIGHT_OBJ;
             set_mario_animation(m, MARIO_ANIM_PICK_UP_LIGHT_OBJ);
-            if (func_80250770(m))
+            if (is_anim_at_end(m))
                 set_mario_action(m, ACT_UNKNOWN_007, 0);
         }
     }
@@ -239,8 +239,8 @@ s32 act_throwing(struct MarioState *m)
     if (++m->actionTimer == 7)
     {
         mario_throw_held_object(m);
-        func_80250F50(m, SOUND_MARIO_WAH2, MARIO_UNKNOWN_17);
-        func_80250F50(m, SOUND_ACTION_UNKNOWN435, MARIO_UNKNOWN_16);
+        play_sound_if_no_flag(m, SOUND_MARIO_WAH2, MARIO_ACTION_NOISE_PLAYED);
+        play_sound_if_no_flag(m, SOUND_ACTION_UNKNOWN435, MARIO_ENVIRONMENT_NOISE_PLAYED);
     }
 
     animated_stationary_ground_step(m, MARIO_ANIM_GROUND_THROW, ACT_IDLE);
@@ -258,8 +258,8 @@ s32 act_heavy_throw(struct MarioState *m)
     if (++m->actionTimer == 13)
     {
         mario_drop_held_object(m);
-        func_80250F50(m, SOUND_MARIO_WAH2, MARIO_UNKNOWN_17);
-        func_80250F50(m, SOUND_ACTION_UNKNOWN435, MARIO_UNKNOWN_16);
+        play_sound_if_no_flag(m, SOUND_MARIO_WAH2, MARIO_ACTION_NOISE_PLAYED);
+        play_sound_if_no_flag(m, SOUND_ACTION_UNKNOWN435, MARIO_ENVIRONMENT_NOISE_PLAYED);
     }
 
     animated_stationary_ground_step(m, MARIO_ANIM_HEAVY_THROW, ACT_IDLE);
@@ -293,7 +293,7 @@ s32 act_picking_up_bowser(struct MarioState *m)
     }
 
     set_mario_animation(m, MARIO_ANIM_GRAB_BOWSER);
-    if (func_80250770(m))
+    if (is_anim_at_end(m))
         set_mario_action(m, ACT_HOLDING_BOWSER, 0);
 
     stationary_ground_step(m);
@@ -400,7 +400,7 @@ s32 check_common_object_cancels(struct MarioState *m)
 {
     f32 waterSurface = m->waterLevel - 100;
     if (m->pos[1] < waterSurface)
-        return func_8025325C(m);
+        return set_water_plunge_action(m);
 
     if (m->input & INPUT_SQUISHED)
         return drop_and_set_mario_action(m, ACT_SQUISHED, 0);

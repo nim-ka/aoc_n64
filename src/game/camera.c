@@ -1772,7 +1772,7 @@ s16 return_close_or_free_roam_cam_yaw(struct LevelCamera *c)
         if (gCurrLevelArea == AREA_SSL_PYRAMID || gCurrLevelNum == LEVEL_CASTLE)
             sp68 /= 2;
     }
-    sp74 = func_80381D3C(spB0[0], spB0[2]);
+    sp74 = find_poison_gas_level(spB0[0], spB0[2]);
     if (sp74 != -11000.f)
     {
         if ((sp74 += 130.f) > c->pos[1])
@@ -7407,7 +7407,7 @@ CmdRet Cutscene1ATodo0_2(struct LevelCamera *c)
     UNUSED f32 sp2C;
 
     func_80293DE8(c, 400.f, 0x2800, 0x200, 0);
-    sp30 = func_80381D3C(sMarioStatusForCamera->pos[0], sMarioStatusForCamera->pos[2]);
+    sp30 = find_poison_gas_level(sMarioStatusForCamera->pos[0], sMarioStatusForCamera->pos[2]);
 
     if (sp30 != -11000.f)
     {

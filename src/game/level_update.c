@@ -342,7 +342,7 @@ void init_mario_after_warp(void)
             load_mario_area();
         }
 
-        func_802548BC();
+        init_mario();
         set_mario_initial_action(gMarioState, marioSpawnType, sWarpDest.arg);
 
         gMarioState->interactObj = spawnNode->object;
@@ -465,7 +465,7 @@ void func_8024A0E0(void)
     gPlayerSpawnInfos[0].areaIndex = sWarpDest.areaIdx;
 
     load_mario_area();
-    func_802548BC();
+    init_mario();
 
     set_mario_action(gMarioState, marioAction, 0);
 
@@ -1192,7 +1192,7 @@ s32 init_level(void)
         if (gPlayerSpawnInfos[0].areaIndex >= 0)
         {
             load_mario_area();
-            func_802548BC();
+            init_mario();
         }
 
         if (gCurrentArea != NULL)
@@ -1280,7 +1280,7 @@ s32 lvl_init_from_save_file(UNUSED s16 arg0, s32 levelNum)
     gCurrCreditsEntry = NULL;
     gSpecialTripleJump = 0;
 
-    func_80254CE0();
+    init_mario_from_save_file();
     disable_warp_checkpoint();
     save_file_move_cap_to_default_location();
     select_mario_cam_mode();

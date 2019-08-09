@@ -27,7 +27,7 @@
 static s8 D_8032CDF0[7] = {0x01, 0x02, 0x01, 0x00, 0x01, 0x02, 0x01};
 static s8 D_8032CDF8[] = {0x0a, 0x0c, 0x10, 0x18, 0x0a, 0x0a, 0x0a, 0x0e, 0x14, 0x1e, 0x0a, 0x0a, 0x0a, 0x10, 0x14, 0x1a, 0x1a, 0x14, 0x00, 0x00};
 struct GraphNodeObject D_80339FE0;
-struct MarioBodyState D_8033A040[2]; // 2nd is never accessed in practice, most likely Luigi related
+struct MarioBodyState gBodyStates[2]; // 2nd is never accessed in practice, most likely Luigi related
 
 // This whole file is weirdly organized. It has to be the same file due
 // to rodata boundries and function aligns, which means the programmer
@@ -288,7 +288,7 @@ Gfx *Geo18_802770A4(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c)
     UNUSED u8 unused1[4];
     Gfx *sp28 = NULL;
     struct GraphNodeGenerated *sp24 = (struct GraphNodeGenerated *)node;
-    struct MarioBodyState *sp20 = &D_8033A040[sp24->parameter];
+    struct MarioBodyState *sp20 = &gBodyStates[sp24->parameter];
     s16 sp1E;
     UNUSED u8 unused2[4];
 
@@ -303,7 +303,7 @@ Gfx *Geo18_802770A4(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c)
 s32 geo_switch_mario_stand_run(s32 callContext, struct GraphNode *node, UNUSED Mat4 *mtx)
 {
     struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
-    struct MarioBodyState *sp0 = &D_8033A040[switchCase->numCases];
+    struct MarioBodyState *sp0 = &gBodyStates[switchCase->numCases];
 
     if (callContext == GEO_CONTEXT_RENDER)
         // assign result. 0 if moving, 1 if stationary.
@@ -314,7 +314,7 @@ s32 geo_switch_mario_stand_run(s32 callContext, struct GraphNode *node, UNUSED M
 s32 geo_switch_mario_eyes(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c)
 {
     struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
-    struct MarioBodyState *sp8 = &D_8033A040[switchCase->numCases];
+    struct MarioBodyState *sp8 = &gBodyStates[switchCase->numCases];
     s16 sp6;
 
     if (callContext == GEO_CONTEXT_RENDER)
@@ -338,7 +338,7 @@ s32 geo_switch_mario_eyes(s32 callContext, struct GraphNode *node, UNUSED Mat4 *
 Gfx *Geo18_80277294(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c)
 {
     struct GraphNodeGenerated *sp24 = (struct GraphNodeGenerated *)node;
-    struct MarioBodyState *sp20 = &D_8033A040[sp24->parameter];
+    struct MarioBodyState *sp20 = &gBodyStates[sp24->parameter];
     s32 action = sp20->action;
 
     if (callContext == GEO_CONTEXT_RENDER)
@@ -357,7 +357,7 @@ Gfx *Geo18_80277294(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c)
 Gfx *Geo18_802773A4(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c)
 {
     struct GraphNodeGenerated *sp2C = (struct GraphNodeGenerated *)node;
-    struct MarioBodyState *sp28 = &D_8033A040[sp2C->parameter];
+    struct MarioBodyState *sp28 = &gBodyStates[sp2C->parameter];
     s32 action = sp28->action;
 
     if (callContext == GEO_CONTEXT_RENDER)
@@ -388,7 +388,7 @@ Gfx *Geo18_802773A4(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c)
 s32 geo_switch_mario_hand(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c)
 {
     struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
-    struct MarioBodyState *sp0 = &D_8033A040[0];
+    struct MarioBodyState *sp0 = &gBodyStates[0];
 
     if (callContext == GEO_CONTEXT_RENDER)
     {
@@ -412,7 +412,7 @@ Gfx *Geo18_802775CC(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c)
     static s16 D_8032CE0C = 0;
     struct GraphNodeGenerated *spC = (struct GraphNodeGenerated *)node;
     struct GraphNodeScale *sp8 = (struct GraphNodeScale *)node->next;
-    struct MarioBodyState *sp4 = &D_8033A040[0];
+    struct MarioBodyState *sp4 = &gBodyStates[0];
 
     if (callContext == GEO_CONTEXT_RENDER)
     {
@@ -433,7 +433,7 @@ Gfx *Geo18_802775CC(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c)
 s32 geo_switch_mario_cap_effect(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c)
 {
     struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
-    struct MarioBodyState *sp0 = &D_8033A040[switchCase->numCases];
+    struct MarioBodyState *sp0 = &gBodyStates[switchCase->numCases];
 
     if (callContext == GEO_CONTEXT_RENDER)
         switchCase->selectedCase = sp0->modelState >> 8;
@@ -444,7 +444,7 @@ s32 geo_switch_mario_cap_on_off(s32 callContext, struct GraphNode *node, UNUSED 
 {
     struct GraphNode *next = node->next;
     struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
-    struct MarioBodyState *sp4 = &D_8033A040[switchCase->numCases];
+    struct MarioBodyState *sp4 = &gBodyStates[switchCase->numCases];
 
     if (callContext == GEO_CONTEXT_RENDER)
     {
@@ -473,7 +473,7 @@ Gfx *Geo18_80277824(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c)
     {
         struct GraphNodeRotation *sp4 = (struct GraphNodeRotation *)node->next;
 
-        if (D_8033A040[sp8->parameter >> 1].unk07 == 0)
+        if (gBodyStates[sp8->parameter >> 1].unk07 == 0)
             spE = (coss((gAreaUpdateCounter & 0xF) << 12) + 1.0f) * 4096.0f;
         else
             spE = (coss((gAreaUpdateCounter & 7) << 13) + 1.0f) * 6144.0f;

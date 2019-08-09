@@ -476,7 +476,7 @@ f32 find_water_level(f32 x, f32 z)
     return waterLevel;
 }
 
-f32 func_80381D3C(f32 x, f32 z)
+f32 find_poison_gas_level(f32 x, f32 z)
 {
     s32 i;
     s32 numRegions;

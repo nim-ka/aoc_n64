@@ -72,8 +72,8 @@
 #define SURFACE_QUICKSAND                    0x0026
 #define SURFACE_MOVING_QUICKSAND             0x0027
 #define SURFACE_0028                         0x0028   //Camera
-#define SURFACE_0029                         0x0029   //Default with noise
-#define SURFACE_002A                         0x002A   //Slippery with noise
+#define SURFACE_SOUND_1                      0x0029   //Default with noise
+#define SURFACE_SOUND_2                      0x002A   //Slippery with noise
 #define SURFACE_HORIZONTAL_WIND              0x002C
 #define SURFACE_INSTANT_MOVING_QUICKSAND     0x002D
 #define SURFACE_ICE                          0x002E
@@ -132,6 +132,7 @@
 #define TERRAIN_LOAD_IS_SURFACE_TYPE_LOW(cmd)  (cmd < 0x40)
 #define TERRAIN_LOAD_IS_SURFACE_TYPE_HIGH(cmd) (cmd >= 0x65)
 
+#define TERRAIN_MASK    0x0007
 #define TERRAIN_GRASS   0x0000
 #define TERRAIN_DEFAULT 0x0001
 #define TERRAIN_SNOW    0x0002
@@ -148,7 +149,7 @@
 #define INPUT_UNKNOWN_5              0x0020
 #define INPUT_SQUISHED               0x0040
 #define INPUT_A_DOWN                 0x0080
-#define INPUT_UNKNOWN_8              0x0100
+#define INPUT_IN_POISON_GAS          0x0100
 #define INPUT_IN_WATER               0x0200
 #define INPUT_UNKNOWN_10             0x0400
 #define INPUT_INTERACT_OBJ_GRABBABLE 0x0800
@@ -203,25 +204,25 @@
 #define MODEL_STATE_NOISE_ALPHA 0x180
 #define MODEL_STATE_METAL       0x200
 
-#define MARIO_UNKNOWN_00  0x00000001
-#define MARIO_VANISH_CAP  0x00000002
-#define MARIO_METAL_CAP   0x00000004
-#define MARIO_WING_CAP    0x00000008
-#define MARIO_CAP_ON_HEAD 0x00000010
-#define MARIO_CAP_IN_HAND 0x00000020
-#define MARIO_METAL_SHOCK 0x00000040
-#define MARIO_TELEPORTING 0x00000080
-#define MARIO_UNKNOWN_08  0x00000100
-#define MARIO_UNKNOWN_13  0x00002000
-#define MARIO_UNKNOWN_16  0x00010000
-#define MARIO_UNKNOWN_17  0x00020000
-#define MARIO_UNKNOWN_18  0x00040000
-#define MARIO_PUNCHING    0x00100000
-#define MARIO_KICKING     0x00200000
-#define MARIO_TRIPPING    0x00400000
-#define MARIO_UNKNOWN_25  0x02000000
-#define MARIO_UNKNOWN_30  0x40000000
-#define MARIO_UNKNOWN_31  0x80000000
+#define MARIO_NORMAL_CAP                0x00000001
+#define MARIO_VANISH_CAP                0x00000002
+#define MARIO_METAL_CAP                 0x00000004
+#define MARIO_WING_CAP                  0x00000008
+#define MARIO_CAP_ON_HEAD               0x00000010
+#define MARIO_CAP_IN_HAND               0x00000020
+#define MARIO_METAL_SHOCK               0x00000040
+#define MARIO_TELEPORTING               0x00000080
+#define MARIO_UNKNOWN_08                0x00000100
+#define MARIO_UNKNOWN_13                0x00002000
+#define MARIO_ENVIRONMENT_NOISE_PLAYED  0x00010000
+#define MARIO_ACTION_NOISE_PLAYED       0x00020000
+#define MARIO_UNKNOWN_18                0x00040000
+#define MARIO_PUNCHING                  0x00100000
+#define MARIO_KICKING                   0x00200000
+#define MARIO_TRIPPING                  0x00400000
+#define MARIO_UNKNOWN_25                0x02000000
+#define MARIO_UNKNOWN_30                0x40000000
+#define MARIO_UNKNOWN_31                0x80000000
 
 #define MARIO_CAP_FLAGS   0x0000001F
 
