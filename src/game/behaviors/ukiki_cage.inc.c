@@ -17,17 +17,17 @@ s16 D_8032F77C[] =
 };
 
 struct SoundState D_8032F7D8[] = {
-    {1, 1, 10, SOUND_OBJECT_UNKNOWN7},
+    {1, 1, 10, SOUND_UKIKI_STEP_DEFAULT},
     {0, 0, 0,  NO_SOUND},
     {0, 0, 0,  NO_SOUND},
     {0, 0, 0,  NO_SOUND},
-    {1, 0, -1, SOUND_OBJECT_MONKEY2},
-    {1, 0, -1, SOUND_OBJECT_MONKEY1},
+    {1, 0, -1, SOUND_UKIKI_CHATTER_SHORT},
+    {1, 0, -1, SOUND_UKIKI_CHATTER_LONG},
     {0, 0, 0,  NO_SOUND},
     {0, 0, 0,  NO_SOUND},
-    {1, 0, -1, SOUND_OBJECT_MONKEY1},
-    {1, 0, -1, SOUND_OBJECT_UNKNOWN8},
-    {1, 0, -1, SOUND_OBJECT_MONKEY3},
+    {1, 0, -1, SOUND_UKIKI_CHATTER_LONG},
+    {1, 0, -1, SOUND_UKIKI_STEP_LEAVES},
+    {1, 0, -1, SOUND_UKIKI_CHATTER_IDLE},
     {0, 0, 0,  NO_SOUND},
     {0, 0, 0,  NO_SOUND}
 };

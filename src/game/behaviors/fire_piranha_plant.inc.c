@@ -68,7 +68,7 @@ static void fire_piranha_plant_act_hide(void)
         {
             if (--o->oFirePiranhaPlantDeathSpinTimer == 0)
             {
-                PlaySound2(SOUND_OBJECT_ENEMYDEFEATSHRINK);
+                PlaySound2(SOUND_EMEMY_DEFEAT_SHRINK);
             }
         }
     }

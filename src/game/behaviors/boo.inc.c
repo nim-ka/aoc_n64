@@ -159,7 +159,7 @@ s32 func_802C3008(void) {
     ) {
         if (o->oOpacity == 40) {
             o->oBooTargetOpacity = 255;
-            PlaySound2(SOUND_OBJECT_BOOLAUGH2);
+            PlaySound2(SOUND_BOO_LAUGH_LONG);
         }
 
         if (o->oOpacity > 180) {
@@ -314,7 +314,7 @@ s32 func_802C3778(void)
         {
             obj_become_intangible();
             o->oInteractStatus = 0;
-            PlaySound2(SOUND_OBJECT_BOOLAUGH1);
+            PlaySound2(SOUND_BOO_LAUGH_SHORT);
             sp1C = 1;
         }
         else
@@ -777,7 +777,7 @@ void bhv_boo_in_castle_loop(void)
         if(o->oDistanceToMario < 1000.0f)
         {
             o->oAction++;
-            PlaySound2(SOUND_OBJECT_BOOLAUGH2);
+            PlaySound2(SOUND_BOO_LAUGH_LONG);
         }
         o->oForwardVel = 0.0f;
         sp1E = o->oAngleToMario;

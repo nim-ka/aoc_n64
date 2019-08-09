@@ -250,7 +250,7 @@ static void func_80307650(void)
     {
         if (o->oTimer == 30)
         {
-            PlaySound2(SOUND_OBJECT_ENEMYDEFEATSHRINK);
+            PlaySound2(SOUND_EMEMY_DEFEAT_SHRINK);
         }
 
         if (o->oMrBlizzardUnkF4 != 0.0f)

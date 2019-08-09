@@ -368,8 +368,7 @@ static void wiggler_act_jumped_on(void)
 
                     if (o->oHealth == 2)
                     {
-                        // Jump out of anger (or fear? I'm not a psychologist)
-                        PlaySound2(SOUND_OBJECT_WIGGLERUNK2F);
+                        PlaySound2(SOUND_WIGGLER_JUMP);
                         o->oForwardVel = 10.0f;
                         o->oVelY = 70.0f;
                     }
@@ -417,7 +416,7 @@ static void wiggler_act_shrink(void)
     {
         if (o->oTimer == 20)
         {
-            PlaySound2(SOUND_OBJECT_ENEMYDEFEATSHRINK);
+            PlaySound2(SOUND_EMEMY_DEFEAT_SHRINK);
         }
 
         // 4 is the default scale, so shrink to 1/4 of regular size
@@ -462,7 +461,7 @@ static void wiggler_act_fall_through_floor(void)
  */
 void wiggler_jumped_on_attack_handler(void)
 {
-    PlaySound2(SOUND_OBJECT_WIGGLERATTACK);
+    PlaySound2(SOUND_WIGGLER_ATTACKED);
     o->oAction = WIGGLER_ACT_JUMPED_ON;
     o->oForwardVel = o->oVelY = 0.0f;
     o->oWigglerSquishSpeed = 0.4f;
@@ -497,8 +496,8 @@ void bhv_wiggler_update(void)
                     0,
                     13,
                     o->oHealth >= 4
-                        ? SOUND_OBJECT_WIGGLERWALK
-                        : SOUND_OBJECT_WIGGLER);
+                        ? SOUND_WIGGLER_LOW_PITCH
+                        : SOUND_WIGGLER_HIGH_PITCH);
             }
             else
             {

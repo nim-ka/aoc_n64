@@ -421,22 +421,22 @@
 /* Object Sound Effects */
 /* not verified */ #define SOUND_OBJECT_WATERSOUND           SOUND_ARG_LOAD(5, 0, 0x00, 0x80, 8)
 /* not verified */ #define SOUND_OBJECT_MRISHOOT             SOUND_ARG_LOAD(5, 0, 0x01, 0x00, 8)
-/* not verified */ #define SOUND_OBJECT_PENGUINWALKING1      SOUND_ARG_LOAD(5, 0, 0x02, 0x00, 8)
+#define SOUND_BABY_PENGUIN_WALK      SOUND_ARG_LOAD(5, 0, 0x02, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_BOWSERWALK           SOUND_ARG_LOAD(5, 0, 0x03, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_BOWSERROAR           0x5004
 /* not verified */ #define SOUND_OBJECT_BOWSERTAILPICKUP     SOUND_ARG_LOAD(5, 0, 0x05, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_BOWSERDEFEATED       SOUND_ARG_LOAD(5, 0, 0x06, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_BOWSERSPINNING       SOUND_ARG_LOAD(5, 0, 0x07, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_BOWSERINHALING       SOUND_ARG_LOAD(5, 0, 0x08, 0x00, 8)
-/* not verified */ #define SOUND_OBJECT_PENGUINWALKING2      SOUND_ARG_LOAD(5, 0, 0x09, 0x80, 8)
+#define SOUND_BIG_PENGUIN_WALK      SOUND_ARG_LOAD(5, 0, 0x09, 0x80, 8)
 /* not verified */ #define SOUND_OBJECT_BOOBOUNCETOP             SOUND_ARG_LOAD(5, 0, 0x0A, 0x00, 8)
-/* not verified */ #define SOUND_OBJECT_BOOLAUGH1            SOUND_ARG_LOAD(5, 0, 0x0B, 0x00, 8)
+#define SOUND_BOO_LAUGH_SHORT            SOUND_ARG_LOAD(5, 0, 0x0B, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_THWOMP               SOUND_ARG_LOAD(5, 0, 0x0C, 0xA0, 8)
 /* not verified */ #define SOUND_OBJECT_CANNON1              SOUND_ARG_LOAD(5, 0, 0x0D, 0xF0, 8)
 /* not verified */ #define SOUND_OBJECT_CANNON2              SOUND_ARG_LOAD(5, 0, 0x0E, 0xF0, 8)
 /* not verified */ #define SOUND_OBJECT_CANNON3              SOUND_ARG_LOAD(5, 0, 0x0F, 0xF0, 8)
-/* not verified */ #define SOUND_OBJECT_PIRANHAPLANTCHOMP    0x5010
-/* not verified */ #define SOUND_OBJECT_PIRANHAPLANTDEATH    0x5011
+#define SOUND_CH5_PIRANHA_PLANT_BITE    0x5010
+#define SOUND_CH5_PIRANHA_PLANT_DYING    0x5011
 /* not verified */ #define SOUND_OBJECT_JUMPWALKWATER        0x5012
 /* not verified */ #define SOUND_OBJECT_UNKNOWN2             SOUND_ARG_LOAD(5, 0, 0x13, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_MRIDEATH             SOUND_ARG_LOAD(5, 0, 0x14, 0x00, 8)
@@ -447,15 +447,15 @@
 /* not verified */ #define SOUND_OBJECT_BULLYMETAL           SOUND_ARG_LOAD(5, 0, 0x17, 0x80, 8)
 /* not verified */ #define SOUND_OBJECT_BULLYEXPLODE         SOUND_ARG_LOAD(5, 0, 0x18, 0xA0, 8)
 /* not verified */ #define SOUND_OBJECT_BULLYEXPLODE_2       SOUND_ARG_LOAD(5, 1, 0x18, 0xA0, 8)
-/* not verified */ #define SOUND_OBJECT_BOWSERPUZZLE         0x5019
+#define SOUND_CH5_BOWSER_PUZZLE_PIECE_MOVE         0x5019
 /* not verified */ #define SOUND_OBJECT_POUNDINGCANNON       SOUND_ARG_LOAD(5, 0, 0x1A, 0x50, 8)
 /* not verified */ #define SOUND_OBJECT_BULLYWALK            SOUND_ARG_LOAD(5, 0, 0x1B, 0x30, 8)
 /* not verified */ #define SOUND_OBJECT_BULLYATTACKED        0x501C
 /* not verified */ #define SOUND_OBJECT_UNKNOWN3             SOUND_ARG_LOAD(5, 0, 0x1D, 0x80, 8)
 /* not verified */ #define SOUND_OBJECT_UNKNOWN4             SOUND_ARG_LOAD(5, 0, 0x1E, 0xA0, 8)
-/* not verified */ #define SOUND_OBJECT_BABYPENGUINTRICK     SOUND_ARG_LOAD(5, 0, 0x1F, 0x40, 8)
+#define SOUND_BABY_PENGUIN_DIVE     SOUND_ARG_LOAD(5, 0, 0x1F, 0x40, 8)
 /* not verified */ #define SOUND_OBJECT_GOOMBAWALK           SOUND_ARG_LOAD(5, 0, 0x20, 0x00, 8)
-/* not verified */ #define SOUND_OBJECT_MONKEY1              SOUND_ARG_LOAD(5, 0, 0x21, 0x00, 8)
+#define SOUND_UKIKI_CHATTER_LONG              SOUND_ARG_LOAD(5, 0, 0x21, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_MONTYMOLEATTACK      SOUND_ARG_LOAD(5, 0, 0x22, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_EVILLAKITUTHROW      SOUND_ARG_LOAD(5, 0, 0x22, 0x20, 8)
 /* not verified */ #define SOUND_OBJECT_UNKNOWN5             0x5023
@@ -469,10 +469,10 @@
 /* not verified */ #define SOUND_OBJECT_SNOWSAND2            SOUND_ARG_LOAD(5, 0, 0x2B, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_FLAMEVANISHING       0x502C
 /* not verified */ #define SOUND_OBJECT_DEFAULTDEATH         SOUND_ARG_LOAD(5, 0, 0x2C, 0x80, 8)
-/* not verified */ #define SOUND_OBJECT_BIGPENGUIN           SOUND_ARG_LOAD(5, 0, 0x2D, 0x00, 8)
+#define SOUND_BIG_PENGUIN_YELL           SOUND_ARG_LOAD(5, 0, 0x2D, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_WATERBOMBBOUNCING    SOUND_ARG_LOAD(5, 0, 0x2E, 0x80, 8)
 /* not verified */ #define SOUND_OBJECT_GOOMBAALERT          SOUND_ARG_LOAD(5, 0, 0x2F, 0x00, 8)
-/* not verified */ #define SOUND_OBJECT_WIGGLERUNK2F         SOUND_ARG_LOAD(5, 0, 0x2F, 0x60, 8)
+#define SOUND_WIGGLER_JUMP         SOUND_ARG_LOAD(5, 0, 0x2F, 0x60, 8)
 /* not verified */ #define SOUND_OBJECT_STOMPED              SOUND_ARG_LOAD(5, 0, 0x30, 0x80, 8)
 /* not verified */ #define SOUND_OBJECT_UNKNOWN6             SOUND_ARG_LOAD(5, 0, 0x31, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_DIVINGINTOWATER      SOUND_ARG_LOAD(5, 0, 0x32, 0x40, 8)
@@ -484,10 +484,10 @@
 /* not verified */ #define SOUND_OBJECT_BULLYWALKING         SOUND_ARG_LOAD(5, 0, 0x36, 0x60, 8)
 /* not verified */ #define SOUND_OBJECT_DORRIE               SOUND_ARG_LOAD(5, 0, 0x37, 0x60, 8)
 /* not verified */ #define SOUND_OBJECT_BOWSERLAUGH          SOUND_ARG_LOAD(5, 0, 0x38, 0x80, 8)
-/* not verified */ #define SOUND_OBJECT_MONKEY2              SOUND_ARG_LOAD(5, 0, 0x39, 0x00, 8)
-/* not verified */ #define SOUND_OBJECT_MONKEY3              SOUND_ARG_LOAD(5, 0, 0x3A, 0x00, 8)
-/* not verified */ #define SOUND_OBJECT_UNKNOWN7             SOUND_ARG_LOAD(5, 0, 0x3B, 0x00, 8)
-/* not verified */ #define SOUND_OBJECT_UNKNOWN8             SOUND_ARG_LOAD(5, 0, 0x3C, 0x00, 8)
+#define SOUND_UKIKI_CHATTER_SHORT              SOUND_ARG_LOAD(5, 0, 0x39, 0x00, 8)
+#define SOUND_UKIKI_CHATTER_IDLE              SOUND_ARG_LOAD(5, 0, 0x3A, 0x00, 8)
+#define SOUND_UKIKI_STEP_DEFAULT             SOUND_ARG_LOAD(5, 0, 0x3B, 0x00, 8)
+#define SOUND_UKIKI_STEP_LEAVES             SOUND_ARG_LOAD(5, 0, 0x3C, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_KOOPA                SOUND_ARG_LOAD(5, 0, 0x3D, 0xA0, 8)
 /* not verified */ #define SOUND_OBJECT_KOOPADAMAGE          SOUND_ARG_LOAD(5, 0, 0x3E, 0xA0, 8)
 /* not verified */ #define SOUND_OBJECT_KLEPTO1              SOUND_ARG_LOAD(5, 0, 0x3F, 0x40, 8)
@@ -496,10 +496,10 @@
 /* not verified */ #define SOUND_OBJECT_KINGBOBOMBDAMAGE     0x5042
 /* not verified */ #define SOUND_OBJECT_SCUTTLEBUGWALK       0x5043
 /* not verified */ #define SOUND_OBJECT_SCUTTLEBUGALERT      0x5044
-/* not verified */ #define SOUND_OBJECT_BABYPENGUIN          0x5045
+#define SOUND_CH5_BABY_PENGUIN_YELL         0x5045
 /* not verified */ #define SOUND_OBJECT_KINGBOBOMBJUMP       SOUND_ARG_LOAD(5, 0, 0x46, 0x80, 8)
 /* not verified */ #define SOUND_OBJECT_KINGWHOMPDEATH       SOUND_ARG_LOAD(5, 1, 0x47, 0xC0, 8)
-/* not verified */ #define SOUND_OBJECT_BOOLAUGH2            SOUND_ARG_LOAD(5, 0, 0x48, 0x00, 8)
+#define SOUND_BOO_LAUGH_LONG            SOUND_ARG_LOAD(5, 0, 0x48, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_BAT                  0x5049
 /* not verified */ #define SOUND_OBJECT_EEL                  SOUND_ARG_LOAD(5, 0, 0x4A, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_EEL_2                SOUND_ARG_LOAD(5, 2, 0x4A, 0x00, 8)
@@ -520,7 +520,7 @@
 /* not verified */ #define SOUND_OBJECT_SPINYUNK59           SOUND_ARG_LOAD(5, 0, 0x59, 0x10, 8)
 /* not verified */ #define SOUND_OBJECT_THWOMPSOUNDSHORT     0x505A
 /* not verified */ #define SOUND_OBJECT_THWOMPSOUNDLONG      0x505B
-/* not verified */ #define SOUND_OBJECT_WIGGLER              SOUND_ARG_LOAD(5, 0, 0x5C, 0x40, 8)
+#define SOUND_WIGGLER_HIGH_PITCH              SOUND_ARG_LOAD(5, 0, 0x5C, 0x40, 8)
 /* not verified */ #define SOUND_OBJECT_HEAVEHOTOSSED        SOUND_ARG_LOAD(5, 0, 0x5D, 0x40, 8)
 /* not verified */ #define SOUND_OBJECT_WIGGLERDEATH         0x505E
 /* not verified */ #define SOUND_OBJECT_BOWSERINTROLAUGH     SOUND_ARG_LOAD(5, 0, 0x5F, 0x80, 9)
@@ -535,18 +535,18 @@
 /* not verified */ #define SOUND_OBJECT_TELEPORT             0x5066
 /* not verified */ #define SOUND_OBJECT_UNKNOWN9             0x5067
 /* not verified */ #define SOUND_OBJECT_POUNDINGLOUD         SOUND_ARG_LOAD(5, 0, 0x68, 0x40, 8)
-/* not verified */ #define SOUND_OBJECT_KINGWHOMP            0x5069
+#define SOUND_CH5_BOSS_DIALOG_GRUNT       0x5069
 /* not verified */ #define SOUND_OBJECT_MIPSRABBIT           SOUND_ARG_LOAD(5, 0, 0x6A, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_MRISPINNING          0x506B
 /* not verified */ #define SOUND_OBJECT_MIPSRABBITWATER      SOUND_ARG_LOAD(5, 0, 0x6C, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_EYEROKEXPLODE        SOUND_ARG_LOAD(5, 0, 0x6D, 0x00, 8)
 /* not verified */ #define SOUND_OBJECT_CHUCKYADEATH         SOUND_ARG_LOAD(5, 1, 0x6E, 0x00, 8)
-/* not verified */ #define SOUND_OBJECT_WIGGLER2             SOUND_ARG_LOAD(5, 0, 0x6F, 0x00, 8)
-/* not verified */ #define SOUND_OBJECT_WIGGLERATTACK        SOUND_ARG_LOAD(5, 0, 0x70, 0x60, 8)
-/* not verified */ #define SOUND_OBJECT_WIGGLERWALK          SOUND_ARG_LOAD(5, 0, 0x71, 0x20, 8)
+#define SOUND_WIGGLER_DIALOG          SOUND_ARG_LOAD(5, 0, 0x6F, 0x00, 8)
+#define SOUND_WIGGLER_ATTACKED        SOUND_ARG_LOAD(5, 0, 0x70, 0x60, 8)
+#define SOUND_WIGGLER_LOW_PITCH       SOUND_ARG_LOAD(5, 0, 0x71, 0x20, 8)
 /* not verified */ #define SOUND_OBJECT_SNUFITDEATH          SOUND_ARG_LOAD(5, 0, 0x72, 0xC0, 8)
 /* not verified */ #define SOUND_OBJECT_CHOMPINGSOUND        SOUND_ARG_LOAD(5, 0, 0x73, 0x40, 8)
-/* not verified */ #define SOUND_OBJECT_ENEMYDEFEATSHRINK    SOUND_ARG_LOAD(5, 0, 0x74, 0x40, 8)
+#define SOUND_EMEMY_DEFEAT_SHRINK    SOUND_ARG_LOAD(5, 0, 0x74, 0x40, 8)
 /* not verified */ #define SOUND_OBJECT_BOWSERTAILPICKUP2    0x5075
 /* not verified */ #define SOUND_OBJECT_BOWSERDEFEATED2      0x5076
 /* not verified */ #define SOUND_OBJECT_BOWSERSWINGTAIL      0x5077
@@ -648,7 +648,7 @@
 /* not verified */ #define SOUND_CH9_UNK42      SOUND_ARG_LOAD(9, 1, 0x42, 0x40, 8)
 /* not verified */ #define SOUND_CH9_UNK43      SOUND_ARG_LOAD(9, 0, 0x43, 0x40, 8)
 /* not verified */ #define SOUND_CH9_UNK44      SOUND_ARG_LOAD(9, 0, 0x44, 0x40, 8)
-/* not verified */ #define SOUND_CH9_UNK45      SOUND_ARG_LOAD(9, 0, 0x45, 0x00, 8)
+#define SOUND_BABY_PENGUIN_YELL      SOUND_ARG_LOAD(9, 0, 0x45, 0x00, 8)
 /* not verified */ #define SOUND_CH9_UNK49      SOUND_ARG_LOAD(9, 0, 0x49, 0x00, 8)
 /* not verified */ #define SOUND_CH9_UNK52      SOUND_ARG_LOAD(9, 0, 0x52, 0x40, 0)
 /* not verified */ #define SOUND_CH9_UNK57      SOUND_ARG_LOAD(9, 0, 0x57, 0x00, 8)
@@ -657,7 +657,7 @@
 /* not verified */ #define SOUND_CH9_UNK5B      SOUND_ARG_LOAD(9, 2, 0x5B, 0x00, 8)
 /* not verified */ #define SOUND_CH9_UNK66      SOUND_ARG_LOAD(9, 0, 0x66, 0x80, 8)
 /* not verified */ #define SOUND_CH9_UNK67      SOUND_ARG_LOAD(9, 0, 0x67, 0x80, 8)
-/* not verified */ #define SOUND_CH9_UNK69      SOUND_ARG_LOAD(9, 0, 0x69, 0x40, 8)
+#define SOUND_BOSS_DIALOG_GRUNT      SOUND_ARG_LOAD(9, 0, 0x69, 0x40, 8)
 /* not verified */ #define SOUND_CH9_UNK6B      SOUND_ARG_LOAD(9, 0, 0x6B, 0x00, 8)
 
 

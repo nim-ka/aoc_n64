@@ -73,40 +73,59 @@ s32 sGameLoopTicked = 0;
 // The US difference is the sound for Dialog037 ("I win! You lose! Ha ha ha ha!
 // You're no slouch, but I'm a better sledder! Better luck next time!"), spoken
 // by Koopa instead of the penguin in JP.
-#define _ 0xff
+
+#define UKIKI 0
+#define TUXIE 1
+#define BOWS1 2 // Bowser Intro / Doors Laugh
+#define KOOPA 3
+#define KBOMB 4
+#define BOO   5
+#define BOMB  6
+#define BOWS2 7 // Bowser Battle Laugh
+#define GRUNT 8
+#define WIGLR 9
+#define YOSHI 10
+#define _     0xFF
+
+#ifdef VERSION_JP
+#define DIFF KOOPA
+#else
+#define DIFF TUXIE
+#endif
+
 u8 sDialogSpeaker[170] = {
-//     0  1  2  3  4  5  6  7  8  9
-/* 0*/ _, 6, 6, 6, 6, 3, 3, 3, _, 3,
-/* 1*/ _, _, _, _, _, _, _, 4, _, _,
-/* 2*/ _, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-/* 3*/ _, _, _, _, _, _, _, JP_US_DEF(3, 1), _, _,
-/* 4*/ _, 3, _, _, _, _, _, 6, _, _,
-/* 5*/ _, _, _, _, _, 1, 1, 1, 1, 1,
-/* 6*/ _, _, _, _, _, _, _, 7, _, _,
-/* 7*/ _, _, _, _, _, _, _, _, _, 0,
-/* 8*/ 0, _, _, _, _, 5, _, _, _, _,
-/* 9*/ 7, _, 7, 7, _, _, _, _, 5, 5,
-/*10*/ 0, 0, _, _, _, 6, 6, 5, 5, _,
-/*11*/ _, _, _, _, 8, 8, 4, 8, 8, _,
-/*12*/ _, _, _, _, _, _, _, _, 4, _,
-/*13*/ _, _, 1, _, _, _, _, _, _, _,
-/*14*/ _, _, _, _, _, _, _, _, _, _,
-/*15*/ 9, 9, 9, _, _, _, _, _, _, _,
-/*16*/ _, 10, _, _, _, _, _, _, 9, _
+//       0      1      2      3      4      5      6      7      8      9
+/* 0*/     _,  BOMB,  BOMB,  BOMB,  BOMB, KOOPA, KOOPA, KOOPA,     _, KOOPA,
+/* 1*/     _,     _,     _,     _,     _,     _,     _, KBOMB,     _,     _,
+/* 2*/     _, BOWS1, BOWS1, BOWS1, BOWS1, BOWS1, BOWS1, BOWS1, BOWS1, BOWS1,
+/* 3*/     _,     _,     _,     _,     _,     _,     _,  DIFF,     _,     _,
+/* 4*/     _, KOOPA,     _,     _,     _,     _,     _,  BOMB,     _,     _,
+/* 5*/     _,     _,     _,     _,     _, TUXIE, TUXIE, TUXIE, TUXIE, TUXIE,
+/* 6*/     _,     _,     _,     _,     _,     _,     _, BOWS2,     _,     _,
+/* 7*/     _,     _,     _,     _,     _,     _,     _,     _,     _, UKIKI,
+/* 8*/ UKIKI,     _,     _,     _,     _,   BOO,     _,     _,     _,     _,
+/* 9*/ BOWS2,     _, BOWS2, BOWS2,     _,     _,     _,     _,   BOO,   BOO,
+/*10*/ UKIKI, UKIKI,     _,     _,     _,  BOMB,  BOMB,   BOO,   BOO,     _,
+/*11*/     _,     _,     _,     _, GRUNT, GRUNT, KBOMB, GRUNT, GRUNT,     _,
+/*12*/     _,     _,     _,     _,     _,     _,     _,     _, KBOMB,     _,
+/*13*/     _,     _, TUXIE,     _,     _,     _,     _,     _,     _,     _,
+/*14*/     _,     _,     _,     _,     _,     _,     _,     _,     _,     _,
+/*15*/ WIGLR, WIGLR, WIGLR,     _,     _,     _,     _,     _,     _,     _,
+/*16*/     _, YOSHI,     _,     _,     _,     _,     _,     _, WIGLR,     _
 };
 #undef _
 
 s32 sDialogSpeakerVoice[15] = {
-    SOUND_OBJECT_MONKEY1,
-    SOUND_OBJECT_BIGPENGUIN,
+    SOUND_UKIKI_CHATTER_LONG,
+    SOUND_BIG_PENGUIN_YELL,
     SOUND_OBJECT_BOWSERINTROLAUGH,
     SOUND_OBJECT_KOOPA,
     SOUND_OBJECT_KINGBOBOMB,
-    SOUND_OBJECT_BOOLAUGH2,
+    SOUND_BOO_LAUGH_LONG,
     SOUND_OBJECT_BOBOMBBUDDY,
     SOUND_OBJECT_BOWSERLAUGH,
-    SOUND_CH9_UNK69,
-    SOUND_OBJECT_WIGGLER2,
+    SOUND_BOSS_DIALOG_GRUNT,
+    SOUND_WIGGLER_DIALOG,
     SOUND_GENERAL_YOSHI,
     NO_SOUND,
     NO_SOUND,
@@ -261,47 +280,56 @@ u8 gAreaEchoLevel[][3] = {
 };
 STATIC_ASSERT(ARRAY_COUNT(gAreaEchoLevel) == LEVEL_COUNT, "change this array if you are adding levels");
 
+#ifdef VERSION_JP
+#define VAL_DIFF 25000
+#else
+#define VAL_DIFF 60000
+#endif
+
 u16 D_80332028[] = {
-    20000,                    // LEVEL_NONE
-    20000,                    // LEVEL_UNKNOWN_1
-    20000,                    // LEVEL_UNKNOWN_2
-    20000,                    // LEVEL_UNKNOWN_3
-    28000,                    // LEVEL_BBH
-    17000,                    // LEVEL_CCM
-    20000,                    // LEVEL_CASTLE
-    16000,                    // LEVEL_HMC
-    15000,                    // LEVEL_SSL
-    15000,                    // LEVEL_BOB
-    14000,                    // LEVEL_SL
-    17000,                    // LEVEL_WDW
-    20000,                    // LEVEL_JRB
-    20000,                    // LEVEL_THI
-    18000,                    // LEVEL_TTC
-    20000,                    // LEVEL_RR
-    25000,                    // LEVEL_CASTLE_GROUNDS
-    16000,                    // LEVEL_BITDW
-    30000,                    // LEVEL_VCUTM
-    16000,                    // LEVEL_BITFS
-    20000,                    // LEVEL_SA
-    16000,                    // LEVEL_BITS
-    22000,                    // LEVEL_LLL
-    17000,                    // LEVEL_DDD
-    13000,                    // LEVEL_WF
-    20000,                    // LEVEL_ENDING
-    20000,                    // LEVEL_CASTLE_COURTYARD
-    20000,                    // LEVEL_PSS
-    18000,                    // LEVEL_COTMC
-    20000,                    // LEVEL_TOTWC
-    JP_US_DEF(25000, 60000),  // LEVEL_BOWSER_1
-    20000,                    // LEVEL_WMOTR
-    20000,                    // LEVEL_UNKNOWN_32
-    JP_US_DEF(25000, 60000),  // LEVEL_BOWSER_2
-    JP_US_DEF(25000, 60000),  // LEVEL_BOWSER_3
-    20000,                    // LEVEL_UNKNOWN_35
-    15000,                    // LEVEL_TTM
-    20000,                    // LEVEL_UNKNOWN_37
-    20000,                    // LEVEL_UNKNOWN_38
+    20000,    // LEVEL_NONE
+    20000,    // LEVEL_UNKNOWN_1
+    20000,    // LEVEL_UNKNOWN_2
+    20000,    // LEVEL_UNKNOWN_3
+    28000,    // LEVEL_BBH
+    17000,    // LEVEL_CCM
+    20000,    // LEVEL_CASTLE
+    16000,    // LEVEL_HMC
+    15000,    // LEVEL_SSL
+    15000,    // LEVEL_BOB
+    14000,    // LEVEL_SL
+    17000,    // LEVEL_WDW
+    20000,    // LEVEL_JRB
+    20000,    // LEVEL_THI
+    18000,    // LEVEL_TTC
+    20000,    // LEVEL_RR
+    25000,    // LEVEL_CASTLE_GROUNDS
+    16000,    // LEVEL_BITDW
+    30000,    // LEVEL_VCUTM
+    16000,    // LEVEL_BITFS
+    20000,    // LEVEL_SA
+    16000,    // LEVEL_BITS
+    22000,    // LEVEL_LLL
+    17000,    // LEVEL_DDD
+    13000,    // LEVEL_WF
+    20000,    // LEVEL_ENDING
+    20000,    // LEVEL_CASTLE_COURTYARD
+    20000,    // LEVEL_PSS
+    18000,    // LEVEL_COTMC
+    20000,    // LEVEL_TOTWC
+    VAL_DIFF, // LEVEL_BOWSER_1
+    20000,    // LEVEL_WMOTR
+    20000,    // LEVEL_UNKNOWN_32
+    VAL_DIFF, // LEVEL_BOWSER_2
+    VAL_DIFF, // LEVEL_BOWSER_3
+    20000,    // LEVEL_UNKNOWN_35
+    15000,    // LEVEL_TTM
+    20000,    // LEVEL_UNKNOWN_37
+    20000,    // LEVEL_UNKNOWN_38
 };
+
+#undef VAL_DIFF
+
 STATIC_ASSERT(ARRAY_COUNT(D_80332028) == LEVEL_COUNT, "change this array if you are adding levels");
 
 #define AUDIO_MAX_DISTANCE US_FLOAT(22000.0)
@@ -350,10 +378,16 @@ u8 D_803320A4[SOUND_BANK_COUNT] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // pointers to
 u8 D_803320B0[SOUND_BANK_COUNT] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}; // pointers to head of list
 u8 D_803320BC[SOUND_BANK_COUNT] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 u8 D_803320C8[SOUND_BANK_COUNT] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}; // sizes of D_80360C38
+#ifdef VERSION_JP
+#define NUM_DIFF 0x30
+#else
+#define NUM_DIFF 0x40
+#endif
 u8 sNumSoundsPerBank[SOUND_BANK_COUNT] = {
-    0x70, 0x30, JP_US_DEF(0x30, 0x40), 0x80, 0x20,
-    0x80, 0x20, JP_US_DEF(0x30, 0x40), 0x80, 0x80
+    0x70, 0x30, NUM_DIFF, 0x80, 0x20,
+    0x80, 0x20, NUM_DIFF, 0x80, 0x80
 };
+#undef NUM_DIFF
 f32 gDefaultSoundArgs[3] = {0.0f, 0.0f, 0.0f};
 f32 gUnusedSoundArgs[3] = {1.0f, 1.0f, 1.0f};
 u8 gSoundBankDisabled[16] = {0};
@@ -1104,6 +1138,11 @@ static f32 get_sound_freq_scale(u8 bankIndex, u8 item)
     return f2 / US_FLOAT(15.0) + US_FLOAT(1.0);
 }
 
+#ifdef VERSION_JP
+#define VAL 48.0
+#else
+#define VAL 40.0f
+#endif
 static u8 get_sound_reverb(UNUSED u8 bankIndex, UNUSED u8 item, u8 channelIndex)
 {
     u8 area;
@@ -1131,7 +1170,7 @@ static u8 get_sound_reverb(UNUSED u8 bankIndex, UNUSED u8 item, u8 channelIndex)
         (u8) gSequencePlayers[2].channels[channelIndex]->soundScriptIO[5] +
         gAreaEchoLevel[level][area] +
         (US_FLOAT(1.0) - gSequencePlayers[2].channels[channelIndex]->volume) *
-            JP_US_DEF(48.0, 40.0f)
+            VAL
     );
 
     if (reverb > 0x7f)
@@ -1141,6 +1180,7 @@ static u8 get_sound_reverb(UNUSED u8 bankIndex, UNUSED u8 item, u8 channelIndex)
     return reverb;
 }
 
+#undef VAL
 static void noop_8031EEC8(void) { }
 
 void audio_signal_game_loop_tick(void)
@@ -1148,6 +1188,14 @@ void audio_signal_game_loop_tick(void)
     sGameLoopTicked = 1;
     noop_8031EEC8();
 }
+
+#ifdef VERSION_JP
+#define ARG2_VAL1 0.8f
+#define ARG2_VAL2 1.0f
+#else
+#define ARG2_VAL1 0.9f
+#define ARG2_VAL2 0.8f
+#endif
 
 void update_game_sound(void)
 {
@@ -1197,12 +1245,12 @@ void update_game_sound(void)
                         {
                             if (D_80363808[bankIndex] > 8)
                             {
-                                ret = get_sound_dynamics(bankIndex, index, JP_US_DEF(0.8f, 0.9f));
+                                ret = get_sound_dynamics(bankIndex, index, ARG2_VAL1);
                                 gSequencePlayers[2].channels[channelIndex]->volume = ret;
                             }
                             else
                             {
-                                ret = get_sound_dynamics(bankIndex, index, JP_US_DEF(0.8f, 0.9f));
+                                ret = get_sound_dynamics(bankIndex, index, ARG2_VAL1);
                                 gSequencePlayers[2].channels[channelIndex]->volume =
                                     (D_80363808[bankIndex] + 8.0f) / 16 * ret;
                             }
@@ -1237,7 +1285,7 @@ void update_game_sound(void)
                     case 0:
                     case 2:
                         gSequencePlayers[2].channels[channelIndex]->volume =
-                            get_sound_dynamics(bankIndex, index, JP_US_DEF(0.8f, 0.9f));
+                            get_sound_dynamics(bankIndex, index, ARG2_VAL1);
                         gSequencePlayers[2].channels[channelIndex]->pan = get_sound_pan(
                             *gSoundBanks[bankIndex][index].x,
                             *gSoundBanks[bankIndex][index].z);
@@ -1253,7 +1301,7 @@ void update_game_sound(void)
                         gSequencePlayers[2].channels[channelIndex]->reverb =
                             get_sound_reverb(bankIndex, index, channelIndex);
                         gSequencePlayers[2].channels[channelIndex]->volume =
-                            get_sound_dynamics(bankIndex, index, JP_US_DEF(1.0f, 0.8f));
+                            get_sound_dynamics(bankIndex, index, ARG2_VAL2);
                         gSequencePlayers[2].channels[channelIndex]->pan = get_sound_pan(
                                 *gSoundBanks[bankIndex][index].x,
                                 *gSoundBanks[bankIndex][index].z);
@@ -1303,12 +1351,12 @@ void update_game_sound(void)
                         {
                             if (D_80363808[bankIndex] > 8)
                             {
-                                ret = get_sound_dynamics(bankIndex, index, JP_US_DEF(0.8f, 0.9f));
+                                ret = get_sound_dynamics(bankIndex, index, ARG2_VAL1);
                                 gSequencePlayers[2].channels[channelIndex]->volume = ret;
                             }
                             else
                             {
-                                ret = get_sound_dynamics(bankIndex, index, JP_US_DEF(0.8f, 0.9f));
+                                ret = get_sound_dynamics(bankIndex, index, ARG2_VAL1);
                                 gSequencePlayers[2].channels[channelIndex]->volume =
                                     (D_80363808[bankIndex] + 8.0f) / 16 * ret;
                             }
@@ -1343,7 +1391,7 @@ void update_game_sound(void)
                     case 0:
                     case 2:
                         gSequencePlayers[2].channels[channelIndex]->volume =
-                            get_sound_dynamics(bankIndex, index, JP_US_DEF(0.8f, 0.9f));
+                            get_sound_dynamics(bankIndex, index, ARG2_VAL1);
                         gSequencePlayers[2].channels[channelIndex]->pan = get_sound_pan(
                             *gSoundBanks[bankIndex][index].x,
                             *gSoundBanks[bankIndex][index].z);
@@ -1359,7 +1407,7 @@ void update_game_sound(void)
                         gSequencePlayers[2].channels[channelIndex]->reverb =
                             get_sound_reverb(bankIndex, index, channelIndex);
                         gSequencePlayers[2].channels[channelIndex]->volume =
-                            get_sound_dynamics(bankIndex, index, JP_US_DEF(1.0f, 0.8f));
+                            get_sound_dynamics(bankIndex, index, ARG2_VAL2);
                         gSequencePlayers[2].channels[channelIndex]->pan = get_sound_pan(
                                 *gSoundBanks[bankIndex][index].x,
                                 *gSoundBanks[bankIndex][index].z);
@@ -1376,6 +1424,9 @@ void update_game_sound(void)
         channelIndex += D_803320C8[bankIndex] - D_80360C28[bankIndex];
     }
 }
+
+#undef ARG2_VAL1
+#undef ARG2_VAL2
 
 void play_sequence(u8 player, u8 seqId, u16 fadeTimer)
 {

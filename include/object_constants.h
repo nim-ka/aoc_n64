@@ -635,6 +635,11 @@
     #define PYRAMID_WALL_BP_POSITION_MIDDLE 1
     #define PYRAMID_WALL_BP_POSITION_LOW 2
 
+/* Tuxie */
+    /* Walking sounds */
+    #define PENGUIN_WALK_BABY 0
+    #define PENGUIN_WALK_BIG  1
+
 /* Water bomb */
     /* oAction */
     #define WATER_BOMB_ACT_SHOT_FROM_CANNON 0

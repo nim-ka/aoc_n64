@@ -6,19 +6,6 @@
 #define GLUE(a, b) a ## b
 #define GLUE2(a, b) GLUE(a, b)
 
-// Reduces big ifdefs that use different values
-#ifdef VERSION_JP
-#define JP_US_DEF(jp, us)        (jp)
-#define JP_US_EU_DEF(jp, us, eu) (jp)
-#elif defined(VERSION_US)
-#define JP_US_DEF(jp, us)        (us)
-#define JP_US_EU_DEF(jp, us, eu) (us)
-#elif defined(VERSION_EU)
-// TODO: JP_US_DEF() is possibly wrong in this case
-#define JP_US_DEF(jp, us)        (us)
-#define JP_US_EU_DEF(jp, us, eu) (eu)
-#endif
-
 // Avoid compiler warnings for unused variables
 #ifdef __GNUC__
 #define UNUSED __attribute__((unused))

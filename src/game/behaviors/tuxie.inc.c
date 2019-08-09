@@ -13,16 +13,16 @@ s32 func_802BE2E8(s16 a0,s16 a1,s32 a2)
     return 0;
 }
 
-void play_penguin_walking_sound(s32 a0)
+void play_penguin_walking_sound(s32 walk)
 {
-    s32 sp1C;
+    s32 sound;
     if(o->oSoundStateID == 0)
     {
-        if(a0 == 0)
-            sp1C = SOUND_OBJECT_PENGUINWALKING1;
-        else
-            sp1C = SOUND_OBJECT_PENGUINWALKING2;
-        func_802BE2E8(1,11,sp1C);
+        if(walk == PENGUIN_WALK_BABY)
+            sound = SOUND_BABY_PENGUIN_WALK;
+        else // PENGUIN_WALK_BIG
+            sound = SOUND_BIG_PENGUIN_WALK;
+        func_802BE2E8(1,11,sound);
     }
 }
 
@@ -153,7 +153,7 @@ void ActionTuxiesMother0(void)
         }
     }
     if(obj_check_anim_frame(1))
-        PlaySound2(SOUND_OBJECT_BIGPENGUIN);
+        PlaySound2(SOUND_BIG_PENGUIN_YELL);
 }
 
 void (*sTuxiesMotherActions[])(void) = {ActionTuxiesMother0,ActionTuxiesMother1,ActionTuxiesMother2};
@@ -164,7 +164,7 @@ void bhv_tuxies_mother_loop(void)
     obj_update_floor_and_walls();
     obj_call_action_function(sTuxiesMotherActions);
     obj_move_standard(-78);
-    play_penguin_walking_sound(1);
+    play_penguin_walking_sound(PENGUIN_WALK_BIG);
     o->oInteractStatus = 0;
 }
 
@@ -210,7 +210,7 @@ void ActionSmallPenguin3(void)
     if(o->oTimer > 5)
     {
         if(o->oTimer == 6)
-            PlaySound2(SOUND_OBJECT_BABYPENGUINTRICK);
+            PlaySound2(SOUND_BABY_PENGUIN_DIVE);
         set_obj_animation_and_sound_state(1);
         if(o->oTimer > 25)
             if(!mario_is_dive_sliding())
@@ -288,32 +288,32 @@ void func_802BF048(void)
     obj_update_floor_and_walls();
     obj_call_action_function(sSmallPenguinActions);
     obj_move_standard(-78);
-    play_penguin_walking_sound(0);
+    play_penguin_walking_sound(PENGUIN_WALK_BABY);
 }
 
 void bhv_small_penguin_loop(void)
 {
     switch(o->oHeldState)
     {
-    case 0:
+    case HELD_FREE:
         func_802BF048();
         break;
-    case 1:
+    case HELD_HELD:
         func_8029FA5C(0,0);
         if(obj_has_behavior(bhvPenguinBaby))
             set_object_behavior(o,bhvSmallPenguin);
         copy_object_pos(o,gMarioObject);
         if(gGlobalTimer % 30 == 0)
 #ifndef VERSION_JP
-            play_sound(SOUND_CH9_UNK45,gMarioObject->header.gfx.cameraToObject);
+            play_sound(SOUND_BABY_PENGUIN_YELL,gMarioObject->header.gfx.cameraToObject);
 #else
-            play_sound(SOUND_CH9_UNK45,o->header.gfx.cameraToObject);
+            play_sound(SOUND_BABY_PENGUIN_YELL,o->header.gfx.cameraToObject);
 #endif
         break;
-    case 2:
+    case HELD_THROWN:
         obj_get_thrown_or_placed(0, 0, 0);
         break;
-    case 3:
+    case HELD_DROPPED:
         obj_get_dropped();
         break;
     }

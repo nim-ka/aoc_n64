@@ -183,7 +183,7 @@ void piranha_plant_act_shrink_and_die(void)
 {
     if (o->oTimer == 0)
     {
-        PlaySound2(SOUND_OBJECT_ENEMYDEFEATSHRINK);
+        PlaySound2(SOUND_EMEMY_DEFEAT_SHRINK);
         o->oPiranhaPlantScale = 1.0f;
     }
 
