@@ -1,6 +1,9 @@
 #ifndef _SURFACE_COLLISION_H
 #define _SURFACE_COLLISION_H
 
+#define LEVEL_BOUNDARY_MAX 0x2000
+#define CELL_SIZE          0x400
+
 struct WallCollisionData
 {
     /*0x00*/ f32 x, y, z;
@@ -20,7 +23,7 @@ struct FloorGeometry
     f32 originOffset;
 };
 
-s32 resolve_wall_collisions(f32 *xPtr, f32 *yPtr, f32 *zPtr, f32 offsetY, f32 radius);
+s32 f32_find_wall_collision(f32 *xPtr, f32 *yPtr, f32 *zPtr, f32 offsetY, f32 radius);
 s32 find_wall_collisions(struct WallCollisionData *colData);
 f32 find_ceil(f32 posX, f32 posY, f32 posZ, struct Surface **pceil);
 f32 find_floor_height_and_data(f32 xPos, f32 yPos, f32 zPos, struct FloorGeometry **floorGeo);

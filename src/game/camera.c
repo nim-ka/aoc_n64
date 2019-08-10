@@ -1993,7 +1993,7 @@ s32 exit_c_up_mode(struct LevelCamera *c)
             for (i = 0; i < 16 && sp58 == 1; i++)
             {
                 vec3f_set_dist_and_angle(sp68, sp5C, sp48, 0, sp40 + sp3E);
-                if (resolve_wall_collisions(&sp5C[0], &sp5C[1], &sp5C[2], 20.f, 50.f) == 0)
+                if (f32_find_wall_collision(&sp5C[0], &sp5C[1], &sp5C[2], 20.f, 50.f) == 0)
                 {
                     for (sp44 = sp48; sp44 < gCameraZoomDist; sp44 += 20.f)
                     {
@@ -2004,7 +2004,7 @@ s32 exit_c_up_mode(struct LevelCamera *c)
                         sp4C = find_floor(sp5C[0], sp5C[1] + 150.f, sp5C[2], &surface) + 10.f;
                         if (surface != NULL && sp4C > sp5C[1])
                             break;
-                        if (resolve_wall_collisions(&sp5C[0], &sp5C[1], &sp5C[2], 20.f, 50.f) == 1)
+                        if (f32_find_wall_collision(&sp5C[0], &sp5C[1], &sp5C[2], 20.f, 50.f) == 1)
                             break;
                     }
                     if (sp44 >= gCameraZoomDist)
@@ -4568,7 +4568,7 @@ s16 func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 yaw)
                 if ((floorHeight += 125.f) > a[1])
                     a[1] = floorHeight;
             }
-            resolve_wall_collisions(&a[0], &a[1], &a[2], 0.f, 100.f);
+            f32_find_wall_collision(&a[0], &a[1], &a[2], 0.f, 100.f);
         }
         sCameraTransition.timer--;
         yaw = calculate_yaw(b, a);
@@ -5759,7 +5759,7 @@ void resolve_geometry_collisions(Vec3f pos, UNUSED Vec3f b)
     f32 ceilY, floorY;
     struct Surface *surf;
 
-    resolve_wall_collisions(&pos[0], &pos[1], &pos[2], 0.f, 100.f);
+    f32_find_wall_collision(&pos[0], &pos[1], &pos[2], 0.f, 100.f);
     floorY = find_floor(pos[0], pos[1] + 50.f, pos[2], &surf);
     ceilY =  find_ceil(pos[0], pos[1] - 50.f, pos[2], &surf);
 

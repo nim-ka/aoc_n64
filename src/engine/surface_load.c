@@ -320,7 +320,7 @@ static s32 get_surface_flags(s16 surfaceType)
         case SURFACE_0077:  //Unused?
         case SURFACE_0078:  //Slide Surface?
         case SURFACE_SWITCH:
-            flags = SURFACE_FLAG_1;
+            flags = SURFACE_FLAG_NO_CAM_COLLISION;
             break;
 
         default:

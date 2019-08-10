@@ -118,9 +118,9 @@
 #define SURFACE_CLASS_NOT_SLIPPERY 0x0015
 #define SURFACE_CLASS_DEFAULT      0x0000
 
-#define SURFACE_FLAG_DYNAMIC      (1 << 0)
-#define SURFACE_FLAG_1            (1 << 1)
-#define SURFACE_FLAG_X_PROJECTION (1 << 3)
+#define SURFACE_FLAG_DYNAMIC          (1 << 0)
+#define SURFACE_FLAG_NO_CAM_COLLISION (1 << 1)
+#define SURFACE_FLAG_X_PROJECTION     (1 << 3)
 
 //These are effectively special "surface" types like those defined higher
 #define TERRAIN_LOAD_VERTICES 0x0040 //Begins vertices list for collision triangles

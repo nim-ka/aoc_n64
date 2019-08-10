@@ -1726,7 +1726,7 @@ void obj_unused_resolve_wall_collisions(f32 offsetY, f32 radius)
 {
     if (radius > 0.1L)
     {
-        resolve_wall_collisions(&o->oPosX, &o->oPosY, &o->oPosZ, offsetY, radius);
+        f32_find_wall_collision(&o->oPosX, &o->oPosY, &o->oPosZ, offsetY, radius);
     }
 }
 

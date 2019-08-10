@@ -77,8 +77,8 @@ s32 set_pole_position(struct MarioState *m, f32 offsetY)
     m->pos[2] = m->usedObj->oPosZ;
     m->pos[1] = m->usedObj->oPosY + marioObj->oMarioPolePos + offsetY;
 
-    collided  = resolve_wall_collisions(&m->pos[0], &m->pos[1], &m->pos[2], 60.0f, 50.0f);
-    collided |= resolve_wall_collisions(&m->pos[0], &m->pos[1], &m->pos[2], 30.0f, 24.0f);
+    collided  = f32_find_wall_collision(&m->pos[0], &m->pos[1], &m->pos[2], 60.0f, 50.0f);
+    collided |= f32_find_wall_collision(&m->pos[0], &m->pos[1], &m->pos[2], 30.0f, 24.0f);
 
     ceilHeight = vec3f_find_ceil(m->pos, m->pos[1], &ceil);
     if (m->pos[1] > ceilHeight - 160.0f)
@@ -792,7 +792,7 @@ s32 act_tornado_twirling(struct MarioState *m)
     nextPos[2] = usedObj->oPosZ - dx * sinAngleVel + dz * cosAngleVel;
     nextPos[1] = usedObj->oPosY + marioObj->oMarioTornadoPosY;
 
-    resolve_wall_collisions(&nextPos[0], &nextPos[1], &nextPos[2], 60.0f, 50.0f);
+    f32_find_wall_collision(&nextPos[0], &nextPos[1], &nextPos[2], 60.0f, 50.0f);
 
     floorHeight = find_floor(nextPos[0], nextPos[1], nextPos[2], &floor);
     if (floor != NULL)
