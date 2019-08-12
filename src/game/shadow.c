@@ -216,7 +216,7 @@ s8 init_shadow(
     s->floorHeight = find_floor_height_and_data(
         s->parentX, s->parentY, s->parentZ, &floorGeometry);
 
-    if (gWaterRegions != 0) {
+    if (gEnvironmentRegions != 0) {
         waterLevel = get_water_level_below_shadow(s);
     }
     if (gShadowAboveWaterOrLava) {

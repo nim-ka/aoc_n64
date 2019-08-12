@@ -96,7 +96,7 @@
 #define SURFACE_0073                         0x0073   //Slide with noise, unused
 #define SURFACE_0074                         0x0074   //Slide with noise, unused
 #define SURFACE_0075                         0x0075   //Slide with noise
-#define SURFACE_0076                         0x0076   //Flag?
+#define SURFACE_NO_CAM_COLLISION             0x0076
 #define SURFACE_0077                         0x0077   //Unused?
 #define SURFACE_0078                         0x0078   //Slide Surface?
 #define SURFACE_0079                         0x0079   //Camera
@@ -127,7 +127,7 @@
 #define TERRAIN_LOAD_CONTINUE 0x0041
 #define TERRAIN_LOAD_END      0x0042
 #define TERRAIN_LOAD_OBJECTS  0x0043 //Loads in certain objects for level start
-#define TERRAIN_LOAD_WATER    0x0044 //Loads water/HMC gas
+#define TERRAIN_LOAD_ENVIRONMENT    0x0044 //Loads water/HMC gas
 
 #define TERRAIN_LOAD_IS_SURFACE_TYPE_LOW(cmd)  (cmd < 0x40)
 #define TERRAIN_LOAD_IS_SURFACE_TYPE_HIGH(cmd) (cmd >= 0x65)

@@ -43,8 +43,8 @@ void func_802B95A4(void)
         PlaySound(SOUND_ENVIRONMENT_WATERDRAIN);
         if(o->oTimer < 300)
         {
-            gWaterLevels[2] = (s32)approach_f32_symmetric(gWaterLevels[2],-2450.0f,5.0f);
-            gWaterLevels[0] = (s32)approach_f32_symmetric(gWaterLevels[0],-2450.0f,5.0f);
+            gEnvironmentLevels[2] = (s32)approach_f32_symmetric(gEnvironmentLevels[2],-2450.0f,5.0f);
+            gEnvironmentLevels[0] = (s32)approach_f32_symmetric(gEnvironmentLevels[0],-2450.0f,5.0f);
         }
         else
             o->oAction++;
@@ -59,8 +59,8 @@ void func_802B97E4(void)
     if(o->oTimer == 0)
     {
         o->oPosY -= 80.0f;
-        gWaterLevels[2] = -2450;
-        gWaterLevels[0] = -2450;
+        gEnvironmentLevels[2] = -2450;
+        gEnvironmentLevels[0] = -2450;
     }
 }
 
@@ -76,6 +76,6 @@ void bhv_water_level_pillar_loop(void)
         func_802B97E4();
     else
         func_802B95A4();
-    gWaterRegions[18] = gWaterLevels[2];
-    gWaterRegions[6]  = gWaterLevels[0];
+    gEnvironmentRegions[18] = gEnvironmentLevels[2];
+    gEnvironmentRegions[6]  = gEnvironmentLevels[0];
 }

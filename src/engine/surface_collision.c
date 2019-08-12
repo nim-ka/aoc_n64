@@ -602,7 +602,7 @@ f32 find_water_level(f32 x, f32 z)
     s16 val;
     f32 loX, hiX, loZ, hiZ;
     f32 waterLevel = -11000.0f;
-    s16 *p = gWaterRegions;
+    s16 *p = gEnvironmentRegions;
 
     if (p != NULL)
     {
@@ -642,7 +642,7 @@ f32 find_poison_gas_level(f32 x, f32 z)
     s16 val;
     f32 loX, hiX, loZ, hiZ;
     f32 gasLevel = -11000.0f;
-    s16 *p = gWaterRegions;
+    s16 *p = gEnvironmentRegions;
 
     if (p != NULL)
     {

@@ -9,7 +9,7 @@ void bhv_thi_huge_island_top_loop(void)
     if(gTHIWaterDrained & 1)
     {
         if(o->oTimer == 0)
-            gWaterRegions[18] = 3000;
+            gEnvironmentRegions[18] = 3000;
         obj_hide();
     }
     else
@@ -36,7 +36,7 @@ void bhv_thi_tiny_island_top_loop(void)
         {
             if(o->oTimer < 50)
             {
-                gWaterRegions[18]--;
+                gEnvironmentRegions[18]--;
                 PlaySound(SOUND_ENVIRONMENT_WATERDRAIN);
             }
             else
@@ -50,7 +50,7 @@ void bhv_thi_tiny_island_top_loop(void)
     else
     {
         if(o->oTimer == 0)
-            gWaterRegions[18] = 700;
+            gEnvironmentRegions[18] = 700;
         obj_hide();
     }
 }

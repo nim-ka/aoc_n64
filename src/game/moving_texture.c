@@ -44,7 +44,7 @@
  *  for mist, toxic haze and lava inside the volcano. One quad is described
  *  by the struct MovtexQuad, and multiple MovtexQuads form a MovtexQuadCollection.
  *  A geo node has an id that corresponds to the id of a certain MovtexQuadCollection,
- *  which will then be matched with the id of entries in gWaterRegions to get the
+ *  which will then be matched with the id of entries in gEnvironmentRegions to get the
  *  y-position. The x and z coordinates are stored in the MovtexQuads themself,
  *  so the water rectangle is separate from the actually drawn rectangle.
  */
@@ -381,7 +381,7 @@ Gfx *geo_wdw_set_initial_water_level(s32 callContext, UNUSED struct GraphNode *n
     {
         gWdwWaterLevelSet = 0;
     }
-    else if (callContext == GEO_CONTEXT_RENDER && gWaterRegions != NULL && gWdwWaterLevelSet == 0)
+    else if (callContext == GEO_CONTEXT_RENDER && gEnvironmentRegions != NULL && gWdwWaterLevelSet == 0)
     {
         if (gPaintingMarioYEntry <= 1382.4)
             wdwWaterHeight = 31;
@@ -389,9 +389,9 @@ Gfx *geo_wdw_set_initial_water_level(s32 callContext, UNUSED struct GraphNode *n
             wdwWaterHeight = 2816;
         else
             wdwWaterHeight = 1024;
-        for (i = 0; i < *gWaterRegions; i++)
+        for (i = 0; i < *gEnvironmentRegions; i++)
         {
-            gWaterRegions[i * 6 + 6] = wdwWaterHeight;
+            gEnvironmentRegions[i * 6 + 6] = wdwWaterHeight;
         }
         gWdwWaterLevelSet = 1;
     }
@@ -738,9 +738,9 @@ Gfx *geo_movtex_draw_water_regions(s32 callContext, struct GraphNode *node, UNUS
     if (callContext == GEO_CONTEXT_RENDER)
     {
         gMovtexVtxColor = MOVTEX_VTX_COLOR_DEFAULT;
-        if (gWaterRegions == NULL)
+        if (gEnvironmentRegions == NULL)
             return NULL;
-        numWaterBoxes = gWaterRegions[0];
+        numWaterBoxes = gEnvironmentRegions[0];
         gfxHead = alloc_display_list((numWaterBoxes + 3) * sizeof(*gfxHead));
         if (gfxHead == NULL)
             return NULL;
@@ -773,8 +773,8 @@ Gfx *geo_movtex_draw_water_regions(s32 callContext, struct GraphNode *node, UNUS
         gMovetexLastTextureId = -1;
         for (i = 0; i < numWaterBoxes; i++)
         {
-            waterId = gWaterRegions[i * 6 + 1];
-            waterY = gWaterRegions[i * 6 + 6];
+            waterId = gEnvironmentRegions[i * 6 + 1];
+            waterY = gEnvironmentRegions[i * 6 + 6];
             subList = movtex_gen_quads_id(waterId, waterY, quadCollection);
             if (subList != NULL)
                 gSPDisplayList(gfx++, VIRTUAL_TO_PHYSICAL(subList));

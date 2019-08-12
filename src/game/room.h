@@ -5,8 +5,8 @@
 
 extern s16 gCheckingSurfaceCollisionsForCamera;
 extern s16 gFindFloorIncludeSurface0012;
-extern s16 *gWaterRegions;
-extern s32 gWaterLevels[20];
+extern s16 *gEnvironmentRegions;
+extern s32 gEnvironmentLevels[20];
 extern s8 gDoorAdjacentRooms[60][2];
 extern s16 gMarioCurrentRoom;
 extern s16 D_8035FEE2;
