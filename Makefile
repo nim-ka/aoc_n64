@@ -17,8 +17,7 @@ NON_MATCHING ?= 0
 # If ENDIAN_IND is 1, enable non-matching code changes that try to ensure
 # endianness independence
 ENDIAN_IND ?= 0
-# Python command to use, can be changed for a different python version
-PYTHON ?= python3
+
 # Release
 
 ifeq ($(VERSION),jp)
@@ -201,6 +200,7 @@ LD        := $(CROSS)ld
 AR        := $(CROSS)ar
 OBJDUMP   := $(CROSS)objdump
 OBJCOPY   := $(CROSS)objcopy
+PYTHON    := python3
 
 # Check code syntax with host compiler
 CC_CHECK := gcc -fsyntax-only -fsigned-char -nostdinc -fno-builtin -I include -I $(BUILD_DIR)/include -I src -std=gnu90 -Wall -Wextra -Wno-format-security -D_LANGUAGE_C $(VERSION_CFLAGS) $(GRUCODE_CFLAGS)

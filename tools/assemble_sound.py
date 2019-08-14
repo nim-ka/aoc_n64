@@ -15,6 +15,7 @@ DUMP_INDIVIDUAL_BINS = False
 
 orderedJsonDecoder = JSONDecoder(object_pairs_hook=OrderedDict)
 
+
 class Aifc:
     def __init__(self, name, fname, data, book, loop):
         self.name = name
@@ -31,7 +32,7 @@ class SampleBank:
         self.name = name
         self.uses = 0
         self.entries = entries
-        self.name_to_entry = OrderedDict()
+        self.name_to_entry = {}
         for e in entries:
             self.name_to_entry[e.name] = e
 
@@ -55,7 +56,7 @@ def fail(msg):
 def validate(cond, msg, forstr=""):
     if not cond:
         if forstr:
-            msg += " for " + msg
+            msg += " for " + forstr
         raise Exception(msg)
 
 
@@ -241,7 +242,7 @@ def validate_int_in_range(val, lo, hi, msg, forstr=""):
 
 
 def validate_sound(json, sample_bank, forstr=""):
-    validate_json_format(json, {"sample": str, "tuning": float})
+    validate_json_format(json, {"sample": str, "tuning": float}, forstr)
     validate(
         json["sample"] in sample_bank.name_to_entry,
         "reference to sound {} which isn't found in sample bank {}".format(
@@ -251,11 +252,20 @@ def validate_sound(json, sample_bank, forstr=""):
     )
 
 
-def validate_bank(json, sample_bank):
+def validate_bank_toplevel(json):
+    validate(isinstance(json, dict), "must have a top-level object")
     validate_json_format(
-        json, {"envelopes": dict, "instruments": dict, "instrument_list": list}
+        json,
+        {
+            "envelopes": dict,
+            "sample_bank": str,
+            "instruments": dict,
+            "instrument_list": list,
+        },
     )
 
+
+def validate_bank(json, sample_bank):
     if "date" in json:
         validate(
             isinstance(json["date"], str)
@@ -318,7 +328,7 @@ def validate_bank(json, sample_bank):
             "drum",
         )
 
-    no_sound = OrderedDict()
+    no_sound = {}
 
     for name, inst in instruments:
         forstr = "instrument " + name
@@ -393,21 +403,21 @@ def validate_bank(json, sample_bank):
         validate(inst in seen_instruments, "unreferenced instrument " + inst)
 
 
-def apply_ifdefs(bank, defines):
-    if "VERSION_EU" in defines and "date" in bank.json:
-        bank.json["date"] = bank.json["date"].replace("1996-03-19", "1996-06-24")
+def apply_version_diffs(json, defines):
+    if "VERSION_EU" in defines and isinstance(json.get("date", None), str):
+        json["date"] = json["date"].replace("1996-03-19", "1996-06-24")
 
     ifdef_removed = set()
-    for key, inst in bank.json["instruments"].items():
+    for key, inst in json["instruments"].items():
         if (
             isinstance(inst, dict)
-            and "ifdef" in inst
+            and isinstance(inst.get("ifdef", None), list)
             and all(d not in defines for d in inst["ifdef"])
         ):
             ifdef_removed.add(key)
     for key in ifdef_removed:
-        del bank.json["instruments"][key]
-        bank.json["instrument_list"].remove(key)
+        del json["instruments"][key]
+        json["instrument_list"].remove(key)
 
 
 def mark_sample_bank_uses(bank):
@@ -473,7 +483,7 @@ def serialize_ctl(bank, base_ser):
             if "sound_hi" in inst:
                 used_samples.append(inst["sound_hi"]["sample"])
 
-    sample_name_to_addr = OrderedDict()
+    sample_name_to_addr = {}
     for name in used_samples:
         if name in sample_name_to_addr:
             continue
@@ -499,7 +509,7 @@ def serialize_ctl(bank, base_ser):
         loop_addr_buf.append(struct.pack(">I", ser.size))
         if aifc.loop is None:
             assert sample_len % 9 in [0, 1]
-            end = sample_len // 9 * 16 + (sample_len % 2)
+            end = sample_len // 9 * 16 + (sample_len % 2) + (sample_len % 9)
             ser.add(struct.pack(">IIiI", 0, end, 0, 0))
         else:
             ser.add(
@@ -510,7 +520,7 @@ def serialize_ctl(bank, base_ser):
                 ser.add(struct.pack(">h", x))
         ser.align(16)
 
-    env_name_to_addr = OrderedDict()
+    env_name_to_addr = {}
     for name, env in json["envelopes"].items():
         env_name_to_addr[name] = ser.size
         for entry in env:
@@ -708,8 +718,9 @@ def main():
                 data = strip_comments(data)
             bank_json = orderedJsonDecoder.decode(data)
 
-            validate(isinstance(bank_json, dict), "must have a top-level object")
-            validate_json_format(bank_json, {"sample_bank": str})
+            validate_bank_toplevel(bank_json)
+            apply_version_diffs(bank_json, defines_set)
+
             sample_bank_name = bank_json["sample_bank"]
             validate(
                 sample_bank_name in name_to_sample_bank,
@@ -720,7 +731,6 @@ def main():
             validate_bank(bank_json, sample_bank)
 
             bank = Bank(f[:-5], sample_bank, bank_json)
-            apply_ifdefs(bank, defines_set)
             mark_sample_bank_uses(bank)
             banks.append(bank)
 
@@ -728,7 +738,7 @@ def main():
             fail("failed to parse bank " + fname + ": " + str(e))
 
     sample_banks = [b for b in sample_banks if b.uses > 0]
-    sample_bank_index = OrderedDict()
+    sample_bank_index = {}
     for sample_bank in sample_banks:
         sample_bank_index[sample_bank] = len(sample_bank_index)
 
