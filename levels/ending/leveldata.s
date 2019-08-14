@@ -756,7 +756,7 @@ vertex    240,     20,     -1,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 glabel dl_cake_end_screen # 0x07026400 - 0x07027350
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
 gsDPSetRenderMode G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2
@@ -960,7 +960,7 @@ gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsDPPipeSync
 gsSPTexture -1, -1, 0, 0, 0
 gsSPSetGeometryMode G_LIGHTING
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
 gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2

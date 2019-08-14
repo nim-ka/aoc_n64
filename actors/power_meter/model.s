@@ -57,7 +57,7 @@ vertex      0,     32,      0,      1,      0,  0xFF, 0xFF, 0xFF, 0xFF
 glabel power_meter_seg3_dl_03029480 # 0x03029480 - 0x03029530
 gsDPPipeSync
 gsSPClearGeometryMode G_LIGHTING
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
 gsDPSetRenderMode G_RM_TEX_EDGE, G_RM_TEX_EDGE2
@@ -106,6 +106,6 @@ gsDPSetRenderMode G_RM_OPA_SURF, G_RM_OPA_SURF2
 # It could also be one of these: 
 # G_RM_OPA_SURF, G_RM_OPA_CI2; G_RM_OPA_CI, G_RM_OPA_SURF2; G_RM_PASS, G_RM_OPA_SURF2;
 
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsDPSetTextureFilter G_TF_BILERP
 gsSPEndDisplayList

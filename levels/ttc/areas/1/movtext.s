@@ -18,7 +18,7 @@ gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 200, 255, 255, 255
 gsSPFogPosition 900, 1000
 gsSPSetGeometryMode G_FOG
-gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_COMBINED, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_COMBINED
+gsDPSetCombineModeLERP G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_COMBINED, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_COMBINED
 gsSPLight ttc_diff_light_surface_treadmill, 1
 gsSPLight ttc_amb_light_surface_treadmill, 2
 gsSPTexture -1, -1, 0, 0, 1
@@ -33,7 +33,7 @@ gsDPPipeSync
 gsDPSetCycleType G_CYC_1CYCLE
 gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_NOOP2
 gsSPClearGeometryMode G_FOG
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
 glabel ttc_movtex_tris_big_surface_treadmill # 0x07016840 - 0x07016904

@@ -83,7 +83,7 @@ glabel tiny_bubble_dl_0B006A50 # 0x0B006A50 - 0x0B006AB0
 gsDPPipeSync
 gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPTexture -32768, -32768, 0, 0, 1
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
 gsDPSetRenderMode G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2
@@ -104,7 +104,7 @@ gsSPEndDisplayList
 
 glabel tiny_bubble_dl_0B006AB0 # 0x0B006AB0 - 0x0B006AD8
 gsSPTexture 1, 1, 0, 0, 0
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
 gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2 
@@ -123,7 +123,7 @@ glabel tiny_bubble_dl_0B006CD8 # 0x0B006CD8 - 0x0B006D38
 gsDPPipeSync
 gsSPClearGeometryMode G_LIGHTING | G_SHADING_SMOOTH
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, effect_0B006AD8
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
 gsDPSetRenderMode G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2
@@ -145,7 +145,7 @@ gsSPEndDisplayList
 glabel tiny_bubble_dl_0B006D38 # 0x0B006D38 - 0x0B006D68
 gsDPPipeSync
 gsSPClearGeometryMode G_LIGHTING | G_SHADING_SMOOTH
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
 gsDPSetRenderMode G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2

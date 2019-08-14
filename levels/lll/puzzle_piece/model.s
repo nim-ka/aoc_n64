@@ -12,7 +12,7 @@ vertex   -245,    -45,   -245,      0,      0,  0x00, 0x00, 0x00, 0xC8
 
 lll_seg7_dl_0701A2F0: # 0x0701A2F0 - 0x0701A338
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPClearGeometryMode G_SHADING_SMOOTH
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsSPTexture -1, -1, 0, 0, 1
@@ -28,7 +28,7 @@ gsSPVertex lll_seg7_vertex_0701A270, 4, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPEndDisplayList
 
@@ -147,7 +147,7 @@ gsSPEndDisplayList
 glabel lll_seg7_dl_0701A628 # 0x0701A628 - 0x0701A670
 gsDPPipeSync
 gsSPClearGeometryMode G_LIGHTING
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPVertex lll_seg7_vertex_0701A2B0, 4, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsDPPipeSync

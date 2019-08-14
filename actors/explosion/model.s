@@ -28,7 +28,7 @@ explosion_seg3_texture_03003A08: # 0x03003A08
 .incbin "actors/explosion/explosion_6.rgba16"
 
 glabel explosion_seg3_dl_03004208 # 0x03004208 - 0x03004298
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
 gsDPSetEnvColor 255, 255, 255, 150
 gsSPClearGeometryMode G_LIGHTING
 gsSPTexture -1, -1, 0, 0, 1
@@ -43,7 +43,7 @@ gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsSPSetGeometryMode G_LIGHTING
 gsDPSetEnvColor 255, 255, 255, 255
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
 glabel explosion_seg3_dl_03004298 # 0x03004298 - 0x030042B0

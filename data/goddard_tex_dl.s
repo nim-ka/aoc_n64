@@ -59,7 +59,7 @@ D_vertex_801B1778: #! no references to these vertices
    vertex      0,      0,      0,      0,      0,  0x00, 0x00, 0x00, 0x00
 
 star_dl_common:
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPClearGeometryMode 0x000C0000
 gsDPSetRenderMode G_RM_AA_ZB_TEX_EDGE, G_RM_NOOP2
 gsSPTexture -1, -1, 0, 0, 1
@@ -71,7 +71,7 @@ gsDPSetTileSize 0, 0, 0, 124, 124
 gsSPVertex star_vertex_801B1738, 4, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPTexture -1, -1, 0, 0, 0
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsDPSetRenderMode G_RM_AA_ZB_OPA_INTER, G_RM_NOOP2
 gsSPEndDisplayList
 
@@ -211,7 +211,7 @@ sparkle_vertex_801B4A38:
    vertex    -32,     64,      0,      0,      0,  0x00, 0x00, 0x7F, 0x00
 
 sparkle_dl_common: # 0x801B4A78
-gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_PRIMITIVE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_PRIMITIVE, G_ACMUX_0
+gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_PRIMITIVE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_PRIMITIVE, G_ACMUX_0
 gsSPClearGeometryMode 0x000C0000
 gsDPSetRenderMode G_RM_AA_ZB_TEX_EDGE, G_RM_NOOP2
 gsSPTexture -32768, -32768, 0, 0, 1
@@ -223,7 +223,7 @@ gsDPSetTileSize 0, 0, 0, 124, 124
 gsSPVertex sparkle_vertex_801B4A38, 4, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPTexture 1, 1, 0, 0, 0
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsDPSetRenderMode G_RM_AA_ZB_OPA_INTER, G_RM_NOOP2
 gsSPEndDisplayList
 
@@ -346,7 +346,7 @@ gsSPSetGeometryMode G_TEXTURE_GEN
 gsSPTexture 1984, 1984, 0, 0, 1
 gsDPSetTexturePersp G_TP_PERSP
 gsDPSetTextureFilter G_TF_BILERP
-gsDPSetCombineMode1Cycle G_CCMUX_PRIMITIVE, G_CCMUX_SHADE, G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_ACMUX_PRIMITIVE, G_ACMUX_SHADE, G_ACMUX_TEXEL0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_PRIMITIVE, G_CCMUX_SHADE, G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_ACMUX_PRIMITIVE, G_ACMUX_SHADE, G_ACMUX_TEXEL0, G_ACMUX_SHADE
 gsDPLoadTextureBlock texture_mario_face_shine, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, 5, 5, G_TX_NOLOD, G_TX_NOLOD
 gsDPPipeSync
 gsSPEndDisplayList
@@ -357,7 +357,7 @@ gsSPEndDisplayList
 
 glabel marioHeadDl801B5188
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsDPSetCycleType G_CYC_1CYCLE
 gsDPSetTextureLOD G_TL_TILE
 gsDPSetTextureLUT G_TT_NONE
@@ -422,7 +422,7 @@ gsSPTexture -32768, -32768, 0, 0, 1
 gsDPSetAlphaCompare G_AC_THRESHOLD
 gsDPSetBlendColor 0, 0, 0, 1
 gsDPSetRenderMode G_RM_AA_ZB_TEX_EDGE, G_RM_NOOP2
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsDPSetTextureFilter G_TF_BILERP
 gsDPSetTexturePersp G_TP_NONE
 gsSPEndDisplayList

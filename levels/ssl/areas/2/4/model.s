@@ -12,7 +12,7 @@ glabel ssl_quicksand # 0x07004018 - 0x07004818
 
 glabel ssl_dl_quicksand_pit_begin # 0x07004818 - 0x07004860
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPLight ssl_diff_light_quicksand_pit, 1
 gsSPLight ssl_amb_light_quicksand_pit, 2
 gsSPTexture -1, -1, 0, 0, 1
@@ -24,7 +24,7 @@ gsSPEndDisplayList
 glabel ssl_dl_quicksand_pit_end # 0x07004860 - 0x07004880
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
 glabel ssl_dl_pyramid_quicksand_pit_begin # 0x07004880 - 0x070048F8
@@ -35,7 +35,7 @@ gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 0, 0, 0, 255
 gsSPFogFactor 0x0E49, 0xF2B7 # This isn't gsSPFogPosition since there is no valid min/max pair that corresponds to 0x0E49F2B7
 gsSPSetGeometryMode G_FOG
-gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_COMBINED, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_COMBINED
+gsDPSetCombineModeLERP G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_COMBINED, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_COMBINED
 gsSPLight ssl_diff_light_quicksand_pit, 1
 gsSPLight ssl_amb_light_quicksand_pit, 2
 gsSPTexture -1, -1, 0, 0, 1
@@ -50,7 +50,7 @@ gsDPPipeSync
 gsDPSetCycleType G_CYC_1CYCLE
 gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_NOOP2
 gsSPClearGeometryMode G_FOG
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
 glabel ssl_movtex_tris_quicksand_pit # 0x07004930 - 0x07004AB4
@@ -100,7 +100,7 @@ gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 0, 0, 0, 255
 gsSPFogFactor 0x0E49, 0xF2B7 # This isn't gsSPFogPosition since there is no valid min/max pair that corresponds to 0x0E49F2B7
 gsSPSetGeometryMode G_FOG
-gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_COMBINED, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_COMBINED
+gsDPSetCombineModeLERP G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_COMBINED, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_COMBINED
 gsSPLight ssl_diff_light_quicksand_pit, 1
 gsSPLight ssl_amb_light_quicksand_pit, 2
 gsSPTexture -1, -1, 0, 0, 1
@@ -114,5 +114,5 @@ gsDPPipeSync
 gsDPSetCycleType G_CYC_1CYCLE
 gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_NOOP2
 gsSPClearGeometryMode G_FOG
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList

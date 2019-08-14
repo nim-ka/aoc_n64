@@ -34,7 +34,7 @@ glabel flying_carpet_static_vertex_data # 0x07019248 - 0x070192F0
 
 glabel dl_flying_carpet_begin # 0x070192F0 - 0x07019360
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPClearGeometryMode G_CULL_BACK
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsSPTexture -1, -1, 0, 0, 1
@@ -60,6 +60,6 @@ gsSPEndDisplayList
 glabel dl_flying_carpet_end # 0x070193C8 - 0x070193F0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_CULL_BACK
 gsSPEndDisplayList

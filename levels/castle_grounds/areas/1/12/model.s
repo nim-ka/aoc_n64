@@ -37,7 +37,7 @@ gsSPEndDisplayList
 
 glabel castle_grounds_seg7_dl_0700EA58 # 0x0700EA58 - 0x0700EAE8
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
 gsDPSetRenderMode G_RM_XLU_SURF, G_RM_XLU_SURF2
 gsDPSetTextureFilter G_TF_BILERP
 gsSPClearGeometryMode G_LIGHTING
@@ -50,7 +50,7 @@ gsSPDisplayList castle_grounds_seg7_dl_0700E9E8
 gsSPDisplayList castle_grounds_seg7_dl_0700EA20
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
 gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2

@@ -163,7 +163,7 @@ gsSPEndDisplayList
 
 glabel door_seg3_dl_03013E28 # 0x03013E28 - 0x03013EA8
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPClearGeometryMode G_SHADING_SMOOTH
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsSPTexture -1, -1, 0, 0, 1
@@ -173,7 +173,7 @@ gsDPSetTileSize 0, 0, 0, 124, 252
 gsSPDisplayList door_seg3_dl_03013C10
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPDisplayList door_seg3_dl_03013CC8
 gsSPDisplayList door_seg3_dl_03013D78
@@ -181,7 +181,7 @@ gsSPEndDisplayList
 
 glabel door_seg3_dl_03013EA8 # 0x03013EA8 - 0x03013F20
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPClearGeometryMode G_SHADING_SMOOTH
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsSPTexture -1, -1, 0, 0, 1
@@ -191,7 +191,7 @@ gsDPSetTileSize 0, 0, 0, 124, 252
 gsSPDisplayList door_seg3_dl_03013C10
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPDisplayList door_seg3_dl_03013CC8
 gsSPEndDisplayList
@@ -218,7 +218,7 @@ vertex    437,    412,    153,      0,      0,  0x00, 0x00, 0x7F, 0xFF
 
 glabel door_seg3_dl_03014020 # 0x03014020 - 0x03014100
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPClearGeometryMode G_SHADING_SMOOTH
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsSPTexture -1, -1, 0, 0, 1
@@ -235,7 +235,7 @@ gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPLight door_seg3_light_03009D00, 1
 gsSPLight door_seg3_light_03009CF8, 2
 gsSPVertex door_seg3_vertex_03013FA0, 8, 0
@@ -268,7 +268,7 @@ vertex    441,    550,     59,    992,    992,  0x00, 0x00, 0x7F, 0xFF
 
 glabel door_seg3_dl_030141C0 # 0x030141C0 - 0x03014218
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
+gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsSPClearGeometryMode G_SHADING_SMOOTH
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsSPTexture -1, -1, 0, 0, 1
@@ -283,7 +283,7 @@ glabel door_seg3_dl_03014218 # 0x03014218 - 0x03014250
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPEndDisplayList
 
@@ -357,7 +357,7 @@ vertex    595,    916,    -63,    480,      0,  0x00, 0x00, 0x81, 0xFF
 
 glabel door_seg3_dl_03014470 # 0x03014470 - 0x030144E0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPClearGeometryMode G_SHADING_SMOOTH
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsSPTexture -1, -1, 0, 0, 1
@@ -376,7 +376,7 @@ gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPEndDisplayList
 
@@ -491,7 +491,7 @@ gsSPEndDisplayList
 
 glabel door_seg3_dl_03014A50 # 0x03014A50 - 0x03014A80
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPClearGeometryMode G_SHADING_SMOOTH
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsSPTexture -1, -1, 0, 0, 1
@@ -515,7 +515,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPDisplayList door_seg3_dl_03014A20
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPLight door_seg3_light_03009D00, 1
 gsSPLight door_seg3_light_03009CF8, 2
@@ -539,7 +539,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPDisplayList door_seg3_dl_03014A20
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPLight door_seg3_light_03009D00, 1
 gsSPLight door_seg3_light_03009CF8, 2
@@ -563,7 +563,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPDisplayList door_seg3_dl_03014A20
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPLight door_seg3_light_03009D00, 1
 gsSPLight door_seg3_light_03009CF8, 2
@@ -587,7 +587,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPDisplayList door_seg3_dl_03014A20
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPLight door_seg3_light_03009D00, 1
 gsSPLight door_seg3_light_03009CF8, 2
@@ -611,7 +611,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPDisplayList door_seg3_dl_03014A20
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPLight door_seg3_light_03009D00, 1
 gsSPLight door_seg3_light_03009CF8, 2
@@ -654,7 +654,7 @@ gsSPEndDisplayList
 
 glabel door_seg3_dl_03014F68 # 0x03014F68 - 0x03014F98
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPClearGeometryMode G_SHADING_SMOOTH
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsSPTexture -1, -1, 0, 0, 1
@@ -671,7 +671,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPDisplayList door_seg3_dl_03014EF0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPLight door_seg3_light_03009D00, 1
 gsSPLight door_seg3_light_03009CF8, 2
 gsSPBranchList door_seg3_dl_03014F30
@@ -687,7 +687,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPDisplayList door_seg3_dl_03014EF0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPLight door_seg3_light_03009D00, 1
 gsSPLight door_seg3_light_03009CF8, 2
 gsSPBranchList door_seg3_dl_03014F30
@@ -703,7 +703,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPDisplayList door_seg3_dl_03014EF0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPLight door_seg3_light_03009D00, 1
 gsSPLight door_seg3_light_03009CF8, 2
 gsSPBranchList door_seg3_dl_03014F30
@@ -719,7 +719,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPDisplayList door_seg3_dl_03014EF0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPLight door_seg3_light_03009D00, 1
 gsSPLight door_seg3_light_03009CF8, 2
 gsSPBranchList door_seg3_dl_03014F30
@@ -735,7 +735,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPDisplayList door_seg3_dl_03014EF0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPLight door_seg3_light_03009D00, 1
 gsSPLight door_seg3_light_03009CF8, 2
 gsSPBranchList door_seg3_dl_03014F30

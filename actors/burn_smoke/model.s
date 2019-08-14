@@ -14,7 +14,7 @@ burn_smoke_seg4_texture_04021800: # 0x04021800
 
 glabel burn_smoke_seg4_dl_04022000 # 0x04022000 - 0x04022028
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
+gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK
 gsSPTexture -1, -1, 0, 0, 1
 gsSPEndDisplayList
@@ -27,7 +27,7 @@ gsSPEndDisplayList
 glabel burn_smoke_seg4_dl_04022048 # 0x04022048 - 0x04022070
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_LIGHTING
 gsSPEndDisplayList
 

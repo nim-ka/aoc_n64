@@ -30,7 +30,7 @@ vertex      0,    614,      0,      0,      0,  0x00, 0x00, 0x7F, 0xFF
 # Unused
 glabel hmc_seg7_dl_07024268 # 0x07024268 - 0x070242A0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPLight hmc_seg7_light_070241C0, 1
 gsSPLight hmc_seg7_light_070241B8, 2
 gsSPTexture -1, -1, 0, 0, 1
@@ -42,7 +42,7 @@ glabel hmc_seg7_dl_070242A0 # 0x070242A0 - 0x070242D0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
 hmc_seg7_painting_dl_070242D0: # 0x070242D0 - 0x070242F0

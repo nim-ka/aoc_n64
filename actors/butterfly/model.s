@@ -21,7 +21,7 @@ vertex      0,      0,     39,   1972,   4024,  0xFF, 0xFF, 0xFF, 0xFF
 
 glabel butterfly_seg3_dl_03005408 # 0x03005408 - 0x030054A0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK
 gsSPTexture -32768, -32768, 0, 0, 1
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, butterfly_seg3_texture_030043A8
@@ -35,13 +35,13 @@ gsSPVertex butterfly_seg3_vertex_03004348, 6, 0
 gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSPTexture -32768, -32768, 1, 1, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
 gsSPEndDisplayList
 
 glabel butterfly_seg3_dl_030054A0 # 0x030054A0 - 0x03005538
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK
 gsSPTexture -32768, -32768, 0, 0, 1
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, butterfly_seg3_texture_030043A8
@@ -55,7 +55,7 @@ gsSPVertex butterfly_seg3_vertex_030053A8, 6, 0
 gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSPTexture -32768, -32768, 1, 1, 0
 gsDPPipeSync
-gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
 gsSPEndDisplayList
 

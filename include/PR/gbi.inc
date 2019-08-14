@@ -793,14 +793,14 @@
 .endm
 
 /* gDPSetCombineMode */
-.macro gsDPSetCombineMode a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0, a1, b1, c1, d1, Aa1, Ab1, Ac1, Ad1
+.macro gsDPSetCombineModeLERP a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0, a1, b1, c1, d1, Aa1, Ab1, Ac1, Ad1
    .word (G_SETCOMBINE << 24) | ((\a0 & 0xF) << 20) | ((\c0 & 0x1F) << 15) | ((\Aa0 & 0x7) << 12) | ((\Ac0 & 0x7) << 9) | ((\a1 & 0xF) << 5) | (\c1 & 0x1F)
    .word ((\b0 & 0xF) << 28) | ((\b1 & 0xF) << 24) | ((\Aa1 & 0x7) << 21) | ((\Ac1 & 0x7) << 18) | ((\d0 & 0x7) << 15) | ((\Ab0 & 0x7) << 12) | ((\Ad0 & 0x7) << 9) | ((\d1 & 0x7) << 6) | ((\Ab1 & 0x7) << 3) | (\Ad1 & 0x7)
 .endm
 
 /* gDPSetCombineMode1Cycle */
-.macro gsDPSetCombineMode1Cycle a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0
-   gsDPSetCombineMode \a0, \b0, \c0, \d0, \Aa0, \Ab0, \Ac0, \Ad0, \a0, \b0, \c0, \d0, \Aa0, \Ab0, \Ac0, \Ad0
+.macro gsDPSetCombineModeLERP1Cycle a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0
+   gsDPSetCombineModeLERP \a0, \b0, \c0, \d0, \Aa0, \Ab0, \Ac0, \Ad0, \a0, \b0, \c0, \d0, \Aa0, \Ab0, \Ac0, \Ad0
 .endm
 
 /* gDPSetTextureImage */
