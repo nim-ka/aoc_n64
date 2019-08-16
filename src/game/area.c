@@ -435,7 +435,7 @@ void render_game(void)
         render_hud();
 
         gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, 320, 240);
-        func_802D61A8();
+        render_text_labels();
         do_cutscene_handler();
         print_displaying_credits_entry();
         gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, 320, 240-BORDER_HEIGHT);
@@ -470,7 +470,7 @@ void render_game(void)
     }
     else
     {
-        func_802D61A8();
+        render_text_labels();
         if (D_8032CE78 != 0)
             clear_viewport(D_8032CE78, gWarpTransFBSetColor);
         else
