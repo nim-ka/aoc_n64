@@ -167,8 +167,8 @@ glabel func_80316928
 /* 0D1B34 80316B34 00001025 */   move  $v0, $zero
 /* 0D1B38 80316B38 8FB80038 */  lw    $t8, 0x38($sp)
 .L80316B3C:
-/* 0D1B3C 80316B3C 3C018022 */  lui   $at, %hi(sSampleDmaNumListItems) # $at, 0x8022
-/* 0D1B40 80316B40 AC206B38 */  sw    $zero, %lo(sSampleDmaNumListItems)($at)
+/* 0D1B3C 80316B3C 3C018022 */  lui   $at, %hi(gSampleDmaNumListItems) # $at, 0x8022
+/* 0D1B40 80316B40 AC206B38 */  sw    $zero, %lo(gSampleDmaNumListItems)($at)
 /* 0D1B44 80316B44 97190006 */  lhu   $t9, 6($t8)
 /* 0D1B48 80316B48 AFB9002C */  sw    $t9, 0x2c($sp)
 /* 0D1B4C 80316B4C 0C0C9290 */  jal   osAiSetFrequency

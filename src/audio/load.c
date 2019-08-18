@@ -8,6 +8,66 @@
 
 #define ALIGN16(val) (((val) + 0xF) & ~0xF)
 
+struct SharedDma
+{
+    /*0x0*/ u8 *buffer; // target, points to pre-allocated buffer
+    /*0x4*/ u32 source; // device address
+    /*0x8*/ u16 sizeUnused; // set to bufSize, never read
+    /*0xA*/ u16 bufSize;
+    /*0xC*/ u8 unused2; // set to 0, never read
+    /*0xD*/ u8 reuseIndex; // position in sSampleDmaReuseQueue1/2, if ttl == 0
+    /*0xE*/ u8 ttl; // duration after which the DMA can be discarded
+}; // size = 0x10
+
+struct Note *gNotes;
+struct SequencePlayer gSequencePlayers[SEQUENCE_PLAYERS];
+struct SequenceChannel gSequenceChannels[32];
+
+#ifdef VERSION_JP
+struct SequenceChannelLayer D_802245D8[48];
+#else
+struct SequenceChannelLayer D_802245D8[52];
+#endif
+
+struct SequenceChannel gSequenceChannelNone;
+struct AudioListItem gLayerFreeList;
+struct NotePool gNoteFreeLists;
+
+OSMesgQueue gCurrAudioFrameDmaQueue;
+OSMesg gCurrAudioFrameDmaMesgBufs[AUDIO_FRAME_DMA_QUEUE_SIZE];
+OSIoMesg gCurrAudioFrameDmaIoMesgBufs[AUDIO_FRAME_DMA_QUEUE_SIZE];
+OSMesgQueue gAudioDmaMesgQueue;
+OSMesg gAudioDmaMesg;
+OSIoMesg gAudioDmaIoMesg;
+
+struct SharedDma sSampleDmas[0x60];
+u32 gSampleDmaNumListItems;
+u32 sSampleDmaListSize1;
+u32 sUnused80226B40; // set to 0, never read
+
+// Circular buffer of DMAs with ttl = 0. tail <= head, wrapping around mod 256.
+u8 sSampleDmaReuseQueue1[256];
+u8 sSampleDmaReuseQueue2[256];
+u8 sSampleDmaReuseQueueTail1;
+u8 sSampleDmaReuseQueueTail2;
+u8 sSampleDmaReuseQueueHead1;
+u8 sSampleDmaReuseQueueHead2;
+
+ALSeqFile *gSeqFileHeader;
+ALSeqFile *gAlCtlHeader;
+ALSeqFile *gAlTbl;
+u8 *gAlBankSets;
+u16 gSequenceCount;
+
+extern u64 gAudioGlobalsStartMarker;
+extern u64 gAudioGlobalsEndMarker;
+
+extern u8 gSoundDataADSR[]; // sound_data.ctl
+extern u8 gSoundDataRaw[]; // sound_data.tbl
+extern u8 gMusicData[]; // sequences.s
+extern u8 gBankSetsData[]; // bank_sets.s
+
+
 /**
  * Performs an immediate DMA copy
  */
@@ -59,7 +119,7 @@ void decrease_sample_dma_ttls()
         }
     }
 
-    for (i = sSampleDmaListSize1; i < sSampleDmaNumListItems; i++)
+    for (i = sSampleDmaListSize1; i < gSampleDmaNumListItems; i++)
     {
         struct SharedDma *temp = sSampleDmas + i;
         if (temp->ttl != 0)
@@ -91,7 +151,7 @@ void *dma_sample_data(u8 *devAddr, u32 size, s32 arg2, u8 *arg3)
 
     if (arg2 != 0 || *arg3 >= sSampleDmaListSize1)
     {
-        for (i = sSampleDmaListSize1; i < sSampleDmaNumListItems; i++)
+        for (i = sSampleDmaListSize1; i < gSampleDmaNumListItems; i++)
         {
             dma = sSampleDmas + i;
             bufferPos = (u32) devAddr - dma->source;
@@ -186,56 +246,56 @@ void func_8031758C(UNUSED s32 arg0)
     s32 i;
     s32 j;
 
-    D_80226D68 = 0x510;
+    D_80226D68 = 144 * 9;
     for (i = 0; i < gMaxSimultaneousNotes * 3; i++)
     {
-        sSampleDmas[sSampleDmaNumListItems].buffer = soundAlloc(&D_802212C8, D_80226D68);
-        if (sSampleDmas[sSampleDmaNumListItems].buffer == NULL)
+        sSampleDmas[gSampleDmaNumListItems].buffer = soundAlloc(&D_802212C8, D_80226D68);
+        if (sSampleDmas[gSampleDmaNumListItems].buffer == NULL)
         {
             goto out1;
         }
-        sSampleDmas[sSampleDmaNumListItems].source = 0;
-        sSampleDmas[sSampleDmaNumListItems].sizeUnused = 0;
-        sSampleDmas[sSampleDmaNumListItems].unused2 = 0;
-        sSampleDmas[sSampleDmaNumListItems].ttl = 0;
-        sSampleDmas[sSampleDmaNumListItems].bufSize = D_80226D68;
-        sSampleDmaNumListItems++;
+        sSampleDmas[gSampleDmaNumListItems].source = 0;
+        sSampleDmas[gSampleDmaNumListItems].sizeUnused = 0;
+        sSampleDmas[gSampleDmaNumListItems].unused2 = 0;
+        sSampleDmas[gSampleDmaNumListItems].ttl = 0;
+        sSampleDmas[gSampleDmaNumListItems].bufSize = D_80226D68;
+        gSampleDmaNumListItems++;
     }
 out1:
 
-    for (i = 0; (u32) i < sSampleDmaNumListItems; i++)
+    for (i = 0; (u32) i < gSampleDmaNumListItems; i++)
     {
         sSampleDmaReuseQueue1[i] = (u8) i;
         sSampleDmas[i].reuseIndex = (u8) i;
     }
 
-    for (j = sSampleDmaNumListItems; j < 0x100; j++)
+    for (j = gSampleDmaNumListItems; j < 0x100; j++)
     {
         sSampleDmaReuseQueue1[j] = 0;
     }
 
     sSampleDmaReuseQueueTail1 = 0;
-    sSampleDmaReuseQueueHead1 = (u8) sSampleDmaNumListItems;
-    sSampleDmaListSize1 = sSampleDmaNumListItems;
-    D_80226D68 = 0x5a0;
+    sSampleDmaReuseQueueHead1 = (u8) gSampleDmaNumListItems;
+    sSampleDmaListSize1 = gSampleDmaNumListItems;
 
+    D_80226D68 = 160 * 9;
     for (i = 0; i < gMaxSimultaneousNotes; i++)
     {
-        sSampleDmas[sSampleDmaNumListItems].buffer = soundAlloc(&D_802212C8, D_80226D68);
-        if (sSampleDmas[sSampleDmaNumListItems].buffer == NULL)
+        sSampleDmas[gSampleDmaNumListItems].buffer = soundAlloc(&D_802212C8, D_80226D68);
+        if (sSampleDmas[gSampleDmaNumListItems].buffer == NULL)
         {
             goto out2;
         }
-        sSampleDmas[sSampleDmaNumListItems].source = 0;
-        sSampleDmas[sSampleDmaNumListItems].sizeUnused = 0;
-        sSampleDmas[sSampleDmaNumListItems].unused2 = 0;
-        sSampleDmas[sSampleDmaNumListItems].ttl = 0;
-        sSampleDmas[sSampleDmaNumListItems].bufSize = D_80226D68;
-        sSampleDmaNumListItems++;
+        sSampleDmas[gSampleDmaNumListItems].source = 0;
+        sSampleDmas[gSampleDmaNumListItems].sizeUnused = 0;
+        sSampleDmas[gSampleDmaNumListItems].unused2 = 0;
+        sSampleDmas[gSampleDmaNumListItems].ttl = 0;
+        sSampleDmas[gSampleDmaNumListItems].bufSize = D_80226D68;
+        gSampleDmaNumListItems++;
     }
 out2:
 
-    for (i = sSampleDmaListSize1; (u32) i < sSampleDmaNumListItems; i++)
+    for (i = sSampleDmaListSize1; (u32) i < gSampleDmaNumListItems; i++)
     {
         sSampleDmaReuseQueue2[i - sSampleDmaListSize1] = (u8) i;
         sSampleDmas[i].reuseIndex = (u8) (i - sSampleDmaListSize1);
@@ -243,13 +303,13 @@ out2:
 
     // This probably meant to touch the range size1..size2 as well... but it
     // doesn't matter, since these values are never read anyway.
-    for (j = sSampleDmaNumListItems; j < 0x100; j++)
+    for (j = gSampleDmaNumListItems; j < 0x100; j++)
     {
         sSampleDmaReuseQueue2[j] = sSampleDmaListSize1;
     }
 
     sSampleDmaReuseQueueTail2 = 0;
-    sSampleDmaReuseQueueHead2 = sSampleDmaNumListItems - sSampleDmaListSize1;
+    sSampleDmaReuseQueueHead2 = gSampleDmaNumListItems - sSampleDmaListSize1;
 }
 
 #ifndef static
@@ -717,8 +777,8 @@ void audio_init()
     lim1 = gUnusedCount80333EE8;
     for (i = 0; i < lim1; i++)
     {
-        sUnused80226E58[i] = 0;
-        sUnused80226E98[i] = 0;
+        gUnused80226E58[i] = 0;
+        gUnused80226E98[i] = 0;
     }
 
     lim2 = gAudioHeapSize;
@@ -728,8 +788,8 @@ void audio_init()
     }
 
     i = 0;
-    lim3 = ((u32) &D_80226EC0 - (u32) &D_802211A0) / 8;
-    ptr64 = &D_802211A0 - 1;
+    lim3 = ((u32) &gAudioGlobalsEndMarker - (u32) &gAudioGlobalsStartMarker) / 8;
+    ptr64 = &gAudioGlobalsStartMarker - 1;
     for (k = lim3; k >= 0; k--)
     {
         i++;
@@ -752,7 +812,7 @@ void audio_init()
     osCreateMesgQueue(&gCurrAudioFrameDmaQueue, gCurrAudioFrameDmaMesgBufs,
             ARRAY_COUNT(gCurrAudioFrameDmaMesgBufs));
     gCurrAudioFrameDmaCount = 0;
-    sSampleDmaNumListItems = 0;
+    gSampleDmaNumListItems = 0;
 
     func_80316108(D_80333EF0);
 

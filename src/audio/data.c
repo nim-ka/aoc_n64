@@ -163,3 +163,36 @@ s32 gAudioHeapSize = 0x31150;
 s32 D_80333EF0 = 0x2500;
 volatile s32 gAudioLoadLock = AUDIO_LOCK_UNINITIALIZED;
 s8 sUnused8033EF8 = 24;
+
+// .bss
+struct CtlEntry *gCtlEntries;
+s32 gAiFrequency;
+u32 D_80226D68;
+s32 D_80226D6C;
+
+s32 gMaxSimultaneousNotes;
+s32 D_80226D74;
+s32 gMinAiBufferLength;
+s16 gTempoInternalToExternal;
+s8 gAudioUpdatesPerFrame;
+s8 gSoundMode;
+
+volatile s32 gActiveAudioFrames;
+volatile s32 gCurrAudioFrameDmaCount;
+
+s32 gAudioTaskIndex;
+s32 gCurrAiBufferIndex;
+
+u64 *gAudioCmdBuffers[2];
+u64 *gAudioCmd;
+
+struct SPTask *gAudioTask;
+struct SPTask gAudioTasks[2];
+
+u16 *gAiBuffers[NUMAIBUFFERS];
+s16 gAiBufferLengths[NUMAIBUFFERS];
+
+u32 gUnused80226E58[0x10];
+u16 gUnused80226E98[0x10];
+
+u32 D_80226EB8;

@@ -647,7 +647,7 @@ struct SPTask *create_next_audio_frame_task(void)
     // There has to be some sort of no-op if here, but it's not exactly clear
     // how it should look... It's also very unclear why gCurrAudioFrameDmaQueue
     // isn't read from here, despite gCurrAudioFrameDmaCount being reset.
-    if (oldDmaCount > ARRAY_COUNT(gCurrAudioFrameDmaMesgBufs))
+    if (oldDmaCount > AUDIO_FRAME_DMA_QUEUE_SIZE)
     {
         stubbed_printf("DMA: Request queue over.( %d )\n", oldDmaCount);
     }
@@ -700,9 +700,12 @@ struct SPTask *create_next_audio_frame_task(void)
     task->output_buff_size = NULL;
     task->data_ptr = gAudioCmdBuffers[index];
     task->data_size = writtenCmds * sizeof(u64);
+
+    // The audio task never yields, so having a yield buffer is pointless.
+    // This wastefulness was fixed in US.
 #ifdef VERSION_JP
-    task->yield_data_ptr = gAudioSPTaskYieldBuffer;
-    task->yield_data_size = 0x400;
+    task->yield_data_ptr = (u64 *) gAudioSPTaskYieldBuffer;
+    task->yield_data_size = OS_YIELD_AUDIO_SIZE;
 #else
     task->yield_data_ptr = NULL;
     task->yield_data_size = 0;

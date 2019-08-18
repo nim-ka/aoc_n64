@@ -9,7 +9,6 @@
 #define CHANNELS_MAX     16
 
 #define NO_LAYER ((struct SequenceChannelLayer *)(-1))
-#define IS_SEQUENCE_CHANNEL_VALID(ptr) ((u32)(ptr) != (u32)&gSequenceChannelNone)
 
 #define MUTE_BEHAVIOR_80 0x80
 #define MUTE_BEHAVIOR_40 0x40
@@ -409,30 +408,5 @@ struct Struct80332190
     /*0x14*/ u32 temporarySeqMem;
     /*0x18*/ u32 temporaryBankMem;
 }; // size = 0x1C
-
-extern struct Note *gNotes; // points to an array
-
-// Music in SM64 is played using 3 players:
-// gSequencePlayers[0] is level background music
-// gSequencePlayers[1] is misc music, like the puzzle jingle
-// gSequencePlayers[2] is sound
-extern struct SequencePlayer gSequencePlayers[SEQUENCE_PLAYERS];
-
-extern struct SequenceChannel gSequenceChannels[32];
-
-#ifdef VERSION_JP
-extern struct SequenceChannelLayer D_802245D8[48];
-#else
-extern struct SequenceChannelLayer D_802245D8[52];
-#endif
-
-// Some sort of default, used when gSequenceChannels is full.
-extern struct SequenceChannel gSequenceChannelNone;
-
-// List of struct SequenceChannelLayer's
-extern struct AudioListItem gLayerFreeList;
-
-// Lists of struct Note's
-extern struct NotePool gNoteFreeLists;
 
 #endif /* _AUDIO_INTERNAL_H */

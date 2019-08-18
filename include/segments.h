@@ -11,11 +11,12 @@
  * linker script syntax.
 */
 
-#ifndef USE_EXT_RAM /* Default: Runs out of memory quickly when import custom assets. */
+#ifndef USE_EXT_RAM /* Default: Runs out of memory quickly when importing custom assets. */
+
 #define SEG_POOL_START   0x8005C000
-#define SEG_POOL_END     SEG_STACK
+#define SEG_POOL_END     SEG_BUFFERS
 #define SEG_GODDARD      0x8016F000
-#define SEG_STACK        0x801C1000
+#define SEG_BUFFERS      0x801C1000
 #ifdef VERSION_EU
 #define SEG_MAIN         0x80241800 // TODO: Investigate why it's different?
 #else
@@ -31,7 +32,7 @@
  * importing large custom content.
  */
 
-#define SEG_STACK        0x8005C000 // 0x0085000 in size
+#define SEG_BUFFERS      0x8005C000 // 0x0085000 in size
 #define SEG_MAIN         0x800E1000 // 0x1328000 in size
 #define SEG_ENGINE       0x80213800 // 0x0017000 in size
 #define SEG_FRAMEBUFFERS 0x8022A800 // 0x0070800 in size

@@ -1,6 +1,6 @@
 OUTPUT_ARCH (mips)
 
-/* include/segments.h defines SEG_POOL_START, SEG_POOL_END, SEG_STACK,
+/* include/segments.h defines SEG_POOL_START, SEG_POOL_END, SEG_BUFFERS,
  * SEG_GODDARD, SEG_MAIN, SEG_ENGINE, SEG_FRAMEBUFFERS */
 #include "segments.h"
 
@@ -620,15 +620,24 @@ SECTIONS
 
    ASSERT((. <= SEG_POOL_END), "Error: extended past pool end.")
 
-   . = SEG_STACK;
-   BEGIN_NOLOAD(stack)
+   . = SEG_BUFFERS;
+   BEGIN_NOLOAD(buffers)
    {
-      BUILD_DIR/data/stack.o(.stack);
+      BUILD_DIR/src/game/buffers.o(.bss*);
+      BUILD_DIR/src/audio/globals_start.o(.bss*);
+      BUILD_DIR/src/audio/synthesis.o(.bss*);
+      BUILD_DIR/src/audio/memory.o(.bss*);
+      BUILD_DIR/src/audio/load.o(.bss*);
+      BUILD_DIR/src/audio/data.o(.bss*);
+      BUILD_DIR/src/audio/globals_end.o(.bss*);
+      BUILD_DIR/data/gfx_output_buffer.o(.bss*);
    }
-   END_NOLOAD(stack)
+   END_NOLOAD(buffers)
 
-#ifndef VERSION_EU /* While EU is being worked on, don't warn for stack extensions. This is a broken thing to do, so please enforce this again when its fixed! */
-   ASSERT((. <= SEG_MAIN), "Error: stack segment extended into main.")
+   /* While EU is being worked on, don't warn for a too large buffers segment.
+    * This is a broken thing to do, so please enforce this again when it's fixed! */
+#ifndef VERSION_EU
+   ASSERT((. <= SEG_MAIN), "Error: buffers segment extended into main.")
 #endif
 
    /* 0x268020 0x268020-0 [0] */

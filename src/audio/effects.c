@@ -2,6 +2,7 @@
 #include <macros.h>
 
 #include "effects.h"
+#include "load.h"
 #include "data.h"
 #include "seqplayer.h"
 

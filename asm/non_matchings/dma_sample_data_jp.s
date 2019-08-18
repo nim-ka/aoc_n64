@@ -22,8 +22,8 @@ glabel dma_sample_data
 /* 0D22C0 803172C0 0004C100 */   sll   $t8, $a0, 4
 .L803172C4:
 /* 0D22C4 803172C4 3C048022 */  lui   $a0, %hi(sSampleDmaListSize1) # $a0, 0x8022
-/* 0D22C8 803172C8 3C058022 */  lui   $a1, %hi(sSampleDmaNumListItems) # $a1, 0x8022
-/* 0D22CC 803172CC 8CA56B38 */  lw    $a1, %lo(sSampleDmaNumListItems)($a1)
+/* 0D22C8 803172C8 3C058022 */  lui   $a1, %hi(gSampleDmaNumListItems) # $a1, 0x8022
+/* 0D22CC 803172CC 8CA56B38 */  lw    $a1, %lo(gSampleDmaNumListItems)($a1)
 /* 0D22D0 803172D0 8C846B3C */  lw    $a0, %lo(sSampleDmaListSize1)($a0)
 /* 0D22D4 803172D4 3C068022 */  lui   $a2, %hi(sSampleDmas) # $a2, 0x8022
 /* 0D22D8 803172D8 24C66538 */  addiu $a2, %lo(sSampleDmas) # addiu $a2, $a2, 0x6538

@@ -56,18 +56,6 @@ extern struct SoundMultiPool gSeqLoadedPool;
 extern struct SoundMultiPool gBankLoadedPool;
 extern u8 gBankLoadStatus[64];
 extern u8 gSeqLoadStatus[256];
-extern u32 sSampleDmaNumListItems;
-extern s32 gAiFrequency;
-extern s32 gMaxSimultaneousNotes;
-extern s32 D_80226D74;
-extern s32 gMinAiBufferLength;
-extern s16 gTempoInternalToExternal;
-extern s8 gAudioUpdatesPerFrame; // = 4
-extern s8 gSoundMode;
-extern volatile s32 gCurrAudioFrameDmaCount; // number of DMAs performed during this frame
-extern u64 *gAudioCmdBuffers[2];
-extern u64 *gAudioCmd;
-extern s32 gAudioHeapSize;
 
 void *soundAlloc(struct SoundAllocPool *pool, u32 size);
 void func_80316108(s32 arg0);

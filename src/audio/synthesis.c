@@ -23,6 +23,9 @@
 #define ALIGN(val, amnt) (((val) + (1 << amnt) - 1) & ~((1 << amnt) - 1))
 #define FIX(a) (u16 *)((u8 *)(a) + 0x80000000U)
 
+struct Struct802211B0 D_802211B0;
+u8 sAudioSynthesisPad[0x20];
+
 struct VolumeChange
 {
     u16 sourceLeft;

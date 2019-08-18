@@ -15,7 +15,7 @@
 extern s32 gAudioErrorFlags;
 extern f32 gDefaultSoundArgs[3];
 
-extern u64 gAudioSPTaskYieldBuffer[]; // ucode yield data ptr; only used in JP
+extern u8 gAudioSPTaskYieldBuffer[]; // ucode yield data ptr; only used in JP
 
 struct SPTask *create_next_audio_frame_task(void);
 void play_sound(s32 soundBits, f32 *pos);

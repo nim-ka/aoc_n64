@@ -35,11 +35,6 @@ extern s8 D_8032C650;
 extern s8 gShowProfiler;
 extern s8 gShowDebugText;
 
-extern u8 gIdleThreadStack[];
-extern u8 gThread4Stack[];
-extern u8 gThread5Stack[];
-extern u8 gThread3Stack[];
-
 extern void set_vblank_handler(s32 a, struct VblankHandler *b, OSMesgQueue *queue, OSMesg *msg);
 extern void dispatch_audio_sptask(struct SPTask *spTask);
 extern void send_display_list(struct SPTask *a);

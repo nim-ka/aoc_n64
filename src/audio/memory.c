@@ -24,19 +24,32 @@ struct U32Pair
     u32 wantTemporary;
 }; // size = 0x8
 
-extern struct SoundAllocPool D_802212A8;
-extern struct SoundAllocPool D_802212F8;
-extern struct SoundAllocPool D_80221308;
-extern struct SoundAllocPool D_80221318;
+s16 D_802212A0;
+s8 D_802212A2;
+u8 D_802212A3;
 
-extern struct SoundMultiPool gUnusedLoadedPool;
+struct SoundAllocPool D_802212A8;
+struct SoundAllocPool gSoundPool;
+struct SoundAllocPool D_802212C8;
+u8 sAudioMemoryPad[0x20]; // probably two unused pools
+struct SoundAllocPool D_802212F8;
+struct SoundAllocPool D_80221308;
+struct SoundAllocPool D_80221318;
+struct SoundMultiPool gSeqLoadedPool;
+struct SoundMultiPool gBankLoadedPool;
+struct SoundMultiPool gUnusedLoadedPool;
+
+struct Struct803161E0 D_80221898;
+struct U32Pair D_802218A8;
+struct Struct803161E0 D_802218B0;
+struct Struct803161E0 D_802218C0;
+
+u8 gBankLoadStatus[0x40];
+u8 gSeqLoadStatus[0x100];
+
+u8 gAudioUnusedBuffer[0x1000];
 
 extern s32 D_80226D6C;
-
-extern struct Struct803161E0 D_80221898;
-extern struct U32Pair D_802218A8;
-extern struct Struct803161E0 D_802218B0;
-extern struct Struct803161E0 D_802218C0;
 
 void reset_bank_and_seq_load_status(void)
 {
@@ -507,7 +520,7 @@ void func_80316928(struct Struct80332190 *arg0)
         }
     }
 
-    sSampleDmaNumListItems = 0;
+    gSampleDmaNumListItems = 0;
     sp2C = arg0->unk6;
     gAiFrequency = osAiSetFrequency(arg0->frequency);
     gMaxSimultaneousNotes = arg0->maxSimultaneousNotes;

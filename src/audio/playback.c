@@ -3,6 +3,7 @@
 
 #include "memory.h"
 #include "data.h"
+#include "load.h"
 #include "seqplayer.h"
 #include "playback.h"
 #include "synthesis.h"
