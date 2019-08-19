@@ -95,7 +95,7 @@ endif
 # in the makefile that we want should cover assets.)
 
 ifneq ($(MAKECMDGOALS),clean)
-ifneq ($(MAKECMDGOALS),tidy)
+ifneq ($(MAKECMDGOALS),distclean)
 
 # Make sure assets exist
 DUMMY != ./extract_assets.py $(VERSION) >&2 || echo FAIL
@@ -257,10 +257,10 @@ endif
 
 clean:
 	$(RM) -r $(BUILD_DIR_BASE)
-	./extract_assets.py --clean
 
-tidy:
+distclean:
 	$(RM) -r $(BUILD_DIR_BASE)
+	./extract_assets.py --clean
 
 test: $(ROM)
 	$(EMULATOR) $(EMU_FLAGS) $<
@@ -426,7 +426,7 @@ $(BUILD_DIR)/$(TARGET).objdump: $(ELF)
 
 
 
-.PHONY: all clean tidy default diff test load libultra
+.PHONY: all clean distclean default diff test load libultra
 .PRECIOUS: $(MIO0_DIR)/%.mio0 $(MIO0_DIR)/%.mio0.s $(BUILD_DIR)/bin/%.elf $(SOUND_BIN_DIR)/%.ctl $(SOUND_BIN_DIR)/%.tbl $(SOUND_BIN_DIR)/%.s
 .DELETE_ON_ERROR:
 
