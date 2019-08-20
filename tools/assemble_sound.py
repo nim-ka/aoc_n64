@@ -78,9 +78,9 @@ def to_bcd(num):
 
 def parse_aifc_loop(data):
     validate(len(data) == 48, "loop chunk size should be 48")
-    a, b, start, end, count = struct.unpack(">HHIIi", data[:16])
-    validate(a == 1, "at most one loop supported")
-    validate(b == 1, "at most one loop supported")
+    version, nloops, start, end, count = struct.unpack(">HHIIi", data[:16])
+    validate(version == 1, "loop version doesn't match")
+    validate(nloops == 1, "only one loop is supported")
     state = []
     for i in range(16, len(data), 2):
         state.append(struct.unpack(">h", data[i : i + 2])[0])
@@ -88,8 +88,8 @@ def parse_aifc_loop(data):
 
 
 def parse_aifc_book(data):
-    count, order, npredictors = struct.unpack(">hhh", data[:6])
-    validate(count == 1, "at most one predictor supported")
+    version, order, npredictors = struct.unpack(">hhh", data[:6])
+    validate(version == 1, "codebook version doesn't match")
     validate(
         len(data) == 6 + 16 * order * npredictors,
         "predictor book chunk size doesn't match",

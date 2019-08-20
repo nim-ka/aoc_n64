@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 from collections import namedtuple
+import tempfile
+import subprocess
 import uuid
 import json
 import os
@@ -447,10 +449,16 @@ class AifcWriter:
 def write_aifc(entry, out):
     writer = AifcWriter(out)
     num_channels = 1
-    assert len(entry.data) % 9 == 0
-    num_frames = len(entry.data) // 9 * 16
+    data = entry.data
+    assert len(data) % 9 == 0
+    if len(data) % 2 == 1:
+        data += b"\0"
+    # (Computing num_frames this way makes it off by one when the data length
+    # is odd. It matches vadpcm_enc, though.)
+    num_frames = len(data) * 16 // 9
     sample_size = 16  # bits per sample
-    sample_rate = 44100  # unused
+    # TODO: find proper sample rates, somehow
+    sample_rate = 16000
     writer.add_section(
         b"COMM",
         struct.pack(">hIh", num_channels, num_frames, sample_size)
@@ -464,7 +472,7 @@ def write_aifc(entry, out):
         b"VADPCMCODES",
         struct.pack(">hhh", 1, entry.book.order, entry.book.npredictors) + table_data,
     )
-    writer.add_section(b"SSND", struct.pack(">II", 0, 0) + entry.data)
+    writer.add_section(b"SSND", struct.pack(">II", 0, 0) + data)
     if entry.loop.count != 0:
         writer.add_custom_section(
             b"VADPCMLOOPS",
@@ -479,6 +487,14 @@ def write_aifc(entry, out):
             ),
         )
     writer.finish()
+
+
+def write_aiff(entry, filename):
+    with tempfile.NamedTemporaryFile(suffix=".aifc") as temp:
+        write_aifc(entry, temp)
+        temp.flush()
+        aifc_decode = os.path.join(os.path.dirname(__file__), "aifc_decode")
+        subprocess.run([aifc_decode, temp.name, filename], check=True)
 
 
 # Modified from https://stackoverflow.com/a/25935321/1359139, cc by-sa 3.0
@@ -595,11 +611,10 @@ def main():
                     if dir not in created_dirs:
                         os.makedirs(dir, exist_ok=True)
                         created_dirs.add(dir)
-                    with open(filename, "wb") as out:
-                        write_aifc(entry, out)
+                    write_aiff(entry, filename)
         return
 
-    # Generate aifc files
+    # Generate aiff files
     for sample_bank in sample_banks:
         dir = os.path.join(samples_out_dir, sample_bank.name)
         os.makedirs(dir, exist_ok=True)
@@ -623,9 +638,8 @@ def main():
             if next_offset != offsets[-1]:
                 # (The last chunk follows a more complex garbage pattern)
                 assert all(x == 0 for x in garbage)
-            filename = os.path.join(dir, entry.name + ".aifc")
-            with open(filename, "wb") as out:
-                write_aifc(entry, out)
+            filename = os.path.join(dir, entry.name + ".aiff")
+            write_aiff(entry, filename)
 
     # Generate sound bank .json files
     os.makedirs(banks_out_dir, exist_ok=True)

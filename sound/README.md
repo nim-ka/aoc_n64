@@ -1,23 +1,9 @@
 Sound in SM64 consists of three parts: samples, sound banks, and sequences.
 
-Samples represent raw sound data, given as AIFC files with a custom compression
-format. The N64 SDK provides two command line programs for converting AIFF
-files into AIFC: `tabledesign` and `vadpcm_enc`. The tools come in both MIPS
-and x86 versions. Usage is:
-```
-tabledesign -s 1 input.aiff > input.table
-vadpcm_enc -c input.table input.aiff output.aifc
-```
-
-Additionally, the SDK has a tool `vadpcm_dec` for converting AIFC files to RAW
-format. Combined with `sox` for converting RAW to AIFF, you can do:
-```
-vadpcm_dec input.aifc > output.raw
-sox -B -t raw -r 16k -e signed -b 16 -c 1 output.raw output.aiff
-```
-You may need to adjust the sample rate from 16k to something else. Note that
-this process is not lossless (though nearly so), and that `vadpcm_dec` drops
-loops.
+Samples represent raw sound data, given as AIFF files with a custom ADPCM-based
+compression format that reduces file sizes by ~70% compared to uncompressed
+AIFF (with 16-bit samples). The build system automatically converts
+uncompressed AIFF files into this format.
 
 Samples are collected into banks, given by directories. The order in which
 banks and samples end up in the final binary is determined by their file and
@@ -40,7 +26,7 @@ sort order.
 
 Sequence files are what actually controls the audio. The are in .m64 format,
 which is similar to MIDI, but Turing complete. An .m64 file has a sequence
-script which can spawn channels, which have channel scripts that can spawn
+script that can spawn channels, which have channel scripts that can spawn
 layers, which have layer scripts that can play notes. Each note is performed
 using an instrument from a sound bank. A sequence file can use multiple banks;
 `bank_sets.s` describes the mapping from sequences to sound banks. Channels

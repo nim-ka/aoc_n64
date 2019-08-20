@@ -438,7 +438,6 @@ int main(int argc, char* argv[])
 {
     graphics_config config = default_config;
     rgba *imgr;
-    ia   *imgi;
     FILE *fp;
     uint8_t *raw;
     int raw_size;

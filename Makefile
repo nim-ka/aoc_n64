@@ -159,7 +159,11 @@ GODDARD_C_FILES := $(foreach dir,$(GODDARD_SRC_DIRS),$(wildcard $(dir)/*.c))
 ULTRA_S_FILES := $(foreach dir,$(ULTRA_ASM_DIRS),$(wildcard $(dir)/*.s))
 LEVEL_S_FILES := $(addsuffix header.s,$(addprefix bin/,$(LEVEL_DIRS)))
 
-SOUND_FILES := $(shell find sound/ -type f -iname '*')
+SOUND_BANK_FILES := $(wildcard sound/sound_banks/*.json)
+SOUND_SAMPLE_DIRS := $(wildcard sound/samples/*)
+SOUND_SAMPLE_AIFFS := $(foreach dir,$(SOUND_SAMPLE_DIRS),$(wildcard $(dir)/*.aiff))
+SOUND_SAMPLE_TABLES := $(foreach file,$(SOUND_SAMPLE_AIFFS),$(BUILD_DIR)/$(file:.aiff=.table))
+SOUND_SAMPLE_AIFCS := $(foreach file,$(SOUND_SAMPLE_AIFFS),$(BUILD_DIR)/$(file:.aiff=.aifc))
 SOUND_OBJ_FILES := $(SOUND_BIN_DIR)/sound_data.ctl.o $(SOUND_BIN_DIR)/sound_data.tbl.o
 
 
@@ -229,6 +233,8 @@ N64GRAPHICS = $(TOOLS_DIR)/n64graphics
 N64GRAPHICS_CI = $(TOOLS_DIR)/n64graphics_ci
 TEXTCONV = $(TOOLS_DIR)/textconv
 IPLFONTUTIL = $(TOOLS_DIR)/iplfontutil
+AIFF_EXTRACT_CODEBOOK = $(TOOLS_DIR)/aiff_extract_codebook
+VADPCM_ENC = $(TOOLS_DIR)/vadpcm_enc
 EMULATOR = mupen64plus
 EMU_FLAGS = --noosd
 LOADER = loader64
@@ -292,7 +298,7 @@ else
 $(BUILD_DIR)/bin/segment2.o: $(BUILD_DIR)/text/debug.s $(BUILD_DIR)/text/dialog.s $(BUILD_DIR)/text/level.s $(BUILD_DIR)/text/star.s
 endif
 
-ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(GODDARD_SRC_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) $(addprefix bin/,$(LEVEL_DIRS)) include) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(LEVEL_DIRS)) $(addprefix $(MIO0_DIR)/,$(VERSION)) $(SOUND_BIN_DIR)
+ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(GODDARD_SRC_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(SOUND_SAMPLE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) $(addprefix bin/,$(LEVEL_DIRS)) include) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(LEVEL_DIRS)) $(addprefix $(MIO0_DIR)/,$(VERSION)) $(SOUND_BIN_DIR)
 
 # Make sure build directory exists before compiling anything
 DUMMY != mkdir -p $(ALL_DIRS)
@@ -354,8 +360,14 @@ $(MIO0_DIR)/%.mio0.o: $(MIO0_DIR)/%.mio0.s
 $(MIO0_DIR)/%.mio0.s: $(MIO0_DIR)/%.mio0
 	printf ".section .data\n\n.incbin \"$<\"\n" > $@
 
-$(SOUND_BIN_DIR)/sound_data.ctl: $(SOUND_FILES)
-	$(PYTHON) tools/assemble_sound.py sound/samples/ sound/sound_banks/ $(SOUND_BIN_DIR)/sound_data.ctl $(SOUND_BIN_DIR)/sound_data.tbl $(VERSION_CFLAGS)
+$(BUILD_DIR)/%.table: %.aiff
+	$(AIFF_EXTRACT_CODEBOOK) $< >$@
+
+$(BUILD_DIR)/%.aifc: $(BUILD_DIR)/%.table %.aiff
+	$(VADPCM_ENC) -c $^ $@
+
+$(SOUND_BIN_DIR)/sound_data.ctl: $(SOUND_BANK_FILES) $(SOUND_SAMPLE_AIFCS)
+	$(PYTHON) tools/assemble_sound.py $(BUILD_DIR)/sound/samples/ sound/sound_banks/ $(SOUND_BIN_DIR)/sound_data.ctl $(SOUND_BIN_DIR)/sound_data.tbl $(VERSION_CFLAGS)
 
 $(SOUND_BIN_DIR)/sound_data.tbl: $(SOUND_BIN_DIR)/sound_data.ctl
 
@@ -427,7 +439,7 @@ $(BUILD_DIR)/$(TARGET).objdump: $(ELF)
 
 
 .PHONY: all clean distclean default diff test load libultra
-.PRECIOUS: $(MIO0_DIR)/%.mio0 $(MIO0_DIR)/%.mio0.s $(BUILD_DIR)/bin/%.elf $(SOUND_BIN_DIR)/%.ctl $(SOUND_BIN_DIR)/%.tbl $(SOUND_BIN_DIR)/%.s
+.PRECIOUS: $(MIO0_DIR)/%.mio0 $(MIO0_DIR)/%.mio0.s $(BUILD_DIR)/bin/%.elf $(SOUND_BIN_DIR)/%.ctl $(SOUND_BIN_DIR)/%.tbl $(SOUND_SAMPLE_TABLES) $(SOUND_BIN_DIR)/%.s
 .DELETE_ON_ERROR:
 
 # Remove built-in rules, to improve performance

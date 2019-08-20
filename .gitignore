@@ -57,7 +57,7 @@ build/*
 /textures/**/*.png
 /assets/**/*.bin
 /sound/**/*.m64
-/sound/**/*.aifc
+/sound/**/*.aiff
 !/levels/**/*custom*.png
 !/levels/**/*custom*/**/*.png
 !/actors/**/*custom*.png
@@ -66,7 +66,7 @@ build/*
 !/textures/**/*custom*/**/*.png
 !/sound/**/*custom*.m64
 !/sound/**/*custom*/**/*.m64
-!/sound/**/*custom*.aifc
-!/sound/**/*custom*/**/*.aifc
+!/sound/**/*custom*.aiff
+!/sound/**/*custom*/**/*.aiff
 !/assets/**/*custom*.bin
 !/assets/**/*custom*/**/*.bin

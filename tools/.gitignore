@@ -5,3 +5,7 @@ textconv
 patch_libultra_math
 iplfontutil
 n64graphics_ci
+aifc_decode
+aiff_extract_codebook
+tabledesign
+vadpcm_enc

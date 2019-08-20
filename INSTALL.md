@@ -15,6 +15,7 @@ This will be used for asset extraction.
 * libglib2.0-dev
 * libpixman-1-dev
 * libcapstone3
+* libaudiofile-dev
 
 3] Clone https://github.com/camthesaxman/qemu-irix to somewhere and follow its install instructions in the README.
 
