@@ -6,7 +6,7 @@
     .word (\name - gMusicData), (\name\()_end - \name)
 .endm
 
-glabel gMusicData # region 745F80 (US: 7B0860)
+glabel gMusicData # (JP: 745F80) (US: 7B0860) (EU: 7929F0)
 .hword 3 # current segment
 .hword (music_sequence_table_end - music_sequence_table) / 8 # number of entries
 
@@ -61,8 +61,11 @@ music_sequence_table_end:
 .ifdef VERSION_JP
 .incbin "sound/sequences/jp/\name\().m64"
 .endif
-.ifndef VERSION_JP
+.ifdef VERSION_US
 .incbin "sound/sequences/us/\name\().m64"
+.endif
+.ifdef VERSION_EU
+.incbin "sound/sequences/eu/\name\().m64"
 .endif
 \name\()_end:
 .endm
