@@ -296,7 +296,7 @@ colVertex 367, -50, -1945
 colVertex -349, -50, -1945
 colVertex 162, -50, -2149
 colVertex -144, -50, -2149
-colTriInit SURF_ENV_DEFAULT, 470
+colTriInit SURFACE_DEFAULT, 470
 colTri 22, 30, 28
 colTri 20, 21, 22
 colTri 21, 23, 24
@@ -767,7 +767,7 @@ colTri 74, 35, 140
 colTri 75, 25, 24
 colTri 75, 217, 25
 colTri 176, 151, 47
-colTriInit SURF_WATER, 28
+colTriInit SURFACE_WATER, 28
 colTri 290, 15, 287
 colTri 287, 288, 109
 colTri 109, 288, 289
@@ -796,7 +796,7 @@ colTri 293, 12, 291
 colTri 292, 101, 106
 colTri 101, 293, 98
 colTri 291, 12, 15
-colTriInit SURF_WALL_ETC, 30
+colTriInit SURFACE_WALL_MISC, 30
 colTri 4, 7, 6
 colTri 0, 1, 2
 colTri 1, 3, 2
@@ -827,7 +827,7 @@ colTri 15, 17, 18
 colTri 15, 18, 16
 colTri 16, 18, 19
 colTri 16, 19, 13
-colTriInit SURF_NOISE_DEF, 16
+colTriInit SURFACE_NOISE_DEFAULT, 16
 colTri 271, 268, 266
 colTri 271, 266, 43
 colTri 266, 141, 43

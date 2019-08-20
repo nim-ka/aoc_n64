@@ -30,7 +30,7 @@ colVertex 7168, -6143, -7167
 colVertex -7167, -6143, -7167
 colVertex -7167, -6143, 7168
 colVertex 7168, -6143, 7168
-colTriInit SURF_ENV_DEFAULT, 40
+colTriInit SURFACE_DEFAULT, 40
 colTri 5, 6, 7
 colTri 0, 1, 2
 colTri 1, 3, 4
@@ -71,7 +71,7 @@ colTri 23, 24, 15
 colTri 24, 4, 12
 colTri 15, 24, 13
 colTri 22, 24, 23
-colTriInit SURF_DEATH_FLOOR, 2
+colTriInit SURFACE_DEATH_PLANE, 2
 colTri 25, 26, 27
 colTri 25, 27, 28
 colTriStop

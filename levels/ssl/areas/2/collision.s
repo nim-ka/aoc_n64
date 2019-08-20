@@ -1081,7 +1081,7 @@ colVertex -191, 256, -1023
 colVertex 384, -229, -2559
 colVertex 384, 896, -2559
 colVertex -383, -229, -2559
-colTriInit SURF_ENV_DEFAULT, 1068
+colTriInit SURFACE_DEFAULT, 1068
 colTri 433, 434, 435
 colTri 421, 422, 423
 colTri 422, 424, 423
@@ -2150,14 +2150,14 @@ colTri 878, 1078, 882
 colTri 882, 1078, 1077
 colTri 474, 586, 473
 colTri 474, 473, 591
-colTriInit SURF_CEILING, 6
+colTriInit SURFACE_HANGABLE, 6
 colTri 18, 19, 20
 colTri 18, 21, 19
 colTri 21, 22, 23
 colTri 21, 18, 22
 colTri 24, 25, 26
 colTri 24, 27, 25
-colTriInit SURF_CLOSE_CAM, 17
+colTriInit SURFACE_CLOSE_CAMERA, 17
 colTri 144, 145, 146
 colTri 144, 146, 147
 colTri 146, 148, 147
@@ -2175,7 +2175,7 @@ colTri 146, 145, 159
 colTri 157, 158, 161
 colTri 158, 162, 161
 colTri 157, 161, 163
-colTriInit SURF_SLIPPERY, 32
+colTriInit SURFACE_VERY_SLIPPERY, 32
 colTri 173, 174, 175
 colTri 165, 166, 167
 colTri 165, 168, 166
@@ -2208,7 +2208,7 @@ colTri 186, 208, 207
 colTri 187, 209, 210
 colTri 188, 212, 213
 colTri 188, 213, 214
-colTriInit SURF_NO_SLIP, 12
+colTriInit SURFACE_NO_SLIPPERY, 12
 colTri 0, 1, 2
 colTri 0, 2, 3
 colTri 4, 5, 6
@@ -2221,13 +2221,13 @@ colTri 8, 14, 9
 colTri 8, 15, 14
 colTri 14, 16, 17
 colTri 14, 15, 16
-colTriInit SURF_INST_WARP_1D, 2
+colTriInit SURFACE_INST_WARP_1D, 2
 colTri 241, 242, 243
 colTri 241, 244, 242
-colTriInit SURF_INST_WARP_1E, 2
+colTriInit SURFACE_INST_WARP_1E, 2
 colTri 11, 241, 12
 colTri 241, 243, 12
-colTriInit SURF_QUICKSAND_22, 128
+colTriInit SURFACE_QUICKSAND_22, 128
 colTri 35, 34, 33
 colTri 28, 29, 30
 colTri 29, 31, 30
@@ -2356,7 +2356,7 @@ colTri 98, 97, 115
 colTri 43, 45, 103
 colTri 36, 99, 63
 colTri 36, 37, 99
-colTriInit SURF_QUICKSAND_24, 36
+colTriInit SURFACE_QUICKSAND_24, 36
 colTriSpecial 217, 248, 218, 0x1AB
 colTriSpecial 215, 245, 216, 0x100
 colTriSpecial 215, 246, 245, 0x100
@@ -2393,7 +2393,7 @@ colTriSpecial 232, 261, 234, 0x1AB
 colTriSpecial 233, 260, 262, 0x155
 colTriSpecial 235, 258, 230, 0x12B
 colTriSpecial 235, 262, 258, 0x12B
-colTriInit SURF_QUICKSAND_27, 78
+colTriInit SURFACE_QUICKSAND_27, 78
 colTriSpecial 44, 128, 129, 0x1AB
 colTriSpecial 71, 126, 127, 0x100
 colTriSpecial 71, 50, 126, 0x100
@@ -2472,7 +2472,7 @@ colTriSpecial 228, 236, 226, 0x100
 colTriSpecial 228, 238, 236, 0x100
 colTriSpecial 228, 239, 238, 0x1C0
 colTriSpecial 228, 240, 239, 0x1C0
-colTriInit SURF_QUICKSAND_2D, 18
+colTriInit SURFACE_QUICKSAND_2D, 18
 colTriSpecial 249, 263, 256, 0x155
 colTriSpecial 246, 263, 245, 0x100
 colTriSpecial 245, 263, 247, 0x1D5
@@ -2491,7 +2491,7 @@ colTriSpecial 257, 265, 259, 0x1D5
 colTriSpecial 262, 265, 258, 0x12B
 colTriSpecial 259, 265, 261, 0x1AB
 colTriSpecial 260, 265, 262, 0x155
-colTriInit SURF_WALLS_66, 27
+colTriInit SURFACE_FREE_ROAM_CAM, 27
 colTri 275, 278, 276
 colTri 266, 267, 268
 colTri 266, 269, 267
@@ -2519,7 +2519,7 @@ colTri 287, 302, 288
 colTri 287, 297, 302
 colTri 289, 288, 303
 colTri 289, 303, 304
-colTriInit SURF_FLAG_SURF_76, 132
+colTriInit SURFACE_CAM_NO_COL, 132
 colTri 310, 305, 312
 colTri 305, 306, 307
 colTri 305, 307, 308

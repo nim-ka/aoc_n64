@@ -13,10 +13,10 @@ colVertex -1023, 0, -306
 colVertex -1023, 0, 307
 colVertex -1637, 0, -306
 colVertex -1637, 0, 307
-colTriInit SURF_ENV_DEFAULT, 2
+colTriInit SURFACE_DEFAULT, 2
 colTri 9, 8, 10
 colTri 9, 10, 11
-colTriInit SURF_SLIPPERY, 8
+colTriInit SURFACE_VERY_SLIPPERY, 8
 colTri 0, 1, 2
 colTri 0, 2, 3
 colTri 2, 4, 5

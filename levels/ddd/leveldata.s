@@ -1,7 +1,7 @@
 .section .rodata
 .include "macros.inc"
 .include "PR/gbi.inc"
-.include "collision.inc"
+.include "surface_terrains.inc"
 .include "macro_presets.inc"
 .include "moving_texture.inc"
 

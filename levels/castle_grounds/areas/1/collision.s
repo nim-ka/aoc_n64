@@ -491,7 +491,7 @@ colVertex 5069, 473, -2040
 colVertex 5087, 452, -2031
 colVertex 2314, 447, -162
 colVertex 2314, 468, -142
-colTriInit SURF_ENV_DEFAULT, 336
+colTriInit SURFACE_DEFAULT, 336
 colTri 406, 407, 408
 colTri 406, 409, 407
 colTri 410, 411, 412
@@ -828,14 +828,14 @@ colTri 122, 125, 109
 colTri 98, 120, 119
 colTri 112, 124, 121
 colTri 142, 39, 22
-colTriInit SURF_CEILING, 6
+colTriInit SURFACE_HANGABLE, 6
 colTri 222, 263, 343
 colTri 222, 343, 357
 colTri 7, 202, 194
 colTri 7, 12, 202
 colTri 111, 32, 31
 colTri 21, 32, 111
-colTriInit SURF_WATER, 30
+colTriInit SURFACE_WATER, 30
 colTri 286, 117, 214
 colTri 286, 18, 117
 colTri 60, 52, 59
@@ -866,7 +866,7 @@ colTri 65, 64, 61
 colTri 59, 64, 60
 colTri 64, 59, 63
 colTri 39, 54, 48
-colTriInit SURF_WATER_FLOW, 94
+colTriInit SURFACE_WATER_FLOWING, 94
 colTriSpecial 136, 295, 102, 0x0
 colTriSpecial 5, 289, 73, 0x200
 colTriSpecial 284, 33, 285, 0x20B
@@ -961,7 +961,7 @@ colTriSpecial 132, 134, 133, 0x80
 colTriSpecial 136, 137, 138, 0x0
 colTriSpecial 66, 92, 61, 0x275
 colTriSpecial 135, 137, 136, 0x0
-colTriInit SURF_SLIPPERY, 78
+colTriInit SURFACE_VERY_SLIPPERY, 78
 colTri 376, 90, 89
 colTri 373, 376, 89
 colTri 161, 372, 183
@@ -1040,7 +1040,7 @@ colTri 158, 181, 174
 colTri 174, 182, 158
 colTri 176, 158, 182
 colTri 156, 175, 178
-colTriInit SURF_NO_SLIP, 130
+colTriInit SURFACE_NO_SLIPPERY, 130
 colTri 82, 411, 84
 colTri 411, 410, 86
 colTri 84, 411, 86
@@ -1171,7 +1171,7 @@ colTri 55, 142, 85
 colTri 142, 55, 54
 colTri 83, 85, 142
 colTri 55, 85, 79
-colTriInit SURF_WALL_ETC, 24
+colTriInit SURFACE_WALL_MISC, 24
 colTri 413, 409, 406
 colTri 413, 406, 414
 colTri 412, 409, 413
@@ -1196,7 +1196,7 @@ colTri 365, 368, 364
 colTri 363, 367, 366
 colTri 364, 368, 367
 colTri 364, 367, 363
-colTriInit SURF_NOISE_DEF, 52
+colTriInit SURFACE_NOISE_DEFAULT, 52
 colTri 77, 95, 78
 colTri 190, 10, 192
 colTri 95, 47, 150
@@ -1249,7 +1249,7 @@ colTri 173, 121, 170
 colTri 112, 121, 173
 colTri 173, 181, 112
 colTri 181, 158, 112
-colTriInit SURF_NOISE_SLIP, 12
+colTriInit SURFACE_NOISE_SLIPPERY, 12
 colTri 80, 93, 66
 colTri 92, 93, 94
 colTri 93, 92, 66
@@ -1262,7 +1262,7 @@ colTri 91, 137, 88
 colTri 188, 184, 114
 colTri 188, 114, 113
 colTri 184, 188, 163
-colTriInit SURF_FLAG_SURF_76, 117
+colTriInit SURFACE_CAM_NO_COL, 117
 colTri 418, 419, 420
 colTri 418, 421, 419
 colTri 422, 418, 13

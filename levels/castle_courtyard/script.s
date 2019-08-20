@@ -41,7 +41,7 @@ glabel level_castle_courtyard_entry
         terrain /*terrainData*/ castle_courtyard_seg7_collision
         macro_objects /*objList*/ castle_courtyard_seg7_macro_objs
         set_background_music /*unk2*/ 0x0000, /*seq*/ SEQ_SOUND_PLAYER
-        terrain_type /*terrainType*/ 0x0001
+        terrain_type /*terrainType*/ TERRAIN_STONE
     end_area
 
     free_level_pool

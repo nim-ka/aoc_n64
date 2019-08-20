@@ -211,7 +211,7 @@ s32 geo_switch_area(s32 run, struct GraphNode *node)
         }
         else
         {
-            gFindFloorIncludeSurface0012 = 1;
+            gFindFloorIncludeSurfaceIntangible = TRUE;
 
             find_floor(gMarioObject->oPosX, gMarioObject->oPosY, gMarioObject->oPosZ, &sp20);
 
@@ -2150,7 +2150,7 @@ static void obj_update_floor(void)
 
     if (floor != NULL)
     {
-        if (floor->type == SURFACE_LAVA)
+        if (floor->type == SURFACE_BURNING)
         {
             o->oMoveFlags |= OBJ_MOVE_ABOVE_LAVA;
         }

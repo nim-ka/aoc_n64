@@ -10,7 +10,7 @@ colVertex 95, 1178, 0
 colVertex 95, 0, 0
 colVertex 95, 0, 77
 colVertex -96, 0, 77
-colTriInit SURF_WALL_ETC, 12
+colTriInit SURFACE_WALL_MISC, 12
 colTri 0, 1, 2
 colTri 2, 1, 3
 colTri 2, 3, 4

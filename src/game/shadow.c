@@ -608,7 +608,7 @@ s8 correct_shadow_solidity_for_animations(
  * Slightly change the height of a shadow in levels with lava.
  */
 void correct_lava_shadow_height(struct Shadow *s) {
-    if (gCurrLevelNum == LEVEL_BITFS && sSurfaceTypeBelowShadow == SURFACE_LAVA) {
+    if (gCurrLevelNum == LEVEL_BITFS && sSurfaceTypeBelowShadow == SURFACE_BURNING) {
         if (s->floorHeight < -3000.0) {
             s->floorHeight = -3062.0;
             gShadowAboveWaterOrLava = TRUE;
@@ -619,7 +619,7 @@ void correct_lava_shadow_height(struct Shadow *s) {
     } else if (
         gCurrLevelNum == LEVEL_LLL &&
         gCurrAreaIndex == 1 &&
-        sSurfaceTypeBelowShadow == SURFACE_LAVA
+        sSurfaceTypeBelowShadow == SURFACE_BURNING
     ) {
         s->floorHeight = 5.0;
         gShadowAboveWaterOrLava = TRUE;

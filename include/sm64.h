@@ -11,6 +11,7 @@
 #include "model_ids.h"
 #include "mario_animation_ids.h"
 #include "mario_geo_switch_case_ids.h"
+#include "surface_terrains.h"
 #include "macros.h"
 
 // Crash handler enhancement
@@ -47,99 +48,6 @@
 #define LAYER_TRANSPARENT       5
 #define LAYER_TRANSPARENT_DECAL 6
 #define LAYER_TRANSPARENT_INTER 7
-
-#define SURFACE_DEFAULT                      0x0000
-#define SURFACE_LAVA                         0x0001
-#define SURFACE_0004                         0x0004   //Unused?
-#define SURFACE_HANGABLE                     0x0005
-#define SURFACE_SLOW                         0x0009   //Unused?
-#define SURFACE_DEATH_PLANE                  0x000A
-#define SURFACE_000B                         0x000B   //Camera
-#define SURFACE_FLOWING_WATER                0x000E
-#define SURFACE_0012                         0x0012   //Intangible, separates rooms in BBH
-#define SURFACE_SLIDE                        0x0013
-#define SURFACE_SLIPPERY                     0x0014
-#define SURFACE_NOT_SLIPPERY                 0x0015
-#define SURFACE_001A                         0x001A   // Noise/Merry-Go-Round
-#define SURFACE_INSTANT_WARP_0               0x001B
-#define SURFACE_001C                         0x001C
-#define SURFACE_0020                         0x0020   //Unused completely, does this need to be here?
-#define SURFACE_SHALLOW_QUICKSAND            0x0021
-#define SURFACE_DEEP_QUICKSAND               0x0022
-#define SURFACE_INSTANT_QUICKSAND            0x0023
-#define SURFACE_DEEP_MOVING_QUICKSAND        0x0024
-#define SURFACE_SHALLOW_MOVING_QUICKSAND     0x0025
-#define SURFACE_QUICKSAND                    0x0026
-#define SURFACE_MOVING_QUICKSAND             0x0027
-#define SURFACE_0028                         0x0028   //Camera
-#define SURFACE_SOUND_1                      0x0029   //Default with noise
-#define SURFACE_SOUND_2                      0x002A   //Slippery with noise
-#define SURFACE_HORIZONTAL_WIND              0x002C
-#define SURFACE_INSTANT_MOVING_QUICKSAND     0x002D
-#define SURFACE_ICE                          0x002E
-#define SURFACE_TOTWC_ENTRANCE               0x002F
-#define SURFACE_HARD                         0x0030
-#define SURFACE_WARP                         0x0032
-#define SURFACE_TIMER_START                  0x0033
-#define SURFACE_TIMER_END                    0x0034
-#define SURFACE_HARD_SLIPPERY                0x0035
-#define SURFACE_HARD_SLIDE                   0x0036
-#define SURFACE_HARD_NOT_SLIPPERY            0x0037
-#define SURFACE_VERTICAL_WIND                0x0038
-#define SURFACE_BOSS_FIGHT_CAMERA            0x0065   //Camera
-#define SURFACE_0066                         0x0066   //Camera
-#define SURFACE_0069                         0x0069   //Camera
-#define SURFACE_006E                         0x006E   //Camera
-#define SURFACE_006F                         0x006F   //Camera
-#define SURFACE_0070                         0x0070   //Camera
-#define SURFACE_CAMERA_BOUNDARY              0x0072
-#define SURFACE_0073                         0x0073   //Slide with noise, unused
-#define SURFACE_0074                         0x0074   //Slide with noise, unused
-#define SURFACE_0075                         0x0075   //Slide with noise
-#define SURFACE_NO_CAM_COLLISION             0x0076
-#define SURFACE_0077                         0x0077   //Unused?
-#define SURFACE_0078                         0x0078   //Slide Surface?
-#define SURFACE_0079                         0x0079   //Camera
-#define SURFACE_SWITCH                       0x007A
-#define SURFACE_VANISH_CAP_PASSABLE          0x007B
-#define SURFACE_PAINTING_WARP_0              0x00D3
-#define SURFACE_TTC_PAINTING_1               0x00F4
-#define SURFACE_TTC_PAINTING_2               0x00F5
-#define SURFACE_TTC_PAINTING_3               0x00F6
-#define SURFACE_UNDER_TRAP_DOOR              0x00FF
-
-#define SURFACE_IS_QUICKSAND(cmd)     (cmd >= 0x21 && cmd < 0x28)   //Doesn't include SURFACE_INSTANT_MOVING_QUICKSAND
-#define SURFACE_IS_NOT_HARD(cmd)      (cmd != SURFACE_HARD && \
-                                     !(cmd >= 0x35 && cmd <= 0x37))
-#define SURFACE_IS_PAINTING_WARP(cmd) (cmd >= 0xD3 && cmd < 0xFD)
-
-#define SURFACE_CLASS_SLIDE        0x0013
-#define SURFACE_CLASS_SLIPPERY     0x0014
-#define SURFACE_CLASS_NOT_SLIPPERY 0x0015
-#define SURFACE_CLASS_DEFAULT      0x0000
-
-#define SURFACE_FLAG_DYNAMIC          (1 << 0)
-#define SURFACE_FLAG_NO_CAM_COLLISION (1 << 1)
-#define SURFACE_FLAG_X_PROJECTION     (1 << 3)
-
-//These are effectively special "surface" types like those defined higher
-#define TERRAIN_LOAD_VERTICES 0x0040 //Begins vertices list for collision triangles
-#define TERRAIN_LOAD_CONTINUE 0x0041
-#define TERRAIN_LOAD_END      0x0042
-#define TERRAIN_LOAD_OBJECTS  0x0043 //Loads in certain objects for level start
-#define TERRAIN_LOAD_ENVIRONMENT    0x0044 //Loads water/HMC gas
-
-#define TERRAIN_LOAD_IS_SURFACE_TYPE_LOW(cmd)  (cmd < 0x40)
-#define TERRAIN_LOAD_IS_SURFACE_TYPE_HIGH(cmd) (cmd >= 0x65)
-
-#define TERRAIN_MASK    0x0007
-#define TERRAIN_GRASS   0x0000
-#define TERRAIN_DEFAULT 0x0001
-#define TERRAIN_SNOW    0x0002
-#define TERRAIN_SAND    0x0003
-#define TERRAIN_SPOOKY  0x0004
-#define TERRAIN_WATER   0x0005
-#define TERRAIN_SLIDE   0x0006
 
 #define INPUT_NONZERO_ANALOG         0x0001
 #define INPUT_A_PRESSED              0x0002

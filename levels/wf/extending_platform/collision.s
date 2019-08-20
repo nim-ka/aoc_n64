@@ -10,7 +10,7 @@ colVertex 215, 102, -204
 colVertex 215, 0, 205
 colVertex 215, 102, 205
 colVertex 215, 0, -204
-colTriInit SURF_ENV_DEFAULT, 10
+colTriInit SURFACE_DEFAULT, 10
 colTri 0, 1, 2
 colTri 0, 2, 3
 colTri 4, 0, 3

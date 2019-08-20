@@ -86,7 +86,7 @@ glabel level_wdw_entry
         terrain /*terrainData*/ wdw_seg7_area_1_collision
         macro_objects /*objList*/ wdw_seg7_area_1_macro_objs
         set_background_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_UNDERGROUND
-        terrain_type /*terrainType*/ 0x0001
+        terrain_type /*terrainType*/ TERRAIN_STONE
     end_area
 
     area /*index*/ 2, /*geo*/ wdw_geo_000724
@@ -98,7 +98,7 @@ glabel level_wdw_entry
         terrain /*terrainData*/ wdw_seg7_area_2_collision
         macro_objects /*objList*/ wdw_seg7_area_2_macro_objs
         set_background_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_UNDERGROUND
-        terrain_type /*terrainType*/ 0x0005
+        terrain_type /*terrainType*/ TERRAIN_WATER
     end_area
 
     free_level_pool

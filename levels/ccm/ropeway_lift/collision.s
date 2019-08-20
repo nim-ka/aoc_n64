@@ -25,7 +25,7 @@ colVertex -204, -153, 102
 colVertex -204, -153, -101
 colVertex 205, -153, -101
 colVertex 205, -153, 102
-colTriInit SURF_ENV_DEFAULT, 10
+colTriInit SURFACE_DEFAULT, 10
 colTri 0, 1, 2
 colTri 0, 3, 1
 colTri 4, 5, 6
@@ -36,7 +36,7 @@ colTri 0, 5, 20
 colTri 0, 20, 21
 colTri 5, 2, 6
 colTri 5, 0, 2
-colTriInit SURF_SLIPPERY, 8
+colTriInit SURFACE_VERY_SLIPPERY, 8
 colTri 8, 9, 10
 colTri 8, 11, 9
 colTri 11, 12, 13
@@ -45,10 +45,10 @@ colTri 14, 15, 16
 colTri 14, 16, 17
 colTri 15, 18, 16
 colTri 15, 19, 18
-colTriInit SURF_NO_SLIP_ICE, 2
+colTriInit SURFACE_HARD_NO_SLIP, 2
 colTri 21, 20, 23
 colTri 21, 23, 22
-colTriInit SURF_FLAG_SURF_76, 24
+colTriInit SURFACE_CAM_NO_COL, 24
 colTri 17, 16, 18
 colTri 20, 17, 18
 colTri 20, 4, 17

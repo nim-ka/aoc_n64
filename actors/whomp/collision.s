@@ -13,7 +13,7 @@ colVertex 150, 430, -3
 colVertex 150, 50, -3
 colVertex -200, 430, -3
 
-colTriInit SURF_FLAG_SURF_76, 12
+colTriInit SURFACE_CAM_NO_COL, 12
 colTri 2, 1, 0
 colTri 3, 2, 0
 colTri 6, 5, 4
@@ -43,7 +43,7 @@ colVertex 150, 430, -3
 colVertex 150, 50, -3
 colVertex -150, 430, -3
 
-colTriInit SURF_FLAG_SURF_76, 12
+colTriInit SURFACE_CAM_NO_COL, 12
 colTri 2, 1, 0
 colTri 3, 2, 0
 colTri 6, 5, 4

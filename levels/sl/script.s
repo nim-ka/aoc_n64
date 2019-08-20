@@ -61,7 +61,7 @@ glabel level_sl_entry
         terrain /*terrainData*/ sl_seg7_area_1_collision
         macro_objects /*objList*/ sl_seg7_area_1_macro_objs
         set_background_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_SNOW
-        terrain_type /*terrainType*/ 0x0002
+        terrain_type /*terrainType*/ TERRAIN_SNOW
     end_area
 
     area /*index*/ 2, /*geo*/ sl_geo_000484
@@ -75,7 +75,7 @@ glabel level_sl_entry
         terrain /*terrainData*/ sl_seg7_area_2_collision
         macro_objects /*objList*/ sl_seg7_area_2_macro_objs
         set_background_music /*unk2*/ 0x0004, /*seq*/ SEQ_LEVEL_UNDERGROUND
-        terrain_type /*terrainType*/ 0x0002
+        terrain_type /*terrainType*/ TERRAIN_SNOW
     end_area
 
     free_level_pool

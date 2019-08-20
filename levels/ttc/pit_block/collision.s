@@ -10,7 +10,7 @@ colVertex 102, 205, 102
 colVertex 102, 0, 102
 colVertex 102, 0, -101
 colVertex 102, 205, -101
-colTriInit SURF_NO_SLIP, 12
+colTriInit SURFACE_NO_SLIPPERY, 12
 colTri 0, 1, 2
 colTri 0, 3, 1
 colTri 4, 1, 5

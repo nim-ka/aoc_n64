@@ -19,7 +19,7 @@ glabel level_pss_entry
         warp_node /*id*/ 0xF1, /*destLevel*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x23, /*unk6*/ 0x0000
         terrain /*terrainData*/ pss_seg7_collision
         macro_objects /*objList*/ pss_seg7_macro_objs
-        terrain_type /*terrainType*/ 0x0006
+        terrain_type /*terrainType*/ TERRAIN_SLIDE
         set_background_music /*unk2*/ 0x0001, /*seq*/ SEQ_LEVEL_SLIDE
     end_area
 

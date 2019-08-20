@@ -515,7 +515,7 @@ colVertex -3327, 4147, 7168
 colVertex 7168, 4506, -8191
 colVertex 7168, 4506, 8192
 colVertex -1277, 3789, 7168
-colTriInit SURF_ENV_DEFAULT, 192
+colTriInit SURFACE_DEFAULT, 192
 colTri 12, 13, 14
 colTri 0, 1, 2
 colTri 3, 0, 2
@@ -708,7 +708,7 @@ colTri 104, 74, 162
 colTri 75, 85, 163
 colTri 85, 170, 163
 colTri 76, 79, 78
-colTriInit SURF_BURNING, 7
+colTriInit SURFACE_BURNING, 7
 colTri 353, 362, 351
 colTri 352, 365, 364
 colTri 364, 353, 352
@@ -716,7 +716,7 @@ colTri 353, 364, 363
 colTri 349, 353, 361
 colTri 353, 363, 362
 colTri 351, 361, 353
-colTriInit SURF_SLIGHT_SLIP, 233
+colTriInit SURFACE_SLIPPERY, 233
 colTri 183, 60, 145
 colTri 178, 123, 23
 colTri 178, 32, 34
@@ -950,9 +950,9 @@ colTri 277, 328, 329
 colTri 277, 293, 328
 colTri 155, 158, 71
 colTri 253, 314, 257
-colTriInit SURF_NO_SLIP, 1
+colTriInit SURFACE_NO_SLIPPERY, 1
 colTri 122, 121, 33
-colTriInit SURF_WALL_ETC, 107
+colTriInit SURFACE_WALL_MISC, 107
 colTri 484, 464, 485
 colTri 367, 480, 366
 colTri 366, 480, 481
@@ -1060,7 +1060,7 @@ colTri 425, 388, 504
 colTri 425, 504, 505
 colTri 388, 506, 504
 colTri 388, 428, 506
-colTriInit SURF_WIND, 10
+colTriInit SURFACE_H_WIND, 10
 colTriSpecial 334, 350, 347, 0x2A
 colTriSpecial 416, 244, 418, 0x1C
 colTriSpecial 416, 231, 305, 0x37
@@ -1071,7 +1071,7 @@ colTriSpecial 373, 374, 231, 0x48
 colTriSpecial 231, 416, 373, 0x48
 colTriSpecial 348, 347, 350, 0x26
 colTriSpecial 334, 347, 261, 0x0
-colTriInit SURF_SLIP_ICE, 40
+colTriInit SURFACE_ICE, 40
 colTri 456, 457, 458
 colTri 456, 459, 457
 colTri 460, 461, 462
@@ -1112,7 +1112,7 @@ colTri 453, 342, 341
 colTri 358, 357, 356
 colTri 359, 360, 358
 colTri 358, 356, 359
-colTriInit SURF_HARD_FLOOR, 39
+colTriInit SURFACE_HARD_FLOOR, 39
 colTri 58, 289, 59
 colTri 330, 39, 126
 colTri 330, 126, 124
@@ -1152,7 +1152,7 @@ colTri 192, 283, 341
 colTri 343, 238, 344
 colTri 343, 236, 238
 colTri 336, 236, 343
-colTriInit SURF_HARD, 173
+colTriInit SURFACE_HARD_VERY_SLIP, 173
 colTri 155, 160, 293
 colTri 366, 7, 367
 colTri 366, 1, 7
@@ -1326,7 +1326,7 @@ colTri 454, 233, 452
 colTri 232, 369, 454
 colTri 455, 232, 454
 colTri 238, 232, 455
-colTriInit SURF_NO_SLIP_ICE, 78
+colTriInit SURFACE_HARD_NO_SLIP, 78
 colTri 24, 130, 25
 colTri 314, 313, 257
 colTri 314, 273, 313
@@ -1405,7 +1405,7 @@ colTri 306, 246, 365
 colTri 352, 306, 365
 colTri 353, 306, 352
 colTri 353, 334, 306
-colTriInit SURF_NO_ACCESS, 14
+colTriInit SURFACE_CAM_BOUNDARY, 14
 colTri 308, 507, 508
 colTri 308, 508, 309
 colTri 509, 507, 308

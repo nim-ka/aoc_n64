@@ -479,7 +479,7 @@ s32 mario_get_floor_class(struct MarioState *m)
     // is checked for anyways.
     if ((m->area->terrainType & TERRAIN_MASK) == TERRAIN_SLIDE)
     {
-        floorClass = SURFACE_CLASS_SLIDE;
+        floorClass = SURFACE_CLASS_VERY_SLIPPERY;
     }
     else
     {
@@ -497,20 +497,20 @@ s32 mario_get_floor_class(struct MarioState *m)
                 break;
 
             case SURFACE_SLIPPERY:
-            case SURFACE_SOUND_2:
+            case SURFACE_NOISE_SLIPPERY:
             case SURFACE_HARD_SLIPPERY:
-            case SURFACE_0079:
+            case SURFACE_NO_CAM_COL_SLIPPERY:
                 floorClass = SURFACE_CLASS_SLIPPERY;
                 break;
 
-            case SURFACE_SLIDE:
+            case SURFACE_VERY_SLIPPERY:
             case SURFACE_ICE:
-            case SURFACE_HARD_SLIDE:
-            case SURFACE_0073:
-            case SURFACE_0074:
-            case SURFACE_0075:
-            case SURFACE_0078:
-                floorClass = SURFACE_CLASS_SLIDE;
+            case SURFACE_HARD_VERY_SLIPPERY:
+            case SURFACE_NOISE_VERY_SLIPPERY_73:
+            case SURFACE_NOISE_VERY_SLIPPERY_74:
+            case SURFACE_NOISE_VERY_SLIPPERY:
+            case SURFACE_NO_CAM_COL_VERY_SLIPPERY:
+                floorClass = SURFACE_CLASS_VERY_SLIPPERY;
                 break;
         }
     }
@@ -555,7 +555,7 @@ u32 mario_get_step_noise(struct MarioState *m)
     {
         floorType = m->floor->type;
 
-        // Sets for a water step noise, discludes LLL since it uses water in the volcano.
+        // Sets for a water step noise, excluding LLL since it uses water in the volcano.
         if ((gCurrLevelNum != LEVEL_LLL) && (m->floorHeight < (m->waterLevel - 10)))
         {
             stepNoise = 0x20000;
@@ -582,25 +582,25 @@ u32 mario_get_step_noise(struct MarioState *m)
 
                 case SURFACE_SLIPPERY:
                 case SURFACE_HARD_SLIPPERY:
-                case SURFACE_0079:
+                case SURFACE_NO_CAM_COL_SLIPPERY:
                     noiseType = 2;
                     break;
 
-                case SURFACE_SLIDE:
+                case SURFACE_VERY_SLIPPERY:
                 case SURFACE_ICE:
-                case SURFACE_HARD_SLIDE:
-                case SURFACE_0073:
-                case SURFACE_0074:
-                case SURFACE_0075:
-                case SURFACE_0078:
+                case SURFACE_HARD_VERY_SLIPPERY:
+                case SURFACE_NOISE_VERY_SLIPPERY_73:
+                case SURFACE_NOISE_VERY_SLIPPERY_74:
+                case SURFACE_NOISE_VERY_SLIPPERY:
+                case SURFACE_NO_CAM_COL_VERY_SLIPPERY:
                     noiseType = 3;
                     break;
 
-                case SURFACE_SOUND_1:
+                case SURFACE_NOISE_DEFAULT:
                     noiseType = 4;
                     break;
 
-                case SURFACE_SOUND_2:
+                case SURFACE_NOISE_SLIPPERY:
                     noiseType = 5;
                     break;
             }
@@ -686,7 +686,7 @@ u32 mario_floor_is_slippery(struct MarioState *m)
 
     switch (mario_get_floor_class(m))
     {
-        case SURFACE_SLIDE:
+        case SURFACE_VERY_SLIPPERY:
             normY = 0.9848077f; //~cos(10 deg)
             break;
 
@@ -722,7 +722,7 @@ s32 mario_floor_is_slope(struct MarioState *m)
 
     switch (mario_get_floor_class(m))
     {
-        case SURFACE_SLIDE:
+        case SURFACE_VERY_SLIPPERY:
             normY = 0.9961947f; //~cos(5 deg)
             break;
 
@@ -758,7 +758,7 @@ s32 mario_floor_is_steep(struct MarioState *m)
     {
         switch (mario_get_floor_class(m))
         {
-            case SURFACE_SLIDE:
+            case SURFACE_VERY_SLIPPERY:
                 normY = 0.9659258f; //~cos(15 deg)
                 break;
 
@@ -1038,7 +1038,7 @@ static u32 set_mario_action_moving(struct MarioState *m, u32 action, UNUSED u32 
 
     switch (action) {
         case ACT_WALKING:
-            if (floorClass != SURFACE_CLASS_SLIDE)
+            if (floorClass != SURFACE_CLASS_VERY_SLIPPERY)
             {
                 if (0.0f <= forwardVel && forwardVel < mag)
                 {

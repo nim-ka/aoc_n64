@@ -107,9 +107,13 @@ struct ObjectWarpNode
     /*0x08*/ struct ObjectWarpNode *next;
 };
 
+// From Surface 0x1B to 0x1E
+#define INSTANT_WARP_INDEX_START  0x00 // Equal and greater than Surface 0x1B
+#define INSTANT_WARP_INDEX_STOP   0x04 // Less than Surface 0x1F
+
 struct InstantWarp
 {
-    /*0x00*/ u8 unk00;
+    /*0x00*/ u8 id; // 0 = 0x1B / 1 = 0x1C / 2 = 0x1D / 3 = 0x1E
     /*0x01*/ u8 area;
     /*0x02*/ Vec3s displacement;
 };
@@ -139,7 +143,7 @@ struct SpawnInfo
 #define CAMERA_PRESET_BOSS_FIGHT        0x0B
 #define CAMERA_PRESET_PARALLEL_TRACKING 0x0C
 #define CAMERA_PRESET_FIXED_REF_POINT   0x0D
-#define CAMERA_PRESET_BOWSER_LEVEL      0x0E
+#define CAMERA_PRESET_PLATFORM_LEVEL    0x0E // Bowser Courses / Rainbow Road
 #define CAMERA_PRESET_FREE_ROAM         0x10
 #define CAMERA_PRESET_SPIRAL_STAIRS     0x11
 

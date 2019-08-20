@@ -8,7 +8,7 @@ colVertex -111, 0, -111
 colVertex -111, 0, 112
 colVertex 112, 0, 112
 
-colTriInit SURF_ENV_DEFAULT, 2
+colTriInit SURFACE_DEFAULT, 2
 colTri 0, 1, 2
 colTri 0, 2, 3
 colTriStop

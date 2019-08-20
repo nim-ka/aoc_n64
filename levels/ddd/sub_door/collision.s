@@ -5,7 +5,7 @@ colVertex 4941, -1015, -4197
 colVertex 2893, -1015, -4197
 colVertex 2893, -3063, -4197
 colVertex 4941, -3063, -4197
-colTriInit SURF_ENV_DEFAULT, 2
+colTriInit SURFACE_DEFAULT, 2
 colTri 0, 1, 2
 colTri 0, 2, 3
 colTriStop

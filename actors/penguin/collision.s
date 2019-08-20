@@ -12,7 +12,7 @@ colVertex -12, 66, -12
 colVertex -12, 0, 12
 colVertex -12, 66, 12
 
-colTriInit SURF_FLAG_SURF_76, 10
+colTriInit SURFACE_CAM_NO_COL, 10
 colTri 2, 1, 0
 colTri 3, 2, 0
 colTri 0, 1, 4

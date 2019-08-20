@@ -178,7 +178,7 @@ colVertex -3685, -5119, -2149
 colVertex -2457, -5119, -2149
 colVertex -2457, -5119, 2150
 colVertex -3276, -5119, 1741
-colTriInit SURF_ENV_DEFAULT, 298
+colTriInit SURFACE_DEFAULT, 298
 colTri 14, 16, 12
 colTri 6, 7, 8
 colTri 6, 9, 7
@@ -477,10 +477,10 @@ colTri 148, 147, 80
 colTri 145, 148, 144
 colTri 147, 148, 146
 colTri 146, 148, 145
-colTriInit SURF_INST_WARP_1D, 2
+colTriInit SURFACE_INST_WARP_1D, 2
 colTri 0, 1, 2
 colTri 0, 3, 1
-colTriInit SURF_INST_WARP_1E, 2
+colTriInit SURFACE_INST_WARP_1E, 2
 colTri 2, 4, 5
 colTri 2, 5, 0
 colTriStop

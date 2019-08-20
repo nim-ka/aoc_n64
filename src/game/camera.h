@@ -481,7 +481,7 @@ extern void set_pos_from_face_angle_and_vec3f(Vec3f, Vec3f, Vec3f, Vec3s);
 s16 func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 g); // postdefined
 // extern ? Unknown8028CE1C(?);
 // extern ? set_camera_preset_fixed_ref_point(?);
-// extern ? set_camera_preset_bowser_level(?);
+// extern ? set_camera_preset_platform_level(?);
 // extern ? set_camera_preset_boss_fight(?);
 // extern ? set_camera_preset_close_cam(?);
 // extern ? set_camera_preset_open_camera(?);

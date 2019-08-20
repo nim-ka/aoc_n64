@@ -86,7 +86,7 @@ glabel level_ssl_entry
         terrain /*terrainData*/ ssl_seg7_area_1_collision
         macro_objects /*objList*/ ssl_seg7_area_1_macro_objs
         set_background_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_HOT
-        terrain_type /*terrainType*/ 0x0003
+        terrain_type /*terrainType*/ TERRAIN_SAND
     end_area
 
     area /*index*/ 2, /*geo*/ ssl_geo_0007CC
@@ -106,7 +106,7 @@ glabel level_ssl_entry
         terrain /*terrainData*/ ssl_seg7_area_2_collision
         macro_objects /*objList*/ ssl_seg7_area_2_macro_objs
         set_background_music /*unk2*/ 0x0004, /*seq*/ SEQ_LEVEL_UNDERGROUND
-        terrain_type /*terrainType*/ 0x0001
+        terrain_type /*terrainType*/ TERRAIN_STONE
     end_area
 
     area /*index*/ 3, /*geo*/ ssl_geo_00088C
@@ -117,7 +117,7 @@ glabel level_ssl_entry
         macro_objects /*objList*/ ssl_seg7_area_3_macro_objs
         instant_warp /*index*/ 2, /*destArea*/ 2, /*displace*/ 0, 0, 0
         set_background_music /*unk2*/ 0x0004, /*seq*/ SEQ_LEVEL_UNDERGROUND
-        terrain_type /*terrainType*/ 0x0001
+        terrain_type /*terrainType*/ TERRAIN_STONE
     end_area
 
     free_level_pool

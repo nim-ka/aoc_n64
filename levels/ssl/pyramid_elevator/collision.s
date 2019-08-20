@@ -21,7 +21,7 @@ colVertex -511, -50, -511
 colVertex 512, -50, -511
 colVertex 512, -50, 512
 colVertex -511, -50, 512
-colTriInit SURF_ENV_DEFAULT, 10
+colTriInit SURFACE_DEFAULT, 10
 colTri 2, 16, 3
 colTri 2, 17, 16
 colTri 1, 17, 2
@@ -32,10 +32,10 @@ colTri 16, 18, 19
 colTri 3, 19, 0
 colTri 0, 19, 18
 colTri 0, 18, 1
-colTriInit SURF_CLOSE_CAM, 2
+colTriInit SURFACE_CLOSE_CAMERA, 2
 colTri 0, 1, 2
 colTri 0, 2, 3
-colTriInit SURF_FLAG_SURF_76, 24
+colTriInit SURFACE_CAM_NO_COL, 24
 colTri 10, 12, 5
 colTri 4, 5, 6
 colTri 6, 5, 7

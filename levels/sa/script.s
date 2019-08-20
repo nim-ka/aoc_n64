@@ -32,7 +32,7 @@ glabel level_sa_entry
         terrain /*terrainData*/ sa_seg7_collision
         macro_objects /*objList*/ sa_seg7_macro_objs
         set_background_music /*unk2*/ 0x0003, /*seq*/ (SEQ_LEVEL_WATER | SEQ_VARIATION)
-        terrain_type /*terrainType*/ 0x0005
+        terrain_type /*terrainType*/ TERRAIN_WATER
     end_area
 
     free_level_pool

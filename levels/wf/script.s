@@ -134,7 +134,7 @@ glabel level_wf_entry
         macro_objects /*objList*/ wf_seg7_macro_objs
         show_dialog /*unk2*/ 0x00, /*dialogid*/ 0x1E
         set_background_music /*unk2*/ 0x0005, /*seq*/ SEQ_LEVEL_GRASS
-        terrain_type /*terrainType*/ 0x0001
+        terrain_type /*terrainType*/ TERRAIN_STONE
     end_area
 
     free_level_pool

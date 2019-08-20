@@ -4,7 +4,7 @@
 #include "types.h"
 
 extern s16 gCheckingSurfaceCollisionsForCamera;
-extern s16 gFindFloorIncludeSurface0012;
+extern s16 gFindFloorIncludeSurfaceIntangible;
 extern s16 *gEnvironmentRegions;
 extern s32 gEnvironmentLevels[20];
 extern s8 gDoorAdjacentRooms[60][2];

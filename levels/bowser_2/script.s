@@ -27,7 +27,7 @@ glabel level_bowser_2_entry
         jump_link /*target*/ script_func_local_1
         terrain /*terrainData*/ bowser_2_seg7_collision_lava
         set_background_music /*unk2*/ 0x0002, /*seq*/ SEQ_LEVEL_BOSS_KOOPA
-        terrain_type /*terrainType*/ 0x0001
+        terrain_type /*terrainType*/ TERRAIN_STONE
     end_area
 
     free_level_pool

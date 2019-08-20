@@ -1583,7 +1583,7 @@ colVertex 1679, 819, 369
 colVertex 1229, 819, 369
 colVertex 1638, -1433, 2048
 colVertex 1638, -1433, -1535
-colTriInit SURF_ENV_DEFAULT, 1756
+colTriInit SURFACE_DEFAULT, 1756
 colTri 465, 466, 467
 colTri 465, 468, 469
 colTri 465, 469, 466
@@ -3340,7 +3340,7 @@ colTri 431, 385, 1578
 colTri 431, 1578, 1579
 colTri 1119, 1580, 630
 colTri 1119, 1581, 1580
-colTriInit SURF_INTANGIBLE, 18
+colTriInit SURFACE_INTANGIBLE, 18
 colTri 437, 438, 439
 colTri 439, 440, 441
 colTri 439, 441, 442
@@ -3359,7 +3359,7 @@ colTri 454, 460, 461
 colTri 454, 461, 459
 colTri 455, 462, 463
 colTri 455, 464, 462
-colTriInit SURF_SLIPPERY, 58
+colTriInit SURFACE_VERY_SLIPPERY, 58
 colTri 347, 348, 349
 colTri 348, 350, 349
 colTri 347, 349, 351
@@ -3418,14 +3418,14 @@ colTri 386, 387, 433
 colTri 386, 433, 434
 colTri 387, 435, 436
 colTri 387, 436, 433
-colTriInit SURF_VARIED_NOISE, 6
+colTriInit SURFACE_MGR_MUSIC, 6
 colTri 335, 336, 337
 colTri 335, 338, 336
 colTri 339, 340, 341
 colTri 339, 342, 340
 colTri 343, 344, 345
 colTri 343, 345, 346
-colTriInit SURF_NOISE_DEF, 304
+colTriInit SURFACE_NOISE_DEFAULT, 304
 colTri 16, 17, 18
 colTri 17, 19, 18
 colTri 17, 20, 19
@@ -3730,7 +3730,7 @@ colTri 175, 176, 333
 colTri 176, 334, 163
 colTri 176, 163, 162
 colTri 176, 162, 323
-colTriInit SURF_VAN_CAP_WALL, 8
+colTriInit SURFACE_VAN_CAP_WALL, 8
 colTri 12, 13, 14
 colTri 0, 1, 2
 colTri 0, 3, 1

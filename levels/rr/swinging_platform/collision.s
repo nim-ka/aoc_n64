@@ -30,7 +30,7 @@ colVertex -114, 0, 0
 colVertex -48, -101, 0
 colVertex 54, -101, 0
 colVertex 120, 0, 0
-colTriInit SURF_ENV_DEFAULT, 40
+colTriInit SURFACE_DEFAULT, 40
 colTri 9, 12, 13
 colTri 0, 1, 2
 colTri 2, 3, 4
@@ -71,7 +71,7 @@ colTri 16, 23, 22
 colTri 19, 22, 21
 colTri 19, 21, 20
 colTri 19, 16, 22
-colTriInit SURF_NO_SLIP, 2
+colTriInit SURFACE_NO_SLIPPERY, 2
 colTri 0, 2, 4
 colTri 0, 4, 6
 colTriStop

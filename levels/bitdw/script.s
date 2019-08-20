@@ -80,7 +80,7 @@ glabel level_bitdw_entry
         macro_objects /*objList*/ bitdw_seg7_macro_objs
         show_dialog /*unk2*/ 0x00, /*dialogid*/ 0x5A
         set_background_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_KOOPA_ROAD
-        terrain_type /*terrainType*/ 0x0001
+        terrain_type /*terrainType*/ TERRAIN_STONE
     end_area
 
     free_level_pool

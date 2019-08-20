@@ -1936,7 +1936,7 @@ void mario_handle_special_floors(struct MarioState *m)
         {
             switch (floorType)
             {
-            case SURFACE_LAVA:
+            case SURFACE_BURNING:
                 check_lava_boost(m);
                 break;
             }

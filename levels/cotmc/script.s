@@ -36,7 +36,7 @@ glabel level_cotmc_entry
         macro_objects /*objList*/ cotmc_seg7_macro_objs
         show_dialog /*unk2*/ 0x00, /*dialogid*/ 0x82
         set_background_music /*unk2*/ 0x0004, /*seq*/ SEQ_LEVEL_UNDERGROUND
-        terrain_type /*terrainType*/ 0x0001
+        terrain_type /*terrainType*/ TERRAIN_STONE
     end_area
 
     free_level_pool

@@ -550,7 +550,7 @@ colVertex 7532, 2765, -313
 colVertex 7123, 2765, -723
 colVertex 7123, 2765, 710
 colVertex 7532, 2765, 300
-colTriInit SURF_ENV_DEFAULT, 475
+colTriInit SURFACE_DEFAULT, 475
 colTri 48, 49, 50
 colTri 51, 52, 53
 colTri 51, 54, 52
@@ -1026,7 +1026,7 @@ colTri 257, 447, 260
 colTri 258, 448, 260
 colTri 258, 449, 448
 colTri 255, 449, 258
-colTriInit SURF_DEATH_FLOOR, 8
+colTriInit SURFACE_DEATH_PLANE, 8
 colTri 450, 451, 452
 colTri 452, 453, 450
 colTri 452, 454, 453
@@ -1035,7 +1035,7 @@ colTri 456, 457, 450
 colTri 455, 456, 450
 colTri 450, 457, 451
 colTri 456, 458, 457
-colTriInit SURF_SLIPPERY, 48
+colTriInit SURFACE_VERY_SLIPPERY, 48
 colTri 17, 13, 15
 colTri 4, 5, 6
 colTri 7, 6, 8
@@ -1084,7 +1084,7 @@ colTri 35, 44, 31
 colTri 37, 33, 35
 colTri 30, 28, 43
 colTri 36, 31, 33
-colTriInit SURF_NO_SLIP, 156
+colTriInit SURFACE_NO_SLIPPERY, 156
 colTri 57, 51, 55
 colTri 57, 54, 51
 colTri 267, 261, 268
@@ -1241,10 +1241,10 @@ colTri 545, 482, 478
 colTri 200, 399, 203
 colTri 203, 201, 200
 colTri 412, 411, 141
-colTriInit SURF_CAM_6F, 2
+colTriInit SURFACE_CAM_ROT_RIGHT, 2
 colTri 0, 1, 2
 colTri 1, 3, 2
-colTriInit SURF_FLAG_SURF_76, 76
+colTriInit SURFACE_CAM_NO_COL, 76
 colTri 489, 470, 485
 colTri 489, 472, 470
 colTri 490, 491, 492

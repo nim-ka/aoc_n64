@@ -8,7 +8,7 @@ colVertex 256, 0, -255
 colVertex 256, -50, 256
 colVertex -255, 0, -255
 colVertex -255, 0, 256
-colTriInit SURF_ENV_DEFAULT, 4
+colTriInit SURFACE_DEFAULT, 4
 colTri 0, 1, 2
 colTri 0, 3, 1
 colTri 0, 4, 5

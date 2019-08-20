@@ -76,8 +76,8 @@ f32 D_8033B3FC;
 s16 sFirstPersonCameraPitch;
 s16 sFirstPersonCameraYaw;
 s16 D_8033B404;
-s16 sBowserLevelPresetBaseYaw;
-s16 gBowserLevelYawOffset;
+s16 sPlatformLevelPresetBaseYaw;
+s16 gPlatformLevelYawOffset;
 f32 D_8033B40C;
 f32 D_8033B410;
 struct Struct8033B418 D_8033B418;
@@ -140,7 +140,7 @@ s32 return_cannon_camera_yaw(struct LevelCamera *, Vec3f, Vec3f);
 s32 return_boss_fight_camera_yaw(struct LevelCamera *, Vec3f, Vec3f);
 s32 return_parallel_tracking_camera_yaw(struct LevelCamera *, Vec3f, Vec3f);
 s32 return_fixed_camera_yaw(struct LevelCamera *, Vec3f, Vec3f);
-s32 return_bowser_level_camera_yaw(struct LevelCamera *, Vec3f, Vec3f);
+s32 return_platform_camera_yaw(struct LevelCamera *, Vec3f, Vec3f);
 s32 return_slide_or_0f_camera_yaw(struct LevelCamera *, Vec3f, Vec3f);
 s32 return_mario_yaw(struct LevelCamera *, Vec3f, Vec3f);
 s32 return_spiral_stairs_camera_yaw(struct LevelCamera *, Vec3f, Vec3f);
@@ -160,7 +160,7 @@ s32 (*TableCameraTransitions[])(struct LevelCamera *, Vec3f, Vec3f) = {
     return_boss_fight_camera_yaw,
     return_parallel_tracking_camera_yaw,
     return_fixed_camera_yaw,
-    return_bowser_level_camera_yaw,
+    return_platform_camera_yaw,
     return_slide_or_0f_camera_yaw,
     return_mario_yaw,
     return_spiral_stairs_camera_yaw
@@ -509,7 +509,7 @@ s16 return_pitch_parallel_floor(s16 yaw)
 
     if (floor != NULL)
     {
-        if (floor->type != SURFACE_0028 && floorHeight > 0)
+        if (floor->type != SURFACE_WALL_MISC && floorHeight > 0)
         {
             if (floor->normal.z == 0.f && floorHeight < 100.f)
                 pitch = 0x05B0;
@@ -591,11 +591,11 @@ s32 return_open_camera_yaw(struct LevelCamera *c, Vec3f focus, Vec3f pos)
     return yaw;
 }
 
-s32 return_bowser_level_camera_yaw(struct LevelCamera *c, Vec3f focus, Vec3f pos)
+s32 return_platform_camera_yaw(struct LevelCamera *c, Vec3f focus, Vec3f pos)
 {
     UNUSED f32 xDistFocToMario = sMarioStatusForCamera->pos[0] - c->xFocus;
     UNUSED f32 zDistFocToMario = sMarioStatusForCamera->pos[2] - c->zFocus;
-    s16 yaw = sBowserLevelPresetBaseYaw + gBowserLevelYawOffset;
+    s16 yaw = sPlatformLevelPresetBaseYaw + gPlatformLevelYawOffset;
     s16 pitch = return_pitch_parallel_floor(yaw);
     f32 posHeightAboveFloor;
     f32 focusHeightAboveFloor;
@@ -636,11 +636,11 @@ void func_80280550(struct LevelCamera *c)
 
     if (!(gCameraMovementFlags & (CAM_MOVE_RETURN_TO_MIDDLE | CAM_MOVE_ROTATE_RIGHT | CAM_MOVE_ROTATE_LEFT)))
     {
-        if (sGeometryForMario.currFloorType == SURFACE_006E && sGeometryForMario.prevFloorType != SURFACE_006E)
+        if (sGeometryForMario.currFloorType == SURFACE_CAMERA_MIDDLE && sGeometryForMario.prevFloorType != SURFACE_CAMERA_MIDDLE)
             gCameraMovementFlags |= (CAM_MOVE_RETURN_TO_MIDDLE | CAM_MOVE_UNKNOWN_5);
-        if (sGeometryForMario.currFloorType == SURFACE_006F && sGeometryForMario.prevFloorType != SURFACE_006F)
+        if (sGeometryForMario.currFloorType == SURFACE_CAMERA_ROTATE_RIGHT && sGeometryForMario.prevFloorType != SURFACE_CAMERA_ROTATE_RIGHT)
             gCameraMovementFlags |= (CAM_MOVE_ROTATE_RIGHT | CAM_MOVE_UNKNOWN_5);
-        if (sGeometryForMario.currFloorType == SURFACE_0070 && sGeometryForMario.prevFloorType != SURFACE_0070)
+        if (sGeometryForMario.currFloorType == SURFACE_CAMERA_ROTATE_LEFT && sGeometryForMario.prevFloorType != SURFACE_CAMERA_ROTATE_LEFT)
             gCameraMovementFlags |= (CAM_MOVE_ROTATE_LEFT | CAM_MOVE_UNKNOWN_5);
     }
 
@@ -798,7 +798,7 @@ void update_open_camera(struct LevelCamera *c)
     func_8027FF44(c);
 }
 
-void update_bowser_level_camera(struct LevelCamera *c)
+void update_platform_level_camera(struct LevelCamera *c)
 {
     Vec3f pos;
     UNUSED u8 unused[8];
@@ -808,17 +808,17 @@ void update_bowser_level_camera(struct LevelCamera *c)
 
     if (gPlayer1Controller->buttonPressed & R_CBUTTONS)
     {
-        gBowserLevelYawOffset += 0x2000;
+        gPlatformLevelYawOffset += 0x2000;
         play_sound_cbutton_side();
     }
     if (gPlayer1Controller->buttonPressed & L_CBUTTONS)
     {
-        gBowserLevelYawOffset -= 0x2000;
+        gPlatformLevelYawOffset -= 0x2000;
         play_sound_cbutton_side();
     }
 
     func_80280BD8(400.f, 2304);
-    c->storedYaw = return_bowser_level_camera_yaw(c, c->focus, pos);
+    c->storedYaw = return_platform_camera_yaw(c, c->focus, pos);
     c->pos[0] = pos[0];
     c->pos[2] = pos[2];
     D_8033B3EC = sYawFocToMario - sp1A;
@@ -1927,7 +1927,7 @@ static void unused_update_mode_0f_camera(struct LevelCamera *c)
 
 void update_slide_camera(struct LevelCamera *c)
 {
-    if (sGeometryForMario.currFloorType == SURFACE_000B || sGeometryForMario.currFloorType == SURFACE_0079)
+    if (sGeometryForMario.currFloorType == SURFACE_CLOSE_CAMERA || sGeometryForMario.currFloorType == SURFACE_NO_CAM_COL_SLIPPERY)
     {
         camera_lakitu_zoom_distance(c);
     }
@@ -2445,8 +2445,8 @@ void update_camera(struct LevelCamera *c)
                 update_cannon_camera(c);
                 break;
 
-            case CAMERA_PRESET_BOWSER_LEVEL:
-                update_bowser_level_camera(c);
+            case CAMERA_PRESET_PLATFORM_LEVEL:
+                update_platform_level_camera(c);
                 break;
 
             case CAMERA_PRESET_OPEN_CAMERA:
@@ -2566,8 +2566,8 @@ void reset_camera(struct LevelCamera *c)
     D_8033B3FC = 0.f;
     D_8033B3FA = 0;
     sCSideButtonYaw = 0;
-    sBowserLevelPresetBaseYaw = 0;
-    gBowserLevelYawOffset = 0;
+    sPlatformLevelPresetBaseYaw = 0;
+    gPlatformLevelYawOffset = 0;
     c->unk64 = 0;
     sMarioStatusForCamera->unk16[0] = 0;
     sMarioStatusForCamera->unk16[1] = 0;
@@ -2694,7 +2694,7 @@ void init_camera(struct LevelCamera *c)
         vec3f_set(sFixedPresetBasePosition, -2985.f, 478.f, -5568.f);
         break;
     }
-    if (c->currPreset == CAMERA_PRESET_BOWSER_LEVEL)
+    if (c->currPreset == CAMERA_PRESET_PLATFORM_LEVEL)
         gCameraMovementFlags |= CAM_MOVE_ZOOMED_OUT;
     switch (gCurrLevelArea)
     {
@@ -4612,14 +4612,14 @@ s32 set_camera_preset_fixed_ref_point(struct LevelCamera *c, s16 x, s16 y, s16 z
     return camPosSet;
 }
 
-void set_camera_preset_bowser_level(struct LevelCamera *c)
+void set_camera_preset_platform_level(struct LevelCamera *c)
 {
-    if (c->currPreset != CAMERA_PRESET_BOWSER_LEVEL)
+    if (c->currPreset != CAMERA_PRESET_PLATFORM_LEVEL)
     {
-        c->currPreset = CAMERA_PRESET_BOWSER_LEVEL;
+        c->currPreset = CAMERA_PRESET_PLATFORM_LEVEL;
         gCameraFlags2 &= ~CAM_FLAG_2_SMOOTH_MOVEMENT;
-        sBowserLevelPresetBaseYaw = 0;
-        gBowserLevelYawOffset = 0;
+        sPlatformLevelPresetBaseYaw = 0;
+        gPlatformLevelYawOffset = 0;
     }
 }
 
@@ -4714,13 +4714,13 @@ void func_8028D32C(u8 *preset)
 
 CmdRet CameraRR00(struct LevelCamera *c)
 {
-    set_camera_preset_bowser_level(c);
-    sBowserLevelPresetBaseYaw = 0x4000;
+    set_camera_preset_platform_level(c);
+    sPlatformLevelPresetBaseYaw = 0x4000;
 }
 
 CmdRet CameraRR04(struct LevelCamera *c)
 {
-    set_camera_preset_bowser_level(c);
+    set_camera_preset_platform_level(c);
     if (c->pos[1] < 6343.f)
     {
         c->pos[1] = 7543.f;
@@ -4761,8 +4761,8 @@ CmdRet CameraCotMC00(UNUSED struct LevelCamera *c)
 CmdRet CameraSL00(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_BLOCK_LEVEL_SPECIFIC_UPDATES;
-    set_camera_preset(c, CAMERA_PRESET_BOWSER_LEVEL, 60);
-    sBowserLevelPresetBaseYaw = 0x1D27;
+    set_camera_preset(c, CAMERA_PRESET_PLATFORM_LEVEL, 60);
+    sPlatformLevelPresetBaseYaw = 0x1D27;
 }
 
 CmdRet camera_change_set_free_roam_mode(struct LevelCamera *c)
@@ -5127,17 +5127,17 @@ u32 surface_type_presets(struct LevelCamera *c)
 
     switch (sGeometryForMario.currFloorType)
     {
-    case SURFACE_000B:
+    case SURFACE_CLOSE_CAMERA:
         set_camera_preset(c, CAMERA_PRESET_CLOSE, 90);
         presetChanged += 1;
         break;
 
-    case SURFACE_0066:
+    case SURFACE_CAMERA_FREE_ROAM:
         set_camera_preset(c, CAMERA_PRESET_FREE_ROAM, 90);
         presetChanged += 1;
         break;
 
-    case SURFACE_0079:
+    case SURFACE_NO_CAM_COL_SLIPPERY:
         set_camera_preset(c, CAMERA_PRESET_CLOSE, 90);
         presetChanged += 1;
         break;
@@ -5160,23 +5160,23 @@ void surface_type_presets_thi(struct LevelCamera *c)
 {
     switch (sGeometryForMario.currFloorType)
     {
-    case SURFACE_000B:
+    case SURFACE_CLOSE_CAMERA:
         if (c->currPreset != CAMERA_PRESET_CLOSE)
             set_camera_preset(c, CAMERA_PRESET_FREE_ROAM, 90);
         break;
 
-    case SURFACE_0066:
+    case SURFACE_CAMERA_FREE_ROAM:
         if (c->currPreset != CAMERA_PRESET_CLOSE)
             set_camera_preset(c, CAMERA_PRESET_FREE_ROAM, 90);
         break;
 
-    case SURFACE_0079:
+    case SURFACE_NO_CAM_COL_SLIPPERY:
         if (c->currPreset != CAMERA_PRESET_CLOSE)
             set_camera_preset(c, CAMERA_PRESET_FREE_ROAM, 90);
         break;
 
-    case SURFACE_0069:
-        set_camera_preset(c, CAMERA_PRESET_BOWSER_LEVEL, 90);
+    case SURFACE_CAMERA_PLATFORM:
+        set_camera_preset(c, CAMERA_PRESET_PLATFORM_LEVEL, 90);
         break;
 
     default:
@@ -5646,9 +5646,9 @@ s16 level_specific_camera_update(struct LevelCamera *c)
             {
                 switch (sGeometryForMario.currFloorType)
                 {
-                case SURFACE_0069:
-                    set_camera_preset(c, CAMERA_PRESET_BOWSER_LEVEL, 90);
-                    sBowserLevelPresetBaseYaw = 0x4000;
+                case SURFACE_CAMERA_PLATFORM:
+                    set_camera_preset(c, CAMERA_PRESET_PLATFORM_LEVEL, 90);
+                    sPlatformLevelPresetBaseYaw = 0x4000;
                     break;
 
                 case SURFACE_BOSS_FIGHT_CAMERA:
@@ -5706,7 +5706,7 @@ s16 level_specific_camera_update(struct LevelCamera *c)
             break;
 
         case AREA_WDW_MAIN:
-            if (sGeometryForMario.currFloorType == SURFACE_INSTANT_WARP_0)
+            if (sGeometryForMario.currFloorType == SURFACE_INSTANT_WARP_1B)
             {
                 if (0) {}
                 c->defPreset = CAMERA_PRESET_OPEN_CAMERA;
@@ -5715,7 +5715,7 @@ s16 level_specific_camera_update(struct LevelCamera *c)
             break;
 
         case AREA_WDW_TOWN:
-            if (sGeometryForMario.currFloorType == SURFACE_001C)
+            if (sGeometryForMario.currFloorType == SURFACE_INSTANT_WARP_1C)
             {
                 if (0) {}
                 c->defPreset = CAMERA_PRESET_CLOSE;
@@ -5731,7 +5731,7 @@ s16 level_specific_camera_update(struct LevelCamera *c)
             if ((c->currPreset != CAMERA_PRESET_BEHIND_MARIO) && (c->currPreset != CAMERA_PRESET_WATER_SURFACE))
             {
                 if (((sMarioStatusForCamera->action & ACT_FLAG_ON_POLE) != 0) || (sGeometryForMario.currFloorHeight > 800.f))
-                    set_camera_preset(c, CAMERA_PRESET_BOWSER_LEVEL, 60);
+                    set_camera_preset(c, CAMERA_PRESET_PLATFORM_LEVEL, 60);
 
                 else
                 {
@@ -5847,7 +5847,7 @@ s32 func_8028F2F0(struct LevelCamera *a, Vec3f pos, s16 *c, s16 d)
                 wall = wallData.walls[wallData.numWalls - 1];
                 horWallNorm = atan2s(wall->normal.z, wall->normal.x);
                 sp36 = horWallNorm + 0x4000;
-                if ((func_8028A0D4(sMarioStatusForCamera->pos, pos, wall, d, SURFACE_0028) == 0)
+                if ((func_8028A0D4(sMarioStatusForCamera->pos, pos, wall, d, SURFACE_WALL_MISC) == 0)
                     && (is_mario_behind_surface((u32)a, wall) == 1)
                     && (is_pos_less_than_bounds(wall, -1.f, 150.f, -1.f) == 0))
                 {
@@ -8523,7 +8523,7 @@ CmdRet CutsceneEnterPainting0(struct LevelCamera *c)
 
         find_floor(sMarioStatusForCamera->pos[0], sMarioStatusForCamera->pos[1] + 50.f, sMarioStatusForCamera->pos[2], &floor);
 
-        if ((floor->type < 166) || (floor->type > 249))
+        if ((floor->type < SURFACE_PAINTING_WOBBLE_A6) || (floor->type > SURFACE_PAINTING_WARP_F9))
         {
             c->cutscene = 0;
             gCutsceneTimer = 0x8000;

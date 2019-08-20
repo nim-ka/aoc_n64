@@ -50,7 +50,7 @@ glabel level_ttc_entry
         terrain /*terrainData*/ ttc_seg7_collision_level
         macro_objects /*objList*/ ttc_seg7_macro_objs
         set_background_music /*unk2*/ 0x0001, /*seq*/ SEQ_LEVEL_SLIDE
-        terrain_type /*terrainType*/ 0x0001
+        terrain_type /*terrainType*/ TERRAIN_STONE
     end_area
 
     free_level_pool

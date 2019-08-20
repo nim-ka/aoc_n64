@@ -328,7 +328,7 @@ s32 update_sliding(struct MarioState *m, f32 stopSpeed)
 
     switch (mario_get_floor_class(m))
     {
-    case SURFACE_CLASS_SLIDE:
+    case SURFACE_CLASS_VERY_SLIPPERY:
         accel = 10.0f;
         lossFactor = m->intendedMag / 32.0f * forward * 0.02f + 0.98f;
         break;
@@ -395,10 +395,10 @@ void apply_slope_accel(struct MarioState *m)
 
         switch (slopeClass)
         {
-        case SURFACE_CLASS_SLIDE:        slopeAccel = 5.3f; break;
-        case SURFACE_CLASS_SLIPPERY:     slopeAccel = 2.7f; break;
-        default:                         slopeAccel = 1.7f; break;
-        case SURFACE_CLASS_NOT_SLIPPERY: slopeAccel = 0.0f; break;
+        case SURFACE_CLASS_VERY_SLIPPERY: slopeAccel = 5.3f; break;
+        case SURFACE_CLASS_SLIPPERY:      slopeAccel = 2.7f; break;
+        default:                          slopeAccel = 1.7f; break;
+        case SURFACE_CLASS_NOT_SLIPPERY:  slopeAccel = 0.0f; break;
         }
 
         if (floorDYaw > -0x4000 && floorDYaw < 0x4000)
@@ -486,10 +486,10 @@ s32 apply_slope_decel(struct MarioState *m, f32 decelCoef)
 
     switch (mario_get_floor_class(m))
     {
-    case SURFACE_CLASS_SLIDE:        decel = decelCoef * 0.2f; break;
-    case SURFACE_CLASS_SLIPPERY:     decel = decelCoef * 0.7f; break;
-    default:                         decel = decelCoef * 2.0f; break;
-    case SURFACE_CLASS_NOT_SLIPPERY: decel = decelCoef * 3.0f; break;
+    case SURFACE_CLASS_VERY_SLIPPERY: decel = decelCoef * 0.2f; break;
+    case SURFACE_CLASS_SLIPPERY:      decel = decelCoef * 0.7f; break;
+    default:                          decel = decelCoef * 2.0f; break;
+    case SURFACE_CLASS_NOT_SLIPPERY:  decel = decelCoef * 3.0f; break;
     }
 
     if ((m->forwardVel = approach_f32(m->forwardVel, 0.0f, decel, decel)) == 0.0f)
@@ -547,7 +547,7 @@ s32 should_begin_sliding(struct MarioState *m)
 {
     if (m->input & INPUT_ABOVE_SLIDE)
     {
-        s32 slideLevel = (m->area->terrainType & 0x0007) == TERRAIN_SLIDE;
+        s32 slideLevel = (m->area->terrainType & TERRAIN_MASK) == TERRAIN_SLIDE;
         s32 movingBackward = m->forwardVel <= -1.0f;
 
         if (slideLevel || movingBackward || mario_facing_downhill(m, FALSE))
@@ -1184,14 +1184,14 @@ s32 act_decelerating(struct MarioState *m)
         break;
 
     case GROUND_STEP_HIT_WALL:
-        if (slopeClass == SURFACE_CLASS_SLIDE)
+        if (slopeClass == SURFACE_CLASS_VERY_SLIPPERY)
             mario_bonk_reflection(m, TRUE);
         else
             mario_set_forward_vel(m, 0.0f);
         break;
     }
 
-    if (slopeClass == SURFACE_CLASS_SLIDE)
+    if (slopeClass == SURFACE_CLASS_VERY_SLIPPERY)
     {
         set_mario_animation(m, MARIO_ANIM_IDLE_HEAD_LEFT);
         play_sound(SOUND_UNKNOWN_UNK1400 + m->stepSound, m->marioObj->header.gfx.cameraToObject);
@@ -1245,14 +1245,14 @@ s32 act_hold_decelerating(struct MarioState *m)
         break;
 
     case GROUND_STEP_HIT_WALL:
-        if (slopeClass == SURFACE_CLASS_SLIDE)
+        if (slopeClass == SURFACE_CLASS_VERY_SLIPPERY)
             mario_bonk_reflection(m, TRUE);
         else
             mario_set_forward_vel(m, 0.0f);
         break;
     }
 
-    if (slopeClass == SURFACE_CLASS_SLIDE)
+    if (slopeClass == SURFACE_CLASS_VERY_SLIPPERY)
     {
         set_mario_animation(m, MARIO_ANIM_IDLE_WITH_LIGHT_OBJ);
         play_sound(SOUND_UNKNOWN_UNK1400 + m->stepSound, m->marioObj->header.gfx.cameraToObject);
@@ -1304,7 +1304,7 @@ s32 act_riding_shell_ground(struct MarioState *m)
     }
 
     func_80265DBC(m, startYaw);
-    if (m->floor->type == SURFACE_LAVA)
+    if (m->floor->type == SURFACE_BURNING)
         play_sound(SOUND_UNKNOWN_UNK1428, m->marioObj->header.gfx.cameraToObject);
     else
         play_sound(SOUND_UNKNOWN_UNK1420 + m->stepSound, m->marioObj->header.gfx.cameraToObject);

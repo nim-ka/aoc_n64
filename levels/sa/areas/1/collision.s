@@ -49,7 +49,7 @@ colVertex 2867, 0, -2661
 colVertex 2662, 0, -2866
 colVertex 2662, 0, 2867
 colVertex 2867, 0, 2662
-colTriInit SURF_ENV_DEFAULT, 52
+colTriInit SURFACE_DEFAULT, 52
 colTri 12, 13, 14
 colTri 0, 1, 2
 colTri 0, 2, 3

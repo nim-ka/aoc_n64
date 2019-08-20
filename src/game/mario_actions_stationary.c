@@ -135,7 +135,7 @@ s32 act_idle(struct MarioState *m) {
     }
 
     if (m->actionState == 3) {
-        if ((m->area->terrainType & 7) == TERRAIN_SNOW) {
+        if ((m->area->terrainType & TERRAIN_MASK) == TERRAIN_SNOW) {
             return set_mario_action(m, ACT_SHIVERING, 0);
         } else {
             return set_mario_action(m, ACT_START_SLEEPING, 0);
@@ -1094,7 +1094,7 @@ s32 act_first_person(struct MarioState *m) {
         }
     }
 
-    if (m->floor->type == 0x2F) {
+    if (m->floor->type == SURFACE_LOOK_UP_WARP) {
         if (save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 0x18) >= 10) {
             sp1A = m->statusForCamera->unk16[0];
             sp18 = ((m->statusForCamera->unk16[1] * 4) / 3) + m->faceAngle[1];

@@ -9,7 +9,7 @@ colVertex 2618, -1023, -6545
 colVertex -2617, -1023, 6546
 colVertex 6546, -1023, 2618
 colVertex 2777, -1023, 6480
-colTriInit SURF_BURNING, 6
+colTriInit SURFACE_BURNING, 6
 colTri 0, 1, 2
 colTri 0, 3, 4
 colTri 0, 2, 5

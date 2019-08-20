@@ -256,7 +256,7 @@ colVertex 6539, 2332, 1539
 colVertex 3058, 5251, 615
 colVertex 7051, 2691, 2459
 colVertex 7256, 2640, 2049
-colTriInit SURF_ENV_DEFAULT, 425
+colTriInit SURFACE_DEFAULT, 425
 colTri 16, 17, 18
 colTri 16, 18, 19
 colTri 17, 16, 20
@@ -682,17 +682,17 @@ colTri 87, 241, 238
 colTri 77, 216, 235
 colTri 40, 70, 74
 colTri 41, 40, 74
-colTriInit SURF_DEATH_FLOOR, 2
+colTriInit SURFACE_DEATH_PLANE, 2
 colTri 8, 9, 10
 colTri 8, 11, 9
-colTriInit SURF_INST_WARP_1E, 6
+colTriInit SURFACE_INST_WARP_1E, 6
 colTri 0, 1, 2
 colTri 1, 3, 2
 colTri 4, 0, 2
 colTri 5, 4, 2
 colTri 6, 4, 5
 colTri 6, 7, 4
-colTriInit SURF_SLIPPERY_79, 2
+colTriInit SURFACE_SLIPPERY_79, 2
 colTri 12, 13, 14
 colTri 12, 15, 13
 colTriStop

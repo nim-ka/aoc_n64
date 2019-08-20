@@ -5,7 +5,7 @@ colVertex 154, 154, -383
 colVertex -153, 154, -383
 colVertex -153, 154, 384
 colVertex 154, 154, 384
-colTriInit SURF_ENV_DEFAULT, 2
+colTriInit SURFACE_DEFAULT, 2
 colTri 0, 1, 2
 colTri 0, 2, 3
 colTriStop

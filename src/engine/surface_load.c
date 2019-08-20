@@ -47,7 +47,7 @@ static struct SurfaceNode *alloc_surface_node(void)
     gSurfaceNodesAllocated++;
 
     node->next = NULL;
-   
+
     //! A bounds check! If there's more surface nodes than 7000 allowed,
     //  we, um...
     // Perhaps originally just debug feedback?
@@ -57,7 +57,7 @@ static struct SurfaceNode *alloc_surface_node(void)
 }
 
 /**
-* Allocate the part of the surface pool to contain a surface and 
+* Allocate the part of the surface pool to contain a surface and
 * initialize the surface.
 */
 static struct Surface *alloc_surface(void)
@@ -161,7 +161,7 @@ static void add_surface_to_cell(s16 dynamic, s16 cellX, s16 cellZ, struct Surfac
     while (list->next != NULL)
     {
         priority = list->next->surface->vertex1[1] * sortDir;
-        
+
         if (surfacePriority > priority)
         {
             break;
@@ -365,7 +365,7 @@ static struct Surface *read_surface_data(s16 *vertexData, s16 **vertexIndices)
     if (y3 > maxY) maxY = y3;
 
     // Checking to make sure no DIV/0
-    if (mag < 0.0001) 
+    if (mag < 0.0001)
     {
         return NULL;
     }
@@ -410,7 +410,7 @@ static s32 surface_has_force(s16 surfaceType)
 
     switch (surfaceType)
     {
-        case SURFACE_0004: //Unused?
+        case SURFACE_0004: // Unused
         case SURFACE_FLOWING_WATER:
         case SURFACE_DEEP_MOVING_QUICKSAND:
         case SURFACE_SHALLOW_MOVING_QUICKSAND:
@@ -419,7 +419,7 @@ static s32 surface_has_force(s16 surfaceType)
         case SURFACE_INSTANT_MOVING_QUICKSAND:
             hasForce = TRUE;
             break;
-            
+
         default:
             break;
     }
@@ -437,8 +437,8 @@ static s32 surf_has_no_cam_collision(s16 surfaceType)
     switch (surfaceType)
     {
         case SURFACE_NO_CAM_COLLISION:
-        case SURFACE_0077:  //Unused?
-        case SURFACE_0078:  //Slide Surface?
+        case SURFACE_NO_CAM_COLLISION_77: // Unused
+        case SURFACE_NO_CAM_COL_VERY_SLIPPERY:
         case SURFACE_SWITCH:
             flags = SURFACE_FLAG_NO_CAM_COLLISION;
             break;
@@ -540,12 +540,12 @@ static void load_environmental_regions(s16 **data)
         s16 height;
 
         val = *(*data)++;
-        
+
         loX = *(*data)++;
         hiX = *(*data)++;
         loZ = *(*data)++;
         hiZ = *(*data)++;
-        
+
         height = *(*data)++;
 
         gEnvironmentLevels[i] = height;
@@ -560,7 +560,7 @@ void alloc_surface_pools(void)
     sSurfacePoolSize = 2300;
     sSurfaceNodePool = main_pool_alloc(7000 * sizeof(struct SurfaceNode), MEMORY_POOL_LEFT);
     sSurfacePool = main_pool_alloc(sSurfacePoolSize * sizeof(struct Surface), MEMORY_POOL_LEFT);
-    
+
     gCCMEnteredSlide = 0;
     func_802DA4DC();
 }
@@ -583,7 +583,7 @@ void load_area_terrain(s16 index, s16 *data, s8 *surfaceRooms, s16 *macroObjects
 
     clear_static_surfaces();
 
-    // A while loop interating through each section of the level data. Sections of data 
+    // A while loop interating through each section of the level data. Sections of data
     // are prefixed by a terrain "type." This type is reused for surfaces as the surface
     // type.
     while (TRUE)
@@ -664,11 +664,11 @@ static void transform_object_vertices(s16 **data, s16 *vertexData)
 {
     register s16 *vertices;
     register s32 numVertices;
-    
+
     register f32 vx;
     register f32 vy;
     register f32 vz;
-    
+
     Mat4 *objectTransform;
     Mat4 m;
     UNUSED s16 unused;
@@ -725,7 +725,7 @@ static void load_object_surfaces(s16 **data, s16 *vertexData)
     (*data)++;
 
     hasForce = surface_has_force(surfaceType);
-    
+
     flags = surf_has_no_cam_collision(surfaceType);
     flags |= SURFACE_FLAG_DYNAMIC;
 
@@ -781,7 +781,7 @@ void load_object_collision_model(void)
 {
     UNUSED s32 unused;
     s16 vertexData[600];
-    
+
     s16 *collisionData = gCurrentObject->collisionData;
     f32 marioDist = gCurrentObject->oDistanceToMario;
     f32 tangibleDist = gCurrentObject->oCollisionDistance;

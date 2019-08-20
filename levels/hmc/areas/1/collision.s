@@ -1506,7 +1506,7 @@ colVertex -8089, 3072, 7654
 colVertex -7679, 3072, 8064
 colVertex 205, 2048, 3840
 colVertex 307, 2048, 3482
-colTriInit SURF_ENV_DEFAULT, 1861
+colTriInit SURFACE_DEFAULT, 1861
 colTri 243, 246, 244
 colTri 234, 235, 236
 colTri 234, 236, 237
@@ -3368,7 +3368,7 @@ colTri 990, 1504, 934
 colTri 990, 934, 940
 colTri 991, 1444, 1456
 colTri 991, 1446, 1444
-colTriInit SURF_CEILING, 16
+colTriInit SURFACE_HANGABLE, 16
 colTri 176, 179, 177
 colTri 167, 168, 169
 colTri 167, 170, 168
@@ -3385,14 +3385,14 @@ colTri 182, 187, 188
 colTri 182, 189, 187
 colTri 183, 190, 191
 colTri 171, 172, 184
-colTriInit SURF_DEATH_FLOOR, 6
+colTriInit SURFACE_DEATH_PLANE, 6
 colTri 4, 5, 6
 colTri 4, 7, 5
 colTri 8, 9, 10
 colTri 8, 11, 9
 colTri 12, 13, 14
 colTri 12, 15, 13
-colTriInit SURF_SLIPPERY, 68
+colTriInit SURFACE_VERY_SLIPPERY, 68
 colTri 103, 100, 101
 colTri 90, 91, 92
 colTri 93, 91, 90
@@ -3461,7 +3461,7 @@ colTri 127, 161, 159
 colTri 129, 131, 128
 colTri 130, 131, 162
 colTri 131, 129, 162
-colTriInit SURF_SLIGHT_SLIP, 20
+colTriInit SURFACE_SLIPPERY, 20
 colTri 16, 17, 18
 colTri 18, 19, 20
 colTri 17, 21, 18
@@ -3482,7 +3482,7 @@ colTri 35, 38, 30
 colTri 36, 38, 35
 colTri 36, 16, 38
 colTri 18, 23, 19
-colTriInit SURF_NO_SLIP, 52
+colTriInit SURFACE_NO_SLIPPERY, 52
 colTri 202, 201, 204
 colTri 192, 193, 194
 colTri 195, 196, 193
@@ -3535,7 +3535,7 @@ colTri 222, 230, 231
 colTri 223, 233, 230
 colTri 222, 232, 230
 colTri 223, 230, 232
-colTriInit SURF_WALL_ETC, 18
+colTriInit SURFACE_WALL_MISC, 18
 colTri 51, 50, 49
 colTri 39, 40, 41
 colTri 41, 40, 42
@@ -3554,7 +3554,7 @@ colTri 53, 54, 52
 colTri 45, 54, 53
 colTri 163, 164, 165
 colTri 163, 165, 166
-colTriInit SURF_FLAG_SURF_76, 35
+colTriInit SURFACE_CAM_NO_COL, 35
 colTri 66, 69, 70
 colTri 59, 60, 61
 colTri 59, 61, 62
@@ -3590,10 +3590,10 @@ colTri 80, 89, 81
 colTri 80, 81, 59
 colTri 82, 80, 59
 colTri 64, 82, 59
-colTriInit SURF_PAINTING_D0, 2
+colTriInit SURFACE_PAINT_WOOBLE_D0, 2
 colTri 0, 1, 2
 colTri 0, 3, 1
-colTriInit SURF_POOL_WARP, 2
+colTriInit SURFACE_WOBBLING_WARP, 2
 colTri 55, 56, 57
 colTri 55, 58, 56
 colTriStop

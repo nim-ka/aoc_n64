@@ -93,7 +93,7 @@ glabel level_bitfs_entry
         terrain /*terrainData*/ bitfs_seg7_collision_level
         macro_objects /*objList*/ bitfs_seg7_macro_objs
         set_background_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_KOOPA_ROAD
-        terrain_type /*terrainType*/ 0x0001
+        terrain_type /*terrainType*/ TERRAIN_STONE
     end_area
 
     free_level_pool

@@ -95,7 +95,7 @@ glabel level_bbh_entry
         rooms /*surfaceRooms*/ bbh_seg7_rooms
         show_dialog /*unk2*/ 0x00, /*dialogid*/ 0x62
         set_background_music /*unk2*/ 0x0006, /*seq*/ SEQ_LEVEL_SPOOKY
-        terrain_type /*terrainType*/ 0x0004
+        terrain_type /*terrainType*/ TERRAIN_SPOOKY
     end_area
 
     free_level_pool

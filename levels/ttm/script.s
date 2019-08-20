@@ -116,7 +116,7 @@ glabel level_ttm_entry
         terrain /*terrainData*/ ttm_seg7_area_1_collision
         macro_objects /*objList*/ ttm_seg7_area_1_macro_objs
         set_background_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_GRASS
-        terrain_type /*terrainType*/ 0x0001
+        terrain_type /*terrainType*/ TERRAIN_STONE
     end_area
 
     area /*index*/ 2, /*geo*/ ttm_geo_000B5C
@@ -129,7 +129,7 @@ glabel level_ttm_entry
         macro_objects /*objList*/ ttm_seg7_area_2_macro_objs
         instant_warp /*index*/ 2, /*destArea*/ 3, /*displace*/ 10240, 7168, 10240
         set_background_music /*unk2*/ 0x0001, /*seq*/ SEQ_LEVEL_SLIDE
-        terrain_type /*terrainType*/ 0x0006
+        terrain_type /*terrainType*/ TERRAIN_SLIDE
     end_area
 
     area /*index*/ 3, /*geo*/ ttm_geo_000BEC
@@ -140,7 +140,7 @@ glabel level_ttm_entry
         macro_objects /*objList*/ ttm_seg7_area_3_macro_objs
         instant_warp /*index*/ 3, /*destArea*/ 4, /*displace*/ -11264, 13312, 3072
         set_background_music /*unk2*/ 0x0001, /*seq*/ SEQ_LEVEL_SLIDE
-        terrain_type /*terrainType*/ 0x0006
+        terrain_type /*terrainType*/ TERRAIN_SLIDE
     end_area
 
     area /*index*/ 4, /*geo*/ ttm_geo_000C84
@@ -153,7 +153,7 @@ glabel level_ttm_entry
         terrain /*terrainData*/ ttm_seg7_area_4_collision
         macro_objects /*objList*/ ttm_seg7_area_4_macro_objs
         set_background_music /*unk2*/ 0x0001, /*seq*/ SEQ_LEVEL_SLIDE
-        terrain_type /*terrainType*/ 0x0006
+        terrain_type /*terrainType*/ TERRAIN_SLIDE
     end_area
 
     free_level_pool

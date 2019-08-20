@@ -7,7 +7,7 @@ colVertex 512, -255, -511
 colVertex 512, -255, 512
 colVertex 0, 256, 0
 colVertex -511, -255, -511
-colTriInit SURF_HARD_SLIP, 6
+colTriInit SURFACE_HARD_SLIP, 6
 colTri 0, 1, 2
 colTri 0, 2, 3
 colTri 2, 1, 3

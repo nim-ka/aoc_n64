@@ -12,7 +12,7 @@ colVertex -291, 0, 254
 colVertex -291, 353, 254
 colVertex 292, 353, 254
 
-colTriInit SURF_ACTIVATE, 10
+colTriInit SURFACE_SWITCH, 10
 colTri 0, 1, 2
 colTri 1, 3, 4
 colTri 1, 4, 2
@@ -38,7 +38,7 @@ colVertex -291, 0, 254
 colVertex -291, 145, 254
 colVertex 292, 145, 254
 
-colTriInit SURF_ACTIVATE, 10
+colTriInit SURFACE_SWITCH, 10
 colTri 0, 1, 2
 colTri 1, 3, 4
 colTri 1, 4, 2

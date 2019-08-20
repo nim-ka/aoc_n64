@@ -79,7 +79,7 @@ s32 check_fall_damage(struct MarioState *m, u32 hardFallAction)
 
 #pragma GCC diagnostic pop
 
-    if (m->action != ACT_TWIRLING && m->floor->type != SURFACE_LAVA)
+    if (m->action != ACT_TWIRLING && m->floor->type != SURFACE_BURNING)
     {
         if (m->vel[1] < -55.0f)
         {
@@ -112,14 +112,14 @@ s32 check_kick_or_dive_in_air(struct MarioState *m)
 
 s32 should_get_stuck_in_ground(struct MarioState *m)
 {
-    u32 terrainType = m->area->terrainType & 0x0007;
+    u32 terrainType = m->area->terrainType & TERRAIN_MASK;
     struct Surface *floor = m->floor;
     s32 flags = floor->flags;
     s32 type = floor->type;
 
     if (floor != NULL &&
         (terrainType == TERRAIN_SNOW || terrainType == TERRAIN_SAND) &&
-        type != SURFACE_LAVA &&
+        type != SURFACE_BURNING &&
         SURFACE_IS_NOT_HARD(type))
     {
         if (!(flags & 0x01) &&
@@ -1545,7 +1545,7 @@ s32 act_lava_boost(struct MarioState *m)
     switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
-        if (m->floor->type == SURFACE_LAVA)
+        if (m->floor->type == SURFACE_BURNING)
         {
             m->actionState = 0;
             if (!(m->flags & MARIO_METAL_CAP))
@@ -1579,7 +1579,7 @@ s32 act_lava_boost(struct MarioState *m)
     }
 
     set_mario_animation(m, MARIO_ANIM_FIRE_LAVA_BURN);
-    if ((m->area->terrainType & 0x0007) != TERRAIN_SNOW && !(m->flags & MARIO_METAL_CAP) &&
+    if ((m->area->terrainType & TERRAIN_MASK) != TERRAIN_SNOW && !(m->flags & MARIO_METAL_CAP) &&
         m->vel[1] > 0.0f)
     {
         m->particleFlags |= 0x00000800;

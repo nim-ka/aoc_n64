@@ -1,7 +1,7 @@
 .section .rodata
 .include "macros.inc"
 .include "PR/gbi.inc"
-.include "collision.inc"
+.include "surface_terrains.inc"
 .include "special_presets.inc"
 
 .include "levels/bowser_3/texture.s"

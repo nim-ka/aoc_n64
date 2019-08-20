@@ -60,13 +60,13 @@
  * sound ID for the six SOUND_TERRAIN_* sounds.
  *
  * The sound terrain types represent the following:
- * 0: normal
+ * 0: default, uses terrain value from level script cmd31
  * 1: grass
  * 2: water
- * 3: normal again (?)
+ * 3: stone
  * 4: squeaky floor
- * 5: snow
- * 6: ice
+ * 5: squeaky floor again?, slides
+ * 6: snow
  * 7: sand
  *
  * TODO: figure out what these sounds are.

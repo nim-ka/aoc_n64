@@ -507,7 +507,7 @@ colVertex -286, 1300, -511
 colVertex -3839, 1300, 1249
 colVertex 3103, 1428, 3681
 colVertex 3681, 1428, 3681
-colTriInit SURF_ENV_DEFAULT, 583
+colTriInit SURFACE_DEFAULT, 583
 colTri 161, 193, 194
 colTri 165, 195, 193
 colTri 165, 193, 161
@@ -1091,14 +1091,14 @@ colTri 379, 497, 384
 colTri 401, 384, 497
 colTri 396, 401, 497
 colTri 260, 159, 85
-colTriInit SURF_SLIPPERY, 6
+colTriInit SURFACE_VERY_SLIPPERY, 6
 colTri 184, 185, 186
 colTri 187, 185, 184
 colTri 187, 188, 185
 colTri 189, 188, 187
 colTri 189, 190, 188
 colTri 189, 191, 192
-colTriInit SURF_SLIGHT_SLIP, 24
+colTriInit SURFACE_SLIPPERY, 24
 colTri 9, 504, 156
 colTri 116, 502, 117
 colTri 502, 51, 117
@@ -1123,7 +1123,7 @@ colTri 505, 16, 151
 colTri 16, 505, 9
 colTri 146, 505, 150
 colTri 146, 150, 78
-colTriInit SURF_NO_SLIP, 14
+colTriInit SURFACE_NO_SLIPPERY, 14
 colTri 356, 359, 357
 colTri 262, 423, 265
 colTri 262, 425, 423
@@ -1138,7 +1138,7 @@ colTri 346, 354, 351
 colTri 345, 346, 351
 colTri 345, 351, 350
 colTri 484, 345, 350
-colTriInit SURF_INST_WARP_1B, 16
+colTriInit SURFACE_INST_WARP_1B, 16
 colTri 181, 171, 173
 colTri 176, 164, 177
 colTri 176, 162, 164
@@ -1155,7 +1155,7 @@ colTri 181, 173, 182
 colTri 183, 160, 178
 colTri 183, 174, 160
 colTri 182, 174, 183
-colTriInit SURF_INST_WARP_1C, 16
+colTriInit SURFACE_INST_WARP_1C, 16
 colTri 171, 170, 172
 colTri 160, 161, 162
 colTri 162, 161, 163
@@ -1172,7 +1172,7 @@ colTri 171, 172, 173
 colTri 174, 165, 160
 colTri 174, 175, 165
 colTri 173, 175, 174
-colTriInit SURF_WALL_ETC, 169
+colTriInit SURFACE_WALL_MISC, 169
 colTri 10, 13, 11
 colTri 0, 1, 2
 colTri 0, 3, 1

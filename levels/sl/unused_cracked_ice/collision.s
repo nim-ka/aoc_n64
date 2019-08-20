@@ -6,7 +6,7 @@ colVertex 102, 0, 102
 colVertex 0, 0, 0
 colVertex -101, 0, -101
 colVertex 102, 0, -101
-colTriInit SURF_SLIP_ICE, 3
+colTriInit SURFACE_ICE, 3
 colTri 4, 3, 1
 colTri 0, 1, 2
 colTri 0, 2, 3

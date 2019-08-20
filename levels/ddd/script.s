@@ -71,7 +71,7 @@ glabel level_ddd_entry
         terrain /*terrainData*/ ddd_seg7_area_1_collision
         macro_objects /*objList*/ ddd_seg7_area_1_macro_objs
         set_background_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_WATER
-        terrain_type /*terrainType*/ 0x0005
+        terrain_type /*terrainType*/ TERRAIN_WATER
     end_area
 
     area /*index*/ 2, /*geo*/ ddd_geo_000570
@@ -87,7 +87,7 @@ glabel level_ddd_entry
         terrain /*terrainData*/ ddd_seg7_area_2_collision
         macro_objects /*objList*/ ddd_seg7_area_2_macro_objs
         set_background_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_WATER
-        terrain_type /*terrainType*/ 0x0005
+        terrain_type /*terrainType*/ TERRAIN_WATER
     end_area
 
     free_level_pool

@@ -12,7 +12,7 @@
 static s16 sMovingSandSpeeds[] = { 12, 8, 4, 0 };
 
 struct Surface gWaterSurfacePseudoFloor = {
-  SURFACE_SLIDE,
+  SURFACE_VERY_SLIPPERY,
   0,
   0,
   0,
@@ -541,7 +541,7 @@ s32 perform_air_quarter_step(
         m->wall = upperWall != NULL ? upperWall : lowerWall;
         wallDYaw = atan2s(m->wall->normal.z, m->wall->normal.x) - m->faceAngle[1];
 
-        if (m->wall->type == SURFACE_LAVA)
+        if (m->wall->type == SURFACE_BURNING)
             return AIR_STEP_HIT_LAVA_WALL;
 
         if (wallDYaw < -0x6000 || wallDYaw > 0x6000)

@@ -156,7 +156,7 @@ colVertex 4019, 1185, -306
 colVertex 3405, -145, -1996
 colVertex 4019, -606, -1996
 colVertex 4429, 161, -1996
-colTriInit SURF_ENV_DEFAULT, 28
+colTriInit SURFACE_DEFAULT, 28
 colTri 131, 85, 145
 colTri 131, 80, 104
 colTri 131, 145, 80
@@ -185,7 +185,7 @@ colTri 127, 131, 104
 colTri 42, 127, 104
 colTri 128, 132, 129
 colTri 128, 130, 132
-colTriInit SURF_SLIPPERY, 276
+colTriInit SURFACE_VERY_SLIPPERY, 276
 colTri 0, 1, 2
 colTri 3, 0, 2
 colTri 4, 0, 3

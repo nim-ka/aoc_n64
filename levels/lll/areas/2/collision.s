@@ -560,7 +560,7 @@ colVertex 1, 2555, -2916
 colVertex -221, 0, -2835
 colVertex 0, 5248, -2926
 colVertex -429, 5248, -2931
-colTriInit SURF_ENV_DEFAULT, 127
+colTriInit SURFACE_DEFAULT, 127
 colTri 469, 462, 495
 colTri 495, 496, 469
 colTri 497, 462, 463
@@ -688,7 +688,7 @@ colTri 38, 536, 346
 colTri 38, 521, 536
 colTri 515, 513, 534
 colTri 513, 515, 535
-colTriInit SURF_BURNING, 156
+colTriInit SURFACE_BURNING, 156
 colTri 455, 456, 454
 colTri 467, 456, 457
 colTri 467, 485, 460
@@ -845,7 +845,7 @@ colTri 238, 234, 540
 colTri 235, 233, 541
 colTri 233, 257, 541
 colTri 233, 260, 257
-colTriInit SURF_SLIPPERY, 74
+colTriInit SURFACE_VERY_SLIPPERY, 74
 colTri 452, 453, 454
 colTri 454, 455, 452
 colTri 456, 457, 452
@@ -920,7 +920,7 @@ colTri 486, 489, 494
 colTri 480, 477, 476
 colTri 493, 477, 483
 colTri 477, 480, 483
-colTriInit SURF_NO_SLIP, 625
+colTriInit SURFACE_NO_SLIPPERY, 625
 colTri 9, 1, 10
 colTri 0, 1, 2
 colTri 1, 3, 2

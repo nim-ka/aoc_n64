@@ -25,7 +25,7 @@ colVertex 2365, -1852, -787
 colVertex 1183, -2364, 394
 colVertex 788, -2364, -1024
 colVertex 0, -1852, -2522
-colTriInit SURF_ENV_DEFAULT, 36
+colTriInit SURFACE_DEFAULT, 36
 colTri 4, 18, 10
 colTri 4, 5, 6
 colTri 4, 6, 7
@@ -62,7 +62,7 @@ colTri 21, 22, 20
 colTri 18, 22, 21
 colTri 16, 18, 21
 colTri 18, 9, 22
-colTriInit SURF_DEATH_FLOOR, 2
+colTriInit SURFACE_DEATH_PLANE, 2
 colTri 0, 1, 2
 colTri 0, 2, 3
 colTriStop

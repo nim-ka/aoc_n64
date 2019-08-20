@@ -22,7 +22,7 @@ colVertex 307, 20, -204
 colVertex 307, 20, 0
 colVertex 205, 20, 205
 colVertex 307, 20, 205
-colTriInit SURF_NO_SLIP, 24
+colTriInit SURFACE_NO_SLIPPERY, 24
 colTri 13, 10, 11
 colTri 0, 1, 2
 colTri 3, 4, 1

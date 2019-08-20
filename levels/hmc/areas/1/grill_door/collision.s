@@ -10,7 +10,7 @@ colVertex 0, 0, 51
 colVertex 0, 819, -50
 colVertex 410, 0, -50
 colVertex 0, 0, -50
-colTriInit SURF_ENV_DEFAULT, 12
+colTriInit SURFACE_DEFAULT, 12
 colTri 0, 1, 2
 colTri 2, 3, 4
 colTri 2, 4, 0
@@ -36,7 +36,7 @@ colVertex 0, 0, 51
 colVertex 0, 719, -50
 colVertex 410, 0, -50
 colVertex 0, 0, -50
-colTriInit SURF_ENV_DEFAULT, 12
+colTriInit SURFACE_DEFAULT, 12
 colTri 0, 1, 2
 colTri 2, 3, 4
 colTri 2, 4, 0

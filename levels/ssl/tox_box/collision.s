@@ -18,7 +18,7 @@ colVertex -153, 154, 154
 colVertex -153, 154, -153
 colVertex 154, 154, -153
 colVertex 154, 154, 154
-colTriInit SURF_WALL_ETC, 28
+colTriInit SURFACE_WALL_MISC, 28
 colTri 12, 13, 14
 colTri 0, 1, 2
 colTri 0, 3, 1

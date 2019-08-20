@@ -17,7 +17,7 @@ colVertex -1433, 0, 1434
 colVertex 1434, 0, 1434
 colVertex 1434, 0, -1433
 colVertex -1433, 0, -1433
-colTriInit SURF_VARIED_NOISE, 24
+colTriInit SURFACE_MGR_MUSIC, 24
 colTri 10, 12, 13
 colTri 0, 1, 2
 colTri 0, 3, 1

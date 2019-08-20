@@ -37,7 +37,7 @@ colVertex -1381, 51, -193
 colVertex -818, 51, 216
 colVertex -306, 51, 779
 colVertex -306, 51, -551
-colTriInit SURF_ENV_DEFAULT, 67
+colTriInit SURFACE_DEFAULT, 67
 colTri 0, 1, 2
 colTri 3, 4, 1
 colTri 3, 1, 0

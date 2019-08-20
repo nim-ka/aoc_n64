@@ -4,7 +4,7 @@
 #include "room.h"
 
 s16 gCheckingSurfaceCollisionsForCamera;
-s16 gFindFloorIncludeSurface0012;
+s16 gFindFloorIncludeSurfaceIntangible;
 s16 *gEnvironmentRegions;
 s32 gEnvironmentLevels[20];
 s8 gDoorAdjacentRooms[60][2];

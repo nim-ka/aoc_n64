@@ -9,7 +9,7 @@ colVertex -3532, -1330, -6069
 colVertex -4044, -1330, -6069
 colVertex -4044, -1330, -5557
 colVertex -3532, -1330, -5557
-colTriInit SURF_WATER_FLOW, 4
+colTriInit SURFACE_WATER_FLOWING, 4
 colTriSpecial 0, 1, 2, 0x235
 colTriSpecial 1, 3, 2, 0x235
 colTriSpecial 4, 5, 6, 0x100

@@ -1674,7 +1674,7 @@ colVertex -1279, 631, 1638
 colVertex -1207, 626, 1668
 colVertex -1207, 614, 1668
 colVertex -1279, 1818, 1229
-colTriInit SURF_ENV_DEFAULT, 1799
+colTriInit SURFACE_DEFAULT, 1799
 colTri 239, 238, 240
 colTri 228, 229, 230
 colTri 228, 231, 229
@@ -3474,7 +3474,7 @@ colTri 1019, 1647, 965
 colTri 1019, 965, 1020
 colTri 1020, 1648, 967
 colTri 1020, 967, 1671
-colTriInit SURF_SLIPPERY, 18
+colTriInit SURFACE_VERY_SLIPPERY, 18
 colTri 87, 123, 122
 colTri 73, 75, 154
 colTri 73, 72, 75
@@ -3493,7 +3493,7 @@ colTri 159, 135, 138
 colTri 135, 136, 138
 colTri 158, 134, 133
 colTri 158, 96, 134
-colTriInit SURF_INST_WARP_1B, 12
+colTriInit SURFACE_INST_WARP_1B, 12
 colTri 64, 65, 63
 colTri 56, 57, 58
 colTri 56, 59, 57
@@ -3506,7 +3506,7 @@ colTri 64, 63, 62
 colTri 61, 60, 67
 colTri 61, 67, 66
 colTri 66, 68, 69
-colTriInit SURF_WALL_ETC, 32
+colTriInit SURFACE_WALL_MISC, 32
 colTri 34, 33, 35
 colTri 24, 25, 26
 colTri 24, 26, 27
@@ -3539,7 +3539,7 @@ colTri 164, 167, 165
 colTri 168, 169, 165
 colTri 168, 170, 169
 colTri 161, 173, 171
-colTriInit SURF_FLAG_SURF_76, 96
+colTriInit SURFACE_CAM_NO_COL, 96
 colTri 82, 83, 84
 colTri 70, 71, 72
 colTri 70, 72, 73
@@ -3636,97 +3636,97 @@ colTri 70, 73, 154
 colTri 218, 158, 132
 colTri 158, 133, 132
 colTri 94, 135, 219
-colTriInit SURF_PAINTING_BE, 2
+colTriInit SURFACE_PAINT_WOOBLE_BE, 2
 colTri 186, 187, 188
 colTri 186, 189, 187
-colTriInit SURF_PAINTING_BF, 2
+colTriInit SURFACE_PAINT_WOOBLE_BF, 2
 colTri 200, 188, 201
 colTri 200, 186, 188
-colTriInit SURF_PAINTING_C0, 2
+colTriInit SURFACE_PAINT_WOOBLE_C0, 2
 colTri 210, 201, 211
 colTri 210, 200, 201
-colTriInit SURF_PAINTING_C1, 2
+colTriInit SURFACE_PAINT_WOOBLE_C1, 2
 colTri 19, 50, 18
 colTri 19, 51, 50
-colTriInit SURF_PAINTING_C2, 2
+colTriInit SURFACE_PAINT_WOOBLE_C2, 2
 colTri 7, 18, 4
 colTri 7, 19, 18
-colTriInit SURF_PAINTING_C3, 2
+colTriInit SURFACE_PAINT_WOOBLE_C3, 2
 colTri 4, 5, 6
 colTri 4, 6, 7
-colTriInit SURF_PAINTING_C4, 2
+colTriInit SURFACE_PAINT_WOOBLE_C4, 2
 colTri 196, 206, 197
 colTri 196, 207, 206
-colTriInit SURF_PAINTING_C5, 2
+colTriInit SURFACE_PAINT_WOOBLE_C5, 2
 colTri 181, 196, 197
 colTri 181, 197, 179
-colTriInit SURF_PAINTING_C6, 2
+colTriInit SURFACE_PAINT_WOOBLE_C6, 2
 colTri 178, 179, 180
 colTri 178, 181, 179
-colTriInit SURF_PAINTING_CD, 2
+colTriInit SURFACE_PAINT_WOOBLE_CD, 2
 colTri 8, 9, 10
 colTri 8, 10, 11
-colTriInit SURF_PAINTING_CE, 2
+colTriInit SURFACE_PAINT_WOOBLE_CE, 2
 colTri 20, 11, 21
 colTri 20, 8, 11
-colTriInit SURF_PAINTING_CF, 2
+colTriInit SURFACE_PAINT_WOOBLE_CF, 2
 colTri 52, 20, 21
 colTri 52, 21, 53
-colTriInit SURF_H_LVL_EN_EB, 2
+colTriInit SURFACE_PAINT_WARP_EB, 2
 colTri 190, 191, 192
 colTri 190, 193, 191
-colTriInit SURF_H_LVL_EN_EC, 2
+colTriInit SURFACE_PAINT_WARP_EC, 2
 colTri 193, 202, 203
 colTri 193, 203, 191
-colTriInit SURF_H_LVL_EN_ED, 2
+colTriInit SURFACE_PAINT_WARP_ED, 2
 colTri 202, 212, 213
 colTri 202, 213, 203
-colTriInit SURF_H_LVL_EN_EE, 2
+colTriInit SURFACE_PAINT_WARP_EE, 2
 colTri 17, 48, 49
 colTri 17, 49, 16
-colTriInit SURF_H_LVL_EN_EF, 2
+colTriInit SURFACE_PAINT_WARP_EF, 2
 colTri 3, 16, 0
 colTri 3, 17, 16
-colTriInit SURF_H_LVL_EN_F0, 2
+colTriInit SURFACE_PAINT_WARP_F0, 2
 colTri 0, 1, 2
 colTri 0, 2, 3
-colTriInit SURF_H_LVL_EN_F1, 2
+colTriInit SURFACE_PAINT_WARP_F1, 2
 colTri 194, 204, 195
 colTri 194, 205, 204
-colTriInit SURF_H_LVL_EN_F2, 2
+colTriInit SURFACE_PAINT_WARP_F2, 2
 colTri 177, 194, 195
 colTri 177, 195, 175
-colTriInit SURF_H_LVL_EN_F3, 2
+colTriInit SURFACE_PAINT_WARP_F3, 2
 colTri 174, 175, 176
 colTri 174, 177, 175
-colTriInit SURF_H_LVL_EN_F4, 2
+colTriInit SURFACE_PAINT_WARP_F4, 2
 colTri 182, 183, 184
 colTri 182, 185, 183
-colTriInit SURF_H_LVL_EN_F5, 2
+colTriInit SURFACE_PAINT_WARP_F5, 2
 colTri 185, 198, 183
 colTri 185, 199, 198
-colTriInit SURF_H_LVL_EN_F6, 2
+colTriInit SURFACE_PAINT_WARP_F6, 2
 colTri 199, 208, 209
 colTri 199, 209, 198
-colTriInit SURF_H_LVL_EN_F7, 2
+colTriInit SURFACE_PAINT_WARP_F7, 2
 colTri 220, 221, 222
 colTri 220, 222, 223
-colTriInit SURF_H_LVL_EN_F8, 2
+colTriInit SURFACE_PAINT_WARP_F8, 2
 colTri 224, 220, 223
 colTri 224, 223, 225
-colTriInit SURF_H_LVL_EN_F9, 2
+colTriInit SURFACE_PAINT_WARP_F9, 2
 colTri 226, 224, 225
 colTri 226, 225, 227
-colTriInit SURF_H_LVL_EN_FA, 2
+colTriInit SURFACE_PAINT_WARP_FA, 2
 colTri 12, 13, 14
 colTri 12, 15, 13
-colTriInit SURF_H_LVL_EN_FB, 2
+colTriInit SURFACE_PAINT_WARP_FB, 2
 colTri 14, 22, 23
 colTri 14, 13, 22
-colTriInit SURF_H_LVL_EN_FC, 2
+colTriInit SURFACE_PAINT_WARP_FC, 2
 colTri 23, 54, 55
 colTri 23, 22, 54
-colTriInit SURF_POOL_WARP, 2
+colTriInit SURFACE_WOBBLING_WARP, 2
 colTri 38, 35, 33
 colTri 38, 37, 35
 colTriStop

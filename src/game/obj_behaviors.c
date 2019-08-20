@@ -639,7 +639,7 @@ void ObjCheckFloorDeath(s16 collisionFlags, struct Surface *floor)
     {
         switch (floor->type)
         {
-            case SURFACE_LAVA: o->oAction = OBJ_ACT_LAVA_DEATH; break;
+            case SURFACE_BURNING:     o->oAction = OBJ_ACT_LAVA_DEATH;        break;
             case SURFACE_DEATH_PLANE: o->oAction = OBJ_ACT_DEATH_PLANE_DEATH; break;
             default: break;
         }

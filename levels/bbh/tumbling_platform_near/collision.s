@@ -5,7 +5,7 @@ colVertex 102, 0, -50
 colVertex -101, 0, -50
 colVertex -101, 0, 51
 colVertex 102, 0, 51
-colTriInit SURF_NOISE_DEF, 2
+colTriInit SURFACE_NOISE_DEFAULT, 2
 colTri 0, 1, 2
 colTri 0, 2, 3
 colTriStop

@@ -16,7 +16,7 @@ colVertex 0, 0, 21
 colVertex 320, 0, 20
 colVertex 320, 640, 20
 colVertex 128, 640, 21
-colTriInit SURF_FLAG_SURF_76, 14
+colTriInit SURFACE_CAM_NO_COL, 14
 colTri 9, 7, 6
 colTri 0, 1, 2
 colTri 3, 2, 1

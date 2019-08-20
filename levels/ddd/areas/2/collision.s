@@ -303,7 +303,7 @@ colVertex 845, 8, 4096
 colVertex 1254, 725, 361
 colVertex 1971, 929, 361
 colVertex 1674, 929, -1883
-colTriInit SURF_ENV_DEFAULT, 279
+colTriInit SURFACE_DEFAULT, 279
 colTri 138, 134, 131
 colTri 128, 129, 130
 colTri 129, 128, 131
@@ -583,18 +583,18 @@ colTri 47, 40, 53
 colTri 242, 300, 47
 colTri 47, 53, 43
 colTri 53, 41, 42
-colTriInit SURF_NO_SLIP, 4
+colTriInit SURFACE_NO_SLIPPERY, 4
 colTri 10, 11, 12
 colTri 10, 12, 13
 colTri 14, 15, 16
 colTri 15, 17, 16
-colTriInit SURF_INST_WARP_1D, 2
+colTriInit SURFACE_INST_WARP_1D, 2
 colTri 0, 1, 2
 colTri 0, 3, 1
-colTriInit SURF_INST_WARP_1E, 2
+colTriInit SURFACE_INST_WARP_1E, 2
 colTri 2, 4, 5
 colTri 2, 5, 0
-colTriInit SURF_NOISE_DEF, 7
+colTriInit SURFACE_NOISE_DEFAULT, 7
 colTri 61, 64, 62
 colTri 56, 57, 58
 colTri 59, 56, 58
@@ -602,10 +602,10 @@ colTri 60, 59, 58
 colTri 61, 62, 60
 colTri 60, 63, 61
 colTri 60, 58, 63
-colTriInit SURF_WARP, 2
+colTriInit SURFACE_WARP, 2
 colTri 6, 7, 8
 colTri 6, 9, 7
-colTriInit SURF_FLAG_SURF_76, 42
+colTriInit SURFACE_CAM_NO_COL, 42
 colTri 26, 32, 27
 colTri 18, 19, 20
 colTri 20, 19, 21
@@ -648,7 +648,7 @@ colTri 43, 54, 44
 colTri 44, 54, 55
 colTri 44, 55, 45
 colTri 45, 55, 50
-colTriInit SURF_VAN_CAP_WALL, 56
+colTriInit SURFACE_VAN_CAP_WALL, 56
 colTri 65, 66, 67
 colTri 66, 68, 67
 colTri 67, 69, 65

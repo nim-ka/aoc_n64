@@ -880,7 +880,7 @@ colVertex -1737, -2149, 3260
 colVertex -1754, -2201, 3361
 colVertex -1771, -2149, 3462
 colVertex -1947, -1023, -1672
-colTriInit SURF_ENV_DEFAULT, 757
+colTriInit SURFACE_DEFAULT, 757
 colTri 11, 13, 12
 colTri 0, 1, 2
 colTri 3, 4, 5
@@ -1638,15 +1638,15 @@ colTri 844, 841, 489
 colTri 841, 831, 489
 colTri 831, 312, 489
 colTri 841, 837, 831
-colTriInit SURF_CEILING, 4
+colTriInit SURFACE_HANGABLE, 4
 colTri 805, 806, 807
 colTri 808, 806, 805
 colTri 809, 806, 808
 colTri 809, 807, 806
-colTriInit SURF_DEATH_FLOOR, 2
+colTriInit SURFACE_DEATH_PLANE, 2
 colTri 801, 802, 803
 colTri 801, 804, 802
-colTriInit SURF_WATER_FLOW, 15
+colTriInit SURFACE_WATER_FLOWING, 15
 colTriSpecial 282, 813, 811, 0xD5
 colTriSpecial 810, 477, 287, 0xEB
 colTriSpecial 810, 478, 288, 0xF5
@@ -1662,7 +1662,7 @@ colTriSpecial 475, 699, 815, 0x220
 colTriSpecial 248, 815, 800, 0xF5
 colTriSpecial 251, 815, 248, 0xF5
 colTriSpecial 251, 475, 815, 0x220
-colTriInit SURF_SLIPPERY, 24
+colTriInit SURFACE_VERY_SLIPPERY, 24
 colTri 15, 10, 164
 colTri 9, 164, 10
 colTri 420, 13, 91
@@ -1687,7 +1687,7 @@ colTri 476, 245, 198
 colTri 143, 198, 245
 colTri 438, 245, 476
 colTri 171, 438, 476
-colTriInit SURF_NO_SLIP, 474
+colTriInit SURFACE_NO_SLIPPERY, 474
 colTri 526, 531, 530
 colTri 517, 518, 519
 colTri 520, 521, 517
@@ -2162,14 +2162,14 @@ colTri 699, 271, 471
 colTri 699, 475, 271
 colTri 475, 178, 271
 colTri 246, 168, 150
-colTriInit SURF_UNK_16, 2
+colTriInit SURFACE_TTM_VINES, 2
 colTri 809, 808, 805
 colTri 809, 805, 807
-colTriInit SURF_SAND_21, 3
+colTriInit SURFACE_QUICKSAND_21, 3
 colTri 162, 437, 121
 colTri 426, 162, 121
 colTri 162, 436, 437
-colTriInit SURF_WALL_ETC, 34
+colTriInit SURFACE_WALL_MISC, 34
 colTri 109, 432, 15
 colTri 109, 15, 107
 colTri 456, 821, 223
@@ -2204,7 +2204,7 @@ colTri 179, 192, 273
 colTri 446, 280, 491
 colTri 286, 273, 192
 colTri 286, 192, 194
-colTriInit SURF_DEATH_WIND, 12
+colTriInit SURFACE_V_WIND, 12
 colTri 860, 861, 862
 colTri 863, 864, 861
 colTri 861, 865, 863
@@ -2217,7 +2217,7 @@ colTri 867, 870, 871
 colTri 867, 872, 870
 colTri 867, 873, 872
 colTri 867, 869, 873
-colTriInit SURF_CAM_70, 8
+colTriInit SURFACE_CAM_ROT_LEFT, 8
 colTri 106, 15, 163
 colTri 15, 164, 163
 colTri 439, 440, 109
@@ -2226,7 +2226,7 @@ colTri 161, 191, 173
 colTri 161, 173, 110
 colTri 173, 439, 110
 colTri 439, 109, 110
-colTriInit SURF_FLAG_SURF_76, 42
+colTriInit SURFACE_CAM_NO_COL, 42
 colTri 841, 839, 838
 colTri 831, 832, 833
 colTri 833, 832, 834
@@ -2269,25 +2269,25 @@ colTri 470, 810, 471
 colTri 470, 262, 477
 colTri 477, 810, 470
 colTri 282, 811, 288
-colTriInit SURF_PAINTING_A6, 3
+colTriInit SURFACE_PAINT_WOOBLE_A6, 3
 colTri 138, 137, 817
 colTri 817, 137, 129
 colTri 818, 817, 129
-colTriInit SURF_PAINTING_A7, 4
+colTriInit SURFACE_PAINT_WOOBLE_A7, 4
 colTri 515, 138, 817
 colTri 515, 817, 796
 colTri 515, 796, 816
 colTri 796, 817, 818
-colTriInit SURF_PAINTING_A8, 2
+colTriInit SURFACE_PAINT_WOOBLE_A8, 2
 colTri 135, 816, 795
 colTri 135, 515, 816
-colTriInit SURF_H_LVL_EN_D3, 2
+colTriInit SURFACE_PAINT_WARP_D3, 2
 colTri 820, 165, 364
 colTri 165, 431, 364
-colTriInit SURF_H_LVL_EN_D4, 2
+colTriInit SURFACE_PAINT_WARP_D4, 2
 colTri 819, 820, 365
 colTri 820, 364, 365
-colTriInit SURF_H_LVL_EN_D5, 2
+colTriInit SURFACE_PAINT_WARP_D5, 2
 colTri 516, 819, 365
 colTri 516, 430, 819
 colTriStop

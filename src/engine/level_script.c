@@ -554,13 +554,13 @@ static void level_cmd_create_instant_warp(void)
         {
             gAreas[sCurrAreaIndex].instantWarps = alloc_only_pool_alloc(sLevelPool, 4 * sizeof(struct InstantWarp));
 
-            for (i = 0; i < 4; i++)
-                gAreas[sCurrAreaIndex].instantWarps[i].unk00 = 0;
+            for (i = INSTANT_WARP_INDEX_START; i < INSTANT_WARP_INDEX_STOP; i++)
+                gAreas[sCurrAreaIndex].instantWarps[i].id = 0;
         }
 
         warp = gAreas[sCurrAreaIndex].instantWarps + CMD_GET(u8, 2);
 
-        warp[0].unk00 = 1;
+        warp[0].id = 1;
         warp[0].area = CMD_GET(u8, 3);
 
         warp[0].displacement[0] = CMD_GET(s16, 4);

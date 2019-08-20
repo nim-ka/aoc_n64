@@ -9,7 +9,7 @@ colVertex -255, 0, 128
 colVertex -255, -153, 128
 colVertex 256, -153, 128
 colVertex -255, -153, -127
-colTriInit SURF_NO_SLIP, 12
+colTriInit SURFACE_NO_SLIPPERY, 12
 colTri 0, 1, 2
 colTri 0, 3, 1
 colTri 1, 4, 2

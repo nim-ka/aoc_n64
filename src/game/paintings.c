@@ -316,17 +316,17 @@ void painting_update_floors(struct PaintingData *painting)
     |* (unique) surface types. This code checks which surface Mario is currently on   *|
     \* and sets a bitfield accordingly.                                               */
 
-    if (gPaintingMarioFloorType == paintingId * 3 + 0xA6) // check if Mario's current floor is one of the special floors
+    if (gPaintingMarioFloorType == paintingId * 3 + SURFACE_PAINTING_WOBBLE_A6) // check if Mario's current floor is one of the special floors
         leftSideStand = STAND_LEFT;
-    if (gPaintingMarioFloorType == paintingId * 3 + 0xA7)
+    if (gPaintingMarioFloorType == paintingId * 3 + SURFACE_PAINTING_WOBBLE_A7)
         middleStand = STAND_MIDDLE;
-    if (gPaintingMarioFloorType == paintingId * 3 + 0xA8)
+    if (gPaintingMarioFloorType == paintingId * 3 + SURFACE_PAINTING_WOBBLE_A8)
         rightSideStand = STAND_RIGHT;
-    if (gPaintingMarioFloorType == paintingId * 3 + 0xD3)
+    if (gPaintingMarioFloorType == paintingId * 3 + SURFACE_PAINTING_WARP_D3)
         leftSideEnter = ENTER_LEFT;
-    if (gPaintingMarioFloorType == paintingId * 3 + 0xD4)
+    if (gPaintingMarioFloorType == paintingId * 3 + SURFACE_PAINTING_WARP_D4)
         middleEnter = ENTER_MIDDLE;
-    if (gPaintingMarioFloorType == paintingId * 3 + 0xD5)
+    if (gPaintingMarioFloorType == paintingId * 3 + SURFACE_PAINTING_WARP_D5)
         rightSideEnter = ENTER_RIGHT;
 
     painting->lastFloor = painting->currFloor;

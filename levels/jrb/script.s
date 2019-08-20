@@ -132,7 +132,7 @@ glabel level_jrb_entry
         terrain /*terrainData*/ jrb_seg7_area_1_collision
         macro_objects /*objList*/ jrb_seg7_area_1_macro_objs
         set_background_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_WATER
-        terrain_type /*terrainType*/ 0x0005
+        terrain_type /*terrainType*/ TERRAIN_WATER
     end_area
 
     area /*index*/ 2, /*geo*/ jrb_geo_000AFC
@@ -145,7 +145,7 @@ glabel level_jrb_entry
         terrain /*terrainData*/ jrb_seg7_area_2_collision
         macro_objects /*objList*/ jrb_seg7_area_2_macro_objs
         set_background_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_WATER
-        terrain_type /*terrainType*/ 0x0005
+        terrain_type /*terrainType*/ TERRAIN_WATER
     end_area
 
     free_level_pool

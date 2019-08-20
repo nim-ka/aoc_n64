@@ -6,12 +6,12 @@ colVertex 307, 307, -306
 colVertex 307, 307, 307
 colVertex -306, 307, -306
 colVertex -306, 307, 307
-colTriInit SURF_ENV_DEFAULT, 4
+colTriInit SURFACE_DEFAULT, 4
 colTri 0, 1, 2
 colTri 1, 0, 3
 colTri 4, 3, 0
 colTri 0, 2, 4
-colTriInit SURF_NO_SLIP, 2
+colTriInit SURFACE_NO_SLIPPERY, 2
 colTri 1, 3, 4
 colTri 1, 4, 2
 colTriStop

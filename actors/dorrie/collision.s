@@ -82,7 +82,7 @@ colVertex -123, 277, 523
 colVertex -284, 29, 239
 colVertex -186, -185, 249
 
-colTriInit SURF_FLAG_SURF_76, 67
+colTriInit SURFACE_CAM_NO_COL, 67
 colTri 58, 57, 10
 colTri 22, 20, 47
 colTri 22, 18, 20
@@ -151,7 +151,7 @@ colTri 24, 34, 73
 colTri 56, 37, 76
 colTri 55, 44, 69
 
-colTriInit SURF_ACTIVATE, 85
+colTriInit SURFACE_SWITCH, 85
 colTri 0, 1, 2
 colTri 2, 3, 0
 colTri 4, 0, 3
@@ -317,7 +317,7 @@ colVertex 46, 283, 648
 colVertex 58, 167, 1027
 colVertex 105, 247, 914
 
-colTriInit SURF_ACTIVATE, 142
+colTriInit SURFACE_SWITCH, 142
 colTri 0, 1, 2
 colTri 1, 3, 4
 colTri 1, 5, 3

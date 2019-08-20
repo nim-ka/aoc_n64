@@ -493,12 +493,12 @@ void check_instant_warp(void)
 
     if ((floor = gMarioState->floor) != NULL)
     {
-        s32 index = floor->type - SURFACE_INSTANT_WARP_0;
-        if (index >= 0 && index < 4 && gCurrentArea->instantWarps != NULL)
+        s32 index = floor->type - SURFACE_INSTANT_WARP_1B;
+        if (index >= INSTANT_WARP_INDEX_START && index < INSTANT_WARP_INDEX_STOP && gCurrentArea->instantWarps != NULL)
         {
             struct InstantWarp *warp = &gCurrentArea->instantWarps[index];
 
-            if (warp->unk00 != 0)
+            if (warp->id != 0)
             {
                 gMarioState->pos[0] += warp->displacement[0];
                 gMarioState->pos[1] += warp->displacement[1];
@@ -601,6 +601,11 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 arg3)
     sWarpDest.arg = arg3;
 }
 
+// From Surface 0xD3 to 0xFC
+#define PAINTING_WARP_INDEX_START 0x00 // Value greater than or equal to Surface 0xD3
+#define PAINTING_WARP_INDEX_FA    0x2A // THI Huge Painting index left
+#define PAINTING_WARP_INDEX_END   0x2D // Value less than Surface 0xFD
+
 /**
  * Check if mario is above and close to a painting warp floor, and return the
  * corresponding warp node.
@@ -608,11 +613,11 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 arg3)
 struct WarpNode *get_painting_warp_node(void)
 {
     struct WarpNode *warpNode = NULL;
-    s32 paintingIndex = gMarioState->floor->type - SURFACE_PAINTING_WARP_0;
+    s32 paintingIndex = gMarioState->floor->type - SURFACE_PAINTING_WARP_D3;
 
-    if (paintingIndex >= 0 && paintingIndex < 0x2D)
+    if (paintingIndex >= PAINTING_WARP_INDEX_START && paintingIndex < PAINTING_WARP_INDEX_END)
     {
-        if (paintingIndex < 0x2A ||
+        if (paintingIndex < PAINTING_WARP_INDEX_FA ||
             gMarioState->pos[1] - gMarioState->floorHeight < 80.0f)
         {
             warpNode = &gCurrentArea->paintingWarpNodes[paintingIndex];

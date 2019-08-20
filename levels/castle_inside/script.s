@@ -244,7 +244,7 @@ glabel level_castle_entry
         rooms /*surfaceRooms*/ inside_castle_seg7_area_1_rooms
         macro_objects /*objList*/ inside_castle_seg7_area_1_macro_objs
         set_background_music /*unk2*/ 0x0001, /*seq*/ SEQ_LEVEL_INSIDE_CASTLE
-        terrain_type /*terrainType*/ 0x0001
+        terrain_type /*terrainType*/ TERRAIN_STONE
     end_area
 
     area /*index*/ 2, /*geo*/ castle_geo_001858
@@ -262,7 +262,7 @@ glabel level_castle_entry
         macro_objects /*objList*/ inside_castle_seg7_area_2_macro_objs
         instant_warp /*index*/ 0, /*destArea*/ 2, /*displace*/ 0, -205, 410
         set_background_music /*unk2*/ 0x0001, /*seq*/ SEQ_LEVEL_INSIDE_CASTLE
-        terrain_type /*terrainType*/ 0x0001
+        terrain_type /*terrainType*/ TERRAIN_STONE
     end_area
 
     area /*index*/ 3, /*geo*/ castle_geo_001C10
@@ -279,7 +279,7 @@ glabel level_castle_entry
         rooms /*surfaceRooms*/ inside_castle_seg7_area_3_rooms
         macro_objects /*objList*/ inside_castle_seg7_area_3_macro_objs
         set_background_music /*unk2*/ 0x0001, /*seq*/ SEQ_LEVEL_INSIDE_CASTLE
-        terrain_type /*terrainType*/ 0x0001
+        terrain_type /*terrainType*/ TERRAIN_STONE
     end_area
 
     free_level_pool
