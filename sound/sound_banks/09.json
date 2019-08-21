@@ -29,38 +29,38 @@
             "release_rate": 208,
             "normal_range_hi": 50,
             "envelope": "envelope0",
-            "sound": {"sample": "00", "tuning": 0.5},
-            "sound_hi": {"sample": "01", "tuning": 0.25}
+            "sound": "00",
+            "sound_hi": "01"
         },
         "inst1": {
             "release_rate": 208,
             "envelope": "envelope1",
-            "sound": {"sample": "02", "tuning": 1.0}
+            "sound": "02"
         },
         "inst2": {
             "release_rate": 208,
             "envelope": "envelope2",
-            "sound": {"sample": "00", "tuning": 0.5}
+            "sound": "00"
         },
         "inst3": {
             "release_rate": 208,
             "envelope": "envelope0",
-            "sound": {"sample": "03", "tuning": 0.5}
+            "sound": "03"
         },
         "inst4": {
             "release_rate": 208,
             "envelope": "envelope0",
-            "sound": {"sample": "04", "tuning": 1.0}
+            "sound": "04"
         },
         "inst5": {
             "release_rate": 208,
             "envelope": "envelope0",
-            "sound": {"sample": "05", "tuning": 0.5}
+            "sound": "05"
         },
         "inst6": {
             "release_rate": 208,
             "envelope": "envelope0",
-            "sound": {"sample": "06", "tuning": 0.6890625}
+            "sound": "06"
         }
     },
     "instrument_list": [

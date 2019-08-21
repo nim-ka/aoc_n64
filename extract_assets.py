@@ -10,22 +10,18 @@ def read_asset_map():
     return ret
 
 
-def read_local_asset_list():
-    try:
-        ret = []
-        with open(".assets-local.txt") as f:
-            f.readline()
-            version = int(f.readline().strip())
-            for line in f:
-                ret.append(line.strip())
-        return version, ret
-    except FileNotFoundError:
-        return -1, []
+def read_local_asset_list(f):
+    if f is None:
+        return []
+    ret = []
+    for line in f:
+        ret.append(line.strip())
+    return ret
 
 
-def clean_assets():
+def clean_assets(local_asset_file):
     assets = set(read_asset_map().keys())
-    assets.update(read_local_asset_list()[1])
+    assets.update(read_local_asset_list(local_asset_file))
     for fname in list(assets) + [".assets-local.txt"]:
         if fname.startswith("@"):
             continue
@@ -36,9 +32,21 @@ def clean_assets():
 
 
 def main():
+    # In case we ever need to change formats of generated files, we keep a
+    # revision ID in the local asset file.
+    new_version = 1
+
+    try:
+        local_asset_file = open(".assets-local.txt")
+        local_asset_file.readline()
+        local_version = int(local_asset_file.readline().strip())
+    except Exception:
+        local_asset_file = None
+        local_version = -1
+
     langs = sys.argv[1:]
     if langs == ["--clean"]:
-        clean_assets()
+        clean_assets(local_asset_file)
         sys.exit(0)
 
     all_langs = ["jp", "us", "eu"]
@@ -61,7 +69,7 @@ def main():
             if not any_missing_assets and any(lang in data[-1] for lang in langs):
                 any_missing_assets = True
 
-    if not any_missing_assets:
+    if not any_missing_assets and local_version == new_version:
         # Nothing to do, no need to read a ROM. For efficiency we don't check
         # the list of old assets either.
         return
@@ -72,23 +80,23 @@ def main():
     import tempfile
     from collections import defaultdict
 
-    # In case we ever need to change formats of generated files, we keep a
-    # revision ID in the local asset file.
-    new_version = 0
     new_assets = {a[0] for a in all_assets}
 
-    previous_version, previous_assets = read_local_asset_list()
-    if previous_version is None:
+    previous_assets = read_local_asset_list(local_asset_file)
+    if local_version == -1:
         # If we have no local asset file, we assume that files are version
         # controlled and thus up to date.
-        previous_version = new_version
+        local_version = new_version
 
     # Create work list
     todo = defaultdict(lambda: [])
     for (asset, data, exists) in all_assets:
-        if exists and previous_version == new_version:
-            # Leave existing assets alone.
-            continue
+        if exists:
+            # Leave existing assets alone if they have a compatible version.
+            if local_version == new_version:
+                continue
+            if local_version == 0 and not asset.endswith(".aiff"):
+                continue
 
         meta = data[:-2]
         size, positions = data[-2:]

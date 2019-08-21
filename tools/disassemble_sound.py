@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from collections import namedtuple
+from collections import namedtuple, defaultdict
 import tempfile
 import subprocess
 import uuid
@@ -36,6 +36,7 @@ class AifcEntry:
         self.data = data
         self.book = book
         self.loop = loop
+        self.tunings = []
 
 
 class SampleBank:
@@ -144,19 +145,6 @@ def serialize_f80(num):
     f80_mantissa_bits = 2 ** 63 | (f64_mantissa_bits << (63 - 52))
     f80 = f80_sign_bit | f80_exponent | f80_mantissa_bits
     return struct.pack(">HQ", f80 >> 64, f80 & (2 ** 64 - 1))
-
-
-def parse_f80(data):
-    exp_bits, mantissa_bits = struct.unpack(">HQ", data)
-    sign_bit = exp_bits & 2 ** 15
-    exp_bits ^= sign_bit
-    sign = -1 if sign_bit else 1
-    if exp_bits == mantissa_bits == 0:
-        return sign * 0.0
-    assert exp_bits != 0, "can't handle denormals"
-    assert exp_bits != 0x7FFF, "can't handle infinity/nan"
-    mant = float(mantissa_bits) / 2 ** 63
-    return sign * mant * pow(2, exp_bits - 0x3FFF)
 
 
 def round_f32(num):
@@ -311,13 +299,16 @@ def parse_ctl(header, data, sample_bank, index):
 
     env_addrs = set()
     sample_addrs = set()
+    tunings = defaultdict(lambda: [])
     for inst in insts:
         for sound in [inst.sound_lo, inst.sound_med, inst.sound_hi]:
             if sound is not None:
                 sample_addrs.add(sound.sample_addr)
+                tunings[sound.sample_addr].append(sound.tuning)
         env_addrs.add(inst.envelope)
     for drum in drums:
         sample_addrs.add(drum.sound.sample_addr)
+        tunings[drum.sound.sample_addr].append(drum.sound.tuning)
         env_addrs.add(drum.envelope)
 
     # Put drums somewhere in the middle of the instruments to make sample
@@ -341,6 +332,7 @@ def parse_ctl(header, data, sample_bank, index):
     samples = {}
     for addr in sorted(sample_addrs):
         samples[addr] = parse_sample(data[addr : addr + 20], data, sample_bank)
+        samples[addr].tunings.extend(tunings[addr])
 
     env_data = {}
     used_env_addrs = set()
@@ -457,8 +449,24 @@ def write_aifc(entry, out):
     # is odd. It matches vadpcm_enc, though.)
     num_frames = len(data) * 16 // 9
     sample_size = 16  # bits per sample
-    # TODO: find proper sample rates, somehow
-    sample_rate = 16000
+
+    if len(set(entry.tunings)) == 1:
+        sample_rate = 32000 * entry.tunings[0]
+    else:
+        # Some drum sounds in sample bank B don't have unique sample rates, so
+        # we have to guess. This doesn't matter for matching, it's just to make
+        # the sounds easy to listen to.
+        if min(entry.tunings) <= 0.5 <= max(entry.tunings):
+            sample_rate = 16000
+        elif min(entry.tunings) <= 1.0 <= max(entry.tunings):
+            sample_rate = 32000
+        elif min(entry.tunings) <= 1.5 <= max(entry.tunings):
+            sample_rate = 48000
+        elif min(entry.tunings) <= 2.5 <= max(entry.tunings):
+            sample_rate = 80000
+        else:
+            sample_rate = 16000 * (min(entry.tunings) + max(entry.tunings))
+
     writer.add_section(
         b"COMM",
         struct.pack(">hIh", num_channels, num_frames, sample_size)
@@ -648,10 +656,10 @@ def main():
         with open(filename, "w") as out:
 
             def sound_to_json(sound):
-                return {
-                    "sample": bank.samples[sound.sample_addr].name,
-                    "tuning": round_f32(sound.tuning),
-                }
+                entry = bank.samples[sound.sample_addr]
+                if len(set(entry.tunings)) == 1:
+                    return entry.name
+                return {"sample": entry.name, "tuning": round_f32(sound.tuning)}
 
             bank_json = {
                 "date": bank.iso_date,

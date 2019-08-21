@@ -33,24 +33,24 @@
             "normal_range_lo": 55,
             "normal_range_hi": 56,
             "envelope": "envelope0",
-            "sound_lo": {"sample": "2A", "tuning": 0.35395277},
-            "sound": {"sample": "2B", "tuning": 0.28093272},
-            "sound_hi": {"sample": "2C", "tuning": 0.25028253}
+            "sound_lo": "2A",
+            "sound": "2B",
+            "sound_hi": "2C"
         },
         "inst1": {
             "release_rate": 10,
             "envelope": "envelope1",
-            "sound": {"sample": "22", "tuning": 0.28093272}
+            "sound": "22"
         },
         "inst2": {
             "release_rate": 90,
             "envelope": "envelope2",
-            "sound": {"sample": "28", "tuning": 1.1905508}
+            "sound": "28"
         },
         "inst3": {
             "release_rate": 10,
             "envelope": "envelope3",
-            "sound": {"sample": "39", "tuning": 0.9449407}
+            "sound": "39"
         }
     },
     "instrument_list": [

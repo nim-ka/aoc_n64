@@ -37,27 +37,27 @@
         "inst0": {
             "release_rate": 119,
             "envelope": "envelope0",
-            "sound": {"sample": "00", "tuning": 0.25}
+            "sound": "00"
         },
         "inst1": {
             "release_rate": 119,
             "envelope": "envelope1",
-            "sound": {"sample": "00", "tuning": 0.25}
+            "sound": "00"
         },
         "inst2": {
             "release_rate": 119,
             "envelope": "envelope2",
-            "sound": {"sample": "00", "tuning": 0.25}
+            "sound": "00"
         },
         "inst3": {
             "release_rate": 119,
             "envelope": "envelope3",
-            "sound": {"sample": "00", "tuning": 0.25}
+            "sound": "00"
         },
         "inst4": {
             "release_rate": 119,
             "envelope": "envelope4",
-            "sound": {"sample": "00", "tuning": 0.25}
+            "sound": "00"
         }
     },
     "instrument_list": [

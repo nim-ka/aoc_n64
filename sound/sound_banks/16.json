@@ -19,12 +19,12 @@
         "inst0": {
             "release_rate": 208,
             "envelope": "envelope0",
-            "sound": {"sample": "00", "tuning": 0.793701}
+            "sound": "00"
         },
         "inst1": {
             "release_rate": 208,
             "envelope": "envelope1",
-            "sound": {"sample": "00", "tuning": 0.793701}
+            "sound": "00"
         }
     },
     "instrument_list": [

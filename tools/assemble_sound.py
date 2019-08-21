@@ -17,10 +17,11 @@ orderedJsonDecoder = JSONDecoder(object_pairs_hook=OrderedDict)
 
 
 class Aifc:
-    def __init__(self, name, fname, data, book, loop):
+    def __init__(self, name, fname, data, sample_rate, book, loop):
         self.name = name
         self.fname = fname
         self.data = data
+        self.sample_rate = sample_rate
         self.book = book
         self.loop = loop
         self.used = False
@@ -76,6 +77,19 @@ def to_bcd(num):
     return ret
 
 
+def parse_f80(data):
+    exp_bits, mantissa_bits = struct.unpack(">HQ", data)
+    sign_bit = exp_bits & 2 ** 15
+    exp_bits ^= sign_bit
+    sign = -1 if sign_bit else 1
+    if exp_bits == mantissa_bits == 0:
+        return sign * 0.0
+    validate(exp_bits != 0, "sample rate is a denormal")
+    validate(exp_bits != 0x7FFF, "sample rate is infinity/nan")
+    mant = float(mantissa_bits) / 2 ** 63
+    return sign * mant * pow(2, exp_bits - 0x3FFF)
+
+
 def parse_aifc_loop(data):
     validate(len(data) == 48, "loop chunk size should be 48")
     version, nloops, start, end, count = struct.unpack(">HHIIi", data[:16])
@@ -115,6 +129,7 @@ def parse_aifc(data, name, fname):
     audio_data = None
     vadpcm_codes = None
     vadpcm_loops = None
+    sample_rate = None
 
     for (tp, data) in sections:
         if tp == b"APPL" and data[:4] == b"stoc":
@@ -127,13 +142,16 @@ def parse_aifc(data, name, fname):
                 vadpcm_loops = data
         elif tp == b"SSND":
             audio_data = data[8:]
+        elif tp == b"COMM":
+            sample_rate = parse_f80(data[8:18])
 
+    validate(sample_rate is not None, "no COMM section")
     validate(audio_data is not None, "no SSND section")
     validate(vadpcm_codes is not None, "no VADPCM table")
 
     book = parse_aifc_book(vadpcm_codes)
     loop = parse_aifc_loop(vadpcm_loops) if vadpcm_loops is not None else None
-    return Aifc(name, fname, audio_data, book, loop)
+    return Aifc(name, fname, audio_data, sample_rate, book, loop)
 
 
 class ReserveSerializer:
@@ -242,7 +260,9 @@ def validate_int_in_range(val, lo, hi, msg, forstr=""):
 
 
 def validate_sound(json, sample_bank, forstr=""):
-    validate_json_format(json, {"sample": str, "tuning": float}, forstr)
+    validate_json_format(json, {"sample": str}, forstr)
+    if "tuning" in json:
+        validate_json_format(json, {"tuning": float}, forstr)
     validate(
         json["sample"] in sample_bank.name_to_entry,
         "reference to sound {} which isn't found in sample bank {}".format(
@@ -263,6 +283,22 @@ def validate_bank_toplevel(json):
             "instrument_list": list,
         },
     )
+
+
+def make_sound_json_uniform(json):
+    # Convert {"sound": "str"} into {"sound": {"sample": "str"}}
+    fixup = []
+    for inst in json["instruments"].values():
+        if isinstance(inst, list):
+            for drum in inst:
+                fixup.append((drum, "sound"))
+        else:
+            fixup.append((inst, "sound_lo"))
+            fixup.append((inst, "sound"))
+            fixup.append((inst, "sound_hi"))
+    for (obj, key) in fixup:
+        if isinstance(obj, dict) and isinstance(obj.get(key, None), str):
+            obj[key] = {"sample": obj[key]}
 
 
 def validate_bank(json, sample_bank):
@@ -539,11 +575,16 @@ def serialize_ctl(bank, base_ser):
         sample_addr = (
             0 if sound["sample"] is None else sample_name_to_addr[sound["sample"]]
         )
-        ser.add(struct.pack(">If", sample_addr, sound["tuning"]))
+        if "tuning" in sound:
+            tuning = sound["tuning"]
+        else:
+            aifc = bank.sample_bank.name_to_entry[sound["sample"]]
+            tuning = aifc.sample_rate / 32000
+        ser.add(struct.pack(">If", sample_addr, tuning))
 
     no_sound = {"sample": None, "tuning": 0.0}
 
-    inst_name_to_pos = OrderedDict()
+    inst_name_to_pos = {}
     for name, inst in json["instruments"].items():
         if isinstance(inst, list):
             continue
@@ -676,7 +717,7 @@ def main():
 
     banks = []
     sample_banks = []
-    name_to_sample_bank = OrderedDict()
+    name_to_sample_bank = {}
 
     sample_bank_names = sorted(os.listdir(sample_bank_dir))
     for name in sample_bank_names:
@@ -720,6 +761,7 @@ def main():
 
             validate_bank_toplevel(bank_json)
             apply_version_diffs(bank_json, defines_set)
+            make_sound_json_uniform(bank_json)
 
             sample_bank_name = bank_json["sample_bank"]
             validate(

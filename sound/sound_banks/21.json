@@ -25,17 +25,17 @@
         "inst0": {
             "release_rate": 208,
             "envelope": "envelope0",
-            "sound": {"sample": "2E", "tuning": 0.5}
+            "sound": "2E"
         },
         "inst1": {
             "release_rate": 208,
             "envelope": "envelope1",
-            "sound": {"sample": "2E", "tuning": 0.5}
+            "sound": "2E"
         },
         "inst2": {
             "release_rate": 10,
             "envelope": "envelope2",
-            "sound": {"sample": "26", "tuning": 0.5}
+            "sound": "26"
         }
     },
     "instrument_list": [

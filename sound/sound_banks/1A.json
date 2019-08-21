@@ -61,55 +61,55 @@
         "inst0": {
             "release_rate": 67,
             "envelope": "envelope0",
-            "sound": {"sample": "17", "tuning": 1.0}
+            "sound": "17"
         },
         "inst1": {
             "release_rate": 119,
             "envelope": "envelope1",
-            "sound": {"sample": "2D", "tuning": 1.122462}
+            "sound": "2D"
         },
         "inst2": {
             "release_rate": 208,
             "envelope": "envelope2",
-            "sound": {"sample": "16", "tuning": 1.0}
+            "sound": "16"
         },
         "inst3": {
             "release_rate": 24,
             "normal_range_lo": 42,
             "envelope": "envelope3",
-            "sound_lo": {"sample": "14", "tuning": 1.681793},
-            "sound": {"sample": "15", "tuning": 0.529732}
+            "sound_lo": "14",
+            "sound": "15"
         },
         "inst4": {
             "release_rate": 208,
             "envelope": "envelope4",
-            "sound": {"sample": "19", "tuning": 0.840897}
+            "sound": "19"
         },
         "inst5": {
             "release_rate": 10,
             "envelope": "envelope5",
-            "sound": {"sample": "26", "tuning": 0.5}
+            "sound": "26"
         },
         "inst6": {
             "release_rate": 10,
             "envelope": "envelope6",
-            "sound": {"sample": "18", "tuning": 2.244924}
+            "sound": "18"
         },
         "inst7": {
             "release_rate": 10,
             "normal_range_lo": 28,
             "normal_range_hi": 28,
             "envelope": "envelope7",
-            "sound_lo": {"sample": "10", "tuning": 1.681793},
-            "sound": {"sample": "11", "tuning": 1.681793},
-            "sound_hi": {"sample": "10", "tuning": 1.681793}
+            "sound_lo": "10",
+            "sound": "11",
+            "sound_hi": "10"
         },
         "inst8": {
             "release_rate": 10,
             "normal_range_lo": 18,
             "envelope": "envelope8",
-            "sound_lo": {"sample": "12", "tuning": 2.996615},
-            "sound": {"sample": "13", "tuning": 3.174803}
+            "sound_lo": "12",
+            "sound": "13"
         }
     },
     "instrument_list": [
