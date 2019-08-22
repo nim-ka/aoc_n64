@@ -19,6 +19,14 @@ def read_local_asset_list(f):
     return ret
 
 
+def asset_needs_update(asset, version):
+    if version <= 1 and asset.endswith(".m64"):
+        return True
+    if version <= 0 and asset.endswith(".aiff"):
+        return True
+    return False
+
+
 def clean_assets(local_asset_file):
     assets = set(read_asset_map().keys())
     assets.update(read_local_asset_list(local_asset_file))
@@ -34,7 +42,7 @@ def clean_assets(local_asset_file):
 def main():
     # In case we ever need to change formats of generated files, we keep a
     # revision ID in the local asset file.
-    new_version = 1
+    new_version = 2
 
     try:
         local_asset_file = open(".assets-local.txt")
@@ -91,12 +99,9 @@ def main():
     # Create work list
     todo = defaultdict(lambda: [])
     for (asset, data, exists) in all_assets:
-        if exists:
-            # Leave existing assets alone if they have a compatible version.
-            if local_version == new_version:
-                continue
-            if local_version == 0 and not asset.endswith(".aiff"):
-                continue
+        # Leave existing assets alone if they have a compatible version.
+        if exists and not asset_needs_update(asset, local_version):
+            continue
 
         meta = data[:-2]
         size, positions = data[-2:]

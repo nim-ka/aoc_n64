@@ -766,7 +766,8 @@ SECTIONS
       gSoundDataRaw = .;
       BUILD_DIR/sound/sound_data.tbl.o(.data);
       . = ALIGN(0x10);
-      BUILD_DIR/sound/sequences.o(.data);
+      gMusicData = .;
+      BUILD_DIR/sound/sequences.bin.o(.data);
       . = ALIGN(0x10);
       BUILD_DIR/sound/bank_sets.o(.data);
       . = ALIGN(0x10);

@@ -642,7 +642,7 @@ def serialize_tbl(sample_bank, ser):
     ser.align_garbage(16)
 
 
-def serialize_seqfile(entries, serialize_entry, entry_list, magic):
+def serialize_seqfile(entries, serialize_entry, entry_list, magic, extra_padding=True):
     ser = ReserveSerializer()
     ser.add(struct.pack(">HH", magic, len(entry_list)))
     table = ser.reserve(len(entry_list) * 8)
@@ -657,7 +657,8 @@ def serialize_seqfile(entries, serialize_entry, entry_list, magic):
         serialize_entry(entry, ser2)
         entry_lens.append(ser2.size - entry_offsets[-1])
     ser.add(ser2.finish())
-    ser.add(b"\0")
+    if extra_padding:
+        ser.add(b"\0")
     ser.align(64)
 
     for ent in entry_list:
@@ -666,12 +667,27 @@ def serialize_seqfile(entries, serialize_entry, entry_list, magic):
     return ser.finish()
 
 
+def write_sequences(inputs, out_filename):
+    inputs.sort(key=lambda f: os.path.basename(f))
+
+    def serialize_file(fname, ser):
+        ser.reset_garbage_pos()
+        with open(fname, "rb") as f:
+            ser.add(f.read())
+        ser.align_garbage(16)
+
+    with open(out_filename, "wb") as f:
+        n = range(len(inputs))
+        f.write(serialize_seqfile(inputs, serialize_file, n, 3, extra_padding=False))
+
+
 def main():
     global STACK_TRACES
     need_help = False
     skip_next = False
     cpp_command = None
     print_samples = False
+    sequences_out_file = None
     defines = []
     args = []
     for i, a in enumerate(sys.argv[1:], 1):
@@ -692,11 +708,18 @@ def main():
             STACK_TRACES = True
         elif a == "--print-samples":
             print_samples = True
+        elif a == "--sequences":
+            sequences_out_file = sys.argv[i + 1]
+            skip_next = True
         elif a.startswith("-"):
             print("Unrecognized option " + a)
             sys.exit(1)
         else:
             args.append(a)
+
+    if sequences_out_file is not None and not need_help:
+        write_sequences(args, sequences_out_file)
+        sys.exit(0)
 
     if need_help or len(args) != 4:
         print(
@@ -704,7 +727,8 @@ def main():
             " <out .ctl file> <out .tbl file>"
             " [--cpp <preprocessor>]"
             " [-D <symbol>]"
-            " [--stack-trace]".format(sys.argv[0])
+            " [--stack-trace]"
+            " | --sequences <out .bin file> <inputs...>".format(sys.argv[0])
         )
         sys.exit(0 if need_help else 1)
 

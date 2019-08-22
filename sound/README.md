@@ -33,3 +33,14 @@ using an instrument from a sound bank. A sequence file can use multiple banks;
 can switch between banks using a command. However, in practice most sequences
 limit themselves to a single sound bank. The main exception is sequence 0,
 which is responsible for sound effects.
+
+Like samples and sound banks, sequence files are included in the ROM in
+alphabetical file name order. They can be located in either `sound/sequences/`
+or `sound/sequences/<version>/`, and can optionally be given in disassembled
+form (`.m64.s`) -- see `include/seq_macros.inc` for more details on the format.
+
+The repo gitignores .m64 and .aiff files by default, unless they include
+"custom" somewhere in the name (including in a directory name). Thus, for new
+custom-made samples and sequences it is advisable to include that substring
+in the file name (this also helps distinguish custom sounds from ones from
+the game). `git add -f` also works for adding edited existing files to git.

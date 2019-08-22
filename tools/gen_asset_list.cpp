@@ -192,13 +192,14 @@ string compileAsset(const string& fname) {
 tuple<string, string, vector<string>> compileSoundData(const string& lang) {
     string upper_lang = lang;
     for (char& ch : upper_lang) ch = (char)(ch + 'A' - 'a');
-    string dir = "build/" + lang + "/sound";
+    string build_dir = "build/" + lang;
+    string dir = build_dir + "/sound";
     string ctl = dir + "/sound_data.ctl";
     string tbl = dir + "/sound_data.tbl";
-    exec("mkdir -p " + dir);
+    exec("make " + tbl + " VERSION=" + lang + " NOEXTRACT=1");
     string sampleFilesStr =
-        exec("python3 tools/assemble_sound.py "
-            "sound/samples/ "
+        exec("python3 tools/assemble_sound.py " +
+            dir + "/samples/ "
             "sound/sound_banks/ " +
             dir + "/sound_data.ctl " +
             dir + "/sound_data.tbl " +
@@ -208,6 +209,8 @@ tuple<string, string, vector<string>> compileSoundData(const string& lang) {
     istringstream iss(sampleFilesStr);
     string line;
     while (getline(iss, line)) {
+        line = line.substr(build_dir.size() + 1);
+        line[line.size() - 1] = 'f';
         sampleFiles.push_back(line);
     }
     string ctlData = readFile(ctl);
