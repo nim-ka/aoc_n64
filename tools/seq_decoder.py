@@ -197,9 +197,9 @@ if sys.argv[1] == "--emit-asm-macros":
             param_list.append(chr(97 + i))
         print(f".macro envelope_{mn} {', '.join(param_list)}".rstrip())
         if op is not None:
-            print(f"    .hword {hex(op)}")
+            print(f"    .byte {hex(op >> 8)}, {hex(op & 0xff)}")
         for param in param_list:
-            print(f"    .hword \\{param}")
+            print_hword("\\" + param)
         print(".endm\n")
 
     for key in ['seq', 'chan', 'layer']:

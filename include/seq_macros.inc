@@ -610,28 +610,28 @@
 # envelope commands
 
 .macro envelope_disable a
-    .hword 0x0
-    .hword \a
+    .byte 0x0, 0x0
+    .byte \a >> 8, \a & 0xff
 .endm
 
 .macro envelope_hang a
-    .hword 0xffff
-    .hword \a
+    .byte 0xff, 0xff
+    .byte \a >> 8, \a & 0xff
 .endm
 
 .macro envelope_goto a
-    .hword 0xfffe
-    .hword \a
+    .byte 0xff, 0xfe
+    .byte \a >> 8, \a & 0xff
 .endm
 
 .macro envelope_restart a
-    .hword 0xfffd
-    .hword \a
+    .byte 0xff, 0xfd
+    .byte \a >> 8, \a & 0xff
 .endm
 
 .macro envelope_line a, b
-    .hword \a
-    .hword \b
+    .byte \a >> 8, \a & 0xff
+    .byte \b >> 8, \b & 0xff
 .endm
 
 # other commands

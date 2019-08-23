@@ -8,21 +8,21 @@ seq_setmutescale 0
 seq_setvol 127
 seq_settempo 120
 seq_initchannels 0x3ff
-seq_startchannel 0, .chan_2F
-seq_startchannel 1, .chan_98
-seq_startchannel 2, .chan_40
-seq_startchannel 3, .chan_51
-seq_startchannel 4, .chan_AB
-seq_startchannel 5, .chan_62
-seq_startchannel 6, .chan_BE
-seq_startchannel 7, .chan_F1
-seq_startchannel 8, .chan_51
-seq_startchannel 9, .chan_62
-.seq_29:
-seq_delay 0x4e20
-seq_jump .seq_29
+seq_startchannel 0, .channel0
+seq_startchannel 1, .channel1
+seq_startchannel 2, .channel2
+seq_startchannel 3, .channel38
+seq_startchannel 4, .channel4
+seq_startchannel 5, .channel59
+seq_startchannel 6, .channel6
+seq_startchannel 7, .channel7
+seq_startchannel 8, .channel38
+seq_startchannel 9, .channel59
+.seq_loop:
+seq_delay 20000
+seq_jump .seq_loop
 
-.chan_2F:
+.channel0:
 chan_largenoteson
 chan_setinstr 0
 chan_setpanmix 127
@@ -30,10 +30,10 @@ chan_setnotepriority 14
 chan_setval 0
 chan_iowriteval 5
 chan_stereoheadseteffects 1
-chan_setdyntable .table_14C
-chan_jump .chan_73
+chan_setdyntable .channel0_table
+chan_jump .main_loop_023589
 
-.chan_40:
+.channel2:
 chan_largenoteson
 chan_setinstr 0
 chan_setpanmix 127
@@ -41,10 +41,10 @@ chan_setnotepriority 14
 chan_setval 0
 chan_iowriteval 5
 chan_stereoheadseteffects 1
-chan_setdyntable .table_BB4
-chan_jump .chan_73
+chan_setdyntable .channel2_table
+chan_jump .main_loop_023589
 
-.chan_51:
+.channel38:
 chan_largenoteson
 chan_setinstr 0
 chan_setpanmix 127
@@ -52,10 +52,10 @@ chan_setnotepriority 14
 chan_setval 0
 chan_iowriteval 5
 chan_stereoheadseteffects 1
-chan_setdyntable .table_F8E
-chan_jump .chan_73
+chan_setdyntable .channel38_table
+chan_jump .main_loop_023589
 
-.chan_62:
+.channel59:
 chan_largenoteson
 chan_setinstr 0
 chan_setpanmix 127
@@ -63,13 +63,14 @@ chan_setnotepriority 14
 chan_setval 0
 chan_iowriteval 5
 chan_stereoheadseteffects 1
-chan_setdyntable .table_1E4E
-chan_jump .chan_73
-.chan_73:
+chan_setdyntable .channel59_table
+chan_jump .main_loop_023589
+
+.main_loop_023589:
 chan_delay1
 chan_ioreadval 0
-chan_bltz .chan_73
-.chan_78:
+chan_bltz .main_loop_023589
+.start_playing_023589:
 chan_freelayer 0
 chan_freelayer 1
 chan_freelayer 2
@@ -77,23 +78,25 @@ chan_setval 0
 chan_iowriteval 5
 chan_ioreadval 4
 chan_dyncall
-.chan_80:
+
+# keep looping until layer 0 finishes or we are told to stop or to play something else
+.poll_023589:
 chan_delay1
 chan_ioreadval 0
-chan_bltz .chan_8B
-chan_beqz .chan_92
-chan_jump .chan_78
-.chan_8B:
+chan_bltz .skip_023589 # if we have a signal:
+  chan_beqz .force_stop_023589 # told to stop
+  chan_jump .start_playing_023589 # told to play something else
+.skip_023589:
 chan_testlayerfinished 0
-chan_beqz .chan_80
-chan_jump .chan_73
-.chan_92:
+chan_beqz .poll_023589 # if layer 0 hasn't finished, keep polling
+chan_jump .main_loop_023589 # otherwise go back to the main loop
+.force_stop_023589:
 chan_freelayer 0
 chan_freelayer 1
 chan_freelayer 2
-chan_jump .chan_73
+chan_jump .main_loop_023589
 
-.chan_98:
+.channel1:
 chan_largenoteson
 chan_setinstr 0
 chan_setpanmix 127
@@ -102,10 +105,10 @@ chan_setval 0
 chan_iowriteval 5
 chan_setmutebhv 0x20
 chan_stereoheadseteffects 1
-chan_setdyntable .table_8F6
-chan_jump .chan_D1
+chan_setdyntable .channel1_table
+chan_jump .main_loop_146
 
-.chan_AB:
+.channel4:
 chan_largenoteson
 chan_setinstr 0
 chan_setpanmix 127
@@ -114,10 +117,10 @@ chan_setval 0
 chan_iowriteval 5
 chan_setmutebhv 0x20
 chan_stereoheadseteffects 1
-chan_setdyntable .table_1AF3
-chan_jump .chan_D1
+chan_setdyntable .channel4_table
+chan_jump .main_loop_146
 
-.chan_BE:
+.channel6:
 chan_largenoteson
 chan_setinstr 0
 chan_setpanmix 127
@@ -126,13 +129,14 @@ chan_setval 0
 chan_iowriteval 5
 chan_setmutebhv 0x20
 chan_stereoheadseteffects 1
-chan_setdyntable .table_2971
-chan_jump .chan_D1
-.chan_D1:
+chan_setdyntable .channel6_table
+chan_jump .main_loop_146
+
+.main_loop_146:
 chan_delay1
 chan_ioreadval 0
-chan_bltz .chan_D1
-.chan_D6:
+chan_bltz .main_loop_146
+.start_playing_146:
 chan_freelayer 0
 chan_freelayer 1
 chan_freelayer 2
@@ -141,31 +145,34 @@ chan_setval 0
 chan_iowriteval 5
 chan_ioreadval 4
 chan_dyncall
-.chan_E0:
+
+# keep looping until we are told to stop or to play something else
+.poll_146:
 chan_delay1
 chan_ioreadval 0
-chan_bltz .chan_E0
-chan_beqz .chan_EB
-chan_jump .chan_D6
-.chan_EB:
+chan_bltz .poll_146
+chan_beqz .force_stop_146
+chan_jump .start_playing_146
+.force_stop_146:
 chan_freelayer 0
 chan_freelayer 1
 chan_freelayer 2
-chan_jump .chan_D1
+chan_jump .main_loop_146
 
-.chan_F1:
+.channel7:
 chan_largenoteson
 chan_setinstr 0
 chan_setnotepriority 14
 chan_setval 0
 chan_iowriteval 5
 chan_stereoheadseteffects 1
-chan_setdyntable .table_2B1D
-.chan_FD:
+chan_setdyntable .channel7_table
+
+.main_loop_7:
 chan_delay1
 chan_ioreadval 0
-chan_bltz .chan_FD
-.chan_102:
+chan_bltz .main_loop_7
+.start_playing_7:
 chan_freelayer 0
 chan_freelayer 1
 chan_freelayer 2
@@ -176,51 +183,58 @@ chan_setpan 64
 chan_setpanmix 127
 chan_ioreadval 4
 chan_dyncall
-.chan_110:
+
+# keep looping until layer 0 finishes or we are told to stop or to play something else
+.poll_7:
 chan_delay1
 chan_ioreadval 0
-chan_bltz .chan_11C
-chan_beqz .chan_124
-chan_unreservenotes
-chan_jump .chan_102
-.chan_11C:
+chan_bltz .skip_7 # if we have a signal:
+  chan_beqz .force_stop_7 # told to stop
+  chan_unreservenotes
+  chan_jump .start_playing_7 # told to play something else
+.skip_7:
 chan_testlayerfinished 0
-chan_beqz .chan_110
+chan_beqz .poll_7 # if layer 0 hasn't finished, keep polling
 chan_unreservenotes
-chan_jump .chan_FD
-.chan_124:
+chan_jump .main_loop_7 # otherwise go back to the main loop
+.force_stop_7:
 chan_freelayer 0
 chan_freelayer 1
 chan_freelayer 2
 chan_unreservenotes
-chan_jump .chan_FD
+chan_jump .main_loop_7
 
-.chan_fn_12B:
+# Delay for a number of ticks (1-255) in an interruptible manner.
+.delay:
 chan_writeseq_nextinstr 0, 1
 chan_loop 20
 chan_delay1
 chan_ioreadval 0
 chan_iowriteval 1
-chan_bgez .chan_139
+chan_bgez .delay_interrupt
 chan_loopend
 chan_end
-.chan_139:
+
+.delay_interrupt:
 chan_setpanmix 127
 chan_setvolscale 127
 chan_setvibratoextent 0
-chan_ioreadval 1
+chan_ioreadval 1 # IO slots 0-3 are reset to -1 when read; restore the value
 chan_iowriteval 0
-chan_break
-chan_break
+chan_break # break out of the loop
+chan_break # force the caller to return immediately
 chan_end
 
-.chan_fn_144:
+# Set reverb in way that takes area echo level and volume into account. This
+# is done by writing to IO slot 5 and letting get_sound_reverb in external.c
+# do the necessary math.
+.set_reverb:
 chan_writeseq_nextinstr 0, 1
 chan_setreverb 10
 chan_iowriteval 5
 chan_end
 
-.table_14C:
+.channel0_table:
 sound_ref .chan_22C
 sound_ref .chan_23B
 sound_ref .chan_24A
@@ -314,9 +328,15 @@ sound_ref .chan_7C5
 sound_ref .chan_7ED
 sound_ref .chan_801
 sound_ref .chan_810
-sound_ref .chan_828
-sound_ref .chan_84B
-sound_ref .chan_863
+.ifdef VERSION_JP
+  sound_ref .chan_22C
+  sound_ref .chan_22C
+  sound_ref .chan_22C
+.else
+  sound_ref .chan_828
+  sound_ref .chan_84B
+  sound_ref .chan_863
+.endif
 sound_ref .chan_876
 sound_ref .chan_886
 sound_ref .chan_896
@@ -819,7 +839,7 @@ chan_setbank 0
 chan_setinstr 2
 chan_setlayer 0, .layer_4BD
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 3
 chan_setinstr 1
 chan_setenvelope .envelope_32D4
@@ -1061,7 +1081,7 @@ chan_setbank 7
 chan_setinstr 3
 chan_setlayer 0, .layer_618
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 6
 chan_setinstr 10
 chan_setenvelope .envelope_3314
@@ -1110,16 +1130,16 @@ layer_end
 chan_setbank 3
 chan_setinstr 3
 chan_setval 50
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setenvelope .envelope_3324
 chan_setlayer 0, .layer_68F
-chan_delay 0x1
+chan_delay 1
 chan_setlayer 1, .layer_6A1
 chan_setbank 9
 chan_setinstr 1
 chan_setenvelope .envelope_32D4
 chan_setdecayrelease 20
-chan_delay 0x1
+chan_delay 1
 chan_setlayer 2, .layer_699
 chan_setbank 4
 chan_setinstr 14
@@ -1147,7 +1167,7 @@ layer_end
 chan_setbank 2
 chan_setinstr 2
 chan_setval 20
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_6C1
 chan_setlayer 1, .layer_6B9
 chan_end
@@ -1294,7 +1314,7 @@ chan_setenvelope .envelope_32E4
 chan_setlayer 0, .layer_79D
 chan_setlayer 1, .layer_79B
 chan_setval 36
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setvibratoextent 0
 chan_end
 
@@ -1312,7 +1332,7 @@ chan_setinstr 7
 chan_setenvelope .envelope_3344
 chan_setlayer 0, .layer_7B9
 chan_setval 4
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 9
 chan_setinstr 3
 chan_end
@@ -1329,7 +1349,7 @@ chan_setbank 7
 chan_setinstr 3
 chan_setlayer 0, .layer_7D9
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 6
 chan_setinstr 10
 chan_setenvelope .envelope_3314
@@ -1384,56 +1404,58 @@ layer_note1 39, 0xa, 127
 layer_note1 42, 0x8, 127
 layer_end
 
-.chan_828:
-chan_setbank 7
-chan_setinstr 3
-chan_setlayer 0, .layer_83C
-chan_setval 1
-chan_call .chan_fn_12B
-chan_setbank 6
-chan_setinstr 10
-chan_setenvelope .envelope_3314
-chan_end
+.ifndef VERSION_JP
+  .chan_828:
+  chan_setbank 7
+  chan_setinstr 3
+  chan_setlayer 0, .layer_83C
+  chan_setval 1
+  chan_call .delay
+  chan_setbank 6
+  chan_setinstr 10
+  chan_setenvelope .envelope_3314
+  chan_end
 
-.layer_83C:
-layer_portamento 0x81, 27, 255
-layer_note1 46, 0x7, 127
-layer_portamento 0x85, 3, 255
-layer_note1 39, 0xf, 100
-layer_end
+  .layer_83C:
+  layer_portamento 0x81, 27, 255
+  layer_note1 46, 0x7, 127
+  layer_portamento 0x85, 3, 255
+  layer_note1 39, 0xf, 100
+  layer_end
 
-.chan_84B:
-chan_setbank 5
-chan_setinstr 6
-chan_setenvelope .envelope_33AC
-chan_setlayer 0, .layer_859
-chan_setlayer 1, .layer_85B
-chan_end
+  .chan_84B:
+  chan_setbank 5
+  chan_setinstr 6
+  chan_setenvelope .envelope_33AC
+  chan_setlayer 0, .layer_859
+  chan_setlayer 1, .layer_85B
+  chan_end
 
-.layer_859:
-layer_transpose 12
+  .layer_859:
+  layer_transpose 12
 
-.layer_85B:
-layer_portamento 0x85, 26, 240
-layer_note1 51, 0x53, 127
-layer_end
+  .layer_85B:
+  layer_portamento 0x85, 26, 240
+  layer_note1 51, 0x53, 127
+  layer_end
 
-.chan_863:
-chan_setbank 5
-chan_setinstr 6
-chan_setenvelope .envelope_33AC
-chan_setlayer 0, .layer_871
-chan_setlayer 1, .layer_776
-chan_end
+  .chan_863:
+  chan_setbank 5
+  chan_setinstr 6
+  chan_setenvelope .envelope_33AC
+  chan_setlayer 0, .layer_871
+  chan_setlayer 1, .layer_776
+  chan_end
 
-.layer_871:
-layer_transpose 8
-layer_jump .layer_776
+  .layer_871:
+  layer_transpose 8
+  layer_jump .layer_776
+.endif
 
 .chan_876:
 chan_call .chan_fn_804
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 1
 chan_setinstr 0
 chan_setlayer 1, .layer_388
@@ -1442,7 +1464,7 @@ chan_end
 .chan_886:
 chan_call .chan_fn_804
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 1
 chan_setinstr 1
 chan_setlayer 1, .layer_397
@@ -1451,7 +1473,7 @@ chan_end
 .chan_896:
 chan_call .chan_fn_804
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 2
 chan_setinstr 1
 chan_setlayer 1, .layer_3A6
@@ -1460,7 +1482,7 @@ chan_end
 .chan_8A6:
 chan_call .chan_fn_804
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 1
 chan_setinstr 3
 chan_setlayer 1, .layer_3B5
@@ -1469,7 +1491,7 @@ chan_end
 .chan_8B6:
 chan_call .chan_fn_804
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 1
 chan_setinstr 4
 chan_setlayer 1, .layer_3C4
@@ -1478,7 +1500,7 @@ chan_end
 .chan_8C6:
 chan_call .chan_fn_804
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 1
 chan_setinstr 5
 chan_setlayer 1, .layer_3D3
@@ -1487,7 +1509,7 @@ chan_end
 .chan_8D6:
 chan_call .chan_fn_804
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 1
 chan_setinstr 6
 chan_setlayer 1, .layer_3E2
@@ -1496,13 +1518,13 @@ chan_end
 .chan_8E6:
 chan_call .chan_fn_804
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 1
 chan_setinstr 8
 chan_setlayer 1, .layer_3F1
 chan_end
 
-.table_8F6:
+.channel1_table:
 sound_ref .chan_966
 sound_ref .chan_977
 sound_ref .chan_994
@@ -1578,7 +1600,7 @@ chan_setbank 1
 chan_setinstr 1
 chan_setlayer 0, .layer_988
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 3
 chan_setinstr 1
 chan_end
@@ -1597,13 +1619,13 @@ chan_setinstr 1
 chan_setlayer 0, .layer_9A8
 chan_setlayer 1, .layer_9B3
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 3
 chan_setinstr 2
 chan_end
 
 .layer_9A8:
-layer_delay 0x1
+layer_delay 1
 layer_somethingon
 .layer_9AB:
 layer_note1 39, 0x12c, 88
@@ -1633,7 +1655,7 @@ chan_setbank 1
 chan_setinstr 4
 chan_setlayer 0, .layer_9DD
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 3
 chan_setinstr 4
 chan_end
@@ -1677,7 +1699,7 @@ chan_setbank 1
 chan_setinstr 8
 chan_setlayer 0, .layer_A1C
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 3
 chan_setinstr 7
 chan_end
@@ -1781,7 +1803,7 @@ layer_jump .layer_A9C
 chan_setbank 9
 chan_setinstr 3
 chan_setval 40
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setenvelope .envelope_3344
 chan_setlayer 0, .layer_AB3
 chan_end
@@ -1835,7 +1857,7 @@ chan_setbank 1
 chan_setinstr 1
 chan_setlayer 0, .layer_B08
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 3
 chan_setinstr 1
 chan_end
@@ -1850,7 +1872,7 @@ chan_setinstr 1
 chan_setlayer 0, .layer_B21
 chan_setlayer 1, .layer_B26
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 3
 chan_setinstr 2
 chan_end
@@ -1878,7 +1900,7 @@ chan_setbank 1
 chan_setinstr 4
 chan_setlayer 0, .layer_B49
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 3
 chan_setinstr 4
 chan_end
@@ -1912,7 +1934,7 @@ chan_setbank 1
 chan_setinstr 8
 chan_setlayer 0, .layer_B79
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 3
 chan_setinstr 7
 chan_end
@@ -1928,13 +1950,13 @@ chan_setlayer 1, .layer_BA8
 chan_setbank 3
 chan_setinstr 2
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setdecayrelease 30
 chan_setbank 2
 chan_setinstr 1
 chan_setenvelope .envelope_3334
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_jump .chan_B84
 chan_end
 
@@ -1946,13 +1968,13 @@ layer_jump .layer_BA0
 layer_end
 
 .layer_BA8:
-layer_delay 0x1
+layer_delay 1
 .layer_BAA:
 layer_portamento 0x81, 41, 255
 layer_note1 56, 0xa, 127
 layer_jump .layer_BAA
 
-.table_BB4:
+.channel2_table:
 sound_ref .chan_C52
 sound_ref .chan_C44
 sound_ref .chan_C34
@@ -1993,30 +2015,49 @@ sound_ref .chan_E4E
 sound_ref .chan_C8A
 sound_ref .chan_C9C
 sound_ref .chan_CAA
-sound_ref .chan_E67
-sound_ref .chan_C34
-sound_ref .chan_C34
-sound_ref .chan_C74
-sound_ref .chan_C74
-sound_ref .chan_C74
-sound_ref .chan_E74
-sound_ref .chan_E80
-sound_ref .chan_E8C
-sound_ref .chan_E98
-sound_ref .chan_EA4
-sound_ref .chan_EB0
-sound_ref .chan_EBD
-sound_ref .chan_EC9
-sound_ref .chan_EEC
-sound_ref .chan_F00
-sound_ref .chan_F0D
-sound_ref .chan_F1C
-sound_ref .chan_F2C
-sound_ref .chan_F3C
-sound_ref .chan_F4B
-sound_ref .chan_F5B
-sound_ref .chan_F6B
-sound_ref .chan_F7A
+.ifdef VERSION_JP
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+.else
+  sound_ref .chan_E67
+  sound_ref .chan_C34
+  sound_ref .chan_C34
+  sound_ref .chan_C74
+  sound_ref .chan_C74
+  sound_ref .chan_C74
+  sound_ref .chan_E74
+  sound_ref .chan_E80
+  sound_ref .chan_E8C
+  sound_ref .chan_E98
+  sound_ref .chan_EA4
+  sound_ref .chan_EB0
+  sound_ref .chan_EBD
+  sound_ref .chan_EC9
+  sound_ref .chan_EEC
+  sound_ref .chan_F00
+  sound_ref .chan_F0D
+  sound_ref .chan_F1C
+  sound_ref .chan_F2C
+  sound_ref .chan_F3C
+  sound_ref .chan_F4B
+  sound_ref .chan_F5B
+  sound_ref .chan_F6B
+  sound_ref .chan_F7A
+.endif
 
 .chan_C34:
 chan_setbank 8
@@ -2025,6 +2066,9 @@ chan_setlayer 0, .layer_C3C
 chan_end
 
 .layer_C3C:
+.ifdef VERSION_EU
+  layer_transpose 2
+.endif
 layer_portamento 0x82, 41, 127
 layer_note1 37, 0x14, 127
 layer_end
@@ -2061,6 +2105,9 @@ chan_setlayer 0, .layer_C6C
 chan_end
 
 .layer_C6C:
+.ifdef VERSION_EU
+  layer_transpose 1
+.endif
 layer_portamento 0x82, 44, 200
 layer_note1 39, 0x30, 127
 layer_end
@@ -2345,7 +2392,7 @@ chan_setbank 10
 chan_setinstr 9
 chan_setlayer 0, .layer_DFE
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 0
 chan_setinstr 0
 chan_setlayer 1, .layer_538
@@ -2360,7 +2407,7 @@ chan_setbank 10
 chan_setinstr 10
 chan_setlayer 0, .layer_E17
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 0
 chan_setinstr 0
 chan_setlayer 1, .layer_548
@@ -2411,7 +2458,7 @@ chan_setbank 8
 chan_setinstr 1
 chan_setlayer 0, .layer_E62
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 0
 chan_setinstr 0
 chan_setlayer 1, .layer_536
@@ -2421,222 +2468,236 @@ chan_end
 layer_transpose 255
 layer_jump .layer_C4E
 
-.chan_E67:
-chan_setbank 10
-chan_setinstr 15
-chan_setlayer 0, .layer_E6F
-chan_end
+.ifndef VERSION_JP
+  .chan_E67:
+  chan_setbank 10
+  chan_setinstr 15
+  chan_setlayer 0, .layer_E6F
+  chan_end
 
-.layer_E6F:
-layer_note1 39, 0x2bc, 127
-layer_end
+  .layer_E6F:
+  layer_note1 39, 0x2bc, 127
+  layer_end
 
-.chan_E74:
-chan_setbank 8
-chan_setinstr 24
-chan_setlayer 0, .layer_E7C
-chan_end
+  .chan_E74:
+  chan_setbank 8
+  chan_setinstr 24
+  chan_setlayer 0, .layer_E7C
+  chan_end
 
-.layer_E7C:
-layer_note1 39, 0x5a, 127
-layer_end
+  .layer_E7C:
+  layer_note1 39, 0x5a, 127
+  layer_end
 
-.chan_E80:
-chan_setbank 8
-chan_setinstr 25
-chan_setlayer 0, .layer_E88
-chan_end
+  .chan_E80:
+  chan_setbank 8
+  chan_setinstr 25
+  chan_setlayer 0, .layer_E88
+  chan_end
 
-.layer_E88:
-layer_note1 39, 0x5a, 97
-layer_end
+  .layer_E88:
+  layer_note1 39, 0x5a, 97
+  layer_end
 
-.chan_E8C:
-chan_setbank 8
-chan_setinstr 16
-chan_setlayer 0, .layer_E94
-chan_end
+  .chan_E8C:
+  chan_setbank 8
+  chan_setinstr 16
+  chan_setlayer 0, .layer_E94
+  chan_end
 
-.layer_E94:
-layer_note1 41, 0x46, 127
-layer_end
+  .layer_E94:
+  layer_note1 41, 0x46, 127
+  layer_end
 
-.chan_E98:
-chan_setbank 8
-chan_setinstr 17
-chan_setlayer 0, .layer_EA0
-chan_end
+  .chan_E98:
+  chan_setbank 8
+  chan_setinstr 17
+  chan_setlayer 0, .layer_EA0
+  chan_end
 
-.layer_EA0:
-layer_note1 39, 0x55, 110
-layer_end
+  .layer_EA0:
+  layer_note1 39, 0x55, 110
+  layer_end
 
-.chan_EA4:
-chan_setbank 8
-chan_setinstr 18
-chan_setlayer 0, .layer_EAC
-chan_end
+  .chan_EA4:
+  chan_setbank 8
+  chan_setinstr 18
+  chan_setlayer 0, .layer_EAC
+  chan_end
 
-.layer_EAC:
-layer_note1 39, 0x46, 127
-layer_end
+  .layer_EAC:
+  layer_note1 39, 0x46, 127
+  layer_end
 
-.chan_EB0:
-chan_setbank 8
-chan_setinstr 19
-chan_setlayer 0, .layer_EB8
-chan_end
+  .chan_EB0:
+  chan_setbank 8
+  chan_setinstr 19
+  chan_setlayer 0, .layer_EB8
+  chan_end
 
-.layer_EB8:
-layer_note1 39, 0x12c, 127
-layer_end
+  .layer_EB8:
+  layer_note1 39, 0x12c, 127
+  layer_end
 
-.chan_EBD:
-chan_setbank 8
-chan_setinstr 20
-chan_setlayer 0, .layer_EC5
-chan_end
+  .chan_EBD:
+  chan_setbank 8
+  chan_setinstr 20
+  chan_setlayer 0, .layer_EC5
+  chan_end
 
-.layer_EC5:
-layer_note1 39, 0x30, 127
-layer_end
+  .layer_EC5:
+  layer_note1 39, 0x30, 127
+  layer_end
 
-.chan_EC9:
-chan_setbank 8
-chan_setlayer 0, .layer_ECF
-chan_end
+  .chan_EC9:
+  chan_setbank 8
+  chan_setlayer 0, .layer_ECF
+  chan_end
 
-.layer_ECF:
-layer_delay 0x4e
-.layer_ED1:
-layer_loop 50
-layer_call .layer_fn_EE1
-layer_loopend
-layer_setinstr 21
-layer_note1 39, 0x44c, 127
-layer_jump .layer_ED1
-layer_end
+  .layer_ECF:
+  layer_delay 0x4e
+  .layer_ED1:
+  layer_loop 50
+  layer_call .layer_fn_EE1
+  layer_loopend
+  layer_setinstr 21
+  layer_note1 39, 0x44c, 127
+  layer_jump .layer_ED1
+  layer_end
 
-.layer_fn_EE1:
-layer_setinstr 21
-layer_note1 37, 0x53, 127
-layer_setinstr 15
-layer_note1 37, 0x4e, 64
-layer_end
+  .layer_fn_EE1:
+  layer_setinstr 21
+  layer_note1 37, 0x53, 127
+  layer_setinstr 15
+  layer_note1 37, 0x4e, 64
+  layer_end
 
-.chan_EEC:
-chan_setbank 8
-chan_setinstr 22
-chan_setlayer 0, .layer_EF7
-chan_setlayer 1, .layer_EF7
-chan_end
+  .chan_EEC:
+  chan_setbank 8
+  chan_setinstr 22
+  chan_setlayer 0, .layer_EF7
+  chan_setlayer 1, .layer_EF7
+  chan_end
 
-.layer_EF7:
-layer_portamento 0x82, 42, 200
-layer_note1 39, 0xc8, 110
-layer_end
+  .layer_EF7:
+  layer_portamento 0x82, 42, 200
+  layer_note1 39, 0xc8, 110
+  layer_end
 
-.chan_F00:
-chan_setbank 8
-chan_setinstr 23
-chan_setlayer 0, .layer_F08
-chan_end
+  .chan_F00:
+  chan_setbank 8
+  chan_setinstr 23
+  chan_setlayer 0, .layer_F08
+  chan_end
 
-.layer_F08:
-layer_note1 39, 0x96, 110
-layer_end
+  .layer_F08:
+  layer_note1 39, 0x96, 110
+  layer_end
 
-.chan_F0D:
-chan_setbank 10
-chan_setinstr 16
-chan_setlayer 0, .layer_F18
-chan_setlayer 1, .layer_F18
-chan_end
+  .chan_F0D:
+  chan_setbank 10
+  chan_setinstr 16
+  chan_setlayer 0, .layer_F18
+  chan_setlayer 1, .layer_F18
+  chan_end
 
-.layer_F18:
-layer_note1 39, 0x46, 127
-layer_end
+  .layer_F18:
+  layer_note1 39, 0x46, 127
+  layer_end
 
-.chan_F1C:
-chan_setbank 10
-chan_setinstr 17
-chan_setlayer 0, .layer_F27
-chan_setlayer 1, .layer_F27
-chan_end
+  .chan_F1C:
+  chan_setbank 10
+  chan_setinstr 17
+  chan_setlayer 0, .layer_F27
+  chan_setlayer 1, .layer_F27
+  chan_end
 
-.layer_F27:
-layer_note1 39, 0x15e, 127
-layer_end
+  .layer_F27:
+  layer_note1 39, 0x15e, 127
+  layer_end
 
-.chan_F2C:
-chan_setbank 10
-chan_setinstr 18
-chan_setlayer 0, .layer_F37
-chan_setlayer 1, .layer_F37
-chan_end
+  .chan_F2C:
+  chan_setbank 10
+  chan_setinstr 18
+  chan_setlayer 0, .layer_F37
+  chan_setlayer 1, .layer_F37
+  chan_end
 
-.layer_F37:
-layer_note1 39, 0xb4, 127
-layer_end
+  .layer_F37:
+  layer_note1 39, 0xb4, 127
+  layer_end
 
-.chan_F3C:
-chan_setbank 10
-chan_setinstr 19
-chan_setlayer 0, .layer_F47
-chan_setlayer 1, .layer_F47
-chan_end
+  .chan_F3C:
+  chan_setbank 10
+  chan_setinstr 19
+  chan_setlayer 0, .layer_F47
+  chan_setlayer 1, .layer_F47
+  chan_end
 
-.layer_F47:
-layer_note1 39, 0x64, 127
-layer_end
+  .layer_F47:
+  layer_note1 39, 0x64, 127
+  layer_end
 
-.chan_F4B:
-chan_setbank 10
-chan_setinstr 20
-chan_setlayer 0, .layer_F56
-chan_setlayer 1, .layer_F56
-chan_end
+  .chan_F4B:
+  chan_setbank 10
+  chan_setinstr 20
+  chan_setlayer 0, .layer_F56
+  chan_setlayer 1, .layer_F56
+  chan_end
 
-.layer_F56:
-layer_note1 39, 0xdc, 127
-layer_end
+  .layer_F56:
+  layer_note1 39, 0xdc, 127
+  layer_end
 
-.chan_F5B:
-chan_setbank 10
-chan_setinstr 21
-chan_setlayer 0, .layer_F66
-chan_setlayer 1, .layer_F66
-chan_end
+  .chan_F5B:
+  chan_setbank 10
+  chan_setinstr 21
+  chan_setlayer 0, .layer_F66
+  chan_setlayer 1, .layer_F66
+  chan_end
 
-.layer_F66:
-layer_note1 39, 0x190, 127
-layer_end
+  .layer_F66:
+  layer_note1 39, 0x190, 127
+  layer_end
 
-.chan_F6B:
-chan_setbank 10
-chan_setinstr 22
-chan_setlayer 0, .layer_F76
-chan_setlayer 1, .layer_F76
-chan_end
+  .chan_F6B:
+  chan_setbank 10
+  chan_setinstr 22
+  chan_setlayer 0, .layer_F76
+  chan_setlayer 1, .layer_F76
+  chan_end
 
-.layer_F76:
-layer_note1 39, 0x50, 127
-layer_end
+  .layer_F76:
+  layer_note1 39, 0x50, 127
+  layer_end
 
-.chan_F7A:
-chan_setbank 10
-chan_setinstr 23
-chan_setval 20
-chan_call .chan_fn_144
-chan_setlayer 0, .layer_F8A
-chan_setlayer 1, .layer_F8A
-chan_end
+  .chan_F7A:
+  chan_setbank 10
+  chan_setinstr 23
+  chan_setval 20
+  chan_call .set_reverb
+  chan_setlayer 0, .layer_F8A
+  chan_setlayer 1, .layer_F8A
+  chan_end
 
-.layer_F8A:
-layer_note1 39, 0x50, 127
-layer_end
+  .layer_F8A:
+  layer_note1 39, 0x50, 127
+  layer_end
+.endif
 
-.table_F8E:
+.ifdef VERSION_EU
+  .chan_unused_F9A_eu:
+  chan_setbank 8
+  chan_setinstr 0
+  chan_setlayer 0, .layer_FA2_eu
+  chan_end
+  
+  .layer_FA2_eu:
+  layer_delay 0x5
+  layer_end
+.endif
+
+.channel38_table:
 sound_ref .chan_108E
 sound_ref .chan_10A7
 sound_ref .chan_10A7
@@ -2754,23 +2815,37 @@ sound_ref .chan_1A39
 sound_ref .chan_1A56
 sound_ref .chan_1A6E
 sound_ref .chan_1A87
-sound_ref .chan_1AB4
-sound_ref .chan_1AD0
-sound_ref .chan_10A7
-sound_ref .chan_18F3
-sound_ref .chan_192A
-sound_ref .chan_19CA
-sound_ref .chan_19EA
-sound_ref .chan_1A07
-sound_ref .chan_1A17
-sound_ref .chan_1A27
-sound_ref .chan_1A2A
+.ifdef VERSION_JP
+  sound_ref .chan_1AB4_jp
+  sound_ref .chan_10A7
+  sound_ref .chan_10A7
+  sound_ref .chan_10A7
+  sound_ref .chan_10CA
+  sound_ref .chan_10DB
+  sound_ref .chan_10EA
+  sound_ref .chan_1110
+  sound_ref .chan_111C
+  sound_ref .chan_10A7
+  sound_ref .chan_10A7
+.else
+  sound_ref .chan_1AB4
+  sound_ref .chan_1AD0
+  sound_ref .chan_10A7
+  sound_ref .chan_18F3
+  sound_ref .chan_192A
+  sound_ref .chan_19CA
+  sound_ref .chan_19EA
+  sound_ref .chan_1A07
+  sound_ref .chan_1A17
+  sound_ref .chan_1A27
+  sound_ref .chan_1A2A
+.endif
 
 .chan_108E:
 chan_setbank 5
 chan_setinstr 7
 chan_setlayer 0, .layer_109F
-chan_delay 0x1
+chan_delay 1
 chan_setbank 4
 chan_setinstr 9
 chan_setlayer 1, .layer_1537
@@ -2834,7 +2909,7 @@ chan_setinstr 4
 chan_setlayer 0, .layer_10FE
 chan_setlayer 1, .layer_1108
 chan_setval 6
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 4
 chan_setinstr 3
 chan_end
@@ -2942,7 +3017,7 @@ chan_setbank 5
 chan_setinstr 7
 chan_setlayer 0, .layer_109F
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 4
 chan_setinstr 9
 chan_setlayer 1, .layer_119D
@@ -2974,7 +3049,7 @@ chan_setenvelope .envelope_3358
 chan_setvibratoextent 3
 chan_setvibratorate 60
 chan_setval 25
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_11E4
 chan_end
 
@@ -2994,38 +3069,38 @@ chan_setinstr 3
 chan_setenvelope .envelope_3358
 chan_setvibratoextent 12
 chan_setval 25
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_1242
 chan_setlayer 1, .layer_1254
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 4
 chan_setinstr 6
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 9
 chan_setinstr 3
 chan_setenvelope .envelope_3358
 chan_setval 9
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 4
 chan_setinstr 6
 chan_setval 3
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 9
 chan_setinstr 3
 chan_setenvelope .envelope_3358
 chan_setval 6
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 4
 chan_setinstr 6
 chan_setval 49
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setvibratoextent 0
 chan_end
 
 .layer_1242:
-layer_delay 0x1
+layer_delay 1
 layer_setinstr 6
 layer_transpose 22
 layer_note1 39, 0xa, 55
@@ -3087,11 +3162,11 @@ layer_end
 chan_setbank 7
 chan_setinstr 1
 chan_setval 25
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_12AF
 chan_setlayer 1, .layer_12AF
 chan_setval 6
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 4
 chan_setinstr 4
 chan_end
@@ -3253,7 +3328,7 @@ layer_end
 chan_setbank 9
 chan_setinstr 3
 chan_setval 20
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_13B2
 chan_end
 
@@ -3319,7 +3394,7 @@ layer_end
 chan_setbank 9
 chan_setinstr 3
 chan_setval 40
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_141A
 chan_end
 
@@ -3335,7 +3410,7 @@ layer_end
 chan_setbank 9
 chan_setinstr 3
 chan_setval 40
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_1436
 chan_end
 
@@ -3353,10 +3428,10 @@ layer_end
 chan_setbank 4
 chan_setinstr 9
 chan_setval 50
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_1463
 chan_setval 13
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setdecayrelease 30
 chan_setbank 4
 chan_setinstr 2
@@ -3373,10 +3448,10 @@ layer_end
 chan_setbank 1
 chan_setinstr 1
 chan_setval 15
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_148A
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 1
 chan_setinstr 7
 chan_setenvelope .envelope_3368
@@ -3393,25 +3468,35 @@ layer_end
 
 .chan_149E:
 chan_setbank 7
-chan_setinstr 14
+.ifdef VERSION_JP
+  chan_setinstr 8
+.else
+  chan_setinstr 14
+.endif
 chan_setval 15
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_14C6
 chan_setlayer 1, .layer_14E3
-chan_setlayer 2, .layer_14E3
+.ifndef VERSION_JP
+  chan_setlayer 2, .layer_14E3
+.endif
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setenvelope .envelope_3368
 chan_setbank 1
 chan_setinstr 7
 chan_setval 13
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 7
-chan_setinstr 14
+.ifdef VERSION_JP
+  chan_setinstr 8
+.else
+  chan_setinstr 14
+.endif
 chan_end
 
 .layer_14C6:
-layer_delay 0x1
+layer_delay 1
 layer_transpose 12
 layer_portamento 0x81, 54, 255
 layer_note0 55, 0x6, 118, 127
@@ -3423,7 +3508,12 @@ layer_end
 
 .layer_14E3:
 layer_loop 2
-layer_note1 34, 0x19, 100
+.ifdef VERSION_JP
+  layer_portamento 0x81, 36, 255
+  layer_note1 24, 0x18, 127
+.else
+  layer_note1 34, 0x19, 100
+.endif
 layer_loopend
 layer_end
 
@@ -3444,7 +3534,7 @@ chan_setbank 3
 chan_setinstr 5
 chan_setenvelope .envelope_32D4
 chan_setval 10
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_150E
 chan_end
 
@@ -3456,7 +3546,7 @@ layer_end
 
 .chan_1519:
 chan_setval 10
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_152B
 chan_setlayer 1, .layer_1529
 chan_setbank 4
@@ -3491,7 +3581,7 @@ layer_end
 chan_setbank 4
 chan_setinstr 3
 chan_setval 30
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_1558
 chan_end
 
@@ -3505,7 +3595,7 @@ chan_setbank 5
 chan_setinstr 5
 chan_setenvelope .envelope_3344
 chan_setval 20
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_1571
 chan_end
 
@@ -3558,7 +3648,7 @@ layer_end
 chan_setbank 6
 chan_setinstr 1
 chan_setval 55
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_15C6
 chan_end
 
@@ -3582,7 +3672,7 @@ chan_setbank 7
 chan_setinstr 1
 chan_setlayer 0, .layer_15EB
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 5
 chan_setinstr 5
 chan_end
@@ -3606,7 +3696,7 @@ layer_end
 chan_setbank 6
 chan_setinstr 1
 chan_setval 25
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_160C
 chan_end
 
@@ -3622,14 +3712,14 @@ chan_setenvelope .envelope_3358
 chan_setlayer 0, .layer_162D
 chan_setlayer 1, .layer_1637
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 4
 chan_setinstr 15
 chan_setenvelope .envelope_3358
 chan_end
 
 .layer_162D:
-layer_delay 0x1
+layer_delay 1
 layer_note1 36, 0xc, 127
 layer_note1 32, 0x96, 127
 layer_end
@@ -3654,7 +3744,7 @@ layer_end
 chan_setbank 4
 chan_setinstr 15
 chan_setval 30
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_1660
 chan_setlayer 1, .layer_1669
 chan_setlayer 2, .layer_1665
@@ -3686,7 +3776,7 @@ layer_end
 chan_setbank 4
 chan_setinstr 15
 chan_setval 30
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setenvelope .envelope_338C
 chan_setlayer 0, .layer_16A1
 chan_setlayer 1, .layer_16AA
@@ -3713,7 +3803,7 @@ layer_end
 chan_setbank 5
 chan_setinstr 0
 chan_setval 127
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_16CE
 chan_setlayer 1, .layer_16CE
 chan_setlayer 2, .layer_16D2
@@ -3756,7 +3846,7 @@ layer_end
 chan_setbank 6
 chan_setinstr 1
 chan_setval 55
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_170B
 chan_end
 
@@ -3880,7 +3970,7 @@ chan_setlayer 1, .layer_17C2
 chan_end
 
 .layer_17C2:
-layer_delay 0x1
+layer_delay 1
 
 .layer_17C4:
 layer_note1 34, 0x6, 127
@@ -3894,7 +3984,7 @@ chan_setbank 6
 chan_setenvelope .envelope_32D4
 chan_setlayer 0, .layer_17E8
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setenvelope .envelope_32D4
 chan_setlayer 1, .layer_17F3
 chan_setlayer 2, .layer_17EF
@@ -3934,13 +4024,13 @@ chan_setbank 4
 chan_setinstr 14
 chan_setlayer 0, .layer_171A
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 4
 chan_setinstr 15
 chan_setenvelope .envelope_33EC
 chan_setlayer 1, .layer_137B
 chan_setval 100
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 4
 chan_setinstr 14
 chan_setlayer 0, .layer_1844
@@ -3984,7 +4074,7 @@ layer_end
 chan_setbank 9
 chan_setinstr 3
 chan_setval 30
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_1888
 chan_end
 
@@ -4005,7 +4095,7 @@ layer_end
 chan_setbank 5
 chan_setinstr 7
 chan_setlayer 0, .layer_18B8
-chan_delay 0x1
+chan_delay 1
 chan_setbank 4
 chan_setinstr 9
 chan_setlayer 1, .layer_1537
@@ -4021,7 +4111,7 @@ chan_setbank 6
 chan_setinstr 11
 chan_setlayer 0, .layer_2DBF
 chan_setval 9
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 9
 chan_setinstr 3
 chan_setenvelope .envelope_3454
@@ -4033,7 +4123,7 @@ chan_setbank 4
 chan_setinstr 9
 chan_setlayer 0, .layer_1539
 chan_setval 12
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 6
 chan_setinstr 1
 chan_setlayer 0, .layer_18EB
@@ -4045,11 +4135,24 @@ layer_note1 31, 0x14, 127
 layer_end
 
 .chan_18F3:
-chan_setinstr 128
-chan_setenvelope .envelope_3378
-chan_setlayer 0, .layer_1907
-chan_setlayer 1, .layer_1902
-chan_setlayer 2, .layer_1909
+.ifdef VERSION_JP
+  chan_setbank 9
+  chan_setinstr 3
+  chan_setlayer 0, .layer_1909
+  chan_setlayer 1, .layer_1902
+  chan_setlayer 2, .layer_1907
+.else
+  .ifdef VERSION_EU
+    chan_setbank 9
+    chan_setinstr 3
+  .else
+    chan_setinstr 128
+  .endif
+  chan_setenvelope .envelope_3378
+  chan_setlayer 0, .layer_1907
+  chan_setlayer 1, .layer_1902
+  chan_setlayer 2, .layer_1909
+.endif
 chan_end
 
 .layer_1902:
@@ -4077,7 +4180,7 @@ chan_setbank 5
 chan_setinstr 13
 chan_setenvelope .envelope_33DC
 chan_setval 20
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setval 127
 chan_iowriteval 7
 chan_setlayer 0, .layer_195F
@@ -4085,7 +4188,7 @@ chan_setlayer 1, .layer_1986
 chan_setlayer 2, .layer_1982
 .chan_1942:
 chan_setval 4
-chan_call .chan_fn_12B
+chan_call .delay
 chan_ioreadval 7
 chan_subtract 1
 chan_beqz .chan_1957
@@ -4095,7 +4198,7 @@ chan_setvolscale 127
 chan_jump .chan_1942
 .chan_1957:
 chan_setval 127
-chan_call .chan_fn_12B
+chan_call .delay
 chan_jump .chan_1957
 
 .layer_195F:
@@ -4154,7 +4257,7 @@ layer_end
 chan_setbank 9
 chan_setinstr 3
 chan_setval 40
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setenvelope .envelope_3344
 chan_setlayer 0, .layer_19DA
 chan_end
@@ -4174,7 +4277,7 @@ chan_setinstr 1
 chan_setlayer 0, .layer_1A00
 chan_setlayer 1, .layer_19FE
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 5
 chan_setinstr 5
 chan_end
@@ -4247,7 +4350,7 @@ layer_end
 chan_setbank 9
 chan_setinstr 6
 chan_setval 10
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_1A66
 chan_setlayer 1, .layer_1A66
 chan_end
@@ -4280,7 +4383,7 @@ chan_setinstr 14
 chan_setenvelope .envelope_3358
 chan_setlayer 0, .layer_1AA0
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setenvelope .envelope_3358
 chan_setlayer 1, .layer_1AAA
 chan_setlayer 2, .layer_1AA8
@@ -4300,45 +4403,63 @@ layer_portamento 0x81, 36, 40
 layer_note1 41, 0xc, 127
 layer_end
 
-.chan_1AB4:
-chan_setbank 4
-chan_setinstr 2
-chan_setlayer 0, .layer_1AC1
-chan_setlayer 1, .layer_1ABF
-chan_end
+.ifdef VERSION_JP
+  .chan_1AB4_jp:
+  chan_setbank 9
+  chan_setinstr 0
+  chan_setenvelope .envelope_3438
+  chan_setvibratorate 25
+  chan_setvibratoextent 110
+  chan_setlayer 0, .layer_1943_jp
+  chan_setval 40
+  chan_call .delay
+  chan_end
 
-.layer_1ABF:
-layer_transpose 12
+  .layer_1943_jp:
+  layer_portamento 0x1, 32, 0x7f
+  layer_note1 60, 0x28, 100
+  layer_end
+.else
+  .chan_1AB4:
+  chan_setbank 4
+  chan_setinstr 2
+  chan_setlayer 0, .layer_1AC1
+  chan_setlayer 1, .layer_1ABF
+  chan_end
 
-.layer_1AC1:
-layer_portamento 0x81, 7, 255
-layer_note1 15, 0x3c, 127
-layer_portamento 0x81, 20, 200
-layer_note1 7, 0x5a, 127
-layer_end
+  .layer_1ABF:
+  layer_transpose 12
 
-.chan_1AD0:
-chan_setbank 9
-chan_setinstr 3
-chan_setvibratoextent 70
-chan_setvibratorate 70
-chan_setenvelope .envelope_32E4
-chan_setlayer 0, .layer_1AEB
-chan_setlayer 1, .layer_1AE9
-chan_setval 35
-chan_call .chan_fn_12B
-chan_setvibratoextent 0
-chan_end
+  .layer_1AC1:
+  layer_portamento 0x81, 7, 255
+  layer_note1 15, 0x3c, 127
+  layer_portamento 0x81, 20, 200
+  layer_note1 7, 0x5a, 127
+  layer_end
 
-.layer_1AE9:
-layer_transpose 1
+  .chan_1AD0:
+  chan_setbank 9
+  chan_setinstr 3
+  chan_setvibratoextent 70
+  chan_setvibratorate 70
+  chan_setenvelope .envelope_32E4
+  chan_setlayer 0, .layer_1AEB
+  chan_setlayer 1, .layer_1AE9
+  chan_setval 35
+  chan_call .delay
+  chan_setvibratoextent 0
+  chan_end
 
-.layer_1AEB:
-layer_portamento 0x81, 19, 255
-layer_note1 31, 0x32, 115
-layer_end
+  .layer_1AE9:
+  layer_transpose 1
 
-.table_1AF3:
+  .layer_1AEB:
+  layer_portamento 0x81, 19, 255
+  layer_note1 31, 0x32, 115
+  layer_end
+.endif
+
+.channel4_table:
 sound_ref .chan_1B43
 sound_ref .chan_1B43
 sound_ref .chan_1B5D
@@ -4384,14 +4505,22 @@ sound_ref .chan_1B43
 chan_setbank 5
 chan_setinstr 1
 chan_setval 25
-chan_call .chan_fn_144
-chan_setenvelope .envelope_32C4
+chan_call .set_reverb
+.ifdef VERSION_JP
+  chan_setenvelope .envelope_32E4
+.else
+  chan_setenvelope .envelope_32C4
+.endif
 chan_setlayer 0, .layer_1B53
 chan_end
 
 .layer_1B53:
 layer_somethingon
-layer_delay 0x4
+.ifdef VERSION_JP
+  layer_delay 0x6
+.else
+  layer_delay 0x4
+.endif
 .layer_1B56:
 layer_note1 41, 0x12c, 95
 layer_jump .layer_1B56
@@ -4546,7 +4675,11 @@ chan_end
 
 .layer_1C69:
 layer_portamento 0x81, 15, 255
-layer_note1 11, 0x1f4, 127
+.ifdef VERSION_JP
+  layer_note1 11, 0x1f4, 100
+.else
+  layer_note1 11, 0x1f4, 127
+.endif
 layer_end
 
 .chan_1C72:
@@ -4554,7 +4687,7 @@ chan_setbank 5
 chan_setinstr 5
 chan_setenvelope .envelope_3368
 chan_setval 45
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_1C82
 chan_end
 
@@ -4707,17 +4840,17 @@ layer_jump .layer_1D77
 
 .chan_1D81:
 chan_setval 50
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setbank 4
 chan_setinstr 15
 chan_setlayer 0, .layer_1DA5
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 6
 chan_setinstr 15
 chan_setlayer 1, .layer_1DAD
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 4
 chan_setinstr 15
 chan_setdecayrelease 10
@@ -4740,7 +4873,7 @@ chan_setinstr 2
 chan_setenvelope .envelope_32E4
 chan_setlayer 0, .layer_1DD4
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 4
 chan_setinstr 5
 chan_setdecayrelease 20
@@ -4819,7 +4952,7 @@ layer_portamento 0x82, 20, 255
 layer_note1 43, 0x1b58, 63
 layer_jump .layer_1E47
 
-.table_1E4E:
+.channel59_table:
 sound_ref .chan_113D
 sound_ref .chan_1F61
 sound_ref .chan_1F7D
@@ -4966,7 +5099,7 @@ chan_setbank 7
 chan_setinstr 3
 chan_setlayer 0, .layer_1F72
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 6
 chan_setinstr 0
 chan_end
@@ -4992,7 +5125,7 @@ layer_end
 chan_setbank 6
 chan_setinstr 1
 chan_setval 60
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_1F9D
 chan_setlayer 1, .layer_1FA6
 chan_end
@@ -5012,7 +5145,7 @@ layer_end
 chan_setbank 6
 chan_setinstr 2
 chan_setval 10
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_1FC0
 chan_setlayer 1, .layer_1FBC
 chan_end
@@ -5029,7 +5162,7 @@ layer_end
 chan_setbank 6
 chan_setinstr 2
 chan_setval 10
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_1FD8
 chan_setlayer 1, .layer_1FD4
 chan_end
@@ -5047,7 +5180,7 @@ layer_end
 chan_setbank 6
 chan_setinstr 4
 chan_setval 10
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_1FED
 chan_end
 
@@ -5111,10 +5244,10 @@ layer_end
 chan_setbank 7
 chan_setinstr 12
 chan_setval 55
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_2055
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 6
 chan_setinstr 1
 chan_setlayer 1, .layer_204E
@@ -5222,7 +5355,11 @@ chan_end
 
 .layer_20D2:
 layer_portamento 0x81, 44, 255
-layer_note1 36, 0x18, 115
+.ifdef VERSION_JP
+  layer_note1 36, 0x18, 90
+.else
+  layer_note1 36, 0x18, 115
+.endif
 layer_delay 0x32
 layer_end
 
@@ -5231,7 +5368,7 @@ chan_setbank 7
 chan_setinstr 12
 chan_setlayer 0, .layer_20F0
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 6
 chan_setinstr 1
 chan_setlayer 1, .layer_20F4
@@ -5242,8 +5379,13 @@ layer_note1 31, 0x26, 127
 layer_end
 
 .layer_20F4:
-layer_note1 38, 0x8, 127
-layer_note1 33, 0x1e, 127
+.ifdef VERSION_JP
+  layer_note1 38, 0x8, 120
+  layer_note1 33, 0x1e, 120
+.else
+  layer_note1 38, 0x8, 127
+  layer_note1 33, 0x1e, 127
+.endif
 layer_end
 
 .chan_20FB:
@@ -5374,7 +5516,7 @@ chan_setbank 6
 chan_setinstr 12
 chan_setlayer 0, .layer_21C9
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 0
 chan_setinstr 4
 chan_end
@@ -5402,7 +5544,7 @@ chan_setbank 9
 chan_setinstr 3
 chan_setenvelope .envelope_3428
 chan_setval 10
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_21F4
 chan_end
 
@@ -5440,7 +5582,7 @@ layer_end
 chan_setbank 7
 chan_setinstr 3
 chan_setval 15
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_2231
 chan_end
 
@@ -5493,7 +5635,7 @@ chan_setbank 4
 chan_setinstr 5
 chan_setlayer 0, .layer_2288
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 2
 chan_setinstr 0
 chan_end
@@ -5533,7 +5675,7 @@ chan_setbank 0
 chan_setinstr 4
 chan_setenvelope .envelope_32D4
 chan_setval 25
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_22C7
 chan_end
 
@@ -5578,7 +5720,7 @@ layer_end
 chan_setbank 9
 chan_setinstr 3
 chan_setval 20
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setenvelope .envelope_33EC
 chan_setlayer 0, .layer_230F
 chan_end
@@ -5718,7 +5860,7 @@ layer_end
 chan_setbank 6
 chan_setinstr 9
 chan_setval 25
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_23EF
 chan_setlayer 1, .layer_23EF
 chan_end
@@ -5832,7 +5974,7 @@ layer_end
 chan_setbank 7
 chan_setinstr 9
 chan_setval 20
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_249F
 chan_end
 
@@ -5855,7 +5997,7 @@ layer_end
 chan_setbank 7
 chan_setinstr 9
 chan_setval 20
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_24C7
 chan_end
 
@@ -5917,7 +6059,7 @@ chan_setbank 5
 chan_setinstr 7
 chan_setlayer 0, .layer_252C
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 7
 chan_setinstr 12
 chan_setlayer 1, .layer_26D7
@@ -5931,7 +6073,7 @@ layer_end
 chan_setbank 6
 chan_setinstr 9
 chan_setval 25
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_253E
 chan_end
 
@@ -5954,7 +6096,7 @@ layer_end
 chan_setbank 6
 chan_setinstr 2
 chan_setval 25
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_2564
 chan_setlayer 1, .layer_2562
 chan_end
@@ -5986,13 +6128,13 @@ layer_jump .layer_11BB
 chan_setbank 9
 chan_setinstr 3
 chan_setval 24
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setenvelope .envelope_3428
 chan_setvibratoextent 80
 chan_setvibratorate 60
 chan_setlayer 0, .layer_259B
 chan_setval 30
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setvibratoextent 0
 chan_end
 
@@ -6021,7 +6163,7 @@ chan_setbank 6
 chan_setinstr 7
 chan_setlayer 0, .layer_25CC
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 7
 chan_setinstr 2
 chan_end
@@ -6038,7 +6180,7 @@ chan_setbank 6
 chan_setinstr 7
 chan_setlayer 0, .layer_25EC
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 2
 chan_setinstr 1
 chan_end
@@ -6078,16 +6220,16 @@ layer_end
 .chan_2624:
 chan_call .chan_207F
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 7
 chan_setinstr 13
 chan_setlayer 1, .layer_2655
 chan_setlayer 2, .layer_2659
 chan_setval 11
-chan_call .chan_fn_12B
+chan_call .delay
 chan_call .chan_1770
 chan_setval 20
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 1
 chan_setinstr 4
 chan_setlayer 0, .layer_264B
@@ -6126,7 +6268,7 @@ chan_setvibratoextent 80
 chan_setvibratorate 5
 chan_setlayer 0, .layer_2684
 chan_setval 88
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setvibratoextent 0
 chan_end
 
@@ -6206,7 +6348,7 @@ layer_end
 chan_setbank 6
 chan_setinstr 9
 chan_setval 25
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_271A
 chan_setlayer 1, .layer_271A
 chan_end
@@ -6222,7 +6364,7 @@ layer_end
 .chan_2726:
 chan_call .chan_22B7
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 7
 chan_setinstr 8
 chan_setlayer 1, .layer_223D
@@ -6231,7 +6373,7 @@ chan_end
 .chan_2736:
 chan_call .chan_22B7
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 7
 chan_setinstr 8
 chan_setlayer 1, .layer_2746
@@ -6246,7 +6388,7 @@ layer_end
 .chan_2751:
 chan_call .chan_22B7
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 7
 chan_setinstr 7
 chan_setlayer 1, .layer_254A
@@ -6255,7 +6397,7 @@ chan_end
 .chan_2761:
 chan_call .chan_22B7
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 7
 chan_setinstr 8
 chan_setlayer 1, .layer_2461
@@ -6264,7 +6406,7 @@ chan_end
 .chan_2771:
 chan_call .chan_22B7
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 7
 chan_setinstr 0
 chan_setlayer 1, .layer_2219
@@ -6278,7 +6420,7 @@ chan_end
 .chan_2788:
 chan_call .chan_1613
 chan_setval 12
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 6
 chan_setinstr 1
 chan_setlayer 2, .layer_2798
@@ -6297,7 +6439,7 @@ chan_setenvelope .envelope_32E4
 chan_setlayer 0, .layer_27B7
 chan_setlayer 1, .layer_27B5
 chan_setval 56
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setvibratoextent 0
 chan_end
 
@@ -6312,7 +6454,7 @@ layer_end
 chan_setbank 4
 chan_setinstr 15
 chan_setval 40
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setenvelope .envelope_33BC
 chan_setlayer 0, .layer_27CB
 chan_end
@@ -6329,7 +6471,7 @@ layer_end
 chan_setbank 6
 chan_setinstr 1
 chan_setval 55
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_204E
 chan_end
 
@@ -6378,7 +6520,7 @@ chan_setinstr 1
 chan_setenvelope .envelope_32C4
 chan_setlayer 0, .layer_283E
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 6
 chan_setinstr 0
 chan_setlayer 1, .layer_2804
@@ -6412,7 +6554,7 @@ layer_jump .layer_fn_119F
 chan_call .chan_2518
 chan_setlayer 1, .layer_288B
 chan_setval 2
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 8
 chan_setinstr 10
 chan_setlayer 2, .layer_2878
@@ -6488,7 +6630,7 @@ layer_end
 .chan_28FE:
 chan_call .chan_22B7
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 7
 chan_setinstr 10
 chan_setenvelope .envelope_3344
@@ -6506,7 +6648,7 @@ layer_end
 .chan_2922:
 chan_call .chan_207F
 chan_setval 10
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 9
 chan_setinstr 0
 chan_setenvelope .envelope_340C
@@ -6543,7 +6685,7 @@ layer_portamento 0x81, 22, 255
 layer_note1 34, 0x10, 105
 layer_end
 
-.table_2971:
+.channel6_table:
 sound_ref .chan_29B1
 sound_ref .chan_29C2
 sound_ref .chan_29D3
@@ -6691,7 +6833,7 @@ chan_setbank 3
 chan_setinstr 5
 chan_setlayer 0, .layer_2A61
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 3
 chan_setinstr 8
 chan_end
@@ -6726,14 +6868,14 @@ chan_setbank 5
 chan_setinstr 6
 chan_setdecayrelease 3
 chan_setval 1
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 6
 chan_setinstr 9
 chan_setdecayrelease 3
 chan_setval 199
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setval 100
-chan_call .chan_fn_12B
+chan_call .delay
 chan_jump .chan_2A89
 
 .layer_2AA7:
@@ -6745,7 +6887,7 @@ layer_note1 38, 0x12c, 127
 layer_jump .layer_2AAC
 
 .layer_2AB7:
-layer_delay 0x1
+layer_delay 1
 layer_setpan 30
 layer_note1 56, 0xc, 10
 layer_delay 0x6c
@@ -6792,7 +6934,7 @@ layer_note1 20, 0x2, 85
 layer_jump .layer_2B0F
 layer_end
 
-.table_2B1D:
+.channel7_table:
 sound_ref .chan_2B9D
 sound_ref .chan_2BC5
 sound_ref .chan_2BF3
@@ -6828,35 +6970,51 @@ sound_ref .chan_309F
 sound_ref .chan_30B6
 sound_ref .chan_30CB
 sound_ref .chan_30E0
-sound_ref .chan_30F5
-sound_ref .chan_3109
-sound_ref .chan_2E4E
-sound_ref .chan_2E83
-sound_ref .chan_2ED8
-sound_ref .chan_3122
-sound_ref .chan_3122
-sound_ref .chan_3122
-sound_ref .chan_3122
-sound_ref .chan_3122
-sound_ref .chan_3122
-sound_ref .chan_3122
-sound_ref .chan_3122
-sound_ref .chan_318B
-sound_ref .chan_318B
-sound_ref .chan_318B
-sound_ref .chan_318B
-sound_ref .chan_318B
-sound_ref .chan_318B
-sound_ref .chan_318B
-sound_ref .chan_318B
-sound_ref .chan_2C90
-sound_ref .chan_2CAC
-sound_ref .chan_2CE5
-sound_ref .chan_2CFE
-sound_ref .chan_2D18
-sound_ref .chan_2D40
-sound_ref .chan_2D7C
-sound_ref .chan_2D8B
+.ifdef VERSION_JP
+  sound_ref .chan_2DF2
+  sound_ref .chan_2E05
+  sound_ref .chan_2E4E
+  sound_ref .chan_2E83
+  sound_ref .chan_2ED8
+  sound_ref .chan_2F55
+  sound_ref .chan_10A7
+  sound_ref .chan_2F65
+  sound_ref .chan_2F71
+  sound_ref .chan_2F8C
+  sound_ref .chan_2FA6
+  sound_ref .chan_133C
+  sound_ref .chan_2B9D
+.else
+  sound_ref .chan_30F5
+  sound_ref .chan_3109
+  sound_ref .chan_2E4E
+  sound_ref .chan_2E83
+  sound_ref .chan_2ED8
+  sound_ref .chan_3122
+  sound_ref .chan_3122
+  sound_ref .chan_3122
+  sound_ref .chan_3122
+  sound_ref .chan_3122
+  sound_ref .chan_3122
+  sound_ref .chan_3122
+  sound_ref .chan_3122
+  sound_ref .chan_318B
+  sound_ref .chan_318B
+  sound_ref .chan_318B
+  sound_ref .chan_318B
+  sound_ref .chan_318B
+  sound_ref .chan_318B
+  sound_ref .chan_318B
+  sound_ref .chan_318B
+  sound_ref .chan_2C90
+  sound_ref .chan_2CAC
+  sound_ref .chan_2CE5
+  sound_ref .chan_2CFE
+  sound_ref .chan_2D18
+  sound_ref .chan_2D40
+  sound_ref .chan_2D7C
+  sound_ref .chan_2D8B
+.endif
 
 .chan_2B9D:
 chan_setbank 9
@@ -7024,14 +7182,14 @@ chan_setvibratoextent 80
 chan_setlayer 0, .layer_2CDA
 chan_setlayer 1, .layer_2CD6
 chan_setval 5
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setvibratorate 35
 chan_setvibratoextent 115
 chan_setval 55
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setvibratoextent 80
 chan_setval 67
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setvibratoextent 0
 chan_end
 
@@ -7108,7 +7266,7 @@ chan_setpanmix 0
 chan_setinstr 3
 chan_setenvelope .envelope_3454
 chan_setval 25
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_2D53
 chan_end
 
@@ -7167,7 +7325,7 @@ chan_setlayer 0, .layer_2DB1
 chan_end
 
 .layer_2DB1:
-layer_delay 0x1
+layer_delay 1
 layer_end
 
 .chan_2DB4:
@@ -7190,7 +7348,7 @@ chan_setmutebhv 0x0
 chan_setbank 9
 chan_setinstr 1
 chan_setval 60
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_2DDF
 chan_end
 
@@ -7222,12 +7380,12 @@ chan_setenvelope .envelope_3358
 chan_setvibratoextent 3
 chan_setvibratorate 60
 chan_setval 25
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_2E28
 chan_setlayer 1, .layer_2E3D
 chan_setlayer 2, .layer_2E34
 chan_setval 70
-chan_call .chan_fn_12B
+chan_call .delay
 chan_setbank 10
 chan_setinstr 8
 chan_end
@@ -7261,7 +7419,7 @@ chan_setpanmix 0
 chan_setinstr 3
 chan_setenvelope .envelope_3454
 chan_setval 25
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setpanmix 0
 chan_stereoheadseteffects 1
 chan_setlayer 0, .layer_2E65
@@ -7288,7 +7446,7 @@ chan_setinstr 2
 chan_setpanmix 0
 chan_stereoheadseteffects 1
 chan_setval 30
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setenvelope .envelope_33BC
 chan_setdecayrelease 220
 chan_setlayer 0, .layer_2EA3
@@ -7330,7 +7488,7 @@ chan_reservenotes 4
 chan_setbank 9
 chan_setinstr 2
 chan_setval 30
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setenvelope .envelope_3464
 chan_setdecayrelease 220
 chan_setlayer 0, .layer_2EF4
@@ -7381,7 +7539,7 @@ layer_end
 chan_setbank 6
 chan_setinstr 9
 chan_setval 25
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_271D
 chan_setlayer 1, .layer_271D
 chan_end
@@ -7591,107 +7749,109 @@ chan_setlayer 0, .layer_3041
 chan_setlayer 1, .layer_2FC9
 chan_end
 
-.chan_30F5:
-chan_setbank 4
-chan_setinstr 14
-chan_setlayer 0, .layer_1344
-chan_setval 1
-chan_call .chan_fn_12B
-chan_setbank 10
-chan_setinstr 12
-chan_setlayer 1, .layer_E3A
-chan_end
+.ifndef VERSION_JP
+  .chan_30F5:
+  chan_setbank 4
+  chan_setinstr 14
+  chan_setlayer 0, .layer_1344
+  chan_setval 1
+  chan_call .delay
+  chan_setbank 10
+  chan_setinstr 12
+  chan_setlayer 1, .layer_E3A
+  chan_end
 
-.chan_3109:
-chan_setbank 8
-chan_setinstr 26
-chan_setlayer 0, .layer_311D
-chan_setval 1
-chan_call .chan_fn_12B
-chan_setbank 4
-chan_setinstr 14
-chan_setlayer 1, .layer_1344
-chan_end
+  .chan_3109:
+  chan_setbank 8
+  chan_setinstr 26
+  chan_setlayer 0, .layer_311D
+  chan_setval 1
+  chan_call .delay
+  chan_setbank 4
+  chan_setinstr 14
+  chan_setlayer 1, .layer_1344
+  chan_end
 
-.layer_311D:
-layer_note1 39, 0xb4, 127
-layer_end
+  .layer_311D:
+  layer_note1 39, 0xb4, 127
+  layer_end
 
-.chan_3122:
-chan_setinstr 128
-chan_setnotepriority 14
-chan_setpanmix 0
-chan_setenvelope .envelope_3378
-chan_ioreadval 4
-chan_subtract 40
-chan_readseq .addr_313E
-chan_writeseq 0, .layer_fn_3188, 1
-chan_setlayer 0, .layer_3146
-chan_setlayer 1, .layer_3168
-chan_setlayer 2, .layer_3148
-chan_end
+  .chan_3122:
+  chan_setinstr 128
+  chan_setnotepriority 14
+  chan_setpanmix 0
+  chan_setenvelope .envelope_3378
+  chan_ioreadval 4
+  chan_subtract 0x28
+  chan_readseq .major_scale
+  chan_writeseq 0, .transpose_by_coin_index, 1
+  chan_setlayer 0, .layer_3146
+  chan_setlayer 1, .layer_3168
+  chan_setlayer 2, .layer_3148
+  chan_end
 
-.addr_313E:
-.byte 0x0
-.byte 0x2
-.byte 0x4
-.byte 0x5
-.byte 0x7
-.byte 0x9
-.byte 0xb
-.byte 0xc
+  .major_scale:
+  .byte 0
+  .byte 2
+  .byte 4
+  .byte 5
+  .byte 7
+  .byte 9
+  .byte 11
+  .byte 12
 
-.layer_3146:
-layer_delay 0x6
+  .layer_3146:
+  layer_delay 0x6
 
-.layer_3148:
-layer_call .layer_fn_3188
-layer_note0 46, 0xc, 75, 20
-layer_note0 45, 0xc, 75, 20
-layer_note0 46, 0xc, 75, 20
-layer_note0 58, 0x10, 80, 80
-layer_note0 58, 0x10, 45, 80
-layer_note0 58, 0x10, 20, 80
-layer_note0 58, 0x10, 15, 80
-layer_end
+  .layer_3148:
+  layer_call .transpose_by_coin_index
+  layer_note0 46, 0xc, 75, 20
+  layer_note0 45, 0xc, 75, 20
+  layer_note0 46, 0xc, 75, 20
+  layer_note0 58, 0x10, 80, 80
+  layer_note0 58, 0x10, 45, 80
+  layer_note0 58, 0x10, 20, 80
+  layer_note0 58, 0x10, 15, 80
+  layer_end
 
-.layer_3168:
-layer_call .layer_fn_3188
-layer_note0 41, 0xc, 75, 20
-layer_note0 40, 0xc, 75, 20
-layer_note0 41, 0xc, 75, 20
-layer_note0 53, 0x10, 80, 80
-layer_note0 53, 0x10, 45, 80
-layer_note0 53, 0x10, 20, 80
-layer_note0 53, 0x10, 15, 80
-layer_end
+  .layer_3168:
+  layer_call .transpose_by_coin_index
+  layer_note0 41, 0xc, 75, 20
+  layer_note0 40, 0xc, 75, 20
+  layer_note0 41, 0xc, 75, 20
+  layer_note0 53, 0x10, 80, 80
+  layer_note0 53, 0x10, 45, 80
+  layer_note0 53, 0x10, 20, 80
+  layer_note0 53, 0x10, 15, 80
+  layer_end
 
-.layer_fn_3188:
-layer_transpose 0
-layer_end
+  .transpose_by_coin_index:
+  layer_transpose 0
+  layer_end
 
-.chan_318B:
-chan_setbank 4
-chan_setinstr 14
-chan_setnotepriority 14
-chan_setpanmix 0
-chan_ioreadval 4
-chan_subtract 48
-chan_readseq .addr_313E
-chan_writeseq 0, .layer_31A0, 1
-chan_setlayer 0, .layer_31A0
-chan_end
+  .chan_318B:
+  chan_setbank 4
+  chan_setinstr 14
+  chan_setnotepriority 14
+  chan_setpanmix 0
+  chan_ioreadval 4
+  chan_subtract 0x30
+  chan_readseq .major_scale
+  chan_writeseq 0, .layer_31A0, 1
+  chan_setlayer 0, .layer_31A0
+  chan_end
 
-.layer_31A0:
-layer_transpose 0
-layer_note1 32, 0x7f, 115
-layer_end
+  .layer_31A0:
+  layer_transpose 0
+  layer_note1 32, 0x7f, 115
+  layer_end
+.endif
 
 .chan_31A6:
 chan_setbank 5
 chan_setinstr 9
 chan_setval 40
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_31B3
 chan_end
 
@@ -7712,7 +7872,7 @@ layer_end
 chan_setbank 5
 chan_setinstr 10
 chan_setval 60
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_31EB
 chan_end
 
@@ -7735,7 +7895,7 @@ layer_end
 chan_setbank 5
 chan_setinstr 12
 chan_setval 30
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_3221
 chan_end
 
@@ -7758,7 +7918,7 @@ layer_end
 .chan_3248:
 chan_setbank 5
 chan_setval 15
-chan_call .chan_fn_144
+chan_call .set_reverb
 chan_setlayer 0, .layer_3259
 chan_setlayer 1, .layer_327F
 chan_setlayer 2, .layer_3281
@@ -7823,6 +7983,11 @@ layer_note0 38, 0x3, 127, 127
 .layer_32BF:
 layer_delay 0x2a
 layer_jump .layer_32B7
+
+.ifndef VERSION_US
+  # padding
+  .byte 0
+.endif
 
 .envelope_32C4:
 envelope_line 7 20000
@@ -7891,12 +8056,14 @@ envelope_line 1 32700
 envelope_line 10 0
 envelope_goto 2
 
-.envelope_3378:
-envelope_line 3 32700
-envelope_line 10 30000
-envelope_line 10 10000
-envelope_line 100 0
-envelope_goto 3
+.ifndef VERSION_JP
+  .envelope_3378:
+  envelope_line 3 32700
+  envelope_line 10 30000
+  envelope_line 10 10000
+  envelope_line 100 0
+  envelope_goto 3
+.endif
 
 .envelope_338C:
 envelope_line 1 32700

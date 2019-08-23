@@ -165,8 +165,8 @@ LEVEL_S_FILES := $(addsuffix header.s,$(addprefix bin/,$(LEVEL_DIRS)))
 SOUND_BANK_FILES := $(wildcard sound/sound_banks/*.json)
 SOUND_SEQUENCE_FILES := $(wildcard sound/sequences/$(VERSION)/*.m64) \
     $(wildcard sound/sequences/*.m64) \
-    $(foreach file,$(wildcard sound/sequences/$(VERSION)/*.m64.s),$(BUILD_DIR)/$(file:.s=.bin)) \
-    $(foreach file,$(wildcard sound/sequences/*.m64.s),$(BUILD_DIR)/$(file:.s=.bin))
+    $(foreach file,$(wildcard sound/sequences/$(VERSION)/*.s),$(BUILD_DIR)/$(file:.s=.m64)) \
+    $(foreach file,$(wildcard sound/sequences/*.s),$(BUILD_DIR)/$(file:.s=.m64))
 SOUND_SAMPLE_DIRS := $(wildcard sound/samples/*)
 SOUND_SAMPLE_AIFFS := $(foreach dir,$(SOUND_SAMPLE_DIRS),$(wildcard $(dir)/*.aiff))
 SOUND_SAMPLE_TABLES := $(foreach file,$(SOUND_SAMPLE_AIFFS),$(BUILD_DIR)/$(file:.aiff=.table))
@@ -384,7 +384,7 @@ $(SOUND_BIN_DIR)/sound_data.tbl: $(SOUND_BIN_DIR)/sound_data.ctl
 $(SOUND_BIN_DIR)/sequences.bin: $(SOUND_SEQUENCE_FILES)
 	$(PYTHON) tools/assemble_sound.py --sequences $@ $^
 
-$(SOUND_BIN_DIR)/%.bin: $(SOUND_BIN_DIR)/%.o
+$(SOUND_BIN_DIR)/%.m64: $(SOUND_BIN_DIR)/%.o
 	$(OBJCOPY) -j .rodata $< -O binary $@
 
 $(SOUND_BIN_DIR)/%.o: $(SOUND_BIN_DIR)/%.s
