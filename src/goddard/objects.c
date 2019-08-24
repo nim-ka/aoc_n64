@@ -1,24 +1,24 @@
 #include <ultra64.h>
 #include <stdarg.h>
+#include <macros.h>
+#include <config.h>
 
-#include "sm64.h"
 #include "gd_types.h"
+#include "gd_macros.h"
 
 #include "gd_main.h"
-#include "mhead_sfx.h"
+#include "sfx.h"
 #include "draw_objects.h"
-#include "mario_head_1.h"
-#include "mario_head_3.h"
+#include "objects.h"
+#include "particles.h"
 #include "dynlist_proc.h"
-#include "old_obj_fn.h"
-#include "profiler_utils.h"
-#include "joint_fns.h"
-#include "skin_fns.h"
-#include "matrix_fns.h"
-#include "half_6.h"
-#include "mario_head_6.h"
-
-#define ABS(val) (((val) < 0 ? (-(val)) : (val)))
+#include "old_menu.h"
+#include "debug_utils.h"
+#include "joints.h"
+#include "skin.h"
+#include "gd_math.h"
+#include "shape_helper.h"
+#include "renderer.h"
 
 // structs
 struct Unk801B9E68 {
@@ -28,7 +28,7 @@ struct Unk801B9E68 {
 
 struct Unk8017F3CC {
     /*0x00*/ u8  pad[0x20];
-    /*0x20*/ struct MyVec3f unk20;
+    /*0x20*/ struct GdVec3f unk20;
 };
 
 // data
@@ -40,17 +40,17 @@ struct GdPlaneF D_801B9DA0;
 struct ObjCamera *sCurrentMoveCamera; // @ 801B9DB8
 struct ObjView *sCurrentMoveView; // @ 801B9DBC
 struct DebugCounters gGdCounter; // @ 801B9DC0
-Mat4 D_801B9DC8;
-struct MyVec3f D_801B9E08;
+Mat4f D_801B9DC8;
+struct GdVec3f D_801B9E08;
 struct ObjGroup *sCurrentMoveGrp; // @ 801B9E14
-struct MyVec3f D_801B9E18;
-struct MyVec3f D_801B9E28;
+struct GdVec3f D_801B9E18;
+struct GdVec3f D_801B9E28;
 f32 D_801B9E34;
-Mat4 *D_801B9E38;
+Mat4f *D_801B9E38;
 struct ObjParticle *D_801B9E3C;
 s32 D_801B9E40;
 s32 D_801B9E44;
-Mat4 *D_801B9E48;
+Mat4f *D_801B9E48;
 struct ObjCamera *gGdCameraList; // @ 801B9E4C
 void *D_801B9E50;
 struct ObjGroup *gGdGroupList; // @ 801B9E54
@@ -68,13 +68,13 @@ struct ObjGroup *gGdViewsGroup; // @ 801B9E90
 /* @ 22A480 for 0x70 */
 void func_8017BCB0(void)
 {   /* Initialize Plane? */
-    D_801B9DA0.vec0.x = 10000000.0f;
-    D_801B9DA0.vec0.y = 10000000.0f;
-    D_801B9DA0.vec0.z = 10000000.0f;
+    D_801B9DA0.p0.x = 10000000.0f;
+    D_801B9DA0.p0.y = 10000000.0f;
+    D_801B9DA0.p0.z = 10000000.0f;
 
-    D_801B9DA0.vec1.x = -10000000.0f;
-    D_801B9DA0.vec1.y = -10000000.0f;
-    D_801B9DA0.vec1.z = -10000000.0f;
+    D_801B9DA0.p1.x = -10000000.0f;
+    D_801B9DA0.p1.y = -10000000.0f;
+    D_801B9DA0.p1.z = -10000000.0f;
 }
 
 //TODO: fix first argument's type once type of set_cur_dynobj is known
@@ -82,40 +82,40 @@ void func_8017BCB0(void)
 /* @ 22A4F0 for 0x140 */
 void func_8017BD20(void* a0)
 {
-    struct MyVec3f sp1c;
+    struct GdVec3f sp1c;
 
     set_cur_dynobj(a0);
     d_get_world_pos(&sp1c);
 
-    if (sp1c.x < D_801B9DA0.vec0.x)
-        D_801B9DA0.vec0.x = sp1c.x;
+    if (sp1c.x < D_801B9DA0.p0.x)
+        D_801B9DA0.p0.x = sp1c.x;
 
-    if (sp1c.y < D_801B9DA0.vec0.y)
-        D_801B9DA0.vec0.y = sp1c.y;
+    if (sp1c.y < D_801B9DA0.p0.y)
+        D_801B9DA0.p0.y = sp1c.y;
 
-    if (sp1c.z < D_801B9DA0.vec0.z)
-        D_801B9DA0.vec0.z = sp1c.z;
+    if (sp1c.z < D_801B9DA0.p0.z)
+        D_801B9DA0.p0.z = sp1c.z;
 
-    if (sp1c.x > D_801B9DA0.vec1.x)
-        D_801B9DA0.vec1.x = sp1c.x;
+    if (sp1c.x > D_801B9DA0.p1.x)
+        D_801B9DA0.p1.x = sp1c.x;
 
-    if (sp1c.y > D_801B9DA0.vec1.y)
-        D_801B9DA0.vec1.y = sp1c.y;
+    if (sp1c.y > D_801B9DA0.p1.y)
+        D_801B9DA0.p1.y = sp1c.y;
 
-    if (sp1c.z > D_801B9DA0.vec1.z)
-        D_801B9DA0.vec1.z = sp1c.z;
+    if (sp1c.z > D_801B9DA0.p1.z)
+        D_801B9DA0.p1.z = sp1c.z;
 }
 
 /* @ 22A630 for 0x70 */
 void func_8017BE60(struct GdPlaneF* a0)
 {
-    a0->vec0.x = D_801B9DA0.vec0.x;
-    a0->vec0.y = D_801B9DA0.vec0.y;
-    a0->vec0.z = D_801B9DA0.vec0.z;
+    a0->p0.x = D_801B9DA0.p0.x;
+    a0->p0.y = D_801B9DA0.p0.y;
+    a0->p0.z = D_801B9DA0.p0.z;
 
-    a0->vec1.x = D_801B9DA0.vec1.x;
-    a0->vec1.y = D_801B9DA0.vec1.y;
-    a0->vec1.z = D_801B9DA0.vec1.z;
+    a0->p1.x = D_801B9DA0.p1.x;
+    a0->p1.y = D_801B9DA0.p1.y;
+    a0->p1.z = D_801B9DA0.p1.z;
 }
 
 /* @ 22A6A0 for 0x24 */
@@ -294,12 +294,12 @@ struct ObjZone *make_zone(struct ObjGroup *a0, struct GdPlaneF *a1, struct ObjGr
 {
     struct ObjZone* newZone = (struct ObjZone*) make_object(OBJ_TYPE_ZONES);
 
-    newZone->unk14.vec0.x = a1->vec0.x;
-    newZone->unk14.vec0.y = a1->vec0.y;
-    newZone->unk14.vec0.z = a1->vec0.z;
-    newZone->unk14.vec1.x = a1->vec1.x;
-    newZone->unk14.vec1.y = a1->vec1.y;
-    newZone->unk14.vec1.z = a1->vec1.z;
+    newZone->unk14.p0.x = a1->p0.x;
+    newZone->unk14.p0.y = a1->p0.y;
+    newZone->unk14.p0.z = a1->p0.z;
+    newZone->unk14.p1.x = a1->p1.x;
+    newZone->unk14.p1.y = a1->p1.y;
+    newZone->unk14.p1.z = a1->p1.z;
     // pointers? prev, next?
     newZone->unk2C = a2;
     newZone->unk30 = a0;
@@ -446,26 +446,26 @@ void reset_plane(struct ObjPlane* plane)
     for (i = 0; i < sp4C->vtxCount; i++)
       func_8017BD20(sp4C->vertices[i]);
 
-    plane->plane28.vec0.x = D_801B9DA0.vec0.x;
-    plane->plane28.vec0.y = D_801B9DA0.vec0.y;
-    plane->plane28.vec0.z = D_801B9DA0.vec0.z;
-    plane->plane28.vec1.x = D_801B9DA0.vec1.x;
-    plane->plane28.vec1.y = D_801B9DA0.vec1.y;
-    plane->plane28.vec1.z = D_801B9DA0.vec1.z;
+    plane->plane28.p0.x = D_801B9DA0.p0.x;
+    plane->plane28.p0.y = D_801B9DA0.p0.y;
+    plane->plane28.p0.z = D_801B9DA0.p0.z;
+    plane->plane28.p1.x = D_801B9DA0.p1.x;
+    plane->plane28.p1.y = D_801B9DA0.p1.y;
+    plane->plane28.p1.z = D_801B9DA0.p1.z;
 
-    if (plane->plane28.vec1.x - plane->plane28.vec0.x < 100.0f)
+    if (plane->plane28.p1.x - plane->plane28.p0.x < 100.0f)
     {
-        plane->plane28.vec1.x += 50.0f;
-        plane->plane28.vec0.x -= 50.0f;
+        plane->plane28.p1.x += 50.0f;
+        plane->plane28.p0.x -= 50.0f;
     }
 
-    plane->plane28.vec1.y += 200.0f;
-    plane->plane28.vec0.y -= 200.0f;
+    plane->plane28.p1.y += 200.0f;
+    plane->plane28.p0.y -= 200.0f;
 
-    if (plane->plane28.vec1.z - plane->plane28.vec0.z < 100.0f)
+    if (plane->plane28.p1.z - plane->plane28.p0.z < 100.0f)
     {
-        plane->plane28.vec1.z += 50.0f;
-        plane->plane28.vec0.z -= 50.0f;
+        plane->plane28.p1.z += 50.0f;
+        plane->plane28.p0.z -= 50.0f;
     }
     imout();
 }
@@ -1018,7 +1018,10 @@ s32 apply_to_obj_types_in_group(s32 types, applyproc_t fn, struct ObjGroup* grou
         #if BUGFIX_GODDARD_MISSING_RETURN
         return fnAppliedCount;
         #else
+        #pragma GCC diagnostic push
+        #pragma GCC diagnostic ignored "-Wreturn-type"
         return;
+        #pragma GCC diagnostic pop
         #endif
     }
 
@@ -1052,16 +1055,16 @@ s32 apply_to_obj_types_in_group(s32 types, applyproc_t fn, struct ObjGroup* grou
 }
 
 /* @ 22CD54 for 0x2B4 */
-void func_8017E584(struct ObjNet* a0, struct MyVec3f* a1, struct MyVec3f* a2)
+void func_8017E584(struct ObjNet* a0, struct GdVec3f* a1, struct GdVec3f* a2)
 {
-    struct MyVec3f sp94;
-    struct MyVec3f sp88;
-    struct MyVec3f sp7C;
-    struct MyVec3f sp70;
+    struct GdVec3f sp94;
+    struct GdVec3f sp88;
+    struct GdVec3f sp7C;
+    struct GdVec3f sp70;
     UNUSED u8 pad30[0x40];  //unused MyMatrix4x4? f32[4][4]
     f32 sp2C;
     UNUSED u32 sp28;
-    struct MyVec3f sp1C;
+    struct GdVec3f sp1C;
 
     sp70.x = a2->x;
     sp70.y = a2->y;
@@ -1109,15 +1112,15 @@ void func_8017E584(struct ObjNet* a0, struct MyVec3f* a1, struct MyVec3f* a2)
 }
 
 /* @ 22D008 for 0x1B4 */
-void func_8017E838(struct ObjNet* a0, struct MyVec3f* a1, struct MyVec3f* a2)
+void func_8017E838(struct ObjNet* a0, struct GdVec3f* a1, struct GdVec3f* a2)
 {
     UNUSED u32 sp84;
     UNUSED u32 sp80;
     UNUSED u32 sp7C;
-    struct MyVec3f sp70;
-    struct MyVec3f sp64;
+    struct GdVec3f sp70;
+    struct GdVec3f sp64;
     UNUSED u8 pad24[0x40];
-    struct MyVec3f sp18;
+    struct GdVec3f sp18;
 
     sp64.x = a1->x;
     sp64.y = a1->y;
@@ -1148,8 +1151,8 @@ void func_8017E838(struct ObjNet* a0, struct MyVec3f* a1, struct MyVec3f* a2)
 /* @ 22D1BC for 0xA8 */
 void func_8017E9EC(struct ObjNet* a0)
 {
-    struct MyVec3f sp5C;
-    Mat4 sp1C;
+    struct GdVec3f sp5C;
+    Mat4f sp1C;
     f32 sp18;
 
     sp5C.x = a0->unkA4.x;
@@ -1163,7 +1166,7 @@ void func_8017E9EC(struct ObjNet* a0)
 }
 
 /* @ 22D264 for 0x90 */
-s32 Unknown8017EA94(struct MyVec3f* vec, Mat4 matrix)
+s32 Unknown8017EA94(struct GdVec3f* vec, Mat4f matrix)
 {
     if (vec->x >= matrix[2][2] && vec->x <= matrix[3][1] && vec->z >= matrix[3][0] && vec->z <= matrix[3][3])
         return 1;
@@ -1174,8 +1177,8 @@ s32 Unknown8017EA94(struct MyVec3f* vec, Mat4 matrix)
 /* @ 22D2F4 for 0x1DC */
 s32 Unknown8017EB24(struct GdObj* a0, struct GdObj* a1)
 {
-    struct MyVec3f sp44;
-    struct MyVec3f sp38;
+    struct GdVec3f sp44;
+    struct GdVec3f sp38;
     struct GdPlaneF* sp34;
     struct GdPlaneF* sp30;
     struct GdPlaneF sp18;
@@ -1188,21 +1191,21 @@ s32 Unknown8017EB24(struct GdObj* a0, struct GdObj* a1)
     d_get_world_pos(&sp38);
     sp30 = d_get_plane();
 
-    sp18.vec0.x = sp34->vec0.x + sp30->vec0.x;
-    sp18.vec0.y = sp34->vec0.y + sp30->vec0.y;
-    sp18.vec0.z = sp34->vec0.z + sp30->vec0.z;
-    sp18.vec1.x = sp34->vec1.x + sp30->vec1.x;
-    sp18.vec1.y = sp34->vec1.y + sp30->vec1.y;
-    sp18.vec1.z = sp34->vec1.z + sp30->vec1.z;
+    sp18.p0.x = sp34->p0.x + sp30->p0.x;
+    sp18.p0.y = sp34->p0.y + sp30->p0.y;
+    sp18.p0.z = sp34->p0.z + sp30->p0.z;
+    sp18.p1.x = sp34->p1.x + sp30->p1.x;
+    sp18.p1.y = sp34->p1.y + sp30->p1.y;
+    sp18.p1.z = sp34->p1.z + sp30->p1.z;
 
     D_801B9E08.x = sp38.x - sp44.x;
     D_801B9E08.y = sp38.y - sp44.y;
     D_801B9E08.z = sp38.z - sp44.z;
 
-    if (D_801B9E08.x >= sp18.vec0.x)
-    if (D_801B9E08.x <= sp18.vec1.x)
-    if (D_801B9E08.z >= sp18.vec0.z)
-    if (D_801B9E08.z <= sp18.vec1.z)
+    if (D_801B9E08.x >= sp18.p0.x)
+    if (D_801B9E08.x <= sp18.p1.x)
+    if (D_801B9E08.z >= sp18.p0.z)
+    if (D_801B9E08.z <= sp18.p1.z)
         return 1;
 
     return 0;
@@ -1211,27 +1214,27 @@ s32 Unknown8017EB24(struct GdObj* a0, struct GdObj* a1)
 /* @ 22D4D0 for 0xCC */
 s32 Unknown8017ED00(struct GdObj* a0, struct GdPlaneF* a1)
 {
-    struct MyVec3f sp1C;
+    struct GdVec3f sp1C;
 
     set_cur_dynobj(a0);
     d_get_world_pos(&sp1C);
 
-    if (sp1C.x >= a1->vec0.x)
-    if (sp1C.x <= a1->vec1.x)
-    if (sp1C.z >= a1->vec0.z)
-    if (sp1C.z <= a1->vec1.z)
+    if (sp1C.x >= a1->p0.x)
+    if (sp1C.x <= a1->p1.x)
+    if (sp1C.z >= a1->p0.z)
+    if (sp1C.z <= a1->p1.z)
         return 1;
 
     return 0;
 }
 
 /* @ 22D59C for 0x90 */
-s32 Unknown8017EDCC(struct MyVec3f* a0, struct GdPlaneF* a1)
+s32 Unknown8017EDCC(struct GdVec3f* a0, struct GdPlaneF* a1)
 {
-    if (a0->x >= a1->vec0.x)
-    if (a0->x <= a1->vec1.x)
-    if (a0->z >= a1->vec0.z)
-    if (a0->z <= a1->vec1.z)
+    if (a0->x >= a1->p0.x)
+    if (a0->x <= a1->p1.x)
+    if (a0->z >= a1->p0.z)
+    if (a0->z <= a1->p1.z)
         return 1;
 
     return 0;
@@ -1240,28 +1243,28 @@ s32 Unknown8017EDCC(struct MyVec3f* a0, struct GdPlaneF* a1)
 /* @ 22D62C for 0x1F8; orig name: Unknown8017EE5C */
 s32 gd_plane_point_within(struct GdPlaneF* a0, struct GdPlaneF* a1)
 {
-    if (a0->vec0.x >= a1->vec0.x)
-    if (a0->vec0.x <= a1->vec1.x)
-    if (a0->vec0.z >= a1->vec0.z)
-    if (a0->vec0.z <= a1->vec1.z)
+    if (a0->p0.x >= a1->p0.x)
+    if (a0->p0.x <= a1->p1.x)
+    if (a0->p0.z >= a1->p0.z)
+    if (a0->p0.z <= a1->p1.z)
         return TRUE;
 
-    if (a0->vec1.x >= a1->vec0.x)
-    if (a0->vec1.x <= a1->vec1.x)
-    if (a0->vec0.z >= a1->vec0.z)
-    if (a0->vec0.z <= a1->vec1.z)
+    if (a0->p1.x >= a1->p0.x)
+    if (a0->p1.x <= a1->p1.x)
+    if (a0->p0.z >= a1->p0.z)
+    if (a0->p0.z <= a1->p1.z)
         return TRUE;
 
-    if (a0->vec1.x >= a1->vec0.x)
-    if (a0->vec1.x <= a1->vec1.x)
-    if (a0->vec1.z >= a1->vec0.z)
-    if (a0->vec1.z <= a1->vec1.z)
+    if (a0->p1.x >= a1->p0.x)
+    if (a0->p1.x <= a1->p1.x)
+    if (a0->p1.z >= a1->p0.z)
+    if (a0->p1.z <= a1->p1.z)
         return TRUE;
 
-    if (a0->vec0.x >= a1->vec0.x)
-    if (a0->vec0.x <= a1->vec1.x)
-    if (a0->vec1.z >= a1->vec0.z)
-    if (a0->vec1.z <= a1->vec1.z)
+    if (a0->p0.x >= a1->p0.x)
+    if (a0->p0.x <= a1->p1.x)
+    if (a0->p1.z >= a1->p0.z)
+    if (a0->p1.z <= a1->p1.z)
         return TRUE;
 
     return FALSE;
@@ -1273,23 +1276,23 @@ s32 func_8017F054(struct GdObj* a0, struct GdObj* a1)
     struct Links* curLink;
     struct ObjGroup* curGroup;
     UNUSED u32 sp54;
-    Mat4* sp50;
-    Mat4* sp4C;
-    Mat4* sp48;
-    Mat4* sp44;
-    Mat4* sp40;
+    Mat4f* sp50;
+    Mat4f* sp4C;
+    Mat4f* sp48;
+    Mat4f* sp44;
+    Mat4f* sp40;
     UNUSED u8 pad20[0x18];
-    struct MyVec3f sp1C;
+    struct GdVec3f sp1C;
 
     if (a1 != NULL)
     {
         set_cur_dynobj(a1);
         sp50 = d_get_matrix_ptr();
-        sp44 = (Mat4*) d_get_rot_mtx_ptr();
+        sp44 = (Mat4f*) d_get_rot_mtx_ptr();
 
         set_cur_dynobj(a0);
         sp4C = d_get_idn_mtx_ptr();
-        sp40 = (Mat4*) d_get_rot_mtx_ptr();
+        sp40 = (Mat4f*) d_get_rot_mtx_ptr();
 
         d_get_scale(&sp1C);
         sp48 = d_get_matrix_ptr();
@@ -1301,7 +1304,7 @@ s32 func_8017F054(struct GdObj* a0, struct GdObj* a1)
         set_cur_dynobj(a0);
         sp48 = d_get_matrix_ptr();
         sp4C = d_get_idn_mtx_ptr();
-        sp44 = (Mat4*) d_get_rot_mtx_ptr();
+        sp44 = (Mat4f*) d_get_rot_mtx_ptr();
 
         d_get_scale(&sp1C);
         set_identity_mat4(sp48);
@@ -1332,13 +1335,13 @@ s32 UnknownRecursive8017F210(struct GdObj* a0, struct GdObj* a1)
     struct Links* sp6C;
     struct ObjGroup* sp68;
     UNUSED u32 sp64;
-    Mat4* sp60;
-    Mat4* sp5C;
-    Mat4* sp58;
-    Mat4* sp54;
-    Mat4* sp50;
+    Mat4f* sp60;
+    Mat4f* sp5C;
+    Mat4f* sp58;
+    Mat4f* sp54;
+    Mat4f* sp50;
     UNUSED u8 pad38[0x18];
-    struct MyVec3f sp2C;
+    struct GdVec3f sp2C;
     s32 count = 0;
 
     count++;
@@ -1347,11 +1350,11 @@ s32 UnknownRecursive8017F210(struct GdObj* a0, struct GdObj* a1)
     {
         set_cur_dynobj(a1);
         sp60 = d_get_matrix_ptr();
-        sp54 = (Mat4*) d_get_rot_mtx_ptr();
+        sp54 = (Mat4f*) d_get_rot_mtx_ptr();
 
         set_cur_dynobj(a0);
         sp5C = d_get_idn_mtx_ptr();
-        sp50 = (Mat4*) d_get_rot_mtx_ptr();
+        sp50 = (Mat4f*) d_get_rot_mtx_ptr();
 
         d_get_scale(&sp2C);
         multiply_mat4(sp5C, sp54, sp50);
@@ -1360,7 +1363,7 @@ s32 UnknownRecursive8017F210(struct GdObj* a0, struct GdObj* a1)
         set_cur_dynobj(a0);
         sp58 = d_get_matrix_ptr();
         sp5C = d_get_idn_mtx_ptr();
-        sp54 = (Mat4*) d_get_rot_mtx_ptr();
+        sp54 = (Mat4f*) d_get_rot_mtx_ptr();
 
         d_get_scale(&sp2C);
         cpy_mat4(sp5C, sp54);
@@ -1398,27 +1401,27 @@ void func_8017F404(UNUSED f32 a0, UNUSED struct GdObj* a1, UNUSED struct GdObj* 
 /* @ 22DBF4 for 0x1A0 */
 void func_8017F424(struct GdTriangleF* a0, struct GdTriangleF* a1, f32 a2)
 {
-    Mat4 sp40;
+    Mat4f sp40;
     struct GdTriangleF sp1C;
 
     set_identity_mat4(&sp40);
 
     if (a2 != 0.0f)
     {
-        sp1C.vec1.x = a0->vec1.x + (a1->vec1.x - a0->vec1.x) * a2;
-        sp1C.vec1.y = a0->vec1.y + (a1->vec1.y - a0->vec1.y) * a2;
-        sp1C.vec1.z = a0->vec1.z + (a1->vec1.z - a0->vec1.z) * a2;
-        sp1C.vec2.x = a0->vec2.x + (a1->vec2.x - a0->vec2.x) * a2;
-        sp1C.vec2.y = a0->vec2.y + (a1->vec2.y - a0->vec2.y) * a2;
-        sp1C.vec2.z = a0->vec2.z + (a1->vec2.z - a0->vec2.z) * a2;
+        sp1C.p1.x = a0->p1.x + (a1->p1.x - a0->p1.x) * a2;
+        sp1C.p1.y = a0->p1.y + (a1->p1.y - a0->p1.y) * a2;
+        sp1C.p1.z = a0->p1.z + (a1->p1.z - a0->p1.z) * a2;
+        sp1C.p2.x = a0->p2.x + (a1->p2.x - a0->p2.x) * a2;
+        sp1C.p2.y = a0->p2.y + (a1->p2.y - a0->p2.y) * a2;
+        sp1C.p2.z = a0->p2.z + (a1->p2.z - a0->p2.z) * a2;
 
-        func_8019415C(&sp40, &a0->vec0);
-        func_80194220(&sp40, &sp1C.vec1);
-        func_801942E4(&sp40, &sp1C.vec2);
+        func_8019415C(&sp40, &a0->p0);
+        func_80194220(&sp40, &sp1C.p1);
+        func_801942E4(&sp40, &sp1C.p2);
     } else {    //L8017F568
-        d_set_scale(a0->vec0.x, a0->vec0.y, a0->vec0.z);
-        func_80194220(&sp40, &a0->vec1);
-        func_801942E4(&sp40, &a0->vec2);
+        d_set_scale(a0->p0.x, a0->p0.y, a0->p0.z);
+        func_80194220(&sp40, &a0->p1);
+        func_801942E4(&sp40, &a0->p2);
     } //L8017F5A4
     d_set_idn_mtx(&sp40);
 }
@@ -1429,8 +1432,8 @@ void func_8017F424(struct GdTriangleF* a0, struct GdTriangleF* a1, f32 a2)
 void move_animator(struct ObjAnimator* animObj)
 {
     struct AnimDataInfo* animData;  // array?
-    Mat4* mtxArr;
-    Mat4 localMtx;
+    Mat4f* mtxArr;
+    Mat4f localMtx;
     struct GdTriangleF* triPtr;  // Used as GdTriangleF[] or GdTriangleF*
     struct GdTriangleF tri1;
     struct GdTriangleF tri2;
@@ -1443,7 +1446,7 @@ void move_animator(struct ObjAnimator* animObj)
     UNUSED s32 sp50;
     UNUSED s32 sp4C;
     UNUSED s32 sp48;
-    struct MyVec3f unusedVec;
+    struct GdVec3f unusedVec;
     s32 sp38;
     s32 sp34;
     f32 sp30;
@@ -1494,109 +1497,109 @@ void move_animator(struct ObjAnimator* animObj)
         set_cur_dynobj(linkedObj);
         switch (animData->type)
         {
-            case GD_ANIM_MATRIX:     // data = Mat4* (f32[4][4])
-                mtxArr = (Mat4*) animData->data;
+            case GD_ANIM_MATRIX:     // data = Mat4f* (f32[4][4])
+                mtxArr = (Mat4f*) animData->data;
                 /* This needs be be un-dereferenced pointer addition to make the registers match */
                 d_set_idn_mtx(mtxArr + (s32)animObj->unk28);
                 break;
             case GD_ANIM_3H_SCALED:     // data = s16(*)[3] or MyVec3h[]...
                 vec3hArr = (s16(*)[3]) animData->data;
 
-                d_get_scale(&tri1.vec0);
-                tri2.vec0.x = tri1.vec0.x;
-                tri2.vec0.y = tri1.vec0.y;
-                tri2.vec0.z = tri1.vec0.z;
+                d_get_scale(&tri1.p0);
+                tri2.p0.x = tri1.p0.x;
+                tri2.p0.y = tri1.p0.y;
+                tri2.p0.z = tri1.p0.z;
 
-                d_get_init_pos(&tri1.vec2);
-                tri2.vec2.x = tri1.vec2.x;
-                tri2.vec2.y = tri1.vec2.y;
-                tri2.vec2.z = tri1.vec2.z;
+                d_get_init_pos(&tri1.p2);
+                tri2.p2.x = tri1.p2.x;
+                tri2.p2.y = tri1.p2.y;
+                tri2.p2.z = tri1.p2.z;
 
-                tri1.vec1.x = (f32) vec3hArr[sp38][0] * scale;
-                tri1.vec1.y = (f32) vec3hArr[sp38][1] * scale;
-                tri1.vec1.z = (f32) vec3hArr[sp38][2] * scale;
+                tri1.p1.x = (f32) vec3hArr[sp38][0] * scale;
+                tri1.p1.y = (f32) vec3hArr[sp38][1] * scale;
+                tri1.p1.z = (f32) vec3hArr[sp38][2] * scale;
 
-                tri2.vec1.x = (f32) vec3hArr[sp34][0] * scale;
-                tri2.vec1.y = (f32) vec3hArr[sp34][1] * scale;
-                tri2.vec1.z = (f32) vec3hArr[sp34][2] * scale;
+                tri2.p1.x = (f32) vec3hArr[sp34][0] * scale;
+                tri2.p1.y = (f32) vec3hArr[sp34][1] * scale;
+                tri2.p1.z = (f32) vec3hArr[sp34][2] * scale;
 
                 func_8017F424(&tri1, &tri2, sp30);
                 break;
             case GD_ANIM_3H:     // data = s16(*)[3] or MyVec3h[]...
                 vec3hArr = (s16(*)[3]) animData->data;
 
-                d_get_scale(&tri1.vec0);
-                tri2.vec0.x = tri1.vec0.x;
-                tri2.vec0.y = tri1.vec0.y;
-                tri2.vec0.z = tri1.vec0.z;
+                d_get_scale(&tri1.p0);
+                tri2.p0.x = tri1.p0.x;
+                tri2.p0.y = tri1.p0.y;
+                tri2.p0.z = tri1.p0.z;
 
-                d_get_init_rot(&tri1.vec1);
-                tri2.vec1.x = tri1.vec1.x;
-                tri2.vec1.y = tri1.vec1.y;
-                tri2.vec1.z = tri1.vec1.z;
+                d_get_init_rot(&tri1.p1);
+                tri2.p1.x = tri1.p1.x;
+                tri2.p1.y = tri1.p1.y;
+                tri2.p1.z = tri1.p1.z;
 
-                tri1.vec2.x = (f32) vec3hArr[sp38][0];
-                tri1.vec2.y = (f32) vec3hArr[sp38][1];
-                tri1.vec2.z = (f32) vec3hArr[sp38][2];
+                tri1.p2.x = (f32) vec3hArr[sp38][0];
+                tri1.p2.y = (f32) vec3hArr[sp38][1];
+                tri1.p2.z = (f32) vec3hArr[sp38][2];
 
-                tri2.vec2.x = (f32) vec3hArr[sp34][0];
-                tri2.vec2.y = (f32) vec3hArr[sp34][1];
-                tri2.vec2.z = (f32) vec3hArr[sp34][2];
+                tri2.p2.x = (f32) vec3hArr[sp34][0];
+                tri2.p2.y = (f32) vec3hArr[sp34][1];
+                tri2.p2.z = (f32) vec3hArr[sp34][2];
 
                 func_8017F424(&tri1, &tri2, sp30);
                 break;
             case GD_ANIM_6H_SCALED:     // data = s16(*)[6] or GdPlaneH[]...
                 planeHArr =(s16(*)[6]) animData->data;
 
-                d_get_scale(&tri1.vec0);
-                tri2.vec0.x = tri1.vec0.x;
-                tri2.vec0.y = tri1.vec0.y;
-                tri2.vec0.z = tri1.vec0.z;
+                d_get_scale(&tri1.p0);
+                tri2.p0.x = tri1.p0.x;
+                tri2.p0.y = tri1.p0.y;
+                tri2.p0.z = tri1.p0.z;
 
-                tri1.vec1.x = (f32) planeHArr[sp38][0] * scale;
-                tri1.vec1.y = (f32) planeHArr[sp38][1] * scale;
-                tri1.vec1.z = (f32) planeHArr[sp38][2] * scale;
+                tri1.p1.x = (f32) planeHArr[sp38][0] * scale;
+                tri1.p1.y = (f32) planeHArr[sp38][1] * scale;
+                tri1.p1.z = (f32) planeHArr[sp38][2] * scale;
 
-                tri2.vec1.x = (f32) planeHArr[sp34][0] * scale;
-                tri2.vec1.y = (f32) planeHArr[sp34][1] * scale;
-                tri2.vec1.z = (f32) planeHArr[sp34][2] * scale;
+                tri2.p1.x = (f32) planeHArr[sp34][0] * scale;
+                tri2.p1.y = (f32) planeHArr[sp34][1] * scale;
+                tri2.p1.z = (f32) planeHArr[sp34][2] * scale;
 
-                tri1.vec2.x = (f32) planeHArr[sp38][3];
-                tri1.vec2.y = (f32) planeHArr[sp38][4];
-                tri1.vec2.z = (f32) planeHArr[sp38][5];
+                tri1.p2.x = (f32) planeHArr[sp38][3];
+                tri1.p2.y = (f32) planeHArr[sp38][4];
+                tri1.p2.z = (f32) planeHArr[sp38][5];
 
-                tri2.vec2.x = (f32) planeHArr[sp34][3];
-                tri2.vec2.y = (f32) planeHArr[sp34][4];
-                tri2.vec2.z = (f32) planeHArr[sp34][5];
+                tri2.p2.x = (f32) planeHArr[sp34][3];
+                tri2.p2.y = (f32) planeHArr[sp34][4];
+                tri2.p2.z = (f32) planeHArr[sp34][5];
 
                 func_8017F424(&tri1, &tri2, sp30);
                 break;
             case GD_ANIM_9H:     // data = s16(*)[9] or GdTriangleFH[]...
                 triHArr = (s16(*)[9]) animData->data;
 
-                tri1.vec0.x = (f32) triHArr[sp38][0] * scale;
-                tri1.vec0.y = (f32) triHArr[sp38][1] * scale;
-                tri1.vec0.z = (f32) triHArr[sp38][2] * scale;
+                tri1.p0.x = (f32) triHArr[sp38][0] * scale;
+                tri1.p0.y = (f32) triHArr[sp38][1] * scale;
+                tri1.p0.z = (f32) triHArr[sp38][2] * scale;
 
-                tri1.vec1.x = (f32) triHArr[sp38][3] * scale;
-                tri1.vec1.y = (f32) triHArr[sp38][4] * scale;
-                tri1.vec1.z = (f32) triHArr[sp38][5] * scale;
+                tri1.p1.x = (f32) triHArr[sp38][3] * scale;
+                tri1.p1.y = (f32) triHArr[sp38][4] * scale;
+                tri1.p1.z = (f32) triHArr[sp38][5] * scale;
 
-                tri1.vec2.x = (f32) triHArr[sp38][6];
-                tri1.vec2.y = (f32) triHArr[sp38][7];
-                tri1.vec2.z = (f32) triHArr[sp38][8];
+                tri1.p2.x = (f32) triHArr[sp38][6];
+                tri1.p2.y = (f32) triHArr[sp38][7];
+                tri1.p2.z = (f32) triHArr[sp38][8];
 
-                tri2.vec0.x = (f32) triHArr[sp34][0] * scale;
-                tri2.vec0.y = (f32) triHArr[sp34][1] * scale;
-                tri2.vec0.z = (f32) triHArr[sp34][2] * scale;
+                tri2.p0.x = (f32) triHArr[sp34][0] * scale;
+                tri2.p0.y = (f32) triHArr[sp34][1] * scale;
+                tri2.p0.z = (f32) triHArr[sp34][2] * scale;
 
-                tri2.vec1.x = (f32) triHArr[sp34][3] * scale;
-                tri2.vec1.y = (f32) triHArr[sp34][4] * scale;
-                tri2.vec1.z = (f32) triHArr[sp34][5] * scale;
+                tri2.p1.x = (f32) triHArr[sp34][3] * scale;
+                tri2.p1.y = (f32) triHArr[sp34][4] * scale;
+                tri2.p1.z = (f32) triHArr[sp34][5] * scale;
 
-                tri2.vec2.x = (f32) triHArr[sp34][6];
-                tri2.vec2.y = (f32) triHArr[sp34][7];
-                tri2.vec2.z = (f32) triHArr[sp34][8];
+                tri2.p2.x = (f32) triHArr[sp34][6];
+                tri2.p2.y = (f32) triHArr[sp34][7];
+                tri2.p2.z = (f32) triHArr[sp34][8];
 
                 func_8017F424(&tri1, &tri2, sp30);
                 break;
@@ -1605,21 +1608,21 @@ void move_animator(struct ObjAnimator* animObj)
                 {
                     camPlaneHArr = animData->data;
 
-                    tri1.vec2.x = (f32) camPlaneHArr[sp38][0];
-                    tri1.vec2.y = (f32) camPlaneHArr[sp38][1];
-                    tri1.vec2.z = (f32) camPlaneHArr[sp38][2];
+                    tri1.p2.x = (f32) camPlaneHArr[sp38][0];
+                    tri1.p2.y = (f32) camPlaneHArr[sp38][1];
+                    tri1.p2.z = (f32) camPlaneHArr[sp38][2];
 
-                    tri2.vec2.x = (f32) camPlaneHArr[sp38][3];
-                    tri2.vec2.y = (f32) camPlaneHArr[sp38][4];
-                    tri2.vec2.z = (f32) camPlaneHArr[sp38][5];
+                    tri2.p2.x = (f32) camPlaneHArr[sp38][3];
+                    tri2.p2.y = (f32) camPlaneHArr[sp38][4];
+                    tri2.p2.z = (f32) camPlaneHArr[sp38][5];
 
-                    ((struct ObjCamera*)linkedObj)->unk14.x = tri1.vec2.x;
-                    ((struct ObjCamera*)linkedObj)->unk14.y = tri1.vec2.y;
-                    ((struct ObjCamera*)linkedObj)->unk14.z = tri1.vec2.z;
+                    ((struct ObjCamera*)linkedObj)->unk14.x = tri1.p2.x;
+                    ((struct ObjCamera*)linkedObj)->unk14.y = tri1.p2.y;
+                    ((struct ObjCamera*)linkedObj)->unk14.z = tri1.p2.z;
 
-                    ((struct ObjCamera*)linkedObj)->unk34.x = tri2.vec2.x;
-                    ((struct ObjCamera*)linkedObj)->unk34.y = tri2.vec2.y;
-                    ((struct ObjCamera*)linkedObj)->unk34.z = tri2.vec2.z;
+                    ((struct ObjCamera*)linkedObj)->unk34.x = tri2.p2.x;
+                    ((struct ObjCamera*)linkedObj)->unk34.y = tri2.p2.y;
+                    ((struct ObjCamera*)linkedObj)->unk34.z = tri2.p2.z;
                 }
                 break;
             case GD_ANIM_TRI_F_2:     // GdTriangleF[]
@@ -1634,9 +1637,9 @@ void move_animator(struct ObjAnimator* animObj)
             case GD_ANIM_TRI_F_4:     // GdTriangleF*
                 triPtr = (struct GdTriangleF*) animData->data;
                 set_identity_mat4(&localMtx);
-                func_8019415C(&localMtx, &triPtr->vec0);
-                func_80194220(&localMtx, &triPtr->vec1);
-                func_801942E4(&localMtx, &triPtr->vec2);
+                func_8019415C(&localMtx, &triPtr->p0);
+                func_80194220(&localMtx, &triPtr->p1);
+                func_801942E4(&localMtx, &triPtr->p2);
                 d_set_idn_mtx(&localMtx);
                 break;
             case GD_ANIM_STUB:
@@ -1667,11 +1670,11 @@ void drag_picked_object(struct GdObj *inputObj)
     UNUSED u32 spE4;
     UNUSED u32 spE0;
     UNUSED u32 spDC;
-    struct MyVec3f spD0;
-    struct MyVec3f spC4;
+    struct GdVec3f spD0;
+    struct GdVec3f spC4;
     struct GdControl* ctrl;
-    Mat4 sp80;
-    Mat4 sp40;
+    Mat4f sp80;
+    Mat4f sp40;
     UNUSED u32 pad34[3];
     struct GdObj* obj;
     UNUSED u32 pad2C;
@@ -1753,14 +1756,14 @@ void find_and_drag_picked_object(struct ObjGroup *group)
 void move_camera(struct ObjCamera* cam)
 {
     struct GdObj* spEC;
-    struct MyVec3f spE0;
-    struct MyVec3f spD4;
-    struct MyVec3f spC8;
+    struct GdVec3f spE0;
+    struct GdVec3f spD4;
+    struct GdVec3f spC8;
     UNUSED u8 padBC[0xC8-0xBC];
-    struct MyVec3f spB0;
-    Mat4 sp70;
+    struct GdVec3f spB0;
+    Mat4f sp70;
     UNUSED u8 pad30[0x70-0x30];
-    Mat4* sp2C;
+    Mat4f* sp2C;
     struct GdControl* ctrl; // 28
 
     ctrl = &gGdCtrl;
@@ -1881,7 +1884,7 @@ void move_cameras_in_grp(struct ObjGroup* group)
 /* @ 22F7DC for 0x36C*/
 void Unknown8018100C(struct ObjLight* light)
 {
-    Mat4 mtx;
+    Mat4f mtx;
     UNUSED u32 pad1C[3];
 
     if (light->unk40 == 3)

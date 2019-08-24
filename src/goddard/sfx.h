@@ -1,5 +1,5 @@
-#ifndef _MARIO_HEAD_SFX_
-#define _MARIO_HEAD_SFX_
+#ifndef GD_MARIO_HEAD_SFX_H
+#define GD_MARIO_HEAD_SFX_H
 
 #include <ultra64.h>
 
@@ -22,4 +22,4 @@ extern u32 gd_new_sfx_to_play(void);
 extern void gd_sfx_played(void);
 extern void gd_play_sfx(u32);
 
-#endif /* _MARIO_HEAD_SFX_ */
+#endif /* GD_MARIO_HEAD_SFX_H */

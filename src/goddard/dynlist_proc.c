@@ -1,22 +1,22 @@
 #include <ultra64.h>
-
-#include "sm64.h"
+#include <macros.h>
+#include <config.h>
 #include "gd_types.h"
 #include "bad_declarations.h"
 #include "prevent_bss_reordering.h"
 
 #include "gd_main.h"
 #include "draw_objects.h"
-#include "mario_head_1.h"
-#include "mario_head_3.h"
+#include "objects.h"
+#include "particles.h"
 #include "dynlist_proc.h"
-#include "old_obj_fn.h"
-#include "profiler_utils.h"
-#include "joint_fns.h"
-#include "skin_fns.h"
-#include "matrix_fns.h"
-#include "half_6.h"
-#include "mario_head_6.h"
+#include "old_menu.h"
+#include "debug_utils.h"
+#include "joints.h"
+#include "skin.h"
+#include "gd_math.h"
+#include "shape_helper.h"
+#include "renderer.h"
 
 /**
  * @file dynlist_proc.c
@@ -92,7 +92,7 @@ void d_addto_group(DynId);
 void d_link_with(DynId);
 void d_link_with_ptr(void *);
 void d_set_normal(f32, f32, f32);
-void d_make_vertex(struct MyVec3f *);
+void d_make_vertex(struct GdVec3f *);
 void d_set_rotation(f32, f32, f32);
 void d_center_of_gravity(f32, f32, f32);
 void d_set_shape_offset(f32, f32, f32);
@@ -100,7 +100,7 @@ void d_clear_flags(s32);
 void d_attach(DynId);
 void d_attach_to(s32, struct GdObj *);
 void d_attachto_dynid(s32, DynId);
-void d_set_att_offset(const struct MyVec3f *);
+void d_set_att_offset(const struct GdVec3f *);
 void d_set_nodegroup(DynId);
 void d_set_matgroup(DynId);
 void d_set_skinshape(DynId);
@@ -595,7 +595,10 @@ struct GdObj *d_makeobj(enum DObjTypes type, DynId id)
             #if BUGFIX_GODDARD_MISSING_RETURN
             return NULL;
             #else
+            #pragma GCC diagnostic push
+            #pragma GCC diagnostic ignored "-Wreturn-type"
             return;
+            #pragma GCC diagnostic pop
             #endif
         case D_CAMERA:
             dobj = &make_camera(0, NULL)->header;
@@ -694,8 +697,8 @@ void d_attach_to(s32 flag, struct GdObj *obj)
     struct ObjGroup *attgrp;
     UNUSED u32 pad[2];
     UNUSED struct DynObjInfo *curInfo = sDynListCurInfo;
-    struct MyVec3f dynobjPos;   // transformed into attach offset
-    struct MyVec3f objPos;
+    struct GdVec3f dynobjPos;   // transformed into attach offset
+    struct GdVec3f objPos;
 
     push_dynobj_stash();
 
@@ -818,7 +821,7 @@ void copy_bytes(u8 *src, u8 *dst, s32 num)
 void alloc_animdata(struct ObjAnimator *animator)
 {
     UNUSED u32 pad5C;
-    // probably should be three MyVec3fs, not triangle...
+    // probably should be three GdVec3fs, not triangle...
     // vec0 = position; vec1 = scale? rotation?; vec2 = translation
     struct GdTriangleF tri;           //+58; temp float for converting half to f32?
     s16 (*halfarr)[9];                //+54; data to convert into a AnimMtxVec
@@ -866,7 +869,7 @@ void alloc_animdata(struct ObjAnimator *animator)
                 case GD_ANIM_TRI_F_2   : datasize = sizeof(f32[3][3]); break;
                 /* This function will convert the s16[9] array into a struct AnimMtxVec */
                 case GD_ANIM_9H        : datasize = sizeof(struct AnimMtxVec); break;
-                case GD_ANIM_MATRIX    : datasize = sizeof(Mat4); break;
+                case GD_ANIM_MATRIX    : datasize = sizeof(Mat4f); break;
                 default:
                     fatal_printf("unknown anim type for allocation");
                 break;
@@ -883,23 +886,23 @@ void alloc_animdata(struct ObjAnimator *animator)
                     halfarr = &((s16 (*)[9])curAnimSrc->data)[dataIdx];
                     curMtxVec = &((struct AnimMtxVec *)allocSpace)[dataIdx];
 
-                    tri.vec0.x = (f32) (*halfarr)[0] * allocMtxScale;
-                    tri.vec0.y = (f32) (*halfarr)[1] * allocMtxScale;
-                    tri.vec0.z = (f32) (*halfarr)[2] * allocMtxScale;
-                    tri.vec1.x = (f32) (*halfarr)[3] * allocMtxScale;
-                    tri.vec1.y = (f32) (*halfarr)[4] * allocMtxScale;
-                    tri.vec1.z = (f32) (*halfarr)[5] * allocMtxScale;
-                    tri.vec2.x = (f32) (*halfarr)[6];
-                    tri.vec2.y = (f32) (*halfarr)[7];
-                    tri.vec2.z = (f32) (*halfarr)[8];
+                    tri.p0.x = (f32) (*halfarr)[0] * allocMtxScale;
+                    tri.p0.y = (f32) (*halfarr)[1] * allocMtxScale;
+                    tri.p0.z = (f32) (*halfarr)[2] * allocMtxScale;
+                    tri.p1.x = (f32) (*halfarr)[3] * allocMtxScale;
+                    tri.p1.y = (f32) (*halfarr)[4] * allocMtxScale;
+                    tri.p1.z = (f32) (*halfarr)[5] * allocMtxScale;
+                    tri.p2.x = (f32) (*halfarr)[6];
+                    tri.p2.y = (f32) (*halfarr)[7];
+                    tri.p2.z = (f32) (*halfarr)[8];
 
                     set_identity_mat4(&curMtxVec->matrix);
-                    func_80194220(&curMtxVec->matrix, &tri.vec1);
-                    func_801942E4(&curMtxVec->matrix, &tri.vec2);
+                    func_80194220(&curMtxVec->matrix, &tri.p1);
+                    func_801942E4(&curMtxVec->matrix, &tri.p2);
 
-                    ((struct AnimMtxVec *)allocSpace)[dataIdx].vec.x = tri.vec0.x;
-                    ((struct AnimMtxVec *)allocSpace)[dataIdx].vec.y = tri.vec0.y;
-                    ((struct AnimMtxVec *)allocSpace)[dataIdx].vec.z = tri.vec0.z;
+                    ((struct AnimMtxVec *)allocSpace)[dataIdx].vec.x = tri.p0.x;
+                    ((struct AnimMtxVec *)allocSpace)[dataIdx].vec.y = tri.p0.y;
+                    ((struct AnimMtxVec *)allocSpace)[dataIdx].vec.z = tri.p0.z;
 
                 }
                 curAnimSrc->type = GD_ANIM_MTX_VEC;
@@ -1504,9 +1507,9 @@ void d_set_init_pos(f32 x, f32 y, f32 z)
 
 /**
  * Set the velocity of the current active dynamic object. The
- * values of the input `MyVec3f` are copied into the object.
+ * values of the input `GdVec3f` are copied into the object.
  */
-void d_set_velocity(const struct MyVec3f *vel)
+void d_set_velocity(const struct GdVec3f *vel)
 {
     struct GdObj *dynobj = sDynListCurObj;
 
@@ -1537,9 +1540,9 @@ void d_set_velocity(const struct MyVec3f *vel)
 /**
  * Read the velocity value of the current dynamic object into `dst`
  *
- * @param[out] dst values are copied to this `MyVec3f`
+ * @param[out] dst values are copied to this `GdVec3f`
  */
-void d_get_velocity(struct MyVec3f *dst)
+void d_get_velocity(struct GdVec3f *dst)
 {
     struct GdObj *dynobj = sDynListCurObj;
 
@@ -1566,11 +1569,11 @@ void d_get_velocity(struct MyVec3f *dst)
 
 /**
  * Set the torque vectore for the current dynamic object.
- * Values from input `MyVec3f` are copied into the object.
+ * Values from input `GdVec3f` are copied into the object.
  *
  * @note Not called
  */
-void d_set_torque(const struct MyVec3f *src)
+void d_set_torque(const struct GdVec3f *src)
 {
     struct GdObj *dynobj = sDynListCurObj;
 
@@ -1597,7 +1600,7 @@ void d_set_torque(const struct MyVec3f *src)
  * Get the initial position of the current dynamic object and
  * store in `dst`.
  */
-void d_get_init_pos(struct MyVec3f *dst)
+void d_get_init_pos(struct GdVec3f *dst)
 {
     struct GdObj *dynobj = sDynListCurObj;
 
@@ -1634,7 +1637,7 @@ void d_get_init_pos(struct MyVec3f *dst)
  * Get the initial rotation of the current dynamic object and
  * store in `dst`.
  */
-void d_get_init_rot(struct MyVec3f *dst)
+void d_get_init_rot(struct GdVec3f *dst)
 {
     struct GdObj *dynobj = sDynListCurObj;
 
@@ -1674,7 +1677,7 @@ void d_get_init_rot(struct MyVec3f *dst)
 void d_set_rel_pos(f32 x, f32 y, f32 z)
 {
     struct GdObj *dynobj = sDynListCurObj;  // sp34
-    UNUSED struct MyVec3f unusedVec;        // sp28
+    UNUSED struct GdVec3f unusedVec;        // sp28
 
     if (sDynListCurObj == NULL)
         fatal_printf("proc_dynlist(): No current object");
@@ -1738,7 +1741,7 @@ void d_set_rel_pos(f32 x, f32 y, f32 z)
 /**
  * Offset the current position of the current dynamic object.
  */
-void d_addto_rel_pos(struct MyVec3f *src)
+void d_addto_rel_pos(struct GdVec3f *src)
 {
     struct GdObj *dynobj = sDynListCurObj;  // sp24
 
@@ -1774,7 +1777,7 @@ void d_addto_rel_pos(struct MyVec3f *src)
 /**
  * Store the current dynamic object's position into `dst`.
  */
-void d_get_rel_pos(struct MyVec3f *dst)
+void d_get_rel_pos(struct GdVec3f *dst)
 {
     if (sDynListCurObj == NULL)
         fatal_printf("proc_dynlist(): No current object");
@@ -1866,7 +1869,7 @@ struct GdObj *d_get_att_to_obj(void)
 /**
  * Store the current dynamic object's scale into `dst`.
  */
-void d_get_scale(struct MyVec3f *dst)
+void d_get_scale(struct GdVec3f *dst)
 {
     struct GdObj *dynobj;   // sp24
 
@@ -1903,7 +1906,7 @@ void d_get_scale(struct MyVec3f *dst)
 /**
  * Set the offset of the attached object on the current dynamic object.
  */
-void d_set_att_offset(const struct MyVec3f *off)
+void d_set_att_offset(const struct GdVec3f *off)
 {
     struct GdObj *dynobj;   // sp24
 
@@ -1994,7 +1997,7 @@ void d_set_att_to_offset(UNUSED u32 a)
  *
  * @note Not called
  */
-void d_get_att_offset(struct MyVec3f *dst)
+void d_get_att_offset(struct GdVec3f *dst)
 {
     if (sDynListCurObj == NULL)
         fatal_printf("proc_dynlist(): No current object");
@@ -2111,7 +2114,7 @@ void d_set_world_pos(f32 x, f32 y, f32 z)
  */
 void d_set_normal(f32 x, f32 y, f32 z)
 {
-    struct MyVec3f normal;  // sp1C
+    struct GdVec3f normal;  // sp1C
 
     if (sDynListCurObj == NULL)
         fatal_printf("proc_dynlist(): No current object");
@@ -2143,7 +2146,7 @@ void d_set_normal(f32 x, f32 y, f32 z)
  *
  * @note Not called.
  */
-struct MyVec3f *d_get_world_pos_ptr(void)
+struct GdVec3f *d_get_world_pos_ptr(void)
 {
     if (sDynListCurObj == NULL)
         fatal_printf("proc_dynlist(): No current object");
@@ -2169,7 +2172,7 @@ struct MyVec3f *d_get_world_pos_ptr(void)
 /**
  * Copy the world position of the current dynamic object into `dst`.
  */
-void d_get_world_pos(struct MyVec3f *dst)
+void d_get_world_pos(struct GdVec3f *dst)
 {
     if (sDynListCurObj == NULL)
         fatal_printf("proc_dynlist(): No current object");
@@ -2218,26 +2221,26 @@ void d_get_world_pos(struct MyVec3f *dst)
             dst->z = ((struct ObjGadget *)sDynListCurObj)->unk14.z;
             break;
         case OBJ_TYPE_PLANES:
-            dst->x = ((struct ObjPlane *)sDynListCurObj)->plane28.vec0.x;
-            dst->y = ((struct ObjPlane *)sDynListCurObj)->plane28.vec0.y;
-            dst->z = ((struct ObjPlane *)sDynListCurObj)->plane28.vec0.z;
+            dst->x = ((struct ObjPlane *)sDynListCurObj)->plane28.p0.x;
+            dst->y = ((struct ObjPlane *)sDynListCurObj)->plane28.p0.y;
+            dst->z = ((struct ObjPlane *)sDynListCurObj)->plane28.p0.z;
 
-            dst->x += ((struct ObjPlane *)sDynListCurObj)->plane28.vec1.x;
-            dst->y += ((struct ObjPlane *)sDynListCurObj)->plane28.vec1.y;
-            dst->z += ((struct ObjPlane *)sDynListCurObj)->plane28.vec1.z;
+            dst->x += ((struct ObjPlane *)sDynListCurObj)->plane28.p1.x;
+            dst->y += ((struct ObjPlane *)sDynListCurObj)->plane28.p1.y;
+            dst->z += ((struct ObjPlane *)sDynListCurObj)->plane28.p1.z;
 
             dst->x *= 0.5;  //? 0.5f
             dst->y *= 0.5;  //? 0.5f
             dst->z *= 0.5;  //? 0.5f
             break;
         case OBJ_TYPE_ZONES:
-            dst->x = ((struct ObjZone *)sDynListCurObj)->unk14.vec0.x;
-            dst->y = ((struct ObjZone *)sDynListCurObj)->unk14.vec0.y;
-            dst->z = ((struct ObjZone *)sDynListCurObj)->unk14.vec0.z;
+            dst->x = ((struct ObjZone *)sDynListCurObj)->unk14.p0.x;
+            dst->y = ((struct ObjZone *)sDynListCurObj)->unk14.p0.y;
+            dst->z = ((struct ObjZone *)sDynListCurObj)->unk14.p0.z;
 
-            dst->x += ((struct ObjZone *)sDynListCurObj)->unk14.vec1.x;
-            dst->y += ((struct ObjZone *)sDynListCurObj)->unk14.vec1.y;
-            dst->z += ((struct ObjZone *)sDynListCurObj)->unk14.vec1.z;
+            dst->x += ((struct ObjZone *)sDynListCurObj)->unk14.p1.x;
+            dst->y += ((struct ObjZone *)sDynListCurObj)->unk14.p1.y;
+            dst->z += ((struct ObjZone *)sDynListCurObj)->unk14.p1.z;
 
             dst->x *= 0.5;  //? 0.5f
             dst->y *= 0.5;  //? 0.5f
@@ -2262,7 +2265,7 @@ void d_get_world_pos(struct MyVec3f *dst)
  *
  * @param[in] pos values are copied to set vertex position
  */
-void d_make_vertex(struct MyVec3f *pos)
+void d_make_vertex(struct GdVec3f *pos)
 {
     d_makeobj(D_VERTEX, AsDynId(NULL));
     d_set_init_pos(pos->x, pos->y, pos->z);
@@ -3082,7 +3085,7 @@ struct GdPlaneF *d_get_plane(void)
 /**
  * Copy the matrix from the current dynamic object into `dst`.
  */
-void d_get_matrix(Mat4 *dst)
+void d_get_matrix(Mat4f *dst)
 {
     struct GdObj *dynobj;   // sp24
 
@@ -3121,7 +3124,7 @@ void d_get_matrix(Mat4 *dst)
 /**
  * Set the matrix of the current dynamic object by copying `src` into the object.
  */
-void d_set_matrix(Mat4 *src)
+void d_set_matrix(Mat4f *src)
 {
     if (sDynListCurObj == NULL)
         fatal_printf("proc_dynlist(): No current object");
@@ -3153,7 +3156,7 @@ void d_set_matrix(Mat4 *src)
  * Set the rotation matrix of the current dynamic object by copying
  * the input matrix `src`.
  */
-void d_set_rot_mtx(Mat4 *src)
+void d_set_rot_mtx(Mat4f *src)
 {
     if (sDynListCurObj == NULL)
         fatal_printf("proc_dynlist(): No current object");
@@ -3178,7 +3181,7 @@ void d_set_rot_mtx(Mat4 *src)
 /**
  * Get a pointer to the current dynamic object's rotation matrix.
  */
-Mat4 *d_get_rot_mtx_ptr(void)
+Mat4f *d_get_rot_mtx_ptr(void)
 {
     if (sDynListCurObj == NULL)
         fatal_printf("proc_dynlist(): No current object");
@@ -3202,7 +3205,7 @@ Mat4 *d_get_rot_mtx_ptr(void)
 /**
  * Copy `src` into the identity matrix of the current dynamic object.
  */
-void d_set_idn_mtx(Mat4 *src)
+void d_set_idn_mtx(Mat4f *src)
 {
     struct GdObj *dynobj;   // sp24
 
@@ -3235,7 +3238,7 @@ void d_set_idn_mtx(Mat4 *src)
 /**
  * Get a pointer to the current dynamic object's matrix.
  */
-Mat4 *d_get_matrix_ptr(void)
+Mat4f *d_get_matrix_ptr(void)
 {
     if (sDynListCurObj == NULL)
         fatal_printf("proc_dynlist(): No current object");
@@ -3267,7 +3270,7 @@ Mat4 *d_get_matrix_ptr(void)
 /**
  * Get a pointer to the current dynamic object's identity matrix.
  */
-Mat4 *d_get_idn_mtx_ptr(void)
+Mat4f *d_get_idn_mtx_ptr(void)
 {
     struct GdObj *dynobj;   // sp24
 
@@ -3299,9 +3302,9 @@ Mat4 *d_get_idn_mtx_ptr(void)
  */
 f32 d_calc_world_dist_btwn(struct GdObj *obj1, struct GdObj *obj2)
 {
-    struct MyVec3f obj1pos;     // sp34
-    struct MyVec3f obj2pos;     // sp28
-    struct MyVec3f posdiff;     // sp1C
+    struct GdVec3f obj1pos;     // sp34
+    struct GdVec3f obj2pos;     // sp28
+    struct GdVec3f posdiff;     // sp1C
 
     set_cur_dynobj(obj1);
     d_get_world_pos(&obj1pos);

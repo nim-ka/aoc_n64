@@ -1,5 +1,5 @@
-#ifndef _DEBUG_MEMORY_H
-#define _DEBUG_MEMORY_H
+#ifndef GD_MEMORY_H
+#define GD_MEMORY_H
 
 #include <ultra64.h>
 
@@ -36,4 +36,4 @@ extern struct GMemBlock *gd_add_mem_to_heap(u32, u32, u8);
 extern void init_mem_block_lists(void);
 extern void mem_stats(void);
 
-#endif /* _DEBUG_MEMORY_H */
+#endif /* GD_MEMORY_H */

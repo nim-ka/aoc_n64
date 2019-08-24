@@ -1,9 +1,7 @@
 #include <ultra64.h>
-
-#include "sm64.h"
 #include "gd_memory.h"
-#include "profiler_utils.h"
-#include "mario_head_6.h"
+#include "debug_utils.h"
+#include "renderer.h"
 
 /**
  * @file gd_memory.c

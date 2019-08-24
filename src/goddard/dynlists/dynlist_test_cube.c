@@ -1,8 +1,6 @@
 // early unused test dynlist
 #include <ultra64.h>
-
-#include "sm64.h"
-#include "macros.h"
+#include "dynlist_macros.h"
 #include "dynlists.h"
 #include "../dynlist_proc.h"
 // maybe move types into the dynlists.h file?

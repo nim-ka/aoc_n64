@@ -1,5 +1,5 @@
-#ifndef _DRAW_OBJECTS_H_
-#define _DRAW_OBJECTS_H_
+#ifndef GD_DRAW_OBJECTS_H
+#define GD_DRAW_OBJECTS_H
 
 #include "gd_types.h"
 
@@ -20,7 +20,7 @@ extern void draw_label(struct ObjLabel *);
 extern void draw_net(struct ObjNet *);
 extern void draw_gadget(struct ObjGadget *);
 extern void draw_camera(struct ObjCamera *);
-extern void func_80179B9C(struct MyVec3f *, struct ObjCamera *, struct ObjView *);
+extern void func_80179B9C(struct GdVec3f *, struct ObjCamera *, struct ObjView *);
 extern void nop_obj_draw(struct GdObj *);
 extern void draw_particle(struct GdObj *);
 extern void draw_bone(struct GdObj *);
@@ -33,4 +33,4 @@ extern void map_face_materials(struct ObjGroup *, struct ObjGroup *);
 extern void map_vertices(struct ObjGroup *, struct ObjGroup *);
 extern void update_view(struct ObjView *);
 
-#endif /* _DRAW_OBJECTS_H_ */
+#endif /* GD_DRAW_OBJECTS_H */

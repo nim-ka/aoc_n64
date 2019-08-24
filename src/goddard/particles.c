@@ -1,16 +1,14 @@
 #include <ultra64.h>
-
-#include "sm64.h"
+#include <macros.h>
 #include "gd_types.h"
-
 #include "draw_objects.h"
-#include "mario_head_1.h"
-#include "mario_head_3.h"
+#include "objects.h"
+#include "particles.h"
 #include "dynlist_proc.h"
-#include "profiler_utils.h"
-#include "skin_fns.h"
-#include "matrix_fns.h"
-#include "mario_head_6.h"
+#include "debug_utils.h"
+#include "skin.h"
+#include "gd_math.h"
+#include "renderer.h"
 
 // static types
 typedef union {
@@ -56,7 +54,7 @@ void func_80182088(struct Connection *);
 void move_particle(struct ObjParticle *);
 struct Connection *func_801825FC(struct ObjVertex *, struct ObjVertex *);
 int func_80182778(struct ObjParticle *);
-void func_80182A08(struct ObjParticle *, struct MyVec3f *b);
+void func_80182A08(struct ObjParticle *, struct GdVec3f *b);
 void func_801838D0(struct ObjParticle *);
 void Unknown801835C8(struct ObjParticle *ptc);
 
@@ -120,7 +118,7 @@ void Unknown80181D14(struct ObjFace *face)
 /* 230680 -> 230858 */
 void func_80181EB0(struct Connection *cxn)
 {
-    struct MyVec3f sp34;
+    struct GdVec3f sp34;
     UNUSED u8 unused[0x2C];
     struct ObjParticle *sp4 = cxn->unk1C.ptc;
     struct ObjParticle *sp0 = cxn->unk20.ptc;
@@ -152,7 +150,7 @@ void func_80181EB0(struct Connection *cxn)
 /* @ 230858 -> 230B70 */
 void func_80182088(struct Connection *cxn)
 {
-    struct MyVec3f sp4C;
+    struct GdVec3f sp4C;
     UNUSED u8 unused[0x24];
     f32 sp24;
     f32 sp20;
@@ -256,8 +254,8 @@ struct ObjParticle *make_particle(u32 a, s32 b, f32 x, f32 y, f32 z)
 struct Connection *func_801825FC(struct ObjVertex *vtx1, struct ObjVertex *vtx2)
 {
     struct Connection *sp34 = gd_malloc_perm(44);
-    struct MyVec3f sp28;
-    struct MyVec3f sp1C;
+    struct GdVec3f sp28;
+    struct GdVec3f sp1C;
 
     if (sp34 == NULL)
         fatal_print("Cant allocate connection memory!");
@@ -321,7 +319,7 @@ int func_80182778(struct ObjParticle *ptc)
 }
 
 /* 2311D8 -> 231454 */
-void func_80182A08(struct ObjParticle *ptc, struct MyVec3f *b)
+void func_80182A08(struct ObjParticle *ptc, struct GdVec3f *b)
 {
     register struct Links *link;
     struct ObjParticle *sp20;
@@ -361,15 +359,15 @@ void move_particle(struct ObjParticle *ptc)
 {
     f32 sp7C;
     UNUSED u8 unused2[12];
-    struct MyVec3f sp64;
+    struct GdVec3f sp64;
     struct ObjParticle *sp60;
     UNUSED u8 unused1[4];
     s32 sp58;
     UNUSED u8 unused4[4];
     UNUSED u8 unused5[4];
     struct ObjCamera *sp4C;
-    struct MyVec3f sp40;
-    struct MyVec3f sp34;
+    struct GdVec3f sp40;
+    struct GdVec3f sp34;
 
     if (ptc->unk54 & 2)
         return;
@@ -532,7 +530,7 @@ void move_particles_in_grp(struct ObjGroup *group)
 /* 231D98 -> 232040 */
 void Unknown801835C8(struct ObjParticle *ptc)
 {
-    struct MyVec3f sp54;
+    struct GdVec3f sp54;
     f32 sp50;
     register struct Links *link;
 

@@ -1,16 +1,16 @@
 #include <ultra64.h>
-
-#include "sm64.h"
+#include <macros.h>
+#include <config.h>
 #include "gd_types.h"
-
+#include "gd_macros.h"
 #include "gd_main.h"
-#include "mario_head_1.h"
+#include "objects.h"
 #include "dynlist_proc.h"
-#include "old_obj_fn.h"
-#include "profiler_utils.h"
-#include "matrix_fns.h"
-#include "half_6.h"
-#include "mario_head_6.h"
+#include "old_menu.h"
+#include "debug_utils.h"
+#include "gd_math.h"
+#include "shape_helper.h"
+#include "renderer.h"
 #include "prevent_bss_reordering.h"
 #include "draw_objects.h"
 
@@ -20,11 +20,9 @@
  * GdObj primitives to the screen.
  */
 
-#define ABS(x) ((x) < 0.0f ? -(x) : (x))
-
 // forward declarations
 void func_80179B64(struct ObjGroup *);
-void update_shaders(struct ObjShape *, struct MyVec3f *);
+void update_shaders(struct ObjShape *, struct GdVec3f *);
 void draw_shape_faces(struct ObjShape *);
 void register_light(struct ObjLight *);
 
@@ -70,13 +68,13 @@ struct GdColour *sColourPalette[5] = {      // @ 801A8104
 struct GdColour *sWhiteBlack[2] = {         //@ 801A8118
     &sClrWhite, &sClrBlack,
 };
-static Mat4 sUnref801A8120 = {
+static Mat4f sUnref801A8120 = {
     {1.0, 0.0, 0.0, 0.0},
     {0.0, 0.0, 0.0, 0.0},
     {0.0, 0.0, 1.0, 0.0},
     {0.0, 0.0, 0.0, 1.0}
 };
-static Mat4 sUnrefIden801A8160 = {
+static Mat4f sUnrefIden801A8160 = {
     {1.0, 0.0, 0.0, 0.0},
     {0.0, 1.0, 0.0, 0.0},
     {0.0, 0.0, 1.0, 0.0},
@@ -106,11 +104,11 @@ static struct {
     s32 unused18;         // @ 801B9CF4
 } sUpdateViewState;
 static struct ObjLight *sPhongLight;  // material light? phong light?
-static struct MyVec3f sPhongLightPosition; //@ 801B9D00; guess; light source unit position for light flagged 0x20 (sPhongLight)
-static struct MyVec3f sLightPositionOffset; // @ 801B9D10
-static struct MyVec3f sLightPositionCache[8]; // @ 801B9D20; unit positions
+static struct GdVec3f sPhongLightPosition; //@ 801B9D00; guess; light source unit position for light flagged 0x20 (sPhongLight)
+static struct GdVec3f sLightPositionOffset; // @ 801B9D10
+static struct GdVec3f sLightPositionCache[8]; // @ 801B9D20; unit positions
 static s32 sNumActiveLights;         // @ 801B9D80; maybe?
-static struct MyVec3f sGrabCords;    ///< x, y grabbable point near cursor
+static struct GdVec3f sGrabCords;    ///< x, y grabbable point near cursor
 
 /**
  * Set the ambient light color and turn on G_CULL_BACK.
@@ -134,7 +132,7 @@ void setup_lights(void)
  */
 void Unknown801781DC(struct ObjZone *zone)
 {
-    struct MyVec3f lightPos; // 3c
+    struct GdVec3f lightPos; // 3c
     struct ObjUnk200000 *unk;
     f32 sp34;
     f32 sp30;
@@ -176,10 +174,10 @@ void draw_shape(
     f32 f, f32 g, f32 h, // translate shape + store offset (unused)
     f32 i, f32 j, f32 k, // translate shape
     f32 l, f32 m, f32 n, // rotate x, y, z
-    s32 colorIdx, Mat4 *rotMtx)
+    s32 colorIdx, Mat4f *rotMtx)
 {
     UNUSED u8 unused[8];
-    struct MyVec3f sp1C;
+    struct GdVec3f sp1C;
 
     restart_timer("drawshape");
     sUpdateViewState.shapesDrawn++;
@@ -268,7 +266,7 @@ void draw_shape_2d(
     UNUSED s32 color, UNUSED s32 p)
 {
     UNUSED u8 unused[8];
-    struct MyVec3f sp1C;
+    struct GdVec3f sp1C;
 
     restart_timer("drawshape2d");
     sUpdateViewState.shapesDrawn++;
@@ -293,9 +291,9 @@ void draw_shape_2d(
 
 void draw_light(struct ObjLight *light)
 {
-    struct MyVec3f sp94;
-    Mat4 sp54;
-    UNUSED Mat4 *uMatPtr;     // 50
+    struct GdVec3f sp94;
+    Mat4f sp54;
+    UNUSED Mat4f *uMatPtr;     // 50
     UNUSED f32 uMultiplier; // 4c
     struct ObjShape *shape;   // 48
 
@@ -592,7 +590,7 @@ void draw_rect_stroke(s32 color, f32 ulx, f32 uly, f32 lrx, f32 lry)
 void Unknown801792F0(struct GdObj* obj)
 {
     char objId[32];
-    struct MyVec3f objPos;
+    struct GdVec3f objPos;
 
     sprint_obj_id(objId, obj);
     set_cur_dynobj(obj);
@@ -604,7 +602,7 @@ void Unknown801792F0(struct GdObj* obj)
 /* 227B20 -> 227DF8; orig name: Proc80179350 */
 void draw_label(struct ObjLabel *label)
 {
-    struct MyVec3f position;   // 144
+    struct GdVec3f position;   // 144
     char strbuf[0x100];
     UNUSED u8 unused[16];
     struct ObjValPtrs *valptr; // 2c
@@ -727,7 +725,7 @@ void draw_gadget(struct ObjGadget *gdgt)
 /* 22803C -> 22829C */
 void draw_camera(struct ObjCamera *cam)
 {
-    struct MyVec3f sp44;
+    struct GdVec3f sp44;
     UNUSED f32 sp40 = 0.0f;
 
     sp44.x = 0.0f;
@@ -804,7 +802,7 @@ void func_80179B64(struct ObjGroup* group)
 }
 
 /* 22836C -> 228498 */
-void func_80179B9C(struct MyVec3f *pos, struct ObjCamera *cam, struct ObjView *view)
+void func_80179B9C(struct GdVec3f *pos, struct ObjCamera *cam, struct ObjView *view)
 {
     func_80196430(pos, &cam->unkE8);
     if (pos->z > -256.0f) { return; }
@@ -828,10 +826,10 @@ void func_80179B9C(struct MyVec3f *pos, struct ObjCamera *cam, struct ObjView *v
  */
 void check_grabable_click(struct GdObj *input)
 {
-    struct MyVec3f objPos;
+    struct GdVec3f objPos;
     UNUSED u8 unused[12];
     struct GdObj *obj;
-    Mat4 *mtx;
+    Mat4f *mtx;
 
     if (gViewUpdateCamera == NULL) { return; }
     obj = input;
@@ -1061,7 +1059,7 @@ void draw_bone(struct GdObj *obj)
     UNUSED u8 unused1[4];
     s32 colour;
     UNUSED u8 unused2[4];
-    struct MyVec3f scale; // guess
+    struct GdVec3f scale; // guess
 
     return;
 
@@ -1249,7 +1247,7 @@ void Proc8017A980(struct ObjLight *light)
 }
 
 /* 229568 -> 229658; orig name: func_8017AD98 */
-void update_shaders(struct ObjShape *shape, struct MyVec3f *offset)
+void update_shaders(struct ObjShape *shape, struct GdVec3f *offset)
 {
     restart_timer("updateshaders");
     stash_current_gddl();

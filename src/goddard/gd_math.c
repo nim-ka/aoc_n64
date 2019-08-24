@@ -1,16 +1,11 @@
 #include <ultra64.h>
-
-#include "sm64.h"
+#include <macros.h>
 #include "gd_types.h"
-
+#include "gd_macros.h"
 #include "gd_main.h"
-#include "matrix_fns.h"
-#include "profiler_utils.h"
-#include "mario_head_6.h"
-
-#define ABS(val) (((val) < 0 ? (-(val)) : (val)))
-#define SQ(val) ((val) * (val))
-#define DEG_PER_RAD 57.29577950560105
+#include "gd_math.h"
+#include "debug_utils.h"
+#include "renderer.h"
 
 /* 242300 -> 242338 */
 f32 gd_sqrt_f(f32 val)
@@ -19,15 +14,15 @@ f32 gd_sqrt_f(f32 val)
 }
 
 /* 242338 -> 24292C */
-void func_80193B68(Mat4 *mtx,
+void func_80193B68(Mat4f *mtx,
     f32 a1, f32 a2, f32 a3,
     f32 sp78, f32 sp7C, f32 sp80,
     f32 sp84, f32 sp88, f32 sp8C)
 {
     f32 sp64;
-    struct MyVec3f sp58;
-    struct MyVec3f sp4C;
-    struct MyVec3f sp40;
+    struct GdVec3f sp58;
+    struct GdVec3f sp4C;
+    struct GdVec3f sp40;
 
     set_identity_mat4(mtx);
     sp58.z = sp78 - a1;
@@ -94,7 +89,7 @@ void func_80193B68(Mat4 *mtx,
 }
 
 /* 24292C -> 2429F0 */
-void func_8019415C(Mat4 *mtx, struct MyVec3f *vec)
+void func_8019415C(Mat4f *mtx, struct GdVec3f *vec)
 {
     (*mtx)[0][0] *= vec->x;
     (*mtx)[0][1] *= vec->x;
@@ -108,7 +103,7 @@ void func_8019415C(Mat4 *mtx, struct MyVec3f *vec)
 }
 
 /* 2429F0 -> 242AB4 */
-void func_80194220(Mat4 *mtx, struct MyVec3f *vec)
+void func_80194220(Mat4f *mtx, struct GdVec3f *vec)
 {
     if (vec->x != 0.0f)
     {
@@ -125,9 +120,9 @@ void func_80194220(Mat4 *mtx, struct MyVec3f *vec)
 }
 
 /* 242AB4 -> 242B28 */
-void func_801942E4(Mat4 *mtx, struct MyVec3f *vec)
+void func_801942E4(Mat4f *mtx, struct GdVec3f *vec)
 {
-    UNUSED Mat4 temp;
+    UNUSED Mat4f temp;
     f32 z, y, x;
 
     x = vec->x;
@@ -140,14 +135,14 @@ void func_801942E4(Mat4 *mtx, struct MyVec3f *vec)
 }
 
 /* 242B28 -> 242EF8 */
-void func_80194358(Mat4 *mtx, struct MyVec3f *vec, f32 a2)
+void func_80194358(Mat4f *mtx, struct GdVec3f *vec, f32 a2)
 {
     f32 sp34;
     f32 sp30; // distance between unit vec.x and unit vec.y
     f32 sp2C; // cos(a2)
     f32 sp28; // sin(a2)
-    f32 sp24 = 1.0f/DEG_PER_RAD; // rad/degree
-    struct MyVec3f unit; // 18
+    f32 sp24 = RAD_PER_DEG;
+    struct GdVec3f unit; // 18
 
     unit.x = vec->x;
     unit.y = vec->y;
@@ -208,7 +203,7 @@ f32 func_80194728(f32 a, f32 b)
 }
 
 /* 242F40 -> 243050; orig name: func_80194770 */
-void limit_vec3f(struct MyVec3f *vec, f32 limit)
+void limit_vec3f(struct GdVec3f *vec, f32 limit)
 {
     if (vec->x > limit) { vec->x = limit; }
     else if (vec->x < -limit) { vec->x = -limit; }
@@ -235,10 +230,10 @@ void func_80194880(f32 a0, f32 *a1, f32 *a2)
 }
 
 /* 24315C -> 243224 */
-void Unknown8019498C(Mat4 *a0, s32 row, f32 a2)
+void Unknown8019498C(Mat4f *a0, s32 row, f32 a2)
 {
-    Mat4 sp28;
-    struct MyVec3f vec;
+    Mat4f sp28;
+    struct GdVec3f vec;
 
     vec.x = (*a0)[row][0];
     vec.y = (*a0)[row][1];
@@ -250,10 +245,10 @@ void Unknown8019498C(Mat4 *a0, s32 row, f32 a2)
 
 //TODO: enumerate second argument (0-2)?
 /* 243224 -> 243368; orig name: func_80194A54 */
-void absrot_mat4(Mat4 *mtx, s32 axisnum, f32 a2)
+void absrot_mat4(Mat4f *mtx, s32 axisnum, f32 a2)
 {
-    Mat4 sp30;
-    struct MyVec3f rot; // 24
+    Mat4f sp30;
+    struct GdVec3f rot; // 24
 
     switch (axisnum)
     {
@@ -281,13 +276,13 @@ void absrot_mat4(Mat4 *mtx, s32 axisnum, f32 a2)
 }
 
 /* 243368 -> 2433C4 */
-f32 magnitude_vec3f(struct MyVec3f *vec)
+f32 magnitude_vec3f(struct GdVec3f *vec)
 {
     return gd_sqrt_f(SQ(vec->x) + SQ(vec->y) + SQ(vec->z));
 }
 
 /* 2433C4 -> 2434E4; orig name: func_80194BF4 */
-s32 into_unit_vec3f(struct MyVec3f *vec)
+s32 into_unit_vec3f(struct GdVec3f *vec)
 {
     f32 mag;
     if ((mag = SQ(vec->x) + SQ(vec->y) + SQ(vec->z)) == 0.0f) { return FALSE; }
@@ -309,9 +304,9 @@ s32 into_unit_vec3f(struct MyVec3f *vec)
 }
 
 /* 2434E4 -> 243588; orig name: func_80194D14 */
-void cross_product_vec3f(struct MyVec3f *a, struct MyVec3f *b, struct MyVec3f *dst)
+void cross_product_vec3f(struct GdVec3f *a, struct GdVec3f *b, struct GdVec3f *dst)
 {
-    struct MyVec3f result;
+    struct GdVec3f result;
 
     result.x = (a->y * b->z) - (a->z * b->y);
     result.y = (a->z * b->x) - (a->x * b->z);
@@ -323,13 +318,13 @@ void cross_product_vec3f(struct MyVec3f *a, struct MyVec3f *b, struct MyVec3f *d
 }
 
 /* 243588 -> 2435CC; orig name: func_80194DB8 */
-f32 dot_product_vec3f(struct MyVec3f *a, struct MyVec3f *b)
+f32 dot_product_vec3f(struct GdVec3f *a, struct GdVec3f *b)
 {
     return (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
 }
 
 /* 2435CC -> 24364C */
-void Unknown80194DFC(Mat4 *src, Mat4 *dst)
+void Unknown80194DFC(Mat4f *src, Mat4f *dst)
 {
     s32 i;
     s32 j;
@@ -343,11 +338,11 @@ void Unknown80194DFC(Mat4 *src, Mat4 *dst)
     }
 }
 
-/* self */ void func_80194F90(Mat4 *, Mat4 *);
-/* self */ f32 func_80195578(Mat4 *);
+/* self */ void func_80194F90(Mat4f *, Mat4f *);
+/* self */ f32 func_80195578(Mat4f *);
 
 /* 24364C -> 243760; orig name: func_80194E7C */
-void inverse_mat4(Mat4 *src, Mat4 *dst)
+void inverse_mat4(Mat4f *src, Mat4f *dst)
 {
     s32 i;
     s32 j;
@@ -377,7 +372,7 @@ struct InvMat4 { struct Row4 r0, r1, r2, r3; };
 
 /* 243760 -> 243D48 */
 // TODO: adjunct mat4?
-void func_80194F90(Mat4 *src, Mat4 *adj)
+void func_80194F90(Mat4f *src, Mat4f *adj)
 {
     struct InvMat4 inv;  // 30
 
@@ -497,7 +492,7 @@ void func_80194F90(Mat4 *src, Mat4 *adj)
 
 /* 243D48 -> 244014 */
 // TODO: determinant mat4
-f32 func_80195578(Mat4 *mtx)
+f32 func_80195578(Mat4f *mtx)
 {
     f32 det;
     struct InvMat4 inv; // 54 -> 94
@@ -580,7 +575,7 @@ f32 func_8019590C(f32 a, f32 b, f32 c, f32 d)
 }
 
 /* 244120 -> 2441B0 */
-void Unknown80195950(Mat4 *mtx, struct MyVec3f *vec, f32 x, f32 y, f32 z)
+void Unknown80195950(Mat4f *mtx, struct GdVec3f *vec, f32 x, f32 y, f32 z)
 {
     s32 i;
 
@@ -594,14 +589,14 @@ void Unknown80195950(Mat4 *mtx, struct MyVec3f *vec, f32 x, f32 y, f32 z)
 }
 
 /* 2441B0 -> 2442D4 */
-void Unknown801959E0(f32 *a0, struct MyVec3f *vec, f32 a2, s32 a3, s32 sp38)
+void Unknown801959E0(f32 *a0, struct GdVec3f *vec, f32 a2, s32 a3, s32 sp38)
 {
     s32 sp24;
     s32 sp20;
     UNUSED f32 sp1C;
     UNUSED f32 sp18;
-    UNUSED struct MyVec3f sp0C;
-    struct MyVec3f sp00;
+    UNUSED struct GdVec3f sp0C;
+    struct GdVec3f sp00;
 
     sp00.x = vec->x;
     sp00.y = vec->y;
@@ -647,7 +642,7 @@ void Unknown80195B04(f32 *a0, UNUSED s32 a1, f32 a2, f32 a3, s32 sp28, s32 sp2C)
 }
 
 /* 244448 -> 244568 */
-void func_80195C78(Mat4 *mtx)
+void func_80195C78(Mat4f *mtx)
 {
     s32 i;       // 14
     s32 j;       // 10
@@ -677,7 +672,7 @@ void func_80195C78(Mat4 *mtx)
 }
 
 /* 244568 -> 2447A4 */
-void Unknown80195D98(f32 *a0, UNUSED s32 a1, Mat4 *mtx)
+void Unknown80195D98(f32 *a0, UNUSED s32 a1, Mat4f *mtx)
 {
     f32 sp3C;
     f32 sp38;
@@ -708,10 +703,10 @@ void Unknown80195D98(f32 *a0, UNUSED s32 a1, Mat4 *mtx)
 }
 
 /* 2447A4 -> 2449C4 */
-void func_80195FD4(Mat4 *mtx, struct MyVec3f *vec, f32 a, f32 b)
+void func_80195FD4(Mat4f *mtx, struct GdVec3f *vec, f32 a, f32 b)
 {
     f32 spC;
-    struct MyVec3f rev; // 0
+    struct GdVec3f rev; // 0
 
     rev.z = vec->x;
     rev.y = vec->y;
@@ -738,7 +733,7 @@ void func_80195FD4(Mat4 *mtx, struct MyVec3f *vec, f32 a, f32 b)
 }
 
 /* 2449C4 -> 244A50 */
-void func_801961F4(Mat4 *mtx, struct MyVec3f *vec, f32 ang)
+void func_801961F4(Mat4f *mtx, struct GdVec3f *vec, f32 ang)
 {
     f32 ycmp; // 1c
     f32 xcmp; // 18
@@ -751,7 +746,7 @@ void func_801961F4(Mat4 *mtx, struct MyVec3f *vec, f32 ang)
 }
 
 /* 244A50 -> 244B30 */
-void set_identity_mat4(Mat4 *mtx)
+void set_identity_mat4(Mat4f *mtx)
 {
     (*mtx)[0][0] = 1.0f;
     (*mtx)[0][1] = 0.0f;
@@ -772,7 +767,7 @@ void set_identity_mat4(Mat4 *mtx)
 }
 
 /* 244B30 -> 244C00 */
-void cpy_mat4(const Mat4 *src, Mat4 *dst)
+void cpy_mat4(const Mat4f *src, Mat4f *dst)
 {
     (*dst)[0][0] = (*src)[0][0];
     (*dst)[0][1] = (*src)[0][1];
@@ -793,9 +788,9 @@ void cpy_mat4(const Mat4 *src, Mat4 *dst)
 }
 
 /* 244C00 -> 244D10 */
-void func_80196430(struct MyVec3f *vec, const Mat4 *mtx)
+void func_80196430(struct GdVec3f *vec, const Mat4f *mtx)
 {
-    struct MyVec3f dot;
+    struct GdVec3f dot;
 
     dot.x = (*mtx)[0][0] * vec->x + (*mtx)[1][0] * vec->y + (*mtx)[2][0] * vec->z;
     dot.y = (*mtx)[0][1] * vec->x + (*mtx)[1][1] * vec->y + (*mtx)[2][1] * vec->z;
@@ -810,9 +805,9 @@ void func_80196430(struct MyVec3f *vec, const Mat4 *mtx)
 }
 
 /* 244D10 -> 244DE4 */
-void func_80196540(struct MyVec3f *vec, const Mat4 *mtx)
+void func_80196540(struct GdVec3f *vec, const Mat4f *mtx)
 {
-    struct MyVec3f dot;
+    struct GdVec3f dot;
 
     dot.x = (*mtx)[0][0] * vec->x + (*mtx)[1][0] * vec->y + (*mtx)[2][0] * vec->z;
     dot.y = (*mtx)[0][1] * vec->x + (*mtx)[1][1] * vec->y + (*mtx)[2][1] * vec->z;
@@ -852,9 +847,9 @@ void func_80196540(struct MyVec3f *vec, const Mat4 *mtx)
 }
 
 /* 244DE4 -> 24575C; orig name: func_80196614 */
-void multiply_mat4(const Mat4 *mA, const Mat4 *mB, Mat4 *dst)
+void multiply_mat4(const Mat4f *mA, const Mat4f *mB, Mat4f *dst)
 {
-    Mat4 res; // 18
+    Mat4f res; // 18
 
     MAT4_MULTIPLY((*mA), (*mB), res);
     cpy_mat4(&res, dst);
@@ -864,7 +859,7 @@ void multiply_mat4(const Mat4 *mA, const Mat4 *mB, Mat4 *dst)
 #undef MAT4_DOT_PROD
 
 /* 24575C -> 245778 */
-void gd_print_vec(UNUSED const char *prefix, UNUSED const struct MyVec3f *vec)
+void gd_print_vec(UNUSED const char *prefix, UNUSED const struct GdVec3f *vec)
 {
     UNUSED u8 pad[8];
 
@@ -877,14 +872,14 @@ void gd_print_plane(UNUSED const char *prefix, UNUSED const struct GdPlaneF *p)
 {
     UNUSED u8 pad[8];
 
-    printf("Min X = %f, Max X = %f \n", p->vec0.x, p->vec1.x);
-    printf("Min Y = %f, Max Y = %f \n", p->vec0.y, p->vec1.y);
-    printf("Min Z = %f, Max Z = %f \n", p->vec0.z, p->vec1.z);
+    printf("Min X = %f, Max X = %f \n", p->p0.x, p->p1.x);
+    printf("Min Y = %f, Max Y = %f \n", p->p0.y, p->p1.y);
+    printf("Min Z = %f, Max Z = %f \n", p->p0.z, p->p1.z);
     printf("\n");
 }
 
 /* 245794 -> 245838 */
-void gd_print_mtx(UNUSED const char *prefix, const Mat4 *mtx)
+void gd_print_mtx(UNUSED const char *prefix, const Mat4f *mtx)
 {
     s32 i; // 1c
     s32 j; // 18
@@ -913,15 +908,15 @@ void Unknown80197068(const char *prefix, const f32 *f)
 }
 
 /* 2458C0 -> 245A48 */
-void Unknown801970F0(Mat4 *dst, f32 x, f32 y, f32 z, s32 copy)
+void Unknown801970F0(Mat4f *dst, f32 x, f32 y, f32 z, s32 copy)
 {
     f32 sp74 = 100.0f;
-    Mat4 sp34;
+    Mat4f sp34;
     f32 sp30;
     f32 sp2C;
     f32 mag; // 28
     f32 sp24;
-    struct MyVec3f sp18;
+    struct GdVec3f sp18;
 
     mag = gd_sqrt_f(SQ(x) + SQ(y) + SQ(z));
 

@@ -1,21 +1,18 @@
 #include <ultra64.h>
-
-#include "sm64.h"
+#include <macros.h>
 #include "gd_types.h"
-
-#include "joint_fns.h"
+#include "gd_macros.h"
+#include "joints.h"
 #include "gd_main.h"
-#include "mhead_sfx.h"
+#include "sfx.h"
 #include "draw_objects.h"
-#include "mario_head_1.h"
-#include "mario_head_2.h"
+#include "objects.h"
+#include "skin_movement.h"
 #include "dynlist_proc.h"
-#include "profiler_utils.h"
-#include "skin_fns.h"
-#include "matrix_fns.h"
-#include "mario_head_6.h"
-
-#define ABS(val) (((val) < 0 ? (-(val)) : (val)))
+#include "debug_utils.h"
+#include "skin.h"
+#include "gd_math.h"
+#include "renderer.h"
 
 // data
 static s32 D_801A82D0 = 0;
@@ -24,19 +21,19 @@ static struct ObjBone *gGdTempBone = NULL; // @ 801A82D4
 // bss
 s32 sTargetWeightID; // @ 801BA960
 
-static Mat4* D_801BA964;
-static struct MyVec3f D_801BA968;
+static Mat4f* D_801BA964;
+static struct GdVec3f D_801BA968;
 static s32 sJointCount;                   // @ 801BA974
 static s32 sJointNotF1Count;              // @ 801BA978
 static s32 sBoneCount;                    // @ 801BA97C
 static s32 sJointArrLen;                  // @ 801BA980
 static struct ObjJoint *sJointArr[10];    // @ 801BA988
-static struct MyVec3f sJointArrVecs[10];  // @ 801BA9B0
+static struct GdVec3f sJointArrVecs[10];  // @ 801BA9B0
 static s32 sJointArr2Len;                 // @ 801BAA28
 static struct ObjJoint *sJointArr2[10];   // @ 801BAA30
-static struct MyVec3f sJointArr2Vecs[10]; // @ 801BAA58
-static struct MyVec3f D_801BAAD0;
-static struct MyVec3f D_801BAAE0;
+static struct GdVec3f sJointArr2Vecs[10]; // @ 801BAA58
+static struct GdVec3f D_801BAAD0;
+static struct GdVec3f D_801BAAE0;
 
 // forward declarations
 void set_joint_vecs(struct ObjJoint *, f32, f32, f32);
@@ -45,9 +42,9 @@ void set_joint_vecs(struct ObjJoint *, f32, f32, f32);
 void Proc8018E520(struct ObjJoint *self)
 {
     UNUSED u8 pad78[0xC8-0x78];
-    Mat4 *sp74;
+    Mat4f *sp74;
     UNUSED u8 pad70[4];
-    struct MyVec3f sp64;
+    struct GdVec3f sp64;
     UNUSED u8 pad50[0x10];
     register struct Links *att; // sp4C?
     UNUSED u8 pad48[0x8];
@@ -122,9 +119,9 @@ void Proc8018E520(struct ObjJoint *self)
 /* 23D3B8 -> 23D62C */
 void Proc8018EBE8(struct ObjJoint *self)
 {
-    Mat4 *sp5C;
-    struct MyVec3f sp50;
-    struct MyVec3f sp44;
+    Mat4f *sp5C;
+    struct GdVec3f sp50;
+    struct GdVec3f sp44;
     UNUSED u8 pad2c[0x18];
     register struct Links *att; // sp28
     struct GdObj *attobj;   // sp24
@@ -170,7 +167,7 @@ void Proc8018EBE8(struct ObjJoint *self)
 /* 23D62C -> 23D748; not called */
 void Unknown8018EE5C(struct ObjJoint *j1, struct ObjJoint *j2, struct ObjJoint *j3)
 {
-    struct MyVec3f vec;
+    struct GdVec3f vec;
     struct ObjJoint *curj;
 
     if (j3 == NULL) { return; }
@@ -320,15 +317,15 @@ void func_8018F520(struct ObjBone *b)
     struct ObjJoint *spAC;
     struct ObjJoint *spA8;
     UNUSED u32 pad[3];
-    struct MyVec3f sp90;
-    struct MyVec3f sp84;
-    struct MyVec3f sp78;
-    struct MyVec3f sp6C;
+    struct GdVec3f sp90;
+    struct GdVec3f sp84;
+    struct GdVec3f sp78;
+    struct GdVec3f sp6C;
     f32 sp68;
     f32 sp64;
     struct ObjGroup *grp; // sp60
     struct Links *link;
-    Mat4 mtx;             // sp1C
+    Mat4f mtx;             // sp1C
 
     grp = b->unk10C;
     link = grp->link1C;
@@ -391,7 +388,7 @@ void func_8018F89C(struct ObjBone *b)
     UNUSED u8 pad64[0x44];
     struct ObjGroup *grp;   // sp60
     struct Links *link;     // sp5c
-    Mat4 mtx;               // sp1c
+    Mat4f mtx;               // sp1c
 
     grp = b->unk10C;
     link = grp->link1C;
@@ -444,7 +441,7 @@ s32 set_skin_weight(struct ObjJoint *j, s32 id, struct ObjVertex *vtx, f32 weigh
 /* 23E328 -> 23E474 */
 void func_8018FB58(struct ObjBone *b)
 {
-    struct MyVec3f vec;     // sp2c
+    struct GdVec3f vec;     // sp2c
     struct ObjJoint *j1;    // sp28
     struct ObjJoint *j2;
     struct Links *link;
@@ -592,9 +589,9 @@ s32 func_8018FFE8(struct ObjBone **a0, struct ObjJoint **a1, struct ObjJoint *a2
 }
 
 /* 23E938 -> 23EBB8 */
-void func_80190168(struct ObjBone *b, UNUSED struct ObjJoint *a1, UNUSED struct ObjJoint *a2, struct MyVec3f *a3)
+void func_80190168(struct ObjBone *b, UNUSED struct ObjJoint *a1, UNUSED struct ObjJoint *a2, struct GdVec3f *a3)
 {
-    struct MyVec3f sp7C;
+    struct GdVec3f sp7C;
     UNUSED u8 pad64[0x7c-0x64];
     f32 sp60;
     f32 sp5C;
@@ -646,10 +643,10 @@ void func_80190168(struct ObjBone *b, UNUSED struct ObjJoint *a1, UNUSED struct 
 }
 
 /* 23EBB8 -> 23ED44 */
-void func_801903E8(struct ObjJoint *j, struct MyVec3f *a1, f32 x, f32 y, f32 z)
+void func_801903E8(struct ObjJoint *j, struct GdVec3f *a1, f32 x, f32 y, f32 z)
 {
     f32 sp14;
-    struct MyVec3f sp8;
+    struct GdVec3f sp8;
 
     if (j->unk1BC & 0x1 || (j->unk1BC & 0x1000) == 0)
     {
@@ -684,8 +681,8 @@ void func_80190574(s32 a0, struct ObjJoint *a1, struct ObjJoint *a2, f32 x, f32 
     UNUSED u32 pad268;
     UNUSED u32 sp264 = 0;
     UNUSED u32 sp258[3];    // unused vec?
-    struct MyVec3f sp24C;
-    struct MyVec3f sp240;
+    struct GdVec3f sp24C;
+    struct GdVec3f sp240;
     UNUSED u32 pad238[2];
     s32 sp234;  // i?
     s32 sp230;
@@ -802,7 +799,7 @@ void Unknown80190A20(void)
 {
     struct ObjJoint *j;  //sp3c
     UNUSED u32 pad38;
-    struct MyVec3f vec;  // sp2C
+    struct GdVec3f vec;  // sp2C
     struct ObjGroup *grp;
     struct Links *link;
     struct ObjBone *b;
@@ -827,15 +824,15 @@ void Unknown80190A20(void)
 }
 
 /* 23F324 -> 23F638 */
-void func_80190B54(struct ObjJoint *a0, struct ObjJoint *a1, struct MyVec3f *a2)   //b0
+void func_80190B54(struct ObjJoint *a0, struct ObjJoint *a1, struct GdVec3f *a2)   //b0
 {
-    struct MyVec3f spA4;
-    UNUSED struct MyVec3f pad98;
-    struct MyVec3f sp8C;
-    struct MyVec3f sp80;
+    struct GdVec3f spA4;
+    UNUSED struct GdVec3f pad98;
+    struct GdVec3f sp8C;
+    struct GdVec3f sp80;
     f32 sp7C;
     f32 sp78;
-    Mat4 sp38;
+    Mat4f sp38;
     UNUSED u8 pad1C[0x1C];
 
     if (a1 != NULL)
@@ -894,7 +891,7 @@ void Unknown80190E68(struct GdObj *obj, f32 x, f32 y, f32 z)
 {
     struct ObjJoint *sp44;
     struct GdObj *sp40;
-    struct MyVec3f vec; //sp34
+    struct GdVec3f vec; //sp34
     UNUSED u32 pad1C[6];
 
     vec.x = x;
@@ -918,7 +915,7 @@ f32 func_80190F3C(struct ObjJoint *a0, f32 a1, f32 a2, f32 a3)
 {
     struct ObjJoint *curj; // 34
     s32 i;  // 30
-    struct MyVec3f sp24;
+    struct GdVec3f sp24;
 
     sp24.x = a0->unk3C.x;
     sp24.y = a0->unk3C.y;
@@ -1018,9 +1015,9 @@ void Unknown801914F8(UNUSED struct ObjJoint *j)
 }
 
 /* 23FCDC -> 23FDD4; not called */
-void Unknown8019150C(Mat4 *a0, struct MyVec3f *a1)
+void Unknown8019150C(Mat4f *a0, struct GdVec3f *a1)
 {
-    struct MyVec3f sp1C;
+    struct GdVec3f sp1C;
 
     sp1C.x = (*a0)[3][0] / 10.0; //? 10.0f
     sp1C.y = (*a0)[3][1] / 10.0; //? 10.0f
@@ -1053,8 +1050,8 @@ void func_80191604(struct ObjJoint *j)
     j->unk1A8.x = j->unk1A8.y = j->unk1A8.z = 0.0f;
 
     set_identity_mat4(&j->mat168);
-    func_8019415C(&j->mat168, (struct MyVec3f *)&j->unk9C);
-    func_80194220(&j->mat168, (struct MyVec3f *)&j->unk6C);
+    func_8019415C(&j->mat168, (struct GdVec3f *)&j->unk9C);
+    func_80194220(&j->mat168, (struct GdVec3f *)&j->unk6C);
     func_801942E4(&j->mat168, &j->unk200);
     cpy_mat4(&j->mat168, &j->matE8);
 
@@ -1117,8 +1114,8 @@ void Unknown80191A1C(struct ObjBone *a0)
     f32 sp38 = 0.0f;
     struct GdObj *argjoint;
     struct GdObj *tempjoint;
-    struct MyVec3f sp24;
-    struct MyVec3f sp18;
+    struct GdVec3f sp24;
+    struct GdVec3f sp18;
 
     if (gGdTempBone == NULL) { gGdTempBone = a0;}
     sp3C = dot_product_vec3f(&gGdTempBone->unk40, &a0->unk40);

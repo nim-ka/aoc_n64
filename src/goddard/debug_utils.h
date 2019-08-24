@@ -1,8 +1,11 @@
-#ifndef _GD_PROFILERS_H_
-#define _GD_PROFILERS_H_
+#ifndef GD_DEBUGGING_UTILS_H
+#define GD_DEBUGGING_UTILS_H
 
-#include <types.h>
+#include <ultra64.h>
 #include "gd_types.h"
+
+#define GD_NUM_MEM_TRACKERS 32
+#define GD_NUM_TIMERS 32
 
 // structs
 struct MemTracker {
@@ -47,9 +50,6 @@ struct GdFile {
 // bss
 extern u8 *gGdStreamBuffer;
 
-#define GD_NUM_MEM_TRACKERS 32
-#define GD_NUM_TIMERS 32
-
 // functions
 extern struct MemTracker *start_memtracker(const char *);
 extern u32 stop_memtracker(const char *);
@@ -72,8 +72,8 @@ extern void fatal_printf(const char *, ...);
 extern void add_to_stacktrace(const char *);
 extern void imout(void);
 extern f32 func_8018D560(void);
-extern s32 gd_atoi(const char*);
-extern f64 gd_lazy_atof(const char*, UNUSED u32*);
+extern s32 gd_atoi(const char *);
+extern f64 gd_lazy_atof(const char *, u32 *);
 extern char *sprint_val_withspecifiers(char *, union PrintVal, char *);
 extern void gd_strcpy(char *, const char *);
 extern char *gd_strdup(const char *);
@@ -82,10 +82,10 @@ extern char *gd_strcat(char *, const char *);
 extern s32 gd_str_not_equal(const char *, const char *);
 extern s32 gd_str_contains(const char *, const char *);
 extern s32 gd_feof(struct GdFile *);
-extern struct GdFile* gd_fopen(const char *, const char *);
-extern s32 gd_fread(s8*, s32, s32, struct GdFile *);
+extern struct GdFile *gd_fopen(const char *, const char *);
+extern s32 gd_fread(s8 *, s32, s32, struct GdFile *);
 extern void gd_fclose(struct GdFile *);
 extern u32 gd_get_file_size(struct GdFile *);
 extern s32 gd_fread_line(char *, u32, struct GdFile *);
 
-#endif /* _GD_PROFILERS_H_ */
+#endif /* GD_DEBUGGING_UTILS_H */

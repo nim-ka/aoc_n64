@@ -1,11 +1,9 @@
 #include <ultra64.h>
 #include <stdarg.h>
-
-#include "sm64.h"
+#include <macros.h>
 #include "gd_types.h"
-
-#include "profiler_utils.h"
-#include "mario_head_6.h"
+#include "debug_utils.h"
+#include "renderer.h"
 
 // types
 struct UnkBufThing {

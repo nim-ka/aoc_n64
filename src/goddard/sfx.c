@@ -1,7 +1,5 @@
 #include <ultra64.h>
-
-#include "sm64.h"
-#include "mhead_sfx.h"
+#include "sfx.h"
 
 static u32 sSfxToPlay;     // @ 801B9B20
 static u32 sLastPlayedSfx; // @ 801B9B24

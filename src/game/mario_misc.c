@@ -16,7 +16,7 @@
 #include "memory.h"
 #include "object_helpers.h"
 #include "object_helpers2.h"
-#include "goddard/mario_head_6.h"
+#include "goddard/renderer.h"
 #include "rendering_graph_node.h"
 #include "save_file.h"
 #include "sound_init.h"

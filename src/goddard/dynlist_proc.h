@@ -1,5 +1,5 @@
-#ifndef _DYNLIST_PROCESSOR_
-#define _DYNLIST_PROCESSOR_
+#ifndef GD_DYNLIST_PROCESSOR_H
+#define GD_DYNLIST_PROCESSOR_H
 
 #include <ultra64.h>
 #include "gd_types.h"
@@ -69,14 +69,14 @@ extern void d_start_group(DynId);
 extern void d_end_group(DynId);
 extern void dynid_is_int(s32);
 extern void d_set_init_pos(f32, f32, f32);
-extern void d_get_init_pos(struct MyVec3f*);
-extern void d_get_init_rot(struct MyVec3f*);
+extern void d_get_init_pos(struct GdVec3f*);
+extern void d_get_init_rot(struct GdVec3f*);
 extern void d_set_rel_pos(f32, f32, f32);
-extern void d_get_rel_pos(struct MyVec3f*);
+extern void d_get_rel_pos(struct GdVec3f*);
 extern struct ObjGroup* d_get_att_objgroup(void);
-extern void d_get_scale(struct MyVec3f*);
+extern void d_get_scale(struct GdVec3f*);
 extern void d_set_world_pos(f32, f32, f32);
-extern void d_get_world_pos(struct MyVec3f *);
+extern void d_get_world_pos(struct GdVec3f *);
 extern void d_set_scale(f32, f32, f32);
 extern void d_add_valptr(DynId, u32, s32, u32);
 extern void d_add_valproc(union ObjVarVal * (*)(union ObjVarVal *, union ObjVarVal));
@@ -88,11 +88,11 @@ extern void d_set_type(s32);
 extern void d_set_colour_num(s32);
 extern void d_set_diffuse(f32, f32, f32);
 extern struct GdPlaneF* d_get_plane(void);
-extern void d_get_matrix(Mat4*);
-extern Mat4* d_get_rot_mtx_ptr(void);
-extern void d_set_idn_mtx(Mat4*);
-extern Mat4* d_get_matrix_ptr(void);
-extern Mat4* d_get_idn_mtx_ptr(void);
+extern void d_get_matrix(Mat4f*);
+extern Mat4f* d_get_rot_mtx_ptr(void);
+extern void d_set_idn_mtx(Mat4f*);
+extern Mat4f* d_get_matrix_ptr(void);
+extern Mat4f* d_get_idn_mtx_ptr(void);
 extern f32 d_calc_world_dist_btwn(struct GdObj *, struct GdObj *);
 
-#endif /* _DYNLIST_PROCESSOR_ */
+#endif /* GD_DYNLIST_PROCESSOR_H */

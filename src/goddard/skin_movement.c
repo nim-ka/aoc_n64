@@ -1,24 +1,22 @@
 #include <ultra64.h>
-
-#include "sm64.h"
-#include "mario_head_1.h"
-#include "mario_head_2.h"
-#include "profiler_utils.h"
-#include "joint_fns.h"
-#include "skin_fns.h"
-#include "matrix_fns.h"
-
+#include <macros.h>
 #include "gd_types.h"
+#include "objects.h"
+#include "skin_movement.h"
+#include "debug_utils.h"
+#include "joints.h"
+#include "skin.h"
+#include "gd_math.h"
 
 /* bss */
 struct ObjWeight* sSkinNetCurWeight;
-static Mat4 D_801B9EA8;               // TODO: rename to sHead2Mtx?
+static Mat4f D_801B9EA8;               // TODO: rename to sHead2Mtx?
 static struct ObjJoint* D_801B9EE8;
 
 /* @ 22FDB0 for 0x180 */
-void Unknown801815E0(Mat4* mtx)
+void Unknown801815E0(Mat4f* mtx)
 {
-    struct MyVec3f scratchVec;
+    struct GdVec3f scratchVec;
 
     scratchVec.x = (*mtx)[0][0];
     scratchVec.y = (*mtx)[0][1];
@@ -52,11 +50,11 @@ void func_80181760(struct ObjGroup *a0)
 {
     register f32 sp1C;
     register struct Links* link;
-    Mat4* mtx;
+    Mat4f* mtx;
 
     for (link = a0->link1C; link != NULL; link = link->next)
     {
-        mtx = (Mat4 *)link->obj;
+        mtx = (Mat4f *)link->obj;
 
         if ((sp1C = (*mtx)[3][3]) != 0.0f)
         {
@@ -82,7 +80,7 @@ void move_skin(struct ObjNet* net)
 void func_80181894(struct ObjJoint* joint)
 {
     register struct ObjGroup* weightGroup;  //baseGroup? weights Only?
-    struct MyVec3f stackVec;
+    struct GdVec3f stackVec;
     register struct ObjWeight* curWeight;
     register struct ObjVertex* connectedVtx;
     register struct Links* link;
@@ -118,7 +116,7 @@ void func_80181894(struct ObjJoint* joint)
 /* @ 2301A0 for 0x110 */
 void Unknown801819D0(struct ObjVertex* vtx)
 {
-    struct MyVec3f localVec;
+    struct GdVec3f localVec;
     UNUSED u8 pad24[0x10];
 
     if (sTargetWeightID++ == sSkinNetCurWeight->id)

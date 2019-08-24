@@ -1,21 +1,23 @@
-#ifndef _GD_TYPES_H
-#define _GD_TYPES_H
+#ifndef GD_TYPES_H
+#define GD_TYPES_H
 
 #include <ultra64.h>
-#include "types.h"
-
 
 /* Vector Types */
+struct GdVec3f
+{
+    f32 x, y, z;
+};
+
 struct GdPlaneF {
-    struct MyVec3f vec0;
-    struct MyVec3f vec1;
+    struct GdVec3f p0, p1;
 };
 
 struct GdTriangleF {
-    struct MyVec3f vec0;
-    struct MyVec3f vec1;
-    struct MyVec3f vec2;
+    struct GdVec3f p0, p1, p2;
 };
+
+typedef f32 Mat4f[4][4];
 
 struct GdColour {
     f32 r, g, b;
@@ -32,7 +34,7 @@ struct DynList {
     s32 cmd;
     union DynUnion w1;
     union DynUnion w2;
-    struct MyVec3f vec;
+    struct GdVec3f vec;
 };
 
 /* Goddard Code Object Structs */
@@ -140,17 +142,17 @@ struct ObjGroup {
 
 struct ObjBone {
     /* 0x000 */ struct GdObj header;
-    /* 0x014 */ struct MyVec3f unk14;   // "position"?? from dead code in draw_bone
+    /* 0x014 */ struct GdVec3f unk14;   // "position"?? from dead code in draw_bone
     /* 0x020 */ struct ObjBone *prev;   // maybe, based on make_bone
     /* 0x024 */ struct ObjBone *next;   // maybe, based on make_bone
-    /* 0x028 */ struct MyVec3f unk28;   // "rotation"?? from dead code in draw_bone
+    /* 0x028 */ struct GdVec3f unk28;   // "rotation"?? from dead code in draw_bone
     /* 0x034 */ u8  pad34[0x40-0x34];
-    /* 0x040 */ struct MyVec3f unk40;
+    /* 0x040 */ struct GdVec3f unk40;
     /* 0x04C */ u8  pad4C[0x58-0x4C];
-    /* 0x058 */ struct MyVec3f unk58;
-    /* 0x064 */ struct MyVec3f unk64;
-    /* 0x070 */ Mat4 mat70;
-    /* 0x0B0 */ Mat4 matB0;
+    /* 0x058 */ struct GdVec3f unk58;
+    /* 0x064 */ struct GdVec3f unk64;
+    /* 0x070 */ Mat4f mat70;
+    /* 0x0B0 */ Mat4f matB0;
     /* 0x0F0 */ struct ObjShape *unkF0; // from dead code in draw_bone
     /* 0x0F4 */ f32 unkF4;
     /* 0x0F8 */ f32 unkF8;              // from dead code in draw_bone
@@ -167,31 +169,31 @@ struct ObjBone {
 
 struct ObjJoint {
     /* 0x000 */ struct GdObj header;
-    /* 0x014 */ struct MyVec3f unk14;    //position? based on d_set_initpos
+    /* 0x014 */ struct GdVec3f unk14;    //position? based on d_set_initpos
     /* 0x020 */ struct ObjShape *unk20;
     /* 0x024 */ struct ObjJoint *prevjoint; // prev joint? linked joint?
     /* 0x028 */ struct ObjJoint *nextjoint;
     /* 0x02C */ void (*fn2C)(struct ObjJoint*);
-    /* 0x030 */ struct MyVec3f unk30;   // huge array of vecs? another matrix?
-    /* 0x03C */ struct MyVec3f unk3C;   // relative position?
-    /* 0x048 */ struct MyVec3f unk48;
-    /* 0x054 */ struct MyVec3f unk54;   // attached offset (with +200 as well)
+    /* 0x030 */ struct GdVec3f unk30;   // huge array of vecs? another matrix?
+    /* 0x03C */ struct GdVec3f unk3C;   // relative position?
+    /* 0x048 */ struct GdVec3f unk48;
+    /* 0x054 */ struct GdVec3f unk54;   // attached offset (with +200 as well)
     /* 0x060 */ u8  pad60[0x6C-0x60];
-    /* 0x06C */ struct MyVec3f unk6C;   // initial rotation vec
-    /* 0x078 */ struct MyVec3f unk78;
-    /* 0x084 */ struct MyVec3f unk84;
-    /* 0x090 */ struct MyVec3f unk90;
-    /* 0x09C */ struct MyVec3f unk9C;   // scale vec?
-    /* 0x0A8 */ struct MyVec3f unkA8;
-    /* 0x0B4 */ struct MyVec3f unkB4;
-    /* 0x0C0 */ struct MyVec3f unkC0;   // "shape offset"
-    /* 0x0CC */ struct MyVec3f unkCC;
+    /* 0x06C */ struct GdVec3f unk6C;   // initial rotation vec
+    /* 0x078 */ struct GdVec3f unk78;
+    /* 0x084 */ struct GdVec3f unk84;
+    /* 0x090 */ struct GdVec3f unk90;
+    /* 0x09C */ struct GdVec3f unk9C;   // scale vec?
+    /* 0x0A8 */ struct GdVec3f unkA8;
+    /* 0x0B4 */ struct GdVec3f unkB4;
+    /* 0x0C0 */ struct GdVec3f unkC0;   // "shape offset"
+    /* 0x0CC */ struct GdVec3f unkCC;
     /* 0x0D8 */ u8  padD8[4];
-    /* 0x0DC */ struct MyVec3f unkDC;   // "friction"
-    /* 0x0E8 */ Mat4 matE8;     //matrix4x4
-    /* 0x128 */ Mat4 mat128;    // "rot matrix"
-    /* 0x168 */ Mat4 mat168;    // "id matrix"
-    /* 0x1A8 */ struct MyVec3f unk1A8;
+    /* 0x0DC */ struct GdVec3f unkDC;   // "friction"
+    /* 0x0E8 */ Mat4f matE8;     //matrix4x4
+    /* 0x128 */ Mat4f mat128;    // "rot matrix"
+    /* 0x168 */ Mat4f mat168;    // "id matrix"
+    /* 0x1A8 */ struct GdVec3f unk1A8;
     /* 0x1B4 */ s32 id;
     /* 0x1B8 */ u8  pad1B8[4];
     /* 0x1BC */ s32 unk1BC;     // "flags"
@@ -204,7 +206,7 @@ struct ObjJoint {
     /* 0x1F4 */ struct ObjGroup *unk1F4;    //Group of ObjWeights, only? skin weights?
     /* 0x1F8 */ struct ObjGroup *unk1F8;    //attach object group
     /* 0x1FC */ s32 unk1FC;                 //d_attach_to arg 0; "AttFlag"
-    /* 0x200 */ struct MyVec3f unk200;      //attached offset?
+    /* 0x200 */ struct GdVec3f unk200;      //attached offset?
     /* 0x20C */ struct GdObj *unk20C;       //attached object?
     /* 0x210 */ u8  pad210[0x228-0x210];
     /* 0x228 */ f32 unk228;
@@ -218,11 +220,11 @@ struct ObjParticle {
     /* 0x00 */ struct GdObj header;
     /* 0x14 */ u8 pad14[0x1C-0x14];
     /* 0x1C */ struct ObjShape *unk1C;     // looks like a shape...
-    /* 0x20 */ struct MyVec3f unk20;    // position vec?
+    /* 0x20 */ struct GdVec3f unk20;    // position vec?
     /* 0x2C */ u8 pad2C[0x30-0x2C];
     /* 0x30 */ f32 unk30;
     /* 0x34 */ u8 pad34[0x38-0x34];
-    /* 0x38 */ struct MyVec3f unk38;
+    /* 0x38 */ struct GdVec3f unk38;
     /* 0x44 */ f32 unk44; //not vec?
     /* 0x48 */ f32 unk48; //not vec?
     /* 0x4C */ u8 pad4C[0x50-0x4C];
@@ -285,32 +287,32 @@ struct ObjShape {
 
 struct ObjNet {
     /* 0x000 */ struct GdObj header;
-    /* 0x014 */ struct MyVec3f unk14;   // position? d_set_initpos + d_set_world_pos; print_net says world
-    /* 0x020 */ struct MyVec3f unk20;   // position? d_set_initpos? attached offset? dynamic? scratch?
+    /* 0x014 */ struct GdVec3f unk14;   // position? d_set_initpos + d_set_world_pos; print_net says world
+    /* 0x020 */ struct GdVec3f unk20;   // position? d_set_initpos? attached offset? dynamic? scratch?
     /* 0x02C */ u8  pad2c[0x34-0x2C];
     /* 0x034 */ s32 unk34;       // "dflags"?
     /* 0x038 */ u32 unk38;      // some sort of id? from move_net
     /* 0x03C */ s32 unk3C;      // state flags? vertex info flags?
     /* 0x040 */ s32 unk40;      // gd "colour"
-    /* 0x044 */ struct MyVec3f unk44;   // "force"
-    /* 0x050 */ struct MyVec3f unk50;   // velocity
-    /* 0x05C */ struct MyVec3f unk5C;   // rotation
-    /* 0x068 */ struct MyVec3f unk68;   //initial rotation?
-    /* 0x074 */ struct MyVec3f unk74;   // "collDisp"
-    /* 0x080 */ struct MyVec3f unk80;   // "collTorque"
-    /* 0x08C */ struct MyVec3f unk8C;   // "CollTorqueL"
-    /* 0x098 */ struct MyVec3f unk98;   // "CollTorqueD"
-    /* 0x0A4 */ struct MyVec3f unkA4;   // torque
-    /* 0x0B0 */ struct MyVec3f unkB0;   // "CofG" center of gravity?
+    /* 0x044 */ struct GdVec3f unk44;   // "force"
+    /* 0x050 */ struct GdVec3f unk50;   // velocity
+    /* 0x05C */ struct GdVec3f unk5C;   // rotation
+    /* 0x068 */ struct GdVec3f unk68;   //initial rotation?
+    /* 0x074 */ struct GdVec3f unk74;   // "collDisp"
+    /* 0x080 */ struct GdVec3f unk80;   // "collTorque"
+    /* 0x08C */ struct GdVec3f unk8C;   // "CollTorqueL"
+    /* 0x098 */ struct GdVec3f unk98;   // "CollTorqueD"
+    /* 0x0A4 */ struct GdVec3f unkA4;   // torque
+    /* 0x0B0 */ struct GdVec3f unkB0;   // "CofG" center of gravity?
     /* 0x0BC */ struct GdPlaneF unkBC;  // bounding box
-    /* 0x0D4 */ struct MyVec3f unkD4;   // "CollDispOff"
+    /* 0x0D4 */ struct GdVec3f unkD4;   // "CollDispOff"
     /* 0x0E0 */ f32 unkE0;              // "CollMaxD"
     /* 0x0E4 */ f32 unkE4;              // "MaxRadius"
-    /* 0x0E8 */ Mat4 matE8;
-    /* 0x128 */ Mat4 mat128;
-    /* 0x168 */ Mat4 mat168;             // "rotation matrix"
+    /* 0x0E8 */ Mat4f matE8;
+    /* 0x128 */ Mat4f mat128;
+    /* 0x168 */ Mat4f mat168;             // "rotation matrix"
     /* 0x1A8 */ struct ObjShape *unk1A8; // "ShapePtr"
-    /* 0x1AC */ struct MyVec3f unk1AC;   // scale
+    /* 0x1AC */ struct GdVec3f unk1AC;   // scale
     /* 0x1B8 */ f32 unk1B8;              // "Mass"
     /* 0x1BC */ s32 unk1BC;              // "NumModes"
     /* 0x1C0 */ struct ObjGroup *unk1C0;
@@ -319,13 +321,13 @@ struct ObjNet {
     /* 0x1CC */ struct ObjGroup *unk1CC;    // plane group (only type 1?)
     /* 0x1D0 */ struct ObjGroup *unk1D0;    // vertex group
     /* 0x1D4 */ struct ObjGroup *unk1D4;    // attached objects group?
-    /* 0x1D8 */ struct MyVec3f unk1D8;      // attached offset
+    /* 0x1D8 */ struct GdVec3f unk1D8;      // attached offset
     /* 0x1E4 */ s32 unk1E4;                 // d_attach_to arg 0; "AttFlag"
     /* 0x1E8 */ struct GdObj *unk1E8;   // attached obj?
     /* 0x1EC */ s32 netType;    // from move_net
     /* 0x1F0 */ struct ObjNet *unk1F0;  // or joint. guess from Unknown80192AD0
-    /* 0x1F4 */ struct MyVec3f unk1F4;
-    /* 0x200 */ struct MyVec3f unk200;
+    /* 0x1F4 */ struct GdVec3f unk1F4;
+    /* 0x200 */ struct GdVec3f unk200;
     /* 0x20C */ struct ObjGroup *unk20C;
     /* 0x210 */ s32 unk210;     // "control type"
     /* 0x214 */ u8  pad214[0x21C-0x214];
@@ -345,9 +347,9 @@ struct ObjPlane {
 
 struct ObjVertex {
     /* 0x00 */ struct GdObj header;
-    /* 0x14 */ struct MyVec3f initPos;
-    /* 0x20 */ struct MyVec3f pos;     // rel position? world pos? both are set with the same value..
-    /* 0x2C */ struct MyVec3f normal;  // normal? also color (like gbi?)
+    /* 0x14 */ struct GdVec3f initPos;
+    /* 0x20 */ struct GdVec3f pos;     // rel position? world pos? both are set with the same value..
+    /* 0x2C */ struct GdVec3f normal;  // normal? also color (like gbi?)
     /* 0x38 */ s16 id;
     /* 0x3A */ u8  pad3A[2];
     /* 0x3C */ f32 unk3C;
@@ -365,7 +367,7 @@ struct ObjFace {
     /* 0x00 */ struct GdObj header;
     /* 0x14 */ struct GdColour colour;
     /* 0x20 */ s32 colNum;   // "colour" index
-    /* 0x24 */ struct MyVec3f normal;
+    /* 0x24 */ struct GdVec3f normal;
     /* 0x30 */ s32 vtxCount;
     /* 0x34 */ struct ObjVertex *vertices[4];   // these can also be s32 indices? which are then replaced by `find_thisface_verts`
     /* 0x44 */ s32 mtlId; // from compressed GdFaceData; -1 == coloured face?
@@ -374,30 +376,30 @@ struct ObjFace {
 
 struct ObjCamera {
     /* 0x000 */ struct GdObj header;
-    /* 0x014 */ struct MyVec3f unk14;   // position vec? from d_set_initpos
+    /* 0x014 */ struct GdVec3f unk14;   // position vec? from d_set_initpos
     /* 0x020 */ struct ObjCamera* prev;
     /* 0x024 */ struct ObjCamera* next;
     /* 0x028 */ s32 id;
     /* 0x02C */ s32 unk2C;   // flag of some sort
     /* 0x030 */ struct GdObj* unk30;   // pointer to some type of object
-    /* 0x034 */ struct MyVec3f unk34;
-    /* 0x040 */ struct MyVec3f unk40;   // relative position related?
-    /* 0x04C */ struct MyVec3f unk4C;
-    /* 0x058 */ f32 unk58;      // MyVec3f ?
+    /* 0x034 */ struct GdVec3f unk34;
+    /* 0x040 */ struct GdVec3f unk40;   // relative position related?
+    /* 0x04C */ struct GdVec3f unk4C;
+    /* 0x058 */ f32 unk58;      // GdVec3f ?
     /* 0x05C */ u8  pad5C[0x4];
     /* 0x060 */ f32 unk60;
-    /* 0x064 */ Mat4 unk64;    //matrix4x4
+    /* 0x064 */ Mat4f unk64;    //matrix4x4
     /* 0x0A4 */ f32 unkA4;
-    /* 0x0A8 */ Mat4 unkA8;    //matrix4x4
-    /* 0x0E8 */ Mat4 unkE8;
-    /* 0x128 */ struct MyVec3f unk128;  //possibly
-    /* 0x134 */ struct MyVec3f unk134;
-    /* 0x140 */ struct MyVec3f positions[4]; // zoom positions (*1, *1.5, *2, empty fourth)
+    /* 0x0A8 */ Mat4f unkA8;    //matrix4x4
+    /* 0x0E8 */ Mat4f unkE8;
+    /* 0x128 */ struct GdVec3f unk128;  //possibly
+    /* 0x134 */ struct GdVec3f unk134;
+    /* 0x140 */ struct GdVec3f positions[4]; // zoom positions (*1, *1.5, *2, empty fourth)
     /* 0x170 */ s32 zoomLevels; // max number of zoom positions
     /* 0x174 */ s32 zoom; // index into position vec array
     /* 0x178 */ f32 unk178;
     /* 0x17C */ f32 unk17C;
-    /* 0x180 */ struct MyVec3f unk180;
+    /* 0x180 */ struct GdVec3f unk180;
     /* 0x18C */ struct ObjView *unk18C; // view that has/is using this camera?
 }; /* sizeof = 0x190 */
 
@@ -426,7 +428,7 @@ struct ObjWeight {
     /* 0x00 */ struct GdObj header;
     /* 0x14 */ u8  pad14[0x8];
     /* 0x1C */ s32 id;   //id
-    /* 0x20 */ struct MyVec3f vec20;    //based on func_80181894? maybe a GdPlaneF?
+    /* 0x20 */ struct GdVec3f vec20;    //based on func_80181894? maybe a GdPlaneF?
     /* 0x2C */ u8  pad2C[0x38-0x2c];
     /* 0x38 */ f32 unk38; // weight (unit?)
     /* 0x3C */ struct ObjVertex* unk3C;
@@ -442,7 +444,7 @@ union ObjVarVal {
 
 struct ObjGadget {
     /* 0x00 */ struct GdObj header;
-    /* 0x14 */ struct MyVec3f unk14;    // "world" position vec?
+    /* 0x14 */ struct GdVec3f unk14;    // "world" position vec?
     /* 0x20 */ s32 unk20;
     /* 0x24 */ s32 unk24;   // type?
     /* 0x28 */ f32 unk28;
@@ -450,7 +452,7 @@ struct ObjGadget {
     /* 0x30 */ union ObjVarVal varval; //retype and rename varval30
     /* 0x38 */ f32 unk38;   //range left?
     /* 0x3C */ f32 unk3C;   //range right?
-    /* 0x40 */ struct MyVec3f unk40;   // scale?
+    /* 0x40 */ struct GdVec3f unk40;   // scale?
     /* 0x4C */ struct ObjGroup *unk4C; //gfroup->link->obj = valptr for var30 ?
     /* 0x50 */ struct ObjShape *unk50;
     /* 0x54 */ struct ObjGroup *unk54;  //node group?
@@ -488,12 +490,12 @@ struct ObjView {
     /* 0x30 */ struct GdObj *pickedObj; // selected with cursor (`update_view`)
     /* 0x34 */ enum GdViewFlags flags;
     /* 0x38 */ s32 unk38; // enum? if 1 use guPerspective (see `drawscene`)
-    /* 0x3C */ struct MyVec3f upperLeft; // position vec?
+    /* 0x3C */ struct GdVec3f upperLeft; // position vec?
     /* 0x48 */ f32 unk48; // what are these? are they another vec?
     /* 0x4C */ f32 unk4C;
     /* 0x50 */ u8  pad50[0x4];
-    /* 0x54 */ struct MyVec3f lowerRight;
-    /* 0x60 */ struct MyVec3f clipping; // z-coordinate of (x: near, y: far) clipping plane?
+    /* 0x54 */ struct GdVec3f lowerRight;
+    /* 0x60 */ struct GdVec3f clipping; // z-coordinate of (x: near, y: far) clipping plane?
     /* 0x6C */ const char *namePtr;
     /* 0x70 */ s32 gdDlNum;   // gd dl number
     /* 0x74 */ s32 unk74;
@@ -511,7 +513,7 @@ typedef union ObjVarVal * (*valptrproc_t)(union ObjVarVal *, union ObjVarVal);
 
 struct ObjLabel {
     /* 0x00 */ struct GdObj header;
-    /* 0x14 */ struct MyVec3f vec14;
+    /* 0x14 */ struct GdVec3f vec14;
     /* 0x20 */ char *fmtstr;
     /* 0x24 */ s32 unk24;
     /* 0x28 */ struct ObjValPtrs *valptr;
@@ -564,8 +566,8 @@ struct AnimDataInfo {
 };
 /* GD_ANIM_MTX_VEC (9) type */
 struct AnimMtxVec {
-    /* 0x00 */ Mat4 matrix;
-    /* 0x40 */ struct MyVec3f vec;  // seems to be a scale vec
+    /* 0x00 */ Mat4f matrix;
+    /* 0x40 */ struct GdVec3f vec;  // seems to be a scale vec
 };
 
 enum ValPtrType {
@@ -603,10 +605,10 @@ struct ObjLight {
     /* 0x4C */ s32 unk4C;
     /* 0x50 */ struct GdColour diffuse;
     /* 0x5C */ struct GdColour colour;
-    /* 0x68 */ struct MyVec3f unk68;
-    /* 0x74 */ struct MyVec3f position;
-    /* 0x80 */ struct MyVec3f unk80;
-    /* 0x8C */ struct MyVec3f unk8C;
+    /* 0x68 */ struct GdVec3f unk68;
+    /* 0x74 */ struct GdVec3f position;
+    /* 0x80 */ struct GdVec3f unk80;
+    /* 0x8C */ struct GdVec3f unk8C;
     /* 0x98 */ s32 unk98;
     /* 0x9C */ struct ObjShape *unk9C;
 }; /* sizeof = 0xA0 */
@@ -626,4 +628,4 @@ struct ObjUnk200000 {
     /* 0x34 */ struct ObjFace *unk34;   //not sure; guessing for Unknown801781DC
 }; /* sizeof = 0x38*/
 
-#endif /* _GD_TYPES_H */
+#endif /* GD_TYPES_H */

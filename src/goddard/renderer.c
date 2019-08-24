@@ -1,23 +1,25 @@
 #include <ultra64.h>
 #include <stdarg.h>
+#include <macros.h>
+#include <config.h>
 
-#include "sm64.h"
 #include "prevent_bss_reordering.h"
 #include "gd_types.h"
+#include "gd_macros.h"
 #include "dynlists/dynlists.h"
 #include "gd_tex_dl.h"
 
-#include "mario_head_6.h"
+#include "renderer.h"
 #include "gd_main.h"
 #include "gd_memory.h"
-#include "mhead_sfx.h"
+#include "sfx.h"
 #include "draw_objects.h"
-#include "mario_head_1.h"
+#include "objects.h"
 #include "dynlist_proc.h"
-#include "profiler_utils.h"
-#include "skin_fns.h"
-#include "matrix_fns.h"
-#include "half_6.h"
+#include "debug_utils.h"
+#include "skin.h"
+#include "gd_math.h"
+#include "shape_helper.h"
 
 // types and defines
 typedef s32 intptr_t;
@@ -25,15 +27,10 @@ typedef u32 uintptr_t;
 
 #define MAX_GD_DLS 1000
 #define OS_MESG_SI_COMPLETE 0x33333333
-#define DEG_PER_RAD 57.29577950560105
-#define RAD_PER_DEG (1.0 / DEG_PER_RAD)
 
 #define GD_VIRTUAL_TO_PHYSICAL(addr) ((uintptr_t)(addr) & 0x0FFFFFFF)
 #define GD_LOWER_24(addr) ((uintptr_t)(addr) & 0x00FFFFFF)
 #define GD_LOWER_29(addr) (((uintptr_t) (addr)) & 0x1FFFFFFF)
-#define ALIGN(VAL_, ALIGNMENT_) (((VAL_) + ((ALIGNMENT_) - 1)) & ~((ALIGNMENT_) - 1))
-#define ABS(val) (((val) < 0 ? (-(val)) : (val)))
-#define SQ(n) ((n) * (n))
 #define MTX_INTPART_PACK(w1, w2)  (((w1) & 0xFFFF0000) | (((w2) >> 16) & 0xFFFF))
 #define MTX_FRACPART_PACK(w1, w2) ((((w1) << 16) & 0xFFFF0000) | ((w2) & 0xFFFF))
 #define LOOKAT_PACK(c) ((s32) MIN(((c) * (128.0)),127.0) & 0xff)
@@ -130,10 +127,10 @@ static s32 sUpdateMarioScene;                  // @ 801BB0D8; update dl Vtx from
 static u32 unref_801bb0dc;
 static s32 sUpdateCarScene;                    // @ 801BB0E0; guess, not really used
 static u32 unref_801bb0e4;
-static struct MyVec3f D_801BB0E8;
+static struct GdVec3f D_801BB0E8;
 static u32 unref_801bb0f8[2];
 static Mtx sIdnMtx;                            // @ 801BB100
-static Mat4 sInitIdnMat4;                      // @ 801BB140
+static Mat4f sInitIdnMat4;                      // @ 801BB140
 static s8 sVtxCvrtNormBuf[3];                  // @ 801BB180
 static s16 D_801BB184;
 static s32 D_801BB188;
@@ -142,8 +139,8 @@ static struct GdColour sLightScaleColours[2];  // @ 801BB1A0
 static struct Unk801BB1B8 D_801BB1B8[2];
 static s32 D_801BB1D0; // light id? from Proc8017A980 or register_light; used to offset into diffuse or ambient arrays
 static Hilite D_801BB1D8[600];
-static struct MyVec3f D_801BD758;
-static struct MyVec3f D_801BD768;              // had to migrate earlier
+static struct GdVec3f D_801BD758;
+static struct GdVec3f D_801BD768;              // had to migrate earlier
 static u32 D_801BD774;
 static struct GdObj *sMenuGadgets[9];      // @ 801BD778; d_obj ptr storage? menu?
 static struct ObjView *D_801BD7A0[2];
@@ -194,7 +191,7 @@ static s32 D_801A86BC = 1;
 static s32 D_801A86C0 = 0;                        // gd_dl id for something?
 static u32 unref_801a86C4 = 10;
 static s32 sMtxParameters = (G_MTX_PROJECTION | G_MTX_MUL | G_MTX_NOPUSH); // @ 801A86C8;
-static struct MyVec3f D_801A86CC = { 1.0f, 1.0f, 1.0f };
+static struct GdVec3f D_801A86CC = { 1.0f, 1.0f, 1.0f };
 static struct ObjView *sActiveView = NULL;        // @ 801A86D8 current view? used when drawing dl
 static struct ObjView *sScreenView2 = NULL;       // @ 801A86DC
 static struct ObjView *D_801A86E0 = NULL;
@@ -844,7 +841,7 @@ void *gdm_gettestdl(s32 id)
     struct GdObj *dobj;
     struct GdDisplayList *gddl;
     UNUSED u32 pad28[2];
-    struct MyVec3f vec;
+    struct GdVec3f vec;
 
     start_timer("dlgen");
     vec.x = vec.y = vec.z = 0.0f;
@@ -932,7 +929,7 @@ void *gdm_gettestdl(s32 id)
 }
 
 /* 24B418 -> 24B4CC; not called */
-void gdm_getpos(s32 id, struct MyVec3f *dst)
+void gdm_getpos(s32 id, struct GdVec3f *dst)
 {
     struct GdObj *dobj; // 1c
     switch (id)
@@ -1323,7 +1320,7 @@ u32 Unknown8019EC88(Gfx *dl, UNUSED s32 arg1)
 }
 
 /* 24D4C4 -> 24D63C; orig name: func_8019ECF4 */
-void mat4_to_Mtx(const Mat4 *src, Mtx *dst)
+void mat4_to_Mtx(const Mat4f *src, Mtx *dst)
 {
     s32 i; // 14
     s32 j; // 10
@@ -1347,7 +1344,7 @@ void mat4_to_Mtx(const Mat4 *src, Mtx *dst)
 }
 
 /* 24D63C -> 24D6E4; orig name: func_8019EE6C */
-void add_mat4_to_dl(Mat4 *mtx)
+void add_mat4_to_dl(Mat4f *mtx)
 {
     mat4_to_Mtx(mtx, &DL_CURRENT_MTX(sCurrentGdDl));
     gSPMatrix(
@@ -1359,7 +1356,7 @@ void add_mat4_to_dl(Mat4 *mtx)
 }
 
 /* 24D6E4 -> 24D790; orig name: func_8019EF14 */
-void add_mat4_load_to_dl(Mat4 *mtx)
+void add_mat4_load_to_dl(Mat4f *mtx)
 {
     mat4_to_Mtx(mtx, &DL_CURRENT_MTX(sCurrentGdDl));
     gSPMatrix(
@@ -1423,8 +1420,8 @@ void translate_load_mtx_gddl(f32 x, f32 y, f32 z)
 /* 24DA28 -> 24DA94 */
 void func_8019F258(f32 x, f32 y, f32 z)
 {
-    Mat4 mtx; // 28
-    struct MyVec3f vec; // 1c
+    Mat4f mtx; // 28
+    struct GdVec3f vec; // 1c
 
     vec.x = x;
     vec.y = y;
@@ -1437,7 +1434,7 @@ void func_8019F258(f32 x, f32 y, f32 z)
 /* 24DA94 -> 24DAE8 */
 void func_8019F2C4(f32 arg0, s8 arg1)
 {
-    Mat4 mtx; // 18
+    Mat4f mtx; // 18
 
     set_identity_mat4(&mtx);
     absrot_mat4(&mtx, arg1 - 120, -arg0);
@@ -1720,15 +1717,15 @@ void branch_to_gddl(s32 dlNum)
 void func_801A0478(
     s32 idx, // material GdDl number; offsets into hilite array
     struct ObjCamera *cam,
-    UNUSED struct MyVec3f *arg2,
-    UNUSED struct MyVec3f *arg3,
-    struct MyVec3f *arg4, // vector to light source?
+    UNUSED struct GdVec3f *arg2,
+    UNUSED struct GdVec3f *arg3,
+    struct GdVec3f *arg4, // vector to light source?
     struct GdColour *colour // light color
 )
 {
     UNUSED u32 pad2[24];
     Hilite *hilite; // 4c
-    struct MyVec3f sp40;
+    struct GdVec3f sp40;
     f32 sp3C; // magnitude of sp40
     f32 sp38;
     f32 sp34;
@@ -1917,7 +1914,7 @@ s32 func_801A086C(s32 id, struct GdColour *colour, s32 arg2)
 }
 
 /* 24FDB8 -> 24FE94; orig name: func_801A15E8; only from faces? */
-void set_Vtx_norm_buf_1(struct MyVec3f *norm)
+void set_Vtx_norm_buf_1(struct GdVec3f *norm)
 {
     sVtxCvrtNormBuf[0] = (s8) (norm->x * 127.0f);
     sVtxCvrtNormBuf[1] = (s8) (norm->y * 127.0f);
@@ -1925,7 +1922,7 @@ void set_Vtx_norm_buf_1(struct MyVec3f *norm)
 }
 
 /* 24FE94 -> 24FF80; orig name: func_801A16C4; only from verts? */
-void set_Vtx_norm_buf_2(struct MyVec3f *norm)
+void set_Vtx_norm_buf_2(struct GdVec3f *norm)
 {
     sVtxCvrtNormBuf[0] = (s8) (norm->x * 127.0f);
     sVtxCvrtNormBuf[1] = (s8) (norm->y * 127.0f);
@@ -3683,7 +3680,7 @@ void func_801A71CC(struct ObjNet *net)
     register struct Links *link1; // s1 (78)
     register struct Links *link2; // s2 (74)
     register struct Links *link3; // s3 (70)
-    struct MyVec3f sp64;
+    struct GdVec3f sp64;
     UNUSED u32 pad60;
     struct ObjPlane *plane;       // 5c
     UNUSED u32 pad58;
@@ -3700,24 +3697,24 @@ void func_801A71CC(struct ObjNet *net)
 
     gd_print_plane("making zones for net=", &net->unkBC);
 
-    sp64.x = (ABS(net->unkBC.vec0.x) + ABS(net->unkBC.vec1.x)) / 16.0f;
-    sp64.z = (ABS(net->unkBC.vec0.z) + ABS(net->unkBC.vec1.z)) / 16.0f;
+    sp64.x = (ABS(net->unkBC.p0.x) + ABS(net->unkBC.p1.x)) / 16.0f;
+    sp64.z = (ABS(net->unkBC.p0.z) + ABS(net->unkBC.p1.z)) / 16.0f;
 
-    spA8 = net->unkBC.vec0.z + sp64.z / 2.0f;
+    spA8 = net->unkBC.p0.z + sp64.z / 2.0f;
 
     for (i = 0; i < 16; i++)
     {
-        spAC = net->unkBC.vec0.x + sp64.x / 2.0f;
+        spAC = net->unkBC.p0.x + sp64.x / 2.0f;
 
         for (j = 0; j < 16; j++)
         {
-            sp90.vec0.x = spAC - (sp64.x / 2.0f);
-            sp90.vec0.y = 0.0f;
-            sp90.vec0.z = spA8 - (sp64.z / 2.0f);
+            sp90.p0.x = spAC - (sp64.x / 2.0f);
+            sp90.p0.y = 0.0f;
+            sp90.p0.z = spA8 - (sp64.z / 2.0f);
 
-            sp90.vec1.x = spAC + (sp64.x / 2.0f);
-            sp90.vec1.y = 0.0f;
-            sp90.vec1.z = spA8 + (sp64.z / 2.0f);
+            sp90.p1.x = spAC + (sp64.x / 2.0f);
+            sp90.p1.y = 0.0f;
+            sp90.p1.z = spA8 + (sp64.z / 2.0f);
 
             sp88 = make_zone(NULL, &sp90, NULL);
             addto_group(net->unk21C, &sp88->header);

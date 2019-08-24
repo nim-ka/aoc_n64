@@ -1,17 +1,15 @@
 #include <ultra64.h>
-
-#include "sm64.h"
+#include <macros.h>
 #include "gd_types.h"
-
-#include "skin_fns.h"
+#include "skin.h"
 #include "gd_main.h"
-#include "mario_head_1.h"
-#include "mario_head_2.h"
-#include "mario_head_3.h"
-#include "profiler_utils.h"
-#include "joint_fns.h"
-#include "matrix_fns.h"
-#include "mario_head_6.h"
+#include "objects.h"
+#include "skin_movement.h"
+#include "particles.h"
+#include "debug_utils.h"
+#include "joints.h"
+#include "gd_math.h"
+#include "renderer.h"
 
 // bss
 struct ObjNet* gGdSkinNet; // @ 801BAAF0
@@ -41,19 +39,19 @@ void func_80191F10(struct ObjNet *net)
         );
     }
     // L80191F8C
-    D_801B9DA0.vec0.x *= net->unk1AC.x;
-    D_801B9DA0.vec1.x *= net->unk1AC.x;
-    D_801B9DA0.vec0.y *= net->unk1AC.y;
-    D_801B9DA0.vec1.y *= net->unk1AC.y;
-    D_801B9DA0.vec0.z *= net->unk1AC.z;
-    D_801B9DA0.vec1.z *= net->unk1AC.z;
+    D_801B9DA0.p0.x *= net->unk1AC.x;
+    D_801B9DA0.p1.x *= net->unk1AC.x;
+    D_801B9DA0.p0.y *= net->unk1AC.y;
+    D_801B9DA0.p1.y *= net->unk1AC.y;
+    D_801B9DA0.p0.z *= net->unk1AC.z;
+    D_801B9DA0.p1.z *= net->unk1AC.z;
 
-    net->unkBC.vec0.x = D_801B9DA0.vec0.x;
-    net->unkBC.vec0.y = D_801B9DA0.vec0.y;
-    net->unkBC.vec0.z = D_801B9DA0.vec0.z;
-    net->unkBC.vec1.x = D_801B9DA0.vec1.x;
-    net->unkBC.vec1.y = D_801B9DA0.vec1.y;
-    net->unkBC.vec1.z = D_801B9DA0.vec1.z;
+    net->unkBC.p0.x = D_801B9DA0.p0.x;
+    net->unkBC.p0.y = D_801B9DA0.p0.y;
+    net->unkBC.p0.z = D_801B9DA0.p0.z;
+    net->unkBC.p1.x = D_801B9DA0.p1.x;
+    net->unkBC.p1.y = D_801B9DA0.p1.y;
+    net->unkBC.p1.z = D_801B9DA0.p1.z;
 }
 
 /* 240894 -> 240A64; orig name: func_801920C4 */
@@ -302,10 +300,10 @@ void move_bonesnet(struct ObjNet *net)
 /* 24149C -> 241768 */
 void func_80192CCC(struct ObjNet *net)
 {
-    Mat4 sp38;
+    Mat4f sp38;
     UNUSED struct GdControl *ctrl; // 34
     struct ObjGroup *group; // 30
-    struct MyVec3f sp24;
+    struct GdVec3f sp24;
 
     ctrl = &gGdCtrl;
     if (gGdCtrl.unk2C != NULL) { func_8017E2B8(); }

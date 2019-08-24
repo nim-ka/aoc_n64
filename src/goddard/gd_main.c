@@ -1,11 +1,10 @@
 #include <ultra64.h>
-
-#include "sm64.h"
+#include <macros.h>
 #include "gd_main.h"
 #include "gd_memory.h"
-#include "mario_head_1.h"
-#include "profiler_utils.h"
-#include "mario_head_6.h"
+#include "objects.h"
+#include "debug_utils.h"
+#include "renderer.h"
 
 /* This file was spilt out of debug_memory.asm based on rodata.
  * The rodata for functions after this "__main__" function have string literals following

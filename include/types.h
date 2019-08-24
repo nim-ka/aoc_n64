@@ -305,15 +305,4 @@ struct StructGeo802D2360
     s32 *unk4;
 };
 
-// used in goddard code
-
-struct MyVec3f
-{
-    float x;
-    float y;
-    float z;
-};
-
-
 #endif
-

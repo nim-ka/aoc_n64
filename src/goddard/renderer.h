@@ -1,5 +1,5 @@
-#ifndef _MARIO_HEAD_6_H_
-#define _MARIO_HEAD_6_H_
+#ifndef GD_RENDERER_H
+#define GD_RENDERER_H
 
 #include <ultra64.h>
 #include "gd_types.h"
@@ -54,7 +54,7 @@ extern void stash_current_gddl(void);
 extern void pop_gddl_stash(void);
 extern s32 gd_startdisplist(s32);
 extern s32 gd_end_dl();
-extern void add_mat4_load_to_dl(Mat4 *);
+extern void add_mat4_load_to_dl(Mat4f *);
 extern void push_idn_mtx_cur_gddl(void);
 extern void pop_mtx_gddl(void);
 extern void translate_mtx_gddl(f32, f32, f32);
@@ -73,10 +73,10 @@ extern void func_801A0324(s32);
 extern void set_light_num(s32);
 extern s32 create_mtl_gddl(s32);
 extern void branch_to_gddl(s32);
-extern void func_801A0478(s32, struct ObjCamera *, struct MyVec3f *, struct MyVec3f *, struct MyVec3f *, struct GdColour *);
+extern void func_801A0478(s32, struct ObjCamera *, struct GdVec3f *, struct GdVec3f *, struct GdVec3f *, struct GdColour *);
 extern s32 func_801A086C(s32, struct GdColour *, s32);
-extern void set_Vtx_norm_buf_1(struct MyVec3f *);
-extern void set_Vtx_norm_buf_2(struct MyVec3f *);
+extern void set_Vtx_norm_buf_1(struct GdVec3f *);
+extern void set_Vtx_norm_buf_2(struct GdVec3f *);
 extern void set_gd_mtx_parameters(s32);
 extern void gd_set_one_cycle(void);
 extern void func_801A2374(s32);
@@ -108,4 +108,4 @@ extern s32 get_cur_pickbuf_offset(s16 *);
 extern void set_Vtx_tc_buf(f32, f32);
 extern struct GdObj *load_dynlist(struct DynList *);
 
-#endif /* _MARIO_HEAD_6_H_ */
+#endif /* GD_RENDERER_H */

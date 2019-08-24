@@ -1,7 +1,7 @@
-#ifndef _JOINT_FUNCTIONS_H_
-#define _JOINT_FUNCTIONS_H_
+#ifndef GD_JOINTS_H_
+#define GD_JOINTS_H_
 
-#include <types.h>
+#include <ultra64.h>
 #include "gd_types.h"
 
 // bss
@@ -27,4 +27,4 @@ extern void Unknown80191824(struct ObjJoint *);
 extern void func_80191E88(struct ObjGroup *);
 extern void reset_joint_counts(void);
 
-#endif /* _JOINT_FUNCTIONS_H_ */
+#endif /* GD_JOINTS_H_ */

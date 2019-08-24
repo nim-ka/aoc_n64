@@ -1,7 +1,7 @@
-#ifndef _BAD_GD_DECLARATIONS_H_
-#define _BAD_GD_DECLARATIONS_H_
+#ifndef BAD_GD_DECLARATIONS_H
+#define BAD_GD_DECLARATIONS_H
 
-#include "sm64.h"
+#include <config.h>
 #include "gd_types.h"
 
 /**
@@ -25,16 +25,13 @@
 
 #define GD_USE_BAD_DECLARATIONS 1
 
-/* half6 */
-extern struct ObjFace *make_face_with_colour();
-/* should be: make_face_with_colour(f32, f32, f32)
-** '0.0, 0.0, 0.0' floats are being incorrectly promoted to doubles */
+/* half6 */ 
+extern struct ObjFace *make_face_with_colour(); 
+/* should be: make_face_with_colour(f32, f32, f32) */
 
 /* oldobj */
 extern struct ObjLabel *make_label();
-/* should be: make_label(struct ObjValPtrs *, char *, s32, f32, f32, f32)
-** But, it seems that goddard called this with '0, 0, 0' for the floats,
-** which ends with them being compiled as ints... */
+/* should be: make_label(struct ObjValPtrs *, char *, s32, f32, f32, f32) */
 
 #endif /* !BUGFIX_GODDARD_BAD_DECLARATIONS */
-#endif /* _BAD_GD_DECLARATIONS_H_ */
+#endif /* BAD_GD_DECLARATIONS_H */

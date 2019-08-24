@@ -17,7 +17,7 @@
 #include "game/sound_init.h"
 #include "surface_collision.h"
 #include "surface_load.h"
-#include "goddard/mario_head_6.h"
+#include "goddard/renderer.h"
 #include "game/profiler.h"
 
 

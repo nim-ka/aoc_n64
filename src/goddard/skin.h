@@ -1,7 +1,7 @@
-#ifndef _SKIN_FUNCTIONS_H_
-#define _SKIN_FUNCTIONS_H_
+#ifndef GD_SKIN_H
+#define GD_SKIN_H
 
-#include <types.h>
+#include <ultra64.h>
 #include "gd_types.h"
 
 // bss
@@ -15,4 +15,4 @@ extern void move_nets(struct ObjGroup *);
 extern void func_80193848(struct ObjGroup *);
 extern void reset_net_count(void);
 
-#endif /* _SKIN_FUNCTIONS_H_ */
+#endif /* GD_SKIN_H */

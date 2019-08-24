@@ -1,7 +1,7 @@
-#ifndef _HALF_6_H_
-#define _HALF_6_H_
+#ifndef SHAPE_HELPER_H
+#define SHAPE_HELPER_H
 
-#include "types.h"
+#include <ultra64.h>
 #include "gd_types.h"
 
 // data
@@ -29,4 +29,4 @@ extern void load_shapes2(void);
 extern struct ObjFace* make_face_with_colour(f32, f32, f32);
 #endif
 
-#endif /* _HALF_6_H_ */
+#endif /* SHAPE_HELPER_H */

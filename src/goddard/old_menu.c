@@ -1,19 +1,27 @@
 #include <ultra64.h>
-
-#include "sm64.h"
-
-#include "old_obj_fn.h"
+#include <macros.h>
 #include "gd_types.h"
-
-#include "mario_head_1.h"
+#include "old_menu.h"
+#include "objects.h"
 #include "dynlist_proc.h"
-#include "profiler_utils.h"
-#include "mario_head_6.h"
+#include "debug_utils.h"
+#include "renderer.h"
+
+/**
+ * @file old_menu.c
+ * 
+ * This file contains code for rendering what appears to be an old menuing system. 
+ * It is hard to tell, as most of the menuing code is stubbed out.
+ * It also contains code for creating labels and gadget, which are `GdObj`s that 
+ * allow for displaying text and memory values on screen. Those `GdObj`s are not
+ * created in-game, but there are some functions in `renderer.c` that use 
+ * them, and those functions may still work if called.
+ */
 
 // bss
 static char sMenuStrBuf[0x100];
-static struct MyVec3f sStaticVec;
-static struct MyVec3f unusedVec;
+static struct GdVec3f sStaticVec;
+static struct GdVec3f unusedVec;
 static struct ObjGadget *sCurGadgetPtr;
 
 // forward declarations
@@ -35,7 +43,7 @@ void get_objvalue(union ObjVarVal *dst, enum ValPtrType type, void *base, s32 of
 /* 239F78 -> 23A00C */
 void Unknown8018B7A8(void *a0)
 {
-    struct MyVec3f sp1C;
+    struct GdVec3f sp1C;
 
     set_cur_dynobj(a0);
     d_get_init_pos(&sp1C);

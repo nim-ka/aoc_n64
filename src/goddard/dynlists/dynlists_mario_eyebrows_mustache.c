@@ -1,7 +1,5 @@
 #include <ultra64.h>
-
-#include "sm64.h"
-#include "macros.h"
+#include "dynlist_macros.h"
 #include "dynlists.h"
 #include "../dynlist_proc.h"
 

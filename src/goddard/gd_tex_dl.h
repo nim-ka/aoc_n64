@@ -1,11 +1,14 @@
-#ifndef _GD_TEXTURE_DL_H_
-#define _GD_TEXTURE_DL_H_
+#ifndef GD_TEXTURE_DL_H
+#define GD_TEXTURE_DL_H
 
-#include "types.h"
-#include "gd_types.h"
+#include <ultra64.h>
 
-/* These data arrays were probably in C as data in the mario_head_6
- * but it is easier to leave these as `.incbin`s in an ASM file */
+/**
+ * @file gd_tex_dl.h
+ * 
+ * Data arrays that were probably in C arrays in `renderer`,
+ * but it is easier to leave these as `.incbin`s in an ASM file.
+ */
 
 extern Gfx *redStarDlArray[];
 extern Gfx *silverStarDlArray[];
@@ -19,4 +22,4 @@ extern u16 textureHandOpen[];
 extern u16 textureHandClosed[];
 extern Gfx marioHeadDl801B52D8[];
 
-#endif /* _GD_TEXTURE_DL_H_ */
+#endif /* GD_TEXTURE_DL_H */

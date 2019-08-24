@@ -1,6 +1,4 @@
 #include <ultra64.h>
-
-#include "sm64.h"
 #include "animdata.h"
 #include "../gd_types.h"
 

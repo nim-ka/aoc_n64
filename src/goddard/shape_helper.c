@@ -1,22 +1,21 @@
 #include <ultra64.h>
+#include <macros.h>
 
-#include "sm64.h"
 #include "gd_types.h"
-
-#include "half_6.h"
+#include "shape_helper.h"
 #include "gd_main.h"
 #include "draw_objects.h"
-#include "mario_head_1.h"
-#include "mario_head_3.h"
+#include "objects.h"
+#include "particles.h"
 #include "dynlist_proc.h"
-#include "profiler_utils.h"
-#include "joint_fns.h"
-#include "skin_fns.h"
-#include "matrix_fns.h"
-#include "mario_head_6.h"
+#include "debug_utils.h"
+#include "joints.h"
+#include "skin.h"
+#include "gd_math.h"
+#include "renderer.h"
 
 #include "dynlists/dynlists.h"
-#include "dynlists/macros.h"
+#include "dynlists/dynlist_macros.h"
 #include <prevent_bss_reordering.h>
 
 // types
@@ -97,7 +96,7 @@ static struct GdFile * sGdShapeFile;       // @ 801BAC4C
 static struct ObjShape * sGdShapeListHead; // @ 801BAC50
 static u32 sGdShapeCount;                  // @ 801BAC54
 static u8 sUnrefSpaceC58[0x8];             // @ 801BAC58
-static struct MyVec3f D_801BAC60;
+static struct GdVec3f D_801BAC60;
 static u32 sUnrefSpaceC6C;                 // @ 801BAC6C
 static u32 sUnrefSpaceC70;                 // @ 801BAC70
 static struct ObjPlane * D_801BAC74;
@@ -107,13 +106,13 @@ static struct ObjFace * D_801BAC9C;
 static struct ObjFace * D_801BACA0;
 static u8 sUnrefSpaceCA8[0x10];            // @ 801BACA8
 /// factor for scaling vertices in an `ObjShape` when calling `scale_verts_in_shape()`
-static struct MyVec3f sVertexScaleFactor;
+static struct GdVec3f sVertexScaleFactor;
 /// factor for translating vertices in an `ObjShape` when calling `translate_verts_in_shape()`
-static struct MyVec3f sVertexTranslateOffset;
+static struct GdVec3f sVertexTranslateOffset;
 static u8 sUnrefSpaceCD8[0x30];            // @ 801BACD8
 static struct ObjGroup * D_801BAD08;       // group of planes from make_netfromshape
 static u8 sUnrefSpaceD10[0x20];            // @ 801BAD10
-static struct MyVec3f D_801BAD30;          // printed with "c="
+static struct GdVec3f D_801BAD30;          // printed with "c="
 static u8 sUnrefSpaceD40[0x120];           // @ 801BAD40
 
 // Forward Declarations
@@ -132,10 +131,10 @@ void func_80197280(void)
 void calc_face_normal(struct ObjFace* face)
 {
     UNUSED u32 pad5C;
-    struct MyVec3f sp50;
-    struct MyVec3f sp44;
-    struct MyVec3f sp38;
-    struct MyVec3f sp2C; // Normal?
+    struct GdVec3f sp50;
+    struct GdVec3f sp44;
+    struct GdVec3f sp38;
+    struct GdVec3f sp2C; // Normal?
     struct ObjVertex* sp28;
     struct ObjVertex* sp24;
     struct ObjVertex* sp20;
@@ -523,7 +522,7 @@ void Unknown80198154(f32 x, f32 y, f32 z)
 /* @ 246954 for 0x6c */
 void Unknown80198184(struct ObjShape* shape, f32 x, f32 y, f32 z)
 {
-    UNUSED struct MyVec3f unusedVec;
+    UNUSED struct GdVec3f unusedVec;
     unusedVec.x = x;
     unusedVec.y = y;
     unusedVec.z = z;
@@ -538,7 +537,7 @@ void Unknown80198184(struct ObjShape* shape, f32 x, f32 y, f32 z)
 /* @ 2469C0 for 0xc8 */
 void scale_obj_position(struct GdObj* obj)
 {
-    struct MyVec3f pos;
+    struct GdVec3f pos;
 
     if (obj->type == OBJ_TYPE_GROUPS)
         return;
@@ -557,7 +556,7 @@ void scale_obj_position(struct GdObj* obj)
 /* @ 246A88 for 0x94 */
 void translate_obj_position(struct GdObj* obj)
 {
-    struct MyVec3f pos;
+    struct GdVec3f pos;
 
     set_cur_dynobj(obj);
     d_get_rel_pos(&pos);
@@ -648,9 +647,9 @@ void Unknown801985E8(struct ObjShape* shape)
 
     func_8017BE60(&sp18);
 
-    D_801BAD30.x = (f32) ((sp18.vec0.x + sp18.vec1.x) / 2.0);   //? 2.0f
-    D_801BAD30.y = (f32) ((sp18.vec0.y + sp18.vec1.y) / 2.0);   //? 2.0f
-    D_801BAD30.z = (f32) ((sp18.vec0.z + sp18.vec1.z) / 2.0);   //? 2.0f
+    D_801BAD30.x = (f32) ((sp18.p0.x + sp18.p1.x) / 2.0);   //? 2.0f
+    D_801BAD30.y = (f32) ((sp18.p0.y + sp18.p1.y) / 2.0);   //? 2.0f
+    D_801BAD30.z = (f32) ((sp18.p0.z + sp18.p1.z) / 2.0);   //? 2.0f
 
     gd_print_vec("c=", &D_801BAD30);
 
@@ -665,12 +664,12 @@ void Unknown801985E8(struct ObjShape* shape)
 void get_3DG1_shape(struct ObjShape* shape)
 {
     UNUSED u8 pad78[8];
-    struct MyVec3f tempNormal;  /* maybe? */
+    struct GdVec3f tempNormal;  /* maybe? */
     s32 curFaceVtx;
     s32 faceVtxID;
     s32 totalVtx;
     s32 totalFacePoints;
-    struct MyVec3f tempVec;
+    struct GdVec3f tempVec;
     struct ObjFace* newFace;
     struct ObjVertex* vtxHead = NULL;   // ptr to first made ObjVertex in the Obj* list
     s32 vtxCount = 0;
@@ -781,7 +780,7 @@ void get_OBJ_shape(struct ObjShape* shape)
     struct GdColour faceClr;
     s32 curFaceVtx;
     s32 faceVtxIndex;
-    struct MyVec3f tempVec;
+    struct GdVec3f tempVec;
     struct ObjFace* newFace;
     struct ObjVertex* vtxArr[4000];
     struct ObjFace* faceArr[4000];
@@ -974,7 +973,7 @@ void read_ARK_shape(struct ObjShape* shape, char* fileName)
     } vtx;
 
     UNUSED u8 pad54[4];
-    struct MyVec3f sp48;
+    struct GdVec3f sp48;
     struct ObjFace* sp44;   // newly made face with mtl sp34;
     struct ObjFace* sp40 = NULL;    // first made face
     struct ObjVertex* sp3C; // newly made vtx
@@ -1132,14 +1131,14 @@ struct ObjShape* make_grid_shape(enum ObjTypeFlag gridType, s32 a1, s32 a2, s32 
     struct ObjGroup* parOrVtxGrp;  // group of made particles or vertices (based on gridType)
     UNUSED u32 pad38;
     struct ObjGroup* mtlGroup;
-    struct MyVec3f* sp30; //MyVec3f* ? from gd_get_colour
-    struct MyVec3f* sp2C; //^
+    struct GdVec3f* sp30; //GdVec3f* ? from gd_get_colour
+    struct GdVec3f* sp2C; //^
     struct ObjMaterial* mtl1;   //first made material
     struct ObjMaterial* mtl2;   //second made material
     UNUSED u32 pad20;
 
-    sp30 = (struct MyVec3f*) gd_get_colour(a1);
-    sp2C = (struct MyVec3f*) gd_get_colour(a2);
+    sp30 = (struct GdVec3f*) gd_get_colour(a1);
+    sp2C = (struct GdVec3f*) gd_get_colour(a2);
 
     mtl1 = make_material(0, NULL, 1);
     set_cur_dynobj((struct GdObj*) mtl1);

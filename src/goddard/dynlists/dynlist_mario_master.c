@@ -1,11 +1,9 @@
 #include <ultra64.h>
-
-#include "sm64.h"
-#include "macros.h"
+#include "dynlist_macros.h"
 #include "dynlists.h"
 #include "animdata.h"
 #include "../dynlist_proc.h"
-#include "../half_6.h"
+#include "../shape_helper.h"
 
 /* @ 04004F90 */
 struct DynList dynlist_mario_master[1026] = {
