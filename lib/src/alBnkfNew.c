@@ -1,19 +1,16 @@
 #include "libultra_internal.h"
 #include "libaudio_internal.h"
 
-#define PATCH(SRC, BASE, TYPE) SRC = (TYPE)((u32)SRC + (u32)BASE)
+#define PATCH(SRC, BASE, TYPE) SRC = (TYPE)((u32) SRC + (u32) BASE)
 
-void alSeqFileNew(ALSeqFile *f, u8 *base)
-{
+void alSeqFileNew(ALSeqFile *f, u8 *base) {
     int i;
-    for (i = 0; i < f->seqCount; i++)
-    {
+    for (i = 0; i < f->seqCount; i++) {
         f->seqArray[i].offset = (u32)(f->seqArray[i].offset) + base;
     }
 }
 
-static void _bnkfPatchBank(ALInstrument *inst, ALBankFile *f, u8 *table)
-{
+static void _bnkfPatchBank(ALInstrument *inst, ALBankFile *f, u8 *table) {
     int i;
     ALSound *sound;
     ALWaveTable *wavetable;
@@ -24,8 +21,7 @@ static void _bnkfPatchBank(ALInstrument *inst, ALBankFile *f, u8 *table)
 
     inst->flags = 1;
 
-    for (i = 0; i < inst->soundCount; i++)
-    {
+    for (i = 0; i < inst->soundCount; i++) {
         PATCH(inst->soundArray[i], f, ALSound *);
         sound = inst->soundArray[i];
         if (sound->flags)
@@ -43,14 +39,11 @@ static void _bnkfPatchBank(ALInstrument *inst, ALBankFile *f, u8 *table)
 
         wavetable->flags = 1;
         PATCH(wavetable->base, table2, u8 *);
-        if (wavetable->type == 0)
-        {
+        if (wavetable->type == 0) {
             PATCH(wavetable->waveInfo.adpcmWave.book, f, ALADPCMBook *);
             if (wavetable->waveInfo.adpcmWave.loop != NULL)
                 PATCH(wavetable->waveInfo.adpcmWave.loop, f, ALADPCMloop *);
-        }
-        else if (wavetable->type == 1)
-        {
+        } else if (wavetable->type == 1) {
             if (wavetable->waveInfo.rawWave.loop != NULL)
                 PATCH(wavetable->waveInfo.rawWave.loop, f, ALRawLoop *);
         }
@@ -59,12 +52,10 @@ static void _bnkfPatchBank(ALInstrument *inst, ALBankFile *f, u8 *table)
 
 // Force adding another jr $ra.  Has to be called or it doesn't get put in the
 // right place.
-static void unused()
-{
+static void unused() {
 }
 
-void alBnkfNew(ALBankFile *f, u8 *table)
-{
+void alBnkfNew(ALBankFile *f, u8 *table) {
     ALBank *bank;
     int i;
     int j;
@@ -72,26 +63,21 @@ void alBnkfNew(ALBankFile *f, u8 *table)
     if (f->revision != AL_BANK_VERSION)
         return;
 
-    for (i = 0; i < f->bankCount; i++)
-    {
+    for (i = 0; i < f->bankCount; i++) {
         PATCH(f->bankArray[i], f, ALBank *);
         if (f->bankArray[i] == NULL)
             continue;
 
         bank = f->bankArray[i];
-        if (bank->flags == 0)
-        {
+        if (bank->flags == 0) {
             bank->flags = 1;
-            if (bank->percussion != NULL)
-            {
+            if (bank->percussion != NULL) {
                 PATCH(bank->percussion, f, ALInstrument *);
                 _bnkfPatchBank(bank->percussion, f, table);
             }
-            for (j = 0; j < bank->instCount; j++)
-            {
+            for (j = 0; j < bank->instCount; j++) {
                 PATCH(bank->instArray[j], f, ALInstrument *);
-                if (bank->instArray[j] != NULL)
-                {
+                if (bank->instArray[j] != NULL) {
                     _bnkfPatchBank(bank->instArray[j], f, table);
                 }
             }

@@ -1,7 +1,6 @@
 // red_coin.c.inc
 
-static struct ObjectHitbox sRedCoinHitbox =
-{
+static struct ObjectHitbox sRedCoinHitbox = {
     /* interactType:      */ INTERACT_COIN,
     /* downOffset:        */ 0,
     /* damageOrCoinValue: */ 2,
@@ -44,7 +43,9 @@ void bhv_red_coin_loop(void) {
             }
 
 #ifndef VERSION_JP
-            play_sound(SOUND_MENU_COLLECTREDCOIN + (((u8)o->parentObj->oHiddenRedCoinStarCoinsCollected - 1) << 16), gDefaultSoundArgs);
+            play_sound(SOUND_MENU_COLLECTREDCOIN
+                           + (((u8) o->parentObj->oHiddenRedCoinStarCoinsCollected - 1) << 16),
+                       gDefaultSoundArgs);
 #endif
         }
 

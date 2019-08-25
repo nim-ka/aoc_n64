@@ -6,11 +6,9 @@
  * the environment.
  */
 
-void bhv_purple_switch_loop(void)
-{
+void bhv_purple_switch_loop(void) {
     UNUSED s32 unused;
-    switch (o->oAction)
-    {
+    switch (o->oAction) {
         /**
          * Set the switch's model and scale. If Mario is standing near the
          * switch's middle section, transition to the pressed state.
@@ -18,10 +16,7 @@ void bhv_purple_switch_loop(void)
         case PURPLE_SWITCH_IDLE:
             obj_set_model(MODEL_PURPLE_SWITCH);
             obj_scale(1.5f);
-            if (
-                gMarioObject->platform == o
-                && !(gMarioStates->action & MARIO_UNKNOWN_13)
-            ) {
+            if (gMarioObject->platform == o && !(gMarioStates->action & MARIO_UNKNOWN_13)) {
                 if (lateral_dist_between_objects(o, gMarioObject) < 127.5) {
                     o->oAction = PURPLE_SWITCH_PRESSED;
                 }
@@ -44,8 +39,7 @@ void bhv_purple_switch_loop(void)
          * up. When time is up, move to a waiting-while-pressed state.
          */
         case PURPLE_SWITCH_TICKING:
-            if (o->oBehParams2ndByte != 0)
-            {
+            if (o->oBehParams2ndByte != 0) {
                 if (o->oBehParams2ndByte == 1 && gMarioObject->platform != o) {
                     o->oAction++;
                 } else {

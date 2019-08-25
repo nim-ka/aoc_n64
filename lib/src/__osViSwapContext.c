@@ -2,8 +2,7 @@
 #include "hardware.h"
 extern OSViContext *D_80334914;
 extern OSViContext *D_80334910;
-void __osViSwapContext()
-{
+void __osViSwapContext() {
     register OSViMode *s0;
     register OSViContext *s1;
     u32 origin;
@@ -17,34 +16,26 @@ void __osViSwapContext()
     field = HW_REG(VI_V_CURRENT_LINE_REG, u32) & 1;
     s2 = osVirtualToPhysical(s1->buffer);
     origin = (s0->fldRegs[field].origin) + s2;
-    if (s1->unk00 & 2)
-    {
+    if (s1->unk00 & 2) {
         s1->unk20 |= s0->comRegs.xScale & ~0xfff;
-    }
-    else
-    {
+    } else {
         s1->unk20 = s0->comRegs.xScale;
     }
-    if (s1->unk00 & 4)
-    {
+    if (s1->unk00 & 4) {
         sp34 = (u32)(s0->fldRegs[field].yScale & 0xfff);
         s1->unk2c = s1->unk24 * sp34;
         s1->unk2c |= s0->fldRegs[field].yScale & ~0xfff;
-    }
-    else
-    {
+    } else {
         s1->unk2c = s0->fldRegs[field].yScale;
     }
     hStart = s0->comRegs.hStart;
     if (s1->unk00 & 0x20)
         hStart = 0;
-    if (s1->unk00 & 0x40)
-    {
+    if (s1->unk00 & 0x40) {
         s1->unk2c = 0;
         origin = osVirtualToPhysical(s1->buffer);
     }
-    if (s1->unk00 & 0x80)
-    {
+    if (s1->unk00 & 0x80) {
         s1->unk2c = (s1->unk28 << 0x10) & 0x3ff0000;
         origin = osVirtualToPhysical(s1->buffer);
     }

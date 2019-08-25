@@ -8,13 +8,11 @@
  * The water bomb shadow is only spawned by water bomb spawners.
  */
 
-
 /**
  * Hitbox for water bombs that are spawned by a water bomb spawner. The water
  * bombs that are shot from cannons are intangible.
  */
-static struct ObjectHitbox sWaterBombHitbox =
-{
+static struct ObjectHitbox sWaterBombHitbox = {
     /* interactType:      */ INTERACT_MR_BLIZZARD,
     /* downOffset:        */ 25,
     /* damageOrCoinValue: */ 1,
@@ -26,8 +24,7 @@ static struct ObjectHitbox sWaterBombHitbox =
     /* hurtboxHeight:     */ 50,
 };
 
-static struct SpawnParticlesInfo sWaterBombExplodeParticles =
-{
+static struct SpawnParticlesInfo sWaterBombExplodeParticles = {
     /* behParam:        */ 0,
     /* count:           */ 5,
     /* model:           */ MODEL_BUBBLE,
@@ -42,8 +39,7 @@ static struct SpawnParticlesInfo sWaterBombExplodeParticles =
     /* sizeRange:       */ 10.0f,
 };
 
-static struct SpawnParticlesInfo sWaterBombCannonParticle =
-{
+static struct SpawnParticlesInfo sWaterBombCannonParticle = {
     /* behParam:        */ 0,
     /* count:           */ 1,
     /* model:           */ MODEL_BUBBLE,
@@ -58,13 +54,11 @@ static struct SpawnParticlesInfo sWaterBombCannonParticle =
     /* sizeRange:       */ 5.0f,
 };
 
-
 /**
  * Update function for bhvWaterBombSpawner.
  * Spawn water bombs targeting mario when he comes in range.
  */
-void bhv_water_bomb_spawner_update(void)
-{
+void bhv_water_bomb_spawner_update(void) {
     f32 latDistToMario;
     f32 spawnerRadius;
 
@@ -72,34 +66,24 @@ void bhv_water_bomb_spawner_update(void)
     latDistToMario = lateral_dist_between_objects(o, gMarioObject);
 
     // When mario is in range and a water bomb isn't already active
-    if (!o->oWaterBombSpawnerBombActive &&
-        latDistToMario < spawnerRadius &&
-        gMarioObject->oPosY - o->oPosY < 1000.0f)
-    {
-        if (o->oWaterBombSpawnerTimeToSpawn != 0)
-        {
+    if (!o->oWaterBombSpawnerBombActive && latDistToMario < spawnerRadius
+        && gMarioObject->oPosY - o->oPosY < 1000.0f) {
+        if (o->oWaterBombSpawnerTimeToSpawn != 0) {
             o->oWaterBombSpawnerTimeToSpawn -= 1;
-        }
-        else
-        {
-            struct Object *waterBomb = spawn_object_relative(
-                0,
-                0, 2000, 0,
-                o,
-                MODEL_WATER_BOMB,
-                bhvWaterBomb);
+        } else {
+            struct Object *waterBomb =
+                spawn_object_relative(0, 0, 2000, 0, o, MODEL_WATER_BOMB, bhvWaterBomb);
 
-            if (waterBomb != NULL)
-            {
+            if (waterBomb != NULL) {
                 // Drop farther ahead of mario when he is moving faster
                 f32 waterBombDistToMario = 28.0f * gMarioStates[0].forwardVel + 100.0f;
 
                 waterBomb->oAction = WATER_BOMB_ACT_INIT;
 
-                waterBomb->oPosX = gMarioObject->oPosX +
-                    waterBombDistToMario * sins(gMarioObject->oMoveAngleYaw);
-                waterBomb->oPosZ = gMarioObject->oPosZ +
-                    waterBombDistToMario * coss(gMarioObject->oMoveAngleYaw);
+                waterBomb->oPosX =
+                    gMarioObject->oPosX + waterBombDistToMario * sins(gMarioObject->oMoveAngleYaw);
+                waterBomb->oPosZ =
+                    gMarioObject->oPosZ + waterBombDistToMario * coss(gMarioObject->oMoveAngleYaw);
 
                 spawn_object(waterBomb, MODEL_WATER_BOMB_SHADOW, bhvWaterBombShadow);
 
@@ -113,9 +97,7 @@ void bhv_water_bomb_spawner_update(void)
 /**
  * Spawn particles when the water bomb explodes.
  */
-static void water_bomb_spawn_explode_particles(
-    s8 offsetY, s8 forwardVelRange, s8 velYBase)
-{
+static void water_bomb_spawn_explode_particles(s8 offsetY, s8 forwardVelRange, s8 velYBase) {
     sWaterBombExplodeParticles.offsetY = offsetY;
     sWaterBombExplodeParticles.forwardVelRange = forwardVelRange;
     sWaterBombExplodeParticles.velYBase = velYBase;
@@ -125,8 +107,7 @@ static void water_bomb_spawn_explode_particles(
 /**
  * Enter the drop action with -40 y vel.
  */
-static void water_bomb_act_init(void)
-{
+static void water_bomb_act_init(void) {
     PlaySound2(SOUND_OBJECT_SOMETHINGLANDING);
 
     o->oAction = WATER_BOMB_ACT_DROP;
@@ -138,33 +119,24 @@ static void water_bomb_act_init(void)
  * Explode on impact, and otherwise bounce a few times on the ground and then
  * explode.
  */
-static void water_bomb_act_drop(void)
-{
+static void water_bomb_act_drop(void) {
     f32 stretch;
 
     set_object_hitbox(o, &sWaterBombHitbox);
 
     // Explode if touched or if hit water
-    if ((o->oInteractStatus & INT_STATUS_INTERACTED) ||
-        (o->oMoveFlags & OBJ_MOVE_ENTERED_WATER))
-    {
+    if ((o->oInteractStatus & INT_STATUS_INTERACTED) || (o->oMoveFlags & OBJ_MOVE_ENTERED_WATER)) {
         create_sound_spawner(SOUND_OBJECT_DIVINGINWATER);
         func_8027F440(1, o->oPosX, o->oPosY, o->oPosZ);
         o->oAction = WATER_BOMB_ACT_EXPLODE;
-    }
-    else if (o->oMoveFlags & OBJ_MOVE_MASK_ON_GROUND)
-    {
+    } else if (o->oMoveFlags & OBJ_MOVE_MASK_ON_GROUND) {
         // On impact with the ground, begin getting squished
-        if (!o->oWaterBombOnGround)
-        {
+        if (!o->oWaterBombOnGround) {
             o->oWaterBombOnGround = TRUE;
 
-            if ((o->oWaterBombNumBounces += 1.0f) < 3.0f)
-            {
+            if ((o->oWaterBombNumBounces += 1.0f) < 3.0f) {
                 PlaySound2(SOUND_OBJECT_WATERBOMBBOUNCING);
-            }
-            else
-            {
+            } else {
                 create_sound_spawner(SOUND_OBJECT_DIVINGINWATER);
             }
 
@@ -182,18 +154,13 @@ static void water_bomb_act_drop(void)
         o->oWaterBombVerticalStretch += o->oWaterBombStretchSpeed * 0.01f;
 
         // After being too squished, explode
-        if (o->oWaterBombVerticalStretch < -0.8f)
-        {
+        if (o->oWaterBombVerticalStretch < -0.8f) {
             o->oAction = WATER_BOMB_ACT_EXPLODE;
-        }
-        else if (o->oWaterBombVerticalStretch > 0.1f)
-        {
+        } else if (o->oWaterBombVerticalStretch > 0.1f) {
             // Begin bounce trajectory
             o->oVelY = 1.8f * o->oWaterBombStretchSpeed;
         }
-    }
-    else
-    {
+    } else {
         approach_f32_ptr(&o->oWaterBombVerticalStretch, 0.0f, 0.008f);
         o->oWaterBombOnGround = FALSE;
     }
@@ -201,8 +168,7 @@ static void water_bomb_act_drop(void)
     o->header.gfx.scale[1] = o->oWaterBombVerticalStretch + 1.0f;
 
     stretch = o->oWaterBombVerticalStretch;
-    if (o->oWaterBombNumBounces == 3.0f)
-    {
+    if (o->oWaterBombNumBounces == 3.0f) {
         stretch *= 4.0f;
     }
     o->header.gfx.scale[0] = o->header.gfx.scale[2] = 1.0f - stretch;
@@ -214,8 +180,7 @@ static void water_bomb_act_drop(void)
  * Spawn particles, then despawn. This action informs the water bomb shadow to
  * despawn as well.
  */
-static void water_bomb_act_explode(void)
-{
+static void water_bomb_act_explode(void) {
     water_bomb_spawn_explode_particles(25, 60, 10);
     o->parentObj->oWaterBombSpawnerBombActive = FALSE;
     mark_object_for_deletion(o);
@@ -224,25 +189,18 @@ static void water_bomb_act_explode(void)
 /**
  * Despawn after 100 frames.
  */
-static void water_bomb_act_shot_from_cannon(void)
-{
-    if (o->oTimer > 100)
-    {
+static void water_bomb_act_shot_from_cannon(void) {
+    if (o->oTimer > 100) {
         mark_object_for_deletion(o);
-    }
-    else
-    {
-        if (o->oTimer < 7)
-        {
-            if (o->oTimer == 1)
-            {
+    } else {
+        if (o->oTimer < 7) {
+            if (o->oTimer == 1) {
                 water_bomb_spawn_explode_particles(-20, 10, 30);
             }
             obj_spawn_particles(&sWaterBombCannonParticle);
         }
 
-        if (o->header.gfx.scale[1] > 1.2f)
-        {
+        if (o->header.gfx.scale[1] > 1.2f) {
             o->header.gfx.scale[1] -= 0.1f;
         }
 
@@ -254,22 +212,23 @@ static void water_bomb_act_shot_from_cannon(void)
 /**
  * Update function for bhvWaterBomb.
  */
-void bhv_water_bomb_update(void)
-{
-    if (o->oAction == WATER_BOMB_ACT_SHOT_FROM_CANNON)
-    {
+void bhv_water_bomb_update(void) {
+    if (o->oAction == WATER_BOMB_ACT_SHOT_FROM_CANNON) {
         water_bomb_act_shot_from_cannon();
-    }
-    else
-    {
+    } else {
         o->oGraphYOffset = 40.0f * o->header.gfx.scale[1];
         obj_update_floor_and_walls();
 
-        switch (o->oAction)
-        {
-        case WATER_BOMB_ACT_INIT:    water_bomb_act_init();    break;
-        case WATER_BOMB_ACT_DROP:    water_bomb_act_drop();    break;
-        case WATER_BOMB_ACT_EXPLODE: water_bomb_act_explode(); break;
+        switch (o->oAction) {
+            case WATER_BOMB_ACT_INIT:
+                water_bomb_act_init();
+                break;
+            case WATER_BOMB_ACT_DROP:
+                water_bomb_act_drop();
+                break;
+            case WATER_BOMB_ACT_EXPLODE:
+                water_bomb_act_explode();
+                break;
         }
     }
 }
@@ -278,18 +237,13 @@ void bhv_water_bomb_update(void)
  * Update function for bhvWaterBombShadow.
  * Despawn when the parent water bomb does.
  */
-void bhv_water_bomb_shadow_update(void)
-{
-    if (o->parentObj->oAction == WATER_BOMB_ACT_EXPLODE)
-    {
+void bhv_water_bomb_shadow_update(void) {
+    if (o->parentObj->oAction == WATER_BOMB_ACT_EXPLODE) {
         mark_object_for_deletion(o);
-    }
-    else
-    {
+    } else {
         // TODO: What is happening here
         f32 bombHeight = o->parentObj->oPosY - o->parentObj->oFloorHeight;
-        if (bombHeight > 500.0f)
-        {
+        if (bombHeight > 500.0f) {
             bombHeight = 500.0f;
         }
 

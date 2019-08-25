@@ -43,7 +43,7 @@ void func_802EFB2C(void) {
 }
 
 void func_802EFB84(f32 f12) {
-    o->oFaceAnglePitch += (s16) (o->oForwardVel * (100.0f / f12));
+    o->oFaceAnglePitch += (s16)(o->oForwardVel * (100.0f / f12));
     o->oUnknownUnkF4_F32 += o->oForwardVel * 1e-4;
 
     if (o->oUnknownUnkF4_F32 > 1.0)
@@ -65,12 +65,10 @@ void func_802EFC44(void) {
         o->oForwardVel = 70.0f;
 
     if (sp20 == -1) {
-        sp1E = (u16)o->oAngleToMario - (u16)o->oMoveAngleYaw;
-        if (func_802E46C0(o->oMoveAngleYaw, o->oAngleToMario, 0x2000) == 1
-            && o->oUnk1AC_S32 == 1) {
+        sp1E = (u16) o->oAngleToMario - (u16) o->oMoveAngleYaw;
+        if (func_802E46C0(o->oMoveAngleYaw, o->oAngleToMario, 0x2000) == 1 && o->oUnk1AC_S32 == 1) {
             o->oSnowmansBottomUnkF8 = o->oAngleToMario;
-        }
-        else {
+        } else {
             o->oSnowmansBottomUnkF8 = o->oMoveAngleYaw;
         }
         o->oAction = 2;
@@ -161,7 +159,6 @@ void bhv_snowmans_bottom_loop(void) {
     SetObjectVisibility(o, 8000);
     obj_scale(o->oSnowmansBottomUnkF4);
     o->oGraphYOffset = o->oSnowmansBottomUnkF4 * 180.0f;
-
 }
 
 void bhv_snowmans_head_init(void) {
@@ -177,9 +174,9 @@ void bhv_snowmans_head_init(void) {
     o->oFriction = 0.999f;
     o->oBuoyancy = 2.0f;
 
-    if ((sp37 & (1 << sp36))
-        && gCurrActNum != sp36 + 1) {
-        spawn_object_abs_with_rot(o, 0, MODEL_CCM_SNOWMAN_BASE, bhvBigSnowmanWhole, -4230, -1344, 1813, 0, 0, 0);
+    if ((sp37 & (1 << sp36)) && gCurrActNum != sp36 + 1) {
+        spawn_object_abs_with_rot(o, 0, MODEL_CCM_SNOWMAN_BASE, bhvBigSnowmanWhole, -4230, -1344, 1813,
+                                  0, 0, 0);
         o->oPosX = -4230.0f;
         o->oPosY = -994.0f;
         o->oPosZ = 1813.0f;

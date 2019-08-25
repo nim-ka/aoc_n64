@@ -1,7 +1,6 @@
 // cap.c.inc
 
-static struct ObjectHitbox sCapHitbox =
-{
+static struct ObjectHitbox sCapHitbox = {
     /* interactType:      */ INTERACT_CAP,
     /* downOffset:        */ 0,
     /* damageOrCoinValue: */ 0,
@@ -65,7 +64,6 @@ void func_802F09C0(void) {
             o->oForwardVel = -((D_803600E0->force & 0xff00) >> 8) * 2 + 8;
             break;
     }
-
 }
 
 void func_802F0B68(void) {
@@ -253,7 +251,7 @@ void bhv_normal_cap_loop(void) {
             break;
     }
 
-    if ((s32)o->oForwardVel != 0)
+    if ((s32) o->oForwardVel != 0)
         save_file_set_cap_pos(o->oPosX, o->oPosY, o->oPosZ);
 
     if (o->activeFlags == 0)

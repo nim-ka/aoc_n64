@@ -1,7 +1,6 @@
 // spawn_star.c.inc
 
-static struct ObjectHitbox sCollectStarHitbox =
-{
+static struct ObjectHitbox sCollectStarHitbox = {
     /* interactType:      */ INTERACT_STAR_OR_KEY,
     /* downOffset:        */ 0,
     /* damageOrCoinValue: */ 0,
@@ -21,8 +20,7 @@ void bhv_collect_star_init(void) {
     sp1E = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
     if (sp1E & (1 << sp1F)) {
         o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_TRANSPARENT_STAR];
-    }
-    else {
+    } else {
         o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_STAR];
     }
 
@@ -36,7 +34,6 @@ void bhv_collect_star_loop(void) {
         mark_obj_for_deletion(o);
         o->oInteractStatus = 0;
     }
-
 }
 
 void bhv_star_spawn_init(void) {
@@ -113,7 +110,8 @@ void bhv_star_spawn_loop(void) {
 }
 
 struct Object *func_802F1A50(struct Object *sp30, f32 sp34, f32 sp38, f32 sp3C) {
-    sp30 = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStarSpawnCoordinates, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+    sp30 = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStarSpawnCoordinates, o->oPosX, o->oPosY,
+                                     o->oPosZ, 0, 0, 0);
     sp30->oBehParams = o->oBehParams;
     sp30->oHomeX = sp34;
     sp30->oHomeY = sp38;
@@ -151,7 +149,8 @@ void bhv_hidden_red_coin_star_init(void) {
 
     sp36 = count_objects_with_behavior(bhvRedCoin);
     if (sp36 == 0) {
-        sp30 = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+        sp30 =
+            spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
         sp30->oBehParams = o->oBehParams;
         o->activeFlags = 0;
     }

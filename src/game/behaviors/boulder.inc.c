@@ -59,8 +59,7 @@ void bhv_big_boulder_generator_loop(void) {
             sp1C = spawn_object(o, MODEL_HMC_ROLLING_ROCK, bhvBigBoulder);
             sp1C->oMoveAngleYaw = RandomFloat() * 4096.0f;
         }
-    }
-    else {
+    } else {
         if ((o->oTimer & 0x7F) == 0) {
             sp1C = spawn_object(o, MODEL_HMC_ROLLING_ROCK, bhvBigBoulder);
             sp1C->oMoveAngleYaw = RandomFloat() * 4096.0f;

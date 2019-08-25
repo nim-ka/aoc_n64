@@ -14,18 +14,14 @@
  * Spawn the four pillars' touch detectors.
  */
 void bhv_pyramid_top_init(void) {
-    spawn_object_abs_with_rot(
-        o, 0, MODEL_NONE, bhvPyramidPillarTouchDetector, 1789, 1024, 764, 0, 0, 0
-    );
-    spawn_object_abs_with_rot(
-        o, 0, MODEL_NONE, bhvPyramidPillarTouchDetector, 1789, 896, -2579, 0, 0, 0
-    );
-    spawn_object_abs_with_rot(
-        o, 0, MODEL_NONE, bhvPyramidPillarTouchDetector, -5883, 1024, -2579, 0, 0, 0
-    );
-    spawn_object_abs_with_rot(
-        o, 0, MODEL_NONE, bhvPyramidPillarTouchDetector, -5883, 1024, 764, 0, 0, 0
-    );
+    spawn_object_abs_with_rot(o, 0, MODEL_NONE, bhvPyramidPillarTouchDetector, 1789, 1024, 764, 0, 0,
+                              0);
+    spawn_object_abs_with_rot(o, 0, MODEL_NONE, bhvPyramidPillarTouchDetector, 1789, 896, -2579, 0, 0,
+                              0);
+    spawn_object_abs_with_rot(o, 0, MODEL_NONE, bhvPyramidPillarTouchDetector, -5883, 1024, -2579, 0, 0,
+                              0);
+    spawn_object_abs_with_rot(o, 0, MODEL_NONE, bhvPyramidPillarTouchDetector, -5883, 1024, 764, 0, 0,
+                              0);
 }
 
 /**
@@ -56,9 +52,7 @@ void bhv_pyramid_top_spinning(void) {
     // Every frame until 90 frames have passed, generate a pyramid fragment
     // with a random velocity and angle.
     if (o->oTimer < 90) {
-        pyramidFragment = spawn_object(
-            o, MODEL_DIRT_ANIMATION, bhvPyramidTopFragment
-        );
+        pyramidFragment = spawn_object(o, MODEL_DIRT_ANIMATION, bhvPyramidTopFragment);
         pyramidFragment->oForwardVel = RandomFloat() * 10.0f + 20.0f;
         pyramidFragment->oMoveAngleYaw = RandomU16();
         pyramidFragment->oUnknownUnkF4_F32 = 0.8f;
@@ -82,9 +76,7 @@ void bhv_pyramid_top_explode(void) {
 
     // Generate 30 pyramid fragments with random properties.
     for (i = 0; i < 30; i++) {
-        pyramidFragment = spawn_object(
-            o, MODEL_DIRT_ANIMATION, bhvPyramidTopFragment
-        );
+        pyramidFragment = spawn_object(o, MODEL_DIRT_ANIMATION, bhvPyramidTopFragment);
         pyramidFragment->oForwardVel = RandomFloat() * 50.0f + 80.0f;
         pyramidFragment->oVelY = RandomFloat() * 80.0f + 20.0f;
         pyramidFragment->oMoveAngleYaw = RandomU16();

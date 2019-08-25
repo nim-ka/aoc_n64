@@ -2,9 +2,9 @@
 
 #define OS_PI_MGR_MESG_BUFF_SIZE 1
 
-OSMgrArgs piMgrArgs = {0};
+OSMgrArgs piMgrArgs = { 0 };
 OSThread piMgrThread;
-u32 piMgrStack[0x400]; //stack bottom
+u32 piMgrStack[0x400]; // stack bottom
 OSMesgQueue __osPiMesgQueue;
 OSMesg piMgrMesgBuff[OS_PI_MGR_MESG_BUFF_SIZE + 1];
 s32 osPiRawStartDma(s32 dir, u32 cart_addr, void *dram_addr, size_t size);
@@ -12,26 +12,21 @@ extern u32 gOsPiAccessQueueCreated;
 extern OSMesgQueue gOsPiMessageQueue;
 void __osDevMgrMain(void *);
 
-void osCreatePiManager(OSPri pri, OSMesgQueue *cmdQ, OSMesg *cmdBuf,
-                       s32 cmdMsgCnt)
-{
+void osCreatePiManager(OSPri pri, OSMesgQueue *cmdQ, OSMesg *cmdBuf, s32 cmdMsgCnt) {
     u32 int_disabled;
     OSPri newPri;
     OSPri currentPri;
 
-    if (!piMgrArgs.initialized)
-    {
+    if (!piMgrArgs.initialized) {
         osCreateMesgQueue(cmdQ, cmdBuf, cmdMsgCnt);
         osCreateMesgQueue(&__osPiMesgQueue, &piMgrMesgBuff[0], OS_PI_MGR_MESG_BUFF_SIZE);
-        if (!gOsPiAccessQueueCreated)
-        {
+        if (!gOsPiAccessQueueCreated) {
             __osPiCreateAccessQueue();
-        } //what is this constant geez
-        osSetEventMesg(OS_EVENT_PI, &__osPiMesgQueue, (void *)0x22222222);
+        } // what is this constant geez
+        osSetEventMesg(OS_EVENT_PI, &__osPiMesgQueue, (void *) 0x22222222);
         newPri = -1;
         currentPri = osGetThreadPri(NULL);
-        if (currentPri < pri)
-        {
+        if (currentPri < pri) {
             newPri = currentPri;
             osSetThreadPri(NULL, pri);
         }
@@ -42,11 +37,10 @@ void osCreatePiManager(OSPri pri, OSMesgQueue *cmdQ, OSMesg *cmdBuf,
         piMgrArgs.unk0c = &__osPiMesgQueue;
         piMgrArgs.unk10 = &gOsPiMessageQueue;
         piMgrArgs.dma_func = osPiRawStartDma;
-        osCreateThread(&piMgrThread, 0, __osDevMgrMain, (void *)&piMgrArgs, &piMgrStack[0x400], pri);
+        osCreateThread(&piMgrThread, 0, __osDevMgrMain, (void *) &piMgrArgs, &piMgrStack[0x400], pri);
         osStartThread(&piMgrThread);
         __osRestoreInt(int_disabled);
-        if (newPri != -1)
-        {
+        if (newPri != -1) {
             osSetThreadPri(NULL, newPri);
         }
     }

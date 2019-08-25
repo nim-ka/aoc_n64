@@ -1,3 +1,4 @@
+/* clang-format off */
 /*
  * mem_error_screen.inc.c
  *
@@ -87,6 +88,7 @@
         geo_close_node
         geo_end
  */
+/* clang-format on */
 
 // Ensure that USE_EXT_RAM is defined.
 #ifndef USE_EXT_RAM
@@ -109,20 +111,15 @@
 u8 gNotEnoughMemory = FALSE;
 u8 gDelayForErrorMessage = 0;
 
-u8 does_pool_end_lie_out_of_bounds(void *end)
-{
-    u32 endPhy = ((u32)end) & 0x1FFFFFFF;
-    u32 memSize = *((u32*)0x80000318);
+u8 does_pool_end_lie_out_of_bounds(void *end) {
+    u32 endPhy = ((u32) end) & 0x1FFFFFFF;
+    u32 memSize = *((u32 *) 0x80000318);
 
-    if(endPhy > memSize)
-    {
+    if (endPhy > memSize) {
         gNotEnoughMemory = TRUE;
         return TRUE;
-    }
-    else
-    {
-        if(memSize < REQUIRED_MIN_MEM_SIZE)
-        {
+    } else {
+        if (memSize < REQUIRED_MIN_MEM_SIZE) {
             gNotEnoughMemory = TRUE;
         }
         return FALSE;
@@ -132,59 +129,55 @@ u8 does_pool_end_lie_out_of_bounds(void *end)
 // If you're using an N64 console, then you will need to buy an\nexpansion pak to play this ROM hack.
 u8 text_console_8mb[] = { TEXT_CONSOLE_8MB };
 
-// If you are using PJ64 1.6, go to: Options ► Settings ► Rom Settings Tab ► Memory Size then select 8 MB from the drop-down box.
+// If you are using PJ64 1.6, go to: Options ► Settings ► Rom Settings Tab ► Memory Size then select 8
+// MB from the drop-down box.
 u8 text_pj64[] = { TEXT_PJ64 };
 
 // If you are using PJ64 2.X, go to: Options ► Settings ► Config: ► Memory Size, select 8 MB
 u8 text_pj64_2[] = { TEXT_PJ64_2 };
 
-Gfx *geo18_display_error_message(u32 run, UNUSED struct GraphNode *sp44, UNUSED u32 sp48)
-{
-   if (run)
-   {
-      if(gDelayForErrorMessage > 0)
-      {
-          // Draw color text title.
-          print_text(10, 210, "ERROR    Need more memory");
+Gfx *geo18_display_error_message(u32 run, UNUSED struct GraphNode *sp44, UNUSED u32 sp48) {
+    if (run) {
+        if (gDelayForErrorMessage > 0) {
+            // Draw color text title.
+            print_text(10, 210, "ERROR    Need more memory");
 
-          // Init generic text rendering
-          dl_add_new_ortho_matrix();
-          gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin); // Init rendering stuff for generic text
+            // Init generic text rendering
+            dl_add_new_ortho_matrix();
+            gSPDisplayList(gDisplayListHead++,
+                           dl_ia8_text_begin); // Init rendering stuff for generic text
 
-          // Set text color to white
-          gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
+            // Set text color to white
+            gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
-          PrintGenericText(8, 170, text_console_8mb);
-          PrintGenericText(8, 120, text_pj64);
-          PrintGenericText(8, 54, text_pj64_2);
+            PrintGenericText(8, 170, text_console_8mb);
+            PrintGenericText(8, 120, text_pj64);
+            PrintGenericText(8, 54, text_pj64_2);
 
-          // Cleanup
-          gSPDisplayList(gDisplayListHead++, dl_ia8_text_end); // Reset back to default render settings.
-          gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-      }
-      else
-      {
-          gDelayForErrorMessage += 1;
-      }
-   }
+            // Cleanup
+            gSPDisplayList(gDisplayListHead++,
+                           dl_ia8_text_end); // Reset back to default render settings.
+            gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+        } else {
+            gDelayForErrorMessage += 1;
+        }
+    }
 
-   return 0;
+    return 0;
 }
 
 // Basic main loop for the error screen. Note that controllers are not enabled here.
-void thread5_mem_error_message_loop(UNUSED void *arg)
-{
+void thread5_mem_error_message_loop(UNUSED void *arg) {
     struct LevelCommand *addr;
 
     setup_game_memory();
-    set_vblank_handler(2, &gGameVblankHandler, &gGameVblankQueue, (OSMesg)1);
+    set_vblank_handler(2, &gGameVblankHandler, &gGameVblankQueue, (OSMesg) 1);
 
     addr = (struct LevelCommand *) segmented_to_virtual(level_script_entry_error_screen);
 
     func_80247ED8();
 
-    while(1)
-    {
+    while (1) {
         func_80247FAC();
         addr = level_script_execute(addr);
         display_and_vsync();

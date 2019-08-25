@@ -5,12 +5,10 @@
  * search for an available hole to pop out of.
  */
 
-
 /**
  * The particles that pop out of the ground when a monty mole rises from a hole.
  */
-static struct SpawnParticlesInfo sMontyMoleRiseFromGroundParticles =
-{
+static struct SpawnParticlesInfo sMontyMoleRiseFromGroundParticles = {
     /* behParam:        */ 0,
     /* count:           */ 3,
     /* model:           */ MODEL_SAND_DUST,
@@ -28,8 +26,7 @@ static struct SpawnParticlesInfo sMontyMoleRiseFromGroundParticles =
 /**
  * Hitbox for monty mole.
  */
-static struct ObjectHitbox sMontyMoleHitbox =
-{
+static struct ObjectHitbox sMontyMoleHitbox = {
     /* interactType:      */ INTERACT_BOUNCE_TOP,
     /* downOffset:        */ 0,
     /* damageOrCoinValue: */ 2,
@@ -44,8 +41,7 @@ static struct ObjectHitbox sMontyMoleHitbox =
 /**
  * Hitbox for monty mole rock.
  */
-static struct ObjectHitbox sMontyMoleRockHitbox =
-{
+static struct ObjectHitbox sMontyMoleRockHitbox = {
     /* interactType:      */ INTERACT_MR_BLIZZARD,
     /* downOffset:        */ 15,
     /* damageOrCoinValue: */ 1,
@@ -60,8 +56,7 @@ static struct ObjectHitbox sMontyMoleRockHitbox =
 /**
  * The particles that spawn when a monty mole rock breaks.
  */
-static struct SpawnParticlesInfo sMontyMoleRockBreakParticles =
-{
+static struct SpawnParticlesInfo sMontyMoleRockBreakParticles = {
     /* behParam:        */ 0,
     /* count:           */ 2,
     /* model:           */ MODEL_PEBBLE,
@@ -97,14 +92,12 @@ f32 sMontyMoleLastKilledPosX;
 f32 sMontyMoleLastKilledPosY;
 f32 sMontyMoleLastKilledPosZ;
 
-
 /**
  * Link all objects with the given behavior using parentObj.
  * The result is a singly linked list in reverse processing order. Return the
  * start of this list.
  */
-static struct Object *link_objects_with_behavior(void *behavior)
-{
+static struct Object *link_objects_with_behavior(void *behavior) {
     void *behaviorAddr;
     struct Object *obj;
     struct Object *lastObject;
@@ -115,16 +108,14 @@ static struct Object *link_objects_with_behavior(void *behavior)
 
     listHead = &gObjectLists[get_object_list_from_behavior(behaviorAddr)];
 
-    obj = (struct Object *)listHead->next;
-    while (obj != (struct Object *)listHead)
-    {
-        if (obj->behavior == behaviorAddr && obj->activeFlags != ACTIVE_FLAGS_DEACTIVATED)
-        {
+    obj = (struct Object *) listHead->next;
+    while (obj != (struct Object *) listHead) {
+        if (obj->behavior == behaviorAddr && obj->activeFlags != ACTIVE_FLAGS_DEACTIVATED) {
             obj->parentObj = lastObject;
             lastObject = obj;
         }
 
-        obj = (struct Object *)obj->header.next;
+        obj = (struct Object *) obj->header.next;
     }
 
     return lastObject;
@@ -134,18 +125,13 @@ static struct Object *link_objects_with_behavior(void *behavior)
  * Select a random hole that is within minDistToMario and 1500 of mario, and
  * whose cooldown is zero. Return NULL if no hole is available.
  */
-static struct Object *monty_mole_select_available_hole(f32 minDistToMario)
-{
+static struct Object *monty_mole_select_available_hole(f32 minDistToMario) {
     struct Object *hole = sMontyMoleHoleList;
     s32 numAvailableHoles = 0;
 
-    while (hole != NULL)
-    {
-        if (hole->oMontyMoleHoleCooldown == 0)
-        {
-            if (hole->oDistanceToMario < 1500.0f &&
-                hole->oDistanceToMario > minDistToMario)
-            {
+    while (hole != NULL) {
+        if (hole->oMontyMoleHoleCooldown == 0) {
+            if (hole->oDistanceToMario < 1500.0f && hole->oDistanceToMario > minDistToMario) {
                 numAvailableHoles++;
             }
         }
@@ -153,22 +139,16 @@ static struct Object *monty_mole_select_available_hole(f32 minDistToMario)
         hole = hole->parentObj;
     }
 
-    if (numAvailableHoles != 0)
-    {
+    if (numAvailableHoles != 0) {
         s32 selectedHole = (s32)(RandomFloat() * numAvailableHoles);
 
         hole = sMontyMoleHoleList;
         numAvailableHoles = 0;
 
-        while (hole != NULL)
-        {
-            if (hole->oMontyMoleHoleCooldown == 0)
-            {
-                if (hole->oDistanceToMario < 1500.0f &&
-                    hole->oDistanceToMario > minDistToMario)
-                {
-                    if (numAvailableHoles == selectedHole)
-                    {
+        while (hole != NULL) {
+            if (hole->oMontyMoleHoleCooldown == 0) {
+                if (hole->oDistanceToMario < 1500.0f && hole->oDistanceToMario > minDistToMario) {
+                    if (numAvailableHoles == selectedHole) {
                         return hole;
                     }
 
@@ -186,16 +166,12 @@ static struct Object *monty_mole_select_available_hole(f32 minDistToMario)
 /**
  * Update function for bhvMontyMoleHole.
  */
-void bhv_monty_mole_hole_update(void)
-{
+void bhv_monty_mole_hole_update(void) {
     // If hole list hasn't been constructed yet, construct it
-    if (o->parentObj == o)
-    {
+    if (o->parentObj == o) {
         sMontyMoleHoleList = link_objects_with_behavior(bhvMontyMoleHole);
         sMontyMoleKillStreak = 0;
-    }
-    else if (o->oMontyMoleHoleCooldown > 0)
-    {
+    } else if (o->oMontyMoleHoleCooldown > 0) {
         o->oMontyMoleHoleCooldown -= 1;
     }
 }
@@ -203,8 +179,7 @@ void bhv_monty_mole_hole_update(void)
 /**
  * Spawn dirt particles when rising out of the ground.
  */
-static void monty_mole_spawn_dirt_particles(s8 offsetY, s8 velYBase)
-{
+static void monty_mole_spawn_dirt_particles(s8 offsetY, s8 velYBase) {
     sMontyMoleRiseFromGroundParticles.offsetY = offsetY;
     sMontyMoleRiseFromGroundParticles.velYBase = velYBase;
     obj_spawn_particles(&sMontyMoleRiseFromGroundParticles);
@@ -213,8 +188,7 @@ static void monty_mole_spawn_dirt_particles(s8 offsetY, s8 velYBase)
 /**
  * Init function for bhvMontyMole.
  */
-void bhv_monty_mole_init(void)
-{
+void bhv_monty_mole_init(void) {
     o->oMontyMoleCurrentHole = NULL;
 }
 
@@ -222,26 +196,19 @@ void bhv_monty_mole_init(void)
  * Search for an available hole. Once one is available, claim it and enter
  * either the rise from hole or jump out of hole action.
  */
-static void monty_mole_act_select_hole(void)
-{
+static void monty_mole_act_select_hole(void) {
     f32 minDistToMario;
 
-    if (o->oBehParams2ndByte != MONTY_MOLE_BP_NO_ROCK)
-    {
+    if (o->oBehParams2ndByte != MONTY_MOLE_BP_NO_ROCK) {
         minDistToMario = 200.0f;
-    }
-    else if (gMarioStates[0].forwardVel < 8.0f)
-    {
+    } else if (gMarioStates[0].forwardVel < 8.0f) {
         minDistToMario = 100.0f;
-    }
-    else
-    {
+    } else {
         minDistToMario = 500.0f;
     }
 
     // Select a hole to pop out of
-    if ((o->oMontyMoleCurrentHole = monty_mole_select_available_hole(minDistToMario)) != NULL)
-    {
+    if ((o->oMontyMoleCurrentHole = monty_mole_select_available_hole(minDistToMario)) != NULL) {
         PlaySound2(SOUND_CH9_UNK67);
 
         // Mark hole as unavailable
@@ -255,15 +222,12 @@ static void monty_mole_act_select_hole(void)
         o->oFaceAnglePitch = 0;
         o->oMoveAngleYaw = o->oMontyMoleCurrentHole->oAngleToMario;
 
-        if (o->oDistanceToMario > 500.0f || minDistToMario > 100.0f || RandomSign() < 0)
-        {
+        if (o->oDistanceToMario > 500.0f || minDistToMario > 100.0f || RandomSign() < 0) {
             o->oAction = MONTY_MOLE_ACT_RISE_FROM_HOLE;
             o->oVelY = 3.0f;
             o->oGravity = 0.0f;
             monty_mole_spawn_dirt_particles(0, 10);
-        }
-        else
-        {
+        } else {
             o->oAction = MONTY_MOLE_ACT_JUMP_OUT_OF_HOLE;
             o->oVelY = 50.0f;
             o->oGravity = -4.0f;
@@ -278,17 +242,14 @@ static void monty_mole_act_select_hole(void)
 /**
  * Move upward until high enough, then enter the spawn rock action.
  */
-static void monty_mole_act_rise_from_hole(void)
-{
+static void monty_mole_act_rise_from_hole(void) {
     set_obj_animation_and_sound_state(1);
 
-    if (o->oMontyMoleHeightRelativeToFloor >= 49.0f)
-    {
+    if (o->oMontyMoleHeightRelativeToFloor >= 49.0f) {
         o->oPosY = o->oFloorHeight + 50.0f;
         o->oVelY = 0.0f;
 
-        if (func_8029F788())
-        {
+        if (func_8029F788()) {
             o->oAction = MONTY_MOLE_ACT_SPAWN_ROCK;
         }
     }
@@ -298,21 +259,16 @@ static void monty_mole_act_rise_from_hole(void)
  * If mario is close enough, then spawn a rock and enter the throw rock action.
  * Otherwise, enter the begin jump into hole action.
  */
-static void monty_mole_act_spawn_rock(void)
-{
+static void monty_mole_act_spawn_rock(void) {
     struct Object *rock;
 
-    if (func_802F92B0(2))
-    {
-        if (o->oBehParams2ndByte != MONTY_MOLE_BP_NO_ROCK &&
-            abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw) < 0x4000 &&
-            (rock = spawn_object(o, MODEL_PEBBLE, bhvMontyMoleRock)) != NULL)
-        {
+    if (func_802F92B0(2)) {
+        if (o->oBehParams2ndByte != MONTY_MOLE_BP_NO_ROCK
+            && abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw) < 0x4000
+            && (rock = spawn_object(o, MODEL_PEBBLE, bhvMontyMoleRock)) != NULL) {
             o->prevObj = rock;
             o->oAction = MONTY_MOLE_ACT_THROW_ROCK;
-        }
-        else
-        {
+        } else {
             o->oAction = MONTY_MOLE_ACT_BEGIN_JUMP_INTO_HOLE;
         }
     }
@@ -322,10 +278,8 @@ static void monty_mole_act_spawn_rock(void)
  * Wait until mario is relatively close, then set vely to 40 and enter the jump
  * into hole action.
  */
-static void monty_mole_act_begin_jump_into_hole(void)
-{
-    if (func_802F92B0(3) || obj_is_near_to_and_facing_mario(1000.0f, 0x4000))
-    {
+static void monty_mole_act_begin_jump_into_hole(void) {
+    if (func_802F92B0(3) || obj_is_near_to_and_facing_mario(1000.0f, 0x4000)) {
         o->oAction = MONTY_MOLE_ACT_JUMP_INTO_HOLE;
         o->oVelY = 40.0f;
         o->oGravity = -6.0f;
@@ -335,16 +289,13 @@ static void monty_mole_act_begin_jump_into_hole(void)
 /**
  * Throw the held rock, then enter the begin jump into hole action.
  */
-static void monty_mole_act_throw_rock(void)
-{
-    if (func_802F92EC(8, 10))
-    {
+static void monty_mole_act_throw_rock(void) {
+    if (func_802F92EC(8, 10)) {
         PlaySound2(SOUND_OBJECT_MONTYMOLEATTACK);
         o->prevObj = NULL;
     }
 
-    if (func_8029F788())
-    {
+    if (func_8029F788()) {
         o->oAction = MONTY_MOLE_ACT_BEGIN_JUMP_INTO_HOLE;
     }
 }
@@ -352,14 +303,12 @@ static void monty_mole_act_throw_rock(void)
 /**
  * Tilt downward and wait until close to landing, then enter the hide action.
  */
-static void monty_mole_act_jump_into_hole(void)
-{
+static void monty_mole_act_jump_into_hole(void) {
     func_802F927C(0);
 
     o->oFaceAnglePitch = -atan2s(o->oVelY, -4.0f);
 
-    if (o->oVelY < 0.0f && o->oMontyMoleHeightRelativeToFloor < 120.0f)
-    {
+    if (o->oVelY < 0.0f && o->oMontyMoleHeightRelativeToFloor < 120.0f) {
         o->oAction = MONTY_MOLE_ACT_HIDE;
         o->oGravity = 0.0f;
         monty_mole_spawn_dirt_particles(-80, 15);
@@ -369,8 +318,7 @@ static void monty_mole_act_jump_into_hole(void)
 /**
  * Become intangible and enter the select hole action.
  */
-static void monty_mole_hide_in_hole(void)
-{
+static void monty_mole_hide_in_hole(void) {
     o->oMontyMoleCurrentHole->oMontyMoleHoleCooldown = 30;
     o->oAction = MONTY_MOLE_ACT_SELECT_HOLE;
     o->oVelY = 0.0f;
@@ -388,17 +336,13 @@ static void monty_mole_hide_in_hole(void)
 /**
  * Wait to land on the floor, then hide.
  */
-static void monty_mole_act_hide(void)
-{
+static void monty_mole_act_hide(void) {
     set_obj_animation_and_sound_state(1);
 
-    if (o->oMoveFlags & OBJ_MOVE_MASK_ON_GROUND)
-    {
+    if (o->oMoveFlags & OBJ_MOVE_MASK_ON_GROUND) {
         obj_hide();
         monty_mole_hide_in_hole();
-    }
-    else
-    {
+    } else {
         approach_f32_ptr(&o->oVelY, -4.0f, 0.5f);
     }
 }
@@ -407,18 +351,13 @@ static void monty_mole_act_hide(void)
  * Jump upward and then fall back down. Then enter the begin jump into hole
  * action.
  */
-static void monty_mole_act_jump_out_of_hole(void)
-{
-    if (o->oVelY > 0.0f)
-    {
+static void monty_mole_act_jump_out_of_hole(void) {
+    if (o->oVelY > 0.0f) {
         set_obj_animation_and_sound_state(9);
-    }
-    else
-    {
+    } else {
         func_802F927C(4);
 
-        if (o->oMontyMoleHeightRelativeToFloor < 50.0f)
-        {
+        if (o->oMontyMoleHeightRelativeToFloor < 50.0f) {
             o->oPosY = o->oFloorHeight + 50.0f;
             o->oAction = MONTY_MOLE_ACT_BEGIN_JUMP_INTO_HOLE;
             o->oVelY = o->oGravity = 0.0f;
@@ -429,51 +368,59 @@ static void monty_mole_act_jump_out_of_hole(void)
 /**
  * Update function for bhvMontyMole.
  */
-void bhv_monty_mole_update(void)
-{
-    //PARTIAL_UPDATE
+void bhv_monty_mole_update(void) {
+    // PARTIAL_UPDATE
 
     o->oDeathSound = SOUND_OBJECT_DYINGENEMY1;
     obj_update_floor_and_walls();
 
     o->oMontyMoleHeightRelativeToFloor = o->oPosY - o->oFloorHeight;
 
-    switch (o->oAction)
-    {
-    case MONTY_MOLE_ACT_SELECT_HOLE:          monty_mole_act_select_hole();          break;
-    case MONTY_MOLE_ACT_RISE_FROM_HOLE:       monty_mole_act_rise_from_hole();       break;
-    case MONTY_MOLE_ACT_SPAWN_ROCK:           monty_mole_act_spawn_rock();           break;
-    case MONTY_MOLE_ACT_BEGIN_JUMP_INTO_HOLE: monty_mole_act_begin_jump_into_hole(); break;
-    case MONTY_MOLE_ACT_THROW_ROCK:           monty_mole_act_throw_rock();           break;
-    case MONTY_MOLE_ACT_JUMP_INTO_HOLE:       monty_mole_act_jump_into_hole();       break;
-    case MONTY_MOLE_ACT_HIDE:                 monty_mole_act_hide();                 break;
-    case MONTY_MOLE_ACT_JUMP_OUT_OF_HOLE:     monty_mole_act_jump_out_of_hole();     break;
+    switch (o->oAction) {
+        case MONTY_MOLE_ACT_SELECT_HOLE:
+            monty_mole_act_select_hole();
+            break;
+        case MONTY_MOLE_ACT_RISE_FROM_HOLE:
+            monty_mole_act_rise_from_hole();
+            break;
+        case MONTY_MOLE_ACT_SPAWN_ROCK:
+            monty_mole_act_spawn_rock();
+            break;
+        case MONTY_MOLE_ACT_BEGIN_JUMP_INTO_HOLE:
+            monty_mole_act_begin_jump_into_hole();
+            break;
+        case MONTY_MOLE_ACT_THROW_ROCK:
+            monty_mole_act_throw_rock();
+            break;
+        case MONTY_MOLE_ACT_JUMP_INTO_HOLE:
+            monty_mole_act_jump_into_hole();
+            break;
+        case MONTY_MOLE_ACT_HIDE:
+            monty_mole_act_hide();
+            break;
+        case MONTY_MOLE_ACT_JUMP_OUT_OF_HOLE:
+            monty_mole_act_jump_out_of_hole();
+            break;
     }
 
     // Spawn a 1-up if you kill 8 monty moles
-    if (obj_check_attacks(&sMontyMoleHitbox, o->oAction))
-    {
-        if (sMontyMoleKillStreak != 0)
-        {
+    if (obj_check_attacks(&sMontyMoleHitbox, o->oAction)) {
+        if (sMontyMoleKillStreak != 0) {
             f32 dx = o->oPosX - sMontyMoleLastKilledPosX;
             f32 dy = o->oPosY - sMontyMoleLastKilledPosY;
             f32 dz = o->oPosZ - sMontyMoleLastKilledPosZ;
 
-            f32 distToLastKill = sqrtf(dx*dx + dy*dy + dz*dz);
+            f32 distToLastKill = sqrtf(dx * dx + dy * dy + dz * dz);
 
             //! The two farthest holes on the bottom level of TTM are more than
             //  1500 units away from each other, so the counter resets if you
             //  attack moles in these holes consecutively.
-            if (distToLastKill < 1500.0f)
-            {
-                if (sMontyMoleKillStreak == 7)
-                {
+            if (distToLastKill < 1500.0f) {
+                if (sMontyMoleKillStreak == 7) {
                     play_puzzle_jingle();
                     spawn_object(o, MODEL_1UP, bhv1upWalking);
                 }
-            }
-            else
-            {
+            } else {
                 sMontyMoleKillStreak = 0;
             }
         }
@@ -497,18 +444,15 @@ void bhv_monty_mole_update(void)
 /**
  * Wait for monty mole to throw the rock, then enter the move action.
  */
-static void monty_mole_rock_act_held(void)
-{
+static void monty_mole_rock_act_held(void) {
     // The position is offset since the monty mole is throwing it with its hand
     o->oParentRelativePosX = 80.0f;
     o->oParentRelativePosY = -50.0f;
     o->oParentRelativePosZ = 0.0f;
 
-    if (o->parentObj->prevObj == NULL)
-    {
+    if (o->parentObj->prevObj == NULL) {
         f32 distToMario = o->oDistanceToMario;
-        if (distToMario > 600.0f)
-        {
+        if (distToMario > 600.0f) {
             distToMario = 600.0f;
         }
 
@@ -527,12 +471,10 @@ static void monty_mole_rock_act_held(void)
 /**
  * Move, then despawn after hitting the ground or water.
  */
-static void monty_mole_rock_act_move(void)
-{
+static void monty_mole_rock_act_move(void) {
     obj_update_floor_and_walls();
 
-    if (o->oMoveFlags & (OBJ_MOVE_MASK_ON_GROUND | OBJ_MOVE_ENTERED_WATER))
-    {
+    if (o->oMoveFlags & (OBJ_MOVE_MASK_ON_GROUND | OBJ_MOVE_ENTERED_WATER)) {
         obj_spawn_particles(&sMontyMoleRockBreakParticles);
         mark_object_for_deletion(o);
     }
@@ -543,17 +485,19 @@ static void monty_mole_rock_act_move(void)
 /**
  * Update function for bhvMontyMoleRock.
  */
-void bhv_monty_mole_rock_update(void)
-{
-    //PARTIAL_UPDATE
+void bhv_monty_mole_rock_update(void) {
+    // PARTIAL_UPDATE
     //! Since we can prevent them from despawning using partial updates, we
     //  can fill up object slots to crash the game.
 
     obj_check_attacks(&sMontyMoleRockHitbox, o->oAction);
 
-    switch (o->oAction)
-    {
-    case MONTY_MOLE_ROCK_ACT_HELD: monty_mole_rock_act_held(); break;
-    case MONTY_MOLE_ROCK_ACT_MOVE: monty_mole_rock_act_move(); break;
+    switch (o->oAction) {
+        case MONTY_MOLE_ROCK_ACT_HELD:
+            monty_mole_rock_act_held();
+            break;
+        case MONTY_MOLE_ROCK_ACT_MOVE:
+            monty_mole_rock_act_move();
+            break;
     }
 }

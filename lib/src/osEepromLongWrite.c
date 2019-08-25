@@ -6,21 +6,17 @@ extern u8 _osCont_numControllers;
 extern OSTimer D_80365D28;
 extern OSMesgQueue _osContMesgQueue;
 extern OSMesg _osContMesgBuff[4];
-//exactly the same as osEepromLongRead except for osEepromWrite call
+// exactly the same as osEepromLongRead except for osEepromWrite call
 
-s32 osEepromLongWrite(OSMesgQueue *mq, u8 address, u8 *buffer, int nbytes)
-{
+s32 osEepromLongWrite(OSMesgQueue *mq, u8 address, u8 *buffer, int nbytes) {
     s32 result = 0;
-    if (address > 0x40)
-    {
+    if (address > 0x40) {
         return -1;
     }
 
-    while (nbytes > 0)
-    {
+    while (nbytes > 0) {
         result = osEepromWrite(mq, address, buffer);
-        if (result != 0)
-        {
+        if (result != 0) {
             return result;
         }
         nbytes -= 8;

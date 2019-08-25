@@ -10,8 +10,7 @@ f32 func_802F54F8(void) {
     if (sp20 > sp1C + o->oUnknownUnkFC_F32) {
         o->oUnknownUnkF4_S32 = 0;
         return sp20 + o->oUnknownUnkFC_F32;
-    }
-    else {
+    } else {
         o->oUnknownUnkF4_S32 = 1;
         return sp1C + o->oUnknownUnkFC_F32;
     }
@@ -19,9 +18,9 @@ f32 func_802F54F8(void) {
 
 void func_802F55CC(void) {
     s16 sp6 = (gMarioObject->header.gfx.pos[0] - o->oPosX) * coss(-o->oMoveAngleYaw)
-        + (gMarioObject->header.gfx.pos[2] - o->oPosZ) * sins(-o->oMoveAngleYaw);
+              + (gMarioObject->header.gfx.pos[2] - o->oPosZ) * sins(-o->oMoveAngleYaw);
     s16 sp4 = (gMarioObject->header.gfx.pos[2] - o->oPosZ) * coss(-o->oMoveAngleYaw)
-        - (gMarioObject->header.gfx.pos[0] - o->oPosX) * sins(-o->oMoveAngleYaw);
+              - (gMarioObject->header.gfx.pos[0] - o->oPosX) * sins(-o->oMoveAngleYaw);
 
     if (gMarioObject->platform == o) {
         o->oFaceAnglePitch = sp4 * 2;
@@ -33,8 +32,7 @@ void func_802F55CC(void) {
         o->oUnknownUnkF8_F32 += o->oVelY;
         if (o->oUnknownUnkF8_F32 > 90.0f)
             o->oUnknownUnkF8_F32 = 90.0f;
-    }
-    else {
+    } else {
         o->oFaceAnglePitch /= 2;
         o->oFaceAngleRoll /= 2;
         o->oUnknownUnkF8_F32 -= 5.0;

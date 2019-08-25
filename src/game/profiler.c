@@ -17,8 +17,7 @@ s16 gCurrentFrameIndex2 = 0;
 struct ProfilerFrameData gProfilerFrameData[2];
 
 // log the current osTime to the appropriate idx for current thread5 processes.
-void profiler_log_thread5_time(enum ProfilerGameEvent eventID)
-{
+void profiler_log_thread5_time(enum ProfilerGameEvent eventID) {
     gProfilerFrameData[gCurrentFrameIndex1].gameTimes[eventID] = osGetTime();
 
     // event ID 4 is the last profiler event for after swapping
@@ -30,9 +29,8 @@ void profiler_log_thread5_time(enum ProfilerGameEvent eventID)
 }
 
 // log the audio system before and after osTimes in pairs to the soundTimes array.
-void profiler_log_thread4_time(void)
-{
-    struct ProfilerFrameData* profiler = &gProfilerFrameData[gCurrentFrameIndex1];
+void profiler_log_thread4_time(void) {
+    struct ProfilerFrameData *profiler = &gProfilerFrameData[gCurrentFrameIndex1];
 
     if (profiler->numSoundTimes < ARRAY_COUNT(profiler->soundTimes)) {
         profiler->soundTimes[profiler->numSoundTimes++] = osGetTime();
@@ -40,8 +38,7 @@ void profiler_log_thread4_time(void)
 }
 
 // log the times for gfxTimes: RSP completes, and RDP completes.
-void profiler_log_gfx_time(enum ProfilerGfxEvent eventID)
-{
+void profiler_log_gfx_time(enum ProfilerGfxEvent eventID) {
     if (eventID == 0) {
         gCurrentFrameIndex2 ^= 1;
         gProfilerFrameData[gCurrentFrameIndex2].numVblankTimes = 0;
@@ -51,9 +48,8 @@ void profiler_log_gfx_time(enum ProfilerGfxEvent eventID)
 }
 
 // log the times between vblank started and ended.
-void profiler_log_vblank_time(void)
-{
-    struct ProfilerFrameData* profiler = &gProfilerFrameData[gCurrentFrameIndex2];
+void profiler_log_vblank_time(void) {
+    struct ProfilerFrameData *profiler = &gProfilerFrameData[gCurrentFrameIndex2];
 
     if (profiler->numVblankTimes < ARRAY_COUNT(profiler->vblankTimes)) {
         profiler->vblankTimes[profiler->numVblankTimes++] = osGetTime();
@@ -61,8 +57,7 @@ void profiler_log_vblank_time(void)
 }
 
 // draw the specified profiler given the information passed.
-void draw_profiler_bar(s64 clock_base, s64 clock_start, s64 clock_end, s16 pos_y, u16 color)
-{
+void draw_profiler_bar(s64 clock_base, s64 clock_start, s64 clock_end, s16 pos_y, u16 color) {
     s64 duration_start, duration_end;
     s32 rect_x1, rect_x2;
 
@@ -77,7 +72,7 @@ void draw_profiler_bar(s64 clock_base, s64 clock_start, s64 clock_end, s16 pos_y
 
     // calculate the x coordinates of where start and end begins, respectively.
     rect_x1 = ((((duration_start * 1000000) / osClockRate * 3) / 1000) + 30);
-    rect_x2 = ((((duration_end   * 1000000) / osClockRate * 3) / 1000) + 30);
+    rect_x2 = ((((duration_end * 1000000) / osClockRate * 3) / 1000) + 30);
 
     //! I believe this is supposed to cap rect_x1 and rect_x2 to 320, but the
     //  code seems to use the wrong variables... it's possible that the variable
@@ -97,28 +92,31 @@ void draw_profiler_bar(s64 clock_base, s64 clock_start, s64 clock_end, s16 pos_y
     }
 }
 
-void draw_reference_profiler_bars(void)
-{
+void draw_reference_profiler_bars(void) {
     // Draws the reference "max" bars underneath the real thing.
 
     // Blue
     gDPPipeSync(gDisplayListHead++);
-    gDPSetFillColor(gDisplayListHead++, GPACK_RGBA5551(40, 80, 255, 1) << 16 | GPACK_RGBA5551(40, 80, 255, 1));
+    gDPSetFillColor(gDisplayListHead++,
+                    GPACK_RGBA5551(40, 80, 255, 1) << 16 | GPACK_RGBA5551(40, 80, 255, 1));
     gDPFillRectangle(gDisplayListHead++, 30, 220, 79, 222);
 
     // Yellow
     gDPPipeSync(gDisplayListHead++);
-    gDPSetFillColor(gDisplayListHead++, GPACK_RGBA5551(255, 255, 40, 1) << 16 | GPACK_RGBA5551(255, 255, 40, 1));
+    gDPSetFillColor(gDisplayListHead++,
+                    GPACK_RGBA5551(255, 255, 40, 1) << 16 | GPACK_RGBA5551(255, 255, 40, 1));
     gDPFillRectangle(gDisplayListHead++, 79, 220, 128, 222);
 
     // Orange
     gDPPipeSync(gDisplayListHead++);
-    gDPSetFillColor(gDisplayListHead++, GPACK_RGBA5551(255, 120, 40, 1) << 16 | GPACK_RGBA5551(255, 120, 40, 1));
+    gDPSetFillColor(gDisplayListHead++,
+                    GPACK_RGBA5551(255, 120, 40, 1) << 16 | GPACK_RGBA5551(255, 120, 40, 1));
     gDPFillRectangle(gDisplayListHead++, 128, 220, 177, 222);
 
     // Red
     gDPPipeSync(gDisplayListHead++);
-    gDPSetFillColor(gDisplayListHead++, GPACK_RGBA5551(255, 40, 40, 1) << 16 | GPACK_RGBA5551(255, 40, 40, 1));
+    gDPSetFillColor(gDisplayListHead++,
+                    GPACK_RGBA5551(255, 40, 40, 1) << 16 | GPACK_RGBA5551(255, 40, 40, 1));
     gDPFillRectangle(gDisplayListHead++, 177, 220, 226, 222);
 }
 
@@ -136,8 +134,7 @@ void draw_reference_profiler_bars(void)
   (orange): Time from RSP complete to RDP complete (possibly bugged, see //! note below)
   (red): VBlank Times
 */
-void draw_profiler_mode_1(void)
-{
+void draw_profiler_mode_1(void) {
     s32 i;
     struct ProfilerFrameData *profiler;
     u64 clock_base;
@@ -151,13 +148,17 @@ void draw_profiler_mode_1(void)
     clock_base = profiler->soundTimes[0] - (16433 * osClockRate / 1000000);
 
     // draw the profiler for the time it takes for level scripts to execute. (yellow)
-    draw_profiler_bar(clock_base, profiler->gameTimes[0], profiler->gameTimes[1], 212, GPACK_RGBA5551(255, 255, 40, 1));
+    draw_profiler_bar(clock_base, profiler->gameTimes[0], profiler->gameTimes[1], 212,
+                      GPACK_RGBA5551(255, 255, 40, 1));
 
-    // draw the profiler for the time it takes for the game to render (between level scripts and pre-display lists). (orange)
-    draw_profiler_bar(clock_base, profiler->gameTimes[1], profiler->gameTimes[2], 212, GPACK_RGBA5551(255, 120, 40, 1));
+    // draw the profiler for the time it takes for the game to render (between level scripts and
+    // pre-display lists). (orange)
+    draw_profiler_bar(clock_base, profiler->gameTimes[1], profiler->gameTimes[2], 212,
+                      GPACK_RGBA5551(255, 120, 40, 1));
 
     // draw the profiler for the time it takes for the display lists to send. (blue)
-    draw_profiler_bar(clock_base, profiler->gameTimes[2], profiler->gameTimes[3], 212, GPACK_RGBA5551(40, 192, 230, 1));
+    draw_profiler_bar(clock_base, profiler->gameTimes[2], profiler->gameTimes[3], 212,
+                      GPACK_RGBA5551(40, 192, 230, 1));
 
     // we need to get the amount of finished numSoundTimes pairs, so get rid of the odd bit to get the
     // limit of finished pairs.
@@ -165,22 +166,27 @@ void draw_profiler_mode_1(void)
 
     // draw the sound update times. (red)
     for (i = 0; i < profiler->numSoundTimes; i += 2) {
-        draw_profiler_bar(clock_base, profiler->soundTimes[i], profiler->soundTimes[i+1], 212, GPACK_RGBA5551(255, 40, 40, 1));
+        draw_profiler_bar(clock_base, profiler->soundTimes[i], profiler->soundTimes[i + 1], 212,
+                          GPACK_RGBA5551(255, 40, 40, 1));
     }
 
     //! RSP and RDP run in parallel, so while they are not absolutely guaranteed to return in order,
     //  it is theoretically possible they might not. In all cases, the RDP should finish later than RSP.
-    //  Thus, this is not really a bug in practice, but should still be noted that the C doesn't check this.
-    draw_profiler_bar(clock_base, profiler->gfxTimes[0], profiler->gfxTimes[1], 216, GPACK_RGBA5551(255, 255, 40, 1));
+    //  Thus, this is not really a bug in practice, but should still be noted that the C doesn't check
+    //  this.
+    draw_profiler_bar(clock_base, profiler->gfxTimes[0], profiler->gfxTimes[1], 216,
+                      GPACK_RGBA5551(255, 255, 40, 1));
     // (orange)
-    draw_profiler_bar(clock_base, profiler->gfxTimes[1], profiler->gfxTimes[2], 216, GPACK_RGBA5551(255, 120, 40, 1));
+    draw_profiler_bar(clock_base, profiler->gfxTimes[1], profiler->gfxTimes[2], 216,
+                      GPACK_RGBA5551(255, 120, 40, 1));
 
     // like earlier, toss the odd bit.
     profiler->numVblankTimes &= 0xFFFE;
 
     // render the vblank time pairs. (red)
     for (i = 0; i < profiler->numVblankTimes; i += 2) {
-        draw_profiler_bar(clock_base, profiler->vblankTimes[i], profiler->vblankTimes[i+1], 216, GPACK_RGBA5551(255, 40, 40, 1));
+        draw_profiler_bar(clock_base, profiler->vblankTimes[i], profiler->vblankTimes[i + 1], 216,
+                          GPACK_RGBA5551(255, 40, 40, 1));
     }
 
     draw_reference_profiler_bars();
@@ -199,10 +205,9 @@ void draw_profiler_mode_1(void)
   (yellow): RSP Duration
   (red): VBlank Duration
 */
-void draw_profiler_mode_0(void)
-{
+void draw_profiler_mode_0(void) {
     s32 i;
-    struct ProfilerFrameData* profiler;
+    struct ProfilerFrameData *profiler;
 
     u64 clock_start;
     u64 level_script_duration;
@@ -218,7 +223,8 @@ void draw_profiler_mode_0(void)
     profiler = &gProfilerFrameData[gCurrentFrameIndex1 ^ 1];
 
     // was thread 5 ran before thread 4? set the lower one to be the clock_start.
-    clock_start = profiler->gameTimes[0] <= profiler->soundTimes[0] ? profiler->gameTimes[0] : profiler->soundTimes[0];
+    clock_start = profiler->gameTimes[0] <= profiler->soundTimes[0] ? profiler->gameTimes[0]
+                                                                    : profiler->soundTimes[0];
 
     // set variables for duration of tasks.
     level_script_duration = profiler->gameTimes[1] - clock_start;
@@ -265,11 +271,13 @@ void draw_profiler_mode_0(void)
 
     // draw level script execution duration. (yellow)
     clock_start += task_start;
-    draw_profiler_bar(0, clock_start, clock_start + level_script_duration, 212, GPACK_RGBA5551(255, 255, 40, 1));
+    draw_profiler_bar(0, clock_start, clock_start + level_script_duration, 212,
+                      GPACK_RGBA5551(255, 255, 40, 1));
 
     // draw render duration. (orange)
     clock_start += level_script_duration;
-    draw_profiler_bar(0, clock_start, clock_start + render_duration, 212, GPACK_RGBA5551(255, 120, 40, 1));
+    draw_profiler_bar(0, clock_start, clock_start + render_duration, 212,
+                      GPACK_RGBA5551(255, 120, 40, 1));
 
     // Draw bottom profilers.
 
@@ -285,8 +293,7 @@ void draw_profiler_mode_0(void)
 
 // Draw the Profiler per frame. Toggle the mode if the player presses L while this
 // renderer is active.
-void draw_profiler(void)
-{
+void draw_profiler(void) {
     if (gPlayer1Controller->buttonPressed & L_TRIG) {
         gProfilerMode ^= 1;
     }

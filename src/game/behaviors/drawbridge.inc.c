@@ -1,7 +1,6 @@
 // drawbridge.c.inc
 
-void bhv_lll_drawbridge_spawner_loop(void)
-{
+void bhv_lll_drawbridge_spawner_loop(void) {
     struct Object *drawbridge1, *drawbridge2;
 
     drawbridge1 = spawn_object(o, MODEL_LLL_DRAWBRIDGE_PART, bhvLllDrawbridge);
@@ -17,12 +16,10 @@ void bhv_lll_drawbridge_spawner_loop(void)
     o->activeFlags = 0;
 }
 
-void bhv_lll_drawbridge_loop(void)
-{
+void bhv_lll_drawbridge_loop(void) {
     s32 globalTimer = gGlobalTimer;
 
-    switch (o->oAction)
-    {
+    switch (o->oAction) {
         case LLL_DRAWBRIDGE_ACT_LOWER:
             o->oFaceAngleRoll += 0x100;
             break;
@@ -32,27 +29,23 @@ void bhv_lll_drawbridge_loop(void)
             break;
     }
 
-    if ((s16)o->oFaceAngleRoll < -0x1FFD)
-    {
+    if ((s16) o->oFaceAngleRoll < -0x1FFD) {
         o->oFaceAngleRoll = 0xDFFF;
 
         //! Because the global timer increments when the game is paused, pausing and unpausing
         //  the game at regular intervals can leave the drawbridge raised indefinitely.
-        if (o->oTimer >= 51 && (globalTimer % 8) == 0)
-        {
+        if (o->oTimer >= 51 && (globalTimer % 8) == 0) {
             o->oAction = LLL_DRAWBRIDGE_ACT_LOWER;
             PlaySound2(SOUND_GENERAL_BOATTILT1);
         }
     }
 
-    if ((s16)o->oFaceAngleRoll >= 0)
-    {
+    if ((s16) o->oFaceAngleRoll >= 0) {
         o->oFaceAngleRoll = 0;
 
         //! Because the global timer increments when the game is paused, pausing and unpausing
         //  the game at regular intervals can leave the drawbridge lowered indefinitely.
-        if (o->oTimer >= 51 && (globalTimer % 8) == 0)
-        {
+        if (o->oTimer >= 51 && (globalTimer % 8) == 0) {
             o->oAction = LLL_DRAWBRIDGE_ACT_RAISE;
             PlaySound2(SOUND_GENERAL_BOATTILT2);
         }

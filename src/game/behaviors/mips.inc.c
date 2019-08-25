@@ -12,22 +12,20 @@ void bhv_mips_init(void) {
     starFlags = save_file_get_star_flags(gCurrSaveFileNum - 1, -1);
 
     // If the player has >= 15 stars and hasn't collected first MIPS star...
-    if (save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24) >= 15
-        && (starFlags & 0x08) == 0) {
+    if (save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24) >= 15 && (starFlags & 0x08) == 0) {
         o->oBehParams2ndByte = 0;
 #ifndef VERSION_JP
         o->oMipsForwardVelocity = 40.0f;
 #endif
     }
     // If the player has >= 50 stars and hasn't collected second MIPS star...
-    else if (save_file_get_total_star_count(gCurrSaveFileNum-1, 0, 24) >= 50
-        && (starFlags & 0x10) == 0) {
+    else if (save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24) >= 50
+             && (starFlags & 0x10) == 0) {
         o->oBehParams2ndByte = 1;
 #ifndef VERSION_JP
         o->oMipsForwardVelocity = 45.0f;
 #endif
-    }
-    else {
+    } else {
         // No MIPS stars are available, hide MIPS.
         o->activeFlags = 0;
     }
@@ -63,7 +61,7 @@ s16 bhv_mips_find_furthest_waypoint_to_mario(void) {
 
     // For each waypoint in MIPS path...
     for (i = 0; i < 10; i++) {
-        waypoint = (struct Waypoint *)segmented_to_virtual(*(pathBase + i));
+        waypoint = (struct Waypoint *) segmented_to_virtual(*(pathBase + i));
         x = waypoint->pos[0];
         y = waypoint->pos[1];
         z = waypoint->pos[2];
@@ -71,7 +69,8 @@ s16 bhv_mips_find_furthest_waypoint_to_mario(void) {
         // Is the waypoint within 800 units of MIPS?
         if (IsPointCloseToObject(o, x, y, z, 800)) {
             // Is this further from Mario than the last waypoint?
-            distanceToMario = sqr(x - gMarioObject->header.gfx.pos[0]) + sqr(z - gMarioObject->header.gfx.pos[2]);
+            distanceToMario =
+                sqr(x - gMarioObject->header.gfx.pos[0]) + sqr(z - gMarioObject->header.gfx.pos[2]);
             if (furthestWaypointDistance < distanceToMario) {
                 furthestWaypointIndex = i;
                 furthestWaypointDistance = distanceToMario;
@@ -81,7 +80,7 @@ s16 bhv_mips_find_furthest_waypoint_to_mario(void) {
 
     // Set MIPS' next waypoint to be the closest waypoint to Mario.
     o->oMipsStartWaypointIndex = furthestWaypointIndex;
-    return (s16)o->oMipsStartWaypointIndex;
+    return (s16) o->oMipsStartWaypointIndex;
 }
 
 /**
@@ -99,8 +98,7 @@ void bhv_mips_act_wait_for_nearby_mario(void) {
         if (bhv_mips_find_furthest_waypoint_to_mario() == -1) {
             // Call it quits.
             o->oAction = MIPS_ACT_WAIT_FOR_ANIMATION_DONE;
-        }
-        else {
+        } else {
             // Resume path following.
             SetObjAnimation(1);
             o->oAction = MIPS_ACT_FOLLOW_PATH;
@@ -119,7 +117,7 @@ void bhv_mips_act_follow_path(void) {
 
     // Retrieve current waypoint.
     pathBase = segmented_to_virtual(&inside_castle_seg7_trajectory_mips);
-    waypoint = (struct Waypoint *)segmented_to_virtual(*(pathBase + o->oMipsStartWaypointIndex));
+    waypoint = (struct Waypoint *) segmented_to_virtual(*(pathBase + o->oMipsStartWaypointIndex));
 
     // Set start waypoint and follow the path from there.
     o->oPathedStartWaypoint = waypoint;

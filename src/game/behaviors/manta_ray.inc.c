@@ -1,21 +1,12 @@
 // manta_ray.c.inc
 
 // TODO: these are likely Waypoint structs
-static s16 D_803316A8[] =
-{
-    0x0000, 0xEE6C, 0xFA9C, 0xFFD8,
-    0x0001, 0xEFE8, 0xF740, 0x02E4,
-    0x0002, 0xF330, 0xF3F8, 0x0410,
-    0x0003, 0xF740, 0xF308, 0x02D0,
-    0x0004, 0xF8D0, 0xF3BC, 0xFEE8,
-    0x0005, 0xF6F0, 0xF650, 0xFBB4,
-    0x0006, 0xF36C, 0xF9C0, 0xFAB0,
-    0x0007, 0xEFAC, 0xFC04, 0xFBF0,
-    0xFFFF, 0x0000
-};
+static s16 D_803316A8[] = { 0x0000, 0xEE6C, 0xFA9C, 0xFFD8, 0x0001, 0xEFE8, 0xF740, 0x02E4, 0x0002,
+                            0xF330, 0xF3F8, 0x0410, 0x0003, 0xF740, 0xF308, 0x02D0, 0x0004, 0xF8D0,
+                            0xF3BC, 0xFEE8, 0x0005, 0xF6F0, 0xF650, 0xFBB4, 0x0006, 0xF36C, 0xF9C0,
+                            0xFAB0, 0x0007, 0xEFAC, 0xFC04, 0xFBF0, 0xFFFF, 0x0000 };
 
-static struct ObjectHitbox sMantaRayHitbox =
-{
+static struct ObjectHitbox sMantaRayHitbox = {
     /* interactType:      */ INTERACT_DAMAGE,
     /* downOffset:        */ 0,
     /* damageOrCoinValue: */ 0,
@@ -47,12 +38,11 @@ void func_802F5E20(void) {
     o->oForwardVel = 10.0f;
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oUnknownUnkF8_S32, 0x80);
     o->oMoveAnglePitch = approach_s16_symmetric(o->oMoveAnglePitch, o->oUnknownUnkF4_S32, 0x80);
-    if ((s16) o->oUnknownUnkF8_S32 != (s16)o->oMoveAngleYaw) {
+    if ((s16) o->oUnknownUnkF8_S32 != (s16) o->oMoveAngleYaw) {
         o->oMoveAngleRoll -= 91;
         if (o->oMoveAngleRoll < -5461.3332)
             o->oMoveAngleRoll = -0x4000 / 3;
-    }
-    else {
+    } else {
         o->oMoveAngleRoll += 91;
         if (o->oMoveAngleRoll > 5461.3332)
             o->oMoveAngleRoll = 0x4000 / 3;

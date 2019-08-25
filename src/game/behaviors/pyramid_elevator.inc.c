@@ -13,11 +13,8 @@ void bhv_pyramid_elevator_init(void) {
     s32 i;
     struct Object *ball;
 
-    for (i = 0; i < 10; i++)
-    {
-        ball = spawn_object(
-            o, MODEL_TRAJECTORY_MARKER_BALL, bhvPyramidElevatorTrajectoryMarkerBall
-        );
+    for (i = 0; i < 10; i++) {
+        ball = spawn_object(o, MODEL_TRAJECTORY_MARKER_BALL, bhvPyramidElevatorTrajectoryMarkerBall);
         ball->oPosY = 4600 - i * 460;
     }
 }

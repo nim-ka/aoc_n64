@@ -3,12 +3,7 @@
 // X/Z coordinates of Yoshi's homes that he switches between.
 // Note that this doesn't contain the Y coordinate since the castle roof is flat,
 // so o->oHomeY is never updated.
-static s16 sYoshiHomeLocations[] = {
-     0,     -5625,
-    -1364,  -5912,
-    -1403,  -4609,
-    -1004,  -5308
-};
+static s16 sYoshiHomeLocations[] = { 0, -5625, -1364, -5912, -1403, -4609, -1004, -5308 };
 
 void bhv_yoshi_init(void) {
     o->oGravity = 2.0f;
@@ -16,8 +11,7 @@ void bhv_yoshi_init(void) {
     o->oBuoyancy = 1.3f;
     o->oUnk190 = 0x4000;
 
-    if (save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24) < 120
-        || D_80331508 == 1) {
+    if (save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24) < 120 || D_80331508 == 1) {
         o->activeFlags = 0;
     }
 }
@@ -54,8 +48,7 @@ void yoshi_idle_loop(void) {
 
         if (o->oYoshiChosenHome == chosenHome) {
             return;
-        }
-        else {
+        } else {
             o->oYoshiChosenHome = chosenHome;
         }
 
@@ -79,7 +72,7 @@ void yoshi_idle_loop(void) {
 }
 
 void yoshi_talk_loop(void) {
-    if ((s16) o->oMoveAngleYaw == (s16)o->oAngleToMario) {
+    if ((s16) o->oMoveAngleYaw == (s16) o->oAngleToMario) {
         SetObjAnimation(0);
         if (set_mario_npc_dialog(1) == 2) {
             o->activeFlags |= 0x20;
@@ -92,8 +85,7 @@ void yoshi_talk_loop(void) {
                 o->oAction = YOSHI_ACT_GIVE_PRESENT;
             }
         }
-    }
-    else {
+    } else {
         SetObjAnimation(1);
         play_puzzle_jingle();
         o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x500);

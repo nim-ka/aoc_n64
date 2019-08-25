@@ -163,11 +163,8 @@ static void beta_boo_key_inside_boo_loop(void) {
     o->oFaceAngleYaw += 0x200;
 }
 
-static void (*sBetaBooKeyActions[])(void) = {
-    beta_boo_key_inside_boo_loop,
-    beta_boo_key_drop,
-    beta_boo_key_dropped_loop
-};
+static void (*sBetaBooKeyActions[])(void) = { beta_boo_key_inside_boo_loop, beta_boo_key_drop,
+                                              beta_boo_key_dropped_loop };
 
 /**
  * Update function for bhvBetaBooKey.

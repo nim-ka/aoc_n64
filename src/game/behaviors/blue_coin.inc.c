@@ -117,10 +117,7 @@ void bhv_blue_coin_switch_loop(void) {
 
             // Delete the switch (which stops the sound) after the last coin is collected,
             // or after the coins unload after the 240-frame timer expires.
-            if (
-                obj_nearest_object_with_behavior(bhvHiddenBlueCoin) == NULL ||
-                o->oTimer > 240
-            ) {
+            if (obj_nearest_object_with_behavior(bhvHiddenBlueCoin) == NULL || o->oTimer > 240) {
                 mark_object_for_deletion(o);
             }
 

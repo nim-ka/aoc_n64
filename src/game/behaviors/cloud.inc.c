@@ -9,46 +9,30 @@
  * Processing order is lakitu -> cloud -> its cloud parts.
  */
 
-
 /**
  * The relative heights of each cloud part.
  */
 static s8 sCloudPartHeights[] = { 11, 8, 12, 8, 9, 9 };
 
-
 /**
  * Spawn the visual parts of the cloud, including fwoosh's face.
  */
-static void cloud_act_spawn_parts(void)
-{
+static void cloud_act_spawn_parts(void) {
     struct Object *cloudPart;
     s32 i;
 
     // Spawn the pieces of the cloud itself
-    for (i = 0; i < 5; i++)
-    {
-        cloudPart = spawn_object_relative(
-            i,
-            0, 0, 0,
-            o,
-            MODEL_MIST,
-            bhvCloudPart);
+    for (i = 0; i < 5; i++) {
+        cloudPart = spawn_object_relative(i, 0, 0, 0, o, MODEL_MIST, bhvCloudPart);
 
-        if (cloudPart != NULL)
-        {
+        if (cloudPart != NULL) {
             obj_set_billboard(cloudPart);
         }
     }
 
-    if (o->oBehParams2ndByte == CLOUD_BP_FWOOSH)
-    {
+    if (o->oBehParams2ndByte == CLOUD_BP_FWOOSH) {
         // Spawn fwoosh's face
-        spawn_object_relative(
-            5,
-            0, 0, 0,
-            o,
-            MODEL_FWOOSH,
-            bhvCloudPart);
+        spawn_object_relative(5, 0, 0, 0, o, MODEL_FWOOSH, bhvCloudPart);
 
         obj_scale(3.0f);
 
@@ -62,10 +46,8 @@ static void cloud_act_spawn_parts(void)
 /**
  * Wait for mario to approach, then unhide and enter the spawn parts action.
  */
-static void cloud_act_fwoosh_hidden(void)
-{
-    if (o->oDistanceToMario < 2000.0f)
-    {
+static void cloud_act_fwoosh_hidden(void) {
+    if (o->oDistanceToMario < 2000.0f) {
         obj_unhide();
         o->oAction = CLOUD_ACT_SPAWN_PARTS;
     }
@@ -75,51 +57,35 @@ static void cloud_act_fwoosh_hidden(void)
  * Move in a circle. Unload if mario moves far away. If mario stays close for
  * long enough, blow wind at him.
  */
-static void cloud_fwoosh_update(void)
-{
-    if (o->oDistanceToMario > 2500.0f)
-    {
+static void cloud_fwoosh_update(void) {
+    if (o->oDistanceToMario > 2500.0f) {
         o->oAction = CLOUD_ACT_UNLOAD;
-    }
-    else
-    {
-        if (o->oCloudBlowing)
-        {
+    } else {
+        if (o->oCloudBlowing) {
             o->header.gfx.scale[0] += o->oCloudGrowSpeed;
 
-            if ((o->oCloudGrowSpeed -= 0.005f) < -0.16f)
-            {
+            if ((o->oCloudGrowSpeed -= 0.005f) < -0.16f) {
                 // Stop blowing once we are shrinking faster than -0.16
                 o->oCloudBlowing = o->oTimer = 0;
-            }
-            else if (o->oCloudGrowSpeed < -0.1f)
-            {
+            } else if (o->oCloudGrowSpeed < -0.1f) {
                 // Start blowing once we start shrinking faster than -0.1
                 PlaySound(SOUND_CH6_BLOWWINDORFIRE_LOWPRIO);
                 func_802C76E0(12, 3.0f, 0.0f, -50.0f, 120.0f);
-            }
-            else
-            {
+            } else {
                 PlaySound(SOUND_ENVIRONMENT_WIND1);
             }
-        }
-        else
-        {
+        } else {
             // Return to normal size
             approach_f32_ptr(&o->header.gfx.scale[0], 3.0f, 0.012f);
             o->oCloudFwooshMovementRadius += 0xC8;
 
             // If mario stays nearby for 100 frames, begin blowing
-            if (o->oDistanceToMario < 1000.0f)
-            {
-                if (o->oTimer > 100)
-                {
+            if (o->oDistanceToMario < 1000.0f) {
+                if (o->oTimer > 100) {
                     o->oCloudBlowing = TRUE;
                     o->oCloudGrowSpeed = 0.14f;
                 }
-            }
-            else
-            {
+            } else {
                 o->oTimer = 0;
             }
 
@@ -136,40 +102,30 @@ static void cloud_fwoosh_update(void)
  * Main update function for bhvCloud. This controls the cloud's movement, when it
  * unloads, and when fwoosh blows wind.
  */
-static void cloud_act_main(void)
-{
+static void cloud_act_main(void) {
     s16 localOffsetPhase;
     f32 localOffset;
 
     localOffsetPhase = 0x800 * gGlobalTimer;
 
-    if (o->parentObj != o)
-    {
+    if (o->parentObj != o) {
         // Despawn if the parent lakitu does
-        if (o->parentObj->activeFlags == ACTIVE_FLAGS_DEACTIVATED)
-        {
+        if (o->parentObj->activeFlags == ACTIVE_FLAGS_DEACTIVATED) {
             o->oAction = CLOUD_ACT_UNLOAD;
-        }
-        else
-        {
+        } else {
             o->oCloudCenterX = o->parentObj->oPosX;
             o->oCloudCenterY = o->parentObj->oPosY;
             o->oPosZ = o->parentObj->oPosZ;
 
             o->oMoveAngleYaw = o->parentObj->oFaceAngleYaw;
         }
-    }
-    else if (o->oBehParams2ndByte != CLOUD_BP_FWOOSH)
-    {
+    } else if (o->oBehParams2ndByte != CLOUD_BP_FWOOSH) {
         // This code should never run, since a lakitu cloud should always have
         // a parent
-        if (o->oDistanceToMario > 1500.0f)
-        {
+        if (o->oDistanceToMario > 1500.0f) {
             o->oAction = CLOUD_ACT_UNLOAD;
         }
-    }
-    else
-    {
+    } else {
         cloud_fwoosh_update();
     }
 
@@ -183,14 +139,10 @@ static void cloud_act_main(void)
  * If fwoosh, return to home and hide. If lakitu cloud, despawn.
  * This action informs the cloud parts to despawn.
  */
-static void cloud_act_unload(void)
-{
-    if (o->oBehParams2ndByte != CLOUD_BP_FWOOSH)
-    {
+static void cloud_act_unload(void) {
+    if (o->oBehParams2ndByte != CLOUD_BP_FWOOSH) {
         mark_object_for_deletion(o);
-    }
-    else
-    {
+    } else {
         o->oAction = CLOUD_ACT_FWOOSH_HIDDEN;
         obj_hide();
         obj_set_pos_to_home();
@@ -200,28 +152,30 @@ static void cloud_act_unload(void)
 /**
  * Update function for bhvCloud.
  */
-void bhv_cloud_update(void)
-{
-    switch (o->oAction)
-    {
-    case CLOUD_ACT_SPAWN_PARTS:   cloud_act_spawn_parts();   break;
-    case CLOUD_ACT_MAIN:          cloud_act_main();          break;
-    case CLOUD_ACT_UNLOAD:        cloud_act_unload();        break;
-    case CLOUD_ACT_FWOOSH_HIDDEN: cloud_act_fwoosh_hidden(); break;
+void bhv_cloud_update(void) {
+    switch (o->oAction) {
+        case CLOUD_ACT_SPAWN_PARTS:
+            cloud_act_spawn_parts();
+            break;
+        case CLOUD_ACT_MAIN:
+            cloud_act_main();
+            break;
+        case CLOUD_ACT_UNLOAD:
+            cloud_act_unload();
+            break;
+        case CLOUD_ACT_FWOOSH_HIDDEN:
+            cloud_act_fwoosh_hidden();
+            break;
     }
 }
 
 /**
  * Update function for bhvCloudPart. Follow the parent cloud with some oscillation.
  */
-void bhv_cloud_part_update(void)
-{
-    if (o->parentObj->oAction == CLOUD_ACT_UNLOAD)
-    {
+void bhv_cloud_part_update(void) {
+    if (o->parentObj->oAction == CLOUD_ACT_UNLOAD) {
         mark_object_for_deletion(o);
-    }
-    else
-    {
+    } else {
         f32 size = 2.0f / 3.0f * o->parentObj->header.gfx.scale[0];
         s16 angleFromCenter = o->parentObj->oFaceAngleYaw + 0x10000 / 5 * o->oBehParams2ndByte;
 
@@ -234,8 +188,7 @@ void bhv_cloud_part_update(void)
         obj_scale(size);
 
         // Cap fwoosh's face size
-        if (o->oBehParams2ndByte == 5 && size > 2.0f)
-        {
+        if (o->oBehParams2ndByte == 5 && size > 2.0f) {
             size = o->header.gfx.scale[1] = 2.0f;
         }
 
@@ -244,17 +197,12 @@ void bhv_cloud_part_update(void)
 
         cloudRadius = 25.0f * size;
 
-        o->oPosX = o->parentObj->oCloudCenterX +
-            cloudRadius * sins(angleFromCenter) +
-            localOffset;
+        o->oPosX = o->parentObj->oCloudCenterX + cloudRadius * sins(angleFromCenter) + localOffset;
 
-        o->oPosY = o->parentObj->oCloudCenterY +
-            localOffset +
-            size * sCloudPartHeights[o->oBehParams2ndByte];
+        o->oPosY =
+            o->parentObj->oCloudCenterY + localOffset + size * sCloudPartHeights[o->oBehParams2ndByte];
 
-        o->oPosZ = o->parentObj->oPosZ +
-            cloudRadius * coss(angleFromCenter) +
-            localOffset;
+        o->oPosZ = o->parentObj->oPosZ + cloudRadius * coss(angleFromCenter) + localOffset;
 
         o->oFaceAngleYaw = o->parentObj->oFaceAngleYaw;
     }

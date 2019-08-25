@@ -5,8 +5,7 @@
  * Also includes behavior for the invisible hitboxes they spawn.
  */
 
-static struct ObjectHitbox sFallingPillarHitbox =
-{
+static struct ObjectHitbox sFallingPillarHitbox = {
     /* interactType:      */ INTERACT_DAMAGE,
     /* downOffset:        */ 150,
     /* damageOrCoinValue: */ 3,
@@ -60,7 +59,7 @@ s16 bhv_falling_pillar_calculate_angle_in_front_of_mario(void) {
  */
 void bhv_falling_pillar_loop(void) {
     s16 angleInFrontOfMario;
-    switch(o->oAction) {
+    switch (o->oAction) {
         case FALLING_PILLAR_ACT_IDLE:
             // When Mario is within 1300 units of distance...
             if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 1300)) {

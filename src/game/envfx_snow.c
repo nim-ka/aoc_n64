@@ -40,32 +40,14 @@ s8 gEnvFxMode = 0;
 UNUSED s32 D_80330644 = 0;
 
 /// Template for a snow particle triangle
-Vtx gSnowTempVtx[3] =
-{
-    {{
-        {-5, 5, 0},
-        0,
-        {0, 0},
-        {0x7F, 0x7F, 0x7F, 0xFF}
-    }},
-    {{
-        {-5, -5, 0},
-        0,
-        {0, 960},
-        {0x7F, 0x7F, 0x7F, 0xFF}
-    }},
-    {{
-        {5, 5, 0},
-        0,
-        {960, 0},
-        {0x7F, 0x7F, 0x7F, 0xFF}
-    }}
-};
+Vtx gSnowTempVtx[3] = { { { { -5, 5, 0 }, 0, { 0, 0 }, { 0x7F, 0x7F, 0x7F, 0xFF } } },
+                        { { { -5, -5, 0 }, 0, { 0, 960 }, { 0x7F, 0x7F, 0x7F, 0xFF } } },
+                        { { { 5, 5, 0 }, 0, { 960, 0 }, { 0x7F, 0x7F, 0x7F, 0xFF } } } };
 
 // Change these to make snowflakes smaller or bigger
-struct SnowFlakeVertex gSnowFlakeVertex1 = {-5, 5, 0};
-struct SnowFlakeVertex gSnowFlakeVertex2 = {-5, -5, 0};
-struct SnowFlakeVertex gSnowFlakeVertex3 = {5, 5, 0};
+struct SnowFlakeVertex gSnowFlakeVertex1 = { -5, 5, 0 };
+struct SnowFlakeVertex gSnowFlakeVertex2 = { -5, -5, 0 };
+struct SnowFlakeVertex gSnowFlakeVertex3 = { 5, 5, 0 };
 
 extern void *tiny_bubble_dl_0B006AB0;
 extern void *tiny_bubble_dl_0B006A50;
@@ -95,7 +77,8 @@ s32 envfx_init_snow(s32 mode) {
             break;
     }
 
-    gEnvFxBuffer = (struct EnvFxParticle *)mem_pool_alloc(D_8033A124, gSnowParticleMaxCount * sizeof(struct EnvFxParticle));
+    gEnvFxBuffer = (struct EnvFxParticle *) mem_pool_alloc(
+        D_8033A124, gSnowParticleMaxCount * sizeof(struct EnvFxParticle));
     if (!gEnvFxBuffer)
         return 0;
 
@@ -124,7 +107,8 @@ void envfx_update_snowflake_count(s32 mode, Vec3s marioPos) {
         case ENVFX_SNOW_WATER:
             waterLevel = find_water_level(marioPos[0], marioPos[2]);
 
-            gSnowParticleCount = (((s32)((waterLevel - 400.f - (f32)marioPos[1]) * 1.0e-3) << 0x10) >> 0x10) * 5;
+            gSnowParticleCount =
+                (((s32)((waterLevel - 400.f - (f32) marioPos[1]) * 1.0e-3) << 0x10) >> 0x10) * 5;
 
             if (gSnowParticleCount < 0)
                 gSnowParticleCount = 0;
@@ -136,7 +120,6 @@ void envfx_update_snowflake_count(s32 mode, Vec3s marioPos) {
 
         case ENVFX_SNOW_BLIZZARD:
             break;
-
     }
 }
 
@@ -160,7 +143,7 @@ void orbit_from_positions(Vec3s from, Vec3s to, s16 *radius, s16 *pitch, s16 *ya
     f32 dy = to[1] - from[1];
     f32 dz = to[2] - from[2];
 
-    *radius = (s16)sqrtf(dx * dx + dy * dy + dz * dz);
+    *radius = (s16) sqrtf(dx * dx + dy * dy + dz * dz);
     *pitch = atan2s(sqrtf(dx * dx + dz * dz), dy);
     *yaw = atan2s(dz, dx);
 }
@@ -192,7 +175,6 @@ s32 envfx_is_snowflake_alive(s32 index, s32 snowCylinderX, s32 snowCylinderY, s3
     return 1;
 }
 
-
 /** Update the position of each snowflake. Snowflakes wiggle by having a
  *  random value added to their position each frame. If snowflakes get out
  *  of view (where view = a small cylinder in front of the camera) their
@@ -213,10 +195,13 @@ void envfx_update_snow_normal(s32 snowCylinderX, s32 snowCylinderY, s32 snowCyli
     s32 deltaZ = snowCylinderZ - gSnowCylinderLastPos[2];
 
     for (i = 0; i < gSnowParticleCount; i++) {
-        (gEnvFxBuffer + i)->isAlive = envfx_is_snowflake_alive(i, snowCylinderX, snowCylinderY, snowCylinderZ);
-        if ((gEnvFxBuffer + i)->isAlive == 0)  {
-            (gEnvFxBuffer + i)->xPos = 400.0f * RandomFloat() - 200.0f + snowCylinderX + (s16)(deltaX * 2);
-            (gEnvFxBuffer + i)->zPos = 400.0f * RandomFloat() - 200.0f + snowCylinderZ + (s16)(deltaZ * 2);
+        (gEnvFxBuffer + i)->isAlive =
+            envfx_is_snowflake_alive(i, snowCylinderX, snowCylinderY, snowCylinderZ);
+        if ((gEnvFxBuffer + i)->isAlive == 0) {
+            (gEnvFxBuffer + i)->xPos =
+                400.0f * RandomFloat() - 200.0f + snowCylinderX + (s16)(deltaX * 2);
+            (gEnvFxBuffer + i)->zPos =
+                400.0f * RandomFloat() - 200.0f + snowCylinderZ + (s16)(deltaZ * 2);
             (gEnvFxBuffer + i)->yPos = 200.0f * RandomFloat() + snowCylinderY;
             (gEnvFxBuffer + i)->isAlive = 1;
         } else {
@@ -235,7 +220,6 @@ void envfx_update_snow_normal(s32 snowCylinderX, s32 snowCylinderY, s32 snowCyli
     gSnowCylinderLastPos[2] = snowCylinderZ;
 }
 
-
 /** Unused function. Basically a copy-paste of envfx_update_snow_normal,
  *  but an extra 20 units is added to each snowflake x and snowflakes can
  *  respawn in y-range [-200, 200] instead of [0, 200] relative to snowCylinderY
@@ -248,10 +232,13 @@ void envfx_update_snow_blizzard(s32 snowCylinderX, s32 snowCylinderY, s32 snowCy
     s32 deltaZ = snowCylinderZ - gSnowCylinderLastPos[2];
 
     for (i = 0; i < gSnowParticleCount; i++) {
-        (gEnvFxBuffer + i)->isAlive = envfx_is_snowflake_alive(i, snowCylinderX, snowCylinderY, snowCylinderZ);
-        if ((gEnvFxBuffer + i)->isAlive == 0)  {
-            (gEnvFxBuffer + i)->xPos = 400.0f * RandomFloat() - 200.0f + snowCylinderX + (s16)(deltaX * 2);
-            (gEnvFxBuffer + i)->zPos = 400.0f * RandomFloat() - 200.0f + snowCylinderZ + (s16)(deltaZ * 2);
+        (gEnvFxBuffer + i)->isAlive =
+            envfx_is_snowflake_alive(i, snowCylinderX, snowCylinderY, snowCylinderZ);
+        if ((gEnvFxBuffer + i)->isAlive == 0) {
+            (gEnvFxBuffer + i)->xPos =
+                400.0f * RandomFloat() - 200.0f + snowCylinderX + (s16)(deltaX * 2);
+            (gEnvFxBuffer + i)->zPos =
+                400.0f * RandomFloat() - 200.0f + snowCylinderZ + (s16)(deltaZ * 2);
             (gEnvFxBuffer + i)->yPos = 400.0f * RandomFloat() - 200.0f + snowCylinderY;
             (gEnvFxBuffer + i)->isAlive = 1;
         } else {
@@ -292,8 +279,9 @@ void envfx_update_snow_water(s32 snowCylinderX, s32 snowCylinderY, s32 snowCylin
     s32 i;
 
     for (i = 0; i < gSnowParticleCount; i++) {
-        (gEnvFxBuffer + i)->isAlive = envfx_is_snowflake_alive(i, snowCylinderX, snowCylinderY, snowCylinderZ);
-        if ((gEnvFxBuffer + i)->isAlive == 0)  {
+        (gEnvFxBuffer + i)->isAlive =
+            envfx_is_snowflake_alive(i, snowCylinderX, snowCylinderY, snowCylinderZ);
+        if ((gEnvFxBuffer + i)->isAlive == 0) {
             (gEnvFxBuffer + i)->xPos = 400.0f * RandomFloat() - 200.0f + snowCylinderX;
             (gEnvFxBuffer + i)->zPos = 400.0f * RandomFloat() - 200.0f + snowCylinderZ;
             (gEnvFxBuffer + i)->yPos = 400.0f * RandomFloat() - 200.0f + snowCylinderY;
@@ -349,13 +337,12 @@ GLOBAL_ASM("asm/non_matchings/append_snowflake_vertex_buffer_eu.s")
 #else
 void append_snowflake_vertex_buffer(Gfx *gfx, s32 index, Vec3s vertex1, Vec3s vertex2, Vec3s vertex3) {
     s32 i = 0;
-    Vtx *vertBuf = (Vtx *)alloc_display_list(15 * sizeof(Vtx));
+    Vtx *vertBuf = (Vtx *) alloc_display_list(15 * sizeof(Vtx));
 
     if (vertBuf == NULL)
         return;
 
-    for (i = 0; i < 15; i += 3)
-    {
+    for (i = 0; i < 15; i += 3) {
         vertBuf[i] = gSnowTempVtx[0];
         vertBuf[i].v.ob[0] = gEnvFxBuffer[index + i / 3].xPos + vertex1[0];
         vertBuf[i].v.ob[1] = gEnvFxBuffer[index + i / 3].yPos + vertex1[1];
@@ -391,7 +378,7 @@ Gfx *envfx_update_snow(s32 snowMode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo)
     vertex2 = gSnowFlakeVertex2;
     vertex3 = gSnowFlakeVertex3;
 
-    gfxStart = (Gfx *)alloc_display_list((gSnowParticleCount * 6 + 3) * sizeof(Gfx));
+    gfxStart = (Gfx *) alloc_display_list((gSnowParticleCount * 6 + 3) * sizeof(Gfx));
     gfx = gfxStart;
 
     if (gfxStart == NULL)
@@ -444,7 +431,7 @@ Gfx *envfx_update_snow(s32 snowMode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo)
     }
 
     for (i = 0; i < gSnowParticleCount; i += 5) {
-        append_snowflake_vertex_buffer(gfx++, i, (s16 *)&vertex1, (s16 *) &vertex2, (s16 *)&vertex3);
+        append_snowflake_vertex_buffer(gfx++, i, (s16 *) &vertex1, (s16 *) &vertex2, (s16 *) &vertex3);
 
         gSP1Triangle(gfx++, 0, 1, 2, 0);
         gSP1Triangle(gfx++, 3, 4, 5, 0);
@@ -453,8 +440,7 @@ Gfx *envfx_update_snow(s32 snowMode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo)
         gSP1Triangle(gfx++, 12, 13, 14, 0);
     }
 
-    gSPDisplayList(gfx++, &tiny_bubble_dl_0B006AB0)
-    gSPEndDisplayList(gfx++);
+    gSPDisplayList(gfx++, &tiny_bubble_dl_0B006AB0) gSPEndDisplayList(gfx++);
 
     return gfxStart;
 }

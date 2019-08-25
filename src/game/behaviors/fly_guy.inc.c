@@ -3,12 +3,10 @@
  * Behavior for bhvFlyGuy.
  */
 
-
 /**
  * Hitbox for fly guy.
  */
-static struct ObjectHitbox sFlyGuyHitbox =
-{
+static struct ObjectHitbox sFlyGuyHitbox = {
     /* interactType:      */ INTERACT_BOUNCE_TOP,
     /* downOffset:        */ 0,
     /* damageOrCoinValue: */ 2,
@@ -25,37 +23,27 @@ static struct ObjectHitbox sFlyGuyHitbox =
  */
 static s16 sFlyGuyJitterAmounts[] = { 0x1000, -0x2000, 0x2000 };
 
-
 /**
  * Return to regular size. When mario is close enough or home is far enough,
  * turn toward mario/home and enter the approach mario action.
  */
-static void fly_guy_act_idle(void)
-{
+static void fly_guy_act_idle(void) {
     o->oForwardVel = 0.0f;
-    if (approach_f32_ptr(&o->header.gfx.scale[0], 1.5f, 0.02f))
-    {
+    if (approach_f32_ptr(&o->header.gfx.scale[0], 1.5f, 0.02f)) {
         // If we are >2000 units from home or Mario is <2000 units from us
-        if (o->oDistanceToMario >= 25000.0f || o->oDistanceToMario < 2000.0f)
-        {
+        if (o->oDistanceToMario >= 25000.0f || o->oDistanceToMario < 2000.0f) {
             // Turn toward home or Mario
             obj_face_yaw_approach(o->oAngleToMario, 0x300);
-            if (obj_rotate_yaw_toward(o->oAngleToMario, 0x300))
-            {
+            if (obj_rotate_yaw_toward(o->oAngleToMario, 0x300)) {
                 o->oAction = FLY_GUY_ACT_APPROACH_MARIO;
             }
-        }
-        else
-        {
+        } else {
             // Randomly enter the approach mario action - but this doesn't
             // really do anything since we come right back to idle
-            if (o->oFlyGuyIdleTimer >= 3 || o->oFlyGuyIdleTimer == (RandomU16() & 1) + 2)
-            {
+            if (o->oFlyGuyIdleTimer >= 3 || o->oFlyGuyIdleTimer == (RandomU16() & 1) + 2) {
                 o->oFlyGuyIdleTimer = 0;
                 o->oAction = FLY_GUY_ACT_APPROACH_MARIO;
-            }
-            else
-            {
+            } else {
                 o->oFlyGuyUnusedJitter = o->oMoveAngleYaw + sFlyGuyJitterAmounts[o->oFlyGuyIdleTimer];
                 o->oFlyGuyIdleTimer += 1;
             }
@@ -67,11 +55,9 @@ static void fly_guy_act_idle(void)
  * Turn toward mario or home, and when positioned nicely, either lunge or shoot
  * fire. If mario is far away, stop and return to the idle action.
  */
-static void fly_guy_act_approach_mario(void)
-{
+static void fly_guy_act_approach_mario(void) {
     // If we are >2000 units from home or Mario is <2000 units from us
-    if (o->oDistanceToMario >= 25000.0f || o->oDistanceToMario < 2000.0f)
-    {
+    if (o->oDistanceToMario >= 25000.0f || o->oDistanceToMario < 2000.0f) {
         obj_forward_vel_approach(10.0f, 0.5f);
 
         // Turn toward home or Mario
@@ -80,18 +66,13 @@ static void fly_guy_act_approach_mario(void)
 
         // If facing toward mario and we are either near mario laterally or
         // far above him
-        if (abs_angle_diff(o->oAngleToMario, o->oFaceAngleYaw) < 0x2000)
-        {
-            if (o->oPosY - gMarioObject->oPosY > 400.0f || o->oDistanceToMario < 400.0f)
-            {
+        if (abs_angle_diff(o->oAngleToMario, o->oFaceAngleYaw) < 0x2000) {
+            if (o->oPosY - gMarioObject->oPosY > 400.0f || o->oDistanceToMario < 400.0f) {
                 // Either shoot fire or lunge
-                if (o->oBehParams2ndByte != 0 && RandomU16() % 2)
-                {
+                if (o->oBehParams2ndByte != 0 && RandomU16() % 2) {
                     o->oAction = FLY_GUY_ACT_SHOOT_FIRE;
                     o->oFlyGuyScaleVel = 0.06f;
-                }
-                else
-                {
+                } else {
                     o->oAction = FLY_GUY_ACT_LUNGE;
                     o->oFlyGuyLungeTargetPitch = obj_turn_pitch_toward_mario(-200.0f, 0);
 
@@ -101,9 +82,7 @@ static void fly_guy_act_approach_mario(void)
                 }
             }
         }
-    }
-    else if (obj_forward_vel_approach(0.0f, 0.2f))
-    {
+    } else if (obj_forward_vel_approach(0.0f, 0.2f)) {
         o->oAction = FLY_GUY_ACT_IDLE;
     }
 }
@@ -112,10 +91,8 @@ static void fly_guy_act_approach_mario(void)
  * Lunge downward at mario, then twirl back up. Enter the approach mario action
  * afterward.
  */
-static void fly_guy_act_lunge(void)
-{
-    if (o->oVelY < 0.0f)
-    {
+static void fly_guy_act_lunge(void) {
+    if (o->oVelY < 0.0f) {
         // Lunge downward
 
         o->oVelY += o->oFlyGuyLungeYDecel;
@@ -126,9 +103,7 @@ static void fly_guy_act_lunge(void)
         // Range [-0x1000, 0x2000]
         o->oFlyGuyTargetRoll = 0x1000 * (s16)(RandomFloat() * 3.0f) - 0x1000;
         o->oTimer = 0;
-    }
-    else
-    {
+    } else {
         // Twirl back upward
 
         obj_face_pitch_approach(0, 0x100);
@@ -139,15 +114,11 @@ static void fly_guy_act_lunge(void)
         obj_face_yaw_approach(o->oMoveAngleYaw, 0x800);
 
         // Continue moving upward until at least 200 units above mario
-        if (o->oPosY < gMarioObject->oPosY + 200.0f)
-        {
+        if (o->oPosY < gMarioObject->oPosY + 200.0f) {
             obj_y_vel_approach(20.0f, 0.5f);
-        }
-        else if (obj_y_vel_approach(0.0f, 0.5f))
-        {
+        } else if (obj_y_vel_approach(0.0f, 0.5f)) {
             // Wait until roll is zero
-            if (o->oFaceAngleRoll == 0)
-            {
+            if (o->oFaceAngleRoll == 0) {
                 o->oAction = FLY_GUY_ACT_APPROACH_MARIO;
             }
 
@@ -159,29 +130,23 @@ static void fly_guy_act_lunge(void)
 /**
  * Turn toward mario, then shoot fire. Then enter the idle action.
  */
-static void fly_guy_act_shoot_fire(void)
-{
+static void fly_guy_act_shoot_fire(void) {
     s32 scaleStatus;
 
     o->oForwardVel = 0.0f;
 
-    if (obj_face_yaw_approach(o->oAngleToMario, 0x800))
-    {
+    if (obj_face_yaw_approach(o->oAngleToMario, 0x800)) {
         o->oMoveAngleYaw = o->oFaceAngleYaw;
 
         // Increase scale by 0.06, 0.05, ..., -0.03. Then wait ~8 frames, then
         // starting moving scale by 0.05 each frame toward 1.1. The first time
         // it becomes below 1.2 during this latter portion, shoot fire.
         scaleStatus = obj_grow_then_shrink(&o->oFlyGuyScaleVel, 1.2f, 1.1f);
-        if (scaleStatus != 0)
-        {
-            if (scaleStatus < 0)
-            {
+        if (scaleStatus != 0) {
+            if (scaleStatus < 0) {
                 // We have reached scale 1.1
                 o->oAction = FLY_GUY_ACT_IDLE;
-            }
-            else
-            {
+            } else {
                 // We have reached below scale 1.2 in the shrinking portion
                 s16 fireMovePitch = obj_turn_pitch_toward_mario(0.0f, 0);
                 PlaySound2(SOUND_OBJECT_FLAMEBLOWN);
@@ -196,9 +161,7 @@ static void fly_guy_act_shoot_fire(void)
                     /*movePitch  */ fireMovePitch);
             }
         }
-    }
-    else
-    {
+    } else {
         //! By triggering this repeatedly, we can keep obj_grow_then_shrink
         // in the "grow" phase. But because oFlyGuyScaleVel continues decreasing
         // past -0.03, the fly guy shrinks more than he is supposed to. We can
@@ -210,24 +173,19 @@ static void fly_guy_act_shoot_fire(void)
 /**
  * Update function for fly guy.
  */
-void bhv_fly_guy_update(void)
-{
-    //PARTIAL_UPDATE (appears in non-roomed levels)
+void bhv_fly_guy_update(void) {
+    // PARTIAL_UPDATE (appears in non-roomed levels)
 
-    if (!(o->activeFlags & ACTIVE_FLAG_IN_DIFFERENT_ROOM))
-    {
+    if (!(o->activeFlags & ACTIVE_FLAG_IN_DIFFERENT_ROOM)) {
         o->oDeathSound = SOUND_OBJECT_FLYGUYDEATH;
 
         obj_scale(o->header.gfx.scale[0]);
         treat_far_home_as_mario(2000.0f);
         obj_update_floor_and_walls();
 
-        if (o->oMoveFlags & OBJ_MOVE_HIT_WALL)
-        {
+        if (o->oMoveFlags & OBJ_MOVE_HIT_WALL) {
             o->oMoveAngleYaw = obj_reflect_move_angle_off_wall();
-        }
-        else if (o->oMoveFlags & OBJ_MOVE_MASK_IN_WATER)
-        {
+        } else if (o->oMoveFlags & OBJ_MOVE_MASK_IN_WATER) {
             o->oVelY = 6.0f;
         }
 
@@ -235,12 +193,19 @@ void bhv_fly_guy_update(void)
         o->oFlyGuyOscTimer += 1;
         o->oPosY += coss(0x400 * o->oFlyGuyOscTimer) * 1.5f;
 
-        switch (o->oAction)
-        {
-        case FLY_GUY_ACT_IDLE:           fly_guy_act_idle();           break;
-        case FLY_GUY_ACT_APPROACH_MARIO: fly_guy_act_approach_mario(); break;
-        case FLY_GUY_ACT_LUNGE:          fly_guy_act_lunge();          break;
-        case FLY_GUY_ACT_SHOOT_FIRE:     fly_guy_act_shoot_fire();     break;
+        switch (o->oAction) {
+            case FLY_GUY_ACT_IDLE:
+                fly_guy_act_idle();
+                break;
+            case FLY_GUY_ACT_APPROACH_MARIO:
+                fly_guy_act_approach_mario();
+                break;
+            case FLY_GUY_ACT_LUNGE:
+                fly_guy_act_lunge();
+                break;
+            case FLY_GUY_ACT_SHOOT_FIRE:
+                fly_guy_act_shoot_fire();
+                break;
         }
 
         obj_move_standard(78);

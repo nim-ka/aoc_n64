@@ -61,7 +61,7 @@ static s8 arrow_lift_move_back(void) {
  * Arrow lift update function.
  */
 void bhv_arrow_lift_loop(void) {
-    switch(o->oAction) {
+    switch (o->oAction) {
         case ARROW_LIFT_ACT_IDLE:
             // Wait 61 frames before moving.
             if (o->oTimer > 60) {

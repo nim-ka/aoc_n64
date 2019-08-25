@@ -7,24 +7,24 @@
 #include "seqplayer.h"
 
 #ifdef VERSION_JP
-#define US_FLOAT2(x) x ## .0
+#define US_FLOAT2(x) x##.0
 #else
 #define US_FLOAT2(x) x
 #endif
 
-void func_80319E70(void)
-{
+void func_80319E70(void) {
 }
 
-void sequence_player_process_sound(struct SequencePlayer *seqPlayer)
-{
+void sequence_player_process_sound(struct SequencePlayer *seqPlayer) {
     s32 i;
 
     if (seqPlayer->fadeTimer != 0) {
         seqPlayer->fadeVolume += seqPlayer->fadeVelocity;
 
-        if (seqPlayer->fadeVolume > US_FLOAT2(1)) seqPlayer->fadeVolume = US_FLOAT2(1);
-        if (seqPlayer->fadeVolume < 0) seqPlayer->fadeVolume = 0;
+        if (seqPlayer->fadeVolume > US_FLOAT2(1))
+            seqPlayer->fadeVolume = US_FLOAT2(1);
+        if (seqPlayer->fadeVolume < 0)
+            seqPlayer->fadeVolume = 0;
 
         if (--seqPlayer->fadeTimer == 0) {
             switch (seqPlayer->state) {
@@ -45,15 +45,16 @@ void sequence_player_process_sound(struct SequencePlayer *seqPlayer)
 
     // Process channels
     for (i = 0; i < CHANNELS_MAX; i++) {
-        if (IS_SEQUENCE_CHANNEL_VALID(seqPlayer->channels[i]) == TRUE &&
-                seqPlayer->channels[i]->enabled == TRUE) {
+        if (IS_SEQUENCE_CHANNEL_VALID(seqPlayer->channels[i]) == TRUE
+            && seqPlayer->channels[i]->enabled == TRUE) {
             f32 channelVolume;
             f32 panLayerWeight;
             f32 panFromChannel;
             s32 layerIndex;
             struct SequenceChannel *seqChannel = seqPlayer->channels[i];
 
-            channelVolume = seqChannel->seqPlayer->fadeVolume * (seqChannel->volume * seqChannel->volumeScale);
+            channelVolume =
+                seqChannel->seqPlayer->fadeVolume * (seqChannel->volume * seqChannel->volumeScale);
             if (seqChannel->seqPlayer->muted && (seqChannel->muteBehavior & MUTE_BEHAVIOR_20) != 0)
                 channelVolume *= seqChannel->seqPlayer->muteVolumeScale;
 
@@ -72,8 +73,7 @@ void sequence_player_process_sound(struct SequencePlayer *seqPlayer)
     }
 }
 
-f32 get_portamento_freq_scale(struct Portamento *p)
-{
+f32 get_portamento_freq_scale(struct Portamento *p) {
     u32 v0;
     f32 result;
     if (p->mode == 0)
@@ -89,8 +89,7 @@ f32 get_portamento_freq_scale(struct Portamento *p)
     return result;
 }
 
-s8 get_vibrato_pitch_change(struct VibratoState *vib)
-{
+s8 get_vibrato_pitch_change(struct VibratoState *vib) {
     s32 index;
     vib->time += vib->rate;
 
@@ -115,8 +114,7 @@ s8 get_vibrato_pitch_change(struct VibratoState *vib)
     return -vib->curve[index];
 }
 
-f32 get_vibrato_freq_scale(struct VibratoState *vib)
-{
+f32 get_vibrato_freq_scale(struct VibratoState *vib) {
     s8 pitchChange;
     f32 extent;
     f32 result;
@@ -129,14 +127,13 @@ f32 get_vibrato_freq_scale(struct VibratoState *vib)
     if (vib->extentChangeTimer) {
         if (vib->extentChangeTimer == 1) {
             vib->extent = vib->seqChannel->vibratoExtentTarget;
-        }
-        else {
-            vib->extent += (vib->seqChannel->vibratoExtentTarget - vib->extent) / vib->extentChangeTimer;
+        } else {
+            vib->extent +=
+                (vib->seqChannel->vibratoExtentTarget - vib->extent) / vib->extentChangeTimer;
         }
 
         vib->extentChangeTimer--;
-    }
-    else {
+    } else {
         if (vib->extent != vib->seqChannel->vibratoExtentTarget) {
             vib->extentChangeTimer = vib->seqChannel->vibratoExtentChangeDelay;
             if (vib->extentChangeTimer == 0)
@@ -147,14 +144,12 @@ f32 get_vibrato_freq_scale(struct VibratoState *vib)
     if (vib->rateChangeTimer) {
         if (vib->rateChangeTimer == 1) {
             vib->rate = vib->seqChannel->vibratoRateTarget;
-        }
-        else {
+        } else {
             vib->rate += (vib->seqChannel->vibratoRateTarget - vib->rate) / vib->rateChangeTimer;
         }
 
         vib->rateChangeTimer--;
-    }
-    else {
+    } else {
         if (vib->rate != vib->seqChannel->vibratoRateTarget) {
             vib->rateChangeTimer = vib->seqChannel->vibratoRateChangeDelay;
             if (vib->rateChangeTimer == 0)
@@ -173,8 +168,7 @@ f32 get_vibrato_freq_scale(struct VibratoState *vib)
     return result;
 }
 
-void note_vibrato_update(struct Note *note)
-{
+void note_vibrato_update(struct Note *note) {
     if (note->vibratoState.active) {
         note->portamentoFreqScale = get_portamento_freq_scale(&note->portamento);
         if (note->parentLayer != NO_LAYER) {
@@ -183,8 +177,7 @@ void note_vibrato_update(struct Note *note)
     }
 }
 
-void note_vibrato_init(struct Note *note)
-{
+void note_vibrato_init(struct Note *note) {
     struct VibratoState *vib;
     struct SequenceChannel *seqChannel;
     note->vibratoFreqScale = 1.0f;
@@ -209,16 +202,14 @@ void note_vibrato_init(struct Note *note)
     vib->extentChangeTimer = seqChannel->vibratoExtentChangeDelay;
     if (vib->extentChangeTimer == 0) {
         vib->extent = seqChannel->vibratoExtentTarget;
-    }
-    else {
+    } else {
         vib->extent = seqChannel->vibratoExtentStart;
     }
 
     vib->rateChangeTimer = seqChannel->vibratoRateChangeDelay;
     if (vib->rateChangeTimer == 0) {
         vib->rate = seqChannel->vibratoRateTarget;
-    }
-    else {
+    } else {
         vib->rate = seqChannel->vibratoRateStart;
     }
 
@@ -226,8 +217,7 @@ void note_vibrato_init(struct Note *note)
     note->portamento = note->parentLayer->portamento;
 }
 
-void adsr_init(struct AdsrState *adsr, struct AdsrEnvelope *envelope, s16 *volOut)
-{
+void adsr_init(struct AdsrState *adsr, struct AdsrEnvelope *envelope, s16 *volOut) {
     adsr->action = 0;
     adsr->state = ADSR_STATE_DISABLED;
     adsr->initial = 0;
@@ -237,11 +227,9 @@ void adsr_init(struct AdsrState *adsr, struct AdsrEnvelope *envelope, s16 *volOu
     adsr->volOut = volOut;
 }
 
-s32 adsr_update(struct AdsrState *adsr)
-{
+s32 adsr_update(struct AdsrState *adsr) {
     u8 action = adsr->action;
-    switch (adsr->state)
-    {
+    switch (adsr->state) {
         case ADSR_STATE_DISABLED:
             return 0;
 
@@ -263,8 +251,7 @@ s32 adsr_update(struct AdsrState *adsr)
 
         case ADSR_STATE_LOOP:
             adsr->delay = adsr->envelope[adsr->envIndex].delay;
-            switch (adsr->delay)
-            {
+            switch (adsr->delay) {
                 case ADSR_DISABLE:
                     adsr->state = ADSR_STATE_DISABLED;
                     break;

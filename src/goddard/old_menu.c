@@ -9,12 +9,12 @@
 
 /**
  * @file old_menu.c
- * 
- * This file contains code for rendering what appears to be an old menuing system. 
+ *
+ * This file contains code for rendering what appears to be an old menuing system.
  * It is hard to tell, as most of the menuing code is stubbed out.
- * It also contains code for creating labels and gadget, which are `GdObj`s that 
+ * It also contains code for creating labels and gadget, which are `GdObj`s that
  * allow for displaying text and memory values on screen. Those `GdObj`s are not
- * created in-game, but there are some functions in `renderer.c` that use 
+ * created in-game, but there are some functions in `renderer.c` that use
  * them, and those functions may still work if called.
  */
 
@@ -28,21 +28,23 @@ static struct ObjGadget *sCurGadgetPtr;
 void func_8018BCB8(struct ObjGadget *);
 
 /* 239EC0 -> 239F78 */
-void get_objvalue(union ObjVarVal *dst, enum ValPtrType type, void *base, s32 offset)
-{
-    union ObjVarVal *objAddr = (void *)((u32) base + offset);
+void get_objvalue(union ObjVarVal *dst, enum ValPtrType type, void *base, s32 offset) {
+    union ObjVarVal *objAddr = (void *) ((u32) base + offset);
 
-    switch (type)
-    {
-        case OBJ_VALUE_INT:   dst->i = objAddr->i; break;
-        case OBJ_VALUE_FLOAT: dst->f = objAddr->f; break;
-        default: fatal_printf("%s: Undefined ValueType", "get_objvalue");
+    switch (type) {
+        case OBJ_VALUE_INT:
+            dst->i = objAddr->i;
+            break;
+        case OBJ_VALUE_FLOAT:
+            dst->f = objAddr->f;
+            break;
+        default:
+            fatal_printf("%s: Undefined ValueType", "get_objvalue");
     }
 }
 
 /* 239F78 -> 23A00C */
-void Unknown8018B7A8(void *a0)
-{
+void Unknown8018B7A8(void *a0) {
     struct GdVec3f sp1C;
 
     set_cur_dynobj(a0);
@@ -55,63 +57,44 @@ void Unknown8018B7A8(void *a0)
 }
 
 /* 23A00C -> 23A068 */
-void Proc8018B83C(void *a0)
-{
+void Proc8018B83C(void *a0) {
     struct ObjGroup *argGroup = a0;
-    apply_to_obj_types_in_group(
-        OBJ_TYPE_GADGETS,
-        (applyproc_t) func_8018BCB8,
-        argGroup
-    );
-    apply_to_obj_types_in_group(
-        OBJ_TYPE_VIEWS,
-        (applyproc_t) Proc801A43DC,
-        gGdViewsGroup
-    );
+    apply_to_obj_types_in_group(OBJ_TYPE_GADGETS, (applyproc_t) func_8018BCB8, argGroup);
+    apply_to_obj_types_in_group(OBJ_TYPE_VIEWS, (applyproc_t) Proc801A43DC, gGdViewsGroup);
 }
 
 /* 23A068 -> 23A0D0; orig name: Unknown8018B898 */
-void cat_grp_name_to_buf(struct ObjGroup *group)
-{
-    char buf[0x100]; //sp18
+void cat_grp_name_to_buf(struct ObjGroup *group) {
+    char buf[0x100]; // sp18
 
-    if (group->debugPrint == 1)
-    {
+    if (group->debugPrint == 1) {
         sprintf(buf, "| %s %%x%d", group->name, (u32) group);
-        gd_strcat(sMenuStrBuf, buf); //gd_strcat?
+        gd_strcat(sMenuStrBuf, buf); // gd_strcat?
     }
 }
 
 /* 23A0D0 -> 23A190 */
-void *Unknown8018B900(struct ObjGroup *grp)
-{
+void *Unknown8018B900(struct ObjGroup *grp) {
     void *mainMenu;
     void *defaultSettingMenu;
     void *controlerMenu;
 
-    gd_strcpy(sMenuStrBuf, "Default Settings %t %F");    //gd_strcpy?
-    apply_to_obj_types_in_group(
-        OBJ_TYPE_GROUPS,
-        (applyproc_t) cat_grp_name_to_buf,
-        grp
-    );
+    gd_strcpy(sMenuStrBuf, "Default Settings %t %F"); // gd_strcpy?
+    apply_to_obj_types_in_group(OBJ_TYPE_GROUPS, (applyproc_t) cat_grp_name_to_buf, grp);
     defaultSettingMenu = func_801A43F0(sMenuStrBuf, &Proc8018B83C);
-    controlerMenu = func_801A43F0("Control Type %t %F| U-64 Analogue Joystick %x1 | Keyboard %x2 | Mouse %x3", &Proc801A4410);
-    mainMenu = func_801A43F0("Dynamics %t |\t\t\tReset Positions %f |\t\t\tSet Defaults %m |\t\t\tSet Controller %m |\t\t\tRe-Calibrate Controller %f |\t\t\tQuit %f",
-        &func_8017E2B8,
-        defaultSettingMenu,
-        controlerMenu,
-        &Proc801A4424,
-        &gd_exit
-    );
+    controlerMenu = func_801A43F0(
+        "Control Type %t %F| U-64 Analogue Joystick %x1 | Keyboard %x2 | Mouse %x3", &Proc801A4410);
+    mainMenu =
+        func_801A43F0("Dynamics %t |\t\t\tReset Positions %f |\t\t\tSet Defaults %m |\t\t\tSet "
+                      "Controller %m |\t\t\tRe-Calibrate Controller %f |\t\t\tQuit %f",
+                      &func_8017E2B8, defaultSettingMenu, controlerMenu, &Proc801A4424, &gd_exit);
 
     return mainMenu;
 }
 
 /* 23A190 -> 23A250 */
-struct ObjLabel *make_label(struct ObjValPtrs *ptr, char *str, s32 a2, f32 x, f32 y, f32 z)
-{
-    struct ObjLabel *label = (struct ObjLabel *)make_object(OBJ_TYPE_LABELS);
+struct ObjLabel *make_label(struct ObjValPtrs *ptr, char *str, s32 a2, f32 x, f32 y, f32 z) {
+    struct ObjLabel *label = (struct ObjLabel *) make_object(OBJ_TYPE_LABELS);
     label->valfn = NULL;
     label->valptr = ptr;
     label->fmtstr = str;
@@ -125,9 +108,8 @@ struct ObjLabel *make_label(struct ObjValPtrs *ptr, char *str, s32 a2, f32 x, f3
 }
 
 /* 23A250 -> 23A32C */
-struct ObjGadget *make_gadget(UNUSED s32 a0, s32 a1)
-{
-    struct ObjGadget *gdgt = (struct ObjGadget *)make_object(OBJ_TYPE_GADGETS);
+struct ObjGadget *make_gadget(UNUSED s32 a0, s32 a1) {
+    struct ObjGadget *gdgt = (struct ObjGadget *) make_object(OBJ_TYPE_GADGETS);
     gdgt->unk4C = NULL;
     gdgt->unk3C = 1.0f;
     gdgt->unk38 = 0.0f;
@@ -142,22 +124,23 @@ struct ObjGadget *make_gadget(UNUSED s32 a0, s32 a1)
 }
 
 /* 23A32C -> 23A3E4 */
-void set_objvalue(union ObjVarVal *src, enum ValPtrType type, void *base, s32 offset)
-{
-    union ObjVarVal *dst = (void *)((u32) base + offset);
-    switch (type)
-    {
-        case OBJ_VALUE_INT:   dst->i = src->i; break;
-        case OBJ_VALUE_FLOAT: dst->f = src->f; break;
-        default: fatal_printf("%s: Undefined ValueType","set_objvalue");
+void set_objvalue(union ObjVarVal *src, enum ValPtrType type, void *base, s32 offset) {
+    union ObjVarVal *dst = (void *) ((u32) base + offset);
+    switch (type) {
+        case OBJ_VALUE_INT:
+            dst->i = src->i;
+            break;
+        case OBJ_VALUE_FLOAT:
+            dst->f = src->f;
+            break;
+        default:
+            fatal_printf("%s: Undefined ValueType", "set_objvalue");
     }
 }
 
 /* 23A3E4 -> 23A488; orig name: Unknown8018BD54 */
-void set_static_gdgt_value(struct ObjValPtrs *vp)
-{
-    switch (vp->datatype)
-    {
+void set_static_gdgt_value(struct ObjValPtrs *vp) {
+    switch (vp->datatype) {
         case OBJ_VALUE_FLOAT:
             set_objvalue(&sCurGadgetPtr->varval, OBJ_VALUE_FLOAT, vp->obj, vp->offset);
             break;
@@ -168,21 +151,15 @@ void set_static_gdgt_value(struct ObjValPtrs *vp)
 }
 
 /* 23A488 -> 23A4D0 */
-void func_8018BCB8(struct ObjGadget *gdgt)
-{
+void func_8018BCB8(struct ObjGadget *gdgt) {
     UNUSED u8 pad[4];
 
     sCurGadgetPtr = gdgt;
-    apply_to_obj_types_in_group(
-        OBJ_TYPE_VALPTRS,
-        (applyproc_t) set_static_gdgt_value,
-        gdgt->unk4C
-    );
+    apply_to_obj_types_in_group(OBJ_TYPE_VALPTRS, (applyproc_t) set_static_gdgt_value, gdgt->unk4C);
 }
 
 /* 23A4D0 -> 23A784 */
-void adjust_gadget(struct ObjGadget *gdgt, s32 a1, s32 a2)
-{
+void adjust_gadget(struct ObjGadget *gdgt, s32 a1, s32 a2) {
     UNUSED u8 pad[8];
     f32 sp2C;
     struct ObjValPtrs *vp;
@@ -192,25 +169,26 @@ void adjust_gadget(struct ObjGadget *gdgt, s32 a1, s32 a2)
     else if (gdgt->unk24 == 2)
         gdgt->unk28 += a1 * (-sCurrentMoveCamera->unk40.z * 1.0E-5);
 
-    if (gdgt->unk28 < 0.0f)      { gdgt->unk28 = 0.0f; }
-    else if (gdgt->unk28 > 1.0f) { gdgt->unk28 = 1.0f; }
+    if (gdgt->unk28 < 0.0f) {
+        gdgt->unk28 = 0.0f;
+    } else if (gdgt->unk28 > 1.0f) {
+        gdgt->unk28 = 1.0f;
+    }
 
     sp2C = gdgt->unk3C - gdgt->unk38;
 
-    if (gdgt->unk4C != NULL)
-    {
-        vp = (struct ObjValPtrs *)gdgt->unk4C->link1C->obj;
+    if (gdgt->unk4C != NULL) {
+        vp = (struct ObjValPtrs *) gdgt->unk4C->link1C->obj;
 
-        switch (vp->datatype)
-        {
+        switch (vp->datatype) {
             case OBJ_VALUE_FLOAT:
                 gdgt->varval.f = gdgt->unk28 * sp2C + gdgt->unk38;
                 break;
             case OBJ_VALUE_INT:
-                gdgt->varval.i = ((s32) (gdgt->unk28 * sp2C)) + gdgt->unk38;
+                gdgt->varval.i = ((s32)(gdgt->unk28 * sp2C)) + gdgt->unk38;
                 break;
             default:
-                fatal_printf("%s: Undefined ValueType","adjust_gadget");
+                fatal_printf("%s: Undefined ValueType", "adjust_gadget");
         }
     }
 
@@ -218,8 +196,7 @@ void adjust_gadget(struct ObjGadget *gdgt, s32 a1, s32 a2)
 }
 
 /* 23A784 -> 23A940; orig name: Unknown8018BFB4 */
-void reset_gadget(struct ObjGadget *gdgt)
-{
+void reset_gadget(struct ObjGadget *gdgt) {
     UNUSED u8 pad[8];
     f32 sp34;
     struct ObjValPtrs *vp;
@@ -227,14 +204,12 @@ void reset_gadget(struct ObjGadget *gdgt)
     if (gdgt->unk3C - gdgt->unk38 == 0.0f)
         fatal_printf("gadget has zero range (%f -> %f)\n", gdgt->unk38, gdgt->unk3C);
 
-    sp34 = (f32) (1.0 / (gdgt->unk3C - gdgt->unk38));
+    sp34 = (f32)(1.0 / (gdgt->unk3C - gdgt->unk38));
 
-    if (gdgt->unk4C != NULL)
-    {
-        vp = (struct ObjValPtrs *)gdgt->unk4C->link1C->obj;
+    if (gdgt->unk4C != NULL) {
+        vp = (struct ObjValPtrs *) gdgt->unk4C->link1C->obj;
 
-        switch (vp->datatype)
-        {
+        switch (vp->datatype) {
             case OBJ_VALUE_FLOAT:
                 get_objvalue(&gdgt->varval, OBJ_VALUE_FLOAT, vp->obj, vp->offset);
                 gdgt->unk28 = (gdgt->varval.f - gdgt->unk38) * sp34;
@@ -244,17 +219,12 @@ void reset_gadget(struct ObjGadget *gdgt)
                 gdgt->unk28 = (gdgt->varval.i - gdgt->unk38) * sp34;
                 break;
             default:
-                fatal_printf("%s: Undefined ValueType","reset_gadget");
+                fatal_printf("%s: Undefined ValueType", "reset_gadget");
         }
     }
 }
 
 /* 23A940 -> 23A980 */
-void reset_gadgets_in_grp(struct ObjGroup *grp)
-{
-    apply_to_obj_types_in_group(
-        OBJ_TYPE_GADGETS,
-        (applyproc_t) reset_gadget,
-        grp
-    );
+void reset_gadgets_in_grp(struct ObjGroup *grp) {
+    apply_to_obj_types_in_group(OBJ_TYPE_GADGETS, (applyproc_t) reset_gadget, grp);
 }

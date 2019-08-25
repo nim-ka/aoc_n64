@@ -23,7 +23,7 @@ void func_802F238C(void) {
 
     if (gMarioObject->platform == o) {
         sp24 = (gMarioObject->header.gfx.pos[2] - o->oPosZ) * coss(-o->oMoveAngleYaw)
-             - (gMarioObject->header.gfx.pos[0] - o->oPosX) * sins(-o->oMoveAngleYaw);
+               - (gMarioObject->header.gfx.pos[0] - o->oPosX) * sins(-o->oMoveAngleYaw);
         if (sp24 > 0)
             o->oAngleVelPitch += 0x10;
         else
@@ -45,8 +45,7 @@ void func_802F238C(void) {
                 if (o->oAngleVelPitch < 0x10 && o->oAngleVelPitch > -0x10)
                     o->oAngleVelPitch = 0;
             }
-        }
-        else {
+        } else {
             if (o->oAngleVelPitch != 0x100) {
                 if (o->oAngleVelPitch > 0x100)
                     o->oAngleVelPitch -= 0x10;
@@ -82,8 +81,7 @@ void bhv_rolling_log_loop(void) {
     }
 
     o->oFaceAnglePitch += o->oAngleVelPitch;
-    if (absf_2(o->oFaceAnglePitch & 0x1FFF) < 528.0f
-        && o->oAngleVelPitch != 0) {
+    if (absf_2(o->oFaceAnglePitch & 0x1FFF) < 528.0f && o->oAngleVelPitch != 0) {
         PlaySound2(SOUND_GENERAL_UNKNOWN1_2);
     }
 }

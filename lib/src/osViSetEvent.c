@@ -1,7 +1,6 @@
 #include "libultra_internal.h"
 extern OSViContext *D_80334914;
-void osViSetEvent(OSMesgQueue *mq, OSMesg msg, u32 retraceCount)
-{
+void osViSetEvent(OSMesgQueue *mq, OSMesg msg, u32 retraceCount) {
 
     register u32 int_disabled = __osDisableInt();
     (D_80334914)->mq = mq;

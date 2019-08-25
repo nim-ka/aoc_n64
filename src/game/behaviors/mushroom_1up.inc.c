@@ -22,8 +22,7 @@ void bhv_1up_init(void) {
     if (o->oBehParams2ndByte == 1) {
         if ((save_file_get_flags() & 0x50) == 0)
             o->activeFlags = 0;
-    }
-    else if (o->oBehParams2ndByte == 2) {
+    } else if (o->oBehParams2ndByte == 2) {
         if ((save_file_get_flags() & 0xa0) == 0)
             o->activeFlags = 0;
     }
@@ -32,8 +31,7 @@ void bhv_1up_init(void) {
 void func_802F2D40(void) {
     if (o->oTimer < 5) {
         o->oVelY = 40.0f;
-    }
-    else {
+    } else {
         o->oAngleVelPitch = -0x1000;
         o->oMoveAnglePitch += o->oAngleVelPitch;
         o->oVelY = coss(o->oMoveAnglePitch) * 30.0f + 2.0f;
@@ -68,7 +66,7 @@ void func_802F2F8C(s16 sp1A) {
 void bhv_1up_walking_loop(void) {
     ObjectStep();
 
-    switch(o->oAction) {
+    switch (o->oAction) {
         case 0:
             if (o->oTimer >= 18)
                 spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
@@ -213,7 +211,7 @@ void bhv_1up_hidden_loop(void) {
     switch (o->oAction) {
         case 0:
             o->header.gfx.node.flags |= 0x10;
-            if (o->o1UpHiddenUnkF4 == o->oBehParams2ndByte)  {
+            if (o->o1UpHiddenUnkF4 == o->oBehParams2ndByte) {
                 o->oVelY = 40.0f;
                 o->oAction = 3;
                 o->header.gfx.node.flags &= ~0x10;
@@ -265,7 +263,7 @@ void bhv_1up_hidden_in_pole_loop(void) {
     switch (o->oAction) {
         case 0:
             o->header.gfx.node.flags |= 0x10;
-            if (o->o1UpHiddenUnkF4 == o->oBehParams2ndByte)  {
+            if (o->o1UpHiddenUnkF4 == o->oBehParams2ndByte) {
                 o->oVelY = 40.0f;
                 o->oAction = 3;
                 o->header.gfx.node.flags &= ~0x10;
@@ -300,7 +298,8 @@ void bhv_1up_hidden_in_pole_trigger_loop(void) {
     if (are_objects_collided(o, gMarioObject) == 1) {
         sp1C = obj_nearest_object_with_behavior(bhvHidden1upInPole);
         if (sp1C != NULL) {
-            sp1C->o1UpHiddenUnkF4++;;
+            sp1C->o1UpHiddenUnkF4++;
+            ;
         }
 
         o->activeFlags = 0;

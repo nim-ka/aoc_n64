@@ -29,29 +29,24 @@ u16 gFrames = 0;
 u16 gFPS = 0;
 u8 gRenderFPS = FALSE;
 
-void calculate_frameTime_from_OSTime(OSTime diff)
-{
+void calculate_frameTime_from_OSTime(OSTime diff) {
     gFrameTime += diff * SECONDS_PER_CYCLE;
     gFrames++;
 }
 
-void render_fps(void)
-{
+void render_fps(void) {
     // Toggle rendering framerate with the L button.
-    if (gPlayer1Controller->buttonPressed & L_TRIG)
-    {
+    if (gPlayer1Controller->buttonPressed & L_TRIG) {
         gRenderFPS ^= 1;
     }
 
-    if(gRenderFPS)
-    {
+    if (gRenderFPS) {
         OSTime newTime = osGetTime();
 
         calculate_frameTime_from_OSTime(newTime - gLastOSTime);
 
         // If frame time is longer or equal to a second, update FPS counter.
-        if(gFrameTime >= 1.0f)
-        {
+        if (gFrameTime >= 1.0f) {
             gFPS = gFrames;
             gFrames = 0;
             gFrameTime -= 1.0f;
@@ -61,5 +56,4 @@ void render_fps(void)
 
         gLastOSTime = newTime;
     }
-
 }

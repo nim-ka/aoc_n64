@@ -5,8 +5,7 @@
  * associated object.
  */
 
-void bhv_unused_particle_spawn_loop(void)
-{
+void bhv_unused_particle_spawn_loop(void) {
     s32 i;
     obj_update_floor_and_walls();
     obj_move_standard(78);

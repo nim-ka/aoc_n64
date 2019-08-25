@@ -12,8 +12,7 @@
  * is not used anywhere else.
  */
 
-void bhv_unused_poundable_platform(void)
-{
+void bhv_unused_poundable_platform(void) {
     obj_scale(1.02f);
 
     if (o->oAction == 0) {

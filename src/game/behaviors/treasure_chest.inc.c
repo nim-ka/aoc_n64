@@ -1,11 +1,9 @@
 // treasure_chest.c.inc
 
-
 /**
  * Hitbox for treasure chest bottom.
  */
-static struct ObjectHitbox sTreasureChestBottomHitbox =
-{
+static struct ObjectHitbox sTreasureChestBottomHitbox = {
     /* interactType:      */ INTERACT_SHOCK,
     /* downOffset:        */ 0,
     /* damageOrCoinValue: */ 1,
@@ -16,7 +14,6 @@ static struct ObjectHitbox sTreasureChestBottomHitbox =
     /* hurtboxRadius:     */ 310,
     /* hurtboxHeight:     */ 310,
 };
-
 
 void bhv_treasure_chest_top_loop(void) {
     struct Object *sp34 = o->parentObj->parentObj;
@@ -75,8 +72,7 @@ void bhv_treasure_chest_bottom_loop(void) {
                             play_sound(SOUND_CH8_RIGHTANSWER, gDefaultSoundArgs);
                             o->parentObj->oUnknownUnkF4_S32++;
                             o->oAction = 1;
-                        }
-                        else {
+                        } else {
                             o->parentObj->oUnknownUnkF4_S32 = 1;
                             o->parentObj->oUnknownUnkF8_S32 = 1;
                             o->oAction = 2;
@@ -107,7 +103,8 @@ void bhv_treasure_chest_bottom_loop(void) {
 
 void func_802F6E8C(s8 sp3B, s32 sp3C, s32 sp40, s32 sp44, s16 sp4A) {
     struct Object *sp34;
-    sp34 = spawn_object_abs_with_rot(o, 0, MODEL_TREASURE_CHEST_BASE, bhvTreasureChestBottom, sp3C, sp40, sp44, 0, sp4A, 0);
+    sp34 = spawn_object_abs_with_rot(o, 0, MODEL_TREASURE_CHEST_BASE, bhvTreasureChestBottom, sp3C,
+                                     sp40, sp44, 0, sp4A, 0);
     sp34->oBehParams2ndByte = sp3B;
 }
 

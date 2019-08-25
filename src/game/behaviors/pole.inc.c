@@ -8,12 +8,10 @@
  * other poles because it spawns a yellow ball that rests at its top.
  */
 
-
 /**
  * Initialize the hitbox height field for bhvPoleGrabbing.
  */
-void bhv_pole_init(void)
-{
+void bhv_pole_init(void) {
     /**
      * This is equivalent to using `o->oBehParams2ndByte` according to
      * `spawn_objects_from_info`.
@@ -22,14 +20,12 @@ void bhv_pole_init(void)
     o->hitboxHeight = tenthHitboxHeight * 10;
 }
 
-
 /**
  * Main loop for bhvGiantPole. It is equivalent to BehClimbDetectLoop() except
  * for the fact that it spawns a yellow sphere at the top of the pole on the
  * first frame.
  */
-void bhv_giant_pole_loop(void)
-{
+void bhv_giant_pole_loop(void) {
     struct Object *topBall;
     if (o->oTimer == 0) {
         topBall = spawn_object(o, MODEL_YELLOW_SPHERE, bhvYellowBall);

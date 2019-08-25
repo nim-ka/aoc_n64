@@ -6,7 +6,8 @@ void bhv_hidden_star_init(void) {
 
     sp36 = count_objects_with_behavior(bhvHiddenStarTrigger);
     if (sp36 == 0) {
-        sp30 = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+        sp30 =
+            spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
         sp30->oBehParams = o->oBehParams;
         o->activeFlags = 0;
     }
@@ -15,7 +16,7 @@ void bhv_hidden_star_init(void) {
 }
 
 void bhv_hidden_star_loop(void) {
-    switch(o->oAction) {
+    switch (o->oAction) {
         case 0:
             if (o->oHiddenStarSecretsCollected == 5)
                 o->oAction = 1;
@@ -45,7 +46,9 @@ void bhv_hidden_star_trigger_loop(void) {
 #ifdef VERSION_JP
             play_sound(SOUND_MENU_STARSOUND, gDefaultSoundArgs);
 #else
-            play_sound(SOUND_MENU_COLLECTSECRET + (((u8)hiddenStar->oHiddenStarSecretsCollected - 1) << 16), gDefaultSoundArgs);
+            play_sound(SOUND_MENU_COLLECTSECRET
+                           + (((u8) hiddenStar->oHiddenStarSecretsCollected - 1) << 16),
+                       gDefaultSoundArgs);
 #endif
         }
 
@@ -55,7 +58,7 @@ void bhv_hidden_star_trigger_loop(void) {
 
 void bhv_bowser_course_red_coin_star_loop(void) {
     D_8036008E = o->oBowserCourseRedCoinStarCoinsCollected;
-    switch(o->oAction) {
+    switch (o->oAction) {
         case 0:
             if (o->oBowserCourseRedCoinStarCoinsCollected == 8)
                 o->oAction = 1;

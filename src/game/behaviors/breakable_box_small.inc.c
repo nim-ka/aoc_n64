@@ -1,8 +1,6 @@
 // breakable_box.c.inc
 
-
-struct ObjectHitbox sBreakableBoxSmallHitbox =
-{
+struct ObjectHitbox sBreakableBoxSmallHitbox = {
     /* interactType:      */ INTERACT_GRABBABLE,
     /* downOffset:        */ 20,
     /* damageOrCoinValue: */ 0,
@@ -73,7 +71,7 @@ void breakable_box_small_released_loop(void) {
 }
 
 void breakable_box_small_idle_loop(void) {
-    switch(o->oAction) {
+    switch (o->oAction) {
         case 0:
             func_802F4DB4();
             break;

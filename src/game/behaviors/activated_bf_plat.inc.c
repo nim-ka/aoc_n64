@@ -37,7 +37,8 @@ void bhv_activated_back_and_forth_platform_init(void) {
         o->oActivatedBackAndForthPlatformFlipRotation = 0x8000;
     }
 
-    o->collisionData = segmented_to_virtual(sActivatedBackAndForthPlatformCollisionModels[platformType]);
+    o->collisionData =
+        segmented_to_virtual(sActivatedBackAndForthPlatformCollisionModels[platformType]);
 
     // Max distance the platform should move.
     // Equivalent to 50 * (oBehParams2ndByte & 0x7F), i.e. 50 * (oBehParams2ndByte % 128).
@@ -86,10 +87,11 @@ void bhv_activated_back_and_forth_platform_update(void) {
             // clamp_f32 returns whether the value needed to be clamped.
             // So if the offset got out of bounds (i.e. platform has reached an end of its path),
             // or Mario is over 3000 units away, the platform will reset the wait timer and flip around.
-            if (clamp_f32(&o->oActivatedBackAndForthPlatformOffset, 0.0f, o->oActivatedBackAndForthPlatformMaxOffset) ||
+            if (clamp_f32(&o->oActivatedBackAndForthPlatformOffset, 0.0f,
+                          o->oActivatedBackAndForthPlatformMaxOffset)
+                ||
                 // The platform will not reset if Mario goes far away and it's travelling backwards
-                (o->oActivatedBackAndForthPlatformVel > 0.0f &&
-                o->oDistanceToMario > 3000.0f)) {
+                (o->oActivatedBackAndForthPlatformVel > 0.0f && o->oDistanceToMario > 3000.0f)) {
                 // Reset the wait timer
                 o->oActivatedBackAndForthPlatformCountdown = 20;
 
@@ -128,7 +130,8 @@ void bhv_activated_back_and_forth_platform_update(void) {
         // ...set its position to its original position + the offset.
         o->oPosY = o->oHomeY + o->oActivatedBackAndForthPlatformOffset;
     } else {
-        // Otherwise, dip down 20 units if Mario gets on the horizontal platform, and undo if he gets off.
+        // Otherwise, dip down 20 units if Mario gets on the horizontal platform, and undo if he gets
+        // off.
         o->oPosY += o->oVelY;
         clamp_f32(&o->oPosY, o->oHomeY - 20.0f, o->oHomeY);
 

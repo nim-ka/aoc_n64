@@ -14,8 +14,7 @@ void bhv_spindel_loop(void) {
         if (o->oTimer == 32) {
             o->oUnknownUnkF4_S32 = 0;
             o->oTimer = 0;
-        }
-        else {
+        } else {
             o->oVelZ = 0.0f;
             o->oAngleVelPitch = 0;
             return;
@@ -37,8 +36,7 @@ void bhv_spindel_loop(void) {
         if (o->oUnknownUnkF4_S32 == 20) {
             if (o->oUnknownUnkF8_S32 == 0) {
                 o->oUnknownUnkF8_S32 = 1;
-            }
-            else {
+            } else {
                 o->oUnknownUnkF8_S32 = 0;
             }
 
@@ -57,8 +55,7 @@ void bhv_spindel_loop(void) {
         if (o->oUnknownUnkF8_S32 == 0) {
             o->oVelZ = 20 / sp18;
             o->oAngleVelPitch = 1024 / sp18;
-        }
-        else {
+        } else {
             o->oVelZ = -20 / sp18;
             o->oAngleVelPitch = -1024 / sp18;
         }
@@ -66,8 +63,7 @@ void bhv_spindel_loop(void) {
         o->oPosZ += o->oVelZ;
         o->oMoveAnglePitch += o->oAngleVelPitch;
 
-        if (absf_2(o->oMoveAnglePitch & 0x1fff) < 800.0f
-            && o->oAngleVelPitch != 0) {
+        if (absf_2(o->oMoveAnglePitch & 0x1fff) < 800.0f && o->oAngleVelPitch != 0) {
             PlaySound2(SOUND_CH8_UNK48);
         }
 

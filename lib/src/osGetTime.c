@@ -3,8 +3,7 @@
 extern OSTime _osCurrentTime;
 extern u32 D_80365DA8;
 
-OSTime osGetTime()
-{
+OSTime osGetTime() {
     u32 sp34;
     u32 sp30;
     OSTime sp28;
