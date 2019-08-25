@@ -41,32 +41,33 @@ __Arch Linux__
 
 3. Install qemu-irix
 
-  3.a Options:
-     1. Clone https://github.com/n64decomp/qemu-irix to somewhere and follow its
-        install instructions in the README.
-     2. Optionally, grab the prebuilt qemu-irix from the Releases section.
-     3. (Arch) Use AUR package [qemu-irix-git](https://aur.archlinux.org/packages/qemu-irix-git)
+   a. Options:
+      1. Clone https://github.com/n64decomp/qemu-irix to somewhere and follow its
+         install instructions in the README.
+      2. Optionally, grab the prebuilt qemu-irix from the Releases section.
+      3. (Arch) Use AUR package [qemu-irix-git](https://aur.archlinux.org/packages/qemu-irix-git)
 
-  3.b (For options 1 or 2), copy executable `qemu-irix` from irix-linux-user to
+   b. (For the first two options), copy executable `qemu-irix` from irix-linux-user to
       somewhere convenient with a relatively short path.
 ```
 mkdir -p /opt/qemu-irix/bin
 cp irix-linux-user/qemu-irix /opt/qemu-irix/bin
 ```
 
-  3.c Define `QEMU_IRIX` environment variable in your `~/.bashrc` to point to
+   c. Define `QEMU_IRIX` environment variable in your `~/.bashrc` to point to
       this qemu-irix executable.
 ```
 export QEMU_IRIX=/opt/qemu-irix/bin/qemu-irix
 ```
 
-6. Run `make` to build the ROM (defaults to us version). Make sure your path to
+4. Run `make` to build the ROM (defaults to `VERSION=us`). Make sure your path to
    the repo is not too long or else this process will error, as the emulated
    IDO compiler cannot handle paths longer than 255 characters.
 Build examples:
 ```
 make VERSION=jp -j4       # build (J) version instead with 4 jobs
 make VERSION=eu COMPARE=0 # non-matching EU version still WIP
+```
 
 ## Windows
 
