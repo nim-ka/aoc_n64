@@ -173,7 +173,8 @@ SOUND_SAMPLE_TABLES := $(foreach file,$(SOUND_SAMPLE_AIFFS),$(BUILD_DIR)/$(file:
 SOUND_SAMPLE_AIFCS := $(foreach file,$(SOUND_SAMPLE_AIFFS),$(BUILD_DIR)/$(file:.aiff=.aifc))
 SOUND_OBJ_FILES := $(SOUND_BIN_DIR)/sound_data.ctl.o \
                    $(SOUND_BIN_DIR)/sound_data.tbl.o \
-                   $(SOUND_BIN_DIR)/sequences.bin.o
+                   $(SOUND_BIN_DIR)/sequences.bin.o \
+                   $(SOUND_BIN_DIR)/bank_sets.o
 
 
 # Object files
@@ -375,14 +376,17 @@ $(BUILD_DIR)/%.table: %.aiff
 $(BUILD_DIR)/%.aifc: $(BUILD_DIR)/%.table %.aiff
 	$(VADPCM_ENC) -c $^ $@
 
-$(SOUND_BIN_DIR)/sound_data.ctl: $(SOUND_BANK_FILES) $(SOUND_SAMPLE_AIFCS)
+$(SOUND_BIN_DIR)/sound_data.ctl: sound/sound_banks/ $(SOUND_BANK_FILES) $(SOUND_SAMPLE_AIFCS)
 	$(PYTHON) tools/assemble_sound.py $(BUILD_DIR)/sound/samples/ sound/sound_banks/ $(SOUND_BIN_DIR)/sound_data.ctl $(SOUND_BIN_DIR)/sound_data.tbl $(VERSION_CFLAGS)
 
 $(SOUND_BIN_DIR)/sound_data.tbl: $(SOUND_BIN_DIR)/sound_data.ctl
 	touch $@
 
-$(SOUND_BIN_DIR)/sequences.bin: $(SOUND_SEQUENCE_FILES)
-	$(PYTHON) tools/assemble_sound.py --sequences $@ $^
+$(SOUND_BIN_DIR)/sequences.bin: $(SOUND_BANK_FILES) sound/sequences.json sound/sequences/ sound/sequences/$(VERSION)/ $(SOUND_SEQUENCE_FILES)
+	$(PYTHON) tools/assemble_sound.py --sequences $@ $(SOUND_BIN_DIR)/bank_sets sound/sound_banks/ sound/sequences.json $(SOUND_SEQUENCE_FILES) $(VERSION_CFLAGS)
+
+$(SOUND_BIN_DIR)/bank_sets: $(SOUND_BIN_DIR)/sequences.bin
+	touch $@
 
 $(SOUND_BIN_DIR)/%.m64: $(SOUND_BIN_DIR)/%.o
 	$(OBJCOPY) -j .rodata $< -O binary $@

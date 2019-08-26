@@ -1069,8 +1069,9 @@ void sequence_channel_process_script(struct SequenceChannel *seqChannel) {
 
                     case 0xc6: // switch bank within set
                         temp = m64_read_u8(state);
-                        // Switch to the temp's (0-indexed) bank in this
-                        // sequence's bank set, counting backwards.
+                        // Switch to the temp's (0-indexed) bank in this sequence's
+                        // bank set. Note that in the binary format (not in the JSON!)
+                        // the banks are listed backwards, so we counts from the back.
                         // (gAlBankSets[offset] is number of banks)
                         offset = ((u16 *) gAlBankSets)[seqPlayer->seqId];
                         temp = gAlBankSets[offset + gAlBankSets[offset] - temp];
