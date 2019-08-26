@@ -488,7 +488,7 @@ s32 act_hold_jump(struct MarioState *m) {
     if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_FREEFALL, 0);
 
-    if ((m->input & INPUT_B_PRESSED) && !(m->heldObj->oUnk190 & 0x00000010))
+    if ((m->input & INPUT_B_PRESSED) && !(m->heldObj->oInteractionSubtype & INT_SUBTYPE_HOLDABLE_NPC))
         return set_mario_action(m, ACT_AIR_THROW, 0);
 
     if (m->input & INPUT_Z_PRESSED)
@@ -510,7 +510,7 @@ s32 act_hold_freefall(struct MarioState *m) {
     if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_FREEFALL, 0);
 
-    if ((m->input & INPUT_B_PRESSED) && !(m->heldObj->oUnk190 & 0x00000010))
+    if ((m->input & INPUT_B_PRESSED) && !(m->heldObj->oInteractionSubtype & INT_SUBTYPE_HOLDABLE_NPC))
         return set_mario_action(m, ACT_AIR_THROW, 0);
 
     if (m->input & INPUT_Z_PRESSED)

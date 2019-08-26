@@ -1114,7 +1114,7 @@ void obj_get_thrown_or_placed(f32 forwardVel, f32 velY, s32 thrownAction) {
 
     o->oHeldState = HELD_FREE;
 
-    if ((o->oUnk190 & 0x10) || forwardVel == 0.0f) {
+    if ((o->oInteractionSubtype & INT_SUBTYPE_HOLDABLE_NPC) || forwardVel == 0.0f) {
         obj_move_after_thrown_or_dropped(0.0f, 0.0f);
     } else {
         o->oAction = thrownAction;

@@ -66,7 +66,7 @@ static void bhvToadMessage_opaque(void) {
         gCurrentObject->oToadMessageState = TOAD_MESSAGE_FADING;
     } else {
         if (gCurrentObject->oToadMessageRecentlyTalked == 0) {
-            gCurrentObject->oUnk190 = (1 << 14);
+            gCurrentObject->oInteractionSubtype = INT_SUBTYPE_NPC;
             if (gCurrentObject->oInteractStatus & INT_STATUS_INTERACTED) {
                 gCurrentObject->oInteractStatus = 0;
                 gCurrentObject->oToadMessageState = TOAD_MESSAGE_TALKING;
@@ -109,7 +109,7 @@ static void bhvToadMessage_fading(void) {
 
 void bhvToadMessage_loop(void) {
     if (gCurrentObject->header.gfx.node.flags & 1) {
-        gCurrentObject->oUnk190 = 0;
+        gCurrentObject->oInteractionSubtype = 0;
         switch (gCurrentObject->oToadMessageState) {
             case TOAD_MESSAGE_FADED:
                 bhvToadMessage_faded();

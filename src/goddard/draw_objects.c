@@ -100,7 +100,7 @@ static struct {
 } sUpdateViewState;
 static struct ObjLight *sPhongLight;          // material light? phong light?
 static struct GdVec3f sPhongLightPosition;    //@ 801B9D00; guess; light source unit position for light
-                                              //flagged 0x20 (sPhongLight)
+                                              // flagged 0x20 (sPhongLight)
 static struct GdVec3f sLightPositionOffset;   // @ 801B9D10
 static struct GdVec3f sLightPositionCache[8]; // @ 801B9D20; unit positions
 static s32 sNumActiveLights;                  // @ 801B9D80; maybe?

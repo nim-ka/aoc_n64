@@ -326,7 +326,7 @@ void func_802BAF30(void) {
                 if (gDialogResponse != 0) {
                     set_mario_npc_dialog(0);
                     if (gDialogResponse == 1) {
-                        o->oUnk190 |= 0x40;
+                        o->oInteractionSubtype |= INT_SUBTYPE_DROP_IMMEDIATELY;
                         o->oUnk1AC_S16 = 2;
                     } else {
                         o->oUnk1AC_S16 = 6;
@@ -359,7 +359,7 @@ void func_802BB0E4(void) {
             break;
         case 7:
             if (obj_update_dialog_unk1(2, 2, 100, 0)) {
-                o->oUnk190 |= 0x40;
+                o->oInteractionSubtype |= INT_SUBTYPE_DROP_IMMEDIATELY;
                 o->oUnk1AC_S16 = 3;
             }
             break;

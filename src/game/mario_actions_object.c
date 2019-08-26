@@ -165,7 +165,7 @@ s32 act_picking_up(struct MarioState *m) {
     }
 
     if (m->actionState == 1) {
-        if (m->heldObj->oUnk190 & 0x4) {
+        if (m->heldObj->oInteractionSubtype & INT_SUBTYPE_GRABS_MARIO) {
             m->marioBodyState->grabPos = GRAB_POS_HEAVY_OBJ;
             set_mario_animation(m, MARIO_ANIM_GRAB_HEAVY_OBJECT);
             if (is_anim_at_end(m))
@@ -211,7 +211,7 @@ s32 act_placing_down(struct MarioState *m) {
 }
 
 s32 act_throwing(struct MarioState *m) {
-    if (m->heldObj && (m->heldObj->oUnk190 & 0x10))
+    if (m->heldObj && (m->heldObj->oInteractionSubtype & INT_SUBTYPE_HOLDABLE_NPC))
         return set_mario_action(m, ACT_PLACING_DOWN, 0);
 
     if (m->input & INPUT_UNKNOWN_10)

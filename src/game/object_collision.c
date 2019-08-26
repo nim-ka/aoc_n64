@@ -5,6 +5,7 @@
 #include "debug.h"
 #include "spawn_object.h"
 #include "object_list_processor.h"
+#include "interaction.h"
 
 struct Object *Unknown802C8460(struct Object *a) {
     struct Object *sp24;
@@ -63,7 +64,7 @@ int func_802C870C(struct Object *a, struct Object *b) {
     f32 sp24 = sqrtf(sp34 * sp34 + sp2C * sp2C);
 
     if (a == gMarioObject)
-        b->oUnk190 |= 2;
+        b->oInteractionSubtype |= INT_SUBTYPE_DELAY_INVINCIBILITY;
 
     if (sp28 > sp24) {
         f32 sp20 = a->hitboxHeight + sp3C;
@@ -74,7 +75,7 @@ int func_802C870C(struct Object *a, struct Object *b) {
         if (sp20 < sp38)
             return 0;
         if (a == gMarioObject)
-            b->oUnk190 &= ~2;
+            b->oInteractionSubtype &= ~INT_SUBTYPE_DELAY_INVINCIBILITY;
         return 1;
     }
 

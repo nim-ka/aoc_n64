@@ -605,7 +605,7 @@ static s32 beh_cmd_interact_type(void) {
 
 // unused
 static s32 Behavior31(void) {
-    gCurrentObject->oUnk190 = gBehCommand[1];
+    gCurrentObject->oInteractionSubtype = gBehCommand[1];
 
     gBehCommand += 2;
     return BEH_CONTINUE;

@@ -62,8 +62,9 @@ s32 func_802606DC(struct MarioState *m) {
         return mario_push_off_steep_floor(m, ACT_HOLD_FREEFALL, 0);
     }
 
-    if (m->heldObj->oUnk190 & 0x40) {
-        m->heldObj->oUnk190 = (s32)(m->heldObj->oUnk190 & -0x41);
+    if (m->heldObj->oInteractionSubtype & INT_SUBTYPE_DROP_IMMEDIATELY) {
+        m->heldObj->oInteractionSubtype =
+            (s32)(m->heldObj->oInteractionSubtype & ~INT_SUBTYPE_DROP_IMMEDIATELY);
         return set_mario_action(m, ACT_PLACING_DOWN, 0);
     }
 

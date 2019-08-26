@@ -105,7 +105,7 @@
 .set objHealth, 0x3F
 .set objBehParams, 0x40
 .set objPrevAction, 0x41
-.set objUnk190, 0x42
+.set objInteractSubtype, 0x42
 .set objCollisionDistance, 0x43
 .set objNumLootCoins, 0x44
 .set objDrawingDistance, 0x45
@@ -363,7 +363,7 @@ glabel bhvStarDoor # 0000
     begin OBJ_LIST_SURFACE
     obj_set_int objInteractType, 4
     collision_data inside_castle_seg7_collision_star_door
-    obj_set_int objUnk190, 32
+    obj_set_int objInteractSubtype, 32
     obj_or_int objFlags, (OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     set_hitbox 80, 100
     obj_set_pos
@@ -796,7 +796,7 @@ glabel bhvExitPodiumWarp # 0720
 
 glabel bhvFadingWarp # 075C
     begin OBJ_LIST_LEVEL
-    obj_set_int objUnk190, 0x0001
+    obj_set_int objInteractSubtype, 0x0001
     obj_or_int objFlags, (OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_int objInteractType, 0x2000
     obj_set_int objIntangibleTimer, 0
@@ -1506,7 +1506,7 @@ glabel bhvSpindrift # 12B4
     animate 0x00
     gravity 0x001E, 0xFE70, 0x0000, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
     obj_set_pos
-    obj_set_int objUnk190, 0x0080
+    obj_set_int objInteractSubtype, 0x0080
     begin_loop
         callnative bhv_spindrift_loop
     end_loop
@@ -1670,7 +1670,7 @@ glabel bhvHeaveHo # 1548
     gravity 0x00C8, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x0258, 0x0000, 0x0000
     obj_spawn MODEL_NONE, bhvHeaveHoThrowMario
     obj_set_int objInteractType, 0x02
-    obj_set_int objUnk190, 0x0204
+    obj_set_int objInteractSubtype, 0x0204
     set_hitbox 0x0078, 0x0064
     obj_set_pos
     obj_set_int objIntangibleTimer, 0
@@ -1768,7 +1768,7 @@ glabel bhvGrandStar # 1714
     begin OBJ_LIST_LEVEL
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     interact_type INTERACT_STAR_OR_KEY
-    obj_set_int objUnk190, 0x0800
+    obj_set_int objInteractSubtype, 0x0800
     set_hitbox 0x00A0, 0x0064
     obj_set_pos
     begin_loop
@@ -1857,7 +1857,7 @@ glabel bhvBowserBodyAnchor # 18CC
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     set_hitbox 0x0064, 0x012C
     interact_type INTERACT_DAMAGE
-    obj_set_int objUnk190, 0x0008
+    obj_set_int objInteractSubtype, 0x0008
     graph_clear
     obj_set_int objDamageOrCoinValue, 2
     obj_set_int objIntangibleTimer, 0
@@ -2080,7 +2080,7 @@ glabel bhvUkikiOpenCage # 1CB0
 .L13001CB4: # 1CB4
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_HOLDABLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_int objInteractType, 0x02
-    obj_set_int objUnk190, 0x0010
+    obj_set_int objInteractSubtype, 0x0010
     set_hitbox 0x0028, 0x0028
     obj_set_int objIntangibleTimer, 0
     drop_floor
@@ -2338,7 +2338,7 @@ glabel bhvSmallPenguin # 20E8
     animate 0x00
     gravity 0x001E, 0xFE70, 0xFFCE, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
     obj_set_int objInteractType, 0x02
-    obj_set_int objUnk190, 0x0010
+    obj_set_int objInteractSubtype, 0x0010
     obj_set_int objIntangibleTimer, 0
     set_hitbox 0x0028, 0x0028
     obj_set_pos
@@ -3487,7 +3487,7 @@ glabel bhvMessagePanel # 32C0
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     collision_data wooden_signpost_seg3_collision_0302DD80
     interact_type INTERACT_TEXT
-    obj_set_int objUnk190, 0x1000
+    obj_set_int objInteractSubtype, 0x1000
     drop_floor
     set_hitbox 0x0096, 0x0050
     obj_set_int objVarF4, 0
@@ -3501,7 +3501,7 @@ glabel bhvSignOnWall # 3304
     begin OBJ_LIST_SURFACE
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     interact_type INTERACT_TEXT
-    obj_set_int objUnk190, 0x1000
+    obj_set_int objInteractSubtype, 0x1000
     set_hitbox 0x0096, 0x0050
     obj_set_int objVarF4, 0
     begin_loop
@@ -4692,7 +4692,7 @@ glabel bhvFlyGuy # 46BC
     obj_set_pos
     gravity 0x0032, 0x0000, 0x0000, 0x0000, 0x03E8, 0x0258, 0x0000, 0x0000
     callnative bhv_init_room
-    obj_set_int objUnk190, 0x0080
+    obj_set_int objInteractSubtype, 0x0080
     obj_set_float objGraphYOffset, 30
     scale 150
     begin_loop

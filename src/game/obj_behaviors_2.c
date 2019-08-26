@@ -2421,13 +2421,13 @@ void BehBubbaLoop(void) {
     struct Object *sp38;
     s16 sp36;
 
-    o->oUnk190 &= ~0x00002000;
+    o->oInteractionSubtype &= ~INT_SUBTYPE_EATS_MARIO;
     o->oBubbaUnk104 = obj_turn_pitch_toward_mario(120.0f, 0);
 
     if (abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw) < 0x1000
         && abs_angle_diff(o->oBubbaUnk104 + 0x800, o->oMoveAnglePitch) < 0x2000) {
         if (o->oAnimState != 0 && o->oDistanceToMario < 250.0f) {
-            o->oUnk190 |= 0x00002000;
+            o->oInteractionSubtype |= INT_SUBTYPE_EATS_MARIO;
         }
 
         o->hurtboxRadius = 100.0f;
