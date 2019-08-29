@@ -14,7 +14,8 @@ u32 gGlobalTimer = 0;
 static u16 sCurrFBNum = 0;
 u16 frameBufferIndex = 0;
 
-/** Initializes the Reality Display Processor (RDP).
+/**
+ * Initializes the Reality Display Processor (RDP).
  * This function initializes settings such as texture filtering mode,
  * scissoring, and render mode (although keep in mind that this render
  * mode is not used in-game, where it is set in render_graph_node.c).
@@ -42,7 +43,8 @@ void my_rdp_init(void) {
     gDPPipeSync(gDisplayListHead++);
 }
 
-/** Initializes the RSP's built-in geometry and lighting engines.
+/**
+ * Initializes the RSP's built-in geometry and lighting engines.
  * Most of these (with the notable exception of gSPNumLights), are
  * almost immediately overwritten.
  */
@@ -56,12 +58,10 @@ void my_rsp_init(void) {
     gSPNumLights(gDisplayListHead++, 1);
     gSPTexture(gDisplayListHead++, 0, 0, 0, 0, 0);
 
-    /** @bug Nintendo did not explicitly define the clipping ratio.
-     * For Fast3DEX2, this causes the dreaded warped vertices issue
-     * unless the clipping ratio is changed back to the intended value,
-     * as Fast3DEX2 uses a different initial value than Fast3D(EX).
-     */
-
+    // @bug Nintendo did not explicitly define the clipping ratio.
+    // For Fast3DEX2, this causes the dreaded warped vertices issue
+    // unless the clipping ratio is changed back to the intended value,
+    // as Fast3DEX2 uses a different initial value than Fast3D(EX).
 #ifdef F3DEX_GBI_2
     gSPClipRatio(gDisplayListHead++, FRUSTRATIO_1);
 #endif

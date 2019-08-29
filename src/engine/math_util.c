@@ -97,8 +97,9 @@ void *vec3s_to_vec3f(Vec3f dest, Vec3s a) {
     return &dest; //! warning: function returns address of local variable
 }
 
-/** Convert float vector a to a short vector 'dest' by rounding the components
- *  to the nearest integer.
+/**
+ * Convert float vector a to a short vector 'dest' by rounding the components
+ * to the nearest integer.
  */
 void *vec3f_to_vec3s(Vec3s dest, Vec3f a) {
     // add/subtract 0.5 in order to round to the nearest s32 instead of truncating
@@ -108,9 +109,10 @@ void *vec3f_to_vec3s(Vec3s dest, Vec3f a) {
     return &dest; //! warning: function returns address of local variable
 }
 
-/** Set 'dest' the normal vector of a triangle with vertices a, b and c.
- *  It is similar to vec3f_cross, but it calculates the vectors (c-b) and (b-a)
- *  at the same time.
+/**
+ * Set 'dest' the normal vector of a triangle with vertices a, b and c.
+ * It is similar to vec3f_cross, but it calculates the vectors (c-b) and (b-a)
+ * at the same time.
  */
 void *find_vector_perpendicular_to_plane(Vec3f dest, Vec3f a, Vec3f b, Vec3f c) {
     dest[0] = (b[1] - a[1]) * (c[2] - b[2]) - (c[1] - b[1]) * (b[2] - a[2]);
@@ -150,7 +152,8 @@ void mtxf_copy(Mat4 dest, Mat4 src) {
         *d++ = *s++;
 }
 
-/** Set mtx to the identity matrix
+/**
+ * Set mtx to the identity matrix
  */
 void mtxf_identity(Mat4 mtx) {
     register s32 i;
@@ -166,7 +169,8 @@ void mtxf_identity(Mat4 mtx) {
         *dest = 1;
 }
 
-/** Set dest to a translation matrix of vector b
+/**
+ * Set dest to a translation matrix of vector b
  */
 void mtxf_translate(Mat4 dest, Vec3f b) {
     mtxf_identity(dest);
@@ -175,10 +179,11 @@ void mtxf_translate(Mat4 dest, Vec3f b) {
     dest[3][2] = b[2];
 }
 
-/** Set mtx to a look-at matrix for the camera. The resulting transformation
- *  transforms the world as if there exists a camera at position 'from' pointed
- *  at the position 'to'. The up-vector is assumed to be (0, 1, 0), but the 'roll'
- *  angle allows a bank rotation of the camera.
+/**
+ * Set mtx to a look-at matrix for the camera. The resulting transformation
+ * transforms the world as if there exists a camera at position 'from' pointed
+ * at the position 'to'. The up-vector is assumed to be (0, 1, 0), but the 'roll'
+ * angle allows a bank rotation of the camera.
  */
 void mtxf_lookat(Mat4 mtx, Vec3f from, Vec3f to, s16 roll) {
     register f32 invLength;
@@ -322,10 +327,11 @@ void mtxf_rotate_xyz_and_translate(Mat4 dest, Vec3f b, Vec3s c) {
     dest[3][3] = 1;
 }
 
-/** Set 'dest' to a transformation matrix that turns an object to face the camera.
- *  'mtx' is the look-at matrix from the camera
- *  'position' is the position of the object in the world
- *  'angle' rotates the object while still facing the camera.
+/**
+ * Set 'dest' to a transformation matrix that turns an object to face the camera.
+ * 'mtx' is the look-at matrix from the camera
+ * 'position' is the position of the object in the world
+ * 'angle' rotates the object while still facing the camera.
  */
 void mtxf_billboard(Mat4 dest, Mat4 mtx, Vec3f position, s16 angle) {
     dest[0][0] = coss(angle);
@@ -352,11 +358,12 @@ void mtxf_billboard(Mat4 dest, Mat4 mtx, Vec3f position, s16 angle) {
     dest[3][3] = 1;
 }
 
-/** Set 'dest' to a transformation matrix that aligns an object with the terrain
- *  based on the normal. Used for enemies.
- *  'upDir' is the terrain normal
- *  'yaw' is the angle which it should face
- *  'pos' is the object's position in the world
+/**
+ * Set 'dest' to a transformation matrix that aligns an object with the terrain
+ * based on the normal. Used for enemies.
+ * 'upDir' is the terrain normal
+ * 'yaw' is the angle which it should face
+ * 'pos' is the object's position in the world
  */
 void mtxf_align_terrain_normal(Mat4 dest, Vec3f upDir, Vec3f pos, s16 yaw) {
     Vec3f lateralDir;
@@ -393,12 +400,13 @@ void mtxf_align_terrain_normal(Mat4 dest, Vec3f upDir, Vec3f pos, s16 yaw) {
     dest[3][3] = 1.0f;
 }
 
-/** Set 'mtx' to a transformation matrix that aligns an object with the terrain
- *  based on 3 height samples in an equilateral triangle around the object.
- *  Used for Mario when crawling or sliding.
- *  'yaw' is the angle which it should face
- *  'pos' is the object's position in the world
- *  'radius' is the distance from each triangle vertex to the center
+/**
+ * Set 'mtx' to a transformation matrix that aligns an object with the terrain
+ * based on 3 height samples in an equilateral triangle around the object.
+ * Used for Mario when crawling or sliding.
+ * 'yaw' is the angle which it should face
+ * 'pos' is the object's position in the world
+ * 'radius' is the distance from each triangle vertex to the center
  */
 void mtxf_align_terrain_triangle(Mat4 mtx, Vec3f pos, s16 yaw, f32 radius) {
     struct Surface *sp74;
@@ -463,12 +471,13 @@ void mtxf_align_terrain_triangle(Mat4 mtx, Vec3f pos, s16 yaw, f32 radius) {
     mtx[3][3] = 1;
 }
 
-/** Sets matrix 'dest' to the matrix product b * a assuming they are both
- *  transformation matrices with a w-component of 1. Since the bottom row
- *  is assumed to equal [0, 0, 0, 1], it saves some multiplications and
- *  addition.
- *  The resulting matrix represents first applying transformation b and
- *  then a.
+/**
+ * Sets matrix 'dest' to the matrix product b * a assuming they are both
+ * transformation matrices with a w-component of 1. Since the bottom row
+ * is assumed to equal [0, 0, 0, 1], it saves some multiplications and
+ * addition.
+ * The resulting matrix represents first applying transformation b and
+ * then a.
  */
 void mtxf_mul(Mat4 dest, Mat4 a, Mat4 b) {
     Mat4 temp;
@@ -514,7 +523,8 @@ void mtxf_mul(Mat4 dest, Mat4 a, Mat4 b) {
     mtxf_copy(dest, temp);
 }
 
-/** Set matrix 'dest' to 'mtx' scaled by vector s
+/**
+ * Set matrix 'dest' to 'mtx' scaled by vector s
  */
 void mtxf_scale_vec3f(Mat4 dest, Mat4 mtx, Vec3f s) {
     register s32 i;
@@ -527,9 +537,10 @@ void mtxf_scale_vec3f(Mat4 dest, Mat4 mtx, Vec3f s) {
     }
 }
 
-/** Multiply a vector with a transformation matrix, which applies the transformation
- *  to the point. Note that the bottom row is assumed to be [0, 0, 0, 1], which is
- *  true for transformation matrices if the translation has a w component of 1.
+/**
+ * Multiply a vector with a transformation matrix, which applies the transformation
+ * to the point. Note that the bottom row is assumed to be [0, 0, 0, 1], which is
+ * true for transformation matrices if the translation has a w component of 1.
  */
 void mtxf_mul_vec3s(Mat4 mtx, Vec3s b) {
     register f32 x = b[0];
@@ -541,13 +552,14 @@ void mtxf_mul_vec3s(Mat4 mtx, Vec3s b) {
     b[2] = x * mtx[0][2] + y * mtx[1][2] + z * mtx[2][2] + mtx[3][2];
 }
 
-/** Convert float matrix 'src' to fixed point matrix 'dest'.
- *  The float matrix may not contain entries larger than 65536 or the console
- *  crashes. The fixed point matrix has entries with a 16-bit integer part, so
- *  the floating point numbers are multipled by 2^16 before being cast to a s32
- *  integer. If this doesn't fit, the N64 and iQue consoles will throw an
- *  exception. On Wii and Wii U Virtual Console the value will simply be clamped
- *  and no crashes occur.
+/**
+ * Convert float matrix 'src' to fixed point matrix 'dest'.
+ * The float matrix may not contain entries larger than 65536 or the console
+ * crashes. The fixed point matrix has entries with a 16-bit integer part, so
+ * the floating point numbers are multipled by 2^16 before being cast to a s32
+ * integer. If this doesn't fit, the N64 and iQue consoles will throw an
+ * exception. On Wii and Wii U Virtual Console the value will simply be clamped
+ * and no crashes occur.
  */
 void mtxf_to_mtx(Mtx *dest, Mat4 src) {
     s32 asFixedPoint;
@@ -563,7 +575,8 @@ void mtxf_to_mtx(Mtx *dest, Mat4 src) {
     }
 }
 
-/** Set 'mtx' to a transformation matrix that rotates around the z axis.
+/**
+ * Set 'mtx' to a transformation matrix that rotates around the z axis.
  */
 void mtxf_rotate_xy(Mtx *mtx, s16 angle) {
     Mat4 temp;
@@ -576,12 +589,13 @@ void mtxf_rotate_xy(Mtx *mtx, s16 angle) {
     mtxf_to_mtx(mtx, temp);
 }
 
-/** Extract a position given an object's transformation matrix and a camera matrix.
- *  This is used for determining the world position of the held object: since objMtx
- *  inherits the transformation from both the camera and Mario, it calculates this
- *  by taking the camera matrix and inverting its transformation by first rotating
- *  objMtx back from screen orientation to world orientation, and then subtracting
- *  the camera position.
+/**
+ * Extract a position given an object's transformation matrix and a camera matrix.
+ * This is used for determining the world position of the held object: since objMtx
+ * inherits the transformation from both the camera and Mario, it calculates this
+ * by taking the camera matrix and inverting its transformation by first rotating
+ * objMtx back from screen orientation to world orientation, and then subtracting
+ * the camera position.
  */
 void get_pos_from_transform_mtx(Vec3f dest, Mat4 objMtx, Mat4 camMtx) {
     f32 camX = camMtx[3][0] * camMtx[0][0] + camMtx[3][1] * camMtx[0][1] + camMtx[3][2] * camMtx[0][2];
@@ -596,8 +610,9 @@ void get_pos_from_transform_mtx(Vec3f dest, Mat4 objMtx, Mat4 camMtx) {
         objMtx[3][0] * camMtx[2][0] + objMtx[3][1] * camMtx[2][1] + objMtx[3][2] * camMtx[2][2] - camZ;
 }
 
-/** Take the vector starting at 'from' pointed at 'to' an retrieve the length
- *  of that vector, as well as the yaw and pitch angles.
+/**
+ * Take the vector starting at 'from' pointed at 'to' an retrieve the length
+ * of that vector, as well as the yaw and pitch angles.
  */
 void vec3f_get_dist_and_angle(Vec3f from, Vec3f to, f32 *dist, s16 *pitch, s16 *yaw) {
     register f32 x = to[0] - from[0];
@@ -609,8 +624,9 @@ void vec3f_get_dist_and_angle(Vec3f from, Vec3f to, f32 *dist, s16 *pitch, s16 *
     *yaw = atan2s(z, x);
 }
 
-/** Construct the 'to' point which is distance 'dist' away from the 'from' position,
- *  and has the angles pitch and yaw.
+/**
+ * Construct the 'to' point which is distance 'dist' away from the 'from' position,
+ * and has the angles pitch and yaw.
  */
 void vec3f_set_dist_and_angle(Vec3f from, Vec3f to, f32 dist, s16 pitch, s16 yaw) {
     to[0] = from[0] + dist * coss(pitch) * sins(yaw);
@@ -618,8 +634,9 @@ void vec3f_set_dist_and_angle(Vec3f from, Vec3f to, f32 dist, s16 pitch, s16 yaw
     to[2] = from[2] + dist * coss(pitch) * coss(yaw);
 }
 
-/** Return the value 'current' after it tries to approach target, going up at
- *  most 'inc' and going down at most 'dec'.
+/**
+ * Return the value 'current' after it tries to approach target, going up at
+ * most 'inc' and going down at most 'dec'.
  */
 s32 approach_s32(s32 current, s32 target, s32 inc, s32 dec) {
     //! If target is close to the max or min s32, then it's possible to overflow
@@ -637,8 +654,9 @@ s32 approach_s32(s32 current, s32 target, s32 inc, s32 dec) {
     return current;
 }
 
-/** Return the value 'current' after it tries to approach target, going up at
- *  most 'inc' and going down at most 'dec'.
+/**
+ * Return the value 'current' after it tries to approach target, going up at
+ * most 'inc' and going down at most 'dec'.
  */
 f32 approach_f32(f32 current, f32 target, f32 inc, f32 dec) {
     if (current < target) {
@@ -653,8 +671,9 @@ f32 approach_f32(f32 current, f32 target, f32 inc, f32 dec) {
     return current;
 }
 
-/** Helper function for atan2s. Does a look up of the arctangent of y/x assuming
- *  the resulting angle is in range [0, 0x2000] (1/8 of a circle).
+/**
+ * Helper function for atan2s. Does a look up of the arctangent of y/x assuming
+ * the resulting angle is in range [0, 0x2000] (1/8 of a circle).
  */
 static u16 atan2_lookup(f32 y, f32 x) {
     u16 ret;
@@ -666,8 +685,9 @@ static u16 atan2_lookup(f32 y, f32 x) {
     return ret;
 }
 
-/** Compute the angle from (0, 0) to (x, y) as a s16. Given that terrain is in
- *  the xz-plane, this is commonly called with (z, x) to get a yaw angle.
+/**
+ * Compute the angle from (0, 0) to (x, y) as a s16. Given that terrain is in
+ * the xz-plane, this is commonly called with (z, x) to get a yaw angle.
  */
 s16 atan2s(f32 y, f32 x) {
     u16 ret;
@@ -703,7 +723,8 @@ s16 atan2s(f32 y, f32 x) {
     return ret;
 }
 
-/** Compute the atan2 in radians by calling atan2s and converting the result.
+/**
+ * Compute the atan2 in radians by calling atan2s and converting the result.
  */
 f32 atan2f(f32 y, f32 x) {
     return (f32) atan2s(y, x) * M_PI / 0x8000;
@@ -715,23 +736,24 @@ f32 atan2f(f32 y, f32 x) {
 #define CURVE_END_1 4
 #define CURVE_END_2 5
 
-/** Set 'result' to a 4-vector with weights corresponding to interpolation
- *  value t in [0, 1] and gSplineState. Given the current control point P, these
- *  weights are for P[0], P[1], P[2] and P[3] to obtain an interpolated point.
- *  The weights naturally sum to 1, and they are also always in range [0, 1] so
- *  the inteprolated point will never overshoot. The curve is guaranteed to go
- *  through the first and last point, but not through intermediate points.
+/**
+ * Set 'result' to a 4-vector with weights corresponding to interpolation
+ * value t in [0, 1] and gSplineState. Given the current control point P, these
+ * weights are for P[0], P[1], P[2] and P[3] to obtain an interpolated point.
+ * The weights naturally sum to 1, and they are also always in range [0, 1] so
+ * the inteprolated point will never overshoot. The curve is guaranteed to go
+ * through the first and last point, but not through intermediate points.
  *
- *  gSplineState ensures that the curve is clamped: the first two points
- *  and last two points have different weight formulas. These are the weights
- *  just before gSplineState transitions:
- *  1: [1, 0, 0, 0]
- *  1->2: [0, 3/12, 7/12, 2/12]
- *  2->3: [0, 1/6, 4/6, 1/6]
- *  3->3: [0, 1/6, 4/6, 1/6] (repeats)
- *  3->4: [0, 1/6, 4/6, 1/6]
- *  4->5: [0, 2/12, 7/12, 3/12]
- *  5: [0, 0, 0, 1]
+ * gSplineState ensures that the curve is clamped: the first two points
+ * and last two points have different weight formulas. These are the weights
+ * just before gSplineState transitions:
+ * 1: [1, 0, 0, 0]
+ * 1->2: [0, 3/12, 7/12, 2/12]
+ * 2->3: [0, 1/6, 4/6, 1/6]
+ * 3->3: [0, 1/6, 4/6, 1/6] (repeats)
+ * 3->4: [0, 1/6, 4/6, 1/6]
+ * 4->5: [0, 2/12, 7/12, 3/12]
+ * 5: [0, 0, 0, 1]
  *
  * I suspect that the weight formulas will give a 3rd degree B-spline with the
  * common uniform clamped knot vector, e.g. for n points:
@@ -779,12 +801,13 @@ void spline_get_weights(Vec4f result, f32 t, UNUSED s32 c) {
     }
 }
 
-/** Initialize a spline animation.
- *  'keyframes' should be an array of (s, x, y, z) vectors
- *   s: the speed of the keyframe in 1000/frames, e.g. s=100 means the keyframe lasts 10 frames
- *   (x, y, z): point in 3D space on the curve
- *  The array should end with three entries with s=0 (infinite keyframe duration).
- *  That's because the spline has a 3rd degree polynomial, so it looks 3 points ahead.
+/**
+ * Initialize a spline animation.
+ * 'keyframes' should be an array of (s, x, y, z) vectors
+ *  s: the speed of the keyframe in 1000/frames, e.g. s=100 means the keyframe lasts 10 frames
+ *  (x, y, z): point in 3D space on the curve
+ * The array should end with three entries with s=0 (infinite keyframe duration).
+ * That's because the spline has a 3rd degree polynomial, so it looks 3 points ahead.
  */
 void anim_spline_init(Vec4s *keyFrames) {
     gSplineKeyframe = keyFrames;
@@ -792,9 +815,10 @@ void anim_spline_init(Vec4s *keyFrames) {
     gSplineState = 1;
 }
 
-/** Poll the next point from a spline animation.
- *  anim_spline_init should be called before polling for vectors.
- *  Returns TRUE when the last point is reached, FALSE otherwise.
+/**
+ * Poll the next point from a spline animation.
+ * anim_spline_init should be called before polling for vectors.
+ * Returns TRUE when the last point is reached, FALSE otherwise.
  */
 s32 anim_spline_poll(Vec3f result) {
     Vec4f weights;

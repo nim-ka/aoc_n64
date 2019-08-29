@@ -136,7 +136,8 @@ Gfx *Geo18_8029D924(s32 run, struct GraphNode *node, UNUSED s32 sp48) {
     return sp3C;
 }
 
-/** @bug Every geo function declares the 3 parameters of run, node, and the matrix array.
+/**
+ * @bug Every geo function declares the 3 parameters of run, node, and the matrix array.
  * This one (see also geo_switch_area) doesn't. When executed, the node function
  * executor passes the 3rd argument to a function that doesn't declare it. This is
  * undefined behavior, but harmless in practice due to the o32 calling convention.

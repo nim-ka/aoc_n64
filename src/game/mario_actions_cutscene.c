@@ -46,14 +46,15 @@ static s8 D_8032CBEC[7] = { 2, 3, 2, 1, 2, 3, 2 };
 
 static u8 sStarsNeededForDialog[6] = { 1, 3, 8, 30, 50, 70 };
 
-/** Data for the jumbo star cutscene. It specifies the flight path after triple
- *  jumping. Each entry is one keyframe.
- *  The first number is playback speed, 1000 is the maximum and means it lasts
- *  1 frame. 20 means that it lasts 1000/20 = 50 frames.
- *  Speed 0 marks the last keyframe. Since the cubic spline looks 3 keyframes
- *  ahead, there should be at least 2 more entries afterwards.
- *  The last three numbers of each entry are x, y and z coordinates of points
- *  that define the curve.
+/**
+ * Data for the jumbo star cutscene. It specifies the flight path after triple
+ * jumping. Each entry is one keyframe.
+ * The first number is playback speed, 1000 is the maximum and means it lasts
+ * 1 frame. 20 means that it lasts 1000/20 = 50 frames.
+ * Speed 0 marks the last keyframe. Since the cubic spline looks 3 keyframes
+ * ahead, there should be at least 2 more entries afterwards.
+ * The last three numbers of each entry are x, y and z coordinates of points
+ * that define the curve.
  */
 static Vec4s sJumboStarKeyframes[27] = {
     { 20, 0, 678, -2916 },      { 30, 0, 680, -3500 },      { 40, 1000, 700, -4000 },
@@ -79,7 +80,8 @@ static u8 sMarioBlinkOverride[20] = {
     MARIO_EYES_HALF_CLOSED, MARIO_EYES_HALF_CLOSED, MARIO_EYES_CLOSED, MARIO_EYES_CLOSED,
 };
 
-/** get_credits_str_width: Calculate width of a Credits String
+/**
+ * get_credits_str_width: Calculate width of a Credits String
  * Loop over each character in a credits string and increment the length. If the
  * character is a space, increment by 4; otherwise increment by 7. Once the next
  * character is a null character (equal to 0), stop counting the length since
@@ -95,7 +97,8 @@ s32 get_credits_str_width(char *str) {
     return length;
 }
 
-/** print_displaying_credits_entry: Print the current displaying Credits Entry
+/**
+ * print_displaying_credits_entry: Print the current displaying Credits Entry
  * Called in render_game. This function checks if sDispCreditsEntry points to a
  * credits entry (see act_credits_cutscene), and if so, display it. The reason
  * this is called every frame in render_game is because the credits need to
@@ -221,7 +224,8 @@ static void Unknown80256FF8(u16 *a0) {
         *a0 = 0;
 }
 
-/** get_star_collection_dialog: Determine what dialog should show when Mario
+/**
+ * get_star_collection_dialog: Determine what dialog should show when Mario
  ** collects a star.
  * Determines if Mario has collected enough stars to get a dialog for it, and
  * if so, return the dialog ID. Otherwise, return 0
@@ -274,7 +278,8 @@ void handle_save_menu(struct MarioState *m) {
     }
 }
 
-/** spawn_obj_at_mario_rel_yaw: Spawns object at Mario with relative yaw.
+/**
+ * spawn_obj_at_mario_rel_yaw: Spawns object at Mario with relative yaw.
  * Spawns object with given behavior and model and copies over Mario's position
  * and yaw plus relative yaw.
  */
@@ -289,7 +294,8 @@ struct Object *spawn_obj_at_mario_rel_yaw(struct MarioState *m, s32 model, void 
     return o;
 }
 
-/** cutscene_take_cap_off: Put Mario's cap on.
+/**
+ * cutscene_take_cap_off: Put Mario's cap on.
  * Clears "cap on head" flag, sets "cap in hand" flag, plays sound
  * SOUND_ACTION_UNKNOWN43D.
  */
@@ -299,7 +305,8 @@ void cutscene_take_cap_off(struct MarioState *m) {
     play_sound(SOUND_ACTION_UNKNOWN43D, m->marioObj->header.gfx.cameraToObject);
 }
 
-/** cutscene_put_cap_on: Put Mario's cap on.
+/**
+ * cutscene_put_cap_on: Put Mario's cap on.
  * Clears "cap in hand" flag, sets "cap on head" flag, plays sound
  * SOUND_ACTION_UNKNOWN43E.
  */
@@ -309,7 +316,8 @@ void cutscene_put_cap_on(struct MarioState *m) {
     play_sound(SOUND_ACTION_UNKNOWN43E, m->marioObj->header.gfx.cameraToObject);
 }
 
-/** mario_ready_to_speak: Determine if Mario is able to speak to a NPC
+/**
+ * mario_ready_to_speak: Determine if Mario is able to speak to a NPC
  * The following conditions must be met in order for Mario to be considered
  * ready to speak.
  * 1: Mario's action must be in the stationary or moving action groups, or if
@@ -998,7 +1006,8 @@ s32 act_spawn_spin_landing(struct MarioState *m) {
     return FALSE;
 }
 
-/** act_exit_airborne: Jump out of a level after collecting a Power Star (no
+/**
+ * act_exit_airborne: Jump out of a level after collecting a Power Star (no
  ** sparkles)
  * Mario always faces a level entrance when he launches out of it, whether he
  * died or he collected a star/key. Because of that, we need him to move away
@@ -1560,7 +1569,8 @@ s32 act_feet_stuck_in_ground(struct MarioState *m) {
     return FALSE;
 }
 
-/** advance_cutscene_step: Advances the current step in the current cutscene.
+/**
+ * advance_cutscene_step: Advances the current step in the current cutscene.
  * Resets action state and action timer, adds 1 to the action arg (responsible
  * for keeping track of what step of the cutscene Mario is in.)
  */
