@@ -80,11 +80,9 @@ static void no_op(void) {
 
 /**
  * Read from EEPROM to a given address.
- * The EEPROM address is computed using the offset of the destination address
- * from gSaveBuffer.
- * Try at most 4 times, and return 0 on success. On failure, return the status
- * returned from osEepromLongRead. It also returns 0 if EEPROM isn't loaded
- * correctly in the system.
+ * The EEPROM address is computed using the offset of the destination address from gSaveBuffer.
+ * Try at most 4 times, and return 0 on success. On failure, return the status returned from
+ * osEepromLongRead. It also returns 0 if EEPROM isn't loaded correctly in the system.
  */
 static s32 read_eeprom_data(void *buffer, s32 size) {
     s32 status = 0;
@@ -104,11 +102,9 @@ static s32 read_eeprom_data(void *buffer, s32 size) {
 
 /**
  * Write data to EEPROM.
- * The EEPROM address is computed using the offset of the source address from
- * gSaveBuffer.
- * Try at most 4 times, and return 0 on success. On failure, return the status
- * returned from osEepromLongWrite.
- * Unlike read_eeprom_data, return 1 if EEPROM isn't loaded.
+ * The EEPROM address is computed using the offset of the source address from gSaveBuffer.
+ * Try at most 4 times, and return 0 on success. On failure, return the status returned from
+ * osEepromLongWrite. Unlike read_eeprom_data, return 1 if EEPROM isn't loaded.
  */
 static s32 write_eeprom_data(void *buffer, s32 size) {
     s32 status = 1;
@@ -168,27 +164,24 @@ static void restore_main_menu_data(s32 srcSlot) {
     s32 destSlot = srcSlot ^ 1;
 
     // Compute checksum on source data
-    add_save_block_signature(&gSaveBuffer.menuData[srcSlot], sizeof(gSaveBuffer.menuData[srcSlot]),
-                             MENU_DATA_MAGIC);
+    add_save_block_signature(&gSaveBuffer.menuData[srcSlot], sizeof(gSaveBuffer.menuData[srcSlot]), MENU_DATA_MAGIC);
 
     // Copy source data to destination
-    bcopy(&gSaveBuffer.menuData[srcSlot], &gSaveBuffer.menuData[destSlot],
-          sizeof(gSaveBuffer.menuData[destSlot]));
+    bcopy(&gSaveBuffer.menuData[srcSlot], &gSaveBuffer.menuData[destSlot], sizeof(gSaveBuffer.menuData[destSlot]));
 
-    // Write destination data to eeprom
+    // Write destination data to EEPROM
     write_eeprom_data(&gSaveBuffer.menuData[destSlot], sizeof(gSaveBuffer.menuData[destSlot]));
 }
 
 static void save_main_menu_data(void) {
     if (gMainMenuDataModified) {
         // Compute checksum
-        add_save_block_signature(&gSaveBuffer.menuData[0], sizeof(gSaveBuffer.menuData[0]),
-                                 MENU_DATA_MAGIC);
+        add_save_block_signature(&gSaveBuffer.menuData[0], sizeof(gSaveBuffer.menuData[0]), MENU_DATA_MAGIC);
 
         // Back up data
         bcopy(&gSaveBuffer.menuData[0], &gSaveBuffer.menuData[1], sizeof(gSaveBuffer.menuData[1]));
 
-        // Write to eeprom
+        // Write to EEPROM
         write_eeprom_data(gSaveBuffer.menuData, sizeof(gSaveBuffer.menuData));
 
         gMainMenuDataModified = FALSE;
@@ -262,7 +255,7 @@ static void restore_save_file_data(s32 fileIndex, s32 srcSlot) {
     bcopy(&gSaveBuffer.files[fileIndex][srcSlot], &gSaveBuffer.files[fileIndex][destSlot],
           sizeof(gSaveBuffer.files[fileIndex][destSlot]));
 
-    // Write destination data to eeprom
+    // Write destination data to EEPROM
     write_eeprom_data(&gSaveBuffer.files[fileIndex][destSlot],
                       sizeof(gSaveBuffer.files[fileIndex][destSlot]));
 }
@@ -277,7 +270,7 @@ void save_file_do_save(s32 fileIndex) {
         bcopy(&gSaveBuffer.files[fileIndex][0], &gSaveBuffer.files[fileIndex][1],
               sizeof(gSaveBuffer.files[fileIndex][1]));
 
-        // Write to eeprom
+        // Write to EEPROM
         write_eeprom_data(gSaveBuffer.files[fileIndex], sizeof(gSaveBuffer.files[fileIndex]));
 
         gSaveFileModified = FALSE;
@@ -316,11 +309,8 @@ void save_file_load_all(void) {
     read_eeprom_data(&gSaveBuffer, sizeof(gSaveBuffer));
 
     // Verify the main menu data and create a backup copy if only one of the slots is valid.
-    validSlots = verify_save_block_signature(&gSaveBuffer.menuData[0], sizeof(gSaveBuffer.menuData[0]),
-                                             MENU_DATA_MAGIC);
-    validSlots |= verify_save_block_signature(&gSaveBuffer.menuData[1], sizeof(gSaveBuffer.menuData[1]),
-                                              MENU_DATA_MAGIC)
-                  << 1;
+    validSlots = verify_save_block_signature(&gSaveBuffer.menuData[0], sizeof(gSaveBuffer.menuData[0]), MENU_DATA_MAGIC);
+    validSlots |= verify_save_block_signature(&gSaveBuffer.menuData[1], sizeof(gSaveBuffer.menuData[1]),MENU_DATA_MAGIC) << 1;
     switch (validSlots) {
         case 0: // Neither copy is correct
             wipe_main_menu_data();
@@ -335,11 +325,8 @@ void save_file_load_all(void) {
 
     for (file = 0; file < NUM_SAVE_FILES; file++) {
         // Verify the save file and create a backup copy if only one of the slots is valid.
-        validSlots = verify_save_block_signature(&gSaveBuffer.files[file][0],
-                                                 sizeof(gSaveBuffer.files[file][0]), SAVE_FILE_MAGIC);
-        validSlots |= verify_save_block_signature(&gSaveBuffer.files[file][1],
-                                                  sizeof(gSaveBuffer.files[file][1]), SAVE_FILE_MAGIC)
-                      << 1;
+        validSlots = verify_save_block_signature(&gSaveBuffer.files[file][0], sizeof(gSaveBuffer.files[file][0]), SAVE_FILE_MAGIC);
+        validSlots |= verify_save_block_signature(&gSaveBuffer.files[file][1], sizeof(gSaveBuffer.files[file][1]), SAVE_FILE_MAGIC) << 1;
         switch (validSlots) {
             case 0: // Neither copy is correct
                 save_file_erase(file);
