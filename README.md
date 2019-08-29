@@ -24,8 +24,8 @@ A prior copy of the game is required to extract the required assets.
 
 __Debian / Ubuntu__
 * git
-* binutils-mips-linux-gnu / mips64-elf (>= 2.27)
-* python3 (>= 3.7)
+* binutils-mips-linux-gnu (>= 2.27)
+* python3 (>= 3.6)
 * build-essential
 * pkg-config
 * zlib1g-dev
