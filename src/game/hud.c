@@ -10,6 +10,7 @@
 #include "hud.h"
 #include "segment2.h"
 #include "area.h"
+#include "save_file.h"
 
 /* Originally hud_print.c
  * This file seems to draw the in-game HUD
@@ -28,7 +29,6 @@ struct PowerMeterHUD {
     s16 x;
     s16 y;
     f32 u_E8;
-    s32 d_EC;
 };
 
 struct UnknownStruct803314F0 {
@@ -45,8 +45,13 @@ struct CameraHUD {
 static s16 D_803600D0;
 
 static struct PowerMeterHUD sPowerMeterHUD = {
-    POWER_METER_HIDDEN, 140, 166, 1.0, 0x00000000,
+    POWER_METER_HIDDEN,
+    140,
+    166,
+    1.0,
 };
+
+s32 gUnknownPowerMeterVar = 0x00000000;
 
 static struct UnknownStruct803314F0 D_803314F0 = { 0x00000000, 0x000A, 0x0000 };
 
@@ -114,15 +119,15 @@ void func_802E2304(s16 numHealthWedges) {
     gSPPopMatrix(gDisplayListHead++, 0);
 }
 
-static void animate_power_meter_emphasized(void) {
+void animate_power_meter_emphasized(void) {
     s16 hudDisplayFlags;
     hudDisplayFlags = gHudDisplay.flags;
 
     if (!(hudDisplayFlags & HUD_DISPLAY_FLAG_EMPHASIZE_POWER)) {
-        if (sPowerMeterHUD.d_EC == 45.0)
+        if (gUnknownPowerMeterVar == 45.0)
             sPowerMeterHUD.animation = POWER_METER_DEEMPHASIZING;
     } else {
-        sPowerMeterHUD.d_EC = 0;
+        gUnknownPowerMeterVar = 0;
     }
 }
 
@@ -150,7 +155,7 @@ static void animate_power_meter_hiding(void) {
     sPowerMeterHUD.y += 20;
     if (sPowerMeterHUD.y >= 301) {
         sPowerMeterHUD.animation = POWER_METER_HIDDEN;
-        sPowerMeterHUD.d_EC = 0;
+        gUnknownPowerMeterVar = 0;
     }
 }
 
@@ -161,9 +166,8 @@ void func_802E261C(s16 numHealthWedges) {
     }
 
     if (numHealthWedges == 8 && D_803600D0 == 7)
-        sPowerMeterHUD.d_EC = 0;
-
-    if (numHealthWedges == 8 && sPowerMeterHUD.d_EC > 45.0)
+        gUnknownPowerMeterVar = 0;
+    if (numHealthWedges == 8 && gUnknownPowerMeterVar > 45.0)
         sPowerMeterHUD.animation = POWER_METER_HIDING;
 
     D_803600D0 = numHealthWedges;
@@ -174,7 +178,7 @@ void func_802E261C(s16 numHealthWedges) {
             sPowerMeterHUD.animation = POWER_METER_DEEMPHASIZING;
             sPowerMeterHUD.y = 166;
         }
-        sPowerMeterHUD.d_EC = 0;
+        gUnknownPowerMeterVar = 0;
     }
 }
 
@@ -203,7 +207,7 @@ void render_hud_hp(void) {
 
     func_802E2304(shownHealthWedges);
 
-    sPowerMeterHUD.d_EC += 1;
+    gUnknownPowerMeterVar += 1;
 }
 
 #ifdef VERSION_JP
@@ -261,12 +265,26 @@ void render_hud_timer(void) {
 
     hudPrintLUT = segmented_to_virtual(&seg2_hud_lut);
     timerValFrames = gHudDisplay.timer;
+#ifdef VERSION_EU
+    switch (eu_get_language()) {
+        case LANGUAGE_ENGLISH:
+            print_text(170, 185, "TIME");
+            break;
+        case LANGUAGE_FRENCH:
+            print_text(165, 185, "TEMPS");
+            break;
+        case LANGUAGE_GERMAN:
+            print_text(170, 185, "ZEIT");
+            break;
+    }
+#endif
     timerMins = timerValFrames / (30 * 60);
     timerSecs = (timerValFrames - (timerMins * 1800)) / 30;
 
     timerFracSecs = ((timerValFrames - (timerMins * 1800) - (timerSecs * 30)) & 0xFFFF) / 3;
-
+#ifndef VERSION_EU
     print_text(170, 185, "TIME");
+#endif
     print_text_fmt_int(229, 185, "%0d", timerMins);
     print_text_fmt_int(249, 185, "%02d", timerSecs);
     print_text_fmt_int(283, 185, "%d", timerFracSecs);
@@ -321,15 +339,30 @@ void show_camera_status(void) {
 
 void render_hud(void) {
     s16 hudDisplayFlags;
+#ifdef VERSION_EU
+    Mtx *mtx;
+#endif
 
     hudDisplayFlags = gHudDisplay.flags;
 
     if (hudDisplayFlags == HUD_DISPLAY_NONE) {
         sPowerMeterHUD.animation = POWER_METER_HIDDEN;
         D_803600D0 = 8;
-        sPowerMeterHUD.d_EC = 0;
+        gUnknownPowerMeterVar = 0;
     } else {
+#ifdef VERSION_EU
+        mtx = alloc_display_list(sizeof(*mtx));
+        if (mtx == NULL) {
+            return;
+        }
+        func_802D6440();
+        guOrtho(mtx, -16.0f, 336.0f, 0, 240.0f, -10.0f, 10.0f, 1.0f);
+        gMoveWd(gDisplayListHead++, 0xE, 0, 0xFFFF);
+        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx), 1);
+
+#else
         dl_add_new_ortho_matrix();
+#endif
 
         if (gCurrentArea != NULL && gCurrentArea->camera->currPreset == CAMERA_PRESET_INSIDE_CANNON)
             RenderHudCannonReticle();

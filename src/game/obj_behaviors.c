@@ -246,11 +246,10 @@ void CalcNewObjVelAndPosY(struct Surface *objFloor, f32 objFloorY, f32 objVelX, 
         ObjOrientGraph(o, floor_nX, floor_nY, floor_nZ);
         objVelX += floor_nX * (floor_nX * floor_nX + floor_nZ * floor_nZ)
                    / (floor_nX * floor_nX + floor_nY * floor_nY + floor_nZ * floor_nZ) * o->oGravity
-                   * 2.0f;
+                   * 2;
         objVelZ += floor_nZ * (floor_nX * floor_nX + floor_nZ * floor_nZ)
                    / (floor_nX * floor_nX + floor_nY * floor_nY + floor_nZ * floor_nZ) * o->oGravity
-                   * 2.0f;
-
+                   * 2;
         if (objVelX < 0.000001 && objVelX > -0.000001)
             objVelX = 0;
         if (objVelZ < 0.000001 && objVelZ > -0.000001)
@@ -291,7 +290,7 @@ void CalcNewObjVelAndPosYUnderwater(struct Surface *objFloor, f32 floorY, f32 ob
     if (o->oPosY < floorY) {
         o->oPosY = floorY;
         if (o->oVelY < -17.5)
-            o->oVelY = -(o->oVelY / 2.0f);
+            o->oVelY = -(o->oVelY / 2);
         else
             o->oVelY = 0;
     }
@@ -302,11 +301,9 @@ void CalcNewObjVelAndPosYUnderwater(struct Surface *objFloor, f32 floorY, f32 ob
     if ((s32) o->oPosY >= (s32) floorY && (s32) o->oPosY < (s32) floorY + 37) {
         ObjOrientGraph(o, floor_nX, floor_nY, floor_nZ);
         objVelX += floor_nX * (floor_nX * floor_nX + floor_nZ * floor_nZ)
-                   / (floor_nX * floor_nX + floor_nY * floor_nY + floor_nZ * floor_nZ) * netYAccel
-                   * 2.0f;
+                   / (floor_nX * floor_nX + floor_nY * floor_nY + floor_nZ * floor_nZ) * netYAccel * 2;
         objVelZ += floor_nZ * (floor_nX * floor_nX + floor_nZ * floor_nZ)
-                   / (floor_nX * floor_nX + floor_nY * floor_nY + floor_nZ * floor_nZ) * netYAccel
-                   * 2.0f;
+                   / (floor_nX * floor_nX + floor_nY * floor_nY + floor_nZ * floor_nZ) * netYAccel * 2;
     }
 
     if (objVelX < 0.000001 && objVelX > -0.000001)
@@ -345,7 +342,6 @@ void ObjSplash(s32 waterY, s32 objY) {
         if (o->oVelY < -20.0f)
             PlaySound2(SOUND_OBJECT_DIVINGINTOWATER);
     }
-
     if ((objY + 50) < waterY && (globalTimer & 0x1F) == 0)
         spawn_object(o, MODEL_WHITE_PARTICLE_SMALL, bhvObjectBubble); /* 0x1F is bits 4-0 */
 }
@@ -359,7 +355,7 @@ void ObjSplash(s32 waterY, s32 objY) {
 // sp2c = waterY
 // sp22 = collisionFlags
 
-s16 ObjectStep(void) {
+s32 ObjectStep(void) {
     f32 objX = o->oPosX;
     f32 objY = o->oPosY;
     f32 objZ = o->oPosZ;
@@ -371,9 +367,7 @@ s16 ObjectStep(void) {
 
     if (ObjFindWall(objX + objVelX, objY, objZ + objVelZ, objVelX, objVelZ) == 0)
         collisionFlags += OBJ_COL_FLAG_HIT_WALL;
-
     floorY = find_floor(objX + objVelX, objY, objZ + objVelZ, &D_803600E0);
-
     if (TurnObjAwayFromAwkwardFloor(D_803600E0, floorY, objVelX, objVelZ) == 1) {
         waterY = find_water_level(objX + objVelX, objZ + objVelZ);
         if (waterY > objY) {
@@ -384,7 +378,6 @@ s16 ObjectStep(void) {
     } else
         collisionFlags +=
             ((collisionFlags & OBJ_COL_FLAG_HIT_WALL) ^ OBJ_COL_FLAG_HIT_WALL); /* bit 1 = 1 */
-
     ObjUpdatePosVelXZ();
     if ((s32) o->oPosY == (s32) floorY)
         collisionFlags += OBJ_COL_FLAG_GROUNDED;
@@ -392,14 +385,17 @@ s16 ObjectStep(void) {
         collisionFlags += OBJ_COL_FLAG_NO_Y_VEL;
 
     ObjSplash((s32) waterY, (s32) o->oPosY);
-
     return collisionFlags;
 }
 
 // sp1e = collisionFlags
 
-s16 func_802E4204(void) {
+s32 func_802E4204(void) {
+#ifdef VERSION_EU
+    s32 collisionFlags = 0;
+#else
     s16 collisionFlags = 0;
+#endif
     D_80331500 = 0;
     collisionFlags = ObjectStep();
     D_80331500 = 1;
@@ -549,14 +545,14 @@ s32 func_802E478C(Vec3f dist, f32 x, f32 y, f32 z, f32 arg4) {
 // sp20 = obj
 // sp24 = nCoins
 
-void ObjSpawnYellowCoins(struct Object *obj, s32 nCoins) {
+void ObjSpawnYellowCoins(struct Object *obj, s8 nCoins) {
     struct Object *coin;
     s8 count;
 
-    for (count = 0; count < (s8) nCoins; count++) {
+    for (count = 0; count < nCoins; count++) {
         coin = spawn_object(obj, MODEL_YELLOW_COIN, bhvMovingYellowCoin);
-        coin->oForwardVel = RandomFloat() * 20.0f;
-        coin->oVelY = RandomFloat() * 40.0f + 20.0f;
+        coin->oForwardVel = RandomFloat() * 20;
+        coin->oVelY = RandomFloat() * 40 + 20;
         coin->oMoveAngleYaw = RandomU16();
     }
 }

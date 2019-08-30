@@ -291,7 +291,11 @@ void BigBullyWithMinionsLavaDeath(void) {
 }
 
 void bhv_big_bully_with_minions_loop(void) {
+#ifdef VERSION_EU
+    s32 collisionFlags;
+#else
     s16 collisionFlags;
+#endif
 
     o->oBullyPrevX = o->oPosX;
     o->oBullyPrevY = o->oPosY;
