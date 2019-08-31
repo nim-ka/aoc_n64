@@ -1280,8 +1280,9 @@ glabel bhvUnusedParticleSpawn # 0ED0
 
 glabel bhvUkiki # 0F08
     begin OBJ_LIST_GENACTOR
-    goto .L13001CB4
-glabel bhvUnused0F14 # 0F14
+    goto ukikiData
+
+glabel bhvUkikiCageChild # 0F14
     begin OBJ_LIST_GENACTOR
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     obj_set_float objPosX, 0x0A00
@@ -1289,25 +1290,25 @@ glabel bhvUnused0F14 # 0F14
     obj_set_float objPosZ, 0x076A
     break
 
-glabel bhvLittleCage2 # 0F2C
+glabel bhvUkikiCageStar # 0F2C
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     obj_set_pos
     begin_loop
-        callnative bhv_little_cage_2_loop
+        callnative bhv_ukiki_cage_star_loop
     end_loop
 
-glabel bhvLittleCage # 0F48
+glabel bhvUkikiCage # 0F48
     begin OBJ_LIST_SURFACE
     obj_or_int objFlags, (OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_pos
-    collision_data ttm_seg7_collision_little_cage
-    obj_child MODEL_STAR, bhvLittleCage2
-    obj_child MODEL_NONE, bhvUnused0F14
+    collision_data ttm_seg7_collision_ukiki_cage
+    obj_child MODEL_STAR, bhvUkikiCageStar
+    obj_child MODEL_NONE, bhvUkikiCageChild
     obj_set_float objCollisionDistance, 0x4E20
     gravity 0x001E, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     begin_loop
-        callnative bhv_little_cage_loop
+        callnative bhv_ukiki_cage_loop
     end_loop
 
 glabel bhvBitfsSinkingPlatforms # 0F9C
@@ -2075,9 +2076,9 @@ glabel bhvClockHourHand # 1C8C
         callnative bhv_rotating_clock_arm_loop
     end_loop
 
-glabel bhvUkikiOpenCage # 1CB0
+glabel bhvMacroUkiki # 1CB0
     begin OBJ_LIST_GENACTOR
-.L13001CB4: # 1CB4
+ukikiData: # 1CB4
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_HOLDABLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_int objInteractType, 0x02
     obj_set_int objInteractSubtype, 0x0010
@@ -2088,9 +2089,9 @@ glabel bhvUkikiOpenCage # 1CB0
     animate 0x00
     gravity 0x001E, 0xFE70, 0xFFCE, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
     obj_set_pos
-    callnative bhv_ukiki_open_cage_init
+    callnative bhv_ukiki_init
     begin_loop
-        callnative bhv_ukiki_open_cage_loop
+        callnative bhv_ukiki_loop
     end_loop
 
 glabel bhvStub1D0C # 1D0C

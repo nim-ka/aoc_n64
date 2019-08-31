@@ -313,7 +313,7 @@
 
 // ttm
 #define MODEL_TTM_ROLLING_LOG                     0x35        // ttm_geo_000730
-#define MODEL_TTM_STAR_CAGE                       0x36        // ttm_geo_000710
+#define MODEL_TTM_STAR_CAGE                      0x36        // ttm_geo_000710
 #define MODEL_TTM_BLUE_SMILEY                     0x37        // ttm_geo_000D14
 #define MODEL_TTM_YELLOW_SMILEY                   0x38        // ttm_geo_000D4C
 #define MODEL_TTM_STAR_SMILEY                     0x39        // ttm_geo_000D84

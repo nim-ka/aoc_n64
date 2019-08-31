@@ -111,7 +111,7 @@ extern void mario_grab_used_object(struct MarioState *);
 extern void mario_drop_held_object(struct MarioState *);
 extern void mario_throw_held_object(struct MarioState *);
 extern void mario_stop_riding_and_holding(struct MarioState *);
-extern u32 func_8024C75C(struct MarioState *);
+extern u32 does_mario_have_hat(struct MarioState *);
 extern void mario_blow_off_cap(struct MarioState *, f32);
 extern u32 mario_lose_cap_to_enemy(u32);
 extern void mario_retrieve_cap(void);

@@ -144,7 +144,7 @@ static void racing_penguin_act_show_final_text(void) {
         }
     } else if (o->oRacingPenguinMarioWon) {
 #ifdef VERSION_JP
-        CreateStar(-7339.0f, -5700.0f, -6774.0f);
+        create_star(-7339.0f, -5700.0f, -6774.0f);
 #else
         obj_spawn_star_at_y_offset(-7339.0f, -5700.0f, -6774.0f, 200.0f);
 #endif

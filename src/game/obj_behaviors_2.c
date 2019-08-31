@@ -1437,7 +1437,7 @@ void BehUnagiSubobjectLoop(void) {
         if (o->oBehParams2ndByte == -4) {
             if (o->parentObj->oAnimState != 0 && o->oDistanceToMario < 150.0f) {
                 o->oBehParams = o->parentObj->oBehParams;
-                CreateStar(6833.0f, -3654.0f, 2230.0f);
+                create_star(6833.0f, -3654.0f, 2230.0f);
                 o->parentObj->oAnimState = 0;
             }
         } else {

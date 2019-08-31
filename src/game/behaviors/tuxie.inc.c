@@ -83,7 +83,7 @@ void ActionTuxiesMother1(void) {
 #ifndef VERSION_JP
                 obj_spawn_star_at_y_offset(3167.0f, -4300.0f, 5108.0f, 200.0f);
 #else
-                CreateStar(3500.0f, -4300.0f, 4650.0f);
+                create_star(3500.0f, -4300.0f, 4650.0f);
 #endif
                 o->oAction = 2;
             }

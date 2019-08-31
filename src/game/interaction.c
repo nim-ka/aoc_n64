@@ -298,14 +298,14 @@ void mario_stop_riding_and_holding(struct MarioState *m) {
     }
 }
 
-u32 func_8024C75C(struct MarioState *m) {
+u32 does_mario_have_hat(struct MarioState *m) {
     return (m->flags & MARIO_CAP_FLAGS) == (MARIO_NORMAL_CAP | MARIO_CAP_ON_HEAD);
 }
 
 void mario_blow_off_cap(struct MarioState *m, f32 capSpeed) {
     struct Object *capObject;
 
-    if (func_8024C75C(m)) {
+    if (does_mario_have_hat(m)) {
         save_file_set_cap_pos(m->pos[0], m->pos[1], m->pos[2]);
 
         m->flags &= ~(MARIO_NORMAL_CAP | MARIO_CAP_ON_HEAD);
@@ -324,7 +324,7 @@ void mario_blow_off_cap(struct MarioState *m, f32 capSpeed) {
 u32 mario_lose_cap_to_enemy(u32 arg) {
     u32 wasWearingCap = FALSE;
 
-    if (func_8024C75C(gMarioState)) {
+    if (does_mario_have_hat(gMarioState)) {
         save_file_set_flags(arg == 1 ? SAVE_FLAG_CAP_ON_KLEPTO : SAVE_FLAG_CAP_ON_UKIKI);
         gMarioState->flags &= ~(MARIO_NORMAL_CAP | MARIO_CAP_ON_HEAD);
         wasWearingCap = TRUE;
@@ -1655,7 +1655,7 @@ void pss_end_slide(struct MarioState *m) {
         u16 slideTime = level_control_timer(TIMER_CONTROL_STOP);
         if (slideTime < 630) {
             m->marioObj->oBehParams = (1 << 24);
-            CreateStar(-6358.0f, -4300.0f, 4700.0f);
+            create_star(-6358.0f, -4300.0f, 4700.0f);
         }
         sPssSlideStarted = FALSE;
     }

@@ -166,7 +166,7 @@ void ActionKingBobomb7(void) {
         obj_spawn_star_at_y_offset(2000.0f, 4500.0f, -4500.0f, 200.0f);
 #else
         o->oPosY += 100.0f;
-        CreateStar(2000.0f, 4500.0f, -4500.0f);
+        create_star(2000.0f, 4500.0f, -4500.0f);
 #endif
         o->oAction = 8;
     }
