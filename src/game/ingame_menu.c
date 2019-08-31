@@ -16,6 +16,9 @@
 #include "ingame_menu.h"
 #include "engine/math_util.h"
 
+// clang-format off
+/* This file requires manual formatting for the time being */
+
 extern Gfx *gDisplayListHead;
 extern s32 gGlobalTimer;
 extern s16 gCurrCourseNum;
@@ -3060,3 +3063,4 @@ s16 func_802DCD98() {
 
     return sp26;
 }
+// clang-format on
