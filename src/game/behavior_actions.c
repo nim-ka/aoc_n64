@@ -271,16 +271,7 @@ void func_802B2328(
 #include "behaviors/music_touch.inc.c"
 #endif
 #include "behaviors/castle_floor_trap.inc.c"
-
-// not in behavior file
-void BehClimbDetectLoop(void) {
-    if (o->oPosY - 10.0f < gMarioObject->oPosY
-        && gMarioObject->oPosY < o->oPosY + o->hitboxHeight + 30.0f)
-        if (o->oTimer > 10)
-            if (!(gMarioStates->action & MARIO_PUNCHING))
-                obj_push_mario_away(70.0f);
-}
-
+#include "behaviors/pole_base.inc.c"
 #include "behaviors/sparkle_spawn.inc.c"
 #include "behaviors/scuttlebug.inc.c" // :scuttleeyes:
 #include "behaviors/whomp.inc.c"

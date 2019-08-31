@@ -1,3 +1,9 @@
+struct RacingPenguinData {
+    s16 text;
+    f32 radius;
+    f32 height;
+};
+
 static struct RacingPenguinData sRacingPenguinData[] = {
     { 55, 200.0f, 200.0f },
     { 164, 350.0f, 250.0f },

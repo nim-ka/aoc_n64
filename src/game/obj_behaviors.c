@@ -723,60 +723,13 @@ s32 Unknown802E4DF4(s16 *arg0) {
 #include "behaviors/pyramid_wall.inc.c"
 #include "behaviors/pyramid_elevator.inc.c"
 #include "behaviors/pyramid_top.inc.c"
-
-// not part of behavior files
-// or are they? TODO: misc.inc.c?
-
-void BehWaterfallSoundLoop(void) {
-    PlaySound(SOUND_ENVIRONMENT_WATERFALL2);
-}
-
-void BehVolcanoSoundLoop(void) {
-    PlaySound(SOUND_ENVIRONMENT_DRONING1);
-}
-
-void BehCastleFlagWavingInit(void) {
-    o->header.gfx.unk38.animFrame = RandomFloat() * 28.0f;
-}
-
-void BehBirdsSoundLoop(void) {
-    if (gCurrLevelCamera->currPreset == CAMERA_PRESET_BEHIND_MARIO)
-        return;
-
-    switch (o->oBehParams2ndByte) {
-        case 0:
-            PlaySound(SOUND_CH9_UNK52);
-            break;
-
-        case 1:
-            PlaySound(SOUND_CH8_UNK50);
-            break;
-
-        case 2:
-            PlaySound(SOUND_OBJECT_BIRDS2);
-            break;
-    }
-}
-
-void bhv_ambient_sounds_init(void) {
-    if (gCurrLevelCamera->currPreset == CAMERA_PRESET_BEHIND_MARIO)
-        return;
-
-    play_sound(SOUND_CH6_CASTLEOUTDOORSAMBIENT, gDefaultSoundArgs);
-}
-
-void BehSandSoundLoop(void) {
-    if (gCurrLevelCamera->currPreset == CAMERA_PRESET_BEHIND_MARIO)
-        return;
-
-    PlaySound(SOUND_ENVIRONMENT_MOVINGSAND);
-}
-
-void BehHiddenAt120StarsInit(void) {
-    if (save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24) >= 120)
-        o->activeFlags = 0;
-}
-
+#include "behaviors/sound_waterfall.inc.c"
+#include "behaviors/sound_volcano.inc.c"
+#include "behaviors/castle_flag.inc.c"
+#include "behaviors/sound_birds.inc.c"
+#include "behaviors/sound_ambient.inc.c"
+#include "behaviors/sound_sand.inc.c"
+#include "behaviors/castle_cannon_grate.inc.c"
 #include "behaviors/snowman.inc.c"
 #include "behaviors/boulder.inc.c"
 #include "behaviors/cap.inc.c"
