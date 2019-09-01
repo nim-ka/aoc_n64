@@ -251,10 +251,13 @@ void play_mario_action_sound(struct MarioState *m) {
         if (m->action == ACT_TRIPLE_JUMP) {
             play_sound(SOUND_MARIO_YAHOO2 + ((D_80226EB8 % 5) << 0x10),
                        m->marioObj->header.gfx.cameraToObject);
-        } else
+        } else {
 #endif
             play_sound(SOUND_MARIO_YAH + ((D_80226EB8 % 3) << 0x10),
                        m->marioObj->header.gfx.cameraToObject);
+#ifndef VERSION_JP
+        }
+#endif
 
         m->flags |= MARIO_ACTION_NOISE_PLAYED;
     }

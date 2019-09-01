@@ -16,9 +16,6 @@
 #include "ingame_menu.h"
 #include "engine/math_util.h"
 
-// clang-format off
-/* This file requires manual formatting for the time being */
-
 extern Gfx *gDisplayListHead;
 extern s32 gGlobalTimer;
 extern s16 gCurrCourseNum;
@@ -606,14 +603,15 @@ void PutString(s8 font, s16 x, s16 y, const u8 *str) {
 
     u32 xStride;
 
-    if (font == 1)
+    if (font == 1) {
         xStride = 16;
-    else
+    } else {
 #ifdef VERSION_JP
         xStride = 14;
 #else
         xStride = 12;
 #endif
+    }
 
     while (str[strPos] != DIALOG_CHAR_TERMINATOR) {
 #ifdef VERSION_EU
@@ -1383,10 +1381,14 @@ void func_802D8980(s8 sp63, struct DialogEntry *dialog, s8 sp5B)
                 gDialogX += gDialogCharWidths[DIALOG_CHAR_SPACE];
 #else
 #ifdef VERSION_JP
-                if (linePos != 0)
+                if (linePos != 0) {
 #endif
                     sp4b_43++;
+#ifdef VERSION_JP
+                }
+#endif
                 linePos++;
+    
 #endif
                 break;
 #ifdef VERSION_JP
@@ -3063,4 +3065,3 @@ s16 func_802DCD98() {
 
     return sp26;
 }
-// clang-format on

@@ -6764,9 +6764,12 @@ CmdRet CutsceneDialog0_1(struct LevelCamera *c) {
     if (c->currPreset == CAMERA_PRESET_BOSS_FIGHT) {
         vec3f_copy(D_8033B4B8.focus, c->focus);
         vec3f_copy(D_8033B4B8.pos, c->pos);
-    } else
+    } else {
 #endif
         func_80290224(c);
+#ifndef VERSION_JP
+    }
+#endif
 
     D_8033B6F0[8].unk1C[0] = 0;
     vec3f_copy(D_8033B6F0[8].unk4, sMarioStatusForCamera->pos);
