@@ -189,8 +189,9 @@ s32 gInGameLanguage;
 void func_802D6440(void) {
     Mtx *matrix = (Mtx *) alloc_display_list(sizeof(Mtx));
 
-    if (matrix == NULL)
+    if (matrix == NULL) {
         return;
+    }
 
     matrix->m[0][0] = 0x00010000;
     matrix->m[1][0] = 0x00000000;
@@ -219,8 +220,9 @@ void func_802D6440(void) {
 void dl_add_new_translation_matrix(s8 pushOp, f32 x, f32 y, f32 z) {
     Mtx *matrix = (Mtx *) alloc_display_list(sizeof(Mtx));
 
-    if (matrix == NULL)
+    if (matrix == NULL) {
         return;
+    }
 
     guTranslate(matrix, x, y, z);
 
@@ -234,8 +236,9 @@ void dl_add_new_translation_matrix(s8 pushOp, f32 x, f32 y, f32 z) {
 void dl_add_new_rotation_matrix(s8 pushOp, f32 a, f32 x, f32 y, f32 z) {
     Mtx *matrix = (Mtx *) alloc_display_list(sizeof(Mtx));
 
-    if (matrix == NULL)
+    if (matrix == NULL) {
         return;
+    }
 
     guRotate(matrix, a, x, y, z);
 
@@ -249,8 +252,9 @@ void dl_add_new_rotation_matrix(s8 pushOp, f32 a, f32 x, f32 y, f32 z) {
 void dl_add_new_scale_matrix(s8 pushOp, f32 x, f32 y, f32 z) {
     Mtx *matrix = (Mtx *) alloc_display_list(sizeof(Mtx));
 
-    if (matrix == NULL)
+    if (matrix == NULL) {
         return;
+    }
 
     guScale(matrix, x, y, z);
 
@@ -264,8 +268,9 @@ void dl_add_new_scale_matrix(s8 pushOp, f32 x, f32 y, f32 z) {
 void dl_add_new_ortho_matrix(void) {
     Mtx *matrix = (Mtx *) alloc_display_list(sizeof(Mtx));
 
-    if (matrix == NULL)
+    if (matrix == NULL) {
         return;
+    }
 
     func_802D6440();
 
@@ -287,17 +292,19 @@ static u8 *func_802D69A0(u16 *in, s16 width, s16 height) {
     outPos = 0;
     out = alloc_display_list(width * height);
 
-    if (out == NULL)
+    if (out == NULL) {
         return NULL;
+    }
 
     for (inPos = 0; inPos < (width * height) / 16; inPos++) {
         bitMask = 0x8000;
 
         while (bitMask != 0) {
-            if (in[inPos] & bitMask)
+            if (in[inPos] & bitMask) {
                 out[outPos] = 0xFF;
-            else
+            } else {
                 out[outPos] = 0x00;
+            }
 
             bitMask /= 2;
             outPos++;
@@ -346,8 +353,9 @@ u8 *alloc_ia4_tex_from_i1(u8 *in, s16 width, s16 height) {
     outPos = 0;
     out = (u8 *) alloc_display_list(size);
 
-    if (out == NULL)
+    if (out == NULL) {
         return NULL;
+    }
 
     for (inPos = 0; inPos < (width * height) / 4; inPos++) {
         bitMask = 0x80;
@@ -777,17 +785,21 @@ void handleMenuScrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 m
     u8 sp1f = 0;
 
     if (scrollDirection == MENU_SCROLL_VERTICAL) {
-        if (gPlayer3Controller->rawStickY > 60)
+        if (gPlayer3Controller->rawStickY > 60) {
             sp1f++;
+        }
 
-        if (gPlayer3Controller->rawStickY < -60)
+        if (gPlayer3Controller->rawStickY < -60) {
             sp1f += 2;
+        }
     } else if (scrollDirection == MENU_SCROLL_HORIZONTAL) {
-        if (gPlayer3Controller->rawStickX > 60)
+        if (gPlayer3Controller->rawStickX > 60) {
             sp1f += 2;
+        }
 
-        if (gPlayer3Controller->rawStickX < -60)
+        if (gPlayer3Controller->rawStickX < -60) {
             sp1f++;
+        }
     }
 
     if (((sp1f ^ D_80330438) & sp1f) == 2) {
@@ -847,10 +859,12 @@ s16 get_str_x_pos_from_center_scale(s16 centerPos, u8 *str, f32 scale) {
 
     while (str[strPos] != DIALOG_CHAR_TERMINATOR) {
         //! EU checks for dakuten and handakuten despite dialog code unable to handle it
-        if (str[strPos] == DIALOG_CHAR_SPACE)
+        if (str[strPos] == DIALOG_CHAR_SPACE) {
             spacesWidth += 1.0;
-        else if (str[strPos] != DIALOG_CHAR_PREFIX_DAKUTEN && str[strPos] != DIALOG_CHAR_PREFIX_HANDAKUTEN)
+        } else if (str[strPos] != DIALOG_CHAR_PREFIX_DAKUTEN
+                   && str[strPos] != DIALOG_CHAR_PREFIX_HANDAKUTEN) {
             charsWidth += 1.0;
+        }
         strPos++;
     }
     // return the x position of where the string starts as half the string's
@@ -879,10 +893,11 @@ void ShowCoins(s32 useCourseCoinScore, s8 sp27, s8 sp2b, s16 x, s16 y) {
     u8 strNumCoins[4];
     s16 numCoins;
 
-    if (!useCourseCoinScore)
+    if (!useCourseCoinScore) {
         numCoins = (u16)(save_file_get_max_coin_score(sp2b) & 0xFFFF);
-    else
+    } else {
         numCoins = save_file_get_course_coin_score(sp27, sp2b);
+    }
 
     if (numCoins != 0) {
         PutString(2, x, y, gHudSymCoin);
@@ -926,11 +941,13 @@ void Int2Str(s32 num, u8 *dst) {
     digit2 = (num - digit1 * 100) / 10;
     digit3 = (num - digit1 * 100) - (digit2 * 10);
 
-    if (digit1 != 0)
+    if (digit1 != 0) {
         dst[pos++] = digit1;
+    }
 
-    if (digit2 != 0 || digit1 != 0)
+    if (digit2 != 0 || digit1 != 0) {
         dst[pos++] = digit2;
+    }
 
     dst[pos++] = digit3;
     dst[pos] = DIALOG_CHAR_TERMINATOR;
@@ -974,8 +991,9 @@ void func_802D8050(s16 a0) {
 void func_802D8098(void) {
     level_set_transition(0, 0);
 
-    if (gDialogBoxType == DIALOG_TYPE_ZOOM)
+    if (gDialogBoxType == DIALOG_TYPE_ZOOM) {
         stop_mario(2);
+    }
 
     gDialogBoxScale = 19.0f;
     gDialogBoxOpenTimer = 90.0f;
@@ -1117,8 +1135,9 @@ void func_802D8690(s8 lineNum, s8 sp27, s8 *sp28, s8 *sp2c, s16 *sp30)
 
 #ifdef VERSION_JP
 void func_802D875C(s8 *sp20, s16 *sp24) {
-    if (sp24[0] != 0)
+    if (sp24[0] != 0) {
         dl_add_new_translation_matrix(2, sp20[0] * 10, 0, 0);
+    }
 
     dl_add_new_translation_matrix(1, -2.0f, -5.0f, 0);
     render_generic_char(DIALOG_CHAR_PREFIX_HANDAKUTEN);
@@ -1239,8 +1258,9 @@ void func_eu_802AF758(struct DialogEntry *dialog, u8 chr, u8 diacritic) {
 #endif
 
 u32 func_802D8954(s16 a0) {
-    if (a0 < 0)
+    if (a0 < 0) {
         a0 = 0;
+    }
 
     return a0;
 }
@@ -1278,11 +1298,12 @@ void func_802D8980(s8 sp63, struct DialogEntry *dialog, s8 sp5B)
     linePos = 0;
 #endif
 
-    if (gDialogBoxState == DIALOG_STATE_SCROLLING)
+    if (gDialogBoxState == DIALOG_STATE_SCROLLING) {
         totalLines = (linesPerBox * 2) + 1; // if scrolling, consider the number of lines for both
                                             // the current page and the page being scrolled to.
-    else
+    } else {
         totalLines = linesPerBox + 1;
+    }
 
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     strIdx = D_8033042C;
@@ -1436,8 +1457,9 @@ void func_802D8980(s8 sp63, struct DialogEntry *dialog, s8 sp5B)
 #endif
             default: // any other character
 #ifdef VERSION_JP
-                if (linePos != 0)
+                if (linePos != 0) {
                     dl_add_new_translation_matrix(2, sp4b_43 * 10, 0, 0);
+                }
 
                 render_generic_char(strChar);
                 sp4b_43 = 1;
@@ -1455,8 +1477,10 @@ void func_802D8980(s8 sp63, struct DialogEntry *dialog, s8 sp5B)
                     func_eu_802AF1B8(dialog, gDialogX, gDialogY, strChar);
                     gDialogX += gDialogCharWidths[strChar];
 #else
-                    if (linePos || sp4b_43 != 1)
-                        dl_add_new_translation_matrix(2, (f32)(gDialogCharWidths[DIALOG_CHAR_SPACE] * (sp4b_43 - 1)), 0, 0);
+                    if (linePos || sp4b_43 != 1) {
+                        dl_add_new_translation_matrix(
+                            2, (f32)(gDialogCharWidths[DIALOG_CHAR_SPACE] * (sp4b_43 - 1)), 0, 0);
+                    }
 
                     render_generic_char(strChar);
                     dl_add_new_translation_matrix(2, (f32)(gDialogCharWidths[strChar]), 0, 0);
@@ -1480,8 +1504,9 @@ void func_802D8980(s8 sp63, struct DialogEntry *dialog, s8 sp5B)
                 strIdx++;
             }
 
-            if (str[strIdx + 1] == DIALOG_CHAR_NEWLINE)
+            if (str[strIdx + 1] == DIALOG_CHAR_NEWLINE) {
                 strIdx++;
+            }
 
             if (str[strIdx + 1] == DIALOG_CHAR_TERMINATOR) {
                 sp4d_45 = 2;
@@ -1499,10 +1524,11 @@ void func_802D8980(s8 sp63, struct DialogEntry *dialog, s8 sp5B)
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 
     if (gDialogBoxState == DIALOG_STATE_WAITBUTTON) {
-        if (sp4d_45 == 2)
+        if (sp4d_45 == 2) {
             gLastDialogPageStrPos = -1;
-        else
+        } else {
             gLastDialogPageStrPos = strIdx;
+        }
     }
 
     gLastDialogLineNum = lineNum;
@@ -1522,8 +1548,9 @@ void func_802D8980(s8 sp63, struct DialogEntry *dialog, s8 sp5B)
 #endif
 
 void func_802D8ED4(void) {
-    if (gDialogBoxState == DIALOG_STATE_WAITBUTTON)
+    if (gDialogBoxState == DIALOG_STATE_WAITBUTTON) {
         handleMenuScrolling(MENU_SCROLL_HORIZONTAL, &D_80330430, 1, 2);
+    }
 
     dl_add_new_translation_matrix(2, (D_80330430 * X_VAL4_1) - X_VAL4_2, Y_VAL4_1 - (gLastDialogLineNum * Y_VAL4_2), 0);
 
@@ -1556,8 +1583,9 @@ void func_802D8ED4(void) {
 void func_802D9030(s8 sp3b) {
     s32 sp34 = gGlobalTimer;
 
-    if (sp34 & 0x08)
+    if (sp34 & 0x08) {
         return;
+    }
 
     dl_add_new_translation_matrix(1, X_VAL5, (sp3b * Y_VAL5_1) + Y_VAL5_2, 0);
     dl_add_new_scale_matrix(2, X_Y_VAL6, X_Y_VAL6, 1.0f);
@@ -1810,8 +1838,9 @@ void func_802D93E0(void) {
                 level_set_transition(0, 0);
                 play_sound(SOUND_MENU_MESSAGEDISAPPEAR, gDefaultSoundArgs);
 
-                if (gDialogBoxType == DIALOG_TYPE_ZOOM)
+                if (gDialogBoxType == DIALOG_TYPE_ZOOM) {
                     stop_mario(2);
+                }
 
                 gDialogResponse = D_80330430;
             }
@@ -1850,18 +1879,21 @@ void func_802D93E0(void) {
     func_802D8980(0, dialog, sp2F);
 #endif
 
-    if (gLastDialogPageStrPos == -1 && D_80330434 == 1)
+    if (gLastDialogPageStrPos == -1 && D_80330434 == 1) {
         func_802D8ED4();
+    }
 
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 2, 2, 316, 236);
 
-    if (gLastDialogPageStrPos != -1 && gDialogBoxState == DIALOG_STATE_WAITBUTTON)
+    if (gLastDialogPageStrPos != -1 && gDialogBoxState == DIALOG_STATE_WAITBUTTON) {
         func_802D9030(dialog->linesPerBox);
+    }
 }
 
 void func_802D9A14(s16 a0) {
-    if (D_8033047C == -1)
+    if (D_8033047C == -1) {
         D_8033047C = a0;
+    }
 }
 
 void reset_cutscene_msg_fade(void) {
@@ -1876,29 +1908,37 @@ void func_802D9A60(void) {
 void func_802D9AE8(void) {
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 
-    if (gCutsceneMsgFade < 250)
+    if (gCutsceneMsgFade < 250) {
         gCutsceneMsgFade += 25;
-    else
+    } else {
         gCutsceneMsgFade = 255;
+    }
 }
 
 u8 ascii_to_credits_char(u8 c) {
-    if (c >= 'A' && c <= 'Z')
+    if (c >= 'A' && c <= 'Z') {
         return (c - ('A' - 0xA));
+    }
 
-    if (c >= 'a' && c <= 'z') // remap lower to upper case
+    if (c >= 'a' && c <= 'z') { // remap lower to upper case
         return (c - ('a' - 0xA));
+    }
 
-    if (c == ' ')
+    if (c == ' ') {
         return DIALOG_CHAR_SPACE;
-    if (c == '.')
+    }
+    if (c == '.') {
         return 0x24;
-    if (c == '3')
+    }
+    if (c == '3') {
         return ASCII_TO_DIALOG('3');
-    if (c == '4')
+    }
+    if (c == '4') {
         return ASCII_TO_DIALOG('4');
-    if (c == '6')
+    }
+    if (c == '6') {
         return ASCII_TO_DIALOG('6');
+    }
 
     return DIALOG_CHAR_SPACE;
 }
@@ -1934,8 +1974,9 @@ void do_cutscene_handler(void) {
     s16 x;
 
     // is a cutscene playing? do not perform this handler's actions if so.
-    if (gCutsceneMsgIndex == -1)
+    if (gCutsceneMsgIndex == -1) {
         return;
+    }
 
     dl_add_new_ortho_matrix();
 
@@ -1968,8 +2009,9 @@ void do_cutscene_handler(void) {
 
     // if the timing variable is less than 5, increment
     // the fade until we are at full opacity.
-    if (gCutsceneMsgTimer < 5)
+    if (gCutsceneMsgTimer < 5) {
         gCutsceneMsgFade += 50;
+    }
 
     // if the cutscene frame length + the fade-in counter is
     // less than the timer, it means we have exceeded the
@@ -1977,8 +2019,9 @@ void do_cutscene_handler(void) {
     // screen. if (message_duration = 50) and (msg_timer = 55)
     // then after the first 5 frames, the message will remain
     // on screen for another 50 frames until it starts fading.
-    if (gCutsceneMsgDuration + 5 < gCutsceneMsgTimer)
+    if (gCutsceneMsgDuration + 5 < gCutsceneMsgTimer) {
         gCutsceneMsgFade -= 50;
+    }
 
     // like the first check, it takes 5 frames to fade out, so
     // perform a + 10 to account for the earlier check (10-5=5).
@@ -2054,16 +2097,19 @@ void print_peach_letter_message(void) {
 #endif
 
     // at the start/end of message, reset the fade.
-    if (gCutsceneMsgTimer == 0)
+    if (gCutsceneMsgTimer == 0) {
         gCutsceneMsgFade = 0;
+    }
 
     // we're less than 20 increments, so increase the fade.
-    if (gCutsceneMsgTimer < 20)
+    if (gCutsceneMsgTimer < 20) {
         gCutsceneMsgFade += 10;
+    }
 
     // we're after PEACH_MESSAGE_TIMER increments, so decrease the fade.
-    if (gCutsceneMsgTimer > PEACH_MESSAGE_TIMER)
+    if (gCutsceneMsgTimer > PEACH_MESSAGE_TIMER) {
         gCutsceneMsgFade -= 10;
+    }
 
     // 20 increments after the start of the decrease, we're
     // back where we are, so reset everything at the end.
@@ -2109,10 +2155,11 @@ void func_802DA4DC(void) {
 }
 
 void func_802DA4F4(void) {
-    if (select_or_activate_mario_cam(0) == 1)
+    if (select_or_activate_mario_cam(0) == 1) {
         D_80330530 = 1;
-    else
+    } else {
         D_80330530 = 2;
+    }
 }
 
 void ShadeScreen(void) {
@@ -2260,10 +2307,11 @@ void func_802DA8EC(void) {
 
         actName = segmented_to_virtual(actNameTbl[(gCurrCourseNum - 1) * 6 + D_80330534 - 1]);
 
-        if (starFlags & (1 << (D_80330534 - 1)))
+        if (starFlags & (1 << (D_80330534 - 1))) {
             PrintGenericText(TXT_STAR_X, 140, textStar);
-        else
+        } else {
             PrintGenericText(TXT_STAR_X, 140, textUnfilledStar);
+        }
 
         PrintGenericText(ACT_NAME_X, 140, actName);
 #ifndef VERSION_JP
@@ -2438,8 +2486,9 @@ void func_802DB540(void) {
     } else {
         sp07 = gLastCompletedCourseNum - 1;
 
-        if (sp07 >= COURSE_STAGES_COUNT)
+        if (sp07 >= COURSE_STAGES_COUNT) {
             sp07 = COURSE_STAGES_COUNT;
+        }
     }
 
     D_80330430 = sp07;
@@ -2535,18 +2584,21 @@ void func_802DB840(s16 x, s16 y) {
 
     handleMenuScrolling(MENU_SCROLL_VERTICAL, &D_80330430, -1, COURSE_STAGES_COUNT + 1);
 
-    if (D_80330430 == COURSE_STAGES_COUNT + 1)
+    if (D_80330430 == COURSE_STAGES_COUNT + 1) {
         D_80330430 = 0;
+    }
 
-    if (D_80330430 == -1)
+    if (D_80330430 == -1) {
         D_80330430 = COURSE_STAGES_COUNT;
+    }
 
     if (D_80330430 != COURSE_STAGES_COUNT) {
         while (save_file_get_course_star_count(gCurrSaveFileNum - 1, D_80330430) == 0) {
-            if (D_80330430 >= sp3a)
+            if (D_80330430 >= sp3a) {
                 D_80330430++;
-            else
+            } else {
                 D_80330430--;
+            }
 
             if (D_80330430 == COURSE_STAGES_COUNT || D_80330430 == -1) {
                 D_80330430 = COURSE_STAGES_COUNT;
@@ -2624,8 +2676,9 @@ s16 func_802DBBB0(void) {
             func_802DA8EC();
             func_802DA874();
 
-            if (gMarioStates[0].action & ACT_FLAG_PAUSE_EXIT)
+            if (gMarioStates[0].action & ACT_FLAG_PAUSE_EXIT) {
                 PauseScreen2(99, 93, &D_80330430, 15);
+            }
 
 #ifdef VERSION_EU
             if (gPlayer3Controller->buttonPressed & (A_BUTTON | Z_TRIG | START_BUTTON))
@@ -2671,8 +2724,9 @@ s16 func_802DBBB0(void) {
             break;
     }
 
-    if (D_80360088 < 250)
+    if (D_80360088 < 250) {
         D_80360088 += 25;
+    }
 
     return 0;
 }
@@ -2762,8 +2816,9 @@ void func_802DC050(s16 sp32, s16 sp36) {
             }
         }
 
-        if (gHudDisplay.coins == D_803305C8 && gGotFileCoinHiScore != 0)
+        if (gHudDisplay.coins == D_803305C8 && gGotFileCoinHiScore != 0) {
             play_sound(SOUND_MENU_MARIOCASTLEWARP2, gDefaultSoundArgs);
+        }
     }
 }
 

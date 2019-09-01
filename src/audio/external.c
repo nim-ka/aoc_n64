@@ -976,12 +976,14 @@ static f32 get_sound_pan(f32 x, f32 z) {
     f32 pan;
 
     absX = (x < 0 ? -x : x);
-    if (absX > AUDIO_MAX_DISTANCE)
+    if (absX > AUDIO_MAX_DISTANCE) {
         absX = AUDIO_MAX_DISTANCE;
+    }
 
     absZ = (z < 0 ? -z : z);
-    if (absZ > AUDIO_MAX_DISTANCE)
+    if (absZ > AUDIO_MAX_DISTANCE) {
         absZ = AUDIO_MAX_DISTANCE;
+    }
 
     // There are 4 panning equations (12-hr clock used for angles)
     // 1. (0,0) fully-centered pan
@@ -1084,8 +1086,9 @@ static u8 get_sound_reverb(UNUSED u8 bankIndex, UNUSED u8 item, u8 channelIndex)
 #endif
         level = (gCurrLevelNum > LEVEL_MAX ? LEVEL_MAX : gCurrLevelNum);
         area = gCurrAreaIndex - 1;
-        if (area > 2)
+        if (area > 2) {
             area = 2;
+        }
 #ifndef VERSION_JP
     }
 #endif
@@ -1834,8 +1837,9 @@ void play_music(u8 player, u16 seqArgs, s16 fadeTimer) {
     }
 
     // Abort if the queue is already full.
-    if (sBackgroundMusicQueueSize == MAX_BG_MUSIC_QUEUE_SIZE)
+    if (sBackgroundMusicQueueSize == MAX_BG_MUSIC_QUEUE_SIZE) {
         return;
+    }
 
     // If already in the queue, abort, after first restarting the sequence if
     // it is first, and handling disabled music somehow.
@@ -1882,8 +1886,9 @@ void stop_background_music(u16 seqId) {
     u8 foundIndex;
     u8 i;
 
-    if (sBackgroundMusicQueueSize == 0)
+    if (sBackgroundMusicQueueSize == 0) {
         return;
+    }
 
     // If sequence is not found, remove an empty queue item (the next empty
     // queue slot).

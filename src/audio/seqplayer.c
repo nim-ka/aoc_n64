@@ -795,8 +795,9 @@ u8 get_instrument(struct SequenceChannel *seqChannel, u8 instId, struct Instrume
 
         while (instId != 0xff) {
             inst = gCtlEntries[seqChannelCpy.bankId].instruments[instId];
-            if (inst != NULL)
+            if (inst != NULL) {
                 break;
+            }
             instId--;
         }
     }
@@ -1340,12 +1341,15 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
                     case 0xf9: // jump if < 0
                     case 0xf5: // jump if >= 0
                         u16v = m64_read_s16(state);
-                        if (cmd == 0xfa && value != 0)
+                        if (cmd == 0xfa && value != 0) {
                             break;
-                        if (cmd == 0xf9 && value >= 0)
+                        }
+                        if (cmd == 0xf9 && value >= 0) {
                             break;
-                        if (cmd == 0xf5 && value < 0)
+                        }
+                        if (cmd == 0xf5 && value < 0) {
                             break;
+                        }
                         state->pc = seqPlayer->seqData + u16v;
                         break;
 

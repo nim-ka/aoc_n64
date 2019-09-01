@@ -251,8 +251,9 @@ void draw_shape_2d(struct ObjShape *shape, s32 flag, UNUSED f32 c, UNUSED f32 d,
     restart_timer("drawshape2d");
     sUpdateViewState.shapesDrawn++;
 
-    if (shape == NULL)
+    if (shape == NULL) {
         return;
+    }
 
     if (flag & 2) {
         sp1C.x = f;
@@ -615,8 +616,9 @@ void draw_net(struct ObjNet *self) {
 void draw_gadget(struct ObjGadget *gdgt) {
     s32 colour = 0;
 
-    if (gdgt->unk5C != 0)
+    if (gdgt->unk5C != 0) {
         colour = gdgt->unk5C;
+    }
 
     draw_rect_fill(colour, gdgt->unk14.x, gdgt->unk14.y, gdgt->unk14.x + gdgt->unk28 * gdgt->unk40.x,
                    gdgt->unk14.y + gdgt->unk40.y);
@@ -671,8 +673,9 @@ void Unknown80179ACC(struct GdObj *obj) {
     if (obj->type == OBJ_TYPE_NETS) {
         if (0) {
         }
-        if (((struct ObjNet *) obj)->unk1C8 != NULL)
+        if (((struct ObjNet *) obj)->unk1C8 != NULL) {
             func_80179B64(((struct ObjNet *) obj)->unk1C8);
+        }
     } else {
         if (0) {
         }

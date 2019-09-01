@@ -182,14 +182,17 @@ s32 act_start_sleeping(struct MarioState *m) {
     s32 sp24;
 #endif
 
-    if (func_802604E0(m))
+    if (func_802604E0(m)) {
         return 1;
+    }
 
-    if (m->quicksandDepth > 30.0f)
+    if (m->quicksandDepth > 30.0f) {
         return set_mario_action(m, ACT_IN_QUICKSAND, 0);
+    }
 
-    if (m->actionState == 4)
+    if (m->actionState == 4) {
         return set_mario_action(m, ACT_SLEEPING, 0);
+    }
 
     switch (m->actionState) {
         case 0:
@@ -231,8 +234,9 @@ s32 act_start_sleeping(struct MarioState *m) {
     func_80260BC4(m, 1, 0x31, SOUND_ACTION_PATBACK);
     func_80260BC4(m, 3, 0x0F, (m->stepSound + SOUND_TERRAIN_4));
 
-    if (is_anim_at_end(m))
+    if (is_anim_at_end(m)) {
         m->actionState++;
+    }
 
 #ifndef VERSION_JP
     if (m->actionState == 2) {
@@ -247,8 +251,9 @@ s32 act_start_sleeping(struct MarioState *m) {
         }
     }
 #else
-    if (m->actionState == 2)
+    if (m->actionState == 2) {
         play_sound_if_no_flag(m, SOUND_MARIO_YAWNING, MARIO_ACTION_NOISE_PLAYED);
+    }
 #endif
 
     stationary_ground_step(m);

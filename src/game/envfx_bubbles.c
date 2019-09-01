@@ -52,8 +52,9 @@ s32 particle_is_laterally_close(s32 index, s32 x, s32 z, s32 distance) {
     s32 xPos = (gEnvFxBuffer + index)->xPos;
     s32 zPos = (gEnvFxBuffer + index)->zPos;
 
-    if (sqr(xPos - x) + sqr(zPos - z) > sqr(distance))
+    if (sqr(xPos - x) + sqr(zPos - z) > sqr(distance)) {
         return 0;
+    }
 
     return 1;
 }
@@ -64,10 +65,11 @@ s32 particle_is_laterally_close(s32 index, s32 x, s32 z, s32 distance) {
  */
 s32 random_flower_offset() {
     s32 result = RandomFloat() * 2000.0f - 1000.0f;
-    if (result < 0)
+    if (result < 0) {
         result -= 1000;
-    else
+    } else {
         result += 1000;
+    }
 
     return result;
 }
@@ -96,8 +98,9 @@ void envfx_update_flower(Vec3s centerPos) {
             (gEnvFxBuffer + i)->animFrame = RandomFloat() * 5.0f;
         } else if ((timer & 0x03) == 0) {
             (gEnvFxBuffer + i)->animFrame += 1;
-            if ((gEnvFxBuffer + i)->animFrame > 5)
+            if ((gEnvFxBuffer + i)->animFrame > 5) {
                 (gEnvFxBuffer + i)->animFrame = 0;
+            }
         }
     }
 }
@@ -123,15 +126,19 @@ void envfx_set_lava_bubble_position(s32 index, Vec3s centerPos) {
     (gEnvFxBuffer + index)->xPos = RandomFloat() * 6000.0f - 3000.0f + centerX;
     (gEnvFxBuffer + index)->zPos = RandomFloat() * 6000.0f - 3000.0f + centerZ;
 
-    if ((gEnvFxBuffer + index)->xPos > 8000)
+    if ((gEnvFxBuffer + index)->xPos > 8000) {
         (gEnvFxBuffer + index)->xPos = 16000 - (gEnvFxBuffer + index)->xPos;
-    if ((gEnvFxBuffer + index)->xPos < -8000)
+    }
+    if ((gEnvFxBuffer + index)->xPos < -8000) {
         (gEnvFxBuffer + index)->xPos = -16000 - (gEnvFxBuffer + index)->xPos;
+    }
 
-    if ((gEnvFxBuffer + index)->zPos > 8000)
+    if ((gEnvFxBuffer + index)->zPos > 8000) {
         (gEnvFxBuffer + index)->zPos = 16000 - (gEnvFxBuffer + index)->zPos;
-    if ((gEnvFxBuffer + index)->zPos < -8000)
+    }
+    if ((gEnvFxBuffer + index)->zPos < -8000) {
         (gEnvFxBuffer + index)->zPos = -16000 - (gEnvFxBuffer + index)->zPos;
+    }
 
     floorY =
         find_floor((gEnvFxBuffer + index)->xPos, centerY + 500, (gEnvFxBuffer + index)->zPos, &surface);
@@ -174,8 +181,9 @@ void envfx_update_lava(Vec3s centerPos) {
         }
     }
 
-    if ((chance = (s32)(RandomFloat() * 16.0f)) == 8)
+    if ((chance = (s32)(RandomFloat() * 16.0f)) == 8) {
         play_sound(SOUND_GENERAL_QUIETBUBBLE2, gDefaultSoundArgs);
+    }
 }
 
 /**
@@ -207,11 +215,13 @@ void envfx_rotate_around_whirlpool(s32 *x, s32 *y, s32 *z) {
 s32 envfx_is_whirlpool_bubble_alive(s32 index) {
     s32 UNUSED sp4;
 
-    if ((gEnvFxBuffer + index)->bubbleY < gEnvFxBubbleConfig[ENVFX_STATE_DEST_Y] - 100)
+    if ((gEnvFxBuffer + index)->bubbleY < gEnvFxBubbleConfig[ENVFX_STATE_DEST_Y] - 100) {
         return 0;
+    }
 
-    if ((gEnvFxBuffer + index)->angleAndDist[1] < 10)
+    if ((gEnvFxBuffer + index)->angleAndDist[1] < 10) {
         return 0;
+    }
 
     return 1;
 }
@@ -270,8 +280,9 @@ s32 envfx_is_jestream_bubble_alive(s32 index) {
 
     if (!particle_is_laterally_close(index, gEnvFxBubbleConfig[ENVFX_STATE_SRC_X],
                                      gEnvFxBubbleConfig[ENVFX_STATE_SRC_Z], 1000)
-        || gEnvFxBubbleConfig[ENVFX_STATE_SRC_Y] + 1500 < (gEnvFxBuffer + index)->yPos)
+        || gEnvFxBubbleConfig[ENVFX_STATE_SRC_Y] + 1500 < (gEnvFxBuffer + index)->yPos) {
         return 0;
+    }
 
     return 1;
 }
@@ -338,8 +349,9 @@ s32 envfx_init_bubble(s32 mode) {
 
     gEnvFxBuffer = (struct EnvFxParticle *) mem_pool_alloc(
         D_8033A124, sBubbleParticleCount * sizeof(struct EnvFxParticle));
-    if (!gEnvFxBuffer)
+    if (!gEnvFxBuffer) {
         return 0;
+    }
 
     bzero(gEnvFxBuffer, sBubbleParticleCount * sizeof(struct EnvFxParticle));
     bzero(gEnvFxBubbleConfig, sizeof(gEnvFxBubbleConfig));
@@ -437,8 +449,9 @@ void append_bubble_vertex_buffer(Gfx *gfx, s32 index, Vec3s vertex1, Vec3s verte
     s32 i = 0;
     Vtx *vertBuf = (Vtx *) alloc_display_list(15 * sizeof(Vtx));
 
-    if (vertBuf == NULL)
+    if (vertBuf == NULL) {
         return;
+    }
 
     for (i = 0; i < 15; i += 3) {
         vertBuf[i] = template[0];
@@ -508,8 +521,9 @@ Gfx *envfx_update_bubble_particles(s32 mode, UNUSED Vec3s marioPos, Vec3s camFro
 
     gfxStart = (Gfx *) alloc_display_list(
         ((sBubbleParticleMaxCount / 5) * 10 + sBubbleParticleMaxCount + 3) * sizeof(Gfx));
-    if (gfxStart == NULL)
+    if (gfxStart == NULL) {
         return NULL;
+    }
 
     sGfxCursor = gfxStart;
 
@@ -559,13 +573,15 @@ void envfx_set_max_bubble_particles(s32 mode) {
 Gfx *envfx_update_bubbles(s32 mode, Vec3s marioPos, Vec3s camTo, Vec3s camFrom) {
     Gfx *gfx;
 
-    if (gEnvFxMode == 0 && !envfx_init_bubble(mode))
+    if (gEnvFxMode == 0 && !envfx_init_bubble(mode)) {
         return NULL;
+    }
 
     envfx_set_max_bubble_particles(mode);
 
-    if (sBubbleParticleMaxCount == 0)
+    if (sBubbleParticleMaxCount == 0) {
         return NULL;
+    }
 
     switch (mode) {
         case ENVFX_FLOWERS:

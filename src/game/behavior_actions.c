@@ -144,12 +144,13 @@ void func_802AA618(s32 sp18, s32 sp1C, f32 sp20) {
     D_8032F270.sizeBase = sp20;
     D_8032F270.sizeRange = sp20 / 20.0;
     D_8032F270.offsetY = sp1C;
-    if (sp18 == 0)
+    if (sp18 == 0) {
         D_8032F270.count = 20;
-    else if (sp18 > 20)
+    } else if (sp18 > 20) {
         D_8032F270.count = sp18;
-    else
+    } else {
         D_8032F270.count = 4;
+    }
     obj_spawn_particles(&D_8032F270);
 }
 
@@ -214,9 +215,10 @@ void func_802B2328(
 {
     s32 i;
     s16 separation = 0x10000 / n; // Evenly spread around a circle
-    for (i = 0; i < n; i++)
+    for (i = 0; i < n; i++) {
         spawn_object_relative(0, sins(D_8035FF10 + i * separation) * a1, (i + 1) * a2,
                               coss(D_8035FF10 + i * separation) * a1, o, MODEL_NONE, bhvSparkleSpawn);
+    }
 
     D_8035FF10 += r * 0x100;
 }

@@ -148,8 +148,9 @@ void mtxf_copy(Mat4 dest, Mat4 src) {
     register u32 *d = (u32 *) dest;
     register u32 *s = (u32 *) src;
 
-    for (i = 0; i < 16; i++)
+    for (i = 0; i < 16; i++) {
         *d++ = *s++;
+    }
 }
 
 /**
@@ -161,12 +162,14 @@ void mtxf_identity(Mat4 mtx) {
 
     // initialize everything except the first and last cells to 0
     // (this need to be on one line to match on PAL)
-    for (dest = (f32 *) mtx + 1, i = 0; i < 14; dest++, i++)
+    for (dest = (f32 *) mtx + 1, i = 0; i < 14; dest++, i++) {
         *dest = 0;
+    }
 
     // initialize the diagonal cells to 1
-    for (dest = (f32 *) mtx, i = 0; i < 4; dest += 5, i++)
+    for (dest = (f32 *) mtx, i = 0; i < 4; dest += 5, i++) {
         *dest = 1;
+    }
 }
 
 /**
@@ -431,14 +434,17 @@ void mtxf_align_terrain_triangle(Mat4 mtx, Vec3f pos, s16 yaw, f32 radius) {
     point1[1] = find_floor(point1[0], pos[1] + 150, point1[2], &sp74);
     point2[1] = find_floor(point2[0], pos[1] + 150, point2[2], &sp74);
 
-    if (point0[1] - pos[1] < minY)
+    if (point0[1] - pos[1] < minY) {
         point0[1] = pos[1];
+    }
 
-    if (point1[1] - pos[1] < minY)
+    if (point1[1] - pos[1] < minY) {
         point1[1] = pos[1];
+    }
 
-    if (point2[1] - pos[1] < minY)
+    if (point2[1] - pos[1] < minY) {
         point2[1] = pos[1];
+    }
 
     avgY = (point0[1] + point1[1] + point2[1]) / 3;
 
@@ -644,12 +650,14 @@ s32 approach_s32(s32 current, s32 target, s32 inc, s32 dec) {
 
     if (current < target) {
         current += inc;
-        if (current > target)
+        if (current > target) {
             current = target;
+        }
     } else {
         current -= dec;
-        if (current < target)
+        if (current < target) {
             current = target;
+        }
     }
     return current;
 }
@@ -661,12 +669,14 @@ s32 approach_s32(s32 current, s32 target, s32 inc, s32 dec) {
 f32 approach_f32(f32 current, f32 target, f32 inc, f32 dec) {
     if (current < target) {
         current += inc;
-        if (current > target)
+        if (current > target) {
             current = target;
+        }
     } else {
         current -= dec;
-        if (current < target)
+        if (current < target) {
             current = target;
+        }
     }
     return current;
 }
@@ -678,10 +688,11 @@ f32 approach_f32(f32 current, f32 target, f32 inc, f32 dec) {
 static u16 atan2_lookup(f32 y, f32 x) {
     u16 ret;
 
-    if (x == 0)
+    if (x == 0) {
         ret = gArctanTable[0];
-    else
+    } else {
         ret = gArctanTable[(s32)(y / x * 1024 + 0.5f)];
+    }
     return ret;
 }
 
@@ -694,30 +705,34 @@ s16 atan2s(f32 y, f32 x) {
 
     if (x >= 0) {
         if (y >= 0) {
-            if (y >= x)
+            if (y >= x) {
                 ret = atan2_lookup(x, y);
-            else
+            } else {
                 ret = 0x4000 - atan2_lookup(y, x);
+            }
         } else {
             y = -y;
-            if (y < x)
+            if (y < x) {
                 ret = 0x4000 + atan2_lookup(y, x);
-            else
+            } else {
                 ret = 0x8000 - atan2_lookup(x, y);
+            }
         }
     } else {
         x = -x;
         if (y < 0) {
             y = -y;
-            if (y >= x)
+            if (y >= x) {
                 ret = 0x8000 + atan2_lookup(x, y);
-            else
+            } else {
                 ret = 0xC000 - atan2_lookup(y, x);
+            }
         } else {
-            if (y < x)
+            if (y < x) {
                 ret = 0xC000 + atan2_lookup(y, x);
-            else
+            } else {
                 ret = -atan2_lookup(x, y);
+            }
         }
     }
     return ret;
@@ -841,8 +856,9 @@ s32 anim_spline_poll(Vec3f result) {
                 hasEnded = TRUE;
                 break;
             case CURVE_MIDDLE:
-                if (gSplineKeyframe[2][0] == 0)
+                if (gSplineKeyframe[2][0] == 0) {
                     gSplineState = CURVE_END_1;
+                }
                 break;
             default:
                 gSplineState++;

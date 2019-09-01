@@ -129,8 +129,9 @@ static s32 write_eeprom_data(void *buffer, s32 size) {
 static s32 calc_checksum(u8 *data, s32 size) {
     u16 chksum = 0;
 
-    while (size-- > 2)
+    while (size-- > 2) {
         chksum += *data++;
+    }
     return chksum;
 }
 
@@ -140,10 +141,12 @@ static s32 calc_checksum(u8 *data, s32 size) {
 static s32 verify_save_block_signature(void *buffer, s32 size, u16 magic) {
     struct SaveBlockSignature *sig = (struct SaveBlockSignature *) ((size - 4) + (u8 *) buffer);
 
-    if (sig->magic != magic)
+    if (sig->magic != magic) {
         return FALSE;
-    if (sig->chksum != calc_checksum(buffer, size))
+    }
+    if (sig->chksum != calc_checksum(buffer, size)) {
         return FALSE;
+    }
     return TRUE;
 }
 
@@ -222,8 +225,9 @@ static void touch_coin_score_age(s32 fileIndex, s32 courseIndex) {
     if (currentAge != 0) {
         for (i = 0; i < NUM_SAVE_FILES; i++) {
             age = get_coin_score_age(i, courseIndex);
-            if (age < currentAge)
+            if (age < currentAge) {
                 set_coin_score_age(i, courseIndex, age + 1);
+            }
         }
 
         set_coin_score_age(fileIndex, courseIndex, 0);
@@ -237,8 +241,9 @@ static void touch_coin_score_age(s32 fileIndex, s32 courseIndex) {
 static void touch_high_score_ages(s32 fileIndex) {
     s32 i;
 
-    for (i = 0; i < 15; i++)
+    for (i = 0; i < 15; i++) {
         touch_coin_score_age(fileIndex, i);
+    }
 }
 
 /**
@@ -380,8 +385,9 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex) {
         //! Compares the coin score as a 16 bit value, but only writes the 8 bit
         // truncation. This can allow a high score to decrease.
 
-        if (coinScore > ((u16) save_file_get_max_coin_score(courseIndex) & 0xFFFF))
+        if (coinScore > ((u16) save_file_get_max_coin_score(courseIndex) & 0xFFFF)) {
             sUnusedGotGlobalCoinHiScore = 1;
+        }
 
         if (coinScore > save_file_get_course_coin_score(fileIndex, courseIndex)) {
             gSaveBuffer.files[fileIndex][0].courseCoinScores[courseIndex] = coinScore;
@@ -394,21 +400,24 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex) {
 
     switch (gCurrLevelNum) {
         case LEVEL_BOWSER_1:
-            if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_1 | SAVE_FLAG_UNLOCKED_BASEMENT_DOOR)))
+            if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_1 | SAVE_FLAG_UNLOCKED_BASEMENT_DOOR))) {
                 save_file_set_flags(SAVE_FLAG_HAVE_KEY_1);
+            }
             break;
 
         case LEVEL_BOWSER_2:
-            if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_2 | SAVE_FLAG_UNLOCKED_UPSTAIRS_DOOR)))
+            if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_2 | SAVE_FLAG_UNLOCKED_UPSTAIRS_DOOR))) {
                 save_file_set_flags(SAVE_FLAG_HAVE_KEY_2);
+            }
             break;
 
         case LEVEL_BOWSER_3:
             break;
 
         default:
-            if (!(save_file_get_star_flags(fileIndex, courseIndex) & starFlag))
+            if (!(save_file_get_star_flags(fileIndex, courseIndex) & starFlag)) {
                 save_file_set_star_flags(fileIndex, courseIndex, starFlag);
+            }
             break;
     }
 }
@@ -450,8 +459,9 @@ s32 save_file_get_course_star_count(s32 fileIndex, s32 courseIndex) {
     u8 starFlags = save_file_get_star_flags(fileIndex, courseIndex);
 
     for (i = 0; i < 7; i++, flag <<= 1) {
-        if (starFlags & flag)
+        if (starFlags & flag) {
             count++;
+        }
     }
     return count;
 }
@@ -460,8 +470,9 @@ s32 save_file_get_total_star_count(s32 fileIndex, s32 minCourse, s32 maxCourse) 
     s32 count = 0;
 
     // Get standard course star count.
-    for (; minCourse <= maxCourse; minCourse++)
+    for (; minCourse <= maxCourse; minCourse++) {
         count += save_file_get_course_star_count(fileIndex, minCourse);
+    }
 
     // Add castle secret star count.
     return save_file_get_course_star_count(fileIndex, -1) + count;
@@ -479,8 +490,9 @@ void save_file_clear_flags(s32 flags) {
 }
 
 s32 save_file_get_flags(void) {
-    if (gCurrCreditsEntry != 0 || gCurrDemoInput != NULL)
+    if (gCurrCreditsEntry != 0 || gCurrDemoInput != NULL) {
         return 0;
+    }
     return gSaveBuffer.files[gCurrSaveFileNum - 1][0].flags;
 }
 
@@ -491,10 +503,11 @@ s32 save_file_get_flags(void) {
 s32 save_file_get_star_flags(s32 fileIndex, s32 courseIndex) {
     s32 starFlags;
 
-    if (courseIndex == -1)
+    if (courseIndex == -1) {
         starFlags = (gSaveBuffer.files[fileIndex][0].flags >> 24) & 0x7F;
-    else
+    } else {
         starFlags = gSaveBuffer.files[fileIndex][0].courseStars[courseIndex] & 0x7F;
+    }
 
     return starFlags;
 }
@@ -504,10 +517,11 @@ s32 save_file_get_star_flags(s32 fileIndex, s32 courseIndex) {
  * If course is -1, add ot the bitset of obtained castle secret stars.
  */
 void save_file_set_star_flags(s32 fileIndex, s32 courseIndex, s32 starFlags) {
-    if (courseIndex == -1)
+    if (courseIndex == -1) {
         gSaveBuffer.files[fileIndex][0].flags |= starFlags << 24;
-    else
+    } else {
         gSaveBuffer.files[fileIndex][0].courseStars[courseIndex] |= starFlags;
+    }
 
     gSaveBuffer.files[fileIndex][0].flags |= SAVE_FLAG_FILE_EXISTS;
     gSaveFileModified = TRUE;

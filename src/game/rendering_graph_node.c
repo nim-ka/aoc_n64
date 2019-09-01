@@ -186,10 +186,11 @@ static void geo_append_display_list(void *displayList, s16 layer) {
         listNode->transform = gMatStackFixed[gMatStackIndex];
         listNode->displayList = displayList;
         listNode->next = 0;
-        if (gCurGraphNodeMasterList->listHeads[layer] == 0)
+        if (gCurGraphNodeMasterList->listHeads[layer] == 0) {
             gCurGraphNodeMasterList->listHeads[layer] = listNode;
-        else
+        } else {
             gCurGraphNodeMasterList->listTails[layer]->next = listNode;
+        }
         gCurGraphNodeMasterList->listTails[layer] = listNode;
     }
 }
@@ -203,8 +204,9 @@ static void geo_process_master_list(struct GraphNodeMasterList *node) {
 
     if (gCurGraphNodeMasterList == NULL && node->node.children != NULL) {
         gCurGraphNodeMasterList = node;
-        for (i = 0; i < GFX_NUM_MASTER_LISTS; i++)
+        for (i = 0; i < GFX_NUM_MASTER_LISTS; i++) {
             node->listHeads[i] = NULL;
+        }
         geo_process_node_and_siblings(node->node.children);
         geo_process_master_list_sub(node);
         gCurGraphNodeMasterList = NULL;
@@ -234,8 +236,9 @@ static void geo_process_ortho_projection(struct GraphNodeOrthoProjection *node) 
  * Process a perspective projection node.
  */
 static void geo_process_perspective(struct GraphNodePerspective *node) {
-    if (node->fnNode.func != NULL)
+    if (node->fnNode.func != NULL) {
         node->fnNode.func(GEO_CONTEXT_RENDER, &node->fnNode.node, gMatStack[gMatStackIndex]);
+    }
     if (node->fnNode.node.children != NULL) {
         u16 perspNorm;
         Mtx *mtx = alloc_display_list(sizeof(*mtx));
@@ -270,8 +273,9 @@ static void geo_process_level_of_detail(struct GraphNodeLevelOfDetail *node) {
     s16 distanceFromCam = -mtx[14]; // z-component of the translation column
 
     if (node->minDistance <= distanceFromCam && distanceFromCam < node->maxDistance) {
-        if (node->node.children != 0)
+        if (node->node.children != 0) {
             geo_process_node_and_siblings(node->node.children);
+        }
     }
 }
 
@@ -284,12 +288,15 @@ static void geo_process_switch(struct GraphNodeSwitchCase *node) {
     struct GraphNode *selectedChild = node->fnNode.node.children;
     s32 i;
 
-    if (node->fnNode.func != NULL)
+    if (node->fnNode.func != NULL) {
         node->fnNode.func(GEO_CONTEXT_RENDER, &node->fnNode.node, gMatStack[gMatStackIndex]);
-    for (i = 0; selectedChild != NULL && node->selectedCase > i; i++)
+    }
+    for (i = 0; selectedChild != NULL && node->selectedCase > i; i++) {
         selectedChild = selectedChild->next;
-    if (selectedChild != NULL)
+    }
+    if (selectedChild != NULL) {
         geo_process_node_and_siblings(selectedChild);
+    }
 }
 
 /**
@@ -300,8 +307,9 @@ static void geo_process_camera(struct GraphNodeCamera *node) {
     Mtx *rollMtx = alloc_display_list(sizeof(*rollMtx));
     Mtx *mtx = alloc_display_list(sizeof(*mtx));
 
-    if (node->fnNode.func != NULL)
+    if (node->fnNode.func != NULL) {
         node->fnNode.func(GEO_CONTEXT_RENDER, &node->fnNode.node, gMatStack[gMatStackIndex]);
+    }
     mtxf_rotate_xy(rollMtx, node->rollScreen);
 
     gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(rollMtx), G_MTX_PROJECTION);
@@ -337,10 +345,12 @@ static void geo_process_translation_rotation(struct GraphNodeTranslationRotation
     gMatStackIndex++;
     mtxf_to_mtx(mtx, gMatStack[gMatStackIndex]);
     gMatStackFixed[gMatStackIndex] = mtx;
-    if (node->displayList != NULL)
+    if (node->displayList != NULL) {
         geo_append_display_list(node->displayList, node->node.flags >> 8);
-    if (node->node.children != NULL)
+    }
+    if (node->node.children != NULL) {
         geo_process_node_and_siblings(node->node.children);
+    }
     gMatStackIndex--;
 }
 
@@ -360,10 +370,12 @@ static void geo_process_translation(struct GraphNodeTranslation *node) {
     gMatStackIndex++;
     mtxf_to_mtx(mtx, gMatStack[gMatStackIndex]);
     gMatStackFixed[gMatStackIndex] = mtx;
-    if (node->displayList != NULL)
+    if (node->displayList != NULL) {
         geo_append_display_list(node->displayList, node->node.flags >> 8);
-    if (node->node.children != NULL)
+    }
+    if (node->node.children != NULL) {
         geo_process_node_and_siblings(node->node.children);
+    }
     gMatStackIndex--;
 }
 
@@ -381,10 +393,12 @@ static void geo_process_rotation(struct GraphNodeRotation *node) {
     gMatStackIndex++;
     mtxf_to_mtx(mtx, gMatStack[gMatStackIndex]);
     gMatStackFixed[gMatStackIndex] = mtx;
-    if (node->displayList != NULL)
+    if (node->displayList != NULL) {
         geo_append_display_list(node->displayList, node->node.flags >> 8);
-    if (node->node.children != NULL)
+    }
+    if (node->node.children != NULL) {
         geo_process_node_and_siblings(node->node.children);
+    }
     gMatStackIndex--;
 }
 
@@ -403,10 +417,12 @@ static void geo_process_scale(struct GraphNodeScale *node) {
     gMatStackIndex++;
     mtxf_to_mtx(mtx, gMatStack[gMatStackIndex]);
     gMatStackFixed[gMatStackIndex] = mtx;
-    if (node->displayList != NULL)
+    if (node->displayList != NULL) {
         geo_append_display_list(node->displayList, node->node.flags >> 8);
-    if (node->node.children != NULL)
+    }
+    if (node->node.children != NULL) {
         geo_process_node_and_siblings(node->node.children);
+    }
     gMatStackIndex--;
 }
 
@@ -424,19 +440,22 @@ static void geo_process_billboard(struct GraphNodeBillboard *node) {
     vec3s_to_vec3f(translation, node->translation);
     mtxf_billboard(gMatStack[gMatStackIndex], gMatStack[gMatStackIndex - 1], translation,
                    gCurGraphNodeCamera->roll);
-    if (gCurGraphNodeHeldObject != NULL)
+    if (gCurGraphNodeHeldObject != NULL) {
         mtxf_scale_vec3f(gMatStack[gMatStackIndex], gMatStack[gMatStackIndex],
                          gCurGraphNodeHeldObject->objNode->scale);
-    else if (gCurGraphNodeObject != NULL)
+    } else if (gCurGraphNodeObject != NULL) {
         mtxf_scale_vec3f(gMatStack[gMatStackIndex], gMatStack[gMatStackIndex],
                          gCurGraphNodeObject->scale);
+    }
 
     mtxf_to_mtx(mtx, gMatStack[gMatStackIndex]);
     gMatStackFixed[gMatStackIndex] = mtx;
-    if (node->displayList != NULL)
+    if (node->displayList != NULL) {
         geo_append_display_list(node->displayList, node->node.flags >> 8);
-    if (node->node.children != NULL)
+    }
+    if (node->node.children != NULL) {
         geo_process_node_and_siblings(node->node.children);
+    }
     gMatStackIndex--;
 }
 
@@ -446,10 +465,12 @@ static void geo_process_billboard(struct GraphNodeBillboard *node) {
  * parent node. It processes its children if it has them.
  */
 static void geo_process_display_list(struct GraphNodeDisplayList *node) {
-    if (node->displayList != NULL)
+    if (node->displayList != NULL) {
         geo_append_display_list(node->displayList, node->node.flags >> 8);
-    if (node->node.children != NULL)
+    }
+    if (node->node.children != NULL) {
         geo_process_node_and_siblings(node->node.children);
+    }
 }
 
 /**
@@ -465,8 +486,9 @@ static void geo_process_generated_list(struct GraphNodeGenerated *node) {
             geo_append_display_list((void *) VIRTUAL_TO_PHYSICAL(list), node->fnNode.node.flags >> 8);
         }
     }
-    if (node->fnNode.node.children != NULL)
+    if (node->fnNode.node.children != NULL) {
         geo_process_node_and_siblings(node->fnNode.node.children);
+    }
 }
 
 /**
@@ -477,9 +499,10 @@ static void geo_process_generated_list(struct GraphNodeGenerated *node) {
 static void geo_process_background(struct GraphNodeBackground *node) {
     s32 list = 0;
 
-    if (node->fnNode.func != NULL)
+    if (node->fnNode.func != NULL) {
         list = node->fnNode.func(GEO_CONTEXT_RENDER, &node->fnNode.node,
                                  (struct AllocOnlyPool *) gMatStack[gMatStackIndex]);
+    }
     if (list != 0) {
         geo_append_display_list((void *) VIRTUAL_TO_PHYSICAL(list), node->fnNode.node.flags >> 8);
     } else if (gCurGraphNodeMasterList != NULL) {
@@ -496,8 +519,9 @@ static void geo_process_background(struct GraphNodeBackground *node) {
 
         geo_append_display_list((void *) VIRTUAL_TO_PHYSICAL(gfxStart), 0);
     }
-    if (node->fnNode.node.children != NULL)
+    if (node->fnNode.node.children != NULL) {
         geo_process_node_and_siblings(node->fnNode.node.children);
+    }
 }
 
 /**
@@ -555,10 +579,12 @@ static void geo_process_animated_part(struct GraphNodeAnimatedPart *node) {
     gMatStackIndex++;
     mtxf_to_mtx(matrixPtr, gMatStack[gMatStackIndex]);
     gMatStackFixed[gMatStackIndex] = matrixPtr;
-    if (node->displayList != NULL)
+    if (node->displayList != NULL) {
         geo_append_display_list(node->displayList, node->node.flags >> 8);
-    if (node->node.children != NULL)
+    }
+    if (node->node.children != NULL) {
         geo_process_node_and_siblings(node->node.children);
+    }
     gMatStackIndex--;
 }
 
@@ -569,27 +595,30 @@ static void geo_process_animated_part(struct GraphNodeAnimatedPart *node) {
 void geo_set_animation_globals(struct GraphNodeObject_sub *node, s32 hasAnimation) {
     struct Animation *anim = node->curAnim;
 
-    if (hasAnimation != 0)
+    if (hasAnimation != 0) {
         node->animFrame = geo_update_animation_frame(node, &node->animFrameAccelAssist);
+    }
     node->animTimer = gAreaUpdateCounter;
-    if (anim->flags & ANIM_FLAG_HOR_TRANS)
+    if (anim->flags & ANIM_FLAG_HOR_TRANS) {
         gCurAnimType = ANIM_TYPE_VERTICAL_TRANSLATION;
-    else if (anim->flags & ANIM_FLAG_VERT_TRANS)
+    } else if (anim->flags & ANIM_FLAG_VERT_TRANS) {
         gCurAnimType = ANIM_TYPE_LATERAL_TRANSLATION;
-    else if (anim->flags & ANIM_FLAG_6)
+    } else if (anim->flags & ANIM_FLAG_6) {
         gCurAnimType = ANIM_TYPE_NO_TRANSLATION;
-    else
+    } else {
         gCurAnimType = ANIM_TYPE_TRANSLATION;
+    }
 
     gCurrAnimFrame = node->animFrame;
     gCurAnimEnabled = (anim->flags & ANIM_FLAG_5) == 0;
     gCurrAnimAttribute = segmented_to_virtual(anim->index);
     gCurAnimData = segmented_to_virtual(anim->values);
 
-    if (anim->unk02 == 0)
+    if (anim->unk02 == 0) {
         gCurAnimTranslationMultiplier = 1.0f;
-    else
+    } else {
         gCurAnimTranslationMultiplier = (f32) node->animYTrans / (f32) anim->unk02;
+    }
 }
 
 /**
@@ -624,8 +653,9 @@ static void geo_process_shadow(struct GraphNodeShadow *node) {
             if (gCurAnimType == ANIM_TYPE_TRANSLATION
                 || gCurAnimType == ANIM_TYPE_LATERAL_TRANSLATION) {
                 geo = node->node.children;
-                if (geo != NULL && geo->type == GRAPH_NODE_TYPE_SCALE)
+                if (geo != NULL && geo->type == GRAPH_NODE_TYPE_SCALE) {
                     objScale = ((struct GraphNodeScale *) geo)->scale;
+                }
                 animOffset[0] =
                     gCurAnimData[retrieve_animation_index(gCurrAnimFrame, &gCurrAnimAttribute)]
                     * gCurAnimTranslationMultiplier * objScale;
@@ -654,17 +684,19 @@ static void geo_process_shadow(struct GraphNodeShadow *node) {
             mtxf_mul(gMatStack[gMatStackIndex], mtxf, gCurGraphNodeCamera->matrixPtr);
             mtxf_to_mtx(mtx, gMatStack[gMatStackIndex]);
             gMatStackFixed[gMatStackIndex] = mtx;
-            if (gShadowAboveWaterOrLava == 1)
+            if (gShadowAboveWaterOrLava == 1) {
                 geo_append_display_list((void *) VIRTUAL_TO_PHYSICAL(shadowList), 4);
-            else if (gMarioOnIceOrCarpet == 1)
+            } else if (gMarioOnIceOrCarpet == 1) {
                 geo_append_display_list((void *) VIRTUAL_TO_PHYSICAL(shadowList), 5);
-            else
+            } else {
                 geo_append_display_list((void *) VIRTUAL_TO_PHYSICAL(shadowList), 6);
+            }
             gMatStackIndex--;
         }
     }
-    if (node->node.children != NULL)
+    if (node->node.children != NULL) {
         geo_process_node_and_siblings(node->node.children);
+    }
 }
 
 /**
@@ -704,8 +736,9 @@ static int obj_is_in_view(struct GraphNodeObject *node, Mat4 matrix) {
     struct GraphNode *geo;
     f32 hScreenEdge;
 
-    if (node->node.flags & GRAPH_RENDER_INVISIBLE)
+    if (node->node.flags & GRAPH_RENDER_INVISIBLE) {
         return FALSE;
+    }
 
     geo = node->sharedChild;
 
@@ -719,28 +752,33 @@ static int obj_is_in_view(struct GraphNodeObject *node, Mat4 matrix) {
     // the amount of units between the center of the screen and the horizontal edge
     // given the distance from the object to the camera.
 
-    if (geo != NULL && geo->type == GRAPH_NODE_TYPE_CULLING_RADIUS)
+    if (geo != NULL && geo->type == GRAPH_NODE_TYPE_CULLING_RADIUS) {
         cullingRadius =
             (f32)((struct GraphNodeCullingRadius *) geo)->cullingRadius; //! Why is there a f32 cast?
-    else
+    } else {
         cullingRadius = 300;
+    }
 
     // Don't render if the object is close to or behind the camera
-    if (matrix[3][2] > -100.0f + cullingRadius)
+    if (matrix[3][2] > -100.0f + cullingRadius) {
         return FALSE;
+    }
 
     //! This makes the HOLP not update when the camera is far away, and it
     //  makes PU travel safe when the camera is locked on the main map.
     //  If Mario were rendered with a depth over 65536 it would cause overflow
     //  when converting the transformation matrix to a fixed point matrix.
-    if (matrix[3][2] < -20000.0f - cullingRadius)
+    if (matrix[3][2] < -20000.0f - cullingRadius) {
         return FALSE;
+    }
 
     // Check whether the object is horizontally in view
-    if (matrix[3][0] > hScreenEdge + cullingRadius)
+    if (matrix[3][0] > hScreenEdge + cullingRadius) {
         return FALSE;
-    if (matrix[3][0] < -hScreenEdge - cullingRadius)
+    }
+    if (matrix[3][0] < -hScreenEdge - cullingRadius) {
         return FALSE;
+    }
     return TRUE;
 }
 
@@ -771,8 +809,9 @@ static void geo_process_object(struct Object *node) {
         node->header.gfx.cameraToObject[2] = gMatStack[gMatStackIndex][3][2];
 
         // FIXME: correct types
-        if (node->header.gfx.unk38.curAnim != NULL)
+        if (node->header.gfx.unk38.curAnim != NULL) {
             geo_set_animation_globals(&node->header.gfx.unk38, hasAnimation);
+        }
         if (obj_is_in_view(&node->header.gfx, gMatStack[gMatStackIndex])) {
             Mtx *mtx = alloc_display_list(sizeof(*mtx));
 
@@ -785,8 +824,9 @@ static void geo_process_object(struct Object *node) {
                 node->header.gfx.sharedChild->parent = NULL;
                 gCurGraphNodeObject = NULL;
             }
-            if (node->header.gfx.node.children != NULL)
+            if (node->header.gfx.node.children != NULL) {
                 geo_process_node_and_siblings(node->header.gfx.node.children);
+            }
         }
 
         gMatStackIndex--;
@@ -806,8 +846,9 @@ static void geo_process_object_parent(struct GraphNodeObjectParent *node) {
         geo_process_node_and_siblings(node->sharedChild);
         node->sharedChild->parent = NULL;
     }
-    if (node->node.children != NULL)
+    if (node->node.children != NULL) {
         geo_process_node_and_siblings(node->node.children);
+    }
 }
 
 /**
@@ -822,8 +863,9 @@ void geo_process_held_object(struct GraphNodeHeldObject *node) {
     gSPLookAt(gDisplayListHead++, &lookAt);
 #endif
 
-    if (node->fnNode.func != NULL)
+    if (node->fnNode.func != NULL) {
         node->fnNode.func(GEO_CONTEXT_RENDER, &node->fnNode.node, gMatStack[gMatStackIndex]);
+    }
     if (node->objNode != NULL && node->objNode->sharedChild != NULL) {
         s32 hasAnimation = (node->objNode->node.flags & GRAPH_RENDER_HAS_ANIMATION) != 0;
 
@@ -839,9 +881,10 @@ void geo_process_held_object(struct GraphNodeHeldObject *node) {
         mtxf_mul(gMatStack[gMatStackIndex + 1], mat, gMatStack[gMatStackIndex + 1]);
         mtxf_scale_vec3f(gMatStack[gMatStackIndex + 1], gMatStack[gMatStackIndex + 1],
                          node->objNode->scale);
-        if (node->fnNode.func != NULL)
+        if (node->fnNode.func != NULL) {
             node->fnNode.func(GEO_CONTEXT_HELD_OBJ, &node->fnNode.node,
                               (struct AllocOnlyPool *) gMatStack[gMatStackIndex + 1]);
+        }
         gMatStackIndex++;
         mtxf_to_mtx(mtx, gMatStack[gMatStackIndex]);
         gMatStackFixed[gMatStackIndex] = mtx;
@@ -853,8 +896,9 @@ void geo_process_held_object(struct GraphNodeHeldObject *node) {
         gGeoTempState.data = gCurAnimData;
         gCurAnimType = 0;
         gCurGraphNodeHeldObject = (void *) node;
-        if (node->objNode->unk38.curAnim != NULL)
+        if (node->objNode->unk38.curAnim != NULL) {
             geo_set_animation_globals(&node->objNode->unk38, hasAnimation);
+        }
 
         geo_process_node_and_siblings(node->objNode->sharedChild);
         gCurGraphNodeHeldObject = NULL;
@@ -867,16 +911,18 @@ void geo_process_held_object(struct GraphNodeHeldObject *node) {
         gMatStackIndex--;
     }
 
-    if (node->fnNode.node.children != NULL)
+    if (node->fnNode.node.children != NULL) {
         geo_process_node_and_siblings(node->fnNode.node.children);
+    }
 }
 
 /**
  * Processes the children of the given GraphNode if it has any
  */
 void geo_try_process_children(struct GraphNode *node) {
-    if (node->children != NULL)
+    if (node->children != NULL) {
         geo_process_node_and_siblings(node->children);
+    }
 }
 
 /**
@@ -891,8 +937,9 @@ void geo_process_node_and_siblings(struct GraphNode *firstNode) {
 
     // In the case of a switch node, exactly one of the children of the node is
     // processed instead of all children like usual
-    if (parent != NULL)
+    if (parent != NULL) {
         iterateChildren = (parent->type != GRAPH_NODE_TYPE_SWITCH_CASE);
+    }
 
     do {
         if (curGraphNode->flags & GRAPH_RENDER_ACTIVE) {
@@ -964,8 +1011,9 @@ void geo_process_node_and_siblings(struct GraphNode *firstNode) {
                 }
             }
         } else {
-            if (curGraphNode->type == GRAPH_NODE_TYPE_OBJECT)
+            if (curGraphNode->type == GRAPH_NODE_TYPE_OBJECT) {
                 ((struct GraphNodeObject *) curGraphNode)->throwMatrix = NULL;
+            }
         }
     } while (iterateChildren && (curGraphNode = curGraphNode->next) != firstNode);
 }
@@ -1006,12 +1054,14 @@ void geo_process_root(struct GraphNodeRoot *node, Vp *b, Vp *c, s32 clearColor) 
         gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(gMatStackFixed[gMatStackIndex]),
                   G_MTX_MODELVIEW | G_MTX_LOAD);
         gCurGraphNodeRoot = node;
-        if (node->node.children != NULL)
+        if (node->node.children != NULL) {
             geo_process_node_and_siblings(node->node.children);
+        }
         gCurGraphNodeRoot = NULL;
-        if (gShowDebugText)
+        if (gShowDebugText) {
             print_text_fmt_int(180, 36, "MEM %d",
                                gDisplayListHeap->totalSpace - gDisplayListHeap->usedSpace);
+        }
         main_pool_free(gDisplayListHeap);
     }
 }

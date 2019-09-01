@@ -195,8 +195,9 @@ void init_render_image(void) {
 /** Ends the master display list. */
 void end_master_display_list(void) {
     draw_screen_borders();
-    if (gShowProfiler)
+    if (gShowProfiler) {
         draw_profiler();
+    }
 
     gDPFullSync(gDisplayListHead++);
     gSPEndDisplayList(gDisplayListHead++);
@@ -211,17 +212,19 @@ void func_80247D84(void) {
     u64 *sp18;
 
     if (gResetTimer != 0 && D_8032C648 < 15) {
-        if (sCurrFBNum == 0)
+        if (sCurrFBNum == 0) {
             fbNum = 2;
-        else
+        } else {
             fbNum = sCurrFBNum - 1;
+        }
 
         sp18 = (u64 *) PHYSICAL_TO_VIRTUAL(gFrameBuffers[fbNum]);
         sp18 += D_8032C648++ * (SCREEN_WIDTH / 4);
 
         for (sp24 = 0; sp24 < ((SCREEN_HEIGHT / 16) + 1); sp24++) {
-            for (sp20 = 0; sp20 < (SCREEN_WIDTH / 4); sp20++)
+            for (sp20 = 0; sp20 < (SCREEN_WIDTH / 4); sp20++) {
                 *sp18++ = 0;
+            }
             sp18 += ((SCREEN_WIDTH / 4) * 14);
         }
     }
@@ -268,9 +271,11 @@ void display_and_vsync(void) {
     osViSwapBuffer((void *) PHYSICAL_TO_VIRTUAL(gFrameBuffers[sCurrFBNum]));
     profiler_log_thread5_time(THREAD5_END);
     osRecvMesg(&gGameVblankQueue, &D_80339BEC, OS_MESG_BLOCK);
-    if (++sCurrFBNum == 3)
+    if (++sCurrFBNum == 3) {
         sCurrFBNum = 0;
-    if (++frameBufferIndex == 3)
+    }
+    if (++frameBufferIndex == 3) {
         frameBufferIndex = 0;
+    }
     gGlobalTimer++;
 }

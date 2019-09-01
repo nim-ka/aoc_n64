@@ -312,12 +312,13 @@ Gfx *geo_wdw_set_initial_water_level(s32 callContext, UNUSED struct GraphNode *n
         gWdwWaterLevelSet = 0;
     } else if (callContext == GEO_CONTEXT_RENDER && gEnvironmentRegions != NULL
                && gWdwWaterLevelSet == 0) {
-        if (gPaintingMarioYEntry <= 1382.4)
+        if (gPaintingMarioYEntry <= 1382.4) {
             wdwWaterHeight = 31;
-        else if (gPaintingMarioYEntry >= 1600.0)
+        } else if (gPaintingMarioYEntry >= 1600.0) {
             wdwWaterHeight = 2816;
-        else
+        } else {
             wdwWaterHeight = 1024;
+        }
         for (i = 0; i < *gEnvironmentRegions; i++) {
             gEnvironmentRegions[i * 6 + 6] = wdwWaterHeight;
         }
@@ -356,12 +357,13 @@ void movtex_make_quad_vertex(Vtx *verts, s32 index, s16 x, s16 y, s16 z, s16 rot
     s16 s = 32.0 * (32.0 * scale - 1.0) * sins(rot + rotOffset);
     s16 t = 32.0 * (32.0 * scale - 1.0) * coss(rot + rotOffset);
 
-    if (gMovtexVtxColor == MOVTEX_VTX_COLOR_YELLOW)
+    if (gMovtexVtxColor == MOVTEX_VTX_COLOR_YELLOW) {
         make_vertex(verts, index, x, y, z, s, t, 255, 255, 0, alpha);
-    else if (gMovtexVtxColor == MOVTEX_VTX_COLOR_RED)
+    } else if (gMovtexVtxColor == MOVTEX_VTX_COLOR_RED) {
         make_vertex(verts, index, x, y, z, s, t, 255, 0, 0, alpha);
-    else
+    } else {
         make_vertex(verts, index, x, y, z, s, t, 255, 255, 255, alpha);
+    }
 }
 
 /**
@@ -426,16 +428,19 @@ Gfx *movtex_gen_from_quad(s16 y, struct MovtexQuad *quad) {
     Gfx *gfxHead;
     Gfx *gfx;
 
-    if (textureId == gMovetexLastTextureId)
+    if (textureId == gMovetexLastTextureId) {
         gfxHead = alloc_display_list(3 * sizeof(*gfxHead));
-    else
+    } else {
         gfxHead = alloc_display_list(8 * sizeof(*gfxHead));
+    }
 
-    if (gfxHead == NULL || verts == NULL)
+    if (gfxHead == NULL || verts == NULL) {
         return NULL;
+    }
     gfx = gfxHead;
-    if (gMovtexCounter != gMovtexCounterPrev)
+    if (gMovtexCounter != gMovtexCounterPrev) {
         quad->rot += rotspeed;
+    }
     rot = quad->rot;
     if (rotDir == ROTATE_CLOCKWISE) {
         movtex_make_quad_vertex(verts, 0, x1, y, z1, rot, 0, scale, alpha);
@@ -490,8 +495,9 @@ Gfx *movtex_gen_from_quad_array(s16 y, void *quadArrSegmented) {
     Gfx *subList;
     s32 i;
 
-    if (gfxHead == NULL)
+    if (gfxHead == NULL) {
         return NULL;
+    }
     for (i = 0; i < numLists; i++) {
         // quadArr is an array of s16, so sizeof(MovtexQuad) gets divided by 2
         subList = movtex_gen_from_quad(
@@ -516,8 +522,9 @@ Gfx *movtex_gen_quads_id(s16 id, s16 y, void *movetexQuadsSegmented) {
     s32 i = 0;
 
     while (collection[i].id != -1) {
-        if (collection[i].id == id)
+        if (collection[i].id == id) {
             return movtex_gen_from_quad_array(y, collection[i].quadArraySegmented);
+        }
         i++;
     }
     return NULL;
@@ -641,28 +648,33 @@ Gfx *geo_movtex_draw_water_regions(s32 callContext, struct GraphNode *node, UNUS
 
     if (callContext == GEO_CONTEXT_RENDER) {
         gMovtexVtxColor = MOVTEX_VTX_COLOR_DEFAULT;
-        if (gEnvironmentRegions == NULL)
+        if (gEnvironmentRegions == NULL) {
             return NULL;
+        }
         numWaterBoxes = gEnvironmentRegions[0];
         gfxHead = alloc_display_list((numWaterBoxes + 3) * sizeof(*gfxHead));
-        if (gfxHead == NULL)
+        if (gfxHead == NULL) {
             return NULL;
-        else
+        } else {
             gfx = gfxHead;
+        }
         asGenerated = (struct GraphNodeGenerated *) node;
         if (asGenerated->parameter == JRB_MOVTEX_INTIAL_MIST) {
-            if (gCameraStatus.camFocAndPosCurrAndGoal[3][1] < 1024.0) // if camera under water
+            if (gCameraStatus.camFocAndPosCurrAndGoal[3][1] < 1024.0) { // if camera under water
                 return NULL;
-            if (save_file_get_star_flags(gCurrSaveFileNum - 1, 2) & 1) // first level in JRB complete
+            }
+            if (save_file_get_star_flags(gCurrSaveFileNum - 1, 2) & 1) { // first level in JRB complete
                 return NULL;
+            }
         } else if (asGenerated->parameter == HMC_MOVTEX_TOXIC_MAZE_MIST) {
             gMovtexVtxColor = MOVTEX_VTX_COLOR_YELLOW;
         } else if (asGenerated->parameter == SSL_MOVTEX_TOXBOX_QUICKSAND_MIST) {
             gMovtexVtxColor = MOVTEX_VTX_COLOR_RED;
         }
         quadCollection = get_quad_collection_from_id(asGenerated->parameter);
-        if (quadCollection == NULL)
+        if (quadCollection == NULL) {
             return NULL;
+        }
 
         asGenerated->fnNode.node.flags =
             (asGenerated->fnNode.node.flags & 0xFF) | (LAYER_TRANSPARENT_INTER << 8);
@@ -695,10 +707,12 @@ void update_moving_texture_offset(s16 *movtexVerts, s32 attr) {
     if (gMovtexCounter != gMovtexCounterPrev) {
         *curOffset += movSpeed;
         // note that texture coordinates are 6.10 fixed point, so this does modulo 1
-        if (*curOffset >= 1024)
+        if (*curOffset >= 1024) {
             *curOffset -= 1024;
-        if (*curOffset <= -1024)
+        }
+        if (*curOffset <= -1024) {
             *curOffset += 1024;
+        }
     }
 }
 
@@ -810,12 +824,14 @@ Gfx *movtex_gen_list(s16 *movtexVerts, struct MovtexObject *movtexList, s8 attrL
     Gfx *gfx = gfxHead;
     s32 i;
 
-    if (verts == NULL || gfxHead == NULL)
+    if (verts == NULL || gfxHead == NULL) {
         return NULL;
+    }
 
     movtex_write_vertex_first(verts, movtexVerts, movtexList, attrLayout);
-    for (i = 1; i < movtexList->vtx_count; i++)
+    for (i = 1; i < movtexList->vtx_count; i++) {
         movtex_write_vertex_index(verts, i, movtexVerts, movtexList, attrLayout);
+    }
 
     gSPDisplayList(gfx++, movtexList->beginDl) gDPSetTextureImage(
         gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gMovtexIdToTexture[movtexList->textureId])

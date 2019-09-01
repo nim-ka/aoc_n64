@@ -101,8 +101,9 @@ void func_802E2304(s16 numHealthWedges) {
 
     sp2C = alloc_display_list(0x40);
 
-    if (sp2C == NULL)
+    if (sp2C == NULL) {
         return;
+    }
 
     guTranslate(sp2C, (f32) sPowerMeterHUD.x, (f32) sPowerMeterHUD.y, 0);
 
@@ -124,8 +125,9 @@ void animate_power_meter_emphasized(void) {
     hudDisplayFlags = gHudDisplay.flags;
 
     if (!(hudDisplayFlags & HUD_DISPLAY_FLAG_EMPHASIZE_POWER)) {
-        if (gUnknownPowerMeterVar == 45.0)
+        if (gUnknownPowerMeterVar == 45.0) {
             sPowerMeterHUD.animation = POWER_METER_DEEMPHASIZING;
+        }
     } else {
         gUnknownPowerMeterVar = 0;
     }
@@ -134,14 +136,17 @@ void animate_power_meter_emphasized(void) {
 static void animate_power_meter_deemphasizing(void) {
     s16 speed = 5;
 
-    if (sPowerMeterHUD.y >= 181)
+    if (sPowerMeterHUD.y >= 181) {
         speed = 3;
+    }
 
-    if (sPowerMeterHUD.y >= 191)
+    if (sPowerMeterHUD.y >= 191) {
         speed = 2;
+    }
 
-    if (sPowerMeterHUD.y >= 196)
+    if (sPowerMeterHUD.y >= 196) {
         speed = 1;
+    }
 
     sPowerMeterHUD.y += speed;
 
@@ -165,10 +170,12 @@ void func_802E261C(s16 numHealthWedges) {
         sPowerMeterHUD.y = 166;
     }
 
-    if (numHealthWedges == 8 && D_803600D0 == 7)
+    if (numHealthWedges == 8 && D_803600D0 == 7) {
         gUnknownPowerMeterVar = 0;
-    if (numHealthWedges == 8 && gUnknownPowerMeterVar > 45.0)
+    }
+    if (numHealthWedges == 8 && gUnknownPowerMeterVar > 45.0) {
         sPowerMeterHUD.animation = POWER_METER_HIDING;
+    }
 
     D_803600D0 = numHealthWedges;
 
@@ -185,11 +192,13 @@ void func_802E261C(s16 numHealthWedges) {
 void render_hud_hp(void) {
     s16 shownHealthWedges = gHudDisplay.wedges;
 
-    if (sPowerMeterHUD.animation != POWER_METER_HIDING)
+    if (sPowerMeterHUD.animation != POWER_METER_HIDING) {
         func_802E261C(shownHealthWedges);
+    }
 
-    if (sPowerMeterHUD.animation == POWER_METER_HIDDEN)
+    if (sPowerMeterHUD.animation == POWER_METER_HIDDEN) {
         return;
+    }
 
     switch (sPowerMeterHUD.animation) {
         case POWER_METER_EMPHASIZED:
@@ -237,23 +246,27 @@ void render_hud_coins(void) {
 void render_hud_stars(void) {
     s8 showX = 0;
 
-    if (D_803305CC == 1 && gGlobalTimer & 0x00000008)
+    if (D_803305CC == 1 && gGlobalTimer & 0x00000008) {
         return;
+    }
 
-    if (gHudDisplay.stars < 100)
+    if (gHudDisplay.stars < 100) {
         showX = 1;
+    }
 
     print_text(HUD_STARS_X, HUD_TOP_Y, "-"); // 'Star' glyph
-    if (showX == 1)
+    if (showX == 1) {
         print_text((HUD_STARS_X + 16), HUD_TOP_Y, "*"); // 'X' glyph
+    }
     print_text_fmt_int(((showX * 14) + (HUD_STARS_X + 16)), HUD_TOP_Y, "%d", gHudDisplay.stars);
 }
 
 void func_802E29D4() {
     s16 i;
 
-    for (i = 0; i < gHudDisplay.keys; i++)
+    for (i = 0; i < gHudDisplay.keys; i++) {
         print_text((i * 16) + 220, 142, "/"); // unused glyph (originally for a key?)
+    }
 }
 
 void render_hud_timer(void) {
@@ -307,8 +320,9 @@ void show_camera_status(void) {
     x = 266;
     y = 205;
 
-    if (sCameraHUD.d_F8 == 0)
+    if (sCameraHUD.d_F8 == 0) {
         return;
+    }
 
     gSPDisplayList(gDisplayListHead++, dl_hud_img_begin);
     render_hud_camera(x, y, (*cameraLUT)[0]);
@@ -364,27 +378,33 @@ void render_hud(void) {
         dl_add_new_ortho_matrix();
 #endif
 
-        if (gCurrentArea != NULL && gCurrentArea->camera->currPreset == CAMERA_PRESET_INSIDE_CANNON)
+        if (gCurrentArea != NULL && gCurrentArea->camera->currPreset == CAMERA_PRESET_INSIDE_CANNON) {
             RenderHudCannonReticle();
+        }
 
-        if (hudDisplayFlags & HUD_DISPLAY_FLAG_LIVES)
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_LIVES) {
             render_hud_mario_lives();
+        }
 
-        if (hudDisplayFlags & HUD_DISPLAY_FLAG_COIN_COUNT)
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_COIN_COUNT) {
             render_hud_coins();
+        }
 
-        if (hudDisplayFlags & HUD_DISPLAY_FLAG_STAR_COUNT)
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_STAR_COUNT) {
             render_hud_stars();
+        }
 
-        if (hudDisplayFlags & HUD_DISPLAY_FLAG_UNKNOWN_0010)
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_UNKNOWN_0010) {
             func_802E29D4();
+        }
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_CAMERA_AND_POWER) {
             render_hud_hp();
             show_camera_status();
         }
 
-        if (hudDisplayFlags & HUD_DISPLAY_FLAG_TIMER)
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_TIMER) {
             render_hud_timer();
+        }
     }
 }

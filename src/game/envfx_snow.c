@@ -81,8 +81,9 @@ s32 envfx_init_snow(s32 mode) {
 
     gEnvFxBuffer = (struct EnvFxParticle *) mem_pool_alloc(
         D_8033A124, gSnowParticleMaxCount * sizeof(struct EnvFxParticle));
-    if (!gEnvFxBuffer)
+    if (!gEnvFxBuffer) {
         return 0;
+    }
 
     bzero(gEnvFxBuffer, gSnowParticleMaxCount * sizeof(struct EnvFxParticle));
 
@@ -102,8 +103,9 @@ void envfx_update_snowflake_count(s32 mode, Vec3s marioPos) {
     switch (mode) {
         case ENVFX_SNOW_NORMAL:
             if (gSnowParticleMaxCount > gSnowParticleCount) {
-                if ((timer & 0x3F) == 0)
+                if ((timer & 0x3F) == 0) {
                     gSnowParticleCount += 5;
+                }
             }
             break;
 
@@ -113,11 +115,13 @@ void envfx_update_snowflake_count(s32 mode, Vec3s marioPos) {
             gSnowParticleCount =
                 (((s32)((waterLevel - 400.f - (f32) marioPos[1]) * 1.0e-3) << 0x10) >> 0x10) * 5;
 
-            if (gSnowParticleCount < 0)
+            if (gSnowParticleCount < 0) {
                 gSnowParticleCount = 0;
+            }
 
-            if (gSnowParticleCount > gSnowParticleMaxCount)
+            if (gSnowParticleCount > gSnowParticleMaxCount) {
                 gSnowParticleCount = gSnowParticleMaxCount;
+            }
 
             break;
 
@@ -173,11 +177,13 @@ s32 envfx_is_snowflake_alive(s32 index, s32 snowCylinderX, s32 snowCylinderY, s3
     s32 y = (gEnvFxBuffer + index)->yPos;
     s32 z = (gEnvFxBuffer + index)->zPos;
 
-    if (sqr(x - snowCylinderX) + sqr(z - snowCylinderZ) > sqr(300))
+    if (sqr(x - snowCylinderX) + sqr(z - snowCylinderZ) > sqr(300)) {
         return 0;
+    }
 
-    if ((y < snowCylinderY - 201) || (snowCylinderY + 201 < y))
+    if ((y < snowCylinderY - 201) || (snowCylinderY + 201 < y)) {
         return 0;
+    }
 
     return 1;
 }
@@ -276,8 +282,9 @@ void envfx_update_snow_blizzard(s32 snowCylinderX, s32 snowCylinderY, s32 snowCy
  *  more than half of the mirror room.
  */
 static s32 is_in_mystery_snow_area(s32 x, UNUSED s32 y, s32 z) {
-    if (sqr(x - 3380) + sqr(z + 520) < sqr(3000))
+    if (sqr(x - 3380) + sqr(z + 520) < sqr(3000)) {
         return 1;
+    }
     return 0;
 }
 
@@ -351,8 +358,9 @@ void append_snowflake_vertex_buffer(Gfx *gfx, s32 index, Vec3s vertex1, Vec3s ve
     s32 i = 0;
     Vtx *vertBuf = (Vtx *) alloc_display_list(15 * sizeof(Vtx));
 
-    if (vertBuf == NULL)
+    if (vertBuf == NULL) {
         return;
+    }
 
     for (i = 0; i < 15; i += 3) {
         vertBuf[i] = gSnowTempVtx[0];
@@ -394,8 +402,9 @@ Gfx *envfx_update_snow(s32 snowMode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo)
     gfxStart = (Gfx *) alloc_display_list((gSnowParticleCount * 6 + 3) * sizeof(Gfx));
     gfx = gfxStart;
 
-    if (gfxStart == NULL)
+    if (gfxStart == NULL) {
         return NULL;
+    }
 
     envfx_update_snowflake_count(snowMode, marioPos);
 
@@ -406,29 +415,32 @@ Gfx *envfx_update_snow(s32 snowMode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo)
         case ENVFX_SNOW_NORMAL:
             // ensure the snow cylinder is no further than 250 units in front
             // of the camera, and no closer than 1 unit.
-            if (radius > 250)
+            if (radius > 250) {
                 radius -= 250;
-            else
+            } else {
                 radius = 1;
+            }
 
             pos_from_orbit(camTo, snowCylinderPos, radius, pitch, yaw);
             envfx_update_snow_normal(snowCylinderPos[0], snowCylinderPos[1], snowCylinderPos[2]);
             break;
 
         case ENVFX_SNOW_WATER:
-            if (radius > 500)
+            if (radius > 500) {
                 radius -= 500;
-            else
+            } else {
                 radius = 1;
+            }
 
             pos_from_orbit(camTo, snowCylinderPos, radius, pitch, yaw);
             envfx_update_snow_water(snowCylinderPos[0], snowCylinderPos[1], snowCylinderPos[2]);
             break;
         case ENVFX_SNOW_BLIZZARD:
-            if (radius > 250)
+            if (radius > 250) {
                 radius -= 250;
-            else
+            } else {
                 radius = 1;
+            }
 
             pos_from_orbit(camTo, snowCylinderPos, radius, pitch, yaw);
             envfx_update_snow_blizzard(snowCylinderPos[0], snowCylinderPos[1], snowCylinderPos[2]);
@@ -465,19 +477,22 @@ Gfx *envfx_update_snow(s32 snowMode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo)
 Gfx *envfx_update_particles(s32 mode, Vec3s marioPos, Vec3s camTo, Vec3s camFrom) {
     Gfx *gfx;
 
-    if (get_dialog_id() != -1)
+    if (get_dialog_id() != -1) {
         return NULL;
+    }
 
-    if (gEnvFxMode != 0 && mode != gEnvFxMode)
+    if (gEnvFxMode != 0 && mode != gEnvFxMode) {
         mode = 0;
+    }
 
     if (mode >= ENVFX_BUBBLE_START) {
         gfx = envfx_update_bubbles(mode, marioPos, camTo, camFrom);
         return gfx;
     }
 
-    if (gEnvFxMode == 0 && envfx_init_snow(mode) == 0)
+    if (gEnvFxMode == 0 && envfx_init_snow(mode) == 0) {
         return NULL;
+    }
 
     switch (mode) {
         case ENVFX_MODE_NONE:
