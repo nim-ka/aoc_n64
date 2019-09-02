@@ -17,7 +17,7 @@ void bhv_water_air_bubble_loop(void) {
         o->oPosY += 3.0f;
     } else {
         obj_become_tangible();
-        obj_obj_forward_vel_approach_upward(2.0f, 10.0f);
+        obj_forward_vel_approach_upward(2.0f, 10.0f);
         o->oMoveAngleYaw = angle_to_object(o, gMarioObject);
         obj_move_using_fvel_and_gravity();
     }

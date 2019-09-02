@@ -66,7 +66,7 @@ void func_802EFC44(void) {
 
     if (sp20 == -1) {
         sp1E = (u16) o->oAngleToMario - (u16) o->oMoveAngleYaw;
-        if (func_802E46C0(o->oMoveAngleYaw, o->oAngleToMario, 0x2000) == 1 && o->oUnk1AC_S32 == 1) {
+        if (func_802E46C0(o->oMoveAngleYaw, o->oAngleToMario, 0x2000) == 1 && o->oUnknownUnk1AC_S32 == 1) {
             o->oSnowmansBottomUnkF8 = o->oAngleToMario;
         } else {
             o->oSnowmansBottomUnkF8 = o->oMoveAngleYaw;
@@ -227,7 +227,7 @@ void bhv_snowmans_head_loop(void) {
 
 void bhv_snowmans_body_checkpoint_loop(void) {
     if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 800)) {
-        o->parentObj->oUnk1AC_S32++;
+        o->parentObj->oUnknownUnk1AC_S32++;
         o->activeFlags = 0;
     }
 

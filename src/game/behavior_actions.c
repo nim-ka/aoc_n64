@@ -109,7 +109,7 @@ extern u32 blue_fish_seg3_anims_0301C2B0[];
 void func_802A8D18(f32, f32, s32);
 
 s32 mario_moving_fast_enough_to_make_piranha_plant_bite(void);
-void func_802C49E0(void);
+void obj_set_secondary_camera_focus(void);
 
 s32 D_8032F0C0[] = { SAVE_FLAG_HAVE_WING_CAP, SAVE_FLAG_HAVE_METAL_CAP, SAVE_FLAG_HAVE_VANISH_CAP };
 

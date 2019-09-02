@@ -92,9 +92,9 @@ void bhv_coin_loop(void) {
     }
 #ifndef VERSION_JP
     if (o->oMoveFlags & OBJ_MOVE_13) {
-        if (o->oUnk1B0 < 5)
+        if (o->oUnknownUnk1B0 < 5)
             PlaySound2(0x30364081);
-        o->oUnk1B0++;
+        o->oUnknownUnk1B0++;
     }
 #else
     if (o->oMoveFlags & OBJ_MOVE_13)

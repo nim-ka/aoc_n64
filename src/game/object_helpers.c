@@ -302,7 +302,7 @@ f32 dist_between_objects(struct Object *obj1, struct Object *obj2) {
     return sqrtf(dx * dx + dy * dy + dz * dz);
 }
 
-void obj_obj_forward_vel_approach_upward(f32 target, f32 increment) {
+void obj_forward_vel_approach_upward(f32 target, f32 increment) {
     if (o->oForwardVel >= target) {
         o->oForwardVel = target;
     } else {
@@ -2251,23 +2251,23 @@ static void nop_802A3294(void) {
 }
 
 s32 func_802A32A4(s8 *a0) {
-    o->oUnk1AC_VPTR = a0;
-    o->oUnk1B0 = 0;
+    o->oUnknownUnk1AC_VPTR = a0;
+    o->oUnknownUnk1B0 = 0;
 
-    return *(s8 *) o->oUnk1AC_VPTR;
+    return *(s8 *) o->oUnknownUnk1AC_VPTR;
 }
 
 s32 func_802A32E0(void) {
     s8 spF;
-    s8 *sp8 = o->oUnk1AC_VPTR;
-    s32 sp4 = o->oUnk1B0 + 1;
+    s8 *sp8 = o->oUnknownUnk1AC_VPTR;
+    s32 sp4 = o->oUnknownUnk1B0 + 1;
 
     if (sp8[sp4] != -1) {
         spF = sp8[sp4];
-        o->oUnk1B0++;
+        o->oUnknownUnk1B0++;
     } else {
         spF = sp8[0];
-        o->oUnk1B0 = 0;
+        o->oUnknownUnk1B0 = 0;
     }
 
     return spF;
@@ -2341,7 +2341,7 @@ s32 obj_call_action_function(void (*actionFunctions[])(void)) {
 
 static struct Object *func_802A36D8(s32 sp20, s32 sp24) {
     struct Object *sp1C = spawn_object(o, MODEL_STAR, bhvUnused080C);
-    sp1C->oUnk1B0 = sp24;
+    sp1C->oUnknownUnk1B0 = sp24;
     sp1C->oBehParams = o->oBehParams;
     sp1C->oBehParams2ndByte = sp20;
 

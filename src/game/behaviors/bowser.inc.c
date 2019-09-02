@@ -361,7 +361,7 @@ void ActionBowser16(void) {
     switch (o->oSubAction) {
         case 0:
             obj_become_intangible();
-            o->oUnk1AC_S16 = 0;
+            o->oUnknownUnk1AC_S16 = 0;
             o->oBowserUnkF8 = 30;
             if (o->oTimer == 0)
                 PlaySound2(SOUND_CH9_UNK66);
@@ -386,7 +386,7 @@ void ActionBowser16(void) {
             break;
         case 2:
             o->oForwardVel = 0.0f;
-            o->oUnk1AC_S16 = 0xFF;
+            o->oUnknownUnk1AC_S16 = 0xFF;
             if (o->oOpacity == 0xFF)
                 o->oAction = 0;
             obj_become_tangible();
@@ -676,7 +676,7 @@ void ActionBowser1(void) // unused?
 }
 
 void func_802B5738(void) {
-    o->oUnk1AC_S16 = 0;
+    o->oUnknownUnk1AC_S16 = 0;
     if (o->oOpacity == 0) {
         o->oForwardVel = 0.0f;
         o->oVelY = 0.0f;
@@ -710,7 +710,7 @@ void ActionBowser2(void) {
             if (obj_check_anim_frame(11)) {
                 o->oMoveAngleYaw = o->oBowserAngleToCentre;
                 o->oVelY = 150.0f;
-                o->oUnk1AC_S16 = 0xFF;
+                o->oUnknownUnk1AC_S16 = 0xFF;
                 o->oBowserUnkF8 = 0;
                 o->oSubAction++;
             } else
@@ -723,9 +723,9 @@ void ActionBowser2(void) {
                     if (absf(o->oFloorHeight - o->oHomeY) < 100.0f)
                         approach_f32_signed(&o->oForwardVel, 0, -5.0f);
                     else
-                        obj_obj_forward_vel_approach_upward(150.0f, 2.0f);
+                        obj_forward_vel_approach_upward(150.0f, 2.0f);
                 } else
-                    obj_obj_forward_vel_approach_upward(150.0f, 2.0f);
+                    obj_forward_vel_approach_upward(150.0f, 2.0f);
             }
             if (func_802B4A94()) {
                 o->oDragStrength = 10.0f;
@@ -1134,8 +1134,8 @@ void bhv_bowser_loop(void) {
     }
     obj_align_gfx_with_floor();
     if (o->oAction != 4)
-        if (o->oUnk1AC_S16 != o->oOpacity) {
-            if (o->oUnk1AC_S16 > o->oOpacity) {
+        if (o->oUnknownUnk1AC_S16 != o->oOpacity) {
+            if (o->oUnknownUnk1AC_S16 > o->oOpacity) {
                 o->oOpacity += 20;
                 if (o->oOpacity >= 0x100)
                     o->oOpacity = 0xFF;
@@ -1151,7 +1151,7 @@ void bhv_bowser_init(void) {
     s32 level; // 0 is dw, 1 is fs, 2 is sky
     o->oBowserUnk110 = 1;
     o->oOpacity = 0xFF;
-    o->oUnk1AC_S16 = 0xFF;
+    o->oUnknownUnk1AC_S16 = 0xFF;
     if (gCurrLevelNum == LEVEL_BOWSER_2)
         level = 1;
     else if (gCurrLevelNum == LEVEL_BOWSER_3)
@@ -1159,11 +1159,11 @@ void bhv_bowser_init(void) {
     else
         level = 0;
     o->oBehParams2ndByte = level;
-    o->oBowserUnk1B2 = D_8032F690[level];
+    o->oUnknownUnk1B2 = D_8032F690[level];
     o->oHealth = D_8032F694[level];
     func_802A11B4(o, 4);
     o->oAction = 5;
-    o->oBowserUnk1AE = 0;
+    o->oUnknownUnk1AE = 0;
     o->oBowserEyesShut = 0;
 }
 
@@ -1199,23 +1199,23 @@ void func_802B70C8(struct Object *a0, struct GraphNodeSwitchCase *switchCase) {
                 if (a0->oAngleVelYaw < 0)
                     switchCase->selectedCase = 3;
             }
-            if (a0->oBowserUnk1AE > 50)
+            if (a0->oUnknownUnk1AE > 50)
                 switchCase->selectedCase = 1;
             break;
         case 1:
-            if (a0->oBowserUnk1AE > 2)
+            if (a0->oUnknownUnk1AE > 2)
                 switchCase->selectedCase = 2;
             break;
         case 2:
-            if (a0->oBowserUnk1AE > 2)
+            if (a0->oUnknownUnk1AE > 2)
                 switchCase->selectedCase = 9;
             break;
         case 9:
-            if (a0->oBowserUnk1AE > 2)
+            if (a0->oUnknownUnk1AE > 2)
                 switchCase->selectedCase = 0;
             break;
         case 5:
-            if (a0->oBowserUnk1AE > 2) {
+            if (a0->oUnknownUnk1AE > 2) {
                 switchCase->selectedCase = 6;
                 if (a0->oAngleVelYaw <= 0)
                     switchCase->selectedCase = 0;
@@ -1226,7 +1226,7 @@ void func_802B70C8(struct Object *a0, struct GraphNodeSwitchCase *switchCase) {
                 switchCase->selectedCase = 5;
             break;
         case 3:
-            if (a0->oBowserUnk1AE > 2) {
+            if (a0->oUnknownUnk1AE > 2) {
                 switchCase->selectedCase = 4;
                 if (a0->oAngleVelYaw >= 0)
                     switchCase->selectedCase = 0;
@@ -1240,7 +1240,7 @@ void func_802B70C8(struct Object *a0, struct GraphNodeSwitchCase *switchCase) {
             switchCase->selectedCase = 0;
     }
     if (switchCase->selectedCase != sp1C)
-        a0->oBowserUnk1AE = -1;
+        a0->oUnknownUnk1AE = -1;
 }
 
 /** Geo switch for controlling the state of bowser's eye direction and open/closed
@@ -1263,7 +1263,7 @@ s32 geo_switch_bowser_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx) {
                 switchCase->selectedCase = 2;
                 break;
         }
-        obj->oBowserUnk1AE++;
+        obj->oUnknownUnk1AE++;
     }
     return 0;
 }
@@ -1285,7 +1285,7 @@ Gfx *Geo18_802B7D44(s32 a0, struct GraphNode *node, UNUSED s32 a2) {
             sp20->fnNode.node.flags = (sp20->fnNode.node.flags & 0xFF) | (0x100 | 0x400);
         sp28 = sp2C = alloc_display_list(16);
 
-        if (sp24->oBowserUnk1B2 != 0) {
+        if (sp24->oUnknownUnk1B2 != 0) {
             gSPClearGeometryMode(sp28++, G_LIGHTING);
         }
         gSPEndDisplayList(sp28);

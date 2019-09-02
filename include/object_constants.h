@@ -352,6 +352,11 @@
     #define BOO_DEATH_STATUS_DYING 1
     #define BOO_DEATH_STATUS_DEAD 2
 
+    /* attackStatus */
+    #define BOO_NOT_ATTACKED 0
+    #define BOO_ATTACKED 1
+    #define BOO_BOUNCED_ON -1
+
 /* Beta Boo Key */
     /* oAction */
     #define BETA_BOO_KEY_ACT_IN_BOO 0

@@ -88,7 +88,7 @@ static void Unknown802E142C(u32 (*a0)[], s16 a1[]) {
     sp3C = spawn_object_abs_with_rot(&gMacroObjectDefaultParent, 0, model, a0, a1[1], a1[2], a1[3], 0,
                                      convert_rotation(a1[0]), 0);
 
-    sp3C->oUnk1A8 = a1[4];
+    sp3C->oUnknownUnk1A8 = a1[4];
     sp3C->oBehParams = (a1[4] & 0xFF) >> 16;
 }
 
@@ -160,7 +160,7 @@ void spawn_macro_objects(s16 areaIndex, s16 *macroObjList) {
                                           0                                               // Z-rotation
                 );
 
-            newObj->oUnk1A8 = macroObject[MACRO_OBJ_PARAMS];
+            newObj->oUnknownUnk1A8 = macroObject[MACRO_OBJ_PARAMS];
             newObj->oBehParams = ((macroObject[MACRO_OBJ_PARAMS] & 0x00FF) << 16)
                                  + (macroObject[MACRO_OBJ_PARAMS] & 0xFF00);
             newObj->oBehParams2ndByte = macroObject[MACRO_OBJ_PARAMS] & 0x00FF;

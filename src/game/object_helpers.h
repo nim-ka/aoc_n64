@@ -175,7 +175,7 @@ extern void func_8029D704(Mat4,Mat4,Mat4);
 void set_object_held_state(struct Object *, void *);
 extern f32 lateral_dist_between_objects(struct Object *, struct Object *);
 extern f32 dist_between_objects(struct Object *, struct Object *);
-extern void obj_obj_forward_vel_approach_upward(f32,f32);
+extern void obj_forward_vel_approach_upward(f32,f32);
 extern s32 approach_f32_signed(f32*,f32,f32);
 extern f32 approach_f32_symmetric(f32,f32,f32);
 extern s16 approach_s16_symmetric(s16 arg0, s16 arg1, s16 arg2);

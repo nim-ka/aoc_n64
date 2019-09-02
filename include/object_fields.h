@@ -98,15 +98,7 @@
 #define /*0x198*/ oNumLootCoins OBJECT_FIELD_S32(0x44)
 #define /*0x19C*/ oDrawingDistance OBJECT_FIELD_F32(0x45)
 #define /*0x1A0*/ oRoom OBJECT_FIELD_S32(0x46)
-// another object specific range, anim related
-#define /*0x1A8*/ oUnk1A8 OBJECT_FIELD_U32(0x48)
-#define /*0x1AC*/ oUnk1AC_VPTR OBJECT_FIELD_VPTR(0x49)
-#define /*0x1AC*/ oUnk1AC_S32 OBJECT_FIELD_S32(0x49)
-#define /*0x1AC*/ oUnk1AC_F32 OBJECT_FIELD_F32(0x49)
-#define /*0x1AC*/ oUnk1AC_S16 OBJECT_FIELD_S16(0x49, 0)
-#define /*0x1B0*/ oUnk1B0 OBJECT_FIELD_S32(0x4A)
-#define /*0x1B0*/ oUnk1B0_S16 OBJECT_FIELD_S16(0x4A, 0)
-// more generic fields
+// 0x1A8-0x1B2 (0x48-0x4A) are object specific and defined below the common fields.
 #define /*0x1B4*/ oWallAngle OBJECT_FIELD_U32(0x4B)
 #define /*0x1B8*/ oFloorType OBJECT_FIELD_S16(0x4C, 0)
 #define /*0x1BA*/ oFloorRoom OBJECT_FIELD_S16(0x4C, 1)
@@ -135,6 +127,15 @@
 #define /*0x110*/ oUnknownUnk110_S32 OBJECT_FIELD_S32(0x22)
 #define /*0x110*/ oUnknownUnk110_F32 OBJECT_FIELD_F32(0x22)
 #define /*0x110*/ oUnknownUnk110_S32 OBJECT_FIELD_S32(0x22)
+#define /*0x1A8*/ oUnknownUnk1A8 OBJECT_FIELD_U32(0x48)
+#define /*0x1AC*/ oUnknownUnk1AC_VPTR OBJECT_FIELD_VPTR(0x49)
+#define /*0x1AC*/ oUnknownUnk1AC_S32 OBJECT_FIELD_S32(0x49)
+#define /*0x1AC*/ oUnknownUnk1AC_F32 OBJECT_FIELD_F32(0x49)
+#define /*0x1AC*/ oUnknownUnk1AC_S16 OBJECT_FIELD_S16(0x49, 0)
+#define /*0x1AE*/ oUnknownUnk1AE OBJECT_FIELD_S16(0x49, 1)
+#define /*0x1B0*/ oUnknownUnk1B0 OBJECT_FIELD_S32(0x4A)
+#define /*0x1B0*/ oUnknownUnk1B0_S16 OBJECT_FIELD_S16(0x4A, 0)
+#define /*0x1B2*/ oUnknownUnk1B2 OBJECT_FIELD_S16(0x4A, 1)
 
 /* Pathed (see obj_follow_path) */
 #define /*0x0FC*/ oPathedStartWaypoint OBJECT_FIELD_WAYPOINT(0x1D)
@@ -352,12 +353,10 @@
 #define /*0x108*/ oBowserUnk108          OBJECT_FIELD_S16(0x20, 0)
 #define /*0x10A*/ oBowserHeldAnglePitch  OBJECT_FIELD_S16(0x20, 1)
 #define /*0x10D*/ oBowserHeldAngleVelYaw OBJECT_FIELD_S16(0x21, 0)
-#define /*0x10E*/ oBowserUnk10E          OBJECT_FIELD_S16(0x21, 1)
-#define /*0x110*/ oBowserUnk110          OBJECT_FIELD_S16(0x22, 0)
-#define /*0x112*/ oBowserAngleToCentre   OBJECT_FIELD_S16(0x22, 1)
-#define /*0x1AE*/ oBowserUnk1AE          OBJECT_FIELD_S16(0x49, 1)
-#define /*0x1B0*/ oBowserEyesShut        OBJECT_FIELD_S16(0x4A, 0)
-#define /*0x1B2*/ oBowserUnk1B2          OBJECT_FIELD_S16(0x4A, 1)
+#define /*0x10E*/ oBowserUnk10E OBJECT_FIELD_S16(0x21, 1)
+#define /*0x110*/ oBowserUnk110 OBJECT_FIELD_S16(0x22, 0)
+#define /*0x112*/ oBowserAngleToCentre OBJECT_FIELD_S16(0x22, 1)
+#define /*0x1B0*/ oBowserEyesShut OBJECT_FIELD_S16(0x4A, 0)
 
 /* Flame */
 #define /*0x0F4*/ oFlameUnkF4 OBJECT_FIELD_F32(0x1B)
@@ -509,11 +508,12 @@
 #define /*0x0F4*/ oBooTargetOpacity OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ oBooBaseScale OBJECT_FIELD_F32(0x1C)
 #define /*0x0FC*/ oBooOscillationTimer OBJECT_FIELD_S32(0x1D)
-#define /*0x100*/ oBooMoveYawAfterHit OBJECT_FIELD_S32(0x1E)
-#define /*0x104*/ oBooUnk104 OBJECT_FIELD_F32(0x1F)
+#define /*0x100*/ oBooMoveYawDuringHit OBJECT_FIELD_S32(0x1E)
+#define /*0x104*/ oBooMoveYawBeforeHit OBJECT_FIELD_F32(0x1F)
 #define /*0x108*/ oBooParentBigBoo OBJECT_FIELD_OBJ(0x20)
-#define /*0x10C*/ oBooUnk10C OBJECT_FIELD_F32(0x21)
-#define /*0x110*/ oBooUnk110 OBJECT_FIELD_S32(0x22)
+#define /*0x10C*/ oBooNegatedAggressiveness OBJECT_FIELD_F32(0x21)
+#define /*0x110*/ oBooInitialMoveYaw OBJECT_FIELD_S32(0x22)
+#define /*0x1B0*/ oBooTurningSpeed OBJECT_FIELD_S16(0x4A, 0)
 
 /* BigBoo */
 #define /*0x1AC*/ oBigBooNumMinionBoosKilled OBJECT_FIELD_S32(0x49)
@@ -524,7 +524,8 @@
 #define /*0x0FC*/ oMerryGoRoundMarioIsOutside OBJECT_FIELD_S32(0x1D)
 
 /* MerryGoRoundBooManager */
-#define /*0x088*/ oMerryGoRoundBooManagerNumMinionBoosKilled OBJECT_FIELD_S32(0x00)
+#define /*0x088*/ oMerryGoRoundBooManagerNumBoosKilled OBJECT_FIELD_S32(0x00)
+#define /*0x0FC*/ oMerryGoRoundBooManagerNumBoosSpawned OBJECT_FIELD_S32(0x1D)
 
 /* Scuttlebug */
 #define /*0x0F4*/ oScuttlebugUnkF4 OBJECT_FIELD_S32(0x1B)
