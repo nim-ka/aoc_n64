@@ -268,9 +268,9 @@ int LevelProc_80177610(UNUSED s32 a, UNUSED s32 b) {
          || (gPlayer3Controller->buttonPressed & START_BUTTON)
          || (gPlayer3Controller->buttonPressed & B_BUTTON)) {
 #ifdef VERSION_JP
-            play_sound(SOUND_MENU_STARSOUND, gDefaultSoundArgs);
+            play_sound(SOUND_MENU_STAR_SOUND, gDefaultSoundArgs);
 #else
-            play_sound(SOUND_MENU_STARSOUNDLETSAGO, gDefaultSoundArgs);
+            play_sound(SOUND_MENU_STAR_SOUND_LETS_A_GO, gDefaultSoundArgs);
 #endif
             if (sDefaultSelectedAct > sSelectedAct) {
                 sCurrentMission = sSelectedAct + 1;

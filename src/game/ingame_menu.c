@@ -807,7 +807,7 @@ void handleMenuScrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 m
             //! Probably originally a >=, but later replaced with an == and an else statement.
             currentIndex[0] = maxIndex;
         } else {
-            play_sound(SOUND_MENU_CHANGESELECT, gDefaultSoundArgs);
+            play_sound(SOUND_MENU_CHANGE_SELECT, gDefaultSoundArgs);
             currentIndex[0]++;
         }
     }
@@ -816,7 +816,7 @@ void handleMenuScrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 m
         if (currentIndex[0] == minIndex) {
             // Same applies to here as above
         } else {
-            play_sound(SOUND_MENU_CHANGESELECT, gDefaultSoundArgs);
+            play_sound(SOUND_MENU_CHANGE_SELECT, gDefaultSoundArgs);
             currentIndex[0]--;
         }
     }
@@ -1630,7 +1630,7 @@ void func_802D91C0(s16 sp4a) {
 
     for (i = 0; i < (s16) ARRAY_COUNT(sp28); i++) {
         if (sp28[i] == sp4a && D_80330430 == 1) {
-            play_sound(SOUND_MENU_STARSOUND, gDefaultSoundArgs);
+            play_sound(SOUND_MENU_STAR_SOUND, gDefaultSoundArgs);
             return;
         }
     }
@@ -1785,7 +1785,7 @@ void func_802D93E0(void) {
         case DIALOG_STATE_OPENING:
             if (gDialogBoxOpenTimer == DEFAULT_DIALOG_BOX_ANGLE) {
                 play_dialog_sound(gDialogID);
-                play_sound(SOUND_MENU_MESSAGEAPPEAR, gDefaultSoundArgs);
+                play_sound(SOUND_MENU_MESSAGE_APPEAR, gDefaultSoundArgs);
             }
 
             if (gDialogBoxType == DIALOG_TYPE_ROTATE) {
@@ -1814,7 +1814,7 @@ void func_802D93E0(void) {
                     gDialogBoxState = DIALOG_STATE_CLOSING;
                 } else {
                     gDialogBoxState = DIALOG_STATE_SCROLLING;
-                    play_sound(SOUND_MENU_MESSAGENEXTPAGE, gDefaultSoundArgs);
+                    play_sound(SOUND_MENU_MESSAGE_NEXT_PAGE, gDefaultSoundArgs);
                 }
             }
 #ifndef VERSION_JP
@@ -1836,7 +1836,7 @@ void func_802D93E0(void) {
         case DIALOG_STATE_CLOSING:
             if (gDialogBoxOpenTimer == 20.0f) {
                 level_set_transition(0, 0);
-                play_sound(SOUND_MENU_MESSAGEDISAPPEAR, gDefaultSoundArgs);
+                play_sound(SOUND_MENU_MESSAGE_DISAPPEAR, gDefaultSoundArgs);
 
                 if (gDialogBoxType == DIALOG_TYPE_ZOOM) {
                     stop_mario(2);
@@ -2658,9 +2658,9 @@ s16 func_802DBBB0(void) {
             D_80360088 = 0;
             level_set_transition(-1, 0);
 #ifdef VERSION_JP
-            play_sound(SOUND_MENU_PAUSE1, gDefaultSoundArgs);
+            play_sound(SOUND_MENU_PAUSE, gDefaultSoundArgs);
 #else
-            play_sound(SOUND_MENU_PAUSE1_HIGHPRIO, gDefaultSoundArgs);
+            play_sound(SOUND_MENU_PAUSE_HIGHPRIO, gDefaultSoundArgs);
 #endif
 
             if (gCurrCourseNum >= COURSE_MIN && gCurrCourseNum <= COURSE_MAX) {
@@ -2688,7 +2688,7 @@ s16 func_802DBBB0(void) {
 #endif
             {
                 level_set_transition(0, 0);
-                play_sound(SOUND_MENU_PAUSE2, gDefaultSoundArgs);
+                play_sound(SOUND_MENU_PAUSE_2, gDefaultSoundArgs);
                 gDialogBoxState = DIALOG_STATE_OPENING;
                 D_8033047C = -1;
 
@@ -2715,7 +2715,7 @@ s16 func_802DBBB0(void) {
 #endif
             {
                 level_set_transition(0, 0);
-                play_sound(SOUND_MENU_PAUSE2, gDefaultSoundArgs);
+                play_sound(SOUND_MENU_PAUSE_2, gDefaultSoundArgs);
                 D_8033047C = -1;
                 gDialogBoxState = DIALOG_STATE_OPENING;
 
@@ -2808,16 +2808,16 @@ void func_802DC050(s16 sp32, s16 sp36) {
     } else {
         if ((D_803305C4 & 1) || gHudDisplay.coins > 70) {
             D_803305C8++;
-            play_sound(SOUND_MENU_YOSHIGAINLIVES, gDefaultSoundArgs);
+            play_sound(SOUND_MENU_YOSHI_GAIN_LIVES, gDefaultSoundArgs);
 
             if (D_803305C8 == 50 || D_803305C8 == 100 || D_803305C8 == 150) {
-                play_sound(SOUND_GENERAL_1UP, gDefaultSoundArgs);
+                play_sound(SOUND_GENERAL_COLLECT_1UP, gDefaultSoundArgs);
                 gMarioState[0].numLives++;
             }
         }
 
         if (gHudDisplay.coins == D_803305C8 && gGotFileCoinHiScore != 0) {
-            play_sound(SOUND_MENU_MARIOCASTLEWARP2, gDefaultSoundArgs);
+            play_sound(SOUND_MENU_MARIO_CASTLE_WARP2, gDefaultSoundArgs);
         }
     }
 }
@@ -3060,7 +3060,7 @@ s16 func_802DCBD4(void) {
 #endif
                 )) {
                 level_set_transition(0, 0);
-                play_sound(SOUND_MENU_STARSOUND, gDefaultSoundArgs);
+                play_sound(SOUND_MENU_STAR_SOUND, gDefaultSoundArgs);
                 gDialogBoxState = DIALOG_STATE_OPENING;
                 D_8033047C = -1;
                 sp26 = D_80330430;

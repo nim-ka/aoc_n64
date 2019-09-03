@@ -77,7 +77,7 @@ void bhv_blue_coin_switch_loop(void) {
                     // Set gravity to 0 so it doesn't accelerate when receding.
                     o->oGravity = 0.0f;
 
-                    PlaySound2(SOUND_GENERAL_SWITCHDOOROPEN);
+                    PlaySound2(SOUND_GENERAL_SWITCH_DOOR_OPEN);
                 }
             }
 
@@ -111,9 +111,9 @@ void bhv_blue_coin_switch_loop(void) {
         case BLUE_COIN_SWITCH_ACT_TICKING:
             // Tick faster when the blue coins start blinking
             if (o->oTimer < 200) {
-                play_sound(SOUND_CH8_SWITCH5, gDefaultSoundArgs);
+                play_sound(SOUND_GENERAL2_SWITCH_TICK_FAST, gDefaultSoundArgs);
             } else {
-                play_sound(SOUND_CH8_SWITCH6, gDefaultSoundArgs);
+                play_sound(SOUND_GENERAL2_SWITCH_TICK_SLOW, gDefaultSoundArgs);
             }
 
             // Delete the switch (which stops the sound) after the last coin is collected,

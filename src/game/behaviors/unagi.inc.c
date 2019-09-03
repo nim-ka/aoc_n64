@@ -58,7 +58,7 @@ void unagi_act_1_4(s32 arg0) {
     }
 
     if (obj_check_anim_frame(6)) {
-        PlaySound2(SOUND_GENERAL_MOVINGWATER);
+        PlaySound2(SOUND_GENERAL_MOVING_WATER);
     }
 
     if (obj_follow_path(0) == -1) {
@@ -104,7 +104,7 @@ void unagi_act_3(void) {
             set_obj_animation_and_sound_state(6);
 
             if (o->oTimer > 60 && o->oUnagiUnk1AC < 1000.0f) {
-                PlaySound2(SOUND_OBJECT_EEL_2);
+                PlaySound2(SOUND_OBJ_EEL_2);
                 o->oUnagiUnkF8 = o->oUnagiUnk110 = 30.0f;
             } else {
                 o->oUnagiUnk110 = 0.0f;

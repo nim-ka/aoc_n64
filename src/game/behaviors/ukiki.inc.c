@@ -443,17 +443,17 @@ void ukiki_act_go_to_cage(void) {
  * SoundState number.
  */
 struct SoundState sUkikiSoundStates[] = {
-    {1, 1, 10, SOUND_UKIKI_STEP_DEFAULT},
+    {1, 1, 10, SOUND_OBJ_UKIKI_STEP_DEFAULT},
     {0, 0, 0,  NO_SOUND},
     {0, 0, 0,  NO_SOUND},
     {0, 0, 0,  NO_SOUND},
-    {1, 0, -1, SOUND_UKIKI_CHATTER_SHORT},
-    {1, 0, -1, SOUND_UKIKI_CHATTER_LONG},
+    {1, 0, -1, SOUND_OBJ_UKIKI_CHATTER_SHORT},
+    {1, 0, -1, SOUND_OBJ_UKIKI_CHATTER_LONG},
     {0, 0, 0,  NO_SOUND},
     {0, 0, 0,  NO_SOUND},
-    {1, 0, -1, SOUND_UKIKI_CHATTER_LONG},
-    {1, 0, -1, SOUND_UKIKI_STEP_LEAVES},
-    {1, 0, -1, SOUND_UKIKI_CHATTER_IDLE},
+    {1, 0, -1, SOUND_OBJ_UKIKI_CHATTER_LONG},
+    {1, 0, -1, SOUND_OBJ_UKIKI_STEP_LEAVES},
+    {1, 0, -1, SOUND_OBJ_UKIKI_CHATTER_IDLE},
     {0, 0, 0,  NO_SOUND},
     {0, 0, 0,  NO_SOUND},
 };

@@ -96,7 +96,7 @@ void func_802F2820(void) {
         o->oAngleVelPitch = 0;
         o->oUnknownUnkF4_F32 = 0;
         o->oAction = 2;
-        PlaySound2(SOUND_GENERAL_BIGPOUND);
+        PlaySound2(SOUND_GENERAL_BIG_POUND);
         func_8027F440(3, o->oPosX, o->oPosY, o->oPosZ);
     }
 }
@@ -116,7 +116,7 @@ void bhvLllVolcanoFallingTrap_loop(void) {
         case 0:
             if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 1000)) {
                 o->oAction = 1;
-                PlaySound2(SOUND_GENERAL_QUIETPOUND2);
+                PlaySound2(SOUND_GENERAL_QUIET_POUND2);
             }
             break;
 

@@ -428,12 +428,12 @@ void init_mario_after_warp(void) {
             && sWarpDest.nodeId == 31
 #endif
         )
-            play_sound(SOUND_MENU_MARIOCASTLEWARP, gDefaultSoundArgs);
+            play_sound(SOUND_MENU_MARIO_CASTLE_WARP, gDefaultSoundArgs);
 #ifndef VERSION_JP
         if (sWarpDest.levelNum == 16 && sWarpDest.areaIdx == 1
             && (sWarpDest.nodeId == 7 || sWarpDest.nodeId == 10 || sWarpDest.nodeId == 20
                 || sWarpDest.nodeId == 30)) {
-            play_sound(SOUND_MENU_MARIOCASTLEWARP, gDefaultSoundArgs);
+            play_sound(SOUND_MENU_MARIO_CASTLE_WARP, gDefaultSoundArgs);
         }
 #endif
     }
@@ -661,7 +661,7 @@ void initiate_painting_warp(void) {
 
                 gMarioState->marioObj->header.gfx.node.flags &= ~0x0001;
 
-                play_sound(SOUND_MENU_STARSOUND, gDefaultSoundArgs);
+                play_sound(SOUND_MENU_STAR_SOUND, gDefaultSoundArgs);
                 func_802491FC(398);
             }
         }
@@ -713,7 +713,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
                 sDelayedWarpTimer = 48;
                 sSourceWarpNodeId = WARP_NODE_DEATH;
                 play_transition(WARP_TRANSITION_FADE_INTO_BOWSER, 0x30, 0x00, 0x00, 0x00);
-                play_sound(SOUND_MENU_BOWSERLAUGH, gDefaultSoundArgs);
+                play_sound(SOUND_MENU_BOWSER_LAUGH, gDefaultSoundArgs);
                 break;
 
             case WARP_OP_WARP_FLOOR:
@@ -734,7 +734,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
                 sSourceWarpNodeId = WARP_NODE_F2;
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 0x1E, 0xFF, 0xFF, 0xFF);
 #ifndef VERSION_JP
-                play_sound(SOUND_MENU_STARSOUND, gDefaultSoundArgs);
+                play_sound(SOUND_MENU_STAR_SOUND, gDefaultSoundArgs);
 #endif
                 break;
 
@@ -876,9 +876,9 @@ void update_hud_values(void) {
             if (gGlobalTimer & 0x00000001) {
                 u32 coinSound;
                 if (gMarioState->action & (ACT_FLAG_SWIMMING | ACT_FLAG_METAL_WATER)) {
-                    coinSound = SOUND_GENERAL_COINWATER1;
+                    coinSound = SOUND_GENERAL_COIN_WATER;
                 } else {
-                    coinSound = SOUND_GENERAL_COIN2;
+                    coinSound = SOUND_GENERAL_COIN;
                 }
 
                 gHudDisplay.coins += 1;
@@ -909,7 +909,7 @@ void update_hud_values(void) {
         gHudDisplay.keys = gMarioState->numKeys;
 
         if (numHealthWedges > gHudDisplay.wedges) {
-            play_sound(SOUND_MENU_POWERMETER, gDefaultSoundArgs);
+            play_sound(SOUND_MENU_POWER_METER, gDefaultSoundArgs);
         }
         gHudDisplay.wedges = numHealthWedges;
 
@@ -1290,6 +1290,6 @@ s32 lvl_set_current_level(UNUSED s16 arg0, s32 levelNum) {
  * Play the "thank you so much for to playing my game" sound.
  */
 s32 lvl_play_the_end_screen_sound(UNUSED s16 arg0, UNUSED s32 arg1) {
-    play_sound(SOUND_MENU_THANKYOUPLAYINGMYGAME, gDefaultSoundArgs);
+    play_sound(SOUND_MENU_THANK_YOU_PLAYING_MY_GAME, gDefaultSoundArgs);
     return 1;
 }

@@ -43,7 +43,7 @@ void func_802A525C(void) {
     particle->oPosY += 50.0f * sp18;
     particle->oPosX += sins(o->oMoveAngleYaw) * 90.0f * sp18;
     particle->oPosZ += coss(o->oMoveAngleYaw) * 90.0f * sp18;
-    PlaySound2(SOUND_OBJECT_MRISHOOT);
+    PlaySound2(SOUND_OBJ_MRI_SHOOT);
 }
 
 void bhv_mr_i_body_loop(void) {
@@ -88,12 +88,12 @@ void ActionMrI3(void) {
         sp36 = o->oMoveAngleYaw;
         o->oMoveAngleYaw += sp34 * coss(0x4000 * sp2C);
         if (sp36 < 0 && o->oMoveAngleYaw >= 0)
-            PlaySound2(SOUND_CH9_UNK6B);
+            PlaySound2(SOUND_OBJ2_MRI_SPINNING);
         o->oMoveAnglePitch = (1.0 - coss(0x4000 * sp2C)) * -0x4000;
         obj_shake_y(4.0f);
     } else if (o->oTimer < 96) {
         if (o->oTimer == 64)
-            PlaySound2(SOUND_OBJECT_MRIDEATH);
+            PlaySound2(SOUND_OBJ_MRI_DEATH);
         sp30 = (f32)(o->oTimer - 63) / 32;
         o->oMoveAngleYaw += sp34 * coss(0x4000 * sp2C);
         o->oMoveAnglePitch = (1.0 - coss(0x4000 * sp2C)) * -0x4000;
@@ -101,8 +101,8 @@ void ActionMrI3(void) {
         sp20 = coss(0x4000 * sp30) * 0.4 + 0.6;
         obj_scale(sp20 * sp1C);
     } else if (o->oTimer < 104) {
-    } // do nothing
-    else if (o->oTimer < 168) {
+        // do nothing
+    } else if (o->oTimer < 168) {
         if (o->oTimer == 104) {
             obj_become_intangible();
             func_802A3004();

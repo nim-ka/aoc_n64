@@ -43,7 +43,7 @@ void bhv_kickable_board_loop(void) {
             if (o->oTimer > 30 && (sp24 = func_802A9A0C(0))) {
                 if (gMarioObject->oPosY > o->oPosY + 160.0f && sp24 == 2) {
                     o->oAction++;
-                    PlaySound2(SOUND_GENERAL_BUTTONPRESS_2);
+                    PlaySound2(SOUND_GENERAL_BUTTON_PRESS_2);
                 } else
                     o->oTimer = 0;
             }
@@ -54,7 +54,7 @@ void bhv_kickable_board_loop(void) {
             } else
                 func_802A9B54();
             if (!(o->OBJECT_FIELD_S32(0x1B) & 0x7FFF))
-                PlaySound2(SOUND_GENERAL_BUTTONPRESS_2);
+                PlaySound2(SOUND_GENERAL_BUTTON_PRESS_2);
             o->OBJECT_FIELD_S32(0x1B) += 0x400;
             break;
         case 2:

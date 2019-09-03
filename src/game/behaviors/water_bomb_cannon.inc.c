@@ -61,7 +61,7 @@ void water_bomb_cannon_act_1(void) {
                 if (o->oCannonUnkF8 != 0) {
                     o->oCannonUnkF8 -= 1;
                 } else {
-                    PlaySound2(SOUND_OBJECT_CANNON4);
+                    PlaySound2(SOUND_OBJ_CANNON4);
                     o->oCannonUnkF4 = 70;
                     o->oCannonUnkFC = 0x1000 + 0x400 * (RandomU16() & 0x3);
                     o->oCannonUnk100 = -0x2000 + o->oMoveAngleYaw + 0x1000 * (RandomU16() % 5);

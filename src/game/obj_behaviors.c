@@ -360,7 +360,7 @@ void ObjSplash(s32 waterY, s32 objY) {
     if ((f32)(waterY + 30) > o->oPosY && o->oPosY > (f32)(waterY - 30)) {
         spawn_object(o, MODEL_WATER_WAVES_SURF, bhvObjectWaterWave);
         if (o->oVelY < -20.0f) {
-            PlaySound2(SOUND_OBJECT_DIVINGINTOWATER);
+            PlaySound2(SOUND_OBJ_DIVING_INTO_WATER);
         }
     }
     if ((objY + 50) < waterY && (globalTimer & 0x1F) == 0) {
@@ -689,7 +689,7 @@ s32 ObjLavaDeath(void) {
     }
 
     if ((o->oTimer % 8) == 0) {
-        PlaySound2(SOUND_OBJECT_BULLYEXPLODE_2);
+        PlaySound2(SOUND_OBJ_BULLY_EXPLODE_2);
         deathSmoke = spawn_object(o, MODEL_SMOKE, bhvBobombBullyDeathSmoke);
         deathSmoke->oPosX += RandomFloat() * 20.0f;
         deathSmoke->oPosY += RandomFloat() * 20.0f;

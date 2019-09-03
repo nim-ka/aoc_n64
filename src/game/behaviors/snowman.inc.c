@@ -92,7 +92,7 @@ void func_802EFDA0(void) {
 
         o->parentObj->oAction = 2;
         o->parentObj->oVelY = 100.0f;
-        PlaySound2(SOUND_OBJECT_WATERBOMBBOUNCING2);
+        PlaySound2(SOUND_OBJ_SNOWMAN_BOUNCE);
     }
 
     if (o->oTimer == 200) {
@@ -137,13 +137,13 @@ void bhv_snowmans_bottom_loop(void) {
         case 1:
             func_802EFC44();
             func_802EFB84(o->oSnowmansBottomUnkF4);
-            PlaySound(SOUND_ENVIRONMENT_UNKNOWN2);
+            PlaySound(SOUND_ENV_UNKNOWN2);
             break;
 
         case 2:
             func_802EFDA0();
             func_802EFB84(o->oSnowmansBottomUnkF4);
-            PlaySound(SOUND_ENVIRONMENT_UNKNOWN2);
+            PlaySound(SOUND_ENV_UNKNOWN2);
             break;
 
         case 3:
@@ -208,7 +208,7 @@ void bhv_snowmans_head_loop(void) {
             if (o->oPosY < -994.0f) {
                 o->oPosY = -994.0f;
                 o->oAction = 4;
-                PlaySound2(SOUND_OBJECT_EXPLODE);
+                PlaySound2(SOUND_OBJ_SNOWMAN_EXPLODE);
                 play_puzzle_jingle();
             }
             break;

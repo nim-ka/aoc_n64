@@ -92,7 +92,7 @@ void bhv_bowling_ball_roll_loop(void) {
     }
 
     if ((collisionFlags & OBJ_COL_FLAG_GROUNDED) && (o->oVelY > 5.0f))
-        PlaySound2(SOUND_GENERAL_QUIETPOUND1_LOWPRIO);
+        PlaySound2(SOUND_GENERAL_QUIET_POUND1_LOWPRIO);
 }
 
 void bhv_bowling_ball_initializeLoop(void) {
@@ -225,7 +225,7 @@ void bhv_bob_pit_bowling_ball_loop(void) {
 
     func_802EDA14();
     func_8027F440(4, o->oPosX, o->oPosY, o->oPosZ);
-    PlaySound(SOUND_ENVIRONMENT_UNKNOWN2);
+    PlaySound(SOUND_ENV_UNKNOWN2);
     SetObjectVisibility(o, 3000);
 }
 
@@ -246,11 +246,11 @@ void bhv_free_bowling_ball_roll_loop(void) {
 
     if (o->oForwardVel > 10.0f) {
         func_8027F440(4, o->oPosX, o->oPosY, o->oPosZ);
-        PlaySound(SOUND_ENVIRONMENT_UNKNOWN2);
+        PlaySound(SOUND_ENV_UNKNOWN2);
     }
 
     if ((collisionFlags & OBJ_COL_FLAG_GROUNDED) && !(collisionFlags & OBJ_COL_FLAGS_LANDED))
-        PlaySound2(SOUND_GENERAL_QUIETPOUND1_LOWPRIO);
+        PlaySound2(SOUND_GENERAL_QUIET_POUND1_LOWPRIO);
 
     if (!is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 6000)) {
         o->header.gfx.node.flags |= 0x10; /* bit 4 */

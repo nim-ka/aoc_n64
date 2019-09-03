@@ -66,7 +66,7 @@ void bhv_star_spawn_loop(void) {
             o->oPosY = o->oStarSpawnUnkFC + sins((o->oTimer * 0x8000) / 30) * 400.0f;
             o->oFaceAngleYaw += 0x1000;
             spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
-            PlaySound(SOUND_ENVIRONMENT_STAR);
+            PlaySound(SOUND_ENV_STAR);
             if (o->oTimer == 30) {
                 o->oAction = 2;
                 o->oForwardVel = 0;
@@ -83,10 +83,10 @@ void bhv_star_spawn_loop(void) {
             spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
             obj_move_xyz_using_fvel_and_yaw(o);
             o->oFaceAngleYaw = o->oFaceAngleYaw - o->oTimer * 0x10 + 0x1000;
-            PlaySound(SOUND_ENVIRONMENT_STAR);
+            PlaySound(SOUND_ENV_STAR);
 
             if (o->oPosY < o->oHomeY) {
-                PlaySound2(SOUND_GENERAL_STARAPPEARS);
+                PlaySound2(SOUND_GENERAL_STAR_APPEARS);
                 obj_become_tangible();
                 o->oPosY = o->oHomeY;
                 o->oAction = 3;

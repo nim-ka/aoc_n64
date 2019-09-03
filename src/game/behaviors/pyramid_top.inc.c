@@ -101,7 +101,7 @@ void bhv_pyramid_top_loop(void) {
 
         case PYRAMID_TOP_ACT_SPINNING:
             if (o->oTimer == 0) {
-                PlaySound2(SOUND_CH8_UNK4B);
+                PlaySound2(SOUND_GENERAL2_PYRAMID_TOP_SPIN);
             }
 
             bhv_pyramid_top_spinning();
@@ -109,7 +109,7 @@ void bhv_pyramid_top_loop(void) {
 
         case PYRAMID_TOP_ACT_EXPLODE:
             if (o->oTimer == 0) {
-                create_sound_spawner(SOUND_CH8_UNK4C);
+                create_sound_spawner(SOUND_GENERAL2_PYRAMID_TOP_EXPLOSION);
             }
 
             bhv_pyramid_top_explode();

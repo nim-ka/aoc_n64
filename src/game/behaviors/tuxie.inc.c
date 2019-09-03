@@ -15,9 +15,9 @@ void play_penguin_walking_sound(s32 walk) {
     s32 sound;
     if (o->oSoundStateID == 0) {
         if (walk == PENGUIN_WALK_BABY)
-            sound = SOUND_BABY_PENGUIN_WALK;
+            sound = SOUND_OBJ_BABY_PENGUIN_WALK;
         else // PENGUIN_WALK_BIG
-            sound = SOUND_BIG_PENGUIN_WALK;
+            sound = SOUND_OBJ_BIG_PENGUIN_WALK;
         func_802BE2E8(1, 11, sound);
     }
 }
@@ -130,7 +130,7 @@ void ActionTuxiesMother0(void) {
         }
     }
     if (obj_check_anim_frame(1))
-        PlaySound2(SOUND_BIG_PENGUIN_YELL);
+        PlaySound2(SOUND_OBJ_BIG_PENGUIN_YELL);
 }
 
 void (*sTuxiesMotherActions[])(void) = { ActionTuxiesMother0, ActionTuxiesMother1,
@@ -181,7 +181,7 @@ void ActionSmallPenguin1(void) {
 void ActionSmallPenguin3(void) {
     if (o->oTimer > 5) {
         if (o->oTimer == 6)
-            PlaySound2(SOUND_BABY_PENGUIN_DIVE);
+            PlaySound2(SOUND_OBJ_BABY_PENGUIN_DIVE);
         set_obj_animation_and_sound_state(1);
         if (o->oTimer > 25)
             if (!mario_is_dive_sliding())
@@ -269,9 +269,9 @@ void bhv_small_penguin_loop(void) {
             copy_object_pos(o, gMarioObject);
             if (gGlobalTimer % 30 == 0)
 #ifndef VERSION_JP
-                play_sound(SOUND_BABY_PENGUIN_YELL, gMarioObject->header.gfx.cameraToObject);
+                play_sound(SOUND_OBJ2_BABY_PENGUIN_YELL, gMarioObject->header.gfx.cameraToObject);
 #else
-                play_sound(SOUND_BABY_PENGUIN_YELL, o->header.gfx.cameraToObject);
+                play_sound(SOUND_OBJ2_BABY_PENGUIN_YELL, o->header.gfx.cameraToObject);
 #endif
             break;
         case HELD_THROWN:

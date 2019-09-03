@@ -139,10 +139,10 @@ void bhv_mips_act_follow_path(void) {
 
     // Play sounds during walk animation.
     if (func_8029F788() == 1 && (collisionFlags & OBJ_COL_FLAG_UNDERWATER)) {
-        PlaySound2(SOUND_OBJECT_MIPSRABBITWATER);
+        PlaySound2(SOUND_OBJ_MIPS_RABBIT_WATER);
         spawn_object(o, MODEL_NONE, bhvSurfaceWaveShrinking);
     } else if (func_8029F788() == 1) {
-        PlaySound2(SOUND_OBJECT_MIPSRABBIT);
+        PlaySound2(SOUND_OBJ_MIPS_RABBIT);
     }
 }
 

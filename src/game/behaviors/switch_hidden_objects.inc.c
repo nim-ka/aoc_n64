@@ -56,7 +56,7 @@ void func_802B0F54(void) {
             func_802A3004();
             spawn_triangle_break_particles(30, 138, 3.0f, 4);
             o->oAction++;
-            PlaySound2(SOUND_GENERAL_BREAKBOX);
+            PlaySound2(SOUND_GENERAL_BREAK_BOX);
         }
         load_object_collision_model();
     } else {

@@ -64,7 +64,7 @@ static void camera_lakitu_intro_act_show_dialog(void) {
     s16 targetMovePitch;
     s16 targetMoveYaw;
 
-    PlaySound(SOUND_CH6_LAKITUFLY);
+    PlaySound(SOUND_AIR_LAKITU_FLY);
 
     // Face toward mario
     o->oFaceAnglePitch = obj_turn_pitch_toward_mario(120.0f, 0);

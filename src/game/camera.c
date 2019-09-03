@@ -3839,23 +3839,23 @@ void play_camera_buzz_if_c_sideways(void) {
 }
 
 void play_sound_cbutton_up(void) {
-    play_sound(SOUND_MENU_CAMERAZOOMIN, gDefaultSoundArgs);
+    play_sound(SOUND_MENU_CAMERA_ZOOM_IN, gDefaultSoundArgs);
 }
 
 void play_sound_cbutton_down(void) {
-    play_sound(SOUND_MENU_CAMERAZOOMOUT, gDefaultSoundArgs);
+    play_sound(SOUND_MENU_CAMERA_ZOOM_OUT, gDefaultSoundArgs);
 }
 
 void play_sound_cbutton_side(void) {
-    play_sound(SOUND_MENU_CAMERATURN, gDefaultSoundArgs);
+    play_sound(SOUND_MENU_CAMERA_TURN, gDefaultSoundArgs);
 }
 
 void play_sound_button_change_blocked(void) {
-    play_sound(SOUND_MENU_CAMERABUZZ, gDefaultSoundArgs);
+    play_sound(SOUND_MENU_CAMERA_BUZZ, gDefaultSoundArgs);
 }
 
 void play_sound_rbutton_changed(void) {
-    play_sound(SOUND_MENU_CLICKCHANGEVIEW, gDefaultSoundArgs);
+    play_sound(SOUND_MENU_CLICK_CHANGE_VIEW, gDefaultSoundArgs);
 }
 
 void func_8028B36C(void) {
@@ -7519,7 +7519,7 @@ CmdRet peach_letter_text(UNUSED struct LevelCamera *c) {
 
 #ifndef VERSION_JP
 CmdRet play_sound_peach_reading_letter(UNUSED struct LevelCamera *c) {
-    play_sound(SOUND_PEACH_DEARMARIO, gDefaultSoundArgs);
+    play_sound(SOUND_PEACH_DEAR_MARIO, gDefaultSoundArgs);
 }
 #endif
 

@@ -38,7 +38,7 @@ void ActionOpenedCannon0(void) {
 
 void ActionOpenedCannon4(void) {
     if (o->oTimer == 0)
-        PlaySound2(SOUND_OBJECT_CANNON1);
+        PlaySound2(SOUND_OBJ_CANNON1);
     o->oPosY += 5.0f;
     o->oPosX += (f32)((o->oTimer / 2 & 1) - 0.5) * 2;
     o->oPosZ += (f32)((o->oTimer / 2 & 1) - 0.5) * 2;
@@ -51,7 +51,7 @@ void ActionOpenedCannon4(void) {
 
 void ActionOpenedCannon6(void) {
     if (o->oTimer == 0)
-        PlaySound2(SOUND_OBJECT_CANNON2);
+        PlaySound2(SOUND_OBJ_CANNON2);
     if (o->oTimer < 4) {
         o->oPosX += (f32)((o->oTimer / 2 & 1) - 0.5) * 4.0f;
         o->oPosZ += (f32)((o->oTimer / 2 & 1) - 0.5) * 4.0f;
@@ -73,7 +73,7 @@ void ActionOpenedCannon6(void) {
 
 void ActionOpenedCannon5(void) {
     if (o->oTimer == 0)
-        PlaySound2(SOUND_OBJECT_CANNON3);
+        PlaySound2(SOUND_OBJ_CANNON3);
     if (o->oTimer < 4) {
     } else {
         if (o->oTimer < 20) {

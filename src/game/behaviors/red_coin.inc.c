@@ -36,14 +36,14 @@ void bhv_red_coin_loop(void) {
         if (o->parentObj != NULL) {
             o->parentObj->oHiddenRedCoinStarCoinsCollected++;
 #ifdef VERSION_JP
-            create_sound_spawner(SOUND_GENERAL_REDCOIN);
+            create_sound_spawner(SOUND_GENERAL_RED_COIN);
 #endif
             if (o->parentObj->oHiddenRedCoinStarCoinsCollected != 8) {
                 SpawnOrangeNumber(o->parentObj->oHiddenRedCoinStarCoinsCollected, 0, 0, 0);
             }
 
 #ifndef VERSION_JP
-            play_sound(SOUND_MENU_COLLECTREDCOIN
+            play_sound(SOUND_MENU_COLLECT_RED_COIN
                            + (((u8) o->parentObj->oHiddenRedCoinStarCoinsCollected - 1) << 16),
                        gDefaultSoundArgs);
 #endif

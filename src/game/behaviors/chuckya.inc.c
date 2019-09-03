@@ -118,7 +118,7 @@ void ActionChuckya0(void) {
         o->OBJECT_FIELD_S32(0x1D)++;
     set_obj_animation_and_sound_state(4);
     if (o->oForwardVel > 1.0f)
-        PlaySound(SOUND_CH6_CHUCKYAMOVE);
+        PlaySound(SOUND_AIR_CHUCKYA_MOVE);
     print_debug_bottom_up("fg %d", sp3C);
     print_debug_bottom_up("sp %d", o->oForwardVel);
 }
@@ -150,7 +150,7 @@ void ActionChuckya1(void) {
         } else {
             set_obj_animation_and_sound_state(3);
             if (obj_check_anim_frame(18)) {
-                PlaySound2(SOUND_OBJECT_UNKNOWN4);
+                PlaySound2(SOUND_OBJ_UNKNOWN4);
                 o->oUnknownUnk88 = 2;
                 o->oAction = 3;
                 o->oInteractStatus &= ~(INT_STATUS_GRABBED_MARIO);
@@ -171,7 +171,7 @@ void ActionChuckya2(void) {
     if (o->oMoveFlags & (0x200 | 0x40 | 0x20 | 0x10 | 0x8 | 0x1)) {
         mark_object_for_deletion(o);
         spawn_object_loot_yellow_coins(o, 5, 20.0f);
-        func_802A3034(SOUND_OBJECT_CHUCKYADEATH);
+        func_802A3034(SOUND_OBJ_CHUCKYA_DEATH);
     }
 }
 
@@ -184,7 +184,7 @@ void func_802A97B8(void) {
     if (o->oInteractStatus & INT_STATUS_GRABBED_MARIO) {
         o->oAction = 1;
         o->oUnknownUnk88 = 1;
-        PlaySound2(SOUND_OBJECT_UNKNOWN3);
+        PlaySound2(SOUND_OBJ_UNKNOWN3);
     }
 }
 

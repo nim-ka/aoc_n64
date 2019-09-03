@@ -58,7 +58,7 @@ void bhv_bowser_flame_spawn_loop(void) {
         if (bowser->header.gfx.unk38.curAnim->unk08 == sp30)
             sp30 = 0;
         if (sp30 > 45 && sp30 < 85) {
-            PlaySound(SOUND_CH6_BOWSERSPITFIRE);
+            PlaySound(SOUND_AIR_BOWSER_SPIT_FIRE);
             sp2C = sp1C[5 * sp30];
             sp28 = sp1C[5 * sp30 + 2];
             o->oPosX = bowser->oPosX + (sp28 * sp20 + sp2C * sp24);
@@ -111,7 +111,7 @@ void func_802B392C(s32 *a) {
         if (a[0] < 4) {
             func_802A11B4(o, 8);
             func_802AA618(0, 0, 60.0f);
-            PlaySound2(SOUND_OBJECT_BOWSERWALK);
+            PlaySound2(SOUND_OBJ_BOWSER_WALK);
         }
     }
 }
@@ -321,7 +321,7 @@ void ActionBowser0() // only lasts one frame
 void ActionBowser15(void) {
     o->oForwardVel = 0.0f;
     if (o->oTimer == 0)
-        PlaySound2(SOUND_OBJECT_BOWSERINHALING);
+        PlaySound2(SOUND_OBJ_BOWSER_INHALING);
     if (func_802A4AB0(6))
         o->oAction = 0;
 }
@@ -364,7 +364,7 @@ void ActionBowser16(void) {
             o->oUnknownUnk1AC_S16 = 0;
             o->oBowserUnkF8 = 30;
             if (o->oTimer == 0)
-                PlaySound2(SOUND_CH9_UNK66);
+                PlaySound2(SOUND_OBJ2_BOWSER_TELEPORT);
             if (o->oOpacity == 0) {
                 o->oSubAction++;
                 o->oMoveAngleYaw = o->oAngleToMario;
@@ -381,7 +381,7 @@ void ActionBowser16(void) {
                 if (o->oDistanceToMario > 500.0f) {
                     o->oSubAction = 2;
                     o->oMoveAngleYaw = o->oAngleToMario; // large change in angle?
-                    PlaySound2(SOUND_CH9_UNK66);
+                    PlaySound2(SOUND_OBJ2_BOWSER_TELEPORT);
                 }
             break;
         case 2:
@@ -400,7 +400,7 @@ void ActionBowser8(void) // only in sky
     set_obj_animation_and_sound_state(11);
     frame = o->header.gfx.unk38.animFrame;
     if (frame > 24 && frame < 36) {
-        PlaySound(SOUND_CH6_BOWSERSPITFIRE);
+        PlaySound(SOUND_AIR_BOWSER_SPIT_FIRE);
         if (frame == 35)
             spawn_object_relative(1, 0, 0x190, 0x64, o, MODEL_RED_FLAME, bhvBlueBowserFlame);
         else
@@ -760,7 +760,7 @@ void ActionBowser2(void) {
 
 void ActionBowser3(void) {
     if (item_in_array(o->oTimer, D_8032F514))
-        PlaySound2(SOUND_OBJECT_BOWSERWALK);
+        PlaySound2(SOUND_OBJ_BOWSER_WALK);
     if (func_802A4AB0(10))
         o->oAction = 0;
 }
@@ -770,7 +770,7 @@ void func_802B5C78(void) {
         gSecondCameraFocus = spawn_object(o, MODEL_STAR, &bhvGrandStar);
     else {
         gSecondCameraFocus = spawn_object(o, MODEL_BOWSER_KEY, &bhvBowserKey);
-        PlaySound2(SOUND_CH8_UNK61);
+        PlaySound2(SOUND_GENERAL2_BOWSER_KEY);
     }
     gSecondCameraFocus->oAngleVelYaw = o->oAngleVelYaw;
 }
@@ -791,7 +791,7 @@ void func_802B5DD8(void) {
     o->oBowserEyesShut = 1;
     func_802B392C(&o->oBowserUnkF8);
     if (o->oMoveFlags & 1)
-        PlaySound2(SOUND_OBJECT_BOWSERWALK);
+        PlaySound2(SOUND_OBJ_BOWSER_WALK);
     if (o->oMoveFlags & 2) {
         o->oForwardVel = 0.0f;
         o->oSubAction++;
@@ -845,7 +845,7 @@ s32 func_802B6120(void) {
         }
         if (obj_update_dialog_unk1(2, 18, D_8032F518[o->oBehParams2ndByte], 0)) {
             o->oBowserUnkF8++;
-            PlaySound2(SOUND_CH8_UNK60);
+            PlaySound2(SOUND_GENERAL2_BOWSER_EXPLODE);
             func_80320040(0, 60);
             func_8031F7CC(0, 1);
         }
@@ -950,7 +950,7 @@ void ActionBowser19(void) {
                     sp28 = (o->oTimer - D_8032F520[i - 1][2]) * sp28;
                 func_802B64E8(platform, sp28);
                 if (sp28 != 0)
-                    play_sound(SOUND_ENVIRONMENT_UNKNOWN4, platform->header.gfx.cameraToObject);
+                    play_sound(SOUND_ENV_UNKNOWN4, platform->header.gfx.cameraToObject);
                 sp1C = 0;
                 break;
             }
@@ -995,25 +995,25 @@ struct SoundState D_8032F5B8[] = { { 0, 0, 0, NO_SOUND },
                                    { 0, 0, 0, NO_SOUND },
                                    { 0, 0, 0, NO_SOUND },
                                    { 0, 0, 0, NO_SOUND },
-                                   { 1, 0, -1, SOUND_OBJECT_BOWSERWALK },
-                                   { 1, 0, -1, SOUND_CH9_UNK04 },
-                                   { 1, 0, -1, SOUND_CH9_UNK04 },
+                                   { 1, 0, -1, SOUND_OBJ_BOWSER_WALK },
+                                   { 1, 0, -1, SOUND_OBJ2_BOWSER_ROAR },
+                                   { 1, 0, -1, SOUND_OBJ2_BOWSER_ROAR },
                                    { 0, 0, 0, NO_SOUND },
                                    { 0, 0, 0, NO_SOUND },
-                                   { 1, 20, 40, SOUND_OBJECT_BOWSERWALK },
-                                   { 1, 20, -1, SOUND_OBJECT_BOWSERWALK },
-                                   { 1, 20, 40, SOUND_OBJECT_BOWSERWALK },
-                                   { 1, 0, -1, SOUND_OBJECT_BOWSERTAILPICKUP },
-                                   { 1, 0, -1, SOUND_OBJECT_BOWSERDEFEATED },
-                                   { 1, 8, -1, SOUND_OBJECT_BOWSERWALK },
-                                   { 1, 8, 17, SOUND_OBJECT_BOWSERWALK },
-                                   { 1, 8, -10, SOUND_OBJECT_BOWSERWALK },
+                                   { 1, 20, 40, SOUND_OBJ_BOWSER_WALK },
+                                   { 1, 20, -1, SOUND_OBJ_BOWSER_WALK },
+                                   { 1, 20, 40, SOUND_OBJ_BOWSER_WALK },
+                                   { 1, 0, -1, SOUND_OBJ_BOWSER_TAIL_PICKUP },
+                                   { 1, 0, -1, SOUND_OBJ_BOWSER_DEFEATED },
+                                   { 1, 8, -1, SOUND_OBJ_BOWSER_WALK },
+                                   { 1, 8, 17, SOUND_OBJ_BOWSER_WALK },
+                                   { 1, 8, -10, SOUND_OBJ_BOWSER_WALK },
                                    { 0, 0, 0, NO_SOUND },
-                                   { 1, 5, -1, SOUND_OBJECT_FLAMEBLOWN },
+                                   { 1, 5, -1, SOUND_OBJ_FLAME_BLOWN },
                                    { 0, 0, 0, NO_SOUND },
                                    { 0, 0, 0, NO_SOUND },
-                                   { 1, 0, -1, SOUND_OBJECT_BOWSERTAILPICKUP },
-                                   { 1, 0, -1, SOUND_CH9_UNK04 } };
+                                   { 1, 0, -1, SOUND_OBJ_BOWSER_TAIL_PICKUP },
+                                   { 1, 0, -1, SOUND_OBJ2_BOWSER_ROAR } };
 s8 D_8032F690[4] = { 0, 0, 1, 0 };
 s8 D_8032F694[4] = { 1, 1, 3, 0 };
 extern u8 bowser_3_seg7_collision_07004B94[];
@@ -1063,7 +1063,7 @@ void func_802B697C(void) {
     obj_become_intangible();
     switch (o->oBowserUnk10E) {
         case 0:
-            PlaySound2(SOUND_OBJECT_BOWSERTAILPICKUP);
+            PlaySound2(SOUND_OBJ_BOWSER_TAIL_PICKUP);
             func_8029FA5C(3, 1);
             o->oBowserUnk10E++;
             break;
@@ -1323,7 +1323,7 @@ void ActionFallingBowserPlatform2(void) {
     f32 sp1C;
     UNUSED struct Object *sp18 = o->oPlatformUnkF8;
     if (o->oTimer == 0 || o->oTimer == 22)
-        PlaySound2(SOUND_GENERAL_BOWSERPLATFORM_2);
+        PlaySound2(SOUND_GENERAL_BOWSER_PLATFORM_2);
     if (o->oTimer < 22) {
         set_camera_shake_2(SHAKE_2_FALLING_BITS_PLAT);
         o->oVelY = 8.0f;

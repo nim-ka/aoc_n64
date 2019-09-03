@@ -112,17 +112,17 @@ u8 sDialogSpeaker[170] = {
 #undef _
 
 s32 sDialogSpeakerVoice[15] = {
-    SOUND_UKIKI_CHATTER_LONG,
-    SOUND_BIG_PENGUIN_YELL,
-    SOUND_OBJECT_BOWSERINTROLAUGH,
-    SOUND_OBJECT_KOOPA,
-    SOUND_OBJECT_KINGBOBOMB,
-    SOUND_BOO_LAUGH_LONG,
-    SOUND_OBJECT_BOBOMBBUDDY,
-    SOUND_OBJECT_BOWSERLAUGH,
-    SOUND_BOSS_DIALOG_GRUNT,
-    SOUND_WIGGLER_DIALOG,
-    SOUND_GENERAL_YOSHI,
+    SOUND_OBJ_UKIKI_CHATTER_LONG,
+    SOUND_OBJ_BIG_PENGUIN_YELL,
+    SOUND_OBJ_BOWSER_INTRO_LAUGH,
+    SOUND_OBJ_KOOPA_TALK,
+    SOUND_OBJ_KING_BOBOMB_TALK,
+    SOUND_OBJ_BOO_LAUGH_LONG,
+    SOUND_OBJ_BOBOMB_BUDDY_TALK,
+    SOUND_OBJ_BOWSER_LAUGH,
+    SOUND_OBJ2_BOSS_DIALOG_GRUNT,
+    SOUND_OBJ_WIGGLER_TALK,
+    SOUND_GENERAL_YOSHI_TALK,
     NO_SOUND,
     NO_SOUND,
     NO_SOUND,
@@ -1169,7 +1169,7 @@ void update_game_sound(void) {
                                     *gSoundBanks[bankIndex][index].x, *gSoundBanks[bankIndex][index].z);
 
                                 if ((gSoundBanks[bankIndex][index].soundBits & SOUNDARGS_MASK_SOUNDID)
-                                    == (SOUND_UNKNOWN_UNK1417 & SOUNDARGS_MASK_SOUNDID)) {
+                                    == (SOUND_MOVING_FLYING & SOUNDARGS_MASK_SOUNDID)) {
                                     ret = get_sound_freq_scale(bankIndex, index);
                                     gSequencePlayers[2].channels[channelIndex]->freqScale =
                                         ((f32) D_80363808[bankIndex] / US_FLOAT(80.0)) + ret;
@@ -1261,7 +1261,7 @@ void update_game_sound(void) {
                                     *gSoundBanks[bankIndex][index].x, *gSoundBanks[bankIndex][index].z);
 
                                 if ((gSoundBanks[bankIndex][index].soundBits & SOUNDARGS_MASK_SOUNDID)
-                                    == (SOUND_UNKNOWN_UNK1417 & SOUNDARGS_MASK_SOUNDID)) {
+                                    == (SOUND_MOVING_FLYING & SOUNDARGS_MASK_SOUNDID)) {
                                     ret = get_sound_freq_scale(bankIndex, index);
                                     gSequencePlayers[2].channels[channelIndex]->freqScale =
                                         ((f32) D_80363808[bankIndex] / US_FLOAT(80.0)) + ret;
@@ -1809,7 +1809,7 @@ void play_dialog_sound(u8 dialogId) {
     speaker = sDialogSpeaker[dialogId];
     if (speaker != 0xff) {
         play_sound(sDialogSpeakerVoice[speaker], gDefaultSoundArgs);
-        if (speaker == 2) // SOUND_OBJECT_BOWSERINTROLAUGH
+        if (speaker == 2) // SOUND_OBJ_BOWSER_INTRO_LAUGH
         {
             play_sequence(1, SEQ_EVENT_KOOPA_MESSAGE, 0);
         }

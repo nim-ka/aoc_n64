@@ -1,7 +1,7 @@
 // elevator.c.inc
 
 void func_802AD01C(void) {
-    PlaySound2(SOUND_GENERAL_QUIETPOUND1);
+    PlaySound2(SOUND_GENERAL_QUIET_POUND1);
     ShakeScreen(1);
 }
 
@@ -26,7 +26,7 @@ void ActionElevator0(void) {
 }
 
 void ActionElevator1(void) {
-    PlaySound(SOUND_ENVIRONMENT_ELEVATOR1);
+    PlaySound(SOUND_ENV_ELEVATOR1);
     if (o->oTimer == 0 && obj_is_mario_on_platform())
         func_802AD01C();
     approach_f32_signed(&o->oVelY, 10.0f, 2.0f);
@@ -44,7 +44,7 @@ void ActionElevator1(void) {
 
 void ActionElevator2() // Pretty similar code to action 1
 {
-    PlaySound(SOUND_ENVIRONMENT_ELEVATOR1);
+    PlaySound(SOUND_ENV_ELEVATOR1);
     if (o->oTimer == 0 && obj_is_mario_on_platform())
         func_802AD01C();
     approach_f32_signed(&o->oVelY, -10.0f, -2.0f);
@@ -66,7 +66,7 @@ void ActionElevator4() {
     o->oVelY = 0;
     if (o->oTimer == 0) {
         ShakeScreen(1);
-        PlaySound2(SOUND_GENERAL_METALPOUND);
+        PlaySound2(SOUND_GENERAL_METAL_POUND);
     }
     if (!mario_is_in_air_action() && !obj_is_mario_on_platform())
         o->oAction = 1;
@@ -77,7 +77,7 @@ void ActionElevator3() // nearly identical to action 2
     o->oVelY = 0;
     if (o->oTimer == 0) {
         ShakeScreen(1);
-        PlaySound2(SOUND_GENERAL_METALPOUND);
+        PlaySound2(SOUND_GENERAL_METAL_POUND);
     }
     if (!mario_is_in_air_action() && !obj_is_mario_on_platform())
         o->oAction = 0;

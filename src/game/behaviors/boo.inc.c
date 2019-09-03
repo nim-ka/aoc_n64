@@ -156,7 +156,7 @@ static s32 boo_vanish_or_appear(void) {
     ) {
         if (o->oOpacity == 40) {
             o->oBooTargetOpacity = 255;
-            PlaySound2(SOUND_BOO_LAUGH_LONG);
+            PlaySound2(SOUND_OBJ_BOO_LAUGH_LONG);
         }
 
         if (o->oOpacity > 180) {
@@ -317,11 +317,11 @@ static s32 boo_get_attack_status(void) {
             
             o->oInteractStatus = 0;
             
-            PlaySound2(SOUND_BOO_LAUGH_SHORT);
+            PlaySound2(SOUND_OBJ_BOO_LAUGH_SHORT);
             
             attackStatus = BOO_ATTACKED;
         } else {
-            PlaySound2(SOUND_OBJECT_BOOBOUNCETOP);
+            PlaySound2(SOUND_OBJ_BOO_BOUNCE_TOP);
             
             o->oInteractStatus = 0;
             
@@ -432,7 +432,7 @@ static void ActionBoo1(void) {
     }
     
     if (attackStatus == BOO_ATTACKED) {
-        create_sound_spawner(SOUND_OBJECT_DYINGENEMY1);
+        create_sound_spawner(SOUND_OBJ_DYING_ENEMY1);
     }
 }
 
@@ -465,7 +465,7 @@ static void ActionBoo4(void) {
     }
 
     if (obj_update_dialog_unk1(2, 2, dialogID, 0)) {
-        create_sound_spawner(SOUND_OBJECT_DYINGENEMY1);
+        create_sound_spawner(SOUND_OBJ_DYING_ENEMY1);
         mark_object_for_deletion(o);
         
         if (dialogID == 108) { // If the Big Boo should spawn, play the jingle
@@ -573,7 +573,7 @@ static void ActionBooGivingStar1(void) {
     }
     
     if (attackStatus == 1) {
-        create_sound_spawner(SOUND_OBJECT_THWOMP);
+        create_sound_spawner(SOUND_OBJ_THWOMP);
     }
 }
 
@@ -780,7 +780,7 @@ void bhv_merry_go_round_boo_manager_loop(void) {
 #ifndef VERSION_JP
                     play_puzzle_jingle();
 #else
-                    play_sound(SOUND_CH8_RIGHTANSWER, gDefaultSoundArgs);
+                    play_sound(SOUND_GENERAL2_RIGHT_ANSWER, gDefaultSoundArgs);
 #endif
                 }
             }
@@ -831,7 +831,7 @@ void bhv_boo_in_castle_loop(void) {
         
         if (o->oDistanceToMario < 1000.0f) {
             o->oAction++;
-            PlaySound2(SOUND_BOO_LAUGH_LONG);
+            PlaySound2(SOUND_OBJ_BOO_LAUGH_LONG);
         }
         
         o->oForwardVel = 0.0f;
@@ -888,7 +888,7 @@ void bhv_boo_boss_spawned_bridge_loop(void) {
             // fallthrough
         case 1:
             o->oPosY += 8.0f;
-            PlaySound(SOUND_ENVIRONMENT_ELEVATOR2);
+            PlaySound(SOUND_ENV_ELEVATOR2);
             
             if (o->oPosY > targetY) {
                 o->oPosY = targetY;

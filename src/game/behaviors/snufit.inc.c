@@ -79,7 +79,7 @@ void snufit_act_1(void) {
         o->oAction = 0;
     } else if (o->oSnufitUnk10C < 3 && o->oTimer >= 3) {
         o->oSnufitUnk10C += 1;
-        PlaySound2(SOUND_OBJECT_SNUFITSHOOT);
+        PlaySound2(SOUND_OBJ_SNUFIT_SHOOT);
         spawn_object_relative(0, 0, -20, 40, o, MODEL_BOWLING_BALL, bhvSnufitBalls);
         o->oSnufitUnkF4 = -30;
         o->oTimer = 0;
@@ -88,7 +88,7 @@ void snufit_act_1(void) {
 
 void bhv_snufit_loop(void) {
     if (!(o->activeFlags & 0x0008)) {
-        o->oDeathSound = SOUND_OBJECT_SNUFITDEATH;
+        o->oDeathSound = SOUND_OBJ_SNUFIT_SKEETER_DEATH;
         if (o->oDistanceToMario < 800.0f) {
             obj_turn_pitch_toward_mario(120.0f, 2000);
 

@@ -57,7 +57,7 @@ void bhv_checkerboard_platform_loop(void) {
     f32 sp24 = o->oUnknownUnk1AC_F32;
     o->oCheckerBoardPlatformUnkF8 = 0;
     if (o->oDistanceToMario < 1000.0f)
-        PlaySound(SOUND_ENVIRONMENT_ELEVATOR4);
+        PlaySound(SOUND_ENV_ELEVATOR4);
     switch (o->oAction) {
         case 0:
             if (o->oBehParams2ndByte == 0)

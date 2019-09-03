@@ -28,9 +28,9 @@ void bhv_treasure_chest_top_loop(void) {
             if (o->oTimer == 0) {
                 if (sp34->oUnknownUnkFC_S32 == 0) {
                     spawn_object_relative(0, 0, -80, 120, o, MODEL_BUBBLE, bhvWaterAirBubble);
-                    play_sound(SOUND_GENERAL_CLAMSHELL1, o->header.gfx.cameraToObject);
+                    play_sound(SOUND_GENERAL_CLAM_SHELL1, o->header.gfx.cameraToObject);
                 } else {
-                    play_sound(SOUND_GENERAL_OPENCHEST1, o->header.gfx.cameraToObject);
+                    play_sound(SOUND_GENERAL_OPEN_CHEST, o->header.gfx.cameraToObject);
                 }
             }
 
@@ -69,7 +69,7 @@ void bhv_treasure_chest_bottom_loop(void) {
                 if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 150)) {
                     if (!o->parentObj->oUnknownUnkF8_S32) {
                         if (o->parentObj->oUnknownUnkF4_S32 == o->oBehParams2ndByte) {
-                            play_sound(SOUND_CH8_RIGHTANSWER, gDefaultSoundArgs);
+                            play_sound(SOUND_GENERAL2_RIGHT_ANSWER, gDefaultSoundArgs);
                             o->parentObj->oUnknownUnkF4_S32++;
                             o->oAction = 1;
                         } else {
@@ -77,7 +77,7 @@ void bhv_treasure_chest_bottom_loop(void) {
                             o->parentObj->oUnknownUnkF8_S32 = 1;
                             o->oAction = 2;
                             obj_become_tangible();
-                            play_sound(SOUND_MENU_CAMERABUZZ, gDefaultSoundArgs);
+                            play_sound(SOUND_MENU_CAMERA_BUZZ, gDefaultSoundArgs);
                         }
                     }
                 }
@@ -130,7 +130,7 @@ void bhv_treasure_chest_ship_loop(void) {
         case 1:
             if (gEnvironmentRegions != NULL) {
                 gEnvironmentRegions[6] += -5;
-                play_sound(SOUND_ENVIRONMENT_WATERDRAIN, gDefaultSoundArgs);
+                play_sound(SOUND_ENV_WATER_DRAIN, gDefaultSoundArgs);
                 set_camera_shake_2(SHAKE_2_JRB_SHIP_DRAIN);
                 if (gEnvironmentRegions[6] < -335) {
                     gEnvironmentRegions[6] = -335;
