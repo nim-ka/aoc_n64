@@ -125,7 +125,7 @@ void BehActSelectorLoop(void) {
         // Sometimes, stars are not selectable even if they appear on the screen.
         // This code filters selectable and non-selectable stars.
         sSelectedAct = 0;
-        handleMenuScrolling(MENU_SCROLL_HORIZONTAL, &sSelectedStarIndex, 0, sObtainedStars);
+        handle_menu_scrolling(MENU_SCROLL_HORIZONTAL, &sSelectedStarIndex, 0, sObtainedStars);
         starIndexCounter = sSelectedStarIndex;
         for (i = 0; i < sVisibleStars; i++) {
             // Can the star be selected (is it either already completed or the first non-completed mission)
@@ -139,7 +139,7 @@ void BehActSelectorLoop(void) {
         }
     } else {
         // If all stars are collected then they are all selectable.
-        handleMenuScrolling(MENU_SCROLL_HORIZONTAL, &sSelectedStarIndex, 0, sVisibleStars - 1);
+        handle_menu_scrolling(MENU_SCROLL_HORIZONTAL, &sSelectedStarIndex, 0, sVisibleStars - 1);
         sSelectedAct = sSelectedStarIndex;
     }
 
@@ -155,18 +155,18 @@ void BehActSelectorLoop(void) {
 static void ShowCourseNumber(void) {
     u8 courseNum[4];
 
-    dl_add_new_translation_matrix(1, 158.0f, 81.0f, 0.0f);
+    create_dl_translation_matrix(MENU_MTX_PUSH, 158.0f, 81.0f, 0.0f);
 
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700F228);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
-    Int2Str(gCurrCourseNum, courseNum);
+    int_to_str(gCurrCourseNum, courseNum);
     if (gCurrCourseNum < 10) {
-        PutString(2, 152, 158, courseNum);
+        print_hud_lut_string(HUD_STR_GLOBAL, 152, 158, courseNum);
     } else {
-        PutString(2, 143, 158, courseNum);
+        print_hud_lut_string(HUD_STR_GLOBAL, 143, 158, courseNum);
     }
 
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
@@ -189,13 +189,13 @@ static void ShowActSelectorMenu(void) {
     s16 x2;
     s8 i;
 
-    dl_add_new_ortho_matrix();
+    create_dl_ortho_matrix();
 
     // Display the coin highscore.
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
-    ShowCoins(1, gCurrSaveFileNum - 1, gCurrCourseNum - 1, 155, 106);
+    print_hud_my_score_coins(1, gCurrSaveFileNum - 1, gCurrCourseNum - 1, 155, 106);
 
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
@@ -203,12 +203,12 @@ static void ShowActSelectorMenu(void) {
 
     // Display the "MY SCORE" text
     if (save_file_get_course_coin_score(gCurrSaveFileNum - 1, gCurrCourseNum - 1) != 0) {
-        PrintGenericText(102, 118, myScore);
+        print_generic_string(102, 118, myScore);
     }
 
     // Display the level name; add 3 to skip the number and spacing to get to the actual string to center.
     x = get_str_x_pos_from_center(160, currLevelName + 3, 10.0f);
-    PrintGenericText(x, 33, currLevelName + 3);
+    print_generic_string(x, 33, currLevelName + 3);
 
     // Display the course number.
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
@@ -226,13 +226,13 @@ static void ShowActSelectorMenu(void) {
 #else
         x2 = get_str_x_pos_from_center(163, selectedActName, 8.0f);
 #endif
-        PrintRegularText(x2, 81, selectedActName);
+        print_menu_generic_string(x2, 81, selectedActName);
     }
 
     // Display the numbers above each star.
     for (i = 1; i <= sVisibleStars; i++) {
         starNumbers[0] = i;
-        PrintRegularText(i * 34 - sVisibleStars * 17 + 0x8B, 38, starNumbers);
+        print_menu_generic_string(i * 34 - sVisibleStars * 17 + 0x8B, 38, starNumbers);
     }
 
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
@@ -277,7 +277,7 @@ int LevelProc_80177610(UNUSED s32 a, UNUSED s32 b) {
             } else {
                 sCurrentMission = sDefaultSelectedAct;
             }
-            D_80330534 = sSelectedAct + 1;
+            gDialogCourseActNum = sSelectedAct + 1;
         }
     }
     area_update_objects();

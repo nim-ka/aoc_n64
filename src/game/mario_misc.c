@@ -80,7 +80,7 @@ static void bhvToadMessage_opaque(void) {
 }
 
 static void bhvToadMessage_talking(void) {
-    if (obj_update_dialog_unk2(3, 1, 162, gCurrentObject->oToadMessageDialogNum) != 0) {
+    if (obj_update_dialog_with_cutscene(3, 1, CUTSCENE_DIALOG_1, gCurrentObject->oToadMessageDialogNum) != 0) {
         gCurrentObject->oToadMessageRecentlyTalked = 1;
         gCurrentObject->oToadMessageState = TOAD_MESSAGE_FADING;
         switch (gCurrentObject->oToadMessageDialogNum) {

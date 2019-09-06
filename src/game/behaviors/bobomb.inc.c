@@ -305,20 +305,25 @@ void BobombBuddyIdleLoop(void) {
         o->oAction = BOBOMB_BUDDY_ACT_TURN_TO_TALK;
 }
 
-// sp30 = arg0
-// sp34 = arg1
-
-void BobombBuddyCannonLoop(s16 arg0, s16 arg1) {
-    struct Object *sp2c;
-    s16 sp2a, sp28;
+/**
+ * Function for the Bob-omb Buddy cannon guy.
+ * dialogFirstText is the first dialogID called when Bob-omb Buddy 
+ * starts to talk to Mario to prepare the cannon(s) for him.
+ * Then the camera goes to the nearest cannon, to play the "prepare cannon" cutscene
+ * dialogSecondText is called after Bob-omb Buddy has the cannon(s) ready and
+ * then tells Mario that is "Ready for blastoff".
+ */
+void BobombBuddyCannonLoop(s16 dialogFirstText, s16 dialogSecondText) {
+    struct Object *cannonClosed;
+    s16 buddyText, cutscene;
 
     switch (o->oBobombBuddyCannonStatus) {
         case BOBOMB_BUDDY_CANNON_UNOPENED:
-            sp2a = func_8028F8E0(162, o, arg0);
-            if (sp2a != 0) {
+            buddyText = cutscene_object_with_dialog(CUTSCENE_DIALOG_1, o, dialogFirstText);
+            if (buddyText != 0) {
                 save_file_set_cannon_unlocked();
-                sp2c = obj_nearest_object_with_behavior(bhvCannonClosed);
-                if (sp2c != 0)
+                cannonClosed = obj_nearest_object_with_behavior(bhvCannonClosed);
+                if (cannonClosed != 0)
                     o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_OPENING;
                 else
                     o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_STOP_TALKING;
@@ -326,15 +331,15 @@ void BobombBuddyCannonLoop(s16 arg0, s16 arg1) {
             break;
 
         case BOBOMB_BUDDY_CANNON_OPENING:
-            sp2c = obj_nearest_object_with_behavior(bhvCannonClosed);
-            sp28 = func_8028F9E8(150, sp2c);
-            if (sp28 == -1)
+            cannonClosed = obj_nearest_object_with_behavior(bhvCannonClosed);
+            cutscene = cutscene_object(CUTSCENE_PREPARE_CANNON, cannonClosed);
+            if (cutscene == -1)
                 o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_OPENED;
             break;
 
         case BOBOMB_BUDDY_CANNON_OPENED:
-            sp2a = func_8028F8E0(162, o, arg1);
-            if (sp2a != 0)
+            buddyText = cutscene_object_with_dialog(CUTSCENE_DIALOG_1, o, dialogSecondText);
+            if (buddyText != 0)
                 o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_STOP_TALKING;
             break;
 
@@ -356,7 +361,7 @@ void BobombBuddyTalkLoop(void) {
 
         switch (o->oBobombBuddyRole) {
             case BOBOMB_BUDDY_ROLE_ADVICE:
-                if (func_8028F8E0(162, o, o->oBehParams2ndByte) != BOBOMB_BUDDY_BP_STYPE_GENERIC) {
+                if (cutscene_object_with_dialog(CUTSCENE_DIALOG_1, o, o->oBehParams2ndByte) != BOBOMB_BUDDY_BP_STYPE_GENERIC) {
                     set_mario_npc_dialog(0);
 
                     o->activeFlags &= ~0x20; /* bit 5 */

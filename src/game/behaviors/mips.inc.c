@@ -227,7 +227,7 @@ void bhv_mips_free(void) {
  * Handles MIPS being held by Mario.
  */
 void bhv_mips_held(void) {
-    s16 dialogId;
+    s16 dialogID;
 
     o->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
     SetObjAnimation(4); // Held animation.
@@ -238,13 +238,13 @@ void bhv_mips_held(void) {
     if (o->oMipsStarStatus == MIPS_STAR_STATUS_HAVENT_SPAWNED_STAR) {
         // Choose dialog based on which MIPS encounter this is.
         if (o->oBehParams2ndByte == 0)
-            dialogId = 84;
+            dialogID = 84;
         else
-            dialogId = 162;
+            dialogID = 162;
 
         if (set_mario_npc_dialog(1) == 2) {
             o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
-            if (func_8028F8E0(162, o, dialogId)) {
+            if (cutscene_object_with_dialog(CUTSCENE_DIALOG_1, o, dialogID)) {
                 o->oInteractionSubtype |= INT_SUBTYPE_DROP_IMMEDIATELY;
                 o->activeFlags &= ~ACTIVE_FLAG_INITIATED_TIME_STOP;
                 o->oMipsStarStatus = MIPS_STAR_STATUS_SHOULD_SPAWN_STAR;

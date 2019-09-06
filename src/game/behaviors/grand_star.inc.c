@@ -35,7 +35,7 @@ void bhv_grand_star_loop(void) {
     } else if (o->oAction == 1) {
         if (o->oTimer == 0) {
             PlaySound2(SOUND_GENERAL_GRAND_STAR);
-            func_8028F9E8(173, o);
+            cutscene_object(CUTSCENE_STAR_SPAWN, o);
             o->oGrandStarUnk108 = func_802B2894(sp28, &o->oPosX, 80.0f, -2.0f);
         }
         obj_move_using_fvel_and_gravity();

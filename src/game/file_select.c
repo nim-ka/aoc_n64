@@ -1153,7 +1153,7 @@ static void handle_controller_input(void) {
 
 static void draw_cursor(void) {
     handle_controller_input();
-    dl_add_new_translation_matrix(1, sCursorPos[0] + 160.0f - 5.0, sCursorPos[1] + 120.0f - 25.0, 0.0f);
+    create_dl_translation_matrix(MENU_MTX_PUSH, sCursorPos[0] + 160.0f - 5.0, sCursorPos[1] + 120.0f - 25.0, 0.0f);
     // Get the right graphic to use for the cursor.
     if (sCursorClickingTimer == 0)
         // Idle
@@ -1174,14 +1174,14 @@ static void draw_cursor(void) {
 static void menu_print_title_text(s8 type, s16 x, s16 y, const unsigned char *text) {
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha - sTextTransparency);
-    PutString(type, x, y, text);
+    print_hud_lut_string(type, x, y, text);
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 }
 // Print normal white text
-static void menu_print_generic_text(s16 x, s16 y, const unsigned char *text) {
+static void menu_print_generic_string(s16 x, s16 y, const unsigned char *text) {
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha - sTextTransparency);
-    PrintGenericText(x, y, text);
+    print_generic_string(x, y, text);
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 }
 
@@ -1208,19 +1208,19 @@ static void display_file_star_count(s8 fileNum, s16 x, s16 y) {
     if (save_file_exists(fileNum) == TRUE) {
         starCount = save_file_get_total_star_count(fileNum, 0, 24);
         // Display star icon
-        PutString(2, x, y, starIcon);
+        print_hud_lut_string(HUD_STR_GLOBAL, x, y, starIcon);
         // If star count is over 100, display x icon and move the star count text one digit to the
         // right.
         if (starCount < 100) {
-            PutString(2, x + 16, y, xIcon);
+            print_hud_lut_string(HUD_STR_GLOBAL, x + 16, y, xIcon);
             offset = 16;
         }
         // Display star count
-        Int2Str(starCount, starCountText);
-        PutString(2, x + offset + 16, y, starCountText);
+        int_to_str(starCount, starCountText);
+        print_hud_lut_string(HUD_STR_GLOBAL, x + offset + 16, y, starCountText);
     } else {
         // Display "new" text
-        PutString(2, x, y, textNew);
+        print_hud_lut_string(HUD_STR_GLOBAL, x, y, textNew);
     }
 }
 
@@ -1229,9 +1229,9 @@ static void draw_main_menu(void) {
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     // Display "SELECT FILE" text
 #ifdef VERSION_JP
-    PutString(1, 96, 35, textSelectFile);
+    print_hud_lut_string(HUD_STR_JPMENU, 96, 35, textSelectFile);
 #else
-    PutString(2, 93, 35, textSelectFile);
+    print_hud_lut_string(HUD_STR_GLOBAL, 93, 35, textSelectFile);
 #endif
     // Display file star counts
     display_file_star_count(0, 92, 78);
@@ -1243,25 +1243,25 @@ static void draw_main_menu(void) {
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 #ifdef VERSION_JP
-    PrintGenericText(50, 39, textScore);
-    PrintGenericText(115, 39, textCopy);
-    PrintGenericText(180, 39, textErase);
-    PrintGenericText(235, 39, textSoundModes[sSoundMode]);
+    print_generic_string(50, 39, textScore);
+    print_generic_string(115, 39, textCopy);
+    print_generic_string(180, 39, textErase);
+    print_generic_string(235, 39, textSoundModes[sSoundMode]);
 #else
-    PrintGenericText(52, 39, textScore);
-    PrintGenericText(117, 39, textCopy);
-    PrintGenericText(177, 39, textErase);
+    print_generic_string(52, 39, textScore);
+    print_generic_string(117, 39, textCopy);
+    print_generic_string(177, 39, textErase);
     sSoundTextX = get_str_x_pos_from_center(254, textSoundModes[sSoundMode], 10.0f);
-    PrintGenericText(sSoundTextX, 39, textSoundModes[sSoundMode]);
+    print_generic_string(sSoundTextX, 39, textSoundModes[sSoundMode]);
 #endif
     // Display file names
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
-    PrintRegularText(92, 65, textMarioA);
-    PrintRegularText(207, 65, textMarioB);
-    PrintRegularText(92, 105, textMarioC);
-    PrintRegularText(207, 105, textMarioD);
+    print_menu_generic_string(92, 65, textMarioA);
+    print_menu_generic_string(207, 65, textMarioB);
+    print_menu_generic_string(92, 105, textMarioC);
+    print_menu_generic_string(207, 105, textMarioD);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
 }
 
@@ -1272,14 +1272,14 @@ static void score_menu_display_message(s8 messageID) {
             menu_print_title_text(1, 90, 35, textCheckFile);
             break;
         case 1:
-            menu_print_generic_text(90, 190, textNoSavedDataExists);
+            menu_print_generic_string(90, 190, textNoSavedDataExists);
             break;
 #else
         case 0:
             menu_print_title_text(2, 95, 35, textCheckFile);
             break;
         case 1:
-            menu_print_generic_text(99, 190, textNoSavedDataExists);
+            menu_print_generic_string(99, 190, textNoSavedDataExists);
             break;
 #endif
     }
@@ -1310,22 +1310,22 @@ static void draw_score_menu(void) {
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 #ifdef VERSION_JP
-    PrintGenericText(45, 35, textReturn);
-    PrintGenericText(128, 35, textCopyFileButton);
-    PrintGenericText(228, 35, textEraseFileButton);
+    print_generic_string(45, 35, textReturn);
+    print_generic_string(128, 35, textCopyFileButton);
+    print_generic_string(228, 35, textEraseFileButton);
 #else
-    PrintGenericText(44, 35, textReturn);
-    PrintGenericText(135, 35, textCopyFileButton);
-    PrintGenericText(231, 35, textEraseFileButton);
+    print_generic_string(44, 35, textReturn);
+    print_generic_string(135, 35, textCopyFileButton);
+    print_generic_string(231, 35, textEraseFileButton);
 #endif
     // Display file names
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
-    PrintRegularText(89, 62, textMarioA);
-    PrintRegularText(211, 62, textMarioB);
-    PrintRegularText(89, 105, textMarioC);
-    PrintRegularText(211, 105, textMarioD);
+    print_menu_generic_string(89, 62, textMarioA);
+    print_menu_generic_string(211, 62, textMarioB);
+    print_menu_generic_string(89, 105, textMarioC);
+    print_menu_generic_string(211, 105, textMarioD);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
 }
 
@@ -1334,42 +1334,42 @@ static void copy_menu_display_message(s8 messageId) {
 #ifdef VERSION_JP
         case 0:
             if (sAllFilesExist == TRUE) {
-                menu_print_generic_text(90, 190, textNoFileToCopyFrom);
+                menu_print_generic_string(90, 190, textNoFileToCopyFrom);
             } else {
                 menu_print_title_text(1, 90, 35, textCopyFile);
             }
             break;
         case 1:
-            menu_print_generic_text(90, 190, textCopyItToWhere);
+            menu_print_generic_string(90, 190, textCopyItToWhere);
             break;
         case 2:
-            menu_print_generic_text(90, 190, textNoSavedDataExists2);
+            menu_print_generic_string(90, 190, textNoSavedDataExists2);
             break;
         case 3:
-            menu_print_generic_text(90, 190, textCopyFinished);
+            menu_print_generic_string(90, 190, textCopyFinished);
             break;
         case 4:
-            menu_print_generic_text(90, 190, textSavedDataExists);
+            menu_print_generic_string(90, 190, textSavedDataExists);
             break;
 #else
         case 0:
             if (sAllFilesExist == TRUE) {
-                menu_print_generic_text(119, 190, textNoFileToCopyFrom);
+                menu_print_generic_string(119, 190, textNoFileToCopyFrom);
             } else {
                 menu_print_title_text(2, 104, 35, textCopyFile);
             }
             break;
         case 1:
-            menu_print_generic_text(109, 190, textCopyItToWhere);
+            menu_print_generic_string(109, 190, textCopyItToWhere);
             break;
         case 2:
-            menu_print_generic_text(101, 190, textNoSavedDataExists2);
+            menu_print_generic_string(101, 190, textNoSavedDataExists2);
             break;
         case 3:
-            menu_print_generic_text(110, 190, textCopyFinished);
+            menu_print_generic_string(110, 190, textCopyFinished);
             break;
         case 4:
-            menu_print_generic_text(110, 190, textSavedDataExists);
+            menu_print_generic_string(110, 190, textSavedDataExists);
             break;
 #endif
     }
@@ -1432,22 +1432,22 @@ static void draw_copy_menu(void) {
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 #ifdef VERSION_JP
-    PrintGenericText(45, 35, textReturn);
-    PrintGenericText(133, 35, textViewScore);
-    PrintGenericText(220, 35, textEraseFileButton);
+    print_generic_string(45, 35, textReturn);
+    print_generic_string(133, 35, textViewScore);
+    print_generic_string(220, 35, textEraseFileButton);
 #else
-    PrintGenericText(44, 35, textReturn);
-    PrintGenericText(128, 35, textViewScore);
-    PrintGenericText(230, 35, textEraseFileButton);
+    print_generic_string(44, 35, textReturn);
+    print_generic_string(128, 35, textViewScore);
+    print_generic_string(230, 35, textEraseFileButton);
 #endif
     // Display file names
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
-    PrintRegularText(89, 62, textMarioA);
-    PrintRegularText(211, 62, textMarioB);
-    PrintRegularText(89, 105, textMarioC);
-    PrintRegularText(211, 105, textMarioD);
+    print_menu_generic_string(89, 62, textMarioA);
+    print_menu_generic_string(211, 62, textMarioB);
+    print_menu_generic_string(89, 105, textMarioC);
+    print_menu_generic_string(211, 105, textMarioD);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
 }
 
@@ -1505,9 +1505,9 @@ static void erase_menu_yes_no_prompt(s16 x, s16 y) {
     }
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, sYesNoColor[0], sYesNoColor[0], sYesNoColor[0], sTextBaseAlpha);
-    PrintGenericText(x + 56, y, textYes);
+    print_generic_string(x + 56, y, textYes);
     gDPSetEnvColor(gDisplayListHead++, sYesNoColor[1], sYesNoColor[1], sYesNoColor[1], sTextBaseAlpha);
-    PrintGenericText(x + 98, y, textNo);
+    print_generic_string(x + 98, y, textNo);
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 }
 
@@ -1527,18 +1527,18 @@ static void erase_menu_display_message(s8 messageId) {
             menu_print_title_text(1, 96, 35, textEraseFile);
             break;
         case 1:
-            menu_print_generic_text(90, 190, textSure);
+            menu_print_generic_string(90, 190, textSure);
             erase_menu_yes_no_prompt(90, 190);
             break;
         case 2:
-            menu_print_generic_text(90, 190, textNoSavedDataExists);
+            menu_print_generic_string(90, 190, textNoSavedDataExists);
             break;
         case 3:
             textMarioAJustErased[3] = sSelectedFile + 10;
-            menu_print_generic_text(90, 190, textMarioAJustErased);
+            menu_print_generic_string(90, 190, textMarioAJustErased);
             break;
         case 4:
-            menu_print_generic_text(90, 190, textSavedDataExists);
+            menu_print_generic_string(90, 190, textSavedDataExists);
             break;
     }
 #else
@@ -1546,18 +1546,18 @@ static void erase_menu_display_message(s8 messageId) {
             menu_print_title_text(2, 98, 35, textEraseFile);
             break;
         case 1:
-            menu_print_generic_text(90, 190, textSure);
+            menu_print_generic_string(90, 190, textSure);
             erase_menu_yes_no_prompt(90, 190);
             break;
         case 2:
-            menu_print_generic_text(100, 190, textNoSavedDataExists);
+            menu_print_generic_string(100, 190, textNoSavedDataExists);
             break;
         case 3:
             textMarioAJustErased[6] = sSelectedFile + 10;
-            menu_print_generic_text(100, 190, textMarioAJustErased);
+            menu_print_generic_string(100, 190, textMarioAJustErased);
             break;
         case 4:
-            menu_print_generic_text(100, 190, textSavedDataExists);
+            menu_print_generic_string(100, 190, textSavedDataExists);
             break;
     }
 #endif
@@ -1617,22 +1617,22 @@ static void draw_erase_menu(void) {
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 #ifdef VERSION_JP
-    PrintGenericText(45, 35, textReturn);
-    PrintGenericText(133, 35, textViewScore);
-    PrintGenericText(223, 35, textCopyFileButton);
+    print_generic_string(45, 35, textReturn);
+    print_generic_string(133, 35, textViewScore);
+    print_generic_string(223, 35, textCopyFileButton);
 #else
-    PrintGenericText(44, 35, textReturn);
-    PrintGenericText(127, 35, textViewScore);
-    PrintGenericText(233, 35, textCopyFileButton);
+    print_generic_string(44, 35, textReturn);
+    print_generic_string(127, 35, textViewScore);
+    print_generic_string(233, 35, textCopyFileButton);
 #endif
     // Display file names
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
-    PrintRegularText(89, 62, textMarioA);
-    PrintRegularText(211, 62, textMarioB);
-    PrintRegularText(89, 105, textMarioC);
-    PrintRegularText(211, 105, textMarioD);
+    print_menu_generic_string(89, 62, textMarioA);
+    print_menu_generic_string(211, 62, textMarioB);
+    print_menu_generic_string(89, 105, textMarioC);
+    print_menu_generic_string(211, 105, textMarioD);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
 }
 
@@ -1646,9 +1646,9 @@ static void draw_sound_mode_menu(void) {
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 #ifdef VERSION_JP
-    PutString(1, 96, 35, textSoundSelect);
+    print_hud_lut_string(HUD_STR_JPMENU, 96, 35, textSoundSelect);
 #else
-    PutString(2, 88, 35, textSoundSelect);
+    print_hud_lut_string(HUD_STR_GLOBAL, 88, 35, textSoundSelect);
 #endif
     // Display mode names
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
@@ -1660,11 +1660,11 @@ static void draw_sound_mode_menu(void) {
             gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, sTextBaseAlpha);
         }
 #ifdef VERSION_JP
-        PrintGenericText(mode * 74 + 67, 87, textSoundModes[mode]);
+        print_generic_string(mode * 74 + 67, 87, textSoundModes[mode]);
 #else
         // Mode names are centered correctly on US
         textX = get_str_x_pos_from_center(mode * 74 + 87, textSoundModes[mode], 10.0f);
-        PrintGenericText(textX, 87, textSoundModes[mode]);
+        print_generic_string(textX, 87, textSoundModes[mode]);
 #endif
     }
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
@@ -1675,10 +1675,10 @@ static unsigned char textStarX[] = { TEXT_STAR_X };
 static void score_file_print_castle_secret_stars(s8 fileNum, s16 x, s16 y) {
     unsigned char secretStarsText[20];
     // Print "[star] x"
-    PrintRegularText(x, y, textStarX);
+    print_menu_generic_string(x, y, textStarX);
     // Print number of castle secret stars
-    Int2Str(save_file_get_total_star_count(fileNum, 15, 24), secretStarsText);
-    PrintRegularText(x + 16, y, secretStarsText);
+    int_to_str(save_file_get_total_star_count(fileNum, 15, 24), secretStarsText);
+    print_menu_generic_string(x + 16, y, secretStarsText);
 }
 
 static void score_file_print_course_coin_score(s8 fileNum, s16 courseNum, s16 x, s16 y) {
@@ -1699,34 +1699,34 @@ static void score_file_print_course_coin_score(s8 fileNum, s16 courseNum, s16 x,
     // MYSCORE
     if (sScoreFileCoinScoreMode == 0) {
         // Print "[coin] x"
-        PrintRegularText(x + 25, y, textCoinX);
+        print_menu_generic_string(x + 25, y, textCoinX);
         // Print coin score
-        Int2Str(save_file_get_course_coin_score(fileNum, courseNum), coinScoreText);
-        PrintRegularText(x + 41, y, coinScoreText);
+        int_to_str(save_file_get_course_coin_score(fileNum, courseNum), coinScoreText);
+        print_menu_generic_string(x + 41, y, coinScoreText);
         // If collected, print 100 coin star
         if (stars & (1 << 6)) {
-            PrintRegularText(x + 70, y, textStar);
+            print_menu_generic_string(x + 70, y, textStar);
         }
     }
     // HISCORE
     else {
 #ifdef VERSION_JP
         // Print "[coin] x"
-        PrintRegularText(x, y, textCoinX);
+        print_menu_generic_string(x, y, textCoinX);
         // Print coin highscore
-        Int2Str((u16) save_file_get_max_coin_score(courseNum) & 0xFFFF, coinScoreText);
-        PrintRegularText(x + 16, y, coinScoreText);
+        int_to_str((u16) save_file_get_max_coin_score(courseNum) & 0xFFFF, coinScoreText);
+        print_menu_generic_string(x + 16, y, coinScoreText);
         // Print coin highscore file
-        PrintRegularText(x + 45, y,
+        print_menu_generic_string(x + 45, y,
                          fileNames[(save_file_get_max_coin_score(courseNum) >> 16) & 0xFFFF]);
 #else
         // Print "[coin] x"
-        PrintRegularText(x + 18, y, textCoinX);
+        print_menu_generic_string(x + 18, y, textCoinX);
         // Print coin highscore
-        Int2Str((u16) save_file_get_max_coin_score(courseNum) & 0xFFFF, coinScoreText);
-        PrintRegularText(x + 34, y, coinScoreText);
+        int_to_str((u16) save_file_get_max_coin_score(courseNum) & 0xFFFF, coinScoreText);
+        print_menu_generic_string(x + 34, y, coinScoreText);
         // Print coin highscore file
-        PrintRegularText(x + 60, y,
+        print_menu_generic_string(x + 60, y,
                          fileNames[(save_file_get_max_coin_score(courseNum) >> 16) & 0xFFFF]);
 #endif
     }
@@ -1747,7 +1747,7 @@ static void score_file_print_course_star_score(s8 fileNum, s16 courseNum, s16 x,
     }
     // Terminating byte
     starScoreText[i] = 0xFF;
-    PrintRegularText(x, y, starScoreText);
+    print_menu_generic_string(x, y, starScoreText);
 }
 
 static void draw_file_scores(s8 fileNum) {
@@ -1771,11 +1771,11 @@ static void draw_file_scores(s8 fileNum) {
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 #ifdef VERSION_JP
-    PutString(1, 28, 15, textMario);
-    PutString(2, 86, 15, textFileLetter);
+    print_hud_lut_string(HUD_STR_JPMENU, 28, 15, textMario);
+    print_hud_lut_string(HUD_STR_GLOBAL, 86, 15, textFileLetter);
 #else
-    PutString(2, 25, 15, textMario);
-    PutString(2, 95, 15, textFileLetter);
+    print_hud_lut_string(HUD_STR_GLOBAL, 25, 15, textMario);
+    print_hud_lut_string(HUD_STR_GLOBAL, 95, 15, textFileLetter);
 #endif
     // Print file star count at top
     display_file_star_count(fileNum, 124, 15);
@@ -1788,13 +1788,13 @@ static void draw_file_scores(s8 fileNum) {
 #ifdef VERSION_JP
 #define PADDING 0
 #define PRINT_COURSE_SCORES(course, pad)                                                               \
-    PrintRegularText(23 + (pad * 3), 35 + 12 * course, segmented_to_virtual(levelNameTable[course]));  \
+    print_menu_generic_string(23 + (pad * 3), 35 + 12 * course, segmented_to_virtual(levelNameTable[course]));  \
     score_file_print_course_star_score(fileNum, course, 152, 35 + 12 * course);                        \
     score_file_print_course_coin_score(fileNum, course, 213, 35 + 12 * course);
 #else
 #define PADDING 1
 #define PRINT_COURSE_SCORES(course, pad)                                                               \
-    PrintRegularText(23 + (pad * 3), 35 + 12 * course, segmented_to_virtual(levelNameTable[course]));  \
+    print_menu_generic_string(23 + (pad * 3), 35 + 12 * course, segmented_to_virtual(levelNameTable[course]));  \
     score_file_print_course_star_score(fileNum, course, 171, 35 + 12 * course);                        \
     score_file_print_course_coin_score(fileNum, course, 213, 35 + 12 * course);
 #endif
@@ -1820,25 +1820,25 @@ static void draw_file_scores(s8 fileNum) {
 
 #ifdef VERSION_JP
     // Print level name
-    PrintRegularText(23, 215, segmented_to_virtual(levelNameTable[25]));
+    print_menu_generic_string(23, 215, segmented_to_virtual(levelNameTable[25]));
     // Print castle secret stars
     score_file_print_castle_secret_stars(fileNum, 152, 215);
     // Print current coin score mode
     if (sScoreFileCoinScoreMode == 0) {
-        PrintRegularText(237, 24, textMyScore);
+        print_menu_generic_string(237, 24, textMyScore);
     } else {
-        PrintRegularText(237, 24, textHiScore);
+        print_menu_generic_string(237, 24, textHiScore);
     }
 #else
     // Print level name
-    PrintRegularText(29, 215, segmented_to_virtual(levelNameTable[25]));
+    print_menu_generic_string(29, 215, segmented_to_virtual(levelNameTable[25]));
     // Print castle secret stars
     score_file_print_castle_secret_stars(fileNum, 171, 215);
     // Print current coin score mode
     if (sScoreFileCoinScoreMode == 0) {
-        PrintRegularText(238, 24, textMyScore);
+        print_menu_generic_string(238, 24, textMyScore);
     } else {
-        PrintRegularText(231, 24, textHiScore);
+        print_menu_generic_string(231, 24, textHiScore);
     }
 #endif
 
@@ -1850,7 +1850,7 @@ static void draw_current_menu(void) {
     UNUSED s32 unused1;
     UNUSED s32 unused2;
 
-    dl_add_new_ortho_matrix();
+    create_dl_ortho_matrix();
     switch (sSelectedButtonID) {
         case MENU_BUTTON_NONE:
             draw_main_menu();

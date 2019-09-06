@@ -56,6 +56,9 @@
 #define CAM_MODE_LAKITU_WAS_ZOOMED_OUT  0x02
 #define CAM_MODE_MARIO_SELECTED         0x04
 
+#define CAM_ANGLE_LAKITU_MARIO 1
+#define CAM_ANGLE_LAKITU_FIXED 2
+
 #define CAM_MOVE_RETURN_TO_MIDDLE       0x0001
 #define CAM_MOVE_ZOOMED_OUT             0x0002
 #define CAM_MOVE_ROTATE_RIGHT           0x0004
@@ -398,7 +401,7 @@ extern void vec3f_sub(Vec3f, Vec3f);
 extern void object_pos_to_vec3f(Vec3f, struct Object *);
 extern void vec3f_to_object_pos(struct Object *, Vec3f); // static (ASM)
 extern s32 func_80287CFC(Vec3f, struct CinematicCameraTable[], s16 *, f32 *);
-extern s32 select_or_activate_mario_cam(s32);
+extern s32 select_or_activate_mario_cam(s32 angle);
 extern s32 test_or_set_mario_cam_active(s32);
 extern void set_spline_values(u8);
 extern void set_face_angle_from_spline(Vec3f, Vec3f);
@@ -559,9 +562,9 @@ extern s32 func_8028F2F0(struct LevelCamera *, Vec3f, s16 *, s16);
 extern void find_mario_relative_geometry(struct PlayerGeometry *); // postdefined
 // extern ? func_8028F800(?);
 extern u8 func_8028F834(u8);
-extern s16 func_8028F8E0(u8, struct Object *, s16);
-extern s16 func_8028F9A4(u8, struct Object *);
-extern s16 func_8028F9E8(u8, struct Object *);
+extern s16 cutscene_object_with_dialog(u8 cutsceneTable, struct Object *, s16);
+extern s16 cutscene_object_without_dialog(u8, struct Object *);
+extern s16 cutscene_object(u8, struct Object *);
 // extern ? set_cam_yaw_from_focus_and_pos(?);
 // extern ? func_8028FABC(?);
 // extern ? func_8028FAE0(?);

@@ -131,8 +131,7 @@ void print_displaying_credits_entry(void) {
         lineHeight = 16;
 #endif
 
-        // init printing credits text?
-        func_802D9A60();
+        start_dl_rgba16_cutscene_msg_fade();
         print_credits_str_ascii(28, strY, titleStr);
 
 #ifndef VERSION_JP
@@ -174,8 +173,7 @@ void print_displaying_credits_entry(void) {
             currStrPtr++;
         }
 
-        // update credits fade?
-        func_802D9AE8();
+        stop_dl_rgba16_cutscene_msg_fade();
         sDispCreditsEntry = NULL;
     }
 }
@@ -258,18 +256,18 @@ void handle_save_menu(struct MarioState *m) {
     s32 dialogID;
     // wait for the menu to show up
     // mario_finished_animation(m) ? (not my file, not my problem)
-    if (is_anim_past_end(m) && D_8033A760 != 0) {
+    if (is_anim_past_end(m) && gSaveOptSelectIndex != 0) {
         // save and continue / save and quit
-        if (D_8033A760 == SAVE_OPT_SAVE_AND_CONTINUE || D_8033A760 == SAVE_OPT_SAVE_AND_QUIT) {
+        if (gSaveOptSelectIndex == SAVE_OPT_SAVE_AND_CONTINUE || gSaveOptSelectIndex == SAVE_OPT_SAVE_AND_QUIT) {
             save_file_do_save(gCurrSaveFileNum - 1);
 
-            if (D_8033A760 == SAVE_OPT_SAVE_AND_QUIT) {
+            if (gSaveOptSelectIndex == SAVE_OPT_SAVE_AND_QUIT) {
                 func_80249788(-2, 0); // reset game
             }
         }
 
         // not quitting
-        if (D_8033A760 != SAVE_OPT_SAVE_AND_QUIT) {
+        if (gSaveOptSelectIndex != SAVE_OPT_SAVE_AND_QUIT) {
             disable_time_stop();
             m->faceAngle[1] += 0x8000;
             // figure out what dialog to show, if we should
@@ -467,9 +465,9 @@ s32 act_reading_automatic_dialog(struct MarioState *m) {
         if (m->actionState == 9) {
             actionArg = m->actionArg;
             if (GET_HIGH_U16_OF_32(actionArg) == 0) {
-                func_802D7F90(GET_LOW_U16_OF_32(actionArg));
+                create_dialog_box(GET_LOW_U16_OF_32(actionArg));
             } else {
-                func_802D7FCC(GET_HIGH_U16_OF_32(actionArg), GET_LOW_U16_OF_32(actionArg));
+                create_dialog_box_with_var(GET_HIGH_U16_OF_32(actionArg), GET_LOW_U16_OF_32(actionArg));
             }
         }
         // wait until dialog is done
@@ -524,7 +522,7 @@ s32 act_reading_sign(struct MarioState *m) {
             m->pos[2] += marioObj->oMarioReadingSignDPosZ / 11.0f;
             // create the text box
             if (m->actionTimer++ == 10) {
-                CreateTextBox(m->usedObj->oBehParams2ndByte);
+                create_dialog_inverted_box(m->usedObj->oBehParams2ndByte);
                 m->actionState = 2;
             }
             break;
@@ -626,7 +624,7 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
                     level_trigger_warp(m, WARP_OP_STAR_EXIT);
                 } else {
                     enable_time_stop();
-                    func_802D8050(gLastCompletedStarNum == 7 ? 13 : 14);
+                    create_dialog_box_with_response(gLastCompletedStarNum == 7 ? 13 : 14);
                     m->actionState = 1;
                 }
                 break;
@@ -1101,8 +1099,8 @@ s32 act_exit_land_save_dialog(struct MarioState *m) {
                     enable_time_stop();
                 }
 
-                func_802D9A14(2);
-                D_8033A760 = 0;
+                set_menu_mode(RENDER_COURSE_DONE_SCREEN);
+                gSaveOptSelectIndex = 0;
 
                 m->actionState = 3; // star exit with cap
                 if (!(m->flags & MARIO_CAP_ON_HEAD)) {
@@ -2291,7 +2289,7 @@ static void end_peach_cutscene_star_dance(struct MarioState *m) {
 
         case 140:
 #ifndef VERSION_JP
-            func_80320040(0, 60);
+            sequence_player_unlower(0, 60);
 #endif
             play_cutscene_music(SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_CREDITS));
             break;

@@ -138,9 +138,9 @@ static s16 obj_get_pitch_from_vel(void) {
  * If the player declines the race, then disable time stop and allow mario to
  * move again.
  */
-static s32 obj_update_race_proposition_dialog(s16 arg0) {
+static s32 obj_update_race_proposition_dialog(s16 dialogID) {
     s32 dialogResponse =
-        obj_update_dialog_unk2(2, DIALOG_UNK2_FLAG_0 | DIALOG_UNK2_LEAVE_TIME_STOP_ENABLED, 0xA3, arg0);
+        obj_update_dialog_with_cutscene(2, DIALOG_UNK2_FLAG_0 | DIALOG_UNK2_LEAVE_TIME_STOP_ENABLED, CUTSCENE_DIALOG_2, dialogID);
 
     if (dialogResponse == 2) {
         set_mario_npc_dialog(0);

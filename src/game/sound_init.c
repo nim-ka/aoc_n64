@@ -96,7 +96,7 @@ void func_80248CB8(s32 a) // harden volume
             set_sound_disabled(FALSE);
             break;
         case 2:
-            func_80320040(0, 60); // unsoften?
+            sequence_player_unlower(0, 60);
             break;
     }
     D_8032C6C0 &= ~a;
@@ -214,7 +214,7 @@ void func_802491FC(s16 fadeOutTime) {
 }
 
 void func_8024924C(s16 fadeTimer) {
-    func_8031F7CC(0, fadeTimer);
+    sequence_player_fade_out(0, fadeTimer);
     sCurrentMusic = MUSIC_NONE;
     sCurrentShellMusic = MUSIC_NONE;
     sCurrentCapMusic = MUSIC_NONE;

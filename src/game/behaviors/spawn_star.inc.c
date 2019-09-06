@@ -43,9 +43,9 @@ void bhv_star_spawn_init(void) {
     o->oForwardVel = o->oStarSpawnDisFromHome / 30.0f;
     o->oStarSpawnUnkFC = o->oPosY;
     if (o->oBehParams2ndByte == 0 || gCurrCourseNum == 5)
-        func_8028F9E8(173, o);
+        cutscene_object(CUTSCENE_STAR_SPAWN, o);
     else
-        func_8028F9E8(176, o);
+        cutscene_object(CUTSCENE_SPECIAL_STAR_SPAWN, o);
 
     set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
     o->activeFlags |= 0x20;
@@ -159,7 +159,7 @@ void bhv_hidden_red_coin_star_init(void) {
 }
 
 void bhv_hidden_red_coin_star_loop(void) {
-    D_8036008E = o->oHiddenRedCoinStarCoinsCollected;
+    gRedCoinsCollected = o->oHiddenRedCoinStarCoinsCollected;
     switch (o->oAction) {
         case 0:
             if (o->oHiddenRedCoinStarCoinsCollected == 8)

@@ -2584,7 +2584,7 @@ static void obj_end_dialog(s32 dialogFlags, s32 dialogResult) {
     }
 }
 
-s32 obj_update_dialog_unk1(s32 arg0, s32 dialogFlags, s32 dialogID, UNUSED s32 unusedArg) {
+s32 obj_update_dialog(s32 actionArg, s32 dialogFlags, s32 dialogID, UNUSED s32 unused) {
     s32 dialogResponse = 0;
     UNUSED s32 doneTurning = TRUE;
 
@@ -2616,26 +2616,26 @@ s32 obj_update_dialog_unk1(s32 arg0, s32 dialogFlags, s32 dialogID, UNUSED s32 u
 #endif
 
         case DIALOG_UNK1_INTERRUPT_MARIO_ACTION:
-            if (set_mario_npc_dialog(arg0) == 2) {
+            if (set_mario_npc_dialog(actionArg) == 2) {
                 o->oDialogState++;
             }
             break;
 
         case DIALOG_UNK1_BEGIN_DIALOG:
-            if (dialogFlags & DIALOG_UNK1_FLAG_2) {
-                func_802D8050(dialogID);
-            } else if (dialogFlags & DIALOG_UNK1_FLAG_1) {
-                func_802D7F90(dialogID);
+            if (dialogFlags & DIALOG_UNK1_FLAG_RESPONSE) {
+                create_dialog_box_with_response(dialogID);
+            } else if (dialogFlags & DIALOG_UNK1_FLAG_DEFAULT) {
+                create_dialog_box(dialogID);
             }
             o->oDialogState++;
             break;
 
         case DIALOG_UNK1_AWAIT_DIALOG:
-            if (dialogFlags & DIALOG_UNK1_FLAG_2) {
+            if (dialogFlags & DIALOG_UNK1_FLAG_RESPONSE) {
                 if (gDialogResponse != 0) {
                     obj_end_dialog(dialogFlags, gDialogResponse);
                 }
-            } else if (dialogFlags & DIALOG_UNK1_FLAG_1) {
+            } else if (dialogFlags & DIALOG_UNK1_FLAG_DEFAULT) {
                 if (get_dialog_id() == -1) {
                     obj_end_dialog(dialogFlags, 3);
                 }
@@ -2661,7 +2661,7 @@ s32 obj_update_dialog_unk1(s32 arg0, s32 dialogFlags, s32 dialogID, UNUSED s32 u
     return dialogResponse;
 }
 
-s32 obj_update_dialog_unk2(s32 arg0, s32 dialogFlags, s32 dialogID, s32 arg3) {
+s32 obj_update_dialog_with_cutscene(s32 actionArg, s32 dialogFlags, s32 cutsceneTable, s32 dialogID) {
     s32 dialogResponse = 0;
     s32 doneTurning = TRUE;
 
@@ -2701,7 +2701,7 @@ s32 obj_update_dialog_unk2(s32 arg0, s32 dialogFlags, s32 dialogID, s32 arg3) {
                 }
             }
 
-            if (set_mario_npc_dialog(arg0) == 2 && doneTurning) {
+            if (set_mario_npc_dialog(actionArg) == 2 && doneTurning) {
                 o->oDialogResponse = 0;
                 o->oDialogState++;
             } else {
@@ -2710,12 +2710,12 @@ s32 obj_update_dialog_unk2(s32 arg0, s32 dialogFlags, s32 dialogID, s32 arg3) {
             break;
 
         case DIALOG_UNK2_AWAIT_DIALOG:
-            if (dialogID == 0xA1) {
-                if ((o->oDialogResponse = func_8028F9A4(dialogID, o)) != 0) {
+            if (cutsceneTable == CUTSCENE_CAP_SWITCH_PRESS) {
+                if ((o->oDialogResponse = cutscene_object_without_dialog(cutsceneTable, o)) != 0) {
                     o->oDialogState++;
                 }
             } else {
-                if ((o->oDialogResponse = func_8028F8E0(dialogID, o, arg3)) != 0) {
+                if ((o->oDialogResponse = cutscene_object_with_dialog(cutsceneTable, o, dialogID)) != 0) {
                     o->oDialogState++;
                 }
             }

@@ -246,7 +246,7 @@ void render_hud_coins(void) {
 void render_hud_stars(void) {
     s8 showX = 0;
 
-    if (D_803305CC == 1 && gGlobalTimer & 0x00000008) {
+    if (gHudFlash == 1 && gGlobalTimer & 0x00000008) {
         return;
     }
 
@@ -369,17 +369,17 @@ void render_hud(void) {
         if (mtx == NULL) {
             return;
         }
-        func_802D6440();
+        create_dl_identity_matrix();
         guOrtho(mtx, -16.0f, 336.0f, 0, 240.0f, -10.0f, 10.0f, 1.0f);
         gMoveWd(gDisplayListHead++, 0xE, 0, 0xFFFF);
         gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx), 1);
 
 #else
-        dl_add_new_ortho_matrix();
+        create_dl_ortho_matrix();
 #endif
 
         if (gCurrentArea != NULL && gCurrentArea->camera->currPreset == CAMERA_PRESET_INSIDE_CANNON) {
-            RenderHudCannonReticle();
+            render_hud_cannon_reticle();
         }
 
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_LIVES) {

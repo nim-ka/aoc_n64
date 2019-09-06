@@ -144,7 +144,7 @@ static void racing_penguin_act_show_final_text(void) {
             o->oForwardVel = 4.0f;
         }
     } else if (o->oRacingPenguinFinalTextbox > 0) {
-        if ((textResult = obj_update_dialog_unk2(2, 1, 0xA2, o->oRacingPenguinFinalTextbox)) != 0) {
+        if ((textResult = obj_update_dialog_with_cutscene(2, 1, CUTSCENE_DIALOG_1, o->oRacingPenguinFinalTextbox)) != 0) {
             o->oRacingPenguinFinalTextbox = -1;
             o->oTimer = 0;
         }

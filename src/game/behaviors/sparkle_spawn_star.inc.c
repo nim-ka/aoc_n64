@@ -56,7 +56,7 @@ void func_802AA918(void) {
 void bhv_unused_080c_loop(void) {
     if (o->oAction == 0) {
         if (o->oTimer == 0) {
-            func_8028F9E8(173, o);
+            cutscene_object(CUTSCENE_STAR_SPAWN, o);
             set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
             o->activeFlags |= 0x20;
             o->oAngleVelYaw = 0x800;

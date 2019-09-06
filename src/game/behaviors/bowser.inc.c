@@ -32,7 +32,7 @@ s8 D_8032F4FC[] = { 7, 8, 9, 12, 13, 14, 15, 4, 3, 16, 17, 19, 3, 3, 3, 3 };
 s16 D_8032F50C[] = { 60, 0 };
 s16 D_8032F510[] = { 50, 0 };
 s8 D_8032F514[] = { 24, 42, 60, -1 };
-s16 D_8032F518[3] = { 119, 120, 121 };
+s16 sBowserDefeatedDialogText[3] = { 119, 120, 121 };
 s16 D_8032F520[][3] = { { 1, 10, 40 },   { 0, 0, 74 },    { -1, -10, 114 },  { 1, -20, 134 },
                         { -1, 20, 154 }, { 1, 40, 164 },  { -1, -40, 174 },  { 1, -80, 179 },
                         { -1, 80, 184 }, { 1, 160, 186 }, { -1, -160, 186 }, { 1, 0, 0 } };
@@ -843,11 +843,11 @@ s32 func_802B6120(void) {
             func_8031FFB4(0, 60, 40);
             o->oBowserUnkF8++;
         }
-        if (obj_update_dialog_unk1(2, 18, D_8032F518[o->oBehParams2ndByte], 0)) {
+        if (obj_update_dialog(2, 18, sBowserDefeatedDialogText[o->oBehParams2ndByte], 0)) {
             o->oBowserUnkF8++;
             PlaySound2(SOUND_GENERAL2_BOWSER_EXPLODE);
-            func_80320040(0, 60);
-            func_8031F7CC(0, 1);
+            sequence_player_unlower(0, 60);
+            sequence_player_fade_out(0, 1);
         }
     } else if (func_802B5F20()) {
         func_802B60B8();
@@ -862,20 +862,20 @@ s32 func_802B6120(void) {
 s32 func_802B6254(void) {
     UNUSED s32 unused;
     s32 ret = 0;
-    s32 sp1C;
+    s32 dialogID;
     if (o->oBowserUnkF8 < 2) {
         if (gHudDisplay.stars < 120)
-            sp1C = 121;
+            dialogID = 121;
         else
-            sp1C = 163;
+            dialogID = 163;
         if (o->oBowserUnkF8 == 0) {
             func_8031FFB4(0, 60, 40);
             o->oBowserUnkF8++;
         }
-        if (obj_update_dialog_unk1(2, 18, sp1C, 0)) {
+        if (obj_update_dialog(2, 18, dialogID, 0)) {
             obj_set_model(MODEL_BOWSER2);
-            func_80320040(0, 60);
-            func_8031F7CC(0, 1);
+            sequence_player_unlower(0, 60);
+            sequence_player_fade_out(0, 1);
             func_802B5C78();
             o->oBowserUnkF8++;
         }

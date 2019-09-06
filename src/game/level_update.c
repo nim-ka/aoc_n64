@@ -224,22 +224,22 @@ void nop_802497FC(void) {
 
 void func_8024980C(u32 arg) {
     s32 gotAchievement;
-    u32 val8 = gCurrentArea->dialog[arg];
+    u32 dialogID = gCurrentArea->dialog[arg];
 
-    switch (val8) {
-        case 0x81:
+    switch (dialogID) {
+        case 129:
             gotAchievement = save_file_get_flags() & SAVE_FLAG_HAVE_VANISH_CAP;
             break;
 
-        case 0x82:
+        case 130:
             gotAchievement = save_file_get_flags() & SAVE_FLAG_HAVE_METAL_CAP;
             break;
 
-        case 0x83:
+        case 131:
             gotAchievement = save_file_get_flags() & SAVE_FLAG_HAVE_WING_CAP;
             break;
 
-        case 0xFF:
+        case 255:
             gotAchievement = TRUE;
             break;
 
@@ -250,7 +250,7 @@ void func_8024980C(u32 arg) {
 
     if (!gotAchievement) {
         level_set_transition(-1, NULL);
-        func_802D7F90(val8);
+        create_dialog_box(dialogID);
     }
 }
 
@@ -799,7 +799,7 @@ void initiate_delayed_warp(void) {
     s32 destWarpNode;
 
     if (sDelayedWarpOp != WARP_OP_NONE && --sDelayedWarpTimer == 0) {
-        func_802D8098();
+        reset_dialog_render_state();
 
         if (gDebugLevelSelect && (sDelayedWarpOp & WARP_OP_TRIGGERS_LEVEL_SELECT)) {
             func_8024975C(-9);
@@ -983,9 +983,9 @@ s32 play_mode_normal(void) {
 }
 
 s32 play_mode_paused(void) {
-    if (D_8033A75E == 0) {
-        func_802D9A14(1);
-    } else if (D_8033A75E == 1) {
+    if (gPauseScreenMode == 0) {
+        set_menu_mode(RENDER_PAUSE_SCREEN);
+    } else if (gPauseScreenMode == 1) {
         func_80248CB8(1);
         gCameraMovementFlags &= ~CAM_MOVE_PAUSE_SCREEN;
         set_play_mode(PLAY_MODE_NORMAL);

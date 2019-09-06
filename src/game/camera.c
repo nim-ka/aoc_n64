@@ -2241,7 +2241,7 @@ void update_camera(struct LevelCamera *c) {
     gCurrLevelCamera = c;
     update_camera_status(c);
     if (c->cutscene == 0) {
-        if (select_or_activate_mario_cam(0) == 1) {
+        if (select_or_activate_mario_cam(0) == CAM_ANGLE_LAKITU_MARIO) {
             if (gPlayer1Controller->buttonPressed & R_TRIG) {
                 if (test_or_set_mario_cam_active(0) == 2) {
                     test_or_set_mario_cam_active(1);
@@ -2381,11 +2381,11 @@ void update_camera(struct LevelCamera *c) {
     gCheckingSurfaceCollisionsForCamera = 0;
     if (gCurrLevelNum != LEVEL_CASTLE) {
         if ((c->cutscene == 0 && (gPlayer1Controller->buttonDown & R_TRIG)
-             && select_or_activate_mario_cam(0) == 2)
+             && select_or_activate_mario_cam(0) == CAM_ANGLE_LAKITU_FIXED)
             || (gCameraMovementFlags & CAM_MOVE_UNKNOWN_7)
             || (sMarioStatusForCamera->action) == ACT_GETTING_BLOWN) {
             if (c->cutscene == 0 && (gPlayer1Controller->buttonPressed & R_TRIG)
-                && select_or_activate_mario_cam(0) == 2) {
+                && select_or_activate_mario_cam(0) == CAM_ANGLE_LAKITU_FIXED) {
                 gCameraFlags1 |= CAM_FLAG_1_UNKNOWN_5;
                 play_sound_rbutton_changed();
             }
@@ -2401,7 +2401,7 @@ void update_camera(struct LevelCamera *c) {
             }
         }
     } else {
-        if ((gPlayer1Controller->buttonPressed & R_TRIG) && select_or_activate_mario_cam(0) == 2) {
+        if ((gPlayer1Controller->buttonPressed & R_TRIG) && select_or_activate_mario_cam(0) == CAM_ANGLE_LAKITU_FIXED) {
             play_sound_button_change_blocked();
         }
     }
@@ -2837,16 +2837,16 @@ s32 func_80287CFC(Vec3f a, struct CinematicCameraTable b[], s16 *c, f32 *d) {
     return sp6C;
 }
 
-s32 select_or_activate_mario_cam(s32 a) {
+s32 select_or_activate_mario_cam(s32 angle) {
     s32 sp1C = 2;
 
-    if (a == 1) {
+    if (angle == CAM_ANGLE_LAKITU_MARIO) {
         if (!(gCameraModeFlags & CAM_MODE_MARIO_SELECTED)) {
             gCameraModeFlags |= CAM_MODE_MARIO_SELECTED;
         }
         gCameraFlags1 |= CAM_FLAG_1_UNUSED_3;
     }
-    if (a == 2 && (gCameraModeFlags & CAM_MODE_MARIO_SELECTED)) {
+    if (angle == CAM_ANGLE_LAKITU_FIXED && (gCameraModeFlags & CAM_MODE_MARIO_SELECTED)) {
         test_or_set_mario_cam_active(2);
         gCameraModeFlags &= ~CAM_MODE_MARIO_SELECTED;
         gCameraFlags1 |= CAM_FLAG_1_UNUSED_4;
@@ -3011,7 +3011,7 @@ s32 update_camera_status(struct LevelCamera *c) {
     s16 sp1E = 0;
 
     if (c->cutscene != 0
-        || ((gPlayer1Controller->buttonDown & R_TRIG) && select_or_activate_mario_cam(0) == 2)) {
+        || ((gPlayer1Controller->buttonDown & R_TRIG) && select_or_activate_mario_cam(0) == CAM_ANGLE_LAKITU_FIXED)) {
         sp1E |= 4;
     } else if (test_or_set_mario_cam_active(0) == 1) {
         sp1E |= 1;
@@ -5532,8 +5532,8 @@ void find_mario_relative_geometry(struct PlayerGeometry *a) {
     gCheckingSurfaceCollisionsForCamera = tempCheckingSurfaceCollisionsForCamera;
 }
 
-void func_8028F800(u8 a, struct Object *o) {
-    sTempCutsceneNumber = a;
+void func_8028F800(u8 cutsceneTable, struct Object *o) {
+    sTempCutsceneNumber = cutsceneTable;
     gCutsceneNumber = 0;
     gCutsceneFocus = o;
     gCutsceneActive = FALSE;
@@ -5557,14 +5557,14 @@ s32 unused_8028F860(u8 a) {
     }
 }
 
-s16 func_8028F8E0(u8 a, struct Object *o, s16 c) {
+s16 cutscene_object_with_dialog(u8 cutsceneTable, struct Object *o, s16 dialogID) {
     s16 sp1E = 0;
 
     if ((gCurrLevelCamera->cutscene == 0) && (sTempCutsceneNumber == 0)) {
-        if (gCutsceneNumber != a) {
-            func_8028F800(a, o);
-            if (c != -1) {
-                D_8033B320 = c;
+        if (gCutsceneNumber != cutsceneTable) {
+            func_8028F800(cutsceneTable, o);
+            if (dialogID != -1) {
+                D_8033B320 = dialogID;
             } else {
                 D_8033B320 = 1;
             }
@@ -5577,17 +5577,17 @@ s16 func_8028F8E0(u8 a, struct Object *o, s16 c) {
     return sp1E;
 }
 
-s16 func_8028F9A4(u8 a, struct Object *o) {
-    s16 sp1E = func_8028F8E0(a, o, -1);
+s16 cutscene_object_without_dialog(u8 cutsceneTable, struct Object *o) {
+    s16 sp1E = cutscene_object_with_dialog(cutsceneTable, o, -1);
     return sp1E;
 }
 
-s16 func_8028F9E8(u8 a, struct Object *o) {
+s16 cutscene_object(u8 cutsceneTable, struct Object *o) {
     s16 sp1E = 0;
 
     if ((gCurrLevelCamera->cutscene == 0) && (sTempCutsceneNumber == 0)) {
-        if (gCutsceneNumber != a) {
-            func_8028F800(a, o);
+        if (gCutsceneNumber != cutsceneTable) {
+            func_8028F800(cutsceneTable, o);
             sp1E = 1;
         } else {
             sp1E = -1;
@@ -5675,7 +5675,7 @@ CmdRet CutsceneIntroPeach0_2(UNUSED struct LevelCamera *a) {
 
 CmdRet CutsceneIntroPeach2_1(UNUSED struct LevelCamera *a) {
 #ifndef VERSION_JP
-    func_80320040(0, 60);
+    sequence_player_unlower(0, 60);
 #endif
     func_8028B16C();
 }
@@ -5817,7 +5817,7 @@ void func_80290564(UNUSED struct LevelCamera *c) {
 }
 
 void func_80290598(UNUSED struct LevelCamera *c) {
-    func_80320040(0, 60);
+    sequence_player_unlower(0, 60);
 }
 
 void unused_802905C8(UNUSED struct LevelCamera *c) {
@@ -6499,7 +6499,7 @@ CmdRet bowser_fight_intro_dialog(UNUSED struct LevelCamera *c) {
             dialog = 93;
     }
 
-    func_802D7F90(dialog);
+    create_dialog_box(dialog);
 }
 
 CmdRet CutsceneEnterBowserPlatform1(struct LevelCamera *c) {
@@ -7117,9 +7117,9 @@ CmdRet CutsceneDialog0_2(struct LevelCamera *c) {
 
 CmdRet CutsceneDialog0_3(struct LevelCamera *c) {
     if (c->cutscene == CUTSCENE_DIALOG_2) {
-        func_802D8050(D_8033B320);
+        create_dialog_box_with_response(D_8033B320);
     } else {
-        func_802D7F90(D_8033B320);
+        create_dialog_box(D_8033B320);
     }
 
     D_8033B6F0[8].unk1C[0] = 3;
@@ -7415,7 +7415,7 @@ CmdRet CutsceneCapSwitchPress0_3(struct LevelCamera *c) {
 }
 
 CmdRet CutsceneCapSwitchPress0_6(UNUSED struct LevelCamera *c) {
-    func_802D8050(gCutsceneFocus->oBehParams2ndByte + 10);
+    create_dialog_box_with_response(gCutsceneFocus->oBehParams2ndByte + 10);
 }
 
 static void unused_802968E8(struct LevelCamera *c) {
@@ -7514,7 +7514,7 @@ s32 func_80296DDC(struct LevelCamera *a, struct CinematicCameraTable b[],
 }
 
 CmdRet peach_letter_text(UNUSED struct LevelCamera *c) {
-    func_802D7F90(20);
+    create_dialog_box(20);
 }
 
 #ifndef VERSION_JP
@@ -7565,7 +7565,7 @@ CmdRet CutsceneIntroPeach3_3(UNUSED struct LevelCamera *c) {
 }
 
 CmdRet intro_pipe_exit_text(UNUSED struct LevelCamera *c) {
-    func_802D7F90(33);
+    create_dialog_box(33);
 }
 
 #ifndef VERSION_JP

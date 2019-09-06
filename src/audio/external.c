@@ -545,7 +545,7 @@ void unused_8031E568(void) {
 /**
  * Fade out a sequence player
  */
-static void sequence_player_fade_out(s32 player, FadeT fadeOutTime) {
+static void sequence_player_fade_out_internal(s32 player, FadeT fadeOutTime) {
     struct SequencePlayer *seqPlayer = &gSequencePlayers[player];
 #ifndef VERSION_JP
     if (fadeOutTime == 0) {
@@ -1349,11 +1349,11 @@ void play_sequence(u8 player, u8 seqId, u16 fadeTimer) {
     }
 }
 
-void func_8031F7CC(u8 player, u16 fadeTimer) {
+void sequence_player_fade_out(u8 player, u16 fadeTimer) {
     if (player == 0) {
         gPlayer0CurSeqId = SEQUENCE_NONE;
     }
-    sequence_player_fade_out(player, fadeTimer);
+    sequence_player_fade_out_internal(player, fadeTimer);
 }
 
 void fade_volume_scale(u8 player, u8 targetScale, u16 fadeTimer) {
@@ -1565,7 +1565,7 @@ void func_8031FFB4(u8 player, u16 fadeTimer, u8 arg2) {
     }
 }
 
-void func_80320040(u8 player, u16 fadeTimer) {
+void sequence_player_unlower(u8 player, u16 fadeTimer) {
     sCapVolumeTo40 = FALSE;
     if (player == 0) {
         if (gSequencePlayers[player].state != SEQUENCE_PLAYER_STATE_FADE_OUT) {
@@ -1799,14 +1799,14 @@ void func_80320A4C(u8 bankIndex, u8 arg1) {
     D_80363808[bankIndex] = arg1;
 }
 
-void play_dialog_sound(u8 dialogId) {
+void play_dialog_sound(u8 dialogID) {
     u8 speaker;
 
-    if (dialogId >= 170) {
-        dialogId = 0;
+    if (dialogID >= 170) {
+        dialogID = 0;
     }
 
-    speaker = sDialogSpeaker[dialogId];
+    speaker = sDialogSpeaker[dialogID];
     if (speaker != 0xff) {
         play_sound(sDialogSpeakerVoice[speaker], gDefaultSoundArgs);
         if (speaker == 2) // SOUND_OBJ_BOWSER_INTRO_LAUGH
@@ -1817,7 +1817,7 @@ void play_dialog_sound(u8 dialogId) {
 
 #ifndef VERSION_JP
     // "You've stepped on the (Wing|Metal|Vanish) Cap Switch"
-    if (dialogId == 10 || dialogId == 11 || dialogId == 12) {
+    if (dialogID == 10 || dialogID == 11 || dialogID == 12) {
         play_puzzle_jingle();
     }
 #endif
@@ -1904,7 +1904,7 @@ void stop_background_music(u16 seqId) {
                 if (sBackgroundMusicQueueSize != 0) {
                     play_sequence(0, sBackgroundMusicQueue[1].seqId, 0);
                 } else {
-                    func_8031F7CC(0, 20);
+                    sequence_player_fade_out(0, 20);
                 }
             }
             foundIndex = i;
@@ -1925,7 +1925,7 @@ void stop_background_music(u16 seqId) {
 
 void fadeout_background_music(u16 seqId, u16 fadeOut) {
     if (sBackgroundMusicQueueSize != 0 && sBackgroundMusicQueue[0].seqId == (u8)(seqId & 0xff)) {
-        func_8031F7CC(0, fadeOut);
+        sequence_player_fade_out(0, fadeOut);
     }
 }
 
@@ -1990,7 +1990,7 @@ void func_80321080(u16 fadeTimer) {
         D_80332120 = 0;
         D_80332124 = 0;
         func_803200E4(fadeTimer);
-        func_8031F7CC(1, fadeTimer);
+        sequence_player_fade_out(1, fadeTimer);
     }
 }
 
@@ -2002,10 +2002,10 @@ void func_803210D4(u16 fadeOutTime) {
     }
 
     if (gSequencePlayers[0].enabled == TRUE) {
-        sequence_player_fade_out(0, fadeOutTime);
+        sequence_player_fade_out_internal(0, fadeOutTime);
     }
     if (gSequencePlayers[1].enabled == TRUE) {
-        sequence_player_fade_out(1, fadeOutTime);
+        sequence_player_fade_out_internal(1, fadeOutTime);
     }
 
     for (i = 0; i < SOUND_BANK_COUNT; i++) {

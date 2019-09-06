@@ -503,7 +503,7 @@ static void koopa_the_quick_act_wait_before_race(void) {
         //! The next action doesn't execute until next frame, giving mario one
         //  frame where he can jump, and thus no longer be ready to speak.
         //  (On J, he has two frames and doing this enables time stop - see
-        //  obj_update_dialog_unk2 for that glitch)
+        //  obj_update_dialog_with_cutscene for that glitch)
         o->oAction = KOOPA_THE_QUICK_ACT_SHOW_INIT_TEXT;
         o->oForwardVel = 0.0f;
         set_obj_animation_and_sound_state(7);
@@ -731,7 +731,7 @@ static void koopa_the_quick_act_after_race(void) {
             o->oFlags &= ~OBJ_FLAG_ACTIVE_FROM_AFAR;
         }
     } else if (o->parentObj->oKoopaRaceEndpointUnk100 > 0) {
-        s32 dialogResponse = obj_update_dialog_unk2(2, 1, 0xA2, o->parentObj->oKoopaRaceEndpointUnk100);
+        s32 dialogResponse = obj_update_dialog_with_cutscene(2, 1, CUTSCENE_DIALOG_1, o->parentObj->oKoopaRaceEndpointUnk100);
         if (dialogResponse != 0) {
             o->parentObj->oKoopaRaceEndpointUnk100 = -1;
             o->oTimer = 0;

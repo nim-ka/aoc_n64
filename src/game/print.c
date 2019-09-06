@@ -424,7 +424,7 @@ void render_text_labels(void) {
         return;
     }
 
-    guOrtho(mtx, 0.0f, 320.0f, 0.0f, 240.0f, -10.0f, 10.0f, 1.0f);
+    guOrtho(mtx, 0.0f, SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT, -10.0f, 10.0f, 1.0f);
     gSPPerspNormalize((Gfx *) (gDisplayListHead++), 0x0000FFFF);
     gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_LOAD);
     gSPDisplayList(gDisplayListHead++, dl_hud_img_begin);

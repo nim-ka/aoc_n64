@@ -634,7 +634,7 @@ s8 func_802E49A4(s16 arg0) {
 // sp28 = arg2
 // sp2c = arg3
 
-s16 func_802E4A38(s32 *arg0, s16 arg1, f32 arg2, s32 arg3) {
+s16 func_802E4A38(s32 *arg0, s16 dialogID, f32 arg2, s32 arg3) {
     s16 sp1e;
 
     if ((is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, (s32) arg2) == 1
@@ -643,7 +643,7 @@ s16 func_802E4A38(s32 *arg0, s16 arg1, f32 arg2, s32 arg3) {
         || (*arg0 == 1)) {
         *arg0 = 1;
         if (set_mario_npc_dialog(arg3) == 2) {
-            sp1e = func_8028F8E0(162, o, arg1);
+            sp1e = cutscene_object_with_dialog(CUTSCENE_DIALOG_1, o, dialogID);
             if (sp1e != 0) {
                 set_mario_npc_dialog(0);
                 *arg0 = 0;

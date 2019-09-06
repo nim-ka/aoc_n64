@@ -57,7 +57,7 @@ void bhv_hidden_star_trigger_loop(void) {
 }
 
 void bhv_bowser_course_red_coin_star_loop(void) {
-    D_8036008E = o->oBowserCourseRedCoinStarCoinsCollected;
+    gRedCoinsCollected = o->oBowserCourseRedCoinStarCoinsCollected;
     switch (o->oAction) {
         case 0:
             if (o->oBowserCourseRedCoinStarCoinsCollected == 8)
