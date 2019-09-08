@@ -292,7 +292,7 @@ glabel L_EU_802AFB9C
 /* 06F3A8 802AFBA8 24C60008 */  addiu $a2, $a2, 8
 /* 06F3AC 802AFBAC 00067400 */  sll   $t6, $a2, 0x10
 /* 06F3B0 802AFBB0 000E3403 */  sra   $a2, $t6, 0x10
-/* 06F3B4 802AFBB4 0C0ABC6E */  jal   render_dialog_lowercase_diacritic
+/* 06F3B4 802AFBB4 0C0ABC6E */  jal   render_generic_dialog_char_at_pos
 /* 06F3B8 802AFBB8 240700F6 */   li    $a3, 246
 /* 06F3BC 802AFBBC 86590000 */  lh    $t9, ($s2)
 /* 06F3C0 802AFBC0 928900F6 */  lbu   $t1, 0xf6($s4)
@@ -309,7 +309,7 @@ glabel L_EU_802AFBD0
 /* 06F3E4 802AFBE4 02202025 */   move  $a0, $s1
 /* 06F3E8 802AFBE8 86450000 */  lh    $a1, ($s2)
 /* 06F3EC 802AFBEC 87C60000 */  lh    $a2, ($fp)
-/* 06F3F0 802AFBF0 0C0ABC6E */  jal   render_dialog_lowercase_diacritic
+/* 06F3F0 802AFBF0 0C0ABC6E */  jal   render_generic_dialog_char_at_pos
 /* 06F3F4 802AFBF4 320700FF */   andi  $a3, $s0, 0xff
 .L802AFBF8:
 /* 06F3F8 802AFBF8 02906821 */  addu  $t5, $s4, $s0
@@ -344,7 +344,7 @@ glabel L_EU_802AFBD0
 /* 06F460 802AFC60 55810009 */  bnel  $t4, $at, .L802AFC88
 /* 06F464 802AFC64 8FBF0044 */   lw    $ra, 0x44($sp)
 /* 06F468 802AFC68 15E70005 */  bne   $t7, $a3, .L802AFC80
-/* 06F46C 802AFC6C 3C018030 */   lui   $at, 0x8030
+/* 06F46C 802AFC6C 3C018030 */   lui   $at, %hi(gLastDialogPageStrPos)
 /* 06F470 802AFC70 240EFFFF */  li    $t6, -1
 /* 06F474 802AFC74 3C018030 */  lui   $at, %hi(gLastDialogPageStrPos) # $at, 0x8030
 /* 06F478 802AFC78 10000002 */  b     .L802AFC84

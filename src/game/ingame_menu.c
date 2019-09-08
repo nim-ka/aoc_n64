@@ -1275,31 +1275,30 @@ void handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog)
 void handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 lowerBound)
 #endif
 {
-    UNUSED s32 u0, u1; // a guess?
+    UNUSED s32 pad[2];
 
-    u8 strChar; // sp4F;
+    u8 strChar;
 
-    u8 *str = (u8 *) segmented_to_virtual(dialog->str); // sp48
-    s8 lineNum = 1;                                     // sp47 in US
+    u8 *str = (u8 *) segmented_to_virtual(dialog->str);
+    s8 lineNum = 1;
 
     s8 totalLines;
 
-    s8 pageState = DIALOG_PAGE_STATE_NONE; // EU sp5d
+    s8 pageState = DIALOG_PAGE_STATE_NONE;
     UNUSED s8 mark = DIALOG_MARK_NONE; // unused in US, EU
     s8 xMatrix = 1;
 
-    s8 linesPerBox = dialog->linesPerBox; // sp42
+    s8 linesPerBox = dialog->linesPerBox;
 
-    s16 strIdx;  // sp40, EU: s7
+    s16 strIdx;
 #ifndef VERSION_EU
-    s16 linePos; // sp3E
-
-    linePos = 0;
+    s16 linePos = 0;
 #endif
 
     if (gDialogBoxState == DIALOG_STATE_HORIZONTAL) {
-        totalLines = (linesPerBox * 2) + 1; // if scrolling, consider the number of lines for both
-                                            // the current page and the page being scrolled to.
+        // If scrolling, consider the number of lines for both
+        // the current page and the page being scrolled to.
+        totalLines = linesPerBox * 2 + 1;
     } else {
         totalLines = linesPerBox + 1;
     }
@@ -1308,6 +1307,9 @@ void handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 l
     strIdx = gDialogTextPos;
 #ifdef VERSION_EU
     gDialogX = 0;
+
+    // If this is turned into "gDialogY2 = 14;" with a symbol gDialogY2 that
+    // alises gDialogY the code matches...
     gDialogY = 14;
 #endif
 
@@ -1470,12 +1472,8 @@ void handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 l
                     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
                     mark = 0;
                 }
-#else
-                if (lineNum >= lowerBound && lineNum <= (lowerBound + linesPerBox)) {
-#ifdef VERSION_EU
-                    render_generic_dialog_char_at_pos(dialog, gDialogX, gDialogY, strChar);
-                    gDialogX += gDialogCharWidths[strChar];
-#else
+#elif defined(VERSION_US)
+                if (lineNum >= lowerBound && lineNum <= lowerBound + linesPerBox) {
                     if (linePos || xMatrix != 1) {
                         create_dl_translation_matrix(
                             MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[DIALOG_CHAR_SPACE] * (xMatrix - 1)), 0, 0);
@@ -1485,8 +1483,12 @@ void handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 l
                     create_dl_translation_matrix(MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[strChar]), 0, 0);
                     xMatrix = 1;
                     linePos++;
-#endif
                 }
+#else // VERSION_EU
+                if (lineNum >= lowerBound && lineNum <= lowerBound + linesPerBox) {
+                    render_generic_dialog_char_at_pos(dialog, gDialogX, gDialogY, strChar);
+                }
+                gDialogX += gDialogCharWidths[strChar];
 #endif
         }
 
