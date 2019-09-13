@@ -171,7 +171,7 @@ void create_task_structure(void) {
     gGfxSPTask->task.t.flags = 0;
     gGfxSPTask->task.t.ucode = rspF3DStart;
     gGfxSPTask->task.t.ucode_data = rspF3DDataStart;
-    gGfxSPTask->task.t.ucode_size = SP_UCODE_SIZE;
+    gGfxSPTask->task.t.ucode_size = SP_UCODE_SIZE; // (this size is ignored)
     gGfxSPTask->task.t.ucode_data_size = SP_UCODE_DATA_SIZE;
     gGfxSPTask->task.t.dram_stack = (u64 *) gGfxSPTaskStack;
     gGfxSPTask->task.t.dram_stack_size = SP_DRAM_STACK_SIZE8;

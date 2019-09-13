@@ -696,7 +696,7 @@ struct SPTask *create_next_audio_frame_task(void) {
     task->ucode_boot = rspF3DBootStart;
     task->ucode_boot_size = (u32) rspF3DBootEnd - (u32) rspF3DBootStart;
     task->ucode = rspAspMainStart;
-    task->ucode_size = 0x800;
+    task->ucode_size = 0x800; // (this size is ignored)
     task->ucode_data = rspAspMainDataStart;
     task->ucode_data_size = (rspAspMainDataEnd - rspAspMainDataStart) * sizeof(u64);
     task->dram_stack = NULL;
