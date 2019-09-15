@@ -29,8 +29,8 @@
 #include "save_file.h"
 #include "room.h"
 
-extern u32 wiggler_seg5_anims_0500C874[];
-extern u32 spiny_egg_seg5_anims_050157E4[];
+extern struct Animation *wiggler_seg5_anims_0500C874[];
+extern struct Animation *spiny_egg_seg5_anims_050157E4[];
 extern struct ObjectNode *gObjectLists;
 extern u8 jrb_seg7_trajectory_unagi_1[];
 extern u8 jrb_seg7_trajectory_unagi_2[];
@@ -103,7 +103,7 @@ extern u8 rr_seg7_collision_07029924[];
 extern u8 bits_seg7_collision_0701AD54[];
 extern u8 bitfs_seg7_collision_070157E0[];
 extern u8 bitfs_seg7_collision_07015124[];
-extern u32 spiny_seg5_anims_05016EAC[];
+extern struct Animation *spiny_seg5_anims_05016EAC[];
 
 #define POS_OP_SAVE_POSITION 0
 #define POS_OP_COMPUTE_VELOCITY 1

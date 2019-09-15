@@ -202,16 +202,6 @@ struct Struct8033B2B8
 
 // unsorted
 
-struct Struct80287404
-{
-    u8 filler0[0x18];
-    s32 unk18;
-    Vec3f unk1C;
-    Vec3f unk28;
-    u8 filler34[0x3A-0x34];
-    s16 unk3A;
-};
-
 // Camera command procedures are marked as returning s32, but none of them
 // actually return a value. This causes undefined behavior, which we'd rather
 // avoid on modern GCC. Hence, typedef. Interestingly, the void vs s32

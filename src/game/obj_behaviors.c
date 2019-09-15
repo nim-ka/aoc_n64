@@ -54,8 +54,8 @@ void func_802E2F40(void) {
     D_80331508 = 0;
 }
 
-struct Struct802E2F58 *func_802E2F58(s32 arg0, struct Object *arg1, UNUSED s32 arg2) {
-    struct Struct802E2F58 *sp34;
+Gfx *func_802E2F58(s32 arg0, struct Object *arg1, UNUSED s32 arg2) {
+    Gfx *sp34;
     Gfx *sp30;
     struct Object *sp2c;
     struct Object *sp28;
@@ -72,8 +72,8 @@ struct Struct802E2F58 *func_802E2F58(s32 arg0, struct Object *arg1, UNUSED s32 a
             sp2c = (struct Object *) gCurGraphNodeHeldObject->objNode;
         }
 
-        sp34 = (struct Struct802E2F58 *) alloc_display_list(0x18);
-        sp30 = (Gfx *) sp34;
+        sp34 = alloc_display_list(3 * sizeof(Gfx));
+        sp30 = sp34;
         sp28->header.gfx.node.flags =
             (sp28->header.gfx.node.flags & 0xFF) | 0x500; // sets bits 8, 10 and zeros upper byte
 
@@ -183,7 +183,7 @@ s32 TurnObjAwayFromAwkwardFloor(struct Surface *objFloor, f32 floorY, f32 objVel
 void ObjOrientGraph(struct Object *obj, f32 normalX, f32 normalY, f32 normalZ) {
     Vec3f sp2c, sp20;
 
-    f32(*throwMatrix)[4][4]; // TODO: use Mtx type
+    Mat4 *throwMatrix;
 
     if (D_80331500 == 0) {
         return;
@@ -191,7 +191,7 @@ void ObjOrientGraph(struct Object *obj, f32 normalX, f32 normalY, f32 normalZ) {
     if ((obj->header.gfx.node.flags & 0x4) != 0) {
         return; // bit 2
     }
-    throwMatrix = (f32(*)[4][4]) alloc_display_list(0x40);
+    throwMatrix = alloc_display_list(sizeof(*throwMatrix));
     if (throwMatrix == NULL) {
         return;
     }

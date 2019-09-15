@@ -101,10 +101,10 @@ extern s32 gDialogResponse;
 extern s32 gCutsceneActive;
 extern u8 gCutsceneNumber;
 extern s8 *D_8032F96C[];
-extern u32 bowser_seg6_unkmoveshorts_060576FC[];
-extern u32 blue_fish_seg3_anims_0301C2B0[];
-extern u32 cyan_fish_seg6_anims_0600E264[];
-extern u32 blue_fish_seg3_anims_0301C2B0[];
+extern s16 bowser_seg6_unkmoveshorts_060576FC[];
+extern struct Animation *blue_fish_seg3_anims_0301C2B0[];
+extern struct Animation *cyan_fish_seg6_anims_0600E264[];
+extern struct Animation *blue_fish_seg3_anims_0301C2B0[];
 
 void func_802A8D18(f32, f32, s32);
 

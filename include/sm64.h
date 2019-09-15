@@ -415,11 +415,6 @@
 #define ACT_HOLDING_BOWSER             0x00000391 // (0x191 | ACT_FLAG_STATIONARY)
 #define ACT_RELEASING_BOWSER           0x00000392 // (0x192 | ACT_FLAG_STATIONARY)
 
-// convert a virtual address to physical.
-#define VIRTUAL_TO_PHYSICAL(addr)    ((u32)(addr) & 0x1FFFFFFF)
-// convert a physical address to virtual.
-#define PHYSICAL_TO_VIRTUAL(addr)    ((u32)(addr) | 0x80000000)
-
 /*
  this input mask is unused by the controller,
  but END_DEMO is used internally to signal

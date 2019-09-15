@@ -241,7 +241,8 @@
 
 .macro obj_child model_id, beh
     bytes4 0x1C, 0x00, 0x00, 0x00
-    .word \model_id, \beh
+    .word \model_id
+    .word \beh
 .endm
 
 .macro deactivate

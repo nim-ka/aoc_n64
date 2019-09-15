@@ -173,7 +173,7 @@ void thread5_mem_error_message_loop(UNUSED void *arg) {
     setup_game_memory();
     set_vblank_handler(2, &gGameVblankHandler, &gGameVblankQueue, (OSMesg) 1);
 
-    addr = (struct LevelCommand *) segmented_to_virtual(level_script_entry_error_screen);
+    addr = segmented_to_virtual(level_script_entry_error_screen);
 
     func_80247ED8();
 

@@ -1283,7 +1283,7 @@ Gfx *Geo18_802B7D44(s32 a0, struct GraphNode *node, UNUSED s32 a2) {
             sp20->fnNode.node.flags = (sp20->fnNode.node.flags & 0xFF) | 0x100;
         else
             sp20->fnNode.node.flags = (sp20->fnNode.node.flags & 0xFF) | (0x100 | 0x400);
-        sp28 = sp2C = alloc_display_list(16);
+        sp28 = sp2C = alloc_display_list(2 * sizeof(Gfx));
 
         if (sp24->oUnknownUnk1B2 != 0) {
             gSPClearGeometryMode(sp28++, G_LIGHTING);

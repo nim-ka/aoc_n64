@@ -528,9 +528,9 @@ struct Object *spawn_water_splash(struct Object *parent, struct WaterSplashParam
 struct Object *spawn_object_at_origin(struct Object *parent, UNUSED s32 unusedArg, u32 model,
                                       void *behavior) {
     struct Object *obj;
-    u32 *behaviorAddr;
+    uintptr_t *behaviorAddr;
 
-    behaviorAddr = (u32 *) segmented_to_virtual(behavior);
+    behaviorAddr = segmented_to_virtual(behavior);
     obj = create_object(behaviorAddr);
 
     obj->parentObj = parent;
@@ -646,7 +646,7 @@ void func_8029EA0C(struct Object *a0) {
 }
 
 void Unknown8029EA34(struct Object *sp20, u32 sp24) {
-    u32 *sp1C;
+    struct Animation **sp1C;
 
     sp1C = o->oAnimations;
     geo_obj_init_animation(&sp20->header.gfx, sp24 + sp1C);
@@ -727,25 +727,25 @@ void obj_scale(f32 scale) {
 }
 
 void SetObjAnimation(s32 arg0) {
-    u32 *sp1C = o->oAnimations;
+    struct Animation **sp1C = o->oAnimations;
     geo_obj_init_animation(&o->header.gfx, sp1C + arg0);
 }
 
 void set_obj_animation_and_sound_state(s32 arg0) {
-    u32 *sp1C = o->oAnimations;
+    struct Animation **sp1C = o->oAnimations;
     geo_obj_init_animation(&o->header.gfx, sp1C + arg0);
     o->oSoundStateID = arg0;
 }
 
 void func_8029ED98(u32 a0, f32 a1) {
-    u32 *sp1C = o->oAnimations;
+    struct Animation **sp1C = o->oAnimations;
     s32 sp18 = (s32)(a1 * 65536.0f);
     geo_obj_init_animation_accel(&o->header.gfx, sp1C + a0, sp18);
     o->oSoundStateID = a0;
 }
 
-void func_8029EE20(struct Object *a0, u32 *a1, u32 a2) {
-    u32 *sp1C = a1;
+void func_8029EE20(struct Object *a0, struct Animation **a1, u32 a2) {
+    struct Animation **sp1C = a1;
     a0->oAnimations = a1;
     geo_obj_init_animation(&a0->header.gfx, sp1C + a2);
     a0->oSoundStateID = a2;
@@ -815,7 +815,7 @@ void obj_set_facing_to_move_angles(struct Object *a0) {
     a0->oFaceAngleRoll = a0->oMoveAngleRoll;
 }
 
-u32 get_object_list_from_behavior(u32 *behavior) {
+u32 get_object_list_from_behavior(uintptr_t *behavior) {
     u32 objectList;
 
     // If the first behavior command is "begin", then get the object list header
@@ -851,7 +851,7 @@ f32 obj_dist_to_nearest_object_with_behavior(void *behavior) {
 }
 
 struct Object *obj_find_nearest_object_with_behavior(void *behavior, f32 *dist) {
-    u32 *behaviorAddr = (u32 *) segmented_to_virtual(behavior);
+    uintptr_t *behaviorAddr = segmented_to_virtual(behavior);
     struct Object *closestObj = NULL;
     struct Object *obj;
     struct ObjectNode *listHead;
@@ -902,7 +902,7 @@ s32 count_unimportant_objects(void) {
 }
 
 s32 count_objects_with_behavior(void *behavior) {
-    u32 *behaviorAddr = (u32 *) segmented_to_virtual(behavior);
+    uintptr_t *behaviorAddr = segmented_to_virtual(behavior);
     struct ObjectNode *listHead = &gObjectLists[get_object_list_from_behavior(behaviorAddr)];
     struct ObjectNode *obj = listHead->next;
     s32 count = 0;
@@ -919,7 +919,7 @@ s32 count_objects_with_behavior(void *behavior) {
 }
 
 struct Object *obj_find_nearby_held_actor(void *behavior, f32 maxDist) {
-    u32 *behaviorAddr = (u32 *) segmented_to_virtual(behavior);
+    uintptr_t *behaviorAddr = segmented_to_virtual(behavior);
     struct ObjectNode *listHead;
     struct Object *obj;
     struct Object *foundObj;

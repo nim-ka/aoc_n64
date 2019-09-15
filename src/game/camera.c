@@ -2633,7 +2633,7 @@ void init_camera(struct LevelCamera *c) {
 
 extern u8 D_8032E910[20];
 
-void func_80287404(struct Struct80287404 *a) {
+void func_80287404(struct GraphNodeCamera *a) {
     UNUSED u8 unused1[8];
     f32 sp34;
     s16 sp32;
@@ -2649,13 +2649,13 @@ void func_80287404(struct Struct80287404 *a) {
     if (gCameraMovementFlags & CAM_MOVE_PAUSE_SCREEN) {
         if (gFramesPaused >= 2) {
             if (D_8032E910[sp28] & sp24) {
-                a->unk28[0] = gCurrLevelCamera->xFocus;
-                a->unk28[1] = (sMarioStatusForCamera->pos[1] + gCurrLevelCamera->unk68) / 2.f;
-                a->unk28[2] = gCurrLevelCamera->zFocus;
-                vec3f_get_dist_and_angle(a->unk28, sMarioStatusForCamera->pos, &sp34, &sp32, &sp30);
-                vec3f_set_dist_and_angle(sMarioStatusForCamera->pos, a->unk1C, 6000.f, 4096, sp30);
+                a->to[0] = gCurrLevelCamera->xFocus;
+                a->to[1] = (sMarioStatusForCamera->pos[1] + gCurrLevelCamera->unk68) / 2.f;
+                a->to[2] = gCurrLevelCamera->zFocus;
+                vec3f_get_dist_and_angle(a->to, sMarioStatusForCamera->pos, &sp34, &sp32, &sp30);
+                vec3f_set_dist_and_angle(sMarioStatusForCamera->pos, a->from, 6000.f, 4096, sp30);
                 if (gCurrLevelNum != LEVEL_THI) {
-                    find_in_bounds_yaw_wdw_bob_thi(a->unk1C, a->unk28, 0);
+                    find_in_bounds_yaw_wdw_bob_thi(a->from, a->to, 0);
                 }
             }
         } else {
@@ -2670,35 +2670,35 @@ void select_mario_cam_mode(void) {
     gCameraModeFlags = CAM_MODE_MARIO_SELECTED;
 }
 
-void func_802875F8(struct Struct80287404 *a, struct AllocOnlyPool *b) {
-    s16 preset = a->unk18;
-    struct LevelCamera *c = alloc_only_pool_alloc(b, 108);
+void func_802875F8(struct GraphNodeCamera *a, struct AllocOnlyPool *b) {
+    s16 preset = a->config.preset;
+    struct LevelCamera *c = alloc_only_pool_alloc(b, sizeof(struct LevelCamera));
 
-    a->unk18 = (s32) c;
+    a->config.levelCamera = c;
     c->currPreset = preset;
     c->defPreset = preset;
     c->cutscene = 0;
     c->unk64 = 0;
-    c->xFocus = a->unk28[0];
-    c->unk68 = a->unk28[1];
-    c->zFocus = a->unk28[2];
+    c->xFocus = a->to[0];
+    c->unk68 = a->to[1];
+    c->zFocus = a->to[2];
     c->trueYaw = 0;
-    vec3f_copy(c->pos, a->unk1C);
-    vec3f_copy(c->focus, a->unk28);
+    vec3f_copy(c->pos, a->from);
+    vec3f_copy(c->focus, a->to);
 }
 
-void func_802876D0(struct Struct80287404 *a) {
+void func_802876D0(struct GraphNodeCamera *a) {
     UNUSED u8 unused[8];
-    UNUSED s32 sp1C = a->unk18;
+    UNUSED struct LevelCamera *c = a->config.levelCamera;
 
-    a->unk3A = gCameraStatus.roll;
-    vec3f_copy(a->unk1C, gCameraStatus.pos);
-    vec3f_copy(a->unk28, gCameraStatus.focus);
+    a->rollScreen = gCameraStatus.roll;
+    vec3f_copy(a->from, gCameraStatus.pos);
+    vec3f_copy(a->to, gCameraStatus.focus);
     func_80287404(a);
 }
 
-s32 geo_camera_preset_and_pos(s32 a, struct Struct80287404 *b, struct AllocOnlyPool *c) {
-    struct Struct80287404 *sp2C = b;
+s32 geo_camera_preset_and_pos(s32 a, struct GraphNodeCamera *b, struct AllocOnlyPool *c) {
+    struct GraphNodeCamera *sp2C = b;
     UNUSED struct AllocOnlyPool *sp28 = c;
 
     switch (a) {
@@ -3540,7 +3540,7 @@ s32 func_8028A0D4(Vec3f a, Vec3f b, struct Surface *surf, s16 d, s16 surfType) {
     return behindSurface;
 }
 
-s32 is_mario_behind_surface(UNUSED s32 a, struct Surface *surf) {
+s32 is_mario_behind_surface(UNUSED struct LevelCamera *c, struct Surface *surf) {
     s32 behindSurface = is_behind_surface(sMarioStatusForCamera->pos, surf);
 
     return behindSurface;
@@ -5488,7 +5488,7 @@ s32 func_8028F2F0(struct LevelCamera *a, Vec3f pos, s16 *c, s16 d) {
                 horWallNorm = atan2s(wall->normal.z, wall->normal.x);
                 sp36 = horWallNorm + 0x4000;
                 if ((func_8028A0D4(sMarioStatusForCamera->pos, pos, wall, d, SURFACE_WALL_MISC) == 0)
-                    && (is_mario_behind_surface((u32) a, wall) == 1)
+                    && (is_mario_behind_surface(a, wall) == 1)
                     && (is_pos_less_than_bounds(wall, -1.f, 150.f, -1.f) == 0)) {
                     *c = func_80289A98(yawToMario, sp36) + 0x8000;
                     camera_approach_s16_symmetric_bool(c, horWallNorm, d);
@@ -8667,12 +8667,12 @@ void func_80299D00(s16 a, s16 b, s16 c, f32 d, f32 e, f32 f, f32 g) {
     }
 }
 
-void func_80299DB4(struct Struct80287404 *a) {
+void func_80299DB4(struct GraphNodeCamera *a) {
     if (D_8033B230.unk10 != 0.f) {
         D_8033B230.unk8 = coss(D_8033B230.unk14) * D_8033B230.unk10 / 256;
         D_8033B230.unk14 += D_8033B230.unk16;
         camera_approach_f32_symmetric_bool(&D_8033B230.unk10, 0.f, D_8033B230.unk18);
-        a->unk1C[0] += D_8033B230.unk8;
+        a->from[0] += D_8033B230.unk8;
     } else {
         D_8033B230.unk14 = 0;
     }
@@ -8764,8 +8764,8 @@ void func_8029A288(struct MarioState *m) {
     D_8033B230.fieldOfView = approach_f32(D_8033B230.fieldOfView, targetFoV, 2.f, 2.f);
 }
 
-s32 geo_camera_fov(s32 a, struct Struct80287404 *b, UNUSED struct AllocOnlyPool *c) {
-    struct Struct80287404 *sp24 = b;
+s32 geo_camera_fov(s32 a, struct GraphNodeCamera *b, UNUSED struct AllocOnlyPool *c) {
+    struct GraphNodeCamera *sp24 = b;
     struct MarioState *marioState = &gMarioStates[0];
     u8 sp1F = D_8033B230.unk0;
 
@@ -8807,7 +8807,7 @@ s32 geo_camera_fov(s32 a, struct Struct80287404 *b, UNUSED struct AllocOnlyPool 
         }
     }
 
-    sp24->unk1C[0] = D_8033B230.fieldOfView;
+    sp24->from[0] = D_8033B230.fieldOfView;
     func_80299DB4(sp24);
     return 0;
 }

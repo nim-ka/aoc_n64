@@ -5,7 +5,7 @@ void ActionFish0(void) {
     s32 sp38;
     s16 model;
     f32 sp30;
-    u32 *sp2C;
+    struct Animation **sp2C;
     struct Object *sp28;
     switch (o->oBehParams2ndByte) {
         case 0:

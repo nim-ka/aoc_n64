@@ -1279,7 +1279,7 @@ void handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 l
 
     u8 strChar;
 
-    u8 *str = (u8 *) segmented_to_virtual(dialog->str);
+    u8 *str = segmented_to_virtual(dialog->str);
     s8 lineNum = 1;
 
     s8 totalLines;

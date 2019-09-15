@@ -16,70 +16,72 @@
 
 #define PRESS_START_DEMO_TIMER 800
 
-static char gLevelSelect_StageNamesText[64][16] = { "",
-                                                    "",
-                                                    "",
-                                                    "TERESA OBAKE",
-                                                    "YYAMA1 % YSLD1",
-                                                    "SELECT ROOM",
-                                                    "HORROR DUNGEON",
-                                                    "SABAKU % PYRMD",
-                                                    "BATTLE FIELD",
-                                                    "YUKIYAMA2",
-                                                    "POOL KAI",
-                                                    "WTDG % TINBOTU",
-                                                    "BIG WORLD",
-                                                    "CLOCK TOWER",
-                                                    "RAINBOW CRUISE",
-                                                    "MAIN MAP",
-                                                    "EXT1 YOKO SCRL",
-                                                    "EXT7 HORI MINI",
-                                                    "EXT2 TIKA LAVA",
-                                                    "EXT9 SUISOU",
-                                                    "EXT3 HEAVEN",
-                                                    "FIREB1 % INVLC",
-                                                    "WATER LAND",
-                                                    "MOUNTAIN",
-                                                    "ENDING",
-                                                    "URANIWA",
-                                                    "EXT4 MINI SLID",
-                                                    "IN THE FALL",
-                                                    "EXT6 MARIO FLY",
-                                                    "KUPPA1",
-                                                    "EXT8 BLUE SKY",
-                                                    "",
-                                                    "KUPPA2",
-                                                    "KUPPA3",
-                                                    "",
-                                                    "DONKEY % SLID2",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "",
-                                                    "" };
+static char gLevelSelect_StageNamesText[64][16] = {
+    "",
+    "",
+    "",
+    "TERESA OBAKE",
+    "YYAMA1 % YSLD1",
+    "SELECT ROOM",
+    "HORROR DUNGEON",
+    "SABAKU % PYRMD",
+    "BATTLE FIELD",
+    "YUKIYAMA2",
+    "POOL KAI",
+    "WTDG % TINBOTU",
+    "BIG WORLD",
+    "CLOCK TOWER",
+    "RAINBOW CRUISE",
+    "MAIN MAP",
+    "EXT1 YOKO SCRL",
+    "EXT7 HORI MINI",
+    "EXT2 TIKA LAVA",
+    "EXT9 SUISOU",
+    "EXT3 HEAVEN",
+    "FIREB1 % INVLC",
+    "WATER LAND",
+    "MOUNTAIN",
+    "ENDING",
+    "URANIWA",
+    "EXT4 MINI SLID",
+    "IN THE FALL",
+    "EXT6 MARIO FLY",
+    "KUPPA1",
+    "EXT8 BLUE SKY",
+    "",
+    "KUPPA2",
+    "KUPPA3",
+    "",
+    "DONKEY % SLID2",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+};
 
 static u16 gDemoCountdown = 0;
 #ifndef VERSION_JP
@@ -108,16 +110,13 @@ int run_press_start_demo_timer(s32 timer) {
 
                 // if the next demo sequence ID is the count limit, reset it back to
                 // the first sequence.
-                // FIXME: Why the fuck doesn't this match?
-                // if((++gDemoInputListID) == gDemo.animDmaTable[0].unk0)
-                if ((++gDemoInputListID) == gDemo.animDmaTable->unk0) {
+                if (++gDemoInputListID == gDemo.animDmaTable->count) {
                     gDemoInputListID = 0;
                 }
 
-                gCurrDemoInput = ((struct DemoInput *) gDemo.targetAnim)
-                                 + 1; // add 1 (+4) to the pointer to skip the demoID.
-                timer = (s8)((struct DemoInput *) gDemo.targetAnim)
-                            ->timer; // TODO: see if making timer s8 matches
+                // add 1 (+4) to the pointer to skip the demoID.
+                gCurrDemoInput = ((struct DemoInput *) gDemo.targetAnim) + 1;
+                timer = (s8)((struct DemoInput *) gDemo.targetAnim)->timer;
                 gCurrSaveFileNum = 1;
                 gCurrActNum = 1;
             }

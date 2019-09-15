@@ -181,9 +181,9 @@ static void ShowActSelectorMenu(void) {
     unsigned char myScore[] = { TEXT_MYSCORE };
 #endif
     unsigned char starNumbers[] = { TEXT_0 };
-    u32 *levelNameTbl = (u32 *) segmented_to_virtual(seg2_level_name_table);
-    u8 *currLevelName = (u8 *) segmented_to_virtual((void *) levelNameTbl[gCurrCourseNum - 1]);
-    u32 *actNameTbl = (u32 *) segmented_to_virtual(seg2_act_name_table);
+    u8 **levelNameTbl = segmented_to_virtual(seg2_level_name_table);
+    u8 *currLevelName = segmented_to_virtual(levelNameTbl[gCurrCourseNum - 1]);
+    u8 **actNameTbl = segmented_to_virtual(seg2_act_name_table);
     u8 *selectedActName;
     s16 x;
     s16 x2;
@@ -220,7 +220,7 @@ static void ShowActSelectorMenu(void) {
 
     // Display the name of the selected act.
     if (sVisibleStars != 0) {
-        selectedActName = (u8 *) segmented_to_virtual((void *) (actNameTbl[(gCurrCourseNum - 1) * 6 + sSelectedAct]));
+        selectedActName = segmented_to_virtual(actNameTbl[(gCurrCourseNum - 1) * 6 + sSelectedAct]);
 #ifdef VERSION_JP
         x2 = get_str_x_pos_from_center(158, selectedActName, 8.0f);
 #else

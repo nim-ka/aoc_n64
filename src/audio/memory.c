@@ -109,7 +109,7 @@ void *soundAlloc(struct SoundAllocPool *pool, u32 size) {
 }
 
 void func_80316094(struct SoundAllocPool *pool, void *arg1, u32 arg2) {
-    pool->cur = pool->start = (u8 *) (((u32) arg1 + 0xf) & -0x10);
+    pool->cur = pool->start = (u8 *) (((uintptr_t) arg1 + 0xf) & -0x10);
     pool->size = arg2;
     pool->unused = 0;
 }
