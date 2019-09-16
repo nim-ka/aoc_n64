@@ -1404,7 +1404,6 @@ void process_level_music_dynamics(void) {
     s16 dur2;               // sp38
     u32 conditionBits;      // s0
     u32 tempBits;           // v1
-    s32 numConditions;      // v1
     u16 bit;                // a1
     u8 condIndex;           // a0 (same as numConditions?)
     u8 i;                   // s1
@@ -1439,63 +1438,62 @@ void process_level_music_dynamics(void) {
             }
         }
 
-        numConditions = condIndex;
-        for (j = 0; j < numConditions; j++) {
+        for (j = 0; j < condIndex; j++) {
             // (having all 'temp' share a single variable affects regalloc)
             UNUSED s16 temp;
             switch (conditionTypes[j]) {
                 case MARIO_X_GE: {
                     s16 temp = gMarioStates[0].pos[0];
                     if (temp < conditionValues[j])
-                        j = numConditions + 1;
+                        j = condIndex + 1;
                     break;
                 }
                 case MARIO_Y_GE: {
                     s16 temp = gMarioStates[0].pos[1];
                     if (temp < conditionValues[j])
-                        j = numConditions + 1;
+                        j = condIndex + 1;
                     break;
                 }
                 case MARIO_Z_GE: {
                     s16 temp = gMarioStates[0].pos[2];
                     if (temp < conditionValues[j])
-                        j = numConditions + 1;
+                        j = condIndex + 1;
                     break;
                 }
                 case MARIO_X_LT: {
                     s16 temp = gMarioStates[0].pos[0];
                     if (temp >= conditionValues[j])
-                        j = numConditions + 1;
+                        j = condIndex + 1;
                     break;
                 }
                 case MARIO_Y_LT: {
                     s16 temp = gMarioStates[0].pos[1];
                     if (temp >= conditionValues[j])
-                        j = numConditions + 1;
+                        j = condIndex + 1;
                     break;
                 }
                 case MARIO_Z_LT: {
                     s16 temp = gMarioStates[0].pos[2];
                     if (temp >= conditionValues[j])
-                        j = numConditions + 1;
+                        j = condIndex + 1;
                     break;
                 }
                 case MARIO_IS_IN_AREA: {
                     s16 temp = gCurrAreaIndex;
                     if (temp != conditionValues[j])
-                        j = numConditions + 1;
+                        j = condIndex + 1;
                     break;
                 }
                 case MARIO_IS_IN_ROOM: {
                     s16 temp = gMarioCurrentRoom;
                     if (temp != conditionValues[j])
-                        j = numConditions + 1;
+                        j = condIndex + 1;
                     break;
                 }
             }
         }
 
-        if (j == numConditions) {
+        if (j == condIndex) {
             // The area matches. Break out of the loop.
             tempBits = 0;
         } else {
