@@ -77,8 +77,15 @@ void ActionTuxiesMother1(void) {
             break;
         case 1:
             if (o->prevObj->oHeldState == HELD_FREE) {
-                ((s32 *) o->prevObj)[o->oInteractionSubtype + 34] &=
-                    ~INT_SUBTYPE_DROP_IMMEDIATELY; // FIXME: find something more normal?
+                //! This line is was almost certainly supposed to be something
+                // like o->prevObj->oInteractionSubtype &= ~INT_SUBTYPE_DROP_IMMEDIATELY;
+                // however, this code uses the value of o->oInteractionSubtype
+                // rather than its offset to rawData. For this object,
+                // o->oInteractionSubtype is always 0, so the result is this:
+                // o->prevObj->oUnknownUnk88 &= ~INT_SUBTYPE_DROP_IMMEDIATELY
+                // which has no effect as o->prevObj->oUnknownUnk88 is always 0
+                // or 1, which is not affected by the bitwise AND.
+                o->prevObj->OBJECT_FIELD_S32(o->oInteractionSubtype) &= ~INT_SUBTYPE_DROP_IMMEDIATELY;
                 set_object_behavior(o->prevObj, bhvUnused20E0);
 #ifndef VERSION_JP
                 obj_spawn_star_at_y_offset(3167.0f, -4300.0f, 5108.0f, 200.0f);
@@ -90,7 +97,8 @@ void ActionTuxiesMother1(void) {
             break;
         case 2:
             if (o->prevObj->oHeldState == HELD_FREE) {
-                ((s32 *) o->prevObj)[o->oInteractionSubtype + 34] &= ~INT_SUBTYPE_DROP_IMMEDIATELY;
+                //! Same bug as above
+                o->prevObj->OBJECT_FIELD_S32(o->oInteractionSubtype) &= ~INT_SUBTYPE_DROP_IMMEDIATELY;
                 set_object_behavior(o->prevObj, bhvPenguinBaby);
                 o->oAction = 2;
             }
