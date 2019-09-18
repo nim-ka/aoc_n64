@@ -1625,7 +1625,7 @@ static void spawn_object_loot_coins(struct Object *obj, s32 numCoins, f32 sp30, 
         coin = spawn_object(obj, model, coinBehavior);
         translate_object_xz_random(coin, posJitter);
         coin->oPosY = spawnHeight;
-        coin->oUnknownUnk110_F32 = sp30;
+        coin->oCoinUnk110 = sp30;
     }
 }
 
@@ -2240,34 +2240,34 @@ void BehDustSmokeLoop(void) {
     o->oPosY += o->oVelY;
     o->oPosZ += o->oVelZ;
 
-    if (o->oUnknownUnkF4_S32 == 10) {
+    if (o->oSmokeTimer == 10) {
         mark_object_for_deletion(o);
     }
 
-    o->oUnknownUnkF4_S32++;
+    o->oSmokeTimer++;
 }
 
 static void nop_802A3294(void) {
 }
 
 s32 func_802A32A4(s8 *a0) {
-    o->oUnknownUnk1AC_VPTR = a0;
-    o->oUnknownUnk1B0 = 0;
+    o->oToxBoxUnk1AC = a0;
+    o->oToxBoxUnk1B0 = 0;
 
-    return *(s8 *) o->oUnknownUnk1AC_VPTR;
+    return *(s8 *) o->oToxBoxUnk1AC;
 }
 
 s32 func_802A32E0(void) {
     s8 spF;
-    s8 *sp8 = o->oUnknownUnk1AC_VPTR;
-    s32 sp4 = o->oUnknownUnk1B0 + 1;
+    s8 *sp8 = o->oToxBoxUnk1AC;
+    s32 sp4 = o->oToxBoxUnk1B0 + 1;
 
     if (sp8[sp4] != -1) {
         spF = sp8[sp4];
-        o->oUnknownUnk1B0++;
+        o->oToxBoxUnk1B0++;
     } else {
         spF = sp8[0];
-        o->oUnknownUnk1B0 = 0;
+        o->oToxBoxUnk1B0 = 0;
     }
 
     return spF;
@@ -2341,7 +2341,7 @@ s32 obj_call_action_function(void (*actionFunctions[])(void)) {
 
 static struct Object *func_802A36D8(s32 sp20, s32 sp24) {
     struct Object *sp1C = spawn_object(o, MODEL_STAR, bhvUnused080C);
-    sp1C->oUnknownUnk1B0 = sp24;
+    sp1C->oSparkleSpawnUnk1B0 = sp24;
     sp1C->oBehParams = o->oBehParams;
     sp1C->oBehParams2ndByte = sp20;
 
@@ -2840,7 +2840,7 @@ void func_802A4AEC(s32 sp18) {
 
 s32 obj_check_grabbed_mario(void) {
     if (o->oInteractStatus & INT_STATUS_GRABBED_MARIO) {
-        o->oUnknownUnk88 = 1;
+        o->oKingBobombUnk88 = 1;
         obj_become_intangible();
         return TRUE;
     }

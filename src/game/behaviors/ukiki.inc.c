@@ -358,9 +358,8 @@ void ukiki_act_go_to_cage(void) {
     switch(o->oSubAction) {
         case UKIKI_SUB_ACT_CAGE_RUN_TO_CAGE:
             set_obj_animation_and_sound_state(UKIKI_ANIM_RUN);
-            // TODO: Change oUkikiPath to oPathedStartWaypoint when
-            // sCageUkikiPath has been converted to waypoints.
-            o->oUkikiPath = sCageUkikiPath;
+            
+            o->oPathedWaypointsS16 = sCageUkikiPath;
 
             if (obj_follow_path(0) != PATH_REACHED_END) {
                 o->oForwardVel = 10.0f;

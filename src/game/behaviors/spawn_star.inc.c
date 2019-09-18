@@ -155,14 +155,14 @@ void bhv_hidden_red_coin_star_init(void) {
         o->activeFlags = 0;
     }
 
-    o->oHiddenRedCoinStarCoinsCollected = 8 - sp36;
+    o->oHiddenStarTriggerCounter = 8 - sp36;
 }
 
 void bhv_hidden_red_coin_star_loop(void) {
-    gRedCoinsCollected = o->oHiddenRedCoinStarCoinsCollected;
+    gRedCoinsCollected = o->oHiddenStarTriggerCounter;
     switch (o->oAction) {
         case 0:
-            if (o->oHiddenRedCoinStarCoinsCollected == 8)
+            if (o->oHiddenStarTriggerCounter == 8)
                 o->oAction = 1;
             break;
 

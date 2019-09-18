@@ -136,7 +136,6 @@ struct Object
         s32 asS32[0x50];
         s16 asS16[0x50][2];
         f32 asF32[0x50];
-        void *asVoidP[0x50];
         s16 *asS16P[0x50];
         s32 *asS32P[0x50];
         struct Animation **asAnims[0x50];
@@ -145,7 +144,6 @@ struct Object
         struct Object *asObject[0x50];
         struct Surface *asSurface[0x50];
         void *asVoidPtr[0x50];
-        struct Object *asObjPtr[0x50];
     } rawData;
     /*0x1C8*/ u32 unused1;
     /*0x1CC*/ uintptr_t *behScript;

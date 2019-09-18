@@ -38,23 +38,23 @@ void ActionKingBobomb2(void) {
         o->oAction = 5;
         obj_become_intangible();
     }
-    if (o->OBJECT_FIELD_S32(0x1E) == 0) {
+    if (o->oKingBobombUnk100 == 0) {
         if (obj_check_anim_frame(15))
             ShakeScreen(1);
         if (func_802A4AB0(4))
-            o->OBJECT_FIELD_S32(0x1E)++;
+            o->oKingBobombUnk100++;
     } else {
-        if (o->OBJECT_FIELD_S32(0x1E) == 1) {
+        if (o->oKingBobombUnk100 == 1) {
             func_802A4A70(11, 7);
-            o->OBJECT_FIELD_S32(0x1E) = 2;
+            o->oKingBobombUnk100 = 2;
         } else
             set_obj_animation_and_sound_state(11);
-        if (o->OBJECT_FIELD_S32(0x20) == 0) {
+        if (o->oKingBobombUnk108 == 0) {
             o->oForwardVel = 3.0f;
             obj_rotate_yaw_toward(o->oAngleToMario, 0x100);
         } else {
             o->oForwardVel = 0.0f;
-            o->OBJECT_FIELD_S32(0x20)--;
+            o->oKingBobombUnk108--;
         }
     }
     if (obj_check_grabbed_mario())
@@ -68,8 +68,8 @@ void ActionKingBobomb2(void) {
 void ActionKingBobomb3(void) {
     if (o->oSubAction == 0) {
         o->oForwardVel = 0;
-        o->OBJECT_FIELD_S32(0x1F) = 0;
-        o->OBJECT_FIELD_S32(0x1D) = 0;
+        o->oKingBobombUnk104 = 0;
+        o->oKingBobombUnkFC = 0;
         if (o->oTimer == 0)
             PlaySound2(SOUND_OBJ_UNKNOWN3);
         if (func_802A4AB0(0)) {
@@ -79,25 +79,25 @@ void ActionKingBobomb3(void) {
     } else {
         if (o->oSubAction == 1) {
             set_obj_animation_and_sound_state(1);
-            o->OBJECT_FIELD_S32(0x1D) += player_performed_grab_escape_action();
-            print_debug_bottom_up("%d", o->OBJECT_FIELD_S32(0x1D));
-            if (o->OBJECT_FIELD_S32(0x1D) > 10) {
-                o->oUnknownUnk88 = 3;
+            o->oKingBobombUnkFC += player_performed_grab_escape_action();
+            print_debug_bottom_up("%d", o->oKingBobombUnkFC);
+            if (o->oKingBobombUnkFC > 10) {
+                o->oKingBobombUnk88 = 3;
                 o->oAction = 2;
-                o->OBJECT_FIELD_S32(0x20) = 35;
+                o->oKingBobombUnk108 = 35;
                 o->oInteractStatus &= ~(INT_STATUS_GRABBED_MARIO);
             } else {
                 o->oForwardVel = 3.0f;
-                if (o->OBJECT_FIELD_S32(0x1F) > 20 && obj_rotate_yaw_toward(0, 0x400)) {
+                if (o->oKingBobombUnk104 > 20 && obj_rotate_yaw_toward(0, 0x400)) {
                     o->oSubAction++;
                     func_802A4A70(9, 22);
                 }
             }
-            o->OBJECT_FIELD_S32(0x1F)++;
+            o->oKingBobombUnk104++;
         } else {
             set_obj_animation_and_sound_state(9);
             if (obj_check_anim_frame(31)) {
-                o->oUnknownUnk88 = 2;
+                o->oKingBobombUnk88 = 2;
                 PlaySound2(SOUND_OBJ_UNKNOWN4);
             } else if (func_8029F788()) {
                 o->oAction = 1;
@@ -123,7 +123,7 @@ void ActionKingBobomb1(void) {
 void ActionKingBobomb6(void) {
     if (o->oSubAction == 0) {
         if (o->oTimer == 0) {
-            o->OBJECT_FIELD_S32(0x1F) = 0;
+            o->oKingBobombUnk104 = 0;
             PlaySound2(SOUND_OBJ_KING_BOBOMB);
             PlaySound2(SOUND_OBJ2_KING_BOBOMB_DAMAGE);
             ShakeScreen(1);
@@ -132,8 +132,8 @@ void ActionKingBobomb6(void) {
             obj_become_tangible();
         }
         if (func_802A4AB0(2))
-            o->OBJECT_FIELD_S32(0x1F)++;
-        if (o->OBJECT_FIELD_S32(0x1F) > 3) {
+            o->oKingBobombUnk104++;
+        if (o->oKingBobombUnk104 > 3) {
             o->oSubAction++;
             ; // Needed to match
         }
@@ -209,7 +209,7 @@ void ActionKingBobomb5() { // bobomb returns home
         case 0:
             if (o->oTimer == 0)
                 PlaySound2(SOUND_OBJ_KING_BOBOMB_JUMP);
-            o->OBJECT_FIELD_S32(0x1C) = 1;
+            o->oKingBobombUnkF8 = 1;
             func_802A4AEC(8);
             o->oMoveAngleYaw = obj_angle_to_home();
             if (o->oPosY < o->oHomeY)
@@ -226,7 +226,7 @@ void ActionKingBobomb5() { // bobomb returns home
                 o->oVelY = 0;
                 o->oForwardVel = 0;
                 o->oGravity = -4.0f;
-                o->OBJECT_FIELD_S32(0x1C) = 0;
+                o->oKingBobombUnkF8 = 0;
                 set_obj_animation_and_sound_state(7);
                 PlaySound2(SOUND_OBJ_KING_BOBOMB);
                 ShakeScreen(1);
@@ -273,7 +273,7 @@ struct SoundState sKingBobombSoundStates[] = {
 
 void func_802A7748(void) {
     obj_update_floor_and_walls();
-    if (o->OBJECT_FIELD_S32(0x1C) == 0)
+    if (o->oKingBobombUnkF8 == 0)
         obj_move_standard(-78);
     else
         obj_move_using_fvel_and_gravity();

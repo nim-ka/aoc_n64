@@ -46,7 +46,7 @@ void ActionTuxiesMother2(void) {
     }
     if (sp1C != NULL && sp24 < 300.0f && sp1C->oHeldState != HELD_FREE) {
         o->oAction = 1;
-        sp1C->oUnknownUnk88 = 1;
+        sp1C->oSmallPenguinUnk88 = 1;
         o->prevObj = sp1C;
     }
 }
@@ -118,7 +118,7 @@ void ActionTuxiesMother0(void) {
         sp2C = 1;
     if (sp24 != NULL && sp28 < 300.0f && sp24->oHeldState != HELD_FREE) {
         o->oAction = 1;
-        sp24->oUnknownUnk88 = 1;
+        sp24->oSmallPenguinUnk88 = 1;
         o->prevObj = sp24;
     } else {
         switch (o->oSubAction) {
@@ -255,9 +255,9 @@ void (*sSmallPenguinActions[])(void) = {
 };
 
 void func_802BF048(void) {
-    if (o->oUnknownUnk88 != 0) {
+    if (o->oSmallPenguinUnk88 != 0) {
         o->oAction = 5;
-        o->oUnknownUnk88 = 0;
+        o->oSmallPenguinUnk88 = 0;
     }
     obj_update_floor_and_walls();
     obj_call_action_function(sSmallPenguinActions);

@@ -87,14 +87,14 @@ void bhv_rolling_log_loop(void) {
 }
 
 void func_802F2820(void) {
-    o->oUnknownUnkF4_F32 += 4.0f;
-    o->oAngleVelPitch += o->oUnknownUnkF4_F32;
+    o->oRollingLogUnkF4 += 4.0f;
+    o->oAngleVelPitch += o->oRollingLogUnkF4;
     o->oFaceAnglePitch -= o->oAngleVelPitch;
 
     if (o->oFaceAnglePitch < -0x4000) {
         o->oFaceAnglePitch = -0x4000;
         o->oAngleVelPitch = 0;
-        o->oUnknownUnkF4_F32 = 0;
+        o->oRollingLogUnkF4 = 0;
         o->oAction = 2;
         PlaySound2(SOUND_GENERAL_BIG_POUND);
         func_8027F440(3, o->oPosX, o->oPosY, o->oPosZ);

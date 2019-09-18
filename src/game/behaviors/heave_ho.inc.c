@@ -1,14 +1,14 @@
 // heave_ho.c.inc
 
 s16 D_8032F460[][2] = { { 30, 0 }, { 42, 1 }, { 52, 0 },  { 64, 1 },  { 74, 0 },
-                        { 86, 1 }, { 96, 0 }, { 108, 1 }, { 118, 0 }, { -1, 0 } };
+                        { 86, 1 }, { 96, 0 }, { 108, 1 }, { 118, 0 }, { -1, 0 }, };
 
 void bhv_heave_ho_throw_mario_loop(void) {
     o->oParentRelativePosX = 200.0f;
     o->oParentRelativePosY = -50.0f;
     o->oParentRelativePosZ = 0.0f;
     o->oMoveAngleYaw = o->parentObj->oMoveAngleYaw;
-    switch (o->parentObj->oUnknownUnk88) {
+    switch (o->parentObj->oHeaveHoUnk88) {
         case 0:
             break;
         case 1:
@@ -18,7 +18,7 @@ void bhv_heave_ho_throw_mario_loop(void) {
             gMarioObject->oInteractStatus |= INT_STATUS_MARIO_UNK2;
             gMarioStates->forwardVel = -45.0f;
             gMarioStates->vel[1] = 95.0f;
-            o->parentObj->oUnknownUnk88 = 0;
+            o->parentObj->oHeaveHoUnk88 = 0;
             break;
     }
 }
@@ -62,7 +62,7 @@ void ActionHeaveHo2(void) {
 void ActionHeaveHo3(void) {
     o->oForwardVel = 0.0f;
     if (o->oTimer == 0)
-        o->oUnknownUnk88 = 2;
+        o->oHeaveHoUnk88 = 2;
     if (o->oTimer == 1) {
         func_8029ED98(1, 1.0f);
         o->numCollidedObjs = 20;
@@ -99,7 +99,7 @@ void func_802B18B4(void) {
         o->oAction = 0;
     if (o->oInteractStatus & INT_STATUS_GRABBED_MARIO) {
         o->oInteractStatus = 0;
-        o->oUnknownUnk88 = 1;
+        o->oHeaveHoUnk88 = 1;
         o->oAction = 3;
     }
 }

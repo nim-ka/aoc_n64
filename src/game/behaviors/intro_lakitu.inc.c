@@ -49,7 +49,7 @@ void bhv_intro_lakitu_loop(void) {
             obj_disable_rendering();
             gCurrentObject->oIntroLakituUnkFC = 0.f;
             gCurrentObject->oIntroLakituUnkF8 = 0.f;
-            gCurrentObject->oUnknownUnk1AC_VPTR =
+            gCurrentObject->oIntroLakituUnk1AC =
                 spawn_object_relative_with_scale(1, 0, 0, 0, 2.f, gCurrentObject, MODEL_MIST, bhvCloud);
             if (gCurrLevelCamera->cutscene == CUTSCENE_END_WAVING)
                 gCurrentObject->oAction = 100;
@@ -145,7 +145,7 @@ void bhv_intro_lakitu_loop(void) {
 
             if (gCurrentObject->oTimer == TIMER) {
                 mark_object_for_deletion(gCurrentObject);
-                mark_object_for_deletion(gCurrentObject->oUnknownUnk1AC_VPTR);
+                mark_object_for_deletion(gCurrentObject->oIntroLakituUnk1AC);
             }
 #ifndef VERSION_JP
             if (gCurrentObject->oTimer == 14)

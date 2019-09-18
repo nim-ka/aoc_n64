@@ -906,7 +906,7 @@ static u32 set_mario_action_moving(struct MarioState *m, u32 action, UNUSED u32 
                 }
             }
 
-            m->marioObj->OBJECT_FIELD_S32(0x22) = 0;
+            m->marioObj->oMarioWalkingPitch = 0;
             break;
 
         case ACT_HOLD_WALKING:
@@ -1838,7 +1838,7 @@ void init_mario(void) {
         capObject->oPosY = capPos[1];
         capObject->oPosZ = capPos[2];
 
-        capObject->oForwardVel2 = 0;
+        capObject->oForwardVelS32 = 0;
 
         capObject->oMoveAngleYaw = 0;
     }

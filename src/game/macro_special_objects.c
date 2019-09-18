@@ -74,9 +74,9 @@ void spawn_macro_abs_special(u32 model, u32 *behavior, s16 x, s16 y, s16 z, s16 
         spawn_object_abs_with_rot(&gMacroObjectDefaultParent, 0, model, behavior, x, y, z, 0, 0, 0);
 
     // Are all three of these values unused?
-    newObj->oUnknownUnk108_F32 = (f32) unkA;
-    newObj->oUnknownUnk10C_F32 = (f32) unkB;
-    newObj->oUnknownUnk110_F32 = (f32) unkC;
+    newObj->oMacroUnk108 = (f32) unkA;
+    newObj->oMacroUnk10C = (f32) unkB;
+    newObj->oMacroUnk110 = (f32) unkC;
 }
 
 static void Unknown802E142C(u32 (*a0)[], s16 a1[]) {
@@ -88,7 +88,7 @@ static void Unknown802E142C(u32 (*a0)[], s16 a1[]) {
     sp3C = spawn_object_abs_with_rot(&gMacroObjectDefaultParent, 0, model, a0, a1[1], a1[2], a1[3], 0,
                                      convert_rotation(a1[0]), 0);
 
-    sp3C->oUnknownUnk1A8 = a1[4];
+    sp3C->oUnk1A8 = a1[4];
     sp3C->oBehParams = (a1[4] & 0xFF) >> 16;
 }
 
@@ -160,7 +160,7 @@ void spawn_macro_objects(s16 areaIndex, s16 *macroObjList) {
                                           0                                               // Z-rotation
                 );
 
-            newObj->oUnknownUnk1A8 = macroObject[MACRO_OBJ_PARAMS];
+            newObj->oUnk1A8 = macroObject[MACRO_OBJ_PARAMS];
             newObj->oBehParams = ((macroObject[MACRO_OBJ_PARAMS] & 0x00FF) << 16)
                                  + (macroObject[MACRO_OBJ_PARAMS] & 0xFF00);
             newObj->oBehParams2ndByte = macroObject[MACRO_OBJ_PARAMS] & 0x00FF;
@@ -306,13 +306,13 @@ void spawn_special_objects(s16 areaIndex, s16 **specialObjList) {
                 break;
             case SPTYPE_UNKNOWN:
                 extraParams[0] =
-                    **specialObjList; // Unknown, gets put into obj->oUnknownUnk108_F32 as a float
+                    **specialObjList; // Unknown, gets put into obj->oMacroUnk108 as a float
                 (*specialObjList)++;
                 extraParams[1] =
-                    **specialObjList; // Unknown, gets put into obj->oUnknownUnk10C_F32 as a float
+                    **specialObjList; // Unknown, gets put into obj->oMacroUnk10C as a float
                 (*specialObjList)++;
                 extraParams[2] =
-                    **specialObjList; // Unknown, gets put into obj->oUnknownUnk110_F32 as a f32
+                    **specialObjList; // Unknown, gets put into obj->oMacroUnk110 as a float
                 (*specialObjList)++;
                 spawn_macro_abs_special(model, behavior, x, y, z, extraParams[0], extraParams[1],
                                         extraParams[2]);

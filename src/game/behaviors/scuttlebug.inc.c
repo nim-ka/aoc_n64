@@ -111,7 +111,7 @@ void bhv_scuttlebug_loop(void) {
         if (obj_is_hidden(o))
             mark_object_for_deletion(o);
         if (o->activeFlags == 0)
-            o->parentObj->oUnknownUnk88 = 1;
+            o->parentObj->oScuttlebugSpawnerUnk88 = 1;
     }
     obj_move_standard(-50);
 }
@@ -128,8 +128,8 @@ void bhv_scuttlebug_spawn_loop(void) {
             o->oAction++;
             o->oScuttlebugUnkF4 = 1;
         }
-    } else if (o->oUnknownUnk88 != 0) {
-        o->oUnknownUnk88 = 0;
+    } else if (o->oScuttlebugSpawnerUnk88 != 0) {
+        o->oScuttlebugSpawnerUnk88 = 0;
         o->oAction = 0;
     }
 }

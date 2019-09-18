@@ -55,7 +55,7 @@ void bhv_pyramid_top_spinning(void) {
         pyramidFragment = spawn_object(o, MODEL_DIRT_ANIMATION, bhvPyramidTopFragment);
         pyramidFragment->oForwardVel = RandomFloat() * 10.0f + 20.0f;
         pyramidFragment->oMoveAngleYaw = RandomU16();
-        pyramidFragment->oUnknownUnkF4_F32 = 0.8f;
+        pyramidFragment->oPyramidTopFragmentsScale = 0.8f;
         pyramidFragment->oGravity = RandomFloat() + 2.0f;
     }
 
@@ -82,7 +82,7 @@ void bhv_pyramid_top_explode(void) {
         pyramidFragment->oForwardVel = RandomFloat() * 50 + 80;
         pyramidFragment->oVelY = RandomFloat() * 80 + 20;
         pyramidFragment->oMoveAngleYaw = RandomU16();
-        pyramidFragment->oUnknownUnkF4_F32 = 3;
+        pyramidFragment->oPyramidTopFragmentsScale = 3;
         pyramidFragment->oGravity = RandomFloat() * 2 + 5;
     }
 

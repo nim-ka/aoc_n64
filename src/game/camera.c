@@ -2538,7 +2538,7 @@ void init_camera(struct LevelCamera *c) {
             if (gCurrDemoInput == NULL) {
                 set_camera_cutscene_table(c, CUTSCENE_ENTER_BOWSER_ARENA);
             } else if (gSecondCameraFocus != NULL) {
-                gSecondCameraFocus->OBJECT_FIELD_U32(0x00) = 2;
+                gSecondCameraFocus->oBowserUnk88 = 2;
             }
 #else
             set_camera_cutscene_table(c, CUTSCENE_ENTER_BOWSER_ARENA);
@@ -6431,7 +6431,7 @@ CmdRet CutsceneEnterBowserPlatform0_4(UNUSED struct LevelCamera *c) {
 }
 
 CmdRet CutsceneEnterBowserPlatform0_3(UNUSED struct LevelCamera *c) {
-    gSecondCameraFocus->oUnknownUnk88 = 1;
+    gSecondCameraFocus->oBowserUnk88 = 1;
 }
 
 CmdRet CutsceneEnterBowserPlatform0_5(struct LevelCamera *c) {
@@ -6516,7 +6516,7 @@ CmdRet CutsceneEnterBowserPlatform2(struct LevelCamera *c) {
     init_transitional_movement(c, 20);
     gCameraFlags2 |= CAM_FLAG_2_UNUSED_CUTSCENE_ACTIVE;
     sFirstPersonCameraYaw = sMarioStatusForCamera->faceAngle[1] + 0x4000;
-    gSecondCameraFocus->oUnknownUnk88 = 2;
+    gSecondCameraFocus->oBowserUnk88 = 2;
 }
 
 CmdRet CutsceneEnterBowserPlatform0(struct LevelCamera *c) {

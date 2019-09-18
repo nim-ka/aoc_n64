@@ -44,10 +44,10 @@ void func_802EFB2C(void) {
 
 void func_802EFB84(f32 f12) {
     o->oFaceAnglePitch += (s16)(o->oForwardVel * (100.0f / f12));
-    o->oUnknownUnkF4_F32 += o->oForwardVel * 1e-4;
+    o->oSnowmansBottomUnkF4 += o->oForwardVel * 1e-4;
 
-    if (o->oUnknownUnkF4_F32 > 1.0)
-        o->oUnknownUnkF4_F32 = 1.0f;
+    if (o->oSnowmansBottomUnkF4 > 1.0)
+        o->oSnowmansBottomUnkF4 = 1.0f;
 }
 
 void func_802EFC44(void) {
@@ -55,10 +55,10 @@ void func_802EFC44(void) {
     s32 sp20;
     UNUSED s16 sp1E;
 
-    o->oSnowmansBottomUnkFC = segmented_to_virtual(&ccm_seg7_trajectory_snowman);
+    o->oPathedStartWaypoint = segmented_to_virtual(&ccm_seg7_trajectory_snowman);
     sp26 = func_802E4204();
     sp20 = obj_follow_path(sp20);
-    o->oSnowmansBottomUnkF8 = o->oSnowmansBottomUnk10C;
+    o->oSnowmansBottomUnkF8 = o->oPathedTargetYaw;
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oSnowmansBottomUnkF8, 0x400);
 
     if (o->oForwardVel > 70.0)
@@ -66,7 +66,7 @@ void func_802EFC44(void) {
 
     if (sp20 == -1) {
         sp1E = (u16) o->oAngleToMario - (u16) o->oMoveAngleYaw;
-        if (func_802E46C0(o->oMoveAngleYaw, o->oAngleToMario, 0x2000) == 1 && o->oUnknownUnk1AC_S32 == 1) {
+        if (func_802E46C0(o->oMoveAngleYaw, o->oAngleToMario, 0x2000) == 1 && o->oSnowmansBottomUnk1AC == 1) {
             o->oSnowmansBottomUnkF8 = o->oAngleToMario;
         } else {
             o->oSnowmansBottomUnkF8 = o->oMoveAngleYaw;
@@ -227,7 +227,7 @@ void bhv_snowmans_head_loop(void) {
 
 void bhv_snowmans_body_checkpoint_loop(void) {
     if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 800)) {
-        o->parentObj->oUnknownUnk1AC_S32++;
+        o->parentObj->oSnowmansBottomUnk1AC++;
         o->activeFlags = 0;
     }
 

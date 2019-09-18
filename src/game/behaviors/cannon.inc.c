@@ -12,8 +12,8 @@ void ActionOpenedCannon0(void) {
         o->oPosZ = o->oHomeZ;
         o->oMoveAnglePitch = 0;
         o->oMoveAngleYaw = (s16)(o->oBehParams2ndByte << 8);
-        o->OBJECT_FIELD_S32(0x1B) = 0;
-        o->OBJECT_FIELD_S32(0x21) = 0;
+        o->oCannonUnkF4 = 0;
+        o->oCannonUnk10C = 0;
         obj_enable_rendering();
         obj_become_tangible();
     }
@@ -25,14 +25,14 @@ void ActionOpenedCannon0(void) {
                   & INT_STATUS_TOUCHED_BOB_OMB))) // bob-omb explodes when it gets into a cannon
         {
             o->oAction = 4;
-            o->OBJECT_FIELD_S32(0x21) = 1;
-            o->OBJECT_FIELD_S32(0x1C) = 1;
+            o->oCannonUnk10C = 1;
+            o->oCannonUnkF8 = 1;
         } else
             o->oInteractStatus = 0;
     } else {
         obj_become_intangible();
         obj_disable_rendering();
-        o->OBJECT_FIELD_S32(0x21) = 0;
+        o->oCannonUnk10C = 0;
     }
 }
 
@@ -60,11 +60,11 @@ void ActionOpenedCannon6(void) {
         } else {
             if (o->oTimer < 22) {
                 o->oMoveAngleYaw =
-                    sins(o->OBJECT_FIELD_S32(0x1B)) * 0x4000 + ((s16)(o->oBehParams2ndByte << 8));
-                o->OBJECT_FIELD_S32(0x1B) += 0x400;
+                    sins(o->oCannonUnkF4) * 0x4000 + ((s16)(o->oBehParams2ndByte << 8));
+                o->oCannonUnkF4 += 0x400;
             } else if (o->oTimer < 26) {
             } else {
-                o->OBJECT_FIELD_S32(0x1B) = 0;
+                o->oCannonUnkF4 = 0;
                 o->oAction = 5;
             }
         }
@@ -77,8 +77,8 @@ void ActionOpenedCannon5(void) {
     if (o->oTimer < 4) {
     } else {
         if (o->oTimer < 20) {
-            o->OBJECT_FIELD_S32(0x1B) += 0x400;
-            o->oMoveAnglePitch = sins(o->OBJECT_FIELD_S32(0x1B)) * 0x2000;
+            o->oCannonUnkF4 += 0x400;
+            o->oMoveAnglePitch = sins(o->oCannonUnkF4) * 0x2000;
         } else if (o->oTimer < 25) {
         } else
             o->oAction = 1;
@@ -89,7 +89,7 @@ void ActionOpenedCannon1(void) {
     UNUSED s32 unused;
     obj_become_intangible();
     obj_disable_rendering();
-    o->OBJECT_FIELD_S32(0x21) = 0;
+    o->oCannonUnk10C = 0;
     gMarioShotFromCannon = 1;
 }
 
@@ -113,8 +113,8 @@ u8 unused0EA1FC[] = { 2,  0,   0, 0, 0,  0,   0, 0, 63, 128, 0, 0, 2,  0,   0, 0
 
 void bhv_cannon_base_loop(void) {
     obj_call_action_function(sOpenedCannonActions);
-    if (o->OBJECT_FIELD_S32(0x1C))
-        o->OBJECT_FIELD_S32(0x1C)++;
+    if (o->oCannonUnkF8)
+        o->oCannonUnkF8++;
     o->oInteractStatus = 0;
 }
 

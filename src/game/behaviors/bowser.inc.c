@@ -35,7 +35,7 @@ s8 D_8032F514[] = { 24, 42, 60, -1 };
 s16 sBowserDefeatedDialogText[3] = { 119, 120, 121 };
 s16 D_8032F520[][3] = { { 1, 10, 40 },   { 0, 0, 74 },    { -1, -10, 114 },  { 1, -20, 134 },
                         { -1, 20, 154 }, { 1, 40, 164 },  { -1, -40, 174 },  { 1, -80, 179 },
-                        { -1, 80, 184 }, { 1, 160, 186 }, { -1, -160, 186 }, { 1, 0, 0 } };
+                        { -1, 80, 184 }, { 1, 160, 186 }, { -1, -160, 186 }, { 1, 0, 0 }, };
 
 void bhv_bowser_tail_anchor_loop(void) {
     obj_call_action_function(sBowserTailAnchorActions);
@@ -150,9 +150,9 @@ s32 func_802B3A98(void) {
 }
 
 void func_802B3B0C(void) {
-    if (o->oUnknownUnk88 == 0)
+    if (o->oBowserUnk88 == 0)
         o->oAction = 5;
-    else if (o->oUnknownUnk88 == 1)
+    else if (o->oBowserUnk88 == 1)
         o->oAction = 6;
     else if (o->oBehParams2ndByte == 1)
         o->oAction = 13;
@@ -175,8 +175,8 @@ void ActionBowser6(void) {
         if (func_802B3A30())
             o->oSubAction++;
     } else if (func_802B3A98()) {
-        if (o->oUnknownUnk88 == 1)
-            o->oUnknownUnk88 = 0;
+        if (o->oBowserUnk88 == 1)
+            o->oBowserUnk88 = 0;
         func_802B3B0C();
     }
 }
@@ -361,7 +361,7 @@ void ActionBowser16(void) {
     switch (o->oSubAction) {
         case 0:
             obj_become_intangible();
-            o->oUnknownUnk1AC_S16 = 0;
+            o->oBowserUnk1AC = 0;
             o->oBowserUnkF8 = 30;
             if (o->oTimer == 0)
                 PlaySound2(SOUND_OBJ2_BOWSER_TELEPORT);
@@ -386,7 +386,7 @@ void ActionBowser16(void) {
             break;
         case 2:
             o->oForwardVel = 0.0f;
-            o->oUnknownUnk1AC_S16 = 0xFF;
+            o->oBowserUnk1AC = 0xFF;
             if (o->oOpacity == 0xFF)
                 o->oAction = 0;
             obj_become_tangible();
@@ -491,7 +491,7 @@ void ActionBowser13(void) {
         }
     } else if (o->oSubAction == 1) {
 #ifndef VERSION_JP
-        if (o->oBehParams2ndByte == 2 && o->oUnknownUnkF4_S32 & 0x10000)
+        if (o->oBehParams2ndByte == 2 && o->oBowserUnkF4 & 0x10000)
             func_u_802B4AF4();
         if (func_802B4A94()) {
             o->oBowserUnkF4 &= 0xfffeffff;
@@ -676,7 +676,7 @@ void ActionBowser1(void) // unused?
 }
 
 void func_802B5738(void) {
-    o->oUnknownUnk1AC_S16 = 0;
+    o->oBowserUnk1AC = 0;
     if (o->oOpacity == 0) {
         o->oForwardVel = 0.0f;
         o->oVelY = 0.0f;
@@ -710,7 +710,7 @@ void ActionBowser2(void) {
             if (obj_check_anim_frame(11)) {
                 o->oMoveAngleYaw = o->oBowserAngleToCentre;
                 o->oVelY = 150.0f;
-                o->oUnknownUnk1AC_S16 = 0xFF;
+                o->oBowserUnk1AC = 0xFF;
                 o->oBowserUnkF8 = 0;
                 o->oSubAction++;
             } else
@@ -1134,8 +1134,8 @@ void bhv_bowser_loop(void) {
     }
     obj_align_gfx_with_floor();
     if (o->oAction != 4)
-        if (o->oUnknownUnk1AC_S16 != o->oOpacity) {
-            if (o->oUnknownUnk1AC_S16 > o->oOpacity) {
+        if (o->oBowserUnk1AC != o->oOpacity) {
+            if (o->oBowserUnk1AC > o->oOpacity) {
                 o->oOpacity += 20;
                 if (o->oOpacity >= 0x100)
                     o->oOpacity = 0xFF;
@@ -1151,7 +1151,7 @@ void bhv_bowser_init(void) {
     s32 level; // 0 is dw, 1 is fs, 2 is sky
     o->oBowserUnk110 = 1;
     o->oOpacity = 0xFF;
-    o->oUnknownUnk1AC_S16 = 0xFF;
+    o->oBowserUnk1AC = 0xFF;
     if (gCurrLevelNum == LEVEL_BOWSER_2)
         level = 1;
     else if (gCurrLevelNum == LEVEL_BOWSER_3)
@@ -1159,11 +1159,11 @@ void bhv_bowser_init(void) {
     else
         level = 0;
     o->oBehParams2ndByte = level;
-    o->oUnknownUnk1B2 = D_8032F690[level];
+    o->oBowserUnk1B2 = D_8032F690[level];
     o->oHealth = D_8032F694[level];
     func_802A11B4(o, 4);
     o->oAction = 5;
-    o->oUnknownUnk1AE = 0;
+    o->oBowserUnk1AE = 0;
     o->oBowserEyesShut = 0;
 }
 
@@ -1199,23 +1199,23 @@ void func_802B70C8(struct Object *a0, struct GraphNodeSwitchCase *switchCase) {
                 if (a0->oAngleVelYaw < 0)
                     switchCase->selectedCase = 3;
             }
-            if (a0->oUnknownUnk1AE > 50)
+            if (a0->oBowserUnk1AE > 50)
                 switchCase->selectedCase = 1;
             break;
         case 1:
-            if (a0->oUnknownUnk1AE > 2)
+            if (a0->oBowserUnk1AE > 2)
                 switchCase->selectedCase = 2;
             break;
         case 2:
-            if (a0->oUnknownUnk1AE > 2)
+            if (a0->oBowserUnk1AE > 2)
                 switchCase->selectedCase = 9;
             break;
         case 9:
-            if (a0->oUnknownUnk1AE > 2)
+            if (a0->oBowserUnk1AE > 2)
                 switchCase->selectedCase = 0;
             break;
         case 5:
-            if (a0->oUnknownUnk1AE > 2) {
+            if (a0->oBowserUnk1AE > 2) {
                 switchCase->selectedCase = 6;
                 if (a0->oAngleVelYaw <= 0)
                     switchCase->selectedCase = 0;
@@ -1226,7 +1226,7 @@ void func_802B70C8(struct Object *a0, struct GraphNodeSwitchCase *switchCase) {
                 switchCase->selectedCase = 5;
             break;
         case 3:
-            if (a0->oUnknownUnk1AE > 2) {
+            if (a0->oBowserUnk1AE > 2) {
                 switchCase->selectedCase = 4;
                 if (a0->oAngleVelYaw >= 0)
                     switchCase->selectedCase = 0;
@@ -1240,7 +1240,7 @@ void func_802B70C8(struct Object *a0, struct GraphNodeSwitchCase *switchCase) {
             switchCase->selectedCase = 0;
     }
     if (switchCase->selectedCase != sp1C)
-        a0->oUnknownUnk1AE = -1;
+        a0->oBowserUnk1AE = -1;
 }
 
 /** Geo switch for controlling the state of bowser's eye direction and open/closed
@@ -1263,7 +1263,7 @@ s32 geo_switch_bowser_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx) {
                 switchCase->selectedCase = 2;
                 break;
         }
-        obj->oUnknownUnk1AE++;
+        obj->oBowserUnk1AE++;
     }
     return 0;
 }
@@ -1285,7 +1285,7 @@ Gfx *Geo18_802B7D44(s32 a0, struct GraphNode *node, UNUSED s32 a2) {
             sp20->fnNode.node.flags = (sp20->fnNode.node.flags & 0xFF) | (0x100 | 0x400);
         sp28 = sp2C = alloc_display_list(2 * sizeof(Gfx));
 
-        if (sp24->oUnknownUnk1B2 != 0) {
+        if (sp24->oBowserUnk1B2 != 0) {
             gSPClearGeometryMode(sp28++, G_LIGHTING);
         }
         gSPEndDisplayList(sp28);
@@ -1304,7 +1304,7 @@ void ActionFallingBowserPlatform1(void) {
     UNUSED s32 unused;
     struct Object *sp0 = o->oPlatformUnkF8;
     if (sp0->platform == o)
-        if (sp0->oAction == 13 && sp0->oUnknownUnkF4_S32 & 0x10000)
+        if (sp0->oAction == 13 && sp0->oBowserUnkF4 & 0x10000)
             o->oAction = 2;
     if (sp0->oHealth == 1 && (sp0->oAction == 3 || sp0->oHeldState != HELD_FREE))
         o->oSubAction = 1;

@@ -32,9 +32,9 @@ Gfx *Geo18_8030D93C(s32 arg0, struct GraphNode *node, UNUSED void *arg2) {
         sp4 = (struct Object *) gCurGraphNodeObject;
         sp0 = (struct GraphNodeTranslationRotation *) node->next;
 
-        sp0->translation[0] = sp4->OBJECT_FIELD_S16(0x49, 0);
-        sp0->translation[1] = sp4->OBJECT_FIELD_S16(0x49, 1);
-        sp0->translation[2] = sp4->OBJECT_FIELD_S16(0x4A, 0);
+        sp0->translation[0] = sp4->oSnufitUnk1AC;
+        sp0->translation[1] = sp4->oSnufitUnk1AE;
+        sp0->translation[2] = sp4->oSnufitUnk1B0;
     }
 
     return NULL;
@@ -48,7 +48,7 @@ Gfx *Geo18_8030D9AC(s32 arg0, struct GraphNode *node, UNUSED void *arg2) {
         sp4 = (struct Object *) gCurGraphNodeObject;
         sp0 = (struct GraphNodeScale *) node->next;
 
-        sp0->scale = sp4->OBJECT_FIELD_S16(0x4A, 1) / 1000.0f;
+        sp0->scale = sp4->oSnufitUnk1B2 / 1000.0f;
     }
 
     return NULL;
