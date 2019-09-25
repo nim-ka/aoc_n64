@@ -58,72 +58,6 @@ enum DialogBoxType {
     DIALOG_TYPE_ZOOM    // used in signposts and wall signs and etc
 };
 
-#define ASCII_TO_DIALOG(asc)                                       \
-    (((asc) >= '0' && (asc) <= '9') ? ((asc) - '0') :              \
-     ((asc) >= 'A' && (asc) <= 'Z') ? ((asc) - 'A' + 0x0A) :       \
-     ((asc) >= 'a' && (asc) <= 'z') ? ((asc) - 'a' + 0x24) : 0x00)
-
-enum HudSpecialChars {
-    HUD_CHAR_SYM_X = 0x32,
-    HUD_CHAR_SYM_COIN = 0x33,
-    HUD_CHAR_SYM_MARIO = 0x34,
-    HUD_CHAR_SYM_STAR = 0x35,
-#ifdef VERSION_EU
-    HUD_CHAR_A_UMLAUT = 0x3A,
-    HUD_CHAR_O_UMLAUT = 0x3B,
-    HUD_CHAR_U_UMLAUT = 0x3C,
-#endif
-    HUD_CHAR_SPACE = 0x9E
-};
-
-// definitions for some of the special characters defined in charmap.txt
-enum DialogSpecialChars {
-#ifdef VERSION_EU
-    DIALOG_CHAR_LOWER_A_GRAVE = 0x60,      // 'a' grave
-    DIALOG_CHAR_LOWER_A_CIRCUMFLEX = 0x61, // 'a' circumflex
-    DIALOG_CHAR_LOWER_A_UMLAUT = 0x62,     // 'a' umlaut
-    DIALOG_CHAR_UPPER_A_GRAVE = 0x64,      // 'A' grave
-    DIALOG_CHAR_UPPER_A_CIRCUMFLEX = 0x65, // 'A' circumflex
-    DIALOG_CHAR_UPPER_A_UMLAUT = 0x66,     // 'A' umlaut
-    DIALOG_CHAR_LOWER_E_GRAVE = 0x70,      // 'e' grave
-    DIALOG_CHAR_LOWER_E_CIRCUMFLEX = 0x71, // 'e' circumflex
-    DIALOG_CHAR_LOWER_E_UMLAUT = 0x72,     // 'e' umlaut
-    DIALOG_CHAR_LOWER_E_ACUTE = 0x73,      // 'e' acute
-    DIALOG_CHAR_UPPER_E_GRAVE = 0x74,      // 'E' grave
-    DIALOG_CHAR_UPPER_E_CIRCUMFLEX = 0x75, // 'E' circumflex
-    DIALOG_CHAR_UPPER_E_UMLAUT = 0x76,     // 'E' umlaut
-    DIALOG_CHAR_UPPER_E_ACUTE = 0x77,      // 'E' acute
-    DIALOG_CHAR_LOWER_U_GRAVE = 0x80,      // 'u' grave
-    DIALOG_CHAR_LOWER_U_CIRCUMFLEX = 0x81, // 'u' circumflex
-    DIALOG_CHAR_LOWER_U_UMLAUT = 0x82,     // 'u' umlaut
-    DIALOG_CHAR_UPPER_U_GRAVE = 0x84,      // 'U' grave
-    DIALOG_CHAR_UPPER_U_CIRCUMFLEX = 0x85, // 'U' circumflex
-    DIALOG_CHAR_UPPER_U_UMLAUT = 0x86,     // 'U' umlaut
-    DIALOG_CHAR_LOWER_O_CIRCUMFLEX = 0x91, // 'o' circumflex
-    DIALOG_CHAR_LOWER_O_UMLAUT = 0x92,     // 'o' umlaut
-    DIALOG_CHAR_UPPER_O_CIRCUMFLEX = 0x95, // 'O' circumflex
-    DIALOG_CHAR_UPPER_O_UMLAUT = 0x96,     // 'O' umlaut
-    DIALOG_CHAR_LOWER_I_CIRCUMFLEX = 0xA1, // 'i' circumflex
-    DIALOG_CHAR_LOWER_I_UMLAUT = 0xA2,     // 'i' umlaut
-    DIALOG_CHAR_I_NO_DIA = 0xEB,           // 'i' without diacritic
-    DIALOG_CHAR_DOUBLE_LOW_QUOTE = 0xF0,   // German opening quotation mark
-#endif
-#if defined(VERSION_US) || defined(VERSION_EU)
-    DIALOG_CHAR_MULTI_THE = 0xD1, // 'the'
-    DIALOG_CHAR_MULTI_YOU = 0xD2, // 'you'
-#endif
-    DIALOG_CHAR_HANDAKUTEN = 0x6E,
-    DIALOG_CHAR_COMMA = 0x6F,
-    DIALOG_CHAR_SPACE = 0x9E,
-    DIALOG_CHAR_STAR_COUNT = 0xE0,        // number of stars
-    DIALOG_CHAR_PREFIX_DAKUTEN = 0xF0,    // prefix for kana with dakuten
-    DIALOG_CHAR_PREFIX_HANDAKUTEN = 0xF1, // prefix for kana with handakuten
-    DIALOG_CHAR_STAR_FILLED = 0xFA,
-    DIALOG_CHAR_STAR_OPEN = 0xFD,
-    DIALOG_CHAR_NEWLINE = 0xFE,
-    DIALOG_CHAR_TERMINATOR = 0xFF
-};
-
 enum DialogMark { DIALOG_MARK_NONE = 0, DIALOG_MARK_DAKUTEN = 1, DIALOG_MARK_HANDAKUTEN = 2 };
 
 #define DEFAULT_DIALOG_BOX_ANGLE 90.0f
@@ -270,7 +204,7 @@ void create_dl_ortho_matrix(void) {
     }
 
     create_dl_identity_matrix();
-    
+
     guOrtho(matrix, 0.0f, SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT, -10.0f, 10.0f, 1.0f);
 
     // Should produce G_RDPHALF_1 in Fast3D
@@ -442,6 +376,9 @@ void render_multi_text_string(s16 *xPos, s16 *yPos, s8 multiTextID) // EU: 802AD
 #define MAX_STRING_WIDTH 16
 #endif
 
+/**
+ * Prints a generic ia8 white string.
+ */
 void print_generic_string(s16 x, s16 y, const u8 *str) {
     UNUSED s8 mark = DIALOG_MARK_NONE; // unused in EU
     s32 strPos = 0;
@@ -602,16 +539,19 @@ void print_hud_char_umlaut(s16 x, s16 y, u8 chr) {
 }
 #endif
 
-void print_hud_lut_string(s8 fontLut, s16 x, s16 y, const u8 *str) {
+/**
+ * Prints a hud string depending of the lut type defined.
+ */
+void print_hud_lut_string(s8 hudType, s16 x, s16 y, const u8 *str) {
     s32 strPos = 0;
-    void **fontLUT1 = segmented_to_virtual(main_menu_seg7_table_0700ABD0); // japanese color font
-    void **fontLUT2 = segmented_to_virtual(seg2_hud_lut);                  // 0-9 A-Z Alphanumeric Font
+    void **hudType1 = segmented_to_virtual(main_menu_seg7_table_0700ABD0); // Japanese Menu HUD Color font
+    void **hudType2 = segmented_to_virtual(seg2_hud_lut);                  // 0-9 A-Z HUD Color Font
     u32 curX = x;
     u32 curY = y;
 
-    u32 xStride;
+    u32 xStride; // X separation
 
-    if (fontLut == HUD_STR_JPMENU) {
+    if (hudType == HUD_STR_JPMENU) {
         xStride = 16;
     } else { // HUD_STR_GLOBAL
 #ifdef VERSION_JP
@@ -652,11 +592,11 @@ void print_hud_lut_string(s8 fontLut, s16 x, s16 y, const u8 *str) {
 #endif
             gDPPipeSync(gDisplayListHead++);
 
-            if (fontLut == HUD_STR_JPMENU)
-                gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fontLUT1[str[strPos]]);
+            if (hudType == HUD_STR_JPMENU)
+                gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, hudType1[str[strPos]]);
 
-            if (fontLut == HUD_STR_GLOBAL)
-                gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fontLUT2[str[strPos]]);
+            if (hudType == HUD_STR_GLOBAL)
+                gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, hudType2[str[strPos]]);
 
             gSPDisplayList(gDisplayListHead++, dl_rgba16_load_tex_block);
             gSPTextureRectangle(gDisplayListHead++, curX << 2, curY << 2, (curX + 16) << 2,
@@ -886,8 +826,8 @@ s16 get_string_width(u8 *str) {
 }
 #endif
 
-u8 gHudSymCoin[] = { HUD_CHAR_SYM_COIN, 0xFF };
-u8 gHudSymX[] = { HUD_CHAR_SYM_X, 0xFF };
+u8 gHudSymCoin[] = { HUD_CHAR_SYM_COIN, HUD_CHAR_TERMINATOR };
+u8 gHudSymX[] = { HUD_CHAR_SYM_X, HUD_CHAR_TERMINATOR };
 
 void print_hud_my_score_coins(s32 useCourseCoinScore, s8 fileNum, s8 courseNum, s16 x, s16 y) {
     u8 strNumCoins[4];
@@ -910,9 +850,9 @@ void print_hud_my_score_coins(s32 useCourseCoinScore, s8 fileNum, s8 courseNum, 
 void print_hud_my_score_stars(s8 fileNum, s8 courseNum, s16 x, s16 y) {
     u8 strStarCount[4];
     s16 starCount;
-    u8 textSymStar[] = { HUD_CHAR_SYM_STAR, 0xFF };
+    u8 textSymStar[] = { HUD_CHAR_SYM_STAR, HUD_CHAR_TERMINATOR };
     UNUSED u16 unused;
-    u8 textSymX[] = { HUD_CHAR_SYM_X, 0xFF };
+    u8 textSymX[] = { HUD_CHAR_SYM_X, HUD_CHAR_TERMINATOR };
 
     starCount = save_file_get_course_star_count(fileNum, courseNum);
 
@@ -1656,7 +1596,7 @@ u8 gEndCutsceneStrEn1[] = { TEXT_POWER_STARS_RESTORED };
 u8 gEndCutsceneStrEn2[] = { TEXT_THANKS_TO_YOU };
 u8 gEndCutsceneStrEn3[] = { TEXT_THANK_YOU_MARIO };
 u8 gEndCutsceneStrEn4[] = { TEXT_SOMETHING_SPECIAL };
-u8 gEndCutsceneStrEn5[] = { TEXT_COME_ON_EVERYBODY };
+u8 gEndCutsceneStrEn5[] = { TEXT_LISTEN_EVERYBODY };
 u8 gEndCutsceneStrEn6[] = { TEXT_LETS_HAVE_CAKE };
 u8 gEndCutsceneStrEn7[] = { TEXT_FOR_MARIO };
 u8 gEndCutsceneStrEn8[] = { TEXT_FILE_MARIO_QUESTION };
@@ -1907,12 +1847,12 @@ void reset_cutscene_msg_fade(void) {
     gCutsceneMsgFade = 0;
 }
 
-void start_dl_rgba16_cutscene_msg_fade(void) {
+void dl_rgba16_begin_cutscene_msg_fade(void) {
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gCutsceneMsgFade);
 }
 
-void stop_dl_rgba16_cutscene_msg_fade(void) {
+void dl_rgba16_stop_cutscene_msg_fade(void) {
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 
     if (gCutsceneMsgFade < 250) {
@@ -2059,6 +1999,7 @@ extern Gfx castle_grounds_seg7_us_dl_0700F2E8[];
 #define STR_X 38
 #define STR_Y 142
 #endif
+
 // "Dear Mario" message handler
 void print_peach_letter_message(void) {
     void **dialogTable;
@@ -2095,9 +2036,9 @@ void print_peach_letter_message(void) {
     print_generic_string(STR_X, STR_Y, str);
 #ifdef VERSION_JP
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
+#endif
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
-#else
-    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
+#ifndef VERSION_JP
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     gDPSetEnvColor(gDisplayListHead++, 200, 80, 120, gCutsceneMsgFade);
     gSPDisplayList(gDisplayListHead++, castle_grounds_seg7_us_dl_0700F2E8);
@@ -2228,14 +2169,22 @@ u8 gTextCourseArr[][7] = { // D_802FDA10
 #define TXT_STAR_X 89
 #define ACT_NAME_X 107
 #define LVL_NAME_X 108
+#define MYSCORE_X  48
 #else
 #define TXT_STAR_X 98
 #define ACT_NAME_X 116
 #define LVL_NAME_X 117
+#define MYSCORE_X  62
 #endif
+
 void render_pause_my_score_coins(void) {
 #ifdef VERSION_EU
-    u8 textMyScore[][10] = { { TEXT_MY_SCORE }, { TEXT_MY_SCORE_FR }, { TEXT_MY_SCORE_DE } };
+    u8 textMyScore[][10] = {
+        { TEXT_MY_SCORE },
+        { TEXT_MY_SCORE_FR },
+        { TEXT_MY_SCORE_DE }
+    };
+#define textMyScore textMyScore[gInGameLanguage]
 #else
     u8 textCourse[] = { TEXT_COURSE };
     u8 textMyScore[] = { TEXT_MY_SCORE };
@@ -2290,11 +2239,7 @@ void render_pause_my_score_coins(void) {
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
 
     if (courseIndex < COURSE_STAGES_COUNT && save_file_get_course_star_count(gCurrSaveFileNum - 1, courseIndex) != 0) {
-#ifdef VERSION_EU
-        print_generic_string(48, 121, textMyScore[gInGameLanguage]);
-#else
-        print_generic_string(62, 121, textMyScore);
-#endif
+        print_generic_string(MYSCORE_X, 121, textMyScore);
     }
 
     levelName = segmented_to_virtual(levelNameTbl[courseIndex]);
@@ -2416,7 +2361,7 @@ void render_pause_course_options(s16 x, s16 y, s8 *index, s16 yIndex) {
         { TEXT_EXIT_COURSE_DE }
     };
     u8 textCameraAngleR[][24] = {
-        { TEXT_CAMERA_ANGLE_R_EN },
+        { TEXT_CAMERA_ANGLE_R },
         { TEXT_CAMERA_ANGLE_R_FR },
         { TEXT_CAMERA_ANGLE_R_DE }
     };
@@ -2741,18 +2686,18 @@ s16 render_pause_courses_and_castle(void) {
 void print_hud_course_complete_string(s8 str) {
 #ifdef VERSION_EU
     u8 textHiScore[][15] = {
-        { TEXT_HI_SCORE_EN },
-        { TEXT_HI_SCORE_FR },
-        { TEXT_HI_SCORE_DE }
+        { TEXT_HUD_HI_SCORE },
+        { TEXT_HUD_HI_SCORE_FR },
+        { TEXT_HUD_HI_SCORE_DE }
     };
     u8 textCongratulations[][16] = {
-        { TEXT_CONGRATULATIONS },
-        { TEXT_CONGRATULATIONS_FR },
-        { TEXT_CONGRATULATIONS_DE }
+        { TEXT_HUD_CONGRATULATIONS },
+        { TEXT_HUD_CONGRATULATIONS_FR },
+        { TEXT_HUD_CONGRATULATIONS_DE }
     };
 #else
-    u8 textHiScore[] = { TEXT_HI_SCORE_EN };
-    u8 textCongratulations[] = { TEXT_CONGRATULATIONS };
+    u8 textHiScore[] = { TEXT_HUD_HI_SCORE };
+    u8 textCongratulations[] = { TEXT_HUD_CONGRATULATIONS };
 #endif
 
     u8 colorFade = sins(gDialogColorFadeTimer) * 50.0f + 200.0f;
@@ -2781,8 +2726,8 @@ void print_hud_course_complete_string(s8 str) {
 
 void print_hud_course_complete_coins(s16 x, s16 y) {
     u8 courseCompleteCoinsStr[4];
-    u8 hudTextSymCoin[] = { HUD_CHAR_SYM_COIN, 0xFF };
-    u8 hudTextSymX[] = { HUD_CHAR_SYM_X, 0xFF };
+    u8 hudTextSymCoin[] = { HUD_CHAR_SYM_COIN, HUD_CHAR_TERMINATOR };
+    u8 hudTextSymX[] = { HUD_CHAR_SYM_X, HUD_CHAR_TERMINATOR };
 
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
@@ -2847,19 +2792,19 @@ void play_star_fanfare_and_flash_hud(s32 arg, u8 starNum) {
 
 void render_course_complete_lvl_info_and_hud_str(void) {
 #ifdef VERSION_JP
-    u8 textSymStar[] = { HUD_CHAR_SYM_STAR, 0xFF };
+    u8 textSymStar[] = { HUD_CHAR_SYM_STAR, HUD_CHAR_TERMINATOR };
     u8 textCourse[] = { TEXT_COURSE };
     u8 textCatch[] = { TEXT_CATCH };
     u8 textClear[] = { TEXT_CLEAR };
 #elif defined(VERSION_EU)
     UNUSED u8 textClear[] = { TEXT_CLEAR }; // unused in EU
-    u8 textSymStar[] = { HUD_CHAR_SYM_STAR, 0xFF };
+    u8 textSymStar[] = { HUD_CHAR_SYM_STAR, HUD_CHAR_TERMINATOR };
 #define textCourse gTextCourseArr[gInGameLanguage]
 #else
     u8 textCourse[] = { TEXT_COURSE };
     UNUSED u8 textCatch[] = { TEXT_CATCH }; // unused in US
     UNUSED u8 textClear[] = { TEXT_CLEAR };
-    u8 textSymStar[] = { HUD_CHAR_SYM_STAR, 0xFF };
+    u8 textSymStar[] = { HUD_CHAR_SYM_STAR, HUD_CHAR_TERMINATOR };
 #endif
 
     void **actNameTbl;

@@ -131,7 +131,7 @@ void print_displaying_credits_entry(void) {
         lineHeight = 16;
 #endif
 
-        start_dl_rgba16_cutscene_msg_fade();
+        dl_rgba16_begin_cutscene_msg_fade();
         print_credits_str_ascii(28, strY, titleStr);
 
 #ifndef VERSION_JP
@@ -173,7 +173,7 @@ void print_displaying_credits_entry(void) {
             currStrPtr++;
         }
 
-        stop_dl_rgba16_cutscene_msg_fade();
+        dl_rgba16_stop_cutscene_msg_fade();
         sDispCreditsEntry = NULL;
     }
 }

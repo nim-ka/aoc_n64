@@ -1199,7 +1199,7 @@ s32 init_level(void) {
  * Initialize the current level if initOrUpdate is 0, or update the level if it
  * is 1.
  */
-s32 lvl_init_or_update(s16 initOrUpdate, UNUSED s32 arg1) {
+s32 lvl_init_or_update(s16 initOrUpdate, UNUSED s32 unused) {
     s32 result = 0;
 
     switch (initOrUpdate) {

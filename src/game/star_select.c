@@ -175,12 +175,8 @@ static void ShowCourseNumber(void) {
 static void ShowActSelectorMenu(void) {
 // TODO: EU relocates level and act name tables to translation segment 0x19
 #ifndef VERSION_EU
-#ifdef VERSION_JP
-    unsigned char myScore[] = { TEXT_MY_SCORE };
-#else
     unsigned char myScore[] = { TEXT_MYSCORE };
-#endif
-    unsigned char starNumbers[] = { TEXT_0 };
+    unsigned char starNumbers[] = { TEXT_ZERO };
     u8 **levelNameTbl = segmented_to_virtual(seg2_level_name_table);
     u8 *currLevelName = segmented_to_virtual(levelNameTbl[gCurrCourseNum - 1]);
     u8 **actNameTbl = segmented_to_virtual(seg2_act_name_table);

@@ -10,6 +10,7 @@
 #include "geo_misc.h"
 #include "area.h"
 #include "prevent_bss_reordering.h"
+#include "segment2.h"
 #include "paintings.h"
 
 s16 gPaintingMarioFloorType;

@@ -124,7 +124,7 @@ glabel main_menu_geo_000380 # 0x0E000380
       geo_close_node
       geo_zbuffer 0
       geo_open_node
-         geo_asm 0, Geo18_80176688
+         geo_asm 0, geo_file_select_strings_and_menu_cursor
       geo_close_node
    geo_close_node
    geo_end

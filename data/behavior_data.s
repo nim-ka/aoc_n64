@@ -3302,19 +3302,19 @@ glabel bhvYellowBackgroundInMenu # 2FA0
 glabel bhvMenuButton # 2FC4
     begin OBJ_LIST_LEVEL
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
-    callnative bhvMenuButton_init
+    callnative bhv_menu_button_init
     begin_loop
         obj_set_int objIntangibleTimer, 0
-        callnative bhvMenuButton_loop
+        callnative bhv_menu_button_loop
     end_loop
 
 glabel bhvMenuButtonManager # 2FE8
     begin OBJ_LIST_LEVEL
     obj_or_int objFlags, (OBJ_FLAG_0800 | OBJ_FLAG_0020 | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
-    callnative bhvMenuButtonManager_init
+    callnative bhv_menu_button_manager_init
     begin_loop
         obj_set_int objIntangibleTimer, 0
-        callnative bhvMenuButtonManager_loop
+        callnative bhv_menu_button_manager_loop
     end_loop
 
 glabel bhvStarInActSelector # 300C

@@ -25,8 +25,8 @@ glabel level_main_menu_entry_1
     load_area /*area*/ 1
     set_menu_music /*seq*/ 0x0021
     transition /*unk2*/ 0, /*unk3*/ 16, /*color*/ -1, -1, -1
-    call /*arg*/ 0, /*func*/ LevelProc_801766DC
-    call_loop /*arg*/ 0, /*func*/ LevelProc_801768A0
+    call /*arg*/ 0, /*func*/ lvl_init_menu_values_and_cursor_pos
+    call_loop /*arg*/ 0, /*func*/ lvl_update_menu_obj_and_load_file_selected
     get_or_set /*op*/ OP_SET, /*var*/ VAR_CURR_SAVE_FILE_NUM
     cmd38 /*unk2*/ 0x00BE
     transition /*unk2*/ 1, /*unk3*/ 16, /*color*/ -1, -1, -1
