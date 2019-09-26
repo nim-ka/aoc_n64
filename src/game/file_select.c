@@ -2199,13 +2199,15 @@ static void print_file_select_strings(void) {
         case MENU_BUTTON_SOUND_MODE:
             print_sound_mode_menu_strings();
             break;
-    } // If all 4 save file exist, define true to sAllFilesExist to prevent more copies in copy menu
+    }
+    // If all 4 save file exists, define true to sAllFilesExist to prevent more copies in copy menu
     if (save_file_exists(SAVE_FILE_A) == TRUE && save_file_exists(SAVE_FILE_B) == TRUE && save_file_exists(SAVE_FILE_C) == TRUE
         && save_file_exists(SAVE_FILE_D) == TRUE) {
         sAllFilesExist = TRUE;
     } else {
         sAllFilesExist = FALSE;
-    } // Timers for menu alpha text and the main menu itself
+    }
+    // Timers for menu alpha text and the main menu itself
     if (sTextBaseAlpha < 250) {
         sTextBaseAlpha += 10;
     }
@@ -2215,7 +2217,7 @@ static void print_file_select_strings(void) {
 }
 
 /**
- * Geo function that print file select strings and the cursor.
+ * Geo function that prints file select strings and the cursor.
  */
 Gfx *geo_file_select_strings_and_menu_cursor(s32 callContext, UNUSED struct GraphNode *node, UNUSED f32 mtx[4][4]) {
     if (callContext == GEO_CONTEXT_RENDER) {
@@ -2273,7 +2275,7 @@ void lvl_init_menu_values_and_cursor_pos(UNUSED s32 arg, UNUSED s32 unused) {
  * When a save file is selected, it returns fileNum value
  * defined in load_main_menu_save_file.
  */
-int lvl_update_menu_obj_and_load_file_selected(UNUSED s32 arg, UNUSED s32 unused) {
+int lvl_update_obj_and_load_file_selected(UNUSED s32 arg, UNUSED s32 unused) {
     area_update_objects();
     return sSelectedFileNum;
 }

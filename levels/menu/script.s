@@ -26,7 +26,7 @@ glabel level_main_menu_entry_1
     set_menu_music /*seq*/ 0x0021
     transition /*unk2*/ 0, /*unk3*/ 16, /*color*/ -1, -1, -1
     call /*arg*/ 0, /*func*/ lvl_init_menu_values_and_cursor_pos
-    call_loop /*arg*/ 0, /*func*/ lvl_update_menu_obj_and_load_file_selected
+    call_loop /*arg*/ 0, /*func*/ lvl_update_obj_and_load_file_selected
     get_or_set /*op*/ OP_SET, /*var*/ VAR_CURR_SAVE_FILE_NUM
     cmd38 /*unk2*/ 0x00BE
     transition /*unk2*/ 1, /*unk3*/ 16, /*color*/ -1, -1, -1
@@ -54,8 +54,8 @@ glabel level_main_menu_entry_2
     transition /*unk2*/ 0, /*unk3*/ 16, /*color*/ -1, -1, -1
     sleep /*frames*/ 16
     set_menu_music /*seq*/ 0x000D
-    call /*arg*/ 0, /*func*/ LevelProc_80177560
-    call_loop /*arg*/ 0, /*func*/ LevelProc_80177610
+    call /*arg*/ 0, /*func*/ lvl_init_act_selector_values_and_stars
+    call_loop /*arg*/ 0, /*func*/ lvl_update_obj_and_load_act_button_actions
     get_or_set /*op*/ OP_SET, /*var*/ VAR_CURR_ACT_NUM
     cmd38 /*unk2*/ 0x00BE
     transition /*unk2*/ 1, /*unk3*/ 16, /*color*/ -1, -1, -1

@@ -3317,20 +3317,20 @@ glabel bhvMenuButtonManager # 2FE8
         callnative bhv_menu_button_manager_loop
     end_loop
 
-glabel bhvStarInActSelector # 300C
+glabel bhvActSelectorStarType # 300C
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     obj_set_pos
     begin_loop
-        callnative BehStarActSelectorLoop
+        callnative bhv_act_selector_star_type_loop
     end_loop
 
 glabel bhvActSelector # 3028
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
-    callnative BehActSelectorInit
+    callnative bhv_act_selector_init
     begin_loop
-        callnative BehActSelectorLoop
+        callnative bhv_act_selector_loop
     end_loop
 
 glabel bhvMovingYellowCoin # 3048
