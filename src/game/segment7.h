@@ -4,12 +4,13 @@
 #include "types.h"
 
 // from main menu segment 7
-extern u8 main_menu_seg7_dl_070073A0[];
-extern u8 main_menu_seg7_dl_070073B8[];
-extern void *main_menu_seg7_table_0700CD08[];
-extern u8 main_menu_seg7_dl_0700D108[];
-extern u8 main_menu_seg7_dl_0700D160[];
-extern u8 main_menu_seg7_dl_0700F228[];
+extern u8 dl_menu_idle_hand[];
+extern u8 dl_menu_grabbing_hand[];
+extern u8 menu_hud_lut[];
+extern u8 menu_font_lut[];
+extern u8 dl_menu_ia8_text_begin[];
+extern u8 dl_menu_ia8_text_end[];
+extern u8 dl_menu_rgba16_wood_course[];
 
 // from intro_segment7
 extern Gfx *intro_seg7_dl_0700B3A0;

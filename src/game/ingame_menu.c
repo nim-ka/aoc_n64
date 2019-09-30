@@ -544,8 +544,8 @@ void print_hud_char_umlaut(s16 x, s16 y, u8 chr) {
  */
 void print_hud_lut_string(s8 hudType, s16 x, s16 y, const u8 *str) {
     s32 strPos = 0;
-    void **hudType1 = segmented_to_virtual(main_menu_seg7_table_0700ABD0); // Japanese Menu HUD Color font
-    void **hudType2 = segmented_to_virtual(seg2_hud_lut);                  // 0-9 A-Z HUD Color Font
+    void **hudType1 = segmented_to_virtual(menu_hud_lut); // Japanese Menu HUD Color font
+    void **hudType2 = segmented_to_virtual(seg2_hud_lut); // 0-9 A-Z HUD Color Font
     u32 curX = x;
     u32 curY = y;
 
@@ -635,7 +635,7 @@ void print_menu_generic_string(s16 x, s16 y, const u8 *str) {
     s32 strPos = 0;
     s32 curX = x;
     s32 curY = y;
-    void **fontLUT = segmented_to_virtual(main_menu_seg7_table_0700CD08);
+    void **fontLUT = segmented_to_virtual(menu_font_lut);
 
     while (str[strPos] != DIALOG_CHAR_TERMINATOR) {
         switch (str[strPos]) {

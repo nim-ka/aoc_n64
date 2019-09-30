@@ -288,13 +288,16 @@ libultra: $(BUILD_DIR)/libultra.a
 
 asm/boot.s: $(BUILD_DIR)/lib/bin/ipl3_font.bin
 
-$(BUILD_DIR)/lib/bin/ipl3_font.bin: lib/ipl3_font.png | $(BUILD_DIR)
+$(BUILD_DIR)/lib/bin/ipl3_font.bin: lib/ipl3_font.png
 	$(IPLFONTUTIL) e $< $@
 
-$(BUILD_DIR)/include/text_strings.h: include/text_strings.h.in | $(BUILD_DIR)
+$(BUILD_DIR)/include/text_strings.h: include/text_strings.h.in
 	$(TEXTCONV) charmap.txt $< $@
 
-$(BUILD_DIR)/text/%.s: text/$(VERSION)/%.s.in | $(BUILD_DIR)
+$(BUILD_DIR)/include/text_menu_strings.h: include/text_menu_strings.h.in
+	$(TEXTCONV) charmap_menu.txt $< $@
+
+$(BUILD_DIR)/text/%.s: text/$(VERSION)/%.s.in
 	$(TEXTCONV) charmap.txt $< $@
 
 ifeq ($(VERSION),eu)
@@ -313,8 +316,8 @@ ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(GOD
 # Make sure build directory exists before compiling anything
 DUMMY != mkdir -p $(ALL_DIRS)
 
-$(BUILD_DIR)/src/game/star_select.o: $(BUILD_DIR)/include/text_strings.h
-$(BUILD_DIR)/src/game/file_select.o: $(BUILD_DIR)/include/text_strings.h
+$(BUILD_DIR)/src/game/file_select.o: $(BUILD_DIR)/include/text_strings.h $(BUILD_DIR)/include/text_menu_strings.h
+$(BUILD_DIR)/src/game/star_select.o: $(BUILD_DIR)/include/text_strings.h $(BUILD_DIR)/include/text_menu_strings.h
 $(BUILD_DIR)/src/game/ingame_menu.o: $(BUILD_DIR)/include/text_strings.h
 
 ################################################################

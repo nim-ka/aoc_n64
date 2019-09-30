@@ -1,16 +1,18 @@
 #ifndef TEXT_STRINGS_H
 #define TEXT_STRINGS_H
 
+#include "text_menu_strings.h"
+
 /**
  * Global Symbols
  */
 #define TEXT_ZERO _("0")
 #define TEXT_COIN _("$")
-#define TEXT_STAR _("*")
-#define TEXT_COIN_X _("$[x]")
-#define TEXT_STAR_X _("*[x]")
-#define TEXT_VARIABLE_X _("[x]")
-#define TEXT_UNFILLED_STAR _("#")
+#define TEXT_STAR _("★")
+#define TEXT_COIN_X _("$×")
+#define TEXT_STAR_X _("★×")
+#define TEXT_VARIABLE_X _("×")
+#define TEXT_UNFILLED_STAR _("☆")
 
 /**
  * Global Text
@@ -23,19 +25,20 @@
 #define TEXT_PAUSE _("PAUSE") // Pause text, Castle Courses
 #define TEXT_HUD_CONGRATULATIONS _("CONGRATULATIONS") // Course Complete Text, Bowser Courses
 
-
 #ifdef VERSION_JP
 
 /**
  * File Select Text
  */
-// Main Screens, TODO: Japanese HUD menu table chars
-#define TEXT_MARIO 0x0F, 0x10, 0x11, 0xFF // View Score Menu
-#define TEXT_SELECT_FILE 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0xff
-#define TEXT_CHECK_FILE 0x15, 0x16, 0x12, 0x09, 0x13, 0x08, 0x14, 0x0d, 0x17, 0xff
-#define TEXT_COPY_FILE 0x00, 0x01, 0x02, 0x03, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0xff
-#define TEXT_ERASE_FILE 0x00, 0x01, 0x02, 0x03, 0x0E, 0x0C, 0xFF
-#define TEXT_SOUND_SELECT 0x18, 0x19, 0x1A, 0x1B, 0x04, 0x05, 0x06, 0x07, 0xFF
+// Main Screens
+// JPHUD menu strings are defined in "text_menu_strings.h.in"
+#define TEXT_MARIO TEXT_JPHUD_MARIO // View Score Menu
+#define TEXT_SELECT_FILE TEXT_JPHUD_SELECT_FILE
+#define TEXT_CHECK_FILE TEXT_JPHUD_CHECK_FILE
+#define TEXT_COPY_FILE TEXT_JPHUD_COPY_FILE
+#define TEXT_ERASE_FILE TEXT_JPHUD_ERASE_FILE
+#define TEXT_SOUND_SELECT TEXT_JPHUD_SOUND_SELECT
+
 #define TEXT_FILE_MARIO_A _("マリオA")
 #define TEXT_FILE_MARIO_B _("マリオB")
 #define TEXT_FILE_MARIO_C _("マリオC")
@@ -161,11 +164,11 @@
 // Score Menu
 #define TEXT_HI_SCORE _("HI SCORE")
 #define TEXT_MY_SCORE _("MY SCORE")
-// TODO: Menu generic charts
-#define TEXT_SCORE_MARIO_A 0x40, 0x41, 0x0A, 0xFF
-#define TEXT_SCORE_MARIO_B 0x40, 0x41, 0x0B, 0xFF
-#define TEXT_SCORE_MARIO_C 0x40, 0x41, 0x0C, 0xFF
-#define TEXT_SCORE_MARIO_D 0x40, 0x41, 0x0D, 0xFF
+// Score Mario Text ("☺" is the Mario face defined in the US/EU menu char table)
+#define TEXT_SCORE_MARIO_A _("☺A")
+#define TEXT_SCORE_MARIO_B _("☺B")
+#define TEXT_SCORE_MARIO_C _("☺C")
+#define TEXT_SCORE_MARIO_D _("☺D")
 
 // Copy Menu
 #define TEXT_COPY_IT_TO_WHERE _("COPY IT TO WHERE?")
@@ -193,8 +196,8 @@
 // Camera Options
 #define TEXT_LAKITU_MARIO _("LAKITU + MARIO")
 #define TEXT_LAKITU_STOP _("LAKITU + STOP")
-#define TEXT_NORMAL_UPCLOSE _("(NORMAL}{UP-CLOSE)")
-#define TEXT_NORMAL_FIXED _("(NORMAL}{FIXED)")
+#define TEXT_NORMAL_UPCLOSE __("(NORMAL)(UP-CLOSE)")
+#define TEXT_NORMAL_FIXED __("(NORMAL)(FIXED)")
 
 // Course Completed Misc Text
 #define TEXT_CATCH _("CATCH")
@@ -244,11 +247,11 @@
 
 // Camera Options
 // French
-#define TEXT_NORMAL_UPCLOSE_FR          _("(NORMAL}{GROS-PLAN)")
-#define TEXT_NORMAL_FIXED_FR            _("(NORMAL}{FIXE)")
+#define TEXT_NORMAL_UPCLOSE_FR          __("(NORMAL)(GROS-PLAN)")
+#define TEXT_NORMAL_FIXED_FR            __("(NORMAL)(FIXE)")
 // German
-#define TEXT_NORMAL_UPCLOSE_DE          _("(NORMAL}{WEIT-ZOOM)")
-#define TEXT_NORMAL_FIXED_DE            _("(NORMAL}{STATIV)")
+#define TEXT_NORMAL_UPCLOSE_DE          __("(NORMAL)(WEIT-ZOOM)")
+#define TEXT_NORMAL_FIXED_DE            __("(NORMAL)(STATIV)")
 
 // Course Completed Misc Text
 // French

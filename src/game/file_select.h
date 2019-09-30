@@ -21,7 +21,7 @@ enum MainMenuButtonStates {
 };
 
 enum MenuButtonTypes {
-    MENU_BUTTON_NONE = -1,  // no button selected (on main menu screen)
+    MENU_BUTTON_NONE = -1, // no button selected (on main menu screen)
 
     // Main Menu (SELECT FILE)
     MENU_BUTTON_MAIN_MIN,
@@ -99,8 +99,8 @@ enum EraseMenuMessageID {
     ERASE_MSG_MAIN_TEXT,
     ERASE_MSG_PROMPT,
     ERASE_MSG_NOSAVE_EXISTS,
-    ERASE_MSG_MARIO_ERASED,    
-    ERASE_MSG_SAVE_EXISTS  
+    ERASE_MSG_MARIO_ERASED,
+    ERASE_MSG_SAVE_EXISTS
 };
 
 enum EraseMenuActionPhase {

@@ -25,118 +25,77 @@
  * special menu messages and phases, button states and button clicked checks.
  */
 
-/**
- * The current sound mode is automatically centered on US due to
- * the large length difference between options.
- */
+// The current sound mode is automatically centered on US due to
+// the large length difference between options.
 #ifndef VERSION_JP
 static s16 sSoundTextX;
 #endif
 
-/**
- * Amount of main menu buttons defined in the code called by spawn_object_rel_with_rot.
- * See file_select.h for the names in MenuButtonTypes.
- */
+// Amount of main menu buttons defined in the code called by spawn_object_rel_with_rot.
+// See file_select.h for the names in MenuButtonTypes.
 static struct Object *sMainMenuButtons[32];
 
-/**
- * Used to defined yes/no fade colors after a file is selected in the erase menu.
- * sYesNoColor[0]: YES // sYesNoColor[1]: NO
- */
+// Used to defined yes/no fade colors after a file is selected in the erase menu.
+// sYesNoColor[0]: YES | sYesNoColor[1]: NO
 static u8 sYesNoColor[2];
 
-/**
- * The button that is selected when it is clicked.
- */
+// The button that is selected when it is clicked.
 static s8 sSelectedButtonID = MENU_BUTTON_NONE;
 
-/**
- * Whether we are on the main menu or one of the submenus.
- */
+// Whether we are on the main menu or one of the submenus.
 static s8 sCurrentMenuLevel = MENU_LAYER_MAIN;
 
-/**
- * Used for text opacifying. If it is below 250, it is constantly incremented.
- */
+// Used for text opacifying. If it is below 250, it is constantly incremented.
 static u8 sTextBaseAlpha = 0;
 
-/**
- * 2D position of the cursor on the screen.
-  * sCursorPos[0]: X // sCursorPos[1]: Y
- */
+// 2D position of the cursor on the screen.
+// sCursorPos[0]: X | sCursorPos[1]: Y
 static f32 sCursorPos[] = {0, 0};
 
-/**
- * Determines which graphic to use for the cursor.
- */
+// Determines which graphic to use for the cursor.
 static s16 sCursorClickingTimer = 0;
 
-/**
- * Equal to sCursorPos if the cursor gets clicked, {-10000, -10000} otherwise.
- */
+// Equal to sCursorPos if the cursor gets clicked, {-10000, -10000} otherwise.
 static s16 sClickPos[] = {-10000, -10000};
 
-/**
- * Used for determining which file has been selected during copying and erasing.
- */
+// Used for determining which file has been selected during copying and erasing.
 static s8 sSelectedFileIndex = -1;
 
-/**
- * Whether to fade out text or not.
- */
+// Whether to fade out text or not.
 static s8 sFadeOutText = FALSE;
 
-/**
- * The message currently being displayed at the top of the menu.
- */
+// The message currently being displayed at the top of a menu.
 static s8 sStatusMessageID = 0;
 
-/**
- * Used for text fading. The alpha value of text is calculated as
- * sTextBaseAlpha - sTextFadeAlpha.
- */
+// Used for text fading. The alpha value of text is calculated as
+// sTextBaseAlpha - sTextFadeAlpha.
 static u8 sTextFadeAlpha = 0;
 
-/**
- * File select timer that keeps counting until it reaches 1000.
- * Used to prevent buttons from being clickable as soon as a menu loads.
- * Gets reset when you click an empty save, existing saves in copy and erase menus
- * and when you click yes/no in the erase confirmation prompt.
- */
+// File select timer that keeps counting until it reaches 1000.
+// Used to prevent buttons from being clickable as soon as a menu loads.
+// Gets reset when you click an empty save, existing saves in copy and erase menus
+// and when you click yes/no in the erase confirmation prompt.
 static s16 sMainMenuTimer = 0;
 
-/**
- * Sound mode menu buttonID, has different values compared to gSoundMode in audio.
- * 0: gSoundMode = 0 (Stereo) // 1: gSoundMode = 3 (Mono) // 2: gSoundMode = 1 (Headset)
- */
+// Sound mode menu buttonID, has different values compared to gSoundMode in audio.
+// 0: gSoundMode = 0 (Stereo) | 1: gSoundMode = 3 (Mono) | 2: gSoundMode = 1 (Headset)
 static s8 sSoundMode = 0;
 
-/**
- * Tracks which button will be pressed in the erase confirmation prompt (yes/no).
- */
+// Tracks which button will be pressed in the erase confirmation prompt (yes/no).
 static s8 sEraseYesNoHoverState = MENU_ERASE_HOVER_NONE;
 
-/**
- * Used for the copy menu, defines if the game as all 4 save slots with data.
- * if TRUE, it doesn't allow copying more files.
- */
+// Used for the copy menu, defines if the game as all 4 save slots with data.
+// if TRUE, it doesn't allow copying more files.
 static s8 sAllFilesExist = FALSE;
 
-/**
- * Defines the value of the save slot selected in the menu.
- * Mario A: 1 // Mario B: 2 // Mario C: 3 // Mario D: 4
- */
+// Defines the value of the save slot selected in the menu.
+// Mario A: 1 | Mario B: 2 | Mario C: 3 | Mario D: 4
 static s8 sSelectedFileNum = 0;
 
-/**
- * Which coin score mode to use when scoring files. 0 for local
- * coin high score, 1 for high score across all files.
- */
+// Which coin score mode to use when scoring files. 0 for local
+// coin high score, 1 for high score across all files.
 static s8 sScoreFileCoinScoreMode = 0;
 
-/**
- * Menu strings, defined in text_strings.h.in
- */
 static unsigned char textReturn[] = { TEXT_RETURN };
 static unsigned char textViewScore[] = { TEXT_CHECK_SCORE };
 static unsigned char textCopyFileButton[] = { TEXT_COPY_FILE_BUTTON };
@@ -517,8 +476,7 @@ static void check_score_menu_clicked_buttons(struct Object *scoreButton) {
                     sMainMenuButtons[buttonID]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
                     sSelectedButtonID = buttonID;
                 }
-                // Check if a save file is clicked
-                else {
+                else { // Check if a save file is clicked
                     if (sMainMenuTimer >= 31) {
                         // If clicked in a existing save file, select it too see it's score
                         if (save_file_exists(buttonID - MENU_BUTTON_SCORE_MIN) == TRUE) {
@@ -526,8 +484,8 @@ static void check_score_menu_clicked_buttons(struct Object *scoreButton) {
                             sMainMenuButtons[buttonID]->oMenuButtonState = MENU_BUTTON_STATE_GROWING;
                             sSelectedButtonID = buttonID;
                         }
-                        // If clicked in a non-existing save file, play buzz sound
                         else {
+                            // If clicked in a non-existing save file, play buzz sound
                             play_sound(SOUND_MENU_CAMERA_BUZZ, gDefaultSoundArgs);
                             sMainMenuButtons[buttonID]->oMenuButtonState =
                                 MENU_BUTTON_STATE_ZOOM_IN_OUT;
@@ -608,22 +566,20 @@ static void render_copy_menu_buttons(struct Object *copyButton) {
  */
 static void copy_action_file_button(struct Object *copyButton, s32 copyFileButtonID) {
     switch (copyButton->oMenuButtonActionPhase) {
-        // Copy Menu Main Phase
-        case COPY_PHASE_MAIN:
-            // Don't enable copy if all save files exists
-            if (sAllFilesExist == TRUE) {
+        case COPY_PHASE_MAIN: // Copy Menu Main Phase
+            if (sAllFilesExist == TRUE) { // Don't enable copy if all save files exists
                 return;
             }
-            // If clicked in a existing save file, ask where it wants to copy
             if (save_file_exists(copyFileButtonID - MENU_BUTTON_COPY_MIN) == TRUE) {
+                // If clicked in a existing save file, ask where it wants to copy
                 play_sound(SOUND_MENU_CLICK_FILE_SELECT, gDefaultSoundArgs);
                 sMainMenuButtons[copyFileButtonID]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN;
                 sSelectedFileIndex = copyFileButtonID - MENU_BUTTON_COPY_MIN;
                 copyButton->oMenuButtonActionPhase = COPY_PHASE_COPY_WHERE;
                 sFadeOutText = TRUE;
                 sMainMenuTimer = 0;
-            // If clicked in a non-existing save file, play buzz sound
             } else {
+                // If clicked in a non-existing save file, play buzz sound
                 play_sound(SOUND_MENU_CAMERA_BUZZ, gDefaultSoundArgs);
                 sMainMenuButtons[copyFileButtonID]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
                 if (sMainMenuTimer >= 21) {
@@ -632,11 +588,10 @@ static void copy_action_file_button(struct Object *copyButton, s32 copyFileButto
                 }
             }
             break;
-        // Copy Menu "COPY IT TO WHERE?" Phase (after a file is selected)
-        case COPY_PHASE_COPY_WHERE:
+        case COPY_PHASE_COPY_WHERE: // Copy Menu "COPY IT TO WHERE?" Phase (after a file is selected)
             sMainMenuButtons[copyFileButtonID]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
-            // If clicked in a non-existing save file, copy the file
             if (save_file_exists(copyFileButtonID - MENU_BUTTON_COPY_MIN) == FALSE) {
+                // If clicked in a non-existing save file, copy the file
                 play_sound(SOUND_MENU_STAR_SOUND, gDefaultSoundArgs);
                 copyButton->oMenuButtonActionPhase = COPY_PHASE_COPY_COMPLETE;
                 sFadeOutText = TRUE;
@@ -646,8 +601,8 @@ static void copy_action_file_button(struct Object *copyButton, s32 copyFileButto
                     gLoadedGraphNodes[MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE];
                 sMainMenuButtons[copyFileButtonID - MENU_BUTTON_COPY_MIN]->header.gfx.sharedChild =
                     gLoadedGraphNodes[MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE];
-            // If clicked in a existing save file, play buzz sound
             } else {
+                // If clicked in a existing save file, play buzz sound
                 if (MENU_BUTTON_COPY_FILE_A + sSelectedFileIndex == copyFileButtonID) {
                     play_sound(SOUND_MENU_CAMERA_BUZZ, gDefaultSoundArgs);
                     sMainMenuButtons[MENU_BUTTON_COPY_FILE_A + sSelectedFileIndex]->oMenuButtonState =
@@ -686,8 +641,8 @@ static void check_copy_menu_clicked_buttons(struct Object *copyButton) {
                         sSelectedButtonID = buttonID;
                     }
                 }
-                // Check if a file button is clicked to play a copy action
                 else {
+                    // Check if a file button is clicked to play a copy action
                     if (sMainMenuButtons[buttonID]->oMenuButtonState == MENU_BUTTON_STATE_DEFAULT
                         && sMainMenuTimer >= 31) {
                         copy_action_file_button(copyButton, buttonID);
@@ -771,18 +726,17 @@ static void render_erase_menu_buttons(struct Object *eraseButton) {
  */
 static void erase_action_file_button(struct Object *eraseButton, s32 eraseFileButtonID) {
     switch (eraseButton->oMenuButtonActionPhase) {
-        // Erase Menu Main Phase
-        case ERASE_PHASE_MAIN:
-            // If clicked in a existing save file, ask if it wants to delete it
+        case ERASE_PHASE_MAIN: // Erase Menu Main Phase
             if (save_file_exists(eraseFileButtonID - MENU_BUTTON_ERASE_MIN) == TRUE) {
+                // If clicked in a existing save file, ask if it wants to delete it
                 play_sound(SOUND_MENU_CLICK_FILE_SELECT, gDefaultSoundArgs);
                 sMainMenuButtons[eraseFileButtonID]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN;
                 sSelectedFileIndex = eraseFileButtonID - MENU_BUTTON_ERASE_MIN;
                 eraseButton->oMenuButtonActionPhase = ERASE_PHASE_PROMPT;
                 sFadeOutText = TRUE;
                 sMainMenuTimer = 0;
-            // If clicked in a non-existing save file, play buzz sound
             } else {
+                // If clicked in a non-existing save file, play buzz sound
                 play_sound(SOUND_MENU_CAMERA_BUZZ, gDefaultSoundArgs);
                 sMainMenuButtons[eraseFileButtonID]->oMenuButtonState = MENU_BUTTON_STATE_ZOOM_IN_OUT;
                 if (sMainMenuTimer >= 21) {
@@ -791,12 +745,11 @@ static void erase_action_file_button(struct Object *eraseButton, s32 eraseFileBu
                 }
             }
             break;
-        // Erase Menu "SURE? YES NO" Phase (after a file is selected)
-        case ERASE_PHASE_PROMPT:
-            // If clicked in a existing save file, play click sound and zoom out button
-            // Note: The prompt functions are actually called when the ERASE_MSG_PROMPT
-            // message is displayed with print_erase_menu_prompt
+        case ERASE_PHASE_PROMPT: // Erase Menu "SURE? YES NO" Phase (after a file is selected)
             if (MENU_BUTTON_ERASE_MIN + sSelectedFileIndex == eraseFileButtonID) {
+                // If clicked in a existing save file, play click sound and zoom out button
+                // Note: The prompt functions are actually called when the ERASE_MSG_PROMPT
+                // message is displayed with print_erase_menu_prompt
                 play_sound(SOUND_MENU_CLICK_FILE_SELECT, gDefaultSoundArgs);
                 sMainMenuButtons[MENU_BUTTON_ERASE_MIN + sSelectedFileIndex]->oMenuButtonState =
                     MENU_BUTTON_STATE_ZOOM_OUT;
@@ -828,8 +781,8 @@ static void check_erase_menu_clicked_buttons(struct Object *eraseButton) {
                         sSelectedButtonID = buttonID;
                     }
                 }
-                // Check if a file button is clicked to play an erase action
                 else {
+                    // Check if a file button is clicked to play an erase action
                     if (sMainMenuTimer >= 31) {
                         erase_action_file_button(eraseButton, buttonID);
                     }
@@ -1158,15 +1111,16 @@ static void check_main_menu_clicked_buttons(void) {
                              sMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oPosY, 200.0f) == TRUE) {
         sMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oMenuButtonState = MENU_BUTTON_STATE_GROWING;
         sSelectedButtonID = MENU_BUTTON_SOUND_MODE;
-    // Main Menu buttons
     } else {
+        // Main Menu buttons
         s8 buttonID;
         // Configure Main Menu button group
         for (buttonID = MENU_BUTTON_MAIN_MIN; buttonID < MENU_BUTTON_MAIN_MAX; buttonID++) {
             s16 buttonX = sMainMenuButtons[buttonID]->oPosX;
             s16 buttonY = sMainMenuButtons[buttonID]->oPosY;
-            // If menu button clicked
+
             if (check_clicked_button(buttonX, buttonY, 200.0f) == TRUE) {
+                // If menu button clicked, select it
                 sMainMenuButtons[buttonID]->oMenuButtonState = MENU_BUTTON_STATE_GROWING;
                 sSelectedButtonID = buttonID;
                 break;
@@ -1400,10 +1354,10 @@ static void print_menu_cursor(void) {
     // Get the right graphic to use for the cursor.
     if (sCursorClickingTimer == 0)
         // Idle
-        gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_070073A0);
+        gSPDisplayList(gDisplayListHead++, dl_menu_idle_hand);
     if (sCursorClickingTimer != 0)
         // Grabbing
-        gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_070073B8);
+        gSPDisplayList(gDisplayListHead++, dl_menu_grabbing_hand);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
     if (sCursorClickingTimer != 0) {
         sCursorClickingTimer++; // This is a very strange way to implement a timer? It counts up and
@@ -1520,13 +1474,13 @@ static void print_main_menu_strings(void) {
     print_generic_string(SOUNDMODE_X1, 39, textSoundModes[sSoundMode]);
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     // Print file names
-    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
+    gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     print_menu_generic_string(92, 65, textMarioA);
     print_menu_generic_string(207, 65, textMarioB);
     print_menu_generic_string(92, 105, textMarioC);
     print_menu_generic_string(207, 105, textMarioD);
-    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
+    gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_end);
 }
 
 #ifdef VERSION_JP
@@ -1594,13 +1548,13 @@ static void print_score_menu_strings(void) {
     print_generic_string(ERASEFILE_X1, 35, textEraseFileButton);
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     // Print file names
-    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
+    gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     print_menu_generic_string(89, 62, textMarioA);
     print_menu_generic_string(211, 62, textMarioB);
     print_menu_generic_string(89, 105, textMarioC);
     print_menu_generic_string(211, 105, textMarioD);
-    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
+    gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_end);
 }
 
 #ifdef VERSION_JP
@@ -1722,13 +1676,13 @@ static void print_copy_menu_strings(void) {
     print_generic_string(ERASEFILE_X2, 35, textEraseFileButton);
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     // Print file names
-    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
+    gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     print_menu_generic_string(89, 62, textMarioA);
     print_menu_generic_string(211, 62, textMarioB);
     print_menu_generic_string(89, 105, textMarioC);
     print_menu_generic_string(211, 105, textMarioD);
-    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
+    gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_end);
 }
 
 #ifdef VERSION_JP
@@ -1925,13 +1879,13 @@ static void print_erase_menu_strings(void) {
     print_generic_string(COPYFILE_X2, 35, textCopyFileButton);
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     // Print file names
-    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
+    gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     print_menu_generic_string(89, 62, textMarioA);
     print_menu_generic_string(211, 62, textMarioB);
     print_menu_generic_string(89, 105, textMarioC);
     print_menu_generic_string(211, 105, textMarioD);
-    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
+    gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_end);
 }
 
 #ifdef VERSION_JP
@@ -2106,7 +2060,7 @@ static void print_save_file_scores(s8 fileIndex) {
     print_save_file_star_count(fileIndex, 124, 15);
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
     // Print course scores
-    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
+    gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 
 //! Huge print list, for loops exist for a reason!
@@ -2157,7 +2111,7 @@ static void print_save_file_scores(s8 fileIndex) {
         print_menu_generic_string(HISCORE_X, 24, textHiScore);
     }
 
-    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
+    gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_end);
 #endif // !VERSION_EU
 }
 

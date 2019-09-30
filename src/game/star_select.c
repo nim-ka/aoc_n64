@@ -109,7 +109,7 @@ void bhv_act_selector_init(void) {
 
     sVisibleStars = 0;
     while (i != sObtainedStars) {
-        if (stars & (1 << sVisibleStars)) { // Star has been collected   
+        if (stars & (1 << sVisibleStars)) { // Star has been collected
             selectorModelIDs[sVisibleStars] = MODEL_STAR;
             i++;
         } else { // Star has not been collected
@@ -199,14 +199,14 @@ void bhv_act_selector_loop(void) {
 }
 
 /**
- * Print the course number selected.
+ * Print the course number selected with the wood rgba16 course texture.
  */
 static void print_course_number(void) {
     u8 courseNum[4];
 
     create_dl_translation_matrix(MENU_MTX_PUSH, 158.0f, 81.0f, 0.0f);
 
-    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700F228);
+    gSPDisplayList(gDisplayListHead++, dl_menu_rgba16_wood_course);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
@@ -265,7 +265,7 @@ static void print_act_selector_strings(void) {
 
     print_course_number();
 
-    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
+    gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
     // Print the name of the selected act.
     if (sVisibleStars != 0) {
@@ -280,7 +280,7 @@ static void print_act_selector_strings(void) {
         print_menu_generic_string(i * 34 - sVisibleStars * 17 + 139, 38, starNumbers);
     }
 
-    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
+    gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_end);
 #endif // !VERSION_EU
 }
 
@@ -327,8 +327,8 @@ int lvl_update_obj_and_load_act_button_actions(UNUSED s32 arg, UNUSED s32 unused
 #ifdef VERSION_JP
             play_sound(SOUND_MENU_STAR_SOUND, gDefaultSoundArgs);
 #else
-            play_sound(SOUND_MENU_STAR_SOUND_LETS_A_GO, gDefaultSoundArgs);  
-#endif        
+            play_sound(SOUND_MENU_STAR_SOUND_LETS_A_GO, gDefaultSoundArgs);
+#endif
             if (sInitSelectedActNum > sSelectedActIndex) {
                 sLoadedActNum = sSelectedActIndex + 1;
             } else {
