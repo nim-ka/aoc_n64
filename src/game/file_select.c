@@ -17,6 +17,7 @@
 #include "segment2.h"
 #include "segment7.h"
 #include "text_strings.h"
+#include "print.h"
 
 /**
  * @file file_select.c
@@ -106,8 +107,8 @@ static unsigned char textMarioB[] = { TEXT_FILE_MARIO_B };
 static unsigned char textMarioC[] = { TEXT_FILE_MARIO_C };
 static unsigned char textMarioD[] = { TEXT_FILE_MARIO_D };
 static unsigned char textNew[] = { TEXT_NEW };
-static unsigned char starIcon[] = { HUD_CHAR_SYM_STAR, HUD_CHAR_TERMINATOR };
-static unsigned char xIcon[] = { HUD_CHAR_SYM_X, HUD_CHAR_TERMINATOR };
+static unsigned char starIcon[] = { GLYPH_STAR, GLYPH_SPACE };
+static unsigned char xIcon[] = { GLYPH_MULTIPLY, GLYPH_SPACE };
 static unsigned char textSelectFile[] = { TEXT_SELECT_FILE };
 static unsigned char textScore[] = { TEXT_SCORE };
 static unsigned char textCopy[] = { TEXT_COPY };
@@ -1369,17 +1370,17 @@ static void print_menu_cursor(void) {
 }
 
 /**
- * Prints a hud string depending of the lut type defined with text fade properties.
+ * Prints a hud string depending of the hud table list defined with text fade properties.
  */
-static void print_hud_lut_string_fade(s8 hudType, s16 x, s16 y, const unsigned char *text) {
+static void print_hud_lut_string_fade(s8 hudLUT, s16 x, s16 y, const unsigned char *text) {
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha - sTextFadeAlpha);
-    print_hud_lut_string(hudType, x, y, text);
+    print_hud_lut_string(hudLUT, x, y, text);
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 }
 
 /**
- * Prints a generic ia8 white string with text fade properties.
+ * Prints a generic white string with text fade properties.
  */
 static void print_generic_string_fade(s16 x, s16 y, const unsigned char *text) {
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
@@ -1418,19 +1419,19 @@ static void print_save_file_star_count(s8 fileIndex, s16 x, s16 y) {
     if (save_file_exists(fileIndex) == TRUE) {
         starCount = save_file_get_total_star_count(fileIndex, 0, 24);
         // Print star icon
-        print_hud_lut_string(HUD_STR_GLOBAL, x, y, starIcon);
+        print_hud_lut_string(HUD_LUT_GLOBAL, x, y, starIcon);
         // If star count is less than 100, print x icon and move
         // the star count text one digit to the right.
         if (starCount < 100) {
-            print_hud_lut_string(HUD_STR_GLOBAL, x + 16, y, xIcon);
+            print_hud_lut_string(HUD_LUT_GLOBAL, x + 16, y, xIcon);
             offset = 16;
         }
         // Print star count
         int_to_str(starCount, starCountText);
-        print_hud_lut_string(HUD_STR_GLOBAL, x + offset + 16, y, starCountText);
+        print_hud_lut_string(HUD_LUT_GLOBAL, x + offset + 16, y, starCountText);
     } else {
         // Print "new" text
-        print_hud_lut_string(HUD_STR_GLOBAL, x, y, textNew);
+        print_hud_lut_string(HUD_LUT_GLOBAL, x, y, textNew);
     }
 }
 
@@ -1455,7 +1456,7 @@ static void print_main_menu_strings(void) {
     // Print "SELECT FILE" text
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
-    print_hud_lut_string(HUD_STR_DIFF, SELECT_FILE_X, 35, textSelectFile);
+    print_hud_lut_string(HUD_LUT_DIFF, SELECT_FILE_X, 35, textSelectFile);
     // Print file star counts
     print_save_file_star_count(SAVE_FILE_A, 92, 78);
     print_save_file_star_count(SAVE_FILE_B, 209, 78);
@@ -1497,7 +1498,7 @@ static void print_main_menu_strings(void) {
 static void score_menu_display_message(s8 messageID) {
     switch (messageID) {
         case SCORE_MSG_CHECK_FILE:
-            print_hud_lut_string_fade(HUD_STR_DIFF, CHECK_FILE_X, 35, textCheckFile);
+            print_hud_lut_string_fade(HUD_LUT_DIFF, CHECK_FILE_X, 35, textCheckFile);
             break;
         case SCORE_MSG_NOSAVE_DATA:
             print_generic_string_fade(NOSAVE_DATA_X1, 190, textNoSavedDataExists);
@@ -1582,7 +1583,7 @@ static void copy_menu_display_message(s8 messageID) {
             if (sAllFilesExist == TRUE) {
                 print_generic_string_fade(NOFILE_COPY_X, 190, textNoFileToCopyFrom);
             } else {
-                print_hud_lut_string_fade(HUD_STR_DIFF, COPY_FILE_X, 35, textCopyFile);
+                print_hud_lut_string_fade(HUD_LUT_DIFF, COPY_FILE_X, 35, textCopyFile);
             }
             break;
         case COPY_MSG_COPY_WHERE:
@@ -1787,7 +1788,7 @@ static void erase_menu_display_message(s8 messageID) {
 
     switch (messageID) {
         case ERASE_MSG_MAIN_TEXT:
-            print_hud_lut_string_fade(HUD_STR_DIFF, ERASE_FILE_X, 35, textEraseFile);
+            print_hud_lut_string_fade(HUD_LUT_DIFF, ERASE_FILE_X, 35, textEraseFile);
             break;
         case ERASE_MSG_PROMPT:
             print_generic_string_fade(90, 190, textSure);
@@ -1908,7 +1909,7 @@ static void print_sound_mode_menu_strings(void) {
     // Print "SOUND SELECT" text
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
-    print_hud_lut_string(HUD_STR_DIFF, SOUND_SELECT_X, 35, textSoundSelect);
+    print_hud_lut_string(HUD_LUT_DIFF, SOUND_SELECT_X, 35, textSoundSelect);
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
     // Print mode names
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
@@ -2054,8 +2055,8 @@ static void print_save_file_scores(s8 fileIndex) {
     // Print file name at top
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
-    print_hud_lut_string(HUD_STR_DIFF, MARIO_X, 15, textMario);
-    print_hud_lut_string(HUD_STR_GLOBAL, FILE_LETTER_X, 15, textFileLetter);
+    print_hud_lut_string(HUD_LUT_DIFF, MARIO_X, 15, textMario);
+    print_hud_lut_string(HUD_LUT_GLOBAL, FILE_LETTER_X, 15, textFileLetter);
     // Print save file star count at top
     print_save_file_star_count(fileIndex, 124, 15);
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);

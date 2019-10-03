@@ -1518,7 +1518,7 @@ s16 return_close_or_free_roam_cam_yaw(struct LevelCamera *c) {
     vec3f_get_dist_and_angle(sMarioStatusForCamera->pos, c->pos, &distFocusToCam, &sp70, &yaw);
 
     if (gCameraMovementFlags & CAM_MOVE_ZOOMED_OUT) {
-        if (test_or_set_mario_cam_active(0) == 1) {
+        if (test_or_set_mario_cam_active(0) == CAM_ANGLE_LAKITU_MARIO) {
             zoomDist = gCameraZoomDist + 1050;
         } else {
             zoomDist = gCameraZoomDist + 400;
@@ -2243,7 +2243,7 @@ void update_camera(struct LevelCamera *c) {
     if (c->cutscene == 0) {
         if (select_or_activate_mario_cam(0) == CAM_ANGLE_LAKITU_MARIO) {
             if (gPlayer1Controller->buttonPressed & R_TRIG) {
-                if (test_or_set_mario_cam_active(0) == 2) {
+                if (test_or_set_mario_cam_active(0) == CAM_ANGLE_LAKITU_FIXED) {
                     test_or_set_mario_cam_active(1);
                 } else {
                     test_or_set_mario_cam_active(2);
@@ -3008,24 +3008,24 @@ s32 find_c_buttons_pressed(u16 a, u16 buttonsPressed, u16 buttonsDown) {
 }
 
 s32 update_camera_status(struct LevelCamera *c) {
-    s16 sp1E = 0;
+    s16 status = CAM_STATUS_NONE;
 
     if (c->cutscene != 0
         || ((gPlayer1Controller->buttonDown & R_TRIG) && select_or_activate_mario_cam(0) == CAM_ANGLE_LAKITU_FIXED)) {
-        sp1E |= 4;
-    } else if (test_or_set_mario_cam_active(0) == 1) {
-        sp1E |= 1;
+        status |= CAM_STATUS_FIXED;
+    } else if (test_or_set_mario_cam_active(0) == CAM_ANGLE_LAKITU_MARIO) {
+        status |= CAM_STATUS_MARIO;
     } else {
-        sp1E |= 2;
+        status |= CAM_STATUS_LAKITU;
     }
     if (gCameraMovementFlags & CAM_MOVE_ZOOMED_OUT) {
-        sp1E |= 8;
+        status |= CAM_STATUS_C_DOWN;
     }
     if (gCameraMovementFlags & CAM_MOVE_C_UP_MODE) {
-        sp1E |= 0x10;
+        status |= CAM_STATUS_C_UP;
     }
-    set_camera_status(sp1E);
-    return sp1E;
+    set_hud_camera_status(status);
+    return status;
 }
 
 s32 find_and_return_count_wall_collisions(Vec3f pos, f32 offsetY, f32 radius) {

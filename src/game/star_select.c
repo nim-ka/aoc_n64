@@ -214,9 +214,9 @@ static void print_course_number(void) {
     int_to_str(gCurrCourseNum, courseNum);
 
     if (gCurrCourseNum < 10) { // 1 digit number
-        print_hud_lut_string(HUD_STR_GLOBAL, 152, 158, courseNum);
+        print_hud_lut_string(HUD_LUT_GLOBAL, 152, 158, courseNum);
     } else { // 2 digit number
-        print_hud_lut_string(HUD_STR_GLOBAL, 143, 158, courseNum);
+        print_hud_lut_string(HUD_LUT_GLOBAL, 143, 158, courseNum);
     }
 
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);

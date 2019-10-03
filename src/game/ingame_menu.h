@@ -17,14 +17,14 @@
 
 // Japanese File Select uses an unique table
 // to print specific Japanese HUD chars
-#define HUD_STR_JPMENU 1
-#define HUD_STR_GLOBAL 2
+#define HUD_LUT_JPMENU 1
+#define HUD_LUT_GLOBAL 2
 
 // For file select JP HUD difference
 #ifdef VERSION_JP
-#define HUD_STR_DIFF HUD_STR_JPMENU
+#define HUD_LUT_DIFF HUD_LUT_JPMENU
 #else
-#define HUD_STR_DIFF HUD_STR_GLOBAL
+#define HUD_LUT_DIFF HUD_LUT_GLOBAL
 #endif
 
 #define RENDER_PAUSE_SCREEN       1
@@ -43,18 +43,16 @@ struct DialogEntry
  /*0x0C*/ u8 *str;
 };
 
-enum HudSpecialChars {
-    HUD_CHAR_SYM_X = 0x32,
-    HUD_CHAR_SYM_COIN = 0x33,
-    HUD_CHAR_SYM_MARIO = 0x34,
-    HUD_CHAR_SYM_STAR = 0x35,
-#ifdef VERSION_EU
+// EU only
+enum HudSpecialHUDChars {
     HUD_CHAR_A_UMLAUT = 0x3A,
     HUD_CHAR_O_UMLAUT = 0x3B,
-    HUD_CHAR_U_UMLAUT = 0x3C,
-#endif
-    HUD_CHAR_SPACE = 0x9E,
-    HUD_CHAR_TERMINATOR = 0xFF
+    HUD_CHAR_U_UMLAUT = 0x3C
+};
+
+enum SpecialFontChars {
+    GLOBAL_CHAR_SPACE = 0x9E,
+    GLOBAR_CHAR_TERMINATOR = 0xFF
 };
 
 // definitions for some of the special characters defined in charmap.txt
@@ -90,6 +88,7 @@ enum DialogSpecialChars {
     DIALOG_CHAR_DOUBLE_LOW_QUOTE = 0xF0,   // German opening quotation mark
 #endif
 #if defined(VERSION_US) || defined(VERSION_EU)
+    DIALOG_CHAR_SLASH = 0xD0,
     DIALOG_CHAR_MULTI_THE = 0xD1, // 'the'
     DIALOG_CHAR_MULTI_YOU = 0xD2, // 'you'
 #endif
@@ -97,6 +96,7 @@ enum DialogSpecialChars {
     DIALOG_CHAR_COMMA = 0x6F,
     DIALOG_CHAR_SPACE = 0x9E,
     DIALOG_CHAR_STAR_COUNT = 0xE0,        // number of stars
+    DIALOG_CHAR_UMLAUT = 0xE9,
     DIALOG_CHAR_PREFIX_DAKUTEN = 0xF0,    // prefix for kana or hira with dakuten
     DIALOG_CHAR_PREFIX_HANDAKUTEN = 0xF1, // prefix for kana or hira with handakuten
     DIALOG_CHAR_STAR_FILLED = 0xFA,

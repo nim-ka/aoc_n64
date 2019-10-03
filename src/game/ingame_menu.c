@@ -14,6 +14,7 @@
 #include "segment7.h"
 #include "eu_translation.h"
 #include "ingame_menu.h"
+#include "print.h"
 #include "engine/math_util.h"
 
 extern Gfx *gDisplayListHead;
@@ -213,7 +214,7 @@ void create_dl_ortho_matrix(void) {
     gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(matrix), G_MTX_PROJECTION)
 }
 
-static u8 *create_ia8_tex_from_i1(u16 *in, s16 width, s16 height) {
+static u8 *alloc_ia8_text_from_i1(u16 *in, s16 width, s16 height) {
     s32 inPos;
     u16 bitMask;
     u8 *out;
@@ -245,17 +246,17 @@ static u8 *create_ia8_tex_from_i1(u16 *in, s16 width, s16 height) {
 }
 
 void render_generic_char(u8 c) {
-    void **smallFontLUT;
+    void **fontLUT;
     void *packedTexture;
 #ifdef VERSION_JP
     void *unpackedTexture;
 #endif
 
-    smallFontLUT = segmented_to_virtual(seg2_small_font_lut);
-    packedTexture = segmented_to_virtual(smallFontLUT[c]);
+    fontLUT = segmented_to_virtual(main_font_lut);
+    packedTexture = segmented_to_virtual(fontLUT[c]);
 
 #ifdef VERSION_JP
-    unpackedTexture = create_ia8_tex_from_i1(packedTexture, 8, 16);
+    unpackedTexture = alloc_ia8_text_from_i1(packedTexture, 8, 16);
 
     gDPPipeSync(gDisplayListHead++);
     gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_8b, 1, VIRTUAL_TO_PHYSICAL(unpackedTexture));
@@ -302,12 +303,12 @@ u8 *alloc_ia4_tex_from_i1(u8 *in, s16 width, s16 height) {
 }
 
 void render_generic_char_at_pos(s16 xPos, s16 yPos, u8 c) {
-    void **smallFontLUT;
+    void **fontLUT;
     void *packedTexture;
     void *unpackedTexture;
 
-    smallFontLUT = segmented_to_virtual(seg2_small_font_lut);
-    packedTexture = segmented_to_virtual(smallFontLUT[c]);
+    fontLUT = segmented_to_virtual(main_font_lut);
+    packedTexture = segmented_to_virtual(fontLUT[c]);
     unpackedTexture = alloc_ia4_tex_from_i1(packedTexture, 8, 8);
 
     gDPPipeSync(gDisplayListHead++);
@@ -377,7 +378,8 @@ void render_multi_text_string(s16 *xPos, s16 *yPos, s8 multiTextID) // EU: 802AD
 #endif
 
 /**
- * Prints a generic ia8 white string.
+ * Prints a generic white string.
+ * In JP/EU a IA1 texture is used but in US a IA4 texture is used.
  */
 void print_generic_string(s16 x, s16 y, const u8 *str) {
     UNUSED s8 mark = DIALOG_MARK_NONE; // unused in EU
@@ -461,7 +463,7 @@ void print_generic_string(s16 x, s16 y, const u8 *str) {
                 break;
 #endif
 #ifndef VERSION_JP
-            case 0xD0: // '/'
+            case DIALOG_CHAR_SLASH:
 #ifdef VERSION_US
                 create_dl_translation_matrix(MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[DIALOG_CHAR_SPACE] * 2), 0.0f, 0.0f);
 #elif defined(VERSION_EU)
@@ -526,34 +528,34 @@ void print_generic_string(s16 x, s16 y, const u8 *str) {
 
 #ifdef VERSION_EU
 void print_hud_char_umlaut(s16 x, s16 y, u8 chr) {
-    void **fontLUT = segmented_to_virtual(seg2_hud_lut); // 0-9 A-Z Alphanumeric Font
+    void **fontLUT = segmented_to_virtual(main_hud_lut);
 
     gDPPipeSync(gDisplayListHead++);
     gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fontLUT[chr]);
     gSPDisplayList(gDisplayListHead++, dl_rgba16_load_tex_block);
     gSPTextureRectangle(gDisplayListHead++, x << 2, y << 2, (x + 16) << 2, (y + 16) << 2, 0, 0, 0, 0x400, 0x400);
 
-    gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fontLUT[HUD_CHAR_A_UMLAUT]);
+    gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fontLUT[GLYPH_UMLAUT]);
     gSPDisplayList(gDisplayListHead++, dl_rgba16_load_tex_block);
     gSPTextureRectangle(gDisplayListHead++, x << 2, (y - 4) << 2, (x + 16) << 2, (y + 12) << 2, 0, 0, 0, 0x400, 0x400);
 }
 #endif
 
 /**
- * Prints a hud string depending of the lut type defined.
+ * Prints a hud string depending of the hud table list defined.
  */
-void print_hud_lut_string(s8 hudType, s16 x, s16 y, const u8 *str) {
+void print_hud_lut_string(s8 hudLUT, s16 x, s16 y, const u8 *str) {
     s32 strPos = 0;
-    void **hudType1 = segmented_to_virtual(menu_hud_lut); // Japanese Menu HUD Color font
-    void **hudType2 = segmented_to_virtual(seg2_hud_lut); // 0-9 A-Z HUD Color Font
+    void **hudLUT1 = segmented_to_virtual(menu_hud_lut); // Japanese Menu HUD Color font
+    void **hudLUT2 = segmented_to_virtual(main_hud_lut); // 0-9 A-Z HUD Color Font
     u32 curX = x;
     u32 curY = y;
 
     u32 xStride; // X separation
 
-    if (hudType == HUD_STR_JPMENU) {
+    if (hudLUT == HUD_LUT_JPMENU) {
         xStride = 16;
-    } else { // HUD_STR_GLOBAL
+    } else { // HUD_LUT_GLOBAL
 #ifdef VERSION_JP
         xStride = 14;
 #else
@@ -561,10 +563,10 @@ void print_hud_lut_string(s8 hudType, s16 x, s16 y, const u8 *str) {
 #endif
     }
 
-    while (str[strPos] != DIALOG_CHAR_TERMINATOR) {
+    while (str[strPos] != GLOBAR_CHAR_TERMINATOR) {
 #ifdef VERSION_EU
         switch (str[strPos]) {
-            case HUD_CHAR_SPACE:
+            case GLOBAL_CHAR_SPACE:
                 curX += xStride / 2;
                 break;
             case HUD_CHAR_A_UMLAUT:
@@ -582,7 +584,7 @@ void print_hud_lut_string(s8 hudType, s16 x, s16 y, const u8 *str) {
             default:
 #endif
 #ifdef VERSION_US
-        if (str[strPos] == HUD_CHAR_SPACE) {
+        if (str[strPos] == GLOBAL_CHAR_SPACE) {
             if (0) //! dead code
             {
             }
@@ -592,11 +594,11 @@ void print_hud_lut_string(s8 hudType, s16 x, s16 y, const u8 *str) {
 #endif
             gDPPipeSync(gDisplayListHead++);
 
-            if (hudType == HUD_STR_JPMENU)
-                gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, hudType1[str[strPos]]);
+            if (hudLUT == HUD_LUT_JPMENU)
+                gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, hudLUT1[str[strPos]]);
 
-            if (hudType == HUD_STR_GLOBAL)
-                gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, hudType2[str[strPos]]);
+            if (hudLUT == HUD_LUT_GLOBAL)
+                gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, hudLUT2[str[strPos]]);
 
             gSPDisplayList(gDisplayListHead++, dl_rgba16_load_tex_block);
             gSPTextureRectangle(gDisplayListHead++, curX << 2, curY << 2, (curX + 16) << 2,
@@ -615,15 +617,15 @@ void print_hud_lut_string(s8 hudType, s16 x, s16 y, const u8 *str) {
 }
 
 #ifdef VERSION_EU
-void put_menu_char_umlaut(s16 x, s16 y, u8 chr) {
-    void **fontLUT = segmented_to_virtual(main_menu_seg7_table_0700CD08);
+void print_menu_char_umlaut(s16 x, s16 y, u8 chr) {
+    void **fontLUT = segmented_to_virtual(menu_font_lut);
 
     gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_8b, 1, fontLUT[chr]);
     gDPLoadSync(gDisplayListHead++);
     gDPLoadBlock(gDisplayListHead++, 7, 0, 0, (0x40 - 1), 0x800);
     gSPTextureRectangle(gDisplayListHead++, x << 2, y << 2, (x + 8) << 2, (y + 8) << 2, 0, 0, 0, 0x400, 0x400);
 
-    gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_8b, 1, fontLUT[0xE9]);
+    gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_8b, 1, fontLUT[DIALOG_CHAR_UMLAUT]);
     gDPLoadSync(gDisplayListHead++);
     gDPLoadBlock(gDisplayListHead++, 7, 0, 0, (0x40 - 1), 0x800);
     gSPTextureRectangle(gDisplayListHead++, x << 2, (y - 4) << 2, (x + 8) << 2, (y + 4) << 2, 0, 0, 0, 0x400, 0x400);
@@ -641,15 +643,15 @@ void print_menu_generic_string(s16 x, s16 y, const u8 *str) {
         switch (str[strPos]) {
 #ifdef VERSION_EU
             case DIALOG_CHAR_UPPER_A_UMLAUT:
-                put_menu_char_umlaut(curX, curY, ASCII_TO_DIALOG('A'));
+                print_menu_char_umlaut(curX, curY, ASCII_TO_DIALOG('A'));
                 curX += gDialogCharWidths[str[strPos]];
                 break;
             case DIALOG_CHAR_UPPER_U_UMLAUT:
-                put_menu_char_umlaut(curX, curY, ASCII_TO_DIALOG('U'));
+                print_menu_char_umlaut(curX, curY, ASCII_TO_DIALOG('U'));
                 curX += gDialogCharWidths[str[strPos]];
                 break;
             case DIALOG_CHAR_UPPER_O_UMLAUT:
-                put_menu_char_umlaut(curX, curY, ASCII_TO_DIALOG('O'));
+                print_menu_char_umlaut(curX, curY, ASCII_TO_DIALOG('O'));
                 curX += gDialogCharWidths[str[strPos]];
                 break;
 #else
@@ -660,7 +662,7 @@ void print_menu_generic_string(s16 x, s16 y, const u8 *str) {
                 mark = DIALOG_MARK_HANDAKUTEN;
                 break;
 #endif
-            case HUD_CHAR_SPACE:
+            case DIALOG_CHAR_SPACE:
                 curX += 4;
                 break;
             default:
@@ -693,7 +695,7 @@ void print_menu_generic_string(s16 x, s16 y, const u8 *str) {
 
 void print_credits_string(s16 x, s16 y, const u8 *str) {
     s32 strPos = 0;
-    void **fontLUT = segmented_to_virtual(seg2_credits_font_lut);
+    void **fontLUT = segmented_to_virtual(main_credits_font_lut);
     u32 curX = x;
     u32 curY = y;
 
@@ -702,9 +704,9 @@ void print_credits_string(s16 x, s16 y, const u8 *str) {
     gDPSetTile(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 2, 0, 0, 0, 2, 3, 0, 2, 3, 0);
     gDPSetTileSize(gDisplayListHead++, 0, 0, 0, (8 - 1) << 2, (8 - 1) << 2);
 
-    while (str[strPos] != DIALOG_CHAR_TERMINATOR) {
+    while (str[strPos] != GLOBAR_CHAR_TERMINATOR) {
         switch (str[strPos]) {
-            case DIALOG_CHAR_SPACE:
+            case GLOBAL_CHAR_SPACE:
                 curX += 4;
                 break;
             default:
@@ -826,8 +828,8 @@ s16 get_string_width(u8 *str) {
 }
 #endif
 
-u8 gHudSymCoin[] = { HUD_CHAR_SYM_COIN, HUD_CHAR_TERMINATOR };
-u8 gHudSymX[] = { HUD_CHAR_SYM_X, HUD_CHAR_TERMINATOR };
+u8 gHudSymCoin[] = { GLYPH_COIN, GLYPH_SPACE };
+u8 gHudSymX[] = { GLYPH_MULTIPLY, GLYPH_SPACE };
 
 void print_hud_my_score_coins(s32 useCourseCoinScore, s8 fileNum, s8 courseNum, s16 x, s16 y) {
     u8 strNumCoins[4];
@@ -840,27 +842,27 @@ void print_hud_my_score_coins(s32 useCourseCoinScore, s8 fileNum, s8 courseNum, 
     }
 
     if (numCoins != 0) {
-        print_hud_lut_string(HUD_STR_GLOBAL, x, y, gHudSymCoin);
-        print_hud_lut_string(HUD_STR_GLOBAL, x + 16, y, gHudSymX);
+        print_hud_lut_string(HUD_LUT_GLOBAL, x, y, gHudSymCoin);
+        print_hud_lut_string(HUD_LUT_GLOBAL, x + 16, y, gHudSymX);
         int_to_str(numCoins, strNumCoins);
-        print_hud_lut_string(HUD_STR_GLOBAL, x + 32, y, strNumCoins);
+        print_hud_lut_string(HUD_LUT_GLOBAL, x + 32, y, strNumCoins);
     }
 }
 
 void print_hud_my_score_stars(s8 fileNum, s8 courseNum, s16 x, s16 y) {
     u8 strStarCount[4];
     s16 starCount;
-    u8 textSymStar[] = { HUD_CHAR_SYM_STAR, HUD_CHAR_TERMINATOR };
+    u8 textSymStar[] = { GLYPH_STAR, GLYPH_SPACE };
     UNUSED u16 unused;
-    u8 textSymX[] = { HUD_CHAR_SYM_X, HUD_CHAR_TERMINATOR };
+    u8 textSymX[] = { GLYPH_MULTIPLY, GLYPH_SPACE };
 
     starCount = save_file_get_course_star_count(fileNum, courseNum);
 
     if (starCount != 0) {
-        print_hud_lut_string(HUD_STR_GLOBAL, x, y, textSymStar);
-        print_hud_lut_string(HUD_STR_GLOBAL, x + 16, y, textSymX);
+        print_hud_lut_string(HUD_LUT_GLOBAL, x, y, textSymStar);
+        print_hud_lut_string(HUD_LUT_GLOBAL, x + 16, y, textSymX);
         int_to_str(starCount, strStarCount);
-        print_hud_lut_string(HUD_STR_GLOBAL, x + 32, y, strStarCount);
+        print_hud_lut_string(HUD_LUT_GLOBAL, x + 32, y, strStarCount);
     }
 }
 
@@ -1018,7 +1020,7 @@ void render_generic_dialog_char_at_pos(struct DialogEntry *dialog, s16 x, s16 y,
     s16 tmpY;
     s16 xCoord; // sp1E
     s16 yCoord; // sp1C
-    void **smallFontLUT;
+    void **fontLUT;
     void *packedTexture;
     void *unpackedTexture;
 
@@ -1029,8 +1031,8 @@ void render_generic_dialog_char_at_pos(struct DialogEntry *dialog, s16 x, s16 y,
     xCoord = (tmpX + (x / gDialogBoxScale));
     yCoord = (tmpY + (y / gDialogBoxScale));
 
-    smallFontLUT = segmented_to_virtual(seg2_small_font_lut);
-    packedTexture = segmented_to_virtual(smallFontLUT[c]);
+    fontLUT = segmented_to_virtual(main_font_lut);
+    packedTexture = segmented_to_virtual(fontLUT[c]);
     unpackedTexture = alloc_ia4_tex_from_i1(packedTexture, 8, 8);
 
     gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_16b, 1, VIRTUAL_TO_PHYSICAL(unpackedTexture));
@@ -1358,7 +1360,7 @@ void handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 l
                 adjust_handakuten_char_pos(&xMatrix, &linePos);
                 break;
 #else
-            case 0xD0: // '/'
+            case DIALOG_CHAR_SLASH:
 #ifdef VERSION_EU
                 gDialogX += gDialogCharWidths[DIALOG_CHAR_SPACE] * 2;
 #else
@@ -1872,7 +1874,7 @@ u8 ascii_to_credits_char(u8 c) {
     }
 
     if (c == ' ') {
-        return DIALOG_CHAR_SPACE;
+        return GLOBAL_CHAR_SPACE;
     }
     if (c == '.') {
         return 0x24;
@@ -1887,7 +1889,7 @@ u8 ascii_to_credits_char(u8 c) {
         return ASCII_TO_DIALOG('6');
     }
 
-    return DIALOG_CHAR_SPACE;
+    return GLOBAL_CHAR_SPACE;
 }
 
 void print_credits_str_ascii(s16 x, s16 y, const char *str) {
@@ -1900,7 +1902,7 @@ void print_credits_str_ascii(s16 x, s16 y, const char *str) {
         c = str[pos];
     }
 
-    creditStr[pos] = DIALOG_CHAR_TERMINATOR;
+    creditStr[pos] = GLOBAR_CHAR_TERMINATOR;
 
     print_credits_string(x, y, creditStr);
 }
@@ -2072,6 +2074,10 @@ void print_peach_letter_message(void) {
     gCutsceneMsgTimer++;
 }
 
+/**
+ * Renders the cannon reticle when Mario is inside a cannon.
+ * Formed by four triangles.
+ */
 void render_hud_cannon_reticle(void) {
     create_dl_translation_matrix(MENU_MTX_PUSH, 160.0f, 120.0f, 0);
 
@@ -2440,9 +2446,9 @@ void print_hud_pause_colorful_str(void) {
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
 
 #ifdef VERSION_EU
-    print_hud_lut_string(HUD_STR_GLOBAL, get_str_x_pos_from_center_scale(160, textPause, 12.0f), 81, textPause);
+    print_hud_lut_string(HUD_LUT_GLOBAL, get_str_x_pos_from_center_scale(160, textPause, 12.0f), 81, textPause);
 #else
-    print_hud_lut_string(HUD_STR_GLOBAL, 123, 81, textPause);
+    print_hud_lut_string(HUD_LUT_GLOBAL, 123, 81, textPause);
 #endif
 
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
@@ -2707,17 +2713,17 @@ void print_hud_course_complete_string(s8 str) {
 
     if (str == HUD_PRINT_HISCORE) {
 #ifdef VERSION_EU
-        print_hud_lut_string(HUD_STR_GLOBAL, get_str_x_pos_from_center_scale(160, textHiScore[gInGameLanguage], 12.0f),
+        print_hud_lut_string(HUD_LUT_GLOBAL, get_str_x_pos_from_center_scale(160, textHiScore[gInGameLanguage], 12.0f),
                   36, textHiScore[gInGameLanguage]);
 #else
-        print_hud_lut_string(HUD_STR_GLOBAL, TXT_HISCORE_X, TXT_HISCORE_Y, textHiScore);
+        print_hud_lut_string(HUD_LUT_GLOBAL, TXT_HISCORE_X, TXT_HISCORE_Y, textHiScore);
 #endif
     } else { // HUD_PRINT_CONGRATULATIONS
 #ifdef VERSION_EU
-        print_hud_lut_string(HUD_STR_GLOBAL, get_str_x_pos_from_center_scale(160, textCongratulations[gInGameLanguage], 12.0f),
+        print_hud_lut_string(HUD_LUT_GLOBAL, get_str_x_pos_from_center_scale(160, textCongratulations[gInGameLanguage], 12.0f),
                   67, textCongratulations[gInGameLanguage]);
 #else
-        print_hud_lut_string(HUD_STR_GLOBAL, TXT_CONGRATS_X, 67, textCongratulations);
+        print_hud_lut_string(HUD_LUT_GLOBAL, TXT_CONGRATS_X, 67, textCongratulations);
 #endif
     }
 
@@ -2726,17 +2732,17 @@ void print_hud_course_complete_string(s8 str) {
 
 void print_hud_course_complete_coins(s16 x, s16 y) {
     u8 courseCompleteCoinsStr[4];
-    u8 hudTextSymCoin[] = { HUD_CHAR_SYM_COIN, HUD_CHAR_TERMINATOR };
-    u8 hudTextSymX[] = { HUD_CHAR_SYM_X, HUD_CHAR_TERMINATOR };
+    u8 hudTextSymCoin[] = { GLYPH_COIN, GLYPH_SPACE };
+    u8 hudTextSymX[] = { GLYPH_MULTIPLY, GLYPH_SPACE };
 
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
-    print_hud_lut_string(HUD_STR_GLOBAL, x, y, hudTextSymCoin);
-    print_hud_lut_string(HUD_STR_GLOBAL, x + 16, y, hudTextSymX);
+    print_hud_lut_string(HUD_LUT_GLOBAL, x, y, hudTextSymCoin);
+    print_hud_lut_string(HUD_LUT_GLOBAL, x + 16, y, hudTextSymX);
 
     int_to_str(gCourseCompleteCoins, courseCompleteCoinsStr);
-    print_hud_lut_string(HUD_STR_GLOBAL, x + 32, y, courseCompleteCoinsStr);
+    print_hud_lut_string(HUD_LUT_GLOBAL, x + 32, y, courseCompleteCoinsStr);
 
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 
@@ -2792,19 +2798,19 @@ void play_star_fanfare_and_flash_hud(s32 arg, u8 starNum) {
 
 void render_course_complete_lvl_info_and_hud_str(void) {
 #ifdef VERSION_JP
-    u8 textSymStar[] = { HUD_CHAR_SYM_STAR, HUD_CHAR_TERMINATOR };
+    u8 textSymStar[] = { GLYPH_STAR, GLYPH_SPACE };
     u8 textCourse[] = { TEXT_COURSE };
     u8 textCatch[] = { TEXT_CATCH };
     u8 textClear[] = { TEXT_CLEAR };
 #elif defined(VERSION_EU)
     UNUSED u8 textClear[] = { TEXT_CLEAR }; // unused in EU
-    u8 textSymStar[] = { HUD_CHAR_SYM_STAR, HUD_CHAR_TERMINATOR };
+    u8 textSymStar[] = { GLYPH_STAR, GLYPH_SPACE };
 #define textCourse gTextCourseArr[gInGameLanguage]
 #else
     u8 textCourse[] = { TEXT_COURSE };
     UNUSED u8 textCatch[] = { TEXT_CATCH }; // unused in US
     UNUSED u8 textClear[] = { TEXT_CLEAR };
-    u8 textSymStar[] = { HUD_CHAR_SYM_STAR, HUD_CHAR_TERMINATOR };
+    u8 textSymStar[] = { GLYPH_STAR, GLYPH_SPACE };
 #endif
 
     void **actNameTbl;
@@ -2882,7 +2888,7 @@ void render_course_complete_lvl_info_and_hud_str(void) {
 
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
-    print_hud_lut_string(HUD_STR_GLOBAL, 55, 77, textSymStar);
+    print_hud_lut_string(HUD_LUT_GLOBAL, 55, 77, textSymStar);
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, gDialogTextAlpha);
