@@ -1,18 +1,18 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "game.h"
-#include "main.h"
-#include "engine/math_util.h"
-#include "memory.h"
-#include "area.h"
-#include "save_file.h"
 #include "audio/external.h"
+#include "game/game.h"
+#include "game/main.h"
+#include "game/memory.h"
+#include "game/area.h"
+#include "game/save_file.h"
+#include "game/level_update.h"
+#include "game/sound_init.h"
+#include "game/print.h"
+#include "game/display.h"
 #include "seq_ids.h"
-#include "level_update.h"
-#include "sound_init.h"
-#include "print.h"
-#include "display.h"
+#include "engine/math_util.h"
 
 #define PRESS_START_DEMO_TIMER 800
 

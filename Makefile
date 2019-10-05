@@ -131,7 +131,7 @@ TEXTURE_DIR := textures
 ACTOR_DIR := actors
 
 # Directories containing source files
-SRC_DIRS := src src/engine src/game src/audio
+SRC_DIRS := src src/engine src/game src/audio src/menu src/buffers
 ASM_DIRS := asm actors lib data levels assets sound text
 BIN_DIRS := bin bin/$(VERSION)
 
@@ -316,8 +316,8 @@ ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(GOD
 # Make sure build directory exists before compiling anything
 DUMMY != mkdir -p $(ALL_DIRS)
 
-$(BUILD_DIR)/src/game/file_select.o: $(BUILD_DIR)/include/text_strings.h $(BUILD_DIR)/include/text_menu_strings.h
-$(BUILD_DIR)/src/game/star_select.o: $(BUILD_DIR)/include/text_strings.h $(BUILD_DIR)/include/text_menu_strings.h
+$(BUILD_DIR)/src/menu/file_select.o: $(BUILD_DIR)/include/text_strings.h $(BUILD_DIR)/include/text_menu_strings.h
+$(BUILD_DIR)/src/menu/star_select.o: $(BUILD_DIR)/include/text_strings.h $(BUILD_DIR)/include/text_menu_strings.h
 $(BUILD_DIR)/src/game/ingame_menu.o: $(BUILD_DIR)/include/text_strings.h
 
 ################################################################

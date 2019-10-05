@@ -5,7 +5,7 @@
 #include "main.h"
 #include "memory.h"
 #include "profiler.h"
-#include "buffers.h"
+#include "buffers/buffers.h"
 #include "audio/external.h"
 #include "display.h"
 

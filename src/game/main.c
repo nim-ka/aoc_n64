@@ -7,7 +7,7 @@
 #include "sound_init.h"
 #include "profiler.h"
 #include "game.h"
-#include "buffers.h"
+#include "buffers/buffers.h"
 #include "segments.h"
 #include "main.h"
 
