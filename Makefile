@@ -207,6 +207,14 @@ else
   CROSS := mips64-elf-
 endif
 
+# check that either QEMU_IRIX is set or qemu-irix package installed
+ifndef QEMU_IRIX
+  QEMU_IRIX := $(shell which qemu-irix)
+  ifeq (, $(QEMU_IRIX))
+    $(error Please install qemu-irix package or set QEMU_IRIX env var to the full qemu-irix binary path)
+  endif
+endif
+
 AS        := $(CROSS)as
 CC        := $(QEMU_IRIX) -silent -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/bin/cc
 CPP       := cpp -P
@@ -258,10 +266,6 @@ BINUTILS_VER_MINOR := $(shell $(LD) --version | grep ^GNU | sed 's/^[^.]*\.//; s
 BINUTILS_DEPEND := $(shell expr $(BINUTILS_VER_MAJOR) \>= 2 \& $(BINUTILS_VER_MINOR) \>= 27)
 ifeq ($(BINUTILS_DEPEND),0)
 $(error binutils version 2.27 required, version $(BINUTILS_VER_MAJOR).$(BINUTILS_VER_MINOR) detected)
-endif
-
-ifndef QEMU_IRIX
-$(error env variable QEMU_IRIX should point to the qemu-mips binary)
 endif
 
 ######################## Targets #############################
