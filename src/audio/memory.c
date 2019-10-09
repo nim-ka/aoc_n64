@@ -22,9 +22,9 @@ struct U32Pair {
     u32 wantTemporary;
 }; // size = 0x8
 
-s16 D_802212A0;
-s8 D_802212A2;
-u8 D_802212A3;
+s16 gVolume;
+s8 gReverbDownsampleRate;
+u8 sReverbDownsampleRateLog; // never read
 
 struct SoundAllocPool D_802212A8;
 struct SoundAllocPool gSoundPool;
@@ -366,8 +366,8 @@ void *get_bank_or_seq(struct SoundMultiPool *arg0, s32 arg1, s32 id) {
     }
 }
 
-void func_803168CC(void) {
-    D_802211B0.unk4 -= D_802211B0.unk4 / 4;
+void decrease_reverb_gain(void) {
+    gSynthesisReverb.reverbGain -= gSynthesisReverb.reverbGain / 4;
 }
 
 /**
@@ -384,7 +384,7 @@ void wait_for_audio_frames(s32 frames) {
 void func_80316928(struct Struct80332190 *arg0) {
     s8 updatesPerFrame;
     s16 *mem;
-    s32 sp2C;
+    s32 reverbWindowSize;
     s32 i;
     s32 j;
     s32 k;
@@ -396,7 +396,7 @@ void func_80316928(struct Struct80332190 *arg0) {
     s32 remainingDmas;
 
     if (gAudioLoadLock != AUDIO_LOCK_UNINITIALIZED) {
-        func_803168CC();
+        decrease_reverb_gain();
         for (i = 0; i < gMaxSimultaneousNotes; i++) {
             if (gNotes[i].enabled && gNotes[i].adsr.state != ADSR_STATE_DISABLED) {
                 gNotes[i].adsr.fadeOutVel = 0x8000 / gAudioUpdatesPerFrame;
@@ -425,7 +425,7 @@ void func_80316928(struct Struct80332190 *arg0) {
             }
         }
 
-        func_803168CC();
+        decrease_reverb_gain();
         wait_for_audio_frames(3);
         gAudioLoadLock = AUDIO_LOCK_LOADING;
         wait_for_audio_frames(3);
@@ -447,34 +447,34 @@ void func_80316928(struct Struct80332190 *arg0) {
     }
 
     gSampleDmaNumListItems = 0;
-    sp2C = arg0->unk6;
+    reverbWindowSize = arg0->reverbWindowSize;
     gAiFrequency = osAiSetFrequency(arg0->frequency);
     gMaxSimultaneousNotes = arg0->maxSimultaneousNotes;
     D_80226D74 = ALIGN16(gAiFrequency / 60);
-    D_802212A2 = arg0->unk5;
+    gReverbDownsampleRate = arg0->reverbDownsampleRate;
 
-    switch (D_802212A2) {
+    switch (gReverbDownsampleRate) {
         case 1:
-            D_802212A3 = 0;
+            sReverbDownsampleRateLog = 0;
             break;
         case 2:
-            D_802212A3 = 1;
+            sReverbDownsampleRateLog = 1;
             break;
         case 4:
-            D_802212A3 = 2;
+            sReverbDownsampleRateLog = 2;
             break;
         case 8:
-            D_802212A3 = 3;
+            sReverbDownsampleRateLog = 3;
             break;
         case 16:
-            D_802212A3 = 4;
+            sReverbDownsampleRateLog = 4;
             break;
         default:
-            D_802212A3 = 0;
+            sReverbDownsampleRateLog = 0;
     }
 
-    D_802212A2 = arg0->unk5;
-    D_802212A0 = arg0->volume;
+    gReverbDownsampleRate = arg0->reverbDownsampleRate;
+    gVolume = arg0->volume;
     gMinAiBufferLength = D_80226D74 - 0x10;
     updatesPerFrame = D_80226D74 / 160 + 1;
     gAudioUpdatesPerFrame = D_80226D74 / 160 + 1;
@@ -517,32 +517,32 @@ void func_80316928(struct Struct80332190 *arg0) {
     note_init_all();
     init_note_free_list();
 
-    if (sp2C == 0) {
-        D_802211B0.unk1 = 0;
+    if (reverbWindowSize == 0) {
+        gSynthesisReverb.useReverb = 0;
     } else {
-        D_802211B0.unk1 = 8;
-        D_802211B0.unk14.unk00 = soundAlloc(&D_802212C8, sp2C * 2);
-        D_802211B0.unk14.unk04 = soundAlloc(&D_802212C8, sp2C * 2);
-        D_802211B0.unk8 = 0;
-        D_802211B0.unkC = 0;
-        D_802211B0.unk3 = 0;
-        D_802211B0.unk10 = sp2C;
-        D_802211B0.unk4 = arg0->unk8;
-        D_802211B0.unk2 = 2;
-        if (D_802212A2 != 1) {
-            D_802211B0.unk0 = 1;
-            D_802211B0.unk6 = 0x8000 / D_802212A2;
-            D_802211B0.unk1C = soundAlloc(&D_802212C8, 32);
-            D_802211B0.unk20 = soundAlloc(&D_802212C8, 32);
-            D_802211B0.unk24 = soundAlloc(&D_802212C8, 32);
-            D_802211B0.unk28 = soundAlloc(&D_802212C8, 32);
+        gSynthesisReverb.useReverb = 8;
+        gSynthesisReverb.ringBuffer.left = soundAlloc(&D_802212C8, reverbWindowSize * 2);
+        gSynthesisReverb.ringBuffer.right = soundAlloc(&D_802212C8, reverbWindowSize * 2);
+        gSynthesisReverb.nextRingBufferPos = 0;
+        gSynthesisReverb.unkC = 0;
+        gSynthesisReverb.curFrame = 0;
+        gSynthesisReverb.bufSizePerChannel = reverbWindowSize;
+        gSynthesisReverb.reverbGain = arg0->reverbGain;
+        gSynthesisReverb.framesLeftToIgnore = 2;
+        if (gReverbDownsampleRate != 1) {
+            gSynthesisReverb.resampleFlags = A_INIT;
+            gSynthesisReverb.resampleRate = 0x8000 / gReverbDownsampleRate;
+            gSynthesisReverb.resampleStateLeft = soundAlloc(&D_802212C8, 16 * sizeof(s16));
+            gSynthesisReverb.resampleStateRight = soundAlloc(&D_802212C8, 16 * sizeof(s16));
+            gSynthesisReverb.unk24 = soundAlloc(&D_802212C8, 16 * sizeof(s16));
+            gSynthesisReverb.unk28 = soundAlloc(&D_802212C8, 16 * sizeof(s16));
             for (i = 0; i < gAudioUpdatesPerFrame; i++) {
                 mem = soundAlloc(&D_802212C8, 0x280);
-                D_802211B0.unk2C[0][i].unk4 = mem;
-                D_802211B0.unk2C[0][i].unk8 = mem + 0xA0;
+                gSynthesisReverb.items[0][i].toDownsampleLeft = mem;
+                gSynthesisReverb.items[0][i].toDownsampleRight = mem + 0xA0;
                 mem = soundAlloc(&D_802212C8, 0x280);
-                D_802211B0.unk2C[1][i].unk4 = mem;
-                D_802211B0.unk2C[1][i].unk8 = mem + 0xA0;
+                gSynthesisReverb.items[1][i].toDownsampleLeft = mem;
+                gSynthesisReverb.items[1][i].toDownsampleRight = mem + 0xA0;
             }
         }
     }

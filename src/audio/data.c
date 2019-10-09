@@ -7,9 +7,9 @@
 // Format:
 // - frequency
 // - max number of simultaneous notes
-// - unk5 (chunk size/discretization step?)
-// - unk6 (some memory req)
-// - unk8 (gain?)
+// - reverb downsample rate (makes the ring buffer be downsampled to save memory)
+// - reverb window size (ring buffer size, length affects reverb delay)
+// - reverb gain (0 = min reverb, 32767 = max reverb, 32769 to 65535 = louder and louder...)
 // - volume
 // - memory used for persistent sequences
 // - memory used for persistent banks

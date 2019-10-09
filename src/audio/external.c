@@ -683,7 +683,7 @@ struct SPTask *create_next_audio_frame_task(void) {
     // across this function call.
     flags = 0;
 
-    gAudioCmd = func_80313CD4(gAudioCmd, &writtenCmds, gCurrAiBuffer, gAiBufferLengths[index]);
+    gAudioCmd = synthesis_execute(gAudioCmd, &writtenCmds, gCurrAiBuffer, gAiBufferLengths[index]);
     D_80226EB8 = ((D_80226EB8 + gActiveAudioFrames) * gActiveAudioFrames);
 
     index = gAudioTaskIndex;

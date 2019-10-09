@@ -47,9 +47,9 @@ struct SoundMultiPool
 }; // size = 0x1D0
 
 extern u8 gAudioHeap[];
-extern s16 D_802212A0;
-extern s8 D_802212A2;
-extern u8 D_802212A3;
+extern s16 gVolume;
+extern s8 gReverbDownsampleRate;
+extern u8 sReverbDownsampleRateLog;
 extern struct SoundAllocPool gSoundPool;
 extern struct SoundAllocPool D_802212C8;
 extern struct SoundMultiPool gSeqLoadedPool;

@@ -9,7 +9,7 @@ glabel D_80337BC8
     .word 0x407FFEDA, 0
 
 .text
-glabel func_80314480
+glabel process_notes
 /* 0CF480 80314480 27BDFE88 */  addiu $sp, $sp, -0x178
 /* 0CF484 80314484 3C0E8022 */  lui   $t6, %hi(gMaxSimultaneousNotes) # $t6, 0x8022
 /* 0CF488 80314488 8DCE6D70 */  lw    $t6, %lo(gMaxSimultaneousNotes)($t6)
@@ -133,7 +133,7 @@ glabel func_80314480
 /* 0CF644 80314644 A6E30020 */   sh    $v1, 0x20($s7)
 /* 0CF648 80314648 00038402 */  srl   $s0, $v1, 0x10
 /* 0CF64C 8031464C 02003025 */  move  $a2, $s0
-/* 0CF650 80314650 0C0C53C2 */  jal   func_80314F08
+/* 0CF650 80314650 0C0C53C2 */  jal   load_wave_samples
 /* 0CF654 80314654 AFA00148 */   sw    $zero, 0x148($sp)
 /* 0CF658 80314658 8EE90014 */  lw    $t1, 0x14($s7)
 /* 0CF65C 8031465C 0040A025 */  move  $s4, $v0
@@ -639,7 +639,7 @@ glabel func_80314480
 /* 0CFD94 80314D94 97A7005E */  lhu   $a3, 0x5e($sp)
 /* 0CFD98 80314D98 02203025 */  move  $a2, $s1
 /* 0CFD9C 80314D9C AFAE0010 */  sw    $t6, 0x10($sp)
-/* 0CFDA0 80314DA0 0C0C53F5 */  jal   func_80314FD4
+/* 0CFDA0 80314DA0 0C0C53F5 */  jal   final_resample
 /* 0CFDA4 80314DA4 AFB80014 */   sw    $t8, 0x14($sp)
 /* 0CFDA8 80314DA8 96F9000C */  lhu   $t9, 0xc($s7)
 /* 0CFDAC 80314DAC 0040A025 */  move  $s4, $v0
@@ -668,7 +668,7 @@ glabel func_80314480
 /* 0CFDF8 80314DF8 8FA6017C */  lw    $a2, 0x17c($sp)
 /* 0CFDFC 80314DFC 00003825 */  move  $a3, $zero
 /* 0CFE00 80314E00 AFB00010 */  sw    $s0, 0x10($sp)
-/* 0CFE04 80314E04 0C0C540C */  jal   func_80315030
+/* 0CFE04 80314E04 0C0C540C */  jal   process_envelope
 /* 0CFE08 80314E08 AFB90014 */   sw    $t9, 0x14($sp)
 /* 0CFE0C 80314E0C 92EF0001 */  lbu   $t7, 1($s7)
 /* 0CFE10 80314E10 3C1F8000 */  lui   $ra, 0x8000
@@ -678,7 +678,7 @@ glabel func_80314480
 /* 0CFE20 80314E20 02E02825 */  move  $a1, $s7
 /* 0CFE24 80314E24 02203025 */  move  $a2, $s1
 /* 0CFE28 80314E28 8FA70148 */  lw    $a3, 0x148($sp)
-/* 0CFE2C 80314E2C 0C0C557D */  jal   func_803155F4
+/* 0CFE2C 80314E2C 0C0C557D */  jal   note_apply_headset_pan_effects
 /* 0CFE30 80314E30 AFB00010 */   sw    $s0, 0x10($sp)
 /* 0CFE34 80314E34 3C1F8000 */  lui   $ra, 0x8000
 /* 0CFE38 80314E38 0040A025 */  move  $s4, $v0
