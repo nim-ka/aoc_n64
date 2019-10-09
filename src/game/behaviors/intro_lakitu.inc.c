@@ -72,10 +72,10 @@ void bhv_intro_lakitu_loop(void) {
             switch (gCurrentObject->oTimer) {
 #ifdef VERSION_US
                 case 534:
-                    PlaySound2(SOUND_ACTION_UNKNOWN456);
+                    PlaySound2(SOUND_ACTION_FLYING_FAST);
                     break;
                 case 581:
-                    PlaySound2(SOUND_ACTION_UNKNOWN45E);
+                    PlaySound2(SOUND_ACTION_INTRO_UNK45E);
                     break;
 #endif
                 case 73:
@@ -93,9 +93,9 @@ void bhv_intro_lakitu_loop(void) {
             }
 #ifdef VERSION_EU
             if (gCurrentObject->oTimer == 446)
-                PlaySound2(SOUND_ACTION_UNKNOWN456);
+                PlaySound2(SOUND_ACTION_FLYING_FAST);
             if (gCurrentObject->oTimer == 485)
-                PlaySound2(SOUND_ACTION_UNKNOWN45E);
+                PlaySound2(SOUND_ACTION_INTRO_UNK45E);
 #endif
             break;
         case 2:
@@ -149,7 +149,7 @@ void bhv_intro_lakitu_loop(void) {
             }
 #ifndef VERSION_JP
             if (gCurrentObject->oTimer == 14)
-                PlaySound2(SOUND_ACTION_UNKNOWN45F);
+                PlaySound2(SOUND_ACTION_INTRO_UNK45F);
 #endif
             break;
         case 100:

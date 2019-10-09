@@ -27,6 +27,15 @@ def asset_needs_update(asset, version):
     return False
 
 
+def remove_file(fname):
+    os.remove(fname)
+    print("deleting", fname)
+    try:
+        os.removedirs(os.path.dirname(fname))
+    except OSError:
+        pass
+
+
 def clean_assets(local_asset_file):
     assets = set(read_asset_map().keys())
     assets.update(read_local_asset_list(local_asset_file))
@@ -34,7 +43,7 @@ def clean_assets(local_asset_file):
         if fname.startswith("@"):
             continue
         try:
-            os.remove(fname)
+            remove_file(fname)
         except FileNotFoundError:
             pass
 
@@ -218,8 +227,7 @@ def main():
     for asset in previous_assets:
         if asset not in new_assets:
             try:
-                print("deleting", asset)
-                os.remove(asset)
+                remove_file(asset)
             except FileNotFoundError:
                 pass
 

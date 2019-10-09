@@ -1,22 +1,22 @@
 {
     "date": "1996-03-19",
-    "sample_bank": "nlist_extra3",
+    "sample_bank": "instruments",
     "envelopes": {
         "envelope0": [
-            [2, 32700],
-            [1, 32700],
+            [6, 32700],
+            [298, 32700],
             [32700, 29430],
             "hang"
         ],
         "envelope1": [
-            [2, 32700],
-            [1, 32700],
+            [6, 32700],
+            [298, 32700],
             [32700, 29430],
             "hang"
         ],
         "envelope2": [
-            [2, 32700],
-            [1, 32700],
+            [6, 32700],
+            [298, 32700],
             [32700, 29430],
             "hang"
         ],
@@ -41,50 +41,47 @@
     },
     "instruments": {
         "inst0": {
-            "release_rate": 19,
-            "normal_range_hi": 50,
+            "release_rate": 119,
             "envelope": "envelope0",
-            "sound": "00",
-            "sound_hi": "01"
+            "sound": "3A"
         },
         "inst1": {
-            "release_rate": 19,
-            "normal_range_hi": 50,
+            "release_rate": 119,
             "envelope": "envelope1",
-            "sound": "00",
-            "sound_hi": "01"
+            "sound": "3A"
         },
         "inst2": {
-            "release_rate": 19,
-            "normal_range_hi": 50,
+            "release_rate": 119,
             "envelope": "envelope2",
-            "sound": "00",
-            "sound_hi": "01"
+            "sound": "3A"
         },
         "inst3": {
-            "release_rate": 19,
-            "normal_range_hi": 50,
+            "release_rate": 24,
+            "normal_range_lo": 42,
             "envelope": "envelope3",
-            "sound": "00",
-            "sound_hi": "01"
+            "sound_lo": "14",
+            "sound": "15"
         },
         "inst4": {
-            "release_rate": 19,
-            "normal_range_hi": 50,
+            "release_rate": 24,
+            "normal_range_lo": 42,
             "envelope": "envelope4",
-            "sound": "00",
-            "sound_hi": "01"
+            "sound_lo": "14",
+            "sound": "15"
         },
         "inst5": {
-            "release_rate": 10,
+            "release_rate": 24,
+            "normal_range_lo": 42,
             "envelope": "envelope5",
-            "sound": "02"
+            "sound_lo": "14",
+            "sound": "15"
         }
     },
     "instrument_list": [
         "inst0",
         "inst1",
         "inst2",
+        null,
         "inst3",
         "inst4",
         "inst5"

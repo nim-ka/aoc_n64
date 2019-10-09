@@ -1,6 +1,6 @@
 {
     "date": "1996-03-19",
-    "sample_bank": "nlist_B",
+    "sample_bank": "piranha_music_box",
     "envelopes": {
         "envelope0": [
             [6, 32700],
@@ -21,20 +21,14 @@
             "hang"
         ],
         "envelope3": [
-            [2, 32700],
-            [1, 32700],
+            [6, 32700],
+            [298, 32700],
             [32700, 29430],
             "hang"
         ],
         "envelope4": [
-            [2, 32700],
-            [1, 32700],
-            [32700, 29430],
-            "hang"
-        ],
-        "envelope5": [
-            [2, 32700],
-            [1, 32700],
+            [6, 32700],
+            [298, 32700],
             [32700, 29430],
             "hang"
         ]
@@ -43,47 +37,34 @@
         "inst0": {
             "release_rate": 119,
             "envelope": "envelope0",
-            "sound": "3A"
+            "sound": "00_pling"
         },
         "inst1": {
             "release_rate": 119,
             "envelope": "envelope1",
-            "sound": "3A"
+            "sound": "00_pling"
         },
         "inst2": {
             "release_rate": 119,
             "envelope": "envelope2",
-            "sound": "3A"
+            "sound": "00_pling"
         },
         "inst3": {
-            "release_rate": 24,
-            "normal_range_lo": 42,
+            "release_rate": 119,
             "envelope": "envelope3",
-            "sound_lo": "14",
-            "sound": "15"
+            "sound": "00_pling"
         },
         "inst4": {
-            "release_rate": 24,
-            "normal_range_lo": 42,
+            "release_rate": 119,
             "envelope": "envelope4",
-            "sound_lo": "14",
-            "sound": "15"
-        },
-        "inst5": {
-            "release_rate": 24,
-            "normal_range_lo": 42,
-            "envelope": "envelope5",
-            "sound_lo": "14",
-            "sound": "15"
+            "sound": "00_pling"
         }
     },
     "instrument_list": [
         "inst0",
         "inst1",
         "inst2",
-        null,
         "inst3",
-        "inst4",
-        "inst5"
+        "inst4"
     ]
 }

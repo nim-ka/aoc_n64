@@ -1,14 +1,8 @@
 {
-    "date": "1996-03-19",
-    "sample_bank": "nlist_extra2",
+    "date": "1996-02-14",
+    "sample_bank": "sfx_water",
     "envelopes": {
         "envelope0": [
-            [2, 32700],
-            [1, 32700],
-            [32700, 29430],
-            "hang"
-        ],
-        "envelope1": [
             [2, 32700],
             [1, 32700],
             [32700, 29430],
@@ -19,16 +13,22 @@
         "inst0": {
             "release_rate": 208,
             "envelope": "envelope0",
-            "sound": "00"
+            "sound": "00_plunge"
         },
         "inst1": {
             "release_rate": 208,
-            "envelope": "envelope1",
-            "sound": "00"
+            "envelope": "envelope0",
+            "sound": "01_splash"
+        },
+        "inst2": {
+            "release_rate": 208,
+            "envelope": "envelope0",
+            "sound": "02_swim"
         }
     },
     "instrument_list": [
         "inst0",
-        "inst1"
+        "inst1",
+        "inst2"
     ]
 }
