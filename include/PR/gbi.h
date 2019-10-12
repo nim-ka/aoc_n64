@@ -1478,6 +1478,8 @@ typedef union {
 		{	{{ {{0,0,0},0,{0,0,0},0,{rightx,righty,rightz},0}}, \
 			{ {{0,0x80,0},0,{0,0x80,0},0,{upx,upy,upz},0}}}   }
 
+/* Don't declare these for F3D_OLD to avoid bss reordering */
+#ifndef F3D_OLD
 /*
  *  Graphics DMA Packet
  */
@@ -1650,9 +1652,6 @@ typedef struct {
 		unsigned int	dtdy:16;/* Change in T per change in Y	*/
 } Gtexrect;
 
-#define	MakeTexRect(xh,yh,flip,tile,xl,yl,s,t,dsdx,dtdy)		\
-	G_TEXRECT, xh, yh, 0, flip, 0, tile, xl, yl, s, t, dsdx, dtdy
-
 /*
  * Textured rectangles are 128 bits not 64 bits
  */	
@@ -1662,6 +1661,10 @@ typedef struct {
     unsigned long w2;
     unsigned long w3;
 } TexRect;
+#endif
+
+#define	MakeTexRect(xh,yh,flip,tile,xl,yl,s,t,dsdx,dtdy)		\
+	G_TEXRECT, xh, yh, 0, flip, 0, tile, xl, yl, s, t, dsdx, dtdy
 
 /*
  * Generic Gfx Packet
@@ -1681,7 +1684,7 @@ typedef struct {
  */
 typedef union {
 	Gwords		words;
-#if !defined(__x86_64__) && !defined(__i386__)
+#if !defined(F3D_OLD) && !defined(__x86_64__) && !defined(__i386__)
 	Gdma		dma;
 	Gtri		tri;
 	Gline3D		line;
@@ -2797,8 +2800,23 @@ typedef union {
 }}
 #endif
 
-#define gSPPerspNormalize(pkt, s)	gMoveWd(pkt, G_MW_PERSPNORM, 0, (s))
-#define gsSPPerspNormalize(s)		gsMoveWd(    G_MW_PERSPNORM, 0, (s))
+#ifndef F3D_OLD
+# define gSPPerspNormalize(pkt, s)	gMoveWd(pkt, G_MW_PERSPNORM, 0, (s))
+# define gsSPPerspNormalize(s)		gsMoveWd(    G_MW_PERSPNORM, 0, (s))
+#else
+# define gSPPerspNormalize(pkt, s)					\
+{									\
+	Gfx *_g = (Gfx *)(pkt);						\
+									\
+	_g->words.w0 = _SHIFTL(G_RDPHALF_1, 24, 8);			\
+	_g->words.w1 = (s);						\
+}
+# define gsSPPerspNormalize(s)						\
+{{									\
+	_SHIFTL(G_RDPHALF_1, 24, 8),					\
+	(s)								\
+}}
+#endif
 
 #ifdef	F3DEX_GBI_2
 # define gSPPopMatrixN(pkt, n, num)	gDma2p((pkt),G_POPMTX,(num)*64,64,2,0)
@@ -4488,7 +4506,67 @@ typedef union {
     gsImmp1(G_RDPHALF_1, (_SHIFTL(s, 16, 16) | _SHIFTL(t, 0, 16))),	\
     gsImmp1(G_RDPHALF_2, (_SHIFTL(dsdx, 16, 16) | _SHIFTL(dtdy, 0, 16)))
 
-#define gSPTextureRectangle(pkt, xl, yl, xh, yh, tile, s, t, dsdx, dtdy)\
+#ifdef F3D_OLD
+# define gSPTextureRectangle(pkt, xl, yl, xh, yh, tile, s, t, dsdx, dtdy)\
+{									\
+    Gfx *_g = (Gfx *)(pkt);						\
+									\
+    _g->words.w0 = (_SHIFTL(G_TEXRECT, 24, 8) | _SHIFTL(xh, 12, 12) |	\
+		    _SHIFTL(yh, 0, 12));    				\
+    _g->words.w1 = (_SHIFTL(tile, 24, 3) | _SHIFTL(xl, 12, 12) |	\
+		    _SHIFTL(yl, 0, 12));				\
+    gImmp1(pkt, G_RDPHALF_2, (_SHIFTL(s, 16, 16) | _SHIFTL(t, 0, 16)));	\
+    gImmp1(pkt, G_RDPHALF_CONT, (_SHIFTL(dsdx, 16, 16) | _SHIFTL(dtdy, 0, 16)));\
+}
+
+/* like gSPTextureRectangle but accepts negative position arguments */
+# define gSPScisTextureRectangle(pkt, xl, yl, xh, yh, tile, s, t, dsdx, dtdy) \
+{                                                                            \
+    Gfx *_g = (Gfx *)(pkt);                                                  \
+                                                                             \
+    _g->words.w0 = (_SHIFTL(G_TEXRECT, 24, 8) |                              \
+                    _SHIFTL(MAX((s16)(xh),0), 12, 12) |                      \
+                    _SHIFTL(MAX((s16)(yh),0), 0, 12));                       \
+    _g->words.w1 = (_SHIFTL((tile), 24, 3) |                                 \
+                    _SHIFTL(MAX((s16)(xl),0), 12, 12) |                      \
+                    _SHIFTL(MAX((s16)(yl),0), 0, 12));                       \
+    gImmp1(pkt, G_RDPHALF_2,                                                 \
+                (_SHIFTL(((s) -                                              \
+                          (((s16)(xl) < 0) ?                                 \
+                           (((s16)(dsdx) < 0) ?                              \
+                            (MAX((((s16)(xl)*(s16)(dsdx))>>7),0)) :          \
+			    (MIN((((s16)(xl)*(s16)(dsdx))>>7),0))) : 0)),    \
+			 16, 16) |                                           \
+                 _SHIFTL(((t) -                                              \
+                          (((yl) < 0) ?                                      \
+                           (((s16)(dtdy) < 0) ?                              \
+                            (MAX((((s16)(yl)*(s16)(dtdy))>>7),0)) :          \
+                            (MIN((((s16)(yl)*(s16)(dtdy))>>7),0))) : 0)),    \
+			 0, 16)));                                           \
+    gImmp1(pkt, G_RDPHALF_CONT, (_SHIFTL((dsdx), 16, 16) |                      \
+                              _SHIFTL((dtdy), 0, 16)));                      \
+}
+
+# define gsSPTextureRectangleFlip(xl, yl, xh, yh, tile, s, t, dsdx, dtdy) \
+    {{(_SHIFTL(G_TEXRECTFLIP, 24, 8) | _SHIFTL(xh, 12, 12) |		\
+     _SHIFTL(yh, 0, 12)),						\
+    (_SHIFTL(tile, 24, 3) | _SHIFTL(xl, 12, 12) | _SHIFTL(yl, 0, 12))}},	\
+    gsImmp1(G_RDPHALF_2, (_SHIFTL(s, 16, 16) | _SHIFTL(t, 0, 16))),	\
+    gsImmp1(G_RDPHALF_CONT, (_SHIFTL(dsdx, 16, 16) | _SHIFTL(dtdy, 0, 16)))
+
+# define gSPTextureRectangleFlip(pkt, xl, yl, xh, yh, tile, s, t, dsdx, dtdy) \
+{								       	\
+    Gfx *_g = (Gfx *)(pkt);					       	\
+									 \
+    _g->words.w0 = (_SHIFTL(G_TEXRECTFLIP, 24, 8) | _SHIFTL(xh, 12, 12) |\
+		    _SHIFTL(yh, 0, 12)); 				\
+    _g->words.w1 = (_SHIFTL(tile, 24, 3) | _SHIFTL(xl, 12, 12) |	\
+		    _SHIFTL(yl, 0, 12));				\
+    gImmp1(pkt, G_RDPHALF_2, (_SHIFTL(s, 16, 16) | _SHIFTL(t, 0, 16)));	\
+    gImmp1(pkt, G_RDPHALF_CONT, (_SHIFTL(dsdx, 16, 16) | _SHIFTL(dtdy, 0, 16))); \
+}
+#else
+# define gSPTextureRectangle(pkt, xl, yl, xh, yh, tile, s, t, dsdx, dtdy)\
 {									\
     Gfx *_g = (Gfx *)(pkt);						\
 									\
@@ -4501,7 +4579,7 @@ typedef union {
 }
 
 /* like gSPTextureRectangle but accepts negative position arguments */
-#define gSPScisTextureRectangle(pkt, xl, yl, xh, yh, tile, s, t, dsdx, dtdy) \
+# define gSPScisTextureRectangle(pkt, xl, yl, xh, yh, tile, s, t, dsdx, dtdy) \
 {                                                                            \
     Gfx *_g = (Gfx *)(pkt);                                                  \
                                                                              \
@@ -4528,14 +4606,14 @@ typedef union {
                               _SHIFTL((dtdy), 0, 16)));                      \
 }
 
-#define gsSPTextureRectangleFlip(xl, yl, xh, yh, tile, s, t, dsdx, dtdy) \
+# define gsSPTextureRectangleFlip(xl, yl, xh, yh, tile, s, t, dsdx, dtdy) \
     {{(_SHIFTL(G_TEXRECTFLIP, 24, 8) | _SHIFTL(xh, 12, 12) |		\
      _SHIFTL(yh, 0, 12)),						\
     (_SHIFTL(tile, 24, 3) | _SHIFTL(xl, 12, 12) | _SHIFTL(yl, 0, 12))}},	\
     gsImmp1(G_RDPHALF_1, (_SHIFTL(s, 16, 16) | _SHIFTL(t, 0, 16))),	\
     gsImmp1(G_RDPHALF_2, (_SHIFTL(dsdx, 16, 16) | _SHIFTL(dtdy, 0, 16)))
 
-#define gSPTextureRectangleFlip(pkt, xl, yl, xh, yh, tile, s, t, dsdx, dtdy) \
+# define gSPTextureRectangleFlip(pkt, xl, yl, xh, yh, tile, s, t, dsdx, dtdy) \
 {								       	\
     Gfx *_g = (Gfx *)(pkt);					       	\
 									 \
@@ -4546,6 +4624,7 @@ typedef union {
     gImmp1(pkt, G_RDPHALF_1, (_SHIFTL(s, 16, 16) | _SHIFTL(t, 0, 16)));	\
     gImmp1(pkt, G_RDPHALF_2, (_SHIFTL(dsdx, 16, 16) | _SHIFTL(dtdy, 0, 16))); \
 }
+#endif
 
 #define gsDPWord(wordhi, wordlo)			\
     gsImmp1(G_RDPHALF_1, (uintptr_t)(wordhi)),	\

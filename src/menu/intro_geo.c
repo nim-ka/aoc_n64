@@ -1,5 +1,6 @@
 #include "ultra64.h"
 #include "sm64.h"
+#include "prevent_bss_reordering.h"
 #include "types.h"
 #include "game/memory.h"
 #include "game/segment2.h"
