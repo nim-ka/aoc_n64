@@ -21,14 +21,14 @@ gsSPSetGeometryMode G_FOG
 gsDPSetCombineModeLERP G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_COMBINED, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_COMBINED
 gsSPLight ttc_diff_light_surface_treadmill, 1
 gsSPLight ttc_amb_light_surface_treadmill, 2
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPEndDisplayList
 
 glabel ttc_dl_surface_treadmill_end # 0x07016808 - 0x07016840
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCycleType G_CYC_1CYCLE
 gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_NOOP2

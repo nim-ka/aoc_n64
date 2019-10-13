@@ -125,13 +125,12 @@ void func_802CEF4C(Gfx **dlist, s8 b, s8 c, s8 d) {
                 ((struct SkyboxList *) segmented_to_virtual((void *) gSkyboxLists[b]))->ptr[sp4C];
             Vtx *vertices = make_skybox_rect(sp4C, d);
 
-            // Why is the width 1 here?
             gDPSetTextureImage((*dlist)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, sp48);
             gDPTileSync((*dlist)++);
-            gDPSetTile((*dlist)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_NOMIRROR | G_TX_WRAP,
-                       G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
+            gDPSetTile((*dlist)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, 
+                G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD);
             gDPLoadSync((*dlist)++);
-            gDPLoadBlock((*dlist)++, 7, 0, 0, 1023, 256);
+            gDPLoadBlock((*dlist)++, G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES));
             gSPVertex((*dlist)++, VIRTUAL_TO_PHYSICAL(vertices), 4, 0);
             gSPDisplayList((*dlist)++, dl_draw_quad_verts_0123);
         }
@@ -164,7 +163,7 @@ Gfx *func_802CF2A8(s8 a, s8 b, s8 c) {
         Mtx *mtx = func_802CF188(a);
 
         gSPDisplayList(dlist++, dl_skybox_begin);
-        gSPMatrix(dlist++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_MUL);
+        gSPMatrix(dlist++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_MUL | G_MTX_NOPUSH);
         gSPDisplayList(dlist++, dl_skybox_tex_settings);
         func_802CEF4C(&dlist, b, a, c);
         gSPDisplayList(dlist++, dl_skybox_end);

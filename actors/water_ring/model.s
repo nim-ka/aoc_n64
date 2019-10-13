@@ -146,14 +146,8 @@ glabel water_ring_seg6_dl_06013AC0 # 0x06013AC0 - 0x06013DD8
 gsDPPipeSync
 gsSPSetGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, water_ring_seg6_texture_06012380
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 252, 124
-gsSPTexture 6144, 1984, 0, 0, 1
+gsDPLoadTextureBlock water_ring_seg6_texture_06012380, G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 32, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, 6, 5, G_TX_NOLOD, G_TX_NOLOD
+gsSPTexture 0x1800, 0x07C0, 0, G_TX_RENDERTILE, G_ON
 gsSPLight water_ring_seg6_light_06012370, 1
 gsSPLight water_ring_seg6_light_06012368, 2
 gsSPVertex water_ring_seg6_vertex_06013380, 16, 0
@@ -204,7 +198,7 @@ gsDPPipeSync
 gsSPClearGeometryMode G_TEXTURE_GEN
 gsDPSetEnvColor 255, 255, 255, 255
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPTexture 3968, 1984, 0, 0, 0
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_OFF
 gsSPEndDisplayList
 
 water_ring_seg6_animvalue_06013DD8: # 0x06013DD8

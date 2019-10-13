@@ -1665,7 +1665,7 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_T
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 4, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 60, 60
+gsDPSetTileSize 0, 0, 0, (16 - 1) << G_TEXTURE_IMAGE_FRAC, (16 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPEndDisplayList
 
 glabel dl_hud_img_end # 0x0200ECC8 - 0x0200ED00
@@ -1685,7 +1685,7 @@ gsDPSetTextureFilter G_TF_BILERP
 gsDPSetCycleType G_CYC_1CYCLE
 .else
 gsDPSetCycleType G_CYC_1CYCLE
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 .endif
 gsSPEndDisplayList
 
@@ -1703,7 +1703,7 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_T
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 4, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 60, 60
+gsDPSetTileSize 0, 0, 0, (16 - 1) << G_TEXTURE_IMAGE_FRAC, (16 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPEndDisplayList
 
 glabel dl_rgba16_text_end # 0x0200ED68 - 0x0200EDA8
@@ -1720,7 +1720,7 @@ gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsDPSetEnvColor 255, 255, 255, 255
 gsDPSetTextureFilter G_TF_BILERP
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsSPEndDisplayList
 
 vertex_text_bg_box: # 0x0200EDA8 - 0x0200EDE8
@@ -1768,7 +1768,7 @@ glabel dl_ia8_render_char # 0x020073E8 - 0x02007418
     gsDPLoadSync
     gsDPLoadBlock 7, 0, 0, 0x01F, 0x800
     gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_4b, 1, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_MIRROR, 3, G_TX_NOLOD, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD
-    gsDPSetTileSize 0, 0, 0, 60, 28
+    gsDPSetTileSize 0, 0, 0, (16 - 1) << G_TEXTURE_IMAGE_FRAC, (8 - 1) << G_TEXTURE_IMAGE_FRAC
     gsSPEndDisplayList
 
 glabel dl_ia8_text_end # 0x02007418 - 0x02007450
@@ -1788,7 +1788,7 @@ glabel dl_ia8_text_begin
     gsDPSetEnvColor 255, 255, 255, 255
     gsDPSetRenderMode G_RM_XLU_SURF, G_RM_XLU_SURF2
     gsDPSetTextureFilter G_TF_POINT
-    gsSPTexture 65535, 65535, 0, 0, 1
+    gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
     gsSPEndDisplayList
 
 glabel dl_ia8_render_char
@@ -1796,7 +1796,7 @@ glabel dl_ia8_render_char
     gsDPLoadSync
     gsDPLoadBlock 7, 0, 0, 0x1F, 0x800
     gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_4b, 1, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 3, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD
-    gsDPSetTileSize 0, 0, 0, 60, 28
+    gsDPSetTileSize 0, 0, 0, (16 - 1) << G_TEXTURE_IMAGE_FRAC, (8 - 1) << G_TEXTURE_IMAGE_FRAC
     gsSPVertex vertex_ia8_char, 4, 0
     gsSP2Triangles  0,  1,  2, 0x0, 0,  2,  3, 0x0
     gsSPEndDisplayList
@@ -1808,15 +1808,15 @@ glabel dl_ia8_text_begin # 0x0200EE68 - 0x0200EEA8
     gsDPSetEnvColor 255, 255, 255, 255
     gsDPSetRenderMode G_RM_XLU_SURF, G_RM_XLU_SURF2
     gsDPSetTextureFilter G_TF_POINT
-    gsSPTexture -32768, -32768, 0, 0, 1
+    gsSPTexture 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON
     gsSPEndDisplayList
 
 glabel dl_ia8_render_char # 0x0200EEA8 - 0x0200EEF0
-    gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 0, 0, G_TX_LOADTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 3, G_TX_NOLOD
+    gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 0, 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 4, G_TX_NOLOD, G_TX_CLAMP, 3, G_TX_NOLOD
     gsDPLoadSync
     gsDPLoadBlock 7, 0, 0, 0x07F, 0x800
-    gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 1, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 3, G_TX_NOLOD
-    gsDPSetTileSize 0, 0, 0, 28, 60
+    gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 1, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 4, G_TX_NOLOD, G_TX_CLAMP, 3, G_TX_NOLOD
+    gsDPSetTileSize 0, 0, 0, (8 - 1) << G_TEXTURE_IMAGE_FRAC, (16 - 1) << G_TEXTURE_IMAGE_FRAC
     gsSPVertex vertex_ia8_char, 4, 0
     gsSP2Triangles  0,  1,  2, 0x0, 0,  2,  3, 0x0
     gsSPEndDisplayList
@@ -1825,7 +1825,7 @@ glabel dl_ia8_render_char # 0x0200EEA8 - 0x0200EEF0
 .ifndef VERSION_EU
 glabel dl_ia8_text_end # 0x0200EEF0 - 0x0200EF30
 gsDPPipeSync
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsDPSetEnvColor 255, 255, 255, 255
 gsSPSetGeometryMode G_LIGHTING | G_SHADING_SMOOTH
@@ -1876,16 +1876,16 @@ gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPClearGeometryMode G_LIGHTING
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -32768, -32768, 0, 0, 1
+gsSPTexture 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 4, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 60, 60
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 4, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 4, G_TX_NOLOD, G_TX_CLAMP, 4, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (16 - 1) << G_TEXTURE_IMAGE_FRAC, (16 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPEndDisplayList
 
 glabel dl_billboard_num_end # 0x0200F038 - 0x0200F078
 gsSPVertex vertex_billboard_num, 4, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
-gsSPTexture -32768, -32768, 0, 0, 0
+gsSPTexture 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_LIGHTING
@@ -2042,7 +2042,7 @@ glabel dl_shadow_begin
 gsDPPipeSync
 gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsSPEndDisplayList
 
 glabel dl_shadow_circle
@@ -2068,7 +2068,7 @@ gsSPEndDisplayList
 
 glabel dl_shadow_end # 0x02014638 - 0x02014660
 gsDPPipeSync
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
@@ -2077,8 +2077,8 @@ glabel dl_proj_mtx_fullscreen # 0x02014660 - 0x02014698
 gsDPPipeSync
 gsSPClearGeometryMode G_LIGHTING
 gsSPMatrix matrix_identity, G_MTX_PROJECTION | G_MTX_LOAD | G_MTX_NOPUSH
-gsSPMatrix matrix_fullscreen, G_MTX_PROJECTION
-gsSPMatrix matrix_identity, G_MTX_LOAD
+gsSPMatrix matrix_fullscreen, G_MTX_PROJECTION | G_MTX_MUL | G_MTX_NOPUSH
+gsSPMatrix matrix_identity, G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH
 gsSPPerspNormalize 0xFFFF
 gsSPEndDisplayList
 
@@ -2110,16 +2110,16 @@ gsSPMatrix matrix_identity, G_MTX_PROJECTION | G_MTX_LOAD | G_MTX_NOPUSH
 gsSPEndDisplayList
 
 glabel dl_skybox_tex_settings # 0x02014738 - 0x02014768
-gsSPMatrix matrix_identity, G_MTX_LOAD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPMatrix matrix_identity, G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPEndDisplayList
 
 glabel dl_skybox_end # 0x02014768 - 0x02014790
 gsDPPipeSync
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsSPSetGeometryMode G_LIGHTING
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
@@ -2128,24 +2128,24 @@ glabel dl_waterbox_rgba16_begin # 0x02014790 - 0x020147D0
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPEndDisplayList
 
 glabel dl_waterbox_ia16_begin # 0x020147D0 - 0x02014810
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
 gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPEndDisplayList
 
 glabel dl_waterbox_end # 0x02014810 - 0x02014838
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -2164,19 +2164,19 @@ gsSPMatrix matrix_identity, G_MTX_PROJECTION | G_MTX_LOAD | G_MTX_NOPUSH
 gsSPEndDisplayList
 
 glabel dl_rgba16_unknown_tex_settings # 0x020148B0 - 0x020148E0
-gsSPMatrix matrix_identity, G_MTX_LOAD
+gsSPMatrix matrix_identity, G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 252, 124
-gsSPTexture -1, -1, 0, 0, 1
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 6, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (64 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsSPEndDisplayList
 
 glabel dl_ia8_up_arrow_load_texture_block # 0x020148E0 - 0x02014938
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsDPTileSync
-gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 1, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 3, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 3, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 28, 28
+gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 1, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 3, G_TX_NOLOD, G_TX_CLAMP, 3, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (8 - 1) << G_TEXTURE_IMAGE_FRAC, (8 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_8b, 1, texture_ia8_up_arrow
 gsDPTileSync
 gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
@@ -2185,7 +2185,7 @@ gsDPLoadBlock 7, 0, 0, 0x03F, 0x800
 gsSPEndDisplayList
 
 glabel dl_ia8_up_arrow_end # 0x02014938 - 0x02014958
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
@@ -2203,11 +2203,11 @@ gsSPSetGeometryMode G_LIGHTING | G_SHADING_SMOOTH
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsSPLight seg2_light_02014960, 1
 gsSPLight seg2_light_02014958, 2
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsSPEndDisplayList
 
 glabel dl_paintings_rippling_end # 0x020149A8 - 0x020149C8
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
@@ -2218,11 +2218,11 @@ gsSPSetGeometryMode G_LIGHTING | G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPLight seg2_light_02014960, 1
 gsSPLight seg2_light_02014958, 2
-gsSPTexture 16384, 16384, 0, 0, 1
+gsSPTexture 0x4000, 0x4000, 0, G_TX_RENDERTILE, G_ON
 gsSPEndDisplayList
 
 glabel dl_paintings_env_mapped_end # 0x02014A00 - 0x02014A30
-gsSPTexture 16384, 16384, 0, 0, 0
+gsSPTexture 0x4000, 0x4000, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsSPGeometryMode G_TEXTURE_GEN, G_LIGHTING, G_ORDER_SFIRST
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE

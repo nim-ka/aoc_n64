@@ -30,9 +30,6 @@
 #define MTX_INTPART_PACK(w1, w2) (((w1) &0xFFFF0000) | (((w2) >> 16) & 0xFFFF))
 #define MTX_FRACPART_PACK(w1, w2) ((((w1) << 16) & 0xFFFF0000) | ((w2) &0xFFFF))
 #define LOOKAT_PACK(c) ((s32) MIN(((c) * (128.0)), 127.0) & 0xff)
-// For fill cycle mode color packing
-#define FILL_RGBA5551(r, g, b, a)                                                                      \
-    ((GPACK_RGBA5551((r), (g), (b), (a)) << 16) | (GPACK_RGBA5551((r), (g), (b), (a))))
 
 // structs
 struct GdDisplayList {
@@ -210,7 +207,9 @@ static struct DynListBankInfo sDynLists[] = {     // @ 801A8704
 /*  It doesn't really make sense for this DL command to be here,
  * unless all of goddard's texture data were also in C...
  * So, to avoid that, throw a stray gsSPEndDisplayList here */
-static u64 strayDlEndCmd = 0xB800000000000000; // @ 801A8728
+static Gfx strayDlEndCmd[] = { // @ 801A8728
+    gsSPEndDisplayList(),
+};
 
 // linker (ROM addresses)
 extern u8 _gd_dynlistsSegmentRomStart[];
@@ -1035,7 +1034,7 @@ void gd_set_fill(struct GdColour *colour) {
     gDPPipeSync(next_gfx());
     gDPSetCycleType(next_gfx(), G_CYC_FILL);
     gDPSetRenderMode(next_gfx(), G_RM_OPA_SURF, G_RM_OPA_SURF2);
-    gDPSetFillColor(next_gfx(), FILL_RGBA5551(r, g, b, 1));
+    gDPSetFillColor(next_gfx(), GPACK_RGBA5551(r, g, b, 1) << 16 | GPACK_RGBA5551(r, g, b, 1));
 }
 
 /* 24CDB4 -> 24CE10; orig name: func_8019E5E4 */
@@ -1252,7 +1251,8 @@ void func_8019F318(struct ObjCamera *cam, f32 arg1, f32 arg2, f32 arg3, f32 arg4
                   0.0f);
     // 8019F3C8
     mat4_to_Mtx(&cam->unkE8, &DL_CURRENT_MTX(sCurrentGdDl));
-    gSPMatrix(next_gfx(), osVirtualToPhysical(&DL_CURRENT_MTX(sCurrentGdDl)), G_MTX_PROJECTION);
+    gSPMatrix(next_gfx(), osVirtualToPhysical(&DL_CURRENT_MTX(sCurrentGdDl)), 
+            G_MTX_PROJECTION | G_MTX_MUL | G_MTX_NOPUSH);
     // 8019F434
     /*  col           colc          dir
         0  1  2   3   4  5  6   7   8  9  10  11
@@ -1551,8 +1551,8 @@ s32 func_801A086C(s32 id, struct GdColour *colour, s32 arg2) {
             }
             // the macro does the 0xFFF mask,
             // but it seems goddard unnecessarily masked the parameters as well
-            gDPSetTileSize(next_gfx(), 0, D_801BB1D8[id].h.x1 & 0xFFF, D_801BB1D8[id].h.y1 & 0xFFF,
-                           (D_801BB1D8[id].h.x1 + 124) & 0xFFF, (D_801BB1D8[id].h.y1 + 124) & 0xFFF);
+            gDPSetTileSize(next_gfx(), G_TX_RENDERTILE, D_801BB1D8[id].h.x1 & 0xFFF, D_801BB1D8[id].h.y1 & 0xFFF,
+                           (D_801BB1D8[id].h.x1 + ((32 - 1) << G_TEXTURE_IMAGE_FRAC)) & 0xFFF, (D_801BB1D8[id].h.y1 + ((32 - 1) << G_TEXTURE_IMAGE_FRAC)) & 0xFFF);
             break;
         case 0x04:
             break;
@@ -1716,7 +1716,7 @@ void Unknown801A1E70(void) {
     gd_set_view_zbuf();
     gDPSetColorImage(next_gfx(), G_IM_FMT_RGBA, G_IM_SIZ_16b, sActiveView->parent->lowerRight.x,
                      GD_LOWER_24(sActiveView->parent->zbuf));
-    gDPSetFillColor(next_gfx(), FILL_RGBA5551(248, 248, 240, 0));
+    gDPSetFillColor(next_gfx(), GPACK_RGBA5551(248, 248, 240, 0) << 16 | GPACK_RGBA5551(248, 248, 240, 0));
     gDPFillRectangle(next_gfx(), (u32)(sActiveView->upperLeft.x), (u32)(sActiveView->upperLeft.y),
                      (u32)(sActiveView->upperLeft.x + sActiveView->lowerRight.x - 1.0f),
                      (u32)(sActiveView->upperLeft.y + sActiveView->lowerRight.y - 1.0f));
@@ -1744,8 +1744,10 @@ void func_801A2388(s32 gotoDl) {
     if (gotoDl) {
         gSPDisplayList(next_gfx(), osVirtualToPhysical(&marioHeadDl801B5100));
     } else {
-        gSPTexture(next_gfx(), 0x8000, 0x8000, 0, 0, 0);
-        gDPSetCombine(next_gfx(), 0xFFFFFF, 0xFFFE793C);
+        gSPTexture(next_gfx(), 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_OFF);
+        gDPSetCombine1CycleLERP(next_gfx(),
+                            0, 0, 0, SHADE,  // CCMUX
+                            0, 0, 0, SHADE); // ACMUX
         ;
     }
 }
@@ -1791,7 +1793,6 @@ void start_view_dl(struct ObjView *view) {
     }
 
     gDPSetScissor(next_gfx(), G_SC_NON_INTERLACE, ulx, uly, lrx, lry);
-    // TODO: is there a define for all? this seems illegal
     gSPClearGeometryMode(next_gfx(), 0xFFFFFFFF);
     gSPSetGeometryMode(next_gfx(), G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH | G_SHADE);
     if (view->flags & VIEW_ALLOC_ZBUF) {
@@ -2111,7 +2112,7 @@ void func_801A3AF0(f32 l, f32 r, f32 b, f32 t, f32 n, f32 f) {
     uintptr_t rotMtx;   // 38
 
     // Should produce G_RDPHALF_1 in Fast3D
-    gSPPerspNormalize(next_gfx(), 0x0000FFFF);
+    gSPPerspNormalize(next_gfx(), 0xFFFF);
 
     guOrtho(&DL_CURRENT_MTX(sCurrentGdDl), l, r, b, t, n, f, 1.0f);
     orthoMtx = GD_LOWER_29(&DL_CURRENT_MTX(sCurrentGdDl));
@@ -2901,7 +2902,6 @@ void Unknown801A5FF8(struct ObjGroup *arg0) {
     sMenuView = menuview;
 }
 
-// TODO: fixed point macros (10.2)?
 /* 254AC0 -> 254DFC; orig name: PutSprite */
 void gd_put_sprite(u16 *sprite, s32 x, s32 y, s32 wx, s32 wy) {
     s32 c; // 5c
@@ -2910,27 +2910,17 @@ void gd_put_sprite(u16 *sprite, s32 x, s32 y, s32 wx, s32 wy) {
     gSPDisplayList(next_gfx(), osVirtualToPhysical(marioHeadDl801B52D8));
     for (r = 0; r < wy; r += 0x20) {
         for (c = 0; c < wx; c += 0x20) {
-            // gDPLoadTextureBlock? (pkt, timg, fmt, siz, width, height, pal, cms, cmt, masks, maskt,
-            // shifts, shiftt)
-            //? texture offset has to be written like that
-            gDPSetTextureImage(next_gfx(), G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, (r * 0x20) + sprite + c);
-            gDPSetTile(next_gfx(), G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0, (G_TX_NOMIRROR | G_TX_WRAP),
-                       G_TX_NOMASK, G_TX_NOLOD, (G_TX_NOMIRROR | G_TX_WRAP), G_TX_NOMASK, G_TX_NOLOD);
-            gDPLoadSync(next_gfx());
-            gDPLoadBlock(next_gfx(), 7, 0, 0, 1023, 256);
-            gDPPipeSync(next_gfx());
-            gDPSetTile(next_gfx(), G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 0, 0, (G_TX_NOMIRROR | G_TX_WRAP),
-                       G_TX_NOMASK, G_TX_NOLOD, (G_TX_NOMIRROR | G_TX_WRAP), G_TX_NOMASK, G_TX_NOLOD);
-            gDPSetTileSize(next_gfx(), 0, 0, 0, 124, 124);
-            gSPTextureRectangle(next_gfx(), x << 2, (y + r) << 2, (x + 0x20) << 2, (y + r + 0x20) << 2,
-                                G_TX_RENDERTILE, 0, 0, 1 << 10, 1 << 10);
+             gDPLoadTextureBlock(next_gfx(), (r * 0x20) + sprite + c, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 32, 0, 
+                G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD)
+             gSPTextureRectangle(next_gfx(), x << 2, (y + r) << 2, (x + 0x20) << 2, (y + r + 0x20) << 2,
+                G_TX_RENDERTILE, 0, 0, 1 << 10, 1 << 10);
         }
     }
 
     gDPPipeSync(next_gfx());
     gDPSetCycleType(next_gfx(), G_CYC_1CYCLE);
     gDPSetRenderMode(next_gfx(), G_RM_AA_ZB_OPA_INTER, G_RM_NOOP2);
-    gSPTexture(next_gfx(), 0x8000, 0x8000, 0, 0, 0);
+    gSPTexture(next_gfx(), 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_OFF);
 }
 
 /* 254DFC -> 254F94; orig name: proc_dyn_list */

@@ -63,21 +63,21 @@ gsSPLight inside_castle_seg7_light_07021808, 1
 gsSPLight inside_castle_seg7_light_07021800, 2
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 252, 124
-gsSPTexture -1, -1, 0, 0, 1
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 6, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (64 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsSPEndDisplayList
 
 inside_castle_seg7_dl_07021AA0: # 0x07021AA0 - 0x07021AC0
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
 inside_castle_seg7_painting_dl_07021AC0: # 0x07021AC0 - 0x07021AE0
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 252, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 6, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (64 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPEndDisplayList
 
 inside_castle_seg7_painting_points_07021AE0: # 0x07021AE0 - 0x07021CE0
@@ -569,7 +569,7 @@ gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPLight inside_castle_seg7_light_07022530, 1
 gsSPLight inside_castle_seg7_light_07022528, 2
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsSPVertex inside_castle_seg7_vertex_07022558, 4, 0
 gsSPEndDisplayList
 
@@ -577,7 +577,7 @@ gsSPEndDisplayList
 glabel inside_castle_seg7_dl_07022610 # 0x07022610 - 0x07022640
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
@@ -585,7 +585,7 @@ gsSPEndDisplayList
 inside_castle_seg7_painting_dl_07022640: # 0x07022640 - 0x07022660
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPEndDisplayList
 
 inside_castle_seg7_painting_points_07022660: # 0x07022660 - 0x07022A10
@@ -1166,9 +1166,9 @@ gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0
 gsSPClearGeometryMode G_LIGHTING
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 252, 124
-gsSPTexture -1, -1, 0, 0, 1
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 6, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (64 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsSPVertex inside_castle_seg7_vertex_07021898, 8, 0
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_castle_seg7_texture_07020800
 gsDPLoadSync
@@ -1178,7 +1178,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_castle_seg7_texture_0
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPDisplayList inside_castle_seg7_dl_07021A30
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_LIGHTING

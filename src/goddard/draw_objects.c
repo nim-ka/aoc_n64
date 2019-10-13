@@ -1156,11 +1156,14 @@ s32 create_shape_gddl(struct ObjShape *s) {
  * @return void
  * @note Contains string literals that suggest a removed `printf` call
  */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-function-type"
 void create_gddl_for_shapes(struct ObjGroup *grp) {
     UNUSED s32 shapedls =
         apply_to_obj_types_in_group(OBJ_TYPE_SHAPES, (applyproc_t) create_shape_gddl, grp);
     printf("made %d display lists\n", shapedls);
 }
+#pragma GCC diagnostic pop
 
 /**
  * Map material id's to `ObjMaterial` pointers for an `ObjGroup` of `ObjFace` structs.

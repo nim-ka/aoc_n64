@@ -15,14 +15,14 @@ gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPLight ssl_diff_light_quicksand_pit, 1
 gsSPLight ssl_amb_light_quicksand_pit, 2
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPEndDisplayList
 
 glabel ssl_dl_quicksand_pit_end # 0x07004860 - 0x07004880
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
@@ -38,14 +38,14 @@ gsSPSetGeometryMode G_FOG
 gsDPSetCombineModeLERP G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_COMBINED, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_COMBINED
 gsSPLight ssl_diff_light_quicksand_pit, 1
 gsSPLight ssl_amb_light_quicksand_pit, 2
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPEndDisplayList
 
 glabel ssl_dl_pyramid_quicksand_pit_end # 0x070048F8 - 0x07004930
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCycleType G_CYC_1CYCLE
 gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_NOOP2
@@ -103,13 +103,13 @@ gsSPSetGeometryMode G_FOG
 gsDPSetCombineModeLERP G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_COMBINED, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_COMBINED
 gsSPLight ssl_diff_light_quicksand_pit, 1
 gsSPLight ssl_amb_light_quicksand_pit, 2
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPLoadTextureBlock ssl_pyramid_sand, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 32, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, 5, 5, G_TX_NOLOD, G_TX_NOLOD
 gsSPVertex ssl_seg7_vertex_07004A70, 7, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSP2Triangles  0,  3,  4, 0x0,  0,  4,  5, 0x0
 gsSP2Triangles  0,  5,  6, 0x0,  0,  6,  1, 0x0
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCycleType G_CYC_1CYCLE
 gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_NOOP2

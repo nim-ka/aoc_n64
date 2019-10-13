@@ -142,6 +142,10 @@
 .set G_MV_L0, 0x86
 .endif
 
+/* gSPTexture */
+.set G_ON,	(1)
+.set G_OFF,	(0)
+
 /* gSPDisplayList / gSPBranchDisplayList */
 .set G_DL_PUSH,   0x00
 .set G_DL_NOPUSH, 0x01
@@ -378,6 +382,12 @@
 /* shift flags */
 .set G_TX_NOLOD,      0x0
 
+/* Coordinate shift values, number of bits of fraction  */
+.set G_TEXTURE_IMAGE_FRAC, 2
+.set G_TEXTURE_SCALE_FRAC, 16
+.set G_SCALE_FRAC,		   8
+.set G_ROTATE_FRAC,		   16
+
 /* gDPSetCombine */
 .set G_CCMUX_COMBINED,         0
 .set G_CCMUX_TEXEL0,           1
@@ -427,10 +437,6 @@
 .set G_IM_SIZ_16b,  0x02
 .set G_IM_SIZ_32b,  0x03
 
-.set G_TX_DXT_FRAC, 11
-.set G_TEXTURE_IMAGE_FRAC, 2
-
-/* gDPLoadBlock*/
 .set G_TX_DXT_FRAC, 11
 .set G_TEXTURE_IMAGE_FRAC, 2
 

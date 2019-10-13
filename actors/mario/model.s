@@ -335,14 +335,8 @@ glabel mario_metal_butt # 0x0400CCC8 - 0x0400CD40
 gsDPPipeSync
 gsSPSetGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_metal
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 252, 124
-gsSPTexture 3968, 1984, 0, 0, 1
+gsDPLoadTextureBlock mario_texture_metal, G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 32, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, 6, 5, G_TX_NOLOD, G_TX_NOLOD
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_ON
 gsSPLight mario_diff_light_group3, 1
 gsSPLight mario_amb_light_group3, 2
 gsSPDisplayList mario_butt_dl
@@ -802,7 +796,7 @@ gsSPDisplayList mario_right_hand_closed_dl
 gsDPPipeSync
 gsSPClearGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPTexture 3968, 1984, 0, 0, 0
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_OFF
 gsSPEndDisplayList
 
 mario_left_thigh_dl_vertex_group1: # 0x0400E4A8
@@ -873,14 +867,8 @@ glabel mario_metal_left_thigh # 0x0400E7E0 - 0x0400E858
 gsDPPipeSync
 gsSPSetGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_metal
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 252, 124
-gsSPTexture 3968, 1984, 0, 0, 1
+gsDPLoadTextureBlock mario_texture_metal, G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 32, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, 6, 5, G_TX_NOLOD, G_TX_NOLOD
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_ON
 gsSPLight mario_diff_light_group3, 1
 gsSPLight mario_amb_light_group3, 2
 gsSPDisplayList mario_left_thigh_dl
@@ -1145,7 +1133,7 @@ gsSPDisplayList mario_right_foot_dl
 gsDPPipeSync
 gsSPClearGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPTexture 3968, 1984, 0, 0, 0
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_OFF
 gsDPSetEnvColor 255, 255, 255, 255
 gsDPSetAlphaCompare G_AC_NONE
 gsSPEndDisplayList
@@ -1421,15 +1409,15 @@ glabel mario_torso # 0x04010370 - 0x040103F0
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_yellow_button
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_yellow_button_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_torso_dl
@@ -1861,10 +1849,10 @@ glabel mario_cap_on_eyes_front # 0x040119A0 - 0x04011A90
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -1883,7 +1871,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_on_dl
@@ -1893,10 +1881,10 @@ glabel mario_cap_on_eyes_half_closed # 0x04011A90 - 0x04011B80
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -1915,7 +1903,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_on_dl
@@ -1925,10 +1913,10 @@ glabel mario_cap_on_eyes_closed # 0x04011B80 - 0x04011C70
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -1947,7 +1935,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_on_dl
@@ -1957,10 +1945,10 @@ glabel mario_cap_on_eyes_right # 0x04011C70 - 0x04011D60
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -1979,7 +1967,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_on_dl
@@ -1989,10 +1977,10 @@ glabel mario_cap_on_eyes_left # 0x04011D60 - 0x04011E50
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -2011,7 +1999,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_on_dl
@@ -2021,10 +2009,10 @@ glabel mario_cap_on_eyes_up # 0x04011E50 - 0x04011F40
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -2043,7 +2031,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_on_dl
@@ -2053,10 +2041,10 @@ glabel mario_cap_on_eyes_down # 0x04011F40 - 0x04012030
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -2075,7 +2063,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_on_dl
@@ -2085,10 +2073,10 @@ glabel mario_cap_on_eyes_dead # 0x04012030 - 0x04012120
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -2107,7 +2095,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_on_dl
@@ -2600,10 +2588,10 @@ glabel mario_cap_off_eyes_front # 0x040139E8 - 0x04013AB8
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_front
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -2618,7 +2606,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_hair_sideburn
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_hair_sideburn_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_off_dl
@@ -2628,10 +2616,10 @@ glabel mario_cap_off_eyes_half_closed # 0x04013AB8 - 0x04013B88
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_half_closed
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -2646,7 +2634,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_hair_sideburn
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_hair_sideburn_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_off_dl
@@ -2656,10 +2644,10 @@ glabel mario_cap_off_eyes_closed # 0x04013B88 - 0x04013C58
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_closed
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -2674,7 +2662,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_hair_sideburn
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_hair_sideburn_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_off_dl
@@ -2684,10 +2672,10 @@ glabel mario_cap_off_eyes_right # 0x04013C58 - 0x04013D28
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_right
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -2702,7 +2690,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_hair_sideburn
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_hair_sideburn_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_off_dl
@@ -2712,10 +2700,10 @@ glabel mario_cap_off_eyes_left # 0x04013D28 - 0x04013DF8
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_left
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -2730,7 +2718,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_hair_sideburn
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_hair_sideburn_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_off_dl
@@ -2740,10 +2728,10 @@ glabel mario_cap_off_eyes_up # 0x04013DF8 - 0x04013EC8
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_up
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -2758,7 +2746,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_hair_sideburn
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_hair_sideburn_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_off_dl
@@ -2768,10 +2756,10 @@ glabel mario_cap_off_eyes_down # 0x04013EC8 - 0x04013F98
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_down
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -2786,7 +2774,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_hair_sideburn
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_hair_sideburn_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_off_dl
@@ -2796,10 +2784,10 @@ glabel mario_cap_off_eyes_dead # 0x04013F98 - 0x04014068
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_dead
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -2814,7 +2802,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_hair_sideburn
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_hair_sideburn_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_face_cap_off_dl
@@ -2946,14 +2934,8 @@ glabel mario_metal_medium_poly_butt # 0x04014668 - 0x040146E0
 gsDPPipeSync
 gsSPSetGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_metal
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 252, 124
-gsSPTexture 3968, 1984, 0, 0, 1
+gsDPLoadTextureBlock mario_texture_metal, G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 32, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, 6, 5, G_TX_NOLOD, G_TX_NOLOD
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_ON
 gsSPLight mario_diff_light_group3, 1
 gsSPLight mario_amb_light_group3, 2
 gsSPDisplayList mario_medium_poly_butt_dl
@@ -3247,7 +3229,7 @@ gsSPDisplayList mario_medium_poly_right_hand_closed_dl
 gsDPPipeSync
 gsSPClearGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPTexture 3968, 1984, 0, 0, 0
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_OFF
 gsSPEndDisplayList
 
 mario_medium_poly_left_thigh_dl_vertex: # 0x04015530
@@ -3291,14 +3273,8 @@ glabel mario_metal_medium_poly_left_thigh # 0x040156E0 - 0x04015758
 gsDPPipeSync
 gsSPSetGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_metal
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 252, 124
-gsSPTexture 3968, 1984, 0, 0, 1
+gsDPLoadTextureBlock mario_texture_metal, G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 32, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, 6, 5, G_TX_NOLOD, G_TX_NOLOD
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_ON
 gsSPLight mario_diff_light_group3, 1
 gsSPLight mario_amb_light_group3, 2
 gsSPDisplayList mario_medium_poly_left_thigh_dl
@@ -3508,7 +3484,7 @@ gsSPDisplayList mario_medium_poly_right_foot_dl
 gsDPPipeSync
 gsSPClearGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPTexture 3968, 1984, 0, 0, 0
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_OFF
 gsDPSetEnvColor 255, 255, 255, 255
 gsDPSetAlphaCompare G_AC_NONE
 gsSPEndDisplayList
@@ -3665,15 +3641,15 @@ glabel mario_medium_poly_torso # 0x040168C8 - 0x04016948
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_yellow_button
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_medium_poly_yellow_button_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_medium_poly_torso_dl
@@ -3723,14 +3699,8 @@ glabel mario_metal_low_poly_butt # 0x04016AE8 - 0x04016B60
 gsDPPipeSync
 gsSPSetGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_metal
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 252, 124
-gsSPTexture 3968, 1984, 0, 0, 1
+gsDPLoadTextureBlock mario_texture_metal, G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 32, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, 6, 5, G_TX_NOLOD, G_TX_NOLOD
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_ON
 gsSPLight mario_diff_light_group3, 1
 gsSPLight mario_amb_light_group3, 2
 gsSPDisplayList mario_low_poly_butt_dl
@@ -3891,7 +3861,7 @@ gsSPDisplayList mario_low_poly_right_hand_closed_dl
 gsDPPipeSync
 gsSPClearGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPTexture 3968, 1984, 0, 0, 0
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_OFF
 gsSPEndDisplayList
 
 mario_low_poly_left_thigh_dl_vertex: # 0x04017210
@@ -3932,14 +3902,8 @@ glabel mario_metal_low_poly_left_thigh # 0x04017390 - 0x04017408
 gsDPPipeSync
 gsSPSetGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_metal
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 252, 124
-gsSPTexture 3968, 1984, 0, 0, 1
+gsDPLoadTextureBlock mario_texture_metal, G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 32, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, 6, 5, G_TX_NOLOD, G_TX_NOLOD
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_ON
 gsSPLight mario_diff_light_group3, 1
 gsSPLight mario_amb_light_group3, 2
 gsSPDisplayList mario_low_poly_left_thigh_dl
@@ -4102,7 +4066,7 @@ gsSPDisplayList mario_low_poly_right_foot_dl
 gsDPPipeSync
 gsSPClearGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPTexture 3968, 1984, 0, 0, 0
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_OFF
 gsDPSetEnvColor 255, 255, 255, 255
 gsDPSetAlphaCompare G_AC_NONE
 gsSPEndDisplayList
@@ -4184,15 +4148,15 @@ glabel mario_low_poly_torso # 0x04017EA0 - 0x04017F20
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_yellow_button
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_yellow_button_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_torso_dl
@@ -4327,10 +4291,10 @@ glabel mario_low_poly_cap_on_eyes_front # 0x04018460 - 0x04018530
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4345,7 +4309,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_on_dl
@@ -4355,10 +4319,10 @@ glabel mario_low_poly_cap_on_eyes_half_closed # 0x04018530 - 0x04018600
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4373,7 +4337,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_on_dl
@@ -4383,10 +4347,10 @@ glabel mario_low_poly_cap_on_eyes_closed # 0x04018600 - 0x040186D0
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4401,7 +4365,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_on_dl
@@ -4411,10 +4375,10 @@ glabel mario_low_poly_cap_on_eyes_right # 0x040186D0 - 0x040187A0
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4429,7 +4393,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_on_dl
@@ -4439,10 +4403,10 @@ glabel mario_low_poly_cap_on_eyes_left # 0x040187A0 - 0x04018870
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4457,7 +4421,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_on_dl
@@ -4467,10 +4431,10 @@ glabel mario_low_poly_cap_on_eyes_up # 0x04018870 - 0x04018940
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4485,7 +4449,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_on_dl
@@ -4495,10 +4459,10 @@ glabel mario_low_poly_cap_on_eyes_down # 0x04018940 - 0x04018A10
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4513,7 +4477,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_on_dl
@@ -4523,10 +4487,10 @@ glabel mario_low_poly_cap_on_eyes_dead # 0x04018A10 - 0x04018AE0
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4541,7 +4505,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_on_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_on_dl
@@ -4657,10 +4621,10 @@ glabel mario_low_poly_cap_off_eyes_front # 0x04018F90 - 0x04019040
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_front
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4671,7 +4635,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_off_dl
@@ -4681,10 +4645,10 @@ glabel mario_low_poly_cap_off_eyes_half_closed # 0x04019040 - 0x040190F0
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_half_closed
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4695,7 +4659,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_off_dl
@@ -4705,10 +4669,10 @@ glabel mario_low_poly_cap_off_eyes_closed # 0x040190F0 - 0x040191A0
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_closed
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4719,7 +4683,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_off_dl
@@ -4729,10 +4693,10 @@ glabel mario_low_poly_cap_off_eyes_right # 0x040191A0 - 0x04019250
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_right
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4743,7 +4707,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_off_dl
@@ -4753,10 +4717,10 @@ glabel mario_low_poly_cap_off_eyes_left # 0x04019250 - 0x04019300
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_left
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4767,7 +4731,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_off_dl
@@ -4777,10 +4741,10 @@ glabel mario_low_poly_cap_off_eyes_up # 0x04019300 - 0x040193B0
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_up
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4791,7 +4755,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_off_dl
@@ -4801,10 +4765,10 @@ glabel mario_low_poly_cap_off_eyes_down # 0x040193B0 - 0x04019460
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_down
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4815,7 +4779,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_off_dl
@@ -4825,10 +4789,10 @@ glabel mario_low_poly_cap_off_eyes_dead # 0x04019460 - 0x04019510
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_eyes_dead
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -4839,7 +4803,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_mustache
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_low_poly_mustache_cap_off_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_low_poly_face_cap_off_dl
@@ -5143,7 +5107,7 @@ gsSPDisplayList mario_right_hand_open_dl
 gsDPPipeSync
 gsSPClearGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPTexture 3968, 1984, 0, 0, 0
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_OFF
 gsSPEndDisplayList
 
 mario_right_hand_cap_m_logo_dl_vertex: # 0x0401A478
@@ -5400,16 +5364,16 @@ gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
 gsSPClearGeometryMode G_CULL_BACK | G_SHADING_SMOOTH
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsSPLight mario_diff_light_group3, 1
 gsSPLight mario_amb_light_group3, 2
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 252
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 6, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (64 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPEndDisplayList
 
 glabel mario_right_hand_cap_wings_end_dl # 0x0401B138 - 0x0401B158
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsSPSetGeometryMode G_CULL_BACK | G_SHADING_SMOOTH
 gsSPEndDisplayList
@@ -5418,15 +5382,15 @@ glabel mario_right_hand_cap # 0x0401B158 - 0x0401B1D8
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPDisplayList mario_right_hand_cap_m_logo_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPDisplayList mario_right_hand_cap_dl
@@ -5453,7 +5417,7 @@ gsSPDisplayList mario_right_hand_cap_bottom_dl
 gsDPPipeSync
 gsSPClearGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPTexture 3968, 1984, 0, 0, 0
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_OFF
 gsSPEndDisplayList
 
 glabel mario_metal_right_hand_cap_shared_dl_wings # 0x0401B278 - 0x0401B2D0
@@ -5866,16 +5830,16 @@ gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsSPClearGeometryMode G_CULL_BACK | G_SHADING_SMOOTH
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 252
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 6, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (64 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPLight mario_diff_light_group3, 1
 gsSPLight mario_amb_light_group3, 2
 gsSPEndDisplayList
 
 glabel mario_cap_wings_unused_end_dl # 0x0401C730 - 0x0401C758
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_CULL_BACK | G_SHADING_SMOOTH
@@ -5885,17 +5849,17 @@ glabel mario_cap_unused_dl # 0x0401C758 - 0x0401C7E8 # Unreferenced, possibly a 
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_m_logo
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight mario_diff_light_group2, 1
 gsSPLight mario_amb_light_group2, 2
 gsSPDisplayList mario_cap_unused_m_logo_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPDisplayList mario_cap_unused_base_dl
@@ -5905,14 +5869,8 @@ glabel mario_metal_cap_unused_dl # 0x0401C7E8 - 0x0401C890 # Unreferenced, possi
 gsDPPipeSync
 gsSPSetGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_metal
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 252, 124
-gsSPTexture 3968, 1984, 0, 0, 1
+gsDPLoadTextureBlock mario_texture_metal, G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 32, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, 6, 5, G_TX_NOLOD, G_TX_NOLOD
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_ON
 gsSPLight mario_diff_light_group3, 1
 gsSPLight mario_amb_light_group3, 2
 gsSPDisplayList mario_cap_unused_m_logo_dl
@@ -5921,7 +5879,7 @@ gsSPDisplayList mario_cap_unused_base_bottom_dl
 gsDPPipeSync
 gsSPClearGeometryMode G_TEXTURE_GEN
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPTexture 3968, 1984, 0, 0, 0
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_OFF
 gsSPEndDisplayList
 
 glabel mario_cap_wings_unused # 0x0401C890 - 0x0401C8E8 # Unreferenced, unused like the duplicated cap, same case
@@ -5977,10 +5935,10 @@ gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPClearGeometryMode G_CULL_BACK | G_SHADING_SMOOTH
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 252
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 6, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (64 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPLight mario_diff_light_group3, 1
 gsSPLight mario_amb_light_group3, 2
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_wings_half_1
@@ -5991,7 +5949,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_wings_half_2
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPDisplayList mario_wings_half_2_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_CULL_BACK | G_SHADING_SMOOTH
@@ -6002,10 +5960,10 @@ gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
 gsSPClearGeometryMode G_CULL_BACK | G_SHADING_SMOOTH
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 252
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 6, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (64 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPLight mario_diff_light_group3, 1
 gsSPLight mario_amb_light_group3, 2
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_wings_half_1
@@ -6016,7 +5974,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_wings_half_2
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPDisplayList mario_wings_half_2_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPSetGeometryMode G_CULL_BACK | G_SHADING_SMOOTH
@@ -6027,10 +5985,10 @@ gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPClearGeometryMode G_CULL_BACK | G_SHADING_SMOOTH
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 252
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 6, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (64 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPLight mario_diff_light_group3, 1
 gsSPLight mario_amb_light_group3, 2
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_metal_wings_half_1
@@ -6041,7 +5999,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_metal_wings_ha
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPDisplayList mario_wings_half_2_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_CULL_BACK | G_SHADING_SMOOTH
@@ -6050,14 +6008,14 @@ gsSPEndDisplayList
 glabel mario_metal_cap_wings_transparent # 0x0401CC28 - 0x0401CD20
 gsDPPipeSync
 gsSPClearGeometryMode G_TEXTURE_GEN
-gsSPTexture 3968, 1984, 0, 0, 0
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_OFF
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
 gsSPClearGeometryMode G_CULL_BACK | G_SHADING_SMOOTH
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsDPTileSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 252
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 6, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (64 - 1) << G_TEXTURE_IMAGE_FRAC
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_metal_wings_half_1
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
@@ -6066,16 +6024,10 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_metal_wings_ha
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPDisplayList mario_wings_half_2_dl
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsDPPipeSync
 gsSPSetGeometryMode G_TEXTURE_GEN | G_CULL_BACK | G_SHADING_SMOOTH
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mario_texture_metal
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 252, 124
-gsSPTexture 3968, 1984, 0, 0, 1
+gsDPLoadTextureBlock mario_texture_metal, G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 32, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, 6, 5, G_TX_NOLOD, G_TX_NOLOD
+gsSPTexture 0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_ON
 gsSPEndDisplayList

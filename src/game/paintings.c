@@ -587,7 +587,7 @@ void func_802D39DC(s16 *a, s16 b) {
     }
 }
 
-void *func_802D3CF0(u8 *img, s16 b, s16 c, s16 *d, s16 e, s16 f, u8 g) {
+void *func_802D3CF0(u8 *img, s16 tWidth, s16 tHeight, s16 *d, s16 e, s16 f, u8 g) {
     s16 sp9E;
     s16 sp9C;
     s16 sp9A;
@@ -608,10 +608,10 @@ void *func_802D3CF0(u8 *img, s16 b, s16 c, s16 *d, s16 e, s16 f, u8 g) {
 
     gDPSetTextureImage(sp7C++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, img);
     gDPTileSync(sp7C++);
-    gDPSetTile(sp7C++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK,
-               G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
+    gDPSetTile(sp7C++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, 
+        G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD);
     gDPLoadSync(sp7C++);
-    gDPLoadBlock(sp7C++, 7, 0, 0, b * c - 1, (MAX(1, b * 2 / 8) + 2047) / MAX(1, b * 2 / 8));
+    gDPLoadBlock(sp7C++, G_TX_LOADTILE, 0, 0, tWidth * tHeight - 1, CALC_DXT(tWidth, G_IM_SIZ_16b_BYTES))
 
     for (sp9E = 0; sp9E < sp90; sp9E++) {
         sp9A = e * 3 + sp9E * 15 + 2;
@@ -662,10 +662,10 @@ Gfx *func_802D43FC(struct PaintingData *painting) {
     guRotate(sp44, painting->vYRotation, 0.0f, 1.0f, 0.0f);
     guScale(sp3C, sp4C, sp4C, sp4C);
 
-    gSPMatrix(sp34++, sp40, G_MTX_MODELVIEW | G_MTX_PUSH);
-    gSPMatrix(sp34++, sp48, G_MTX_MODELVIEW | G_MTX_MUL);
-    gSPMatrix(sp34++, sp44, G_MTX_MODELVIEW | G_MTX_MUL);
-    gSPMatrix(sp34++, sp3C, G_MTX_MODELVIEW | G_MTX_MUL);
+    gSPMatrix(sp34++, sp40, G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_PUSH);
+    gSPMatrix(sp34++, sp48, G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_NOPUSH);
+    gSPMatrix(sp34++, sp44, G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_NOPUSH);
+    gSPMatrix(sp34++, sp3C, G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_NOPUSH);
     gSPEndDisplayList(sp34);
 
     return sp38;

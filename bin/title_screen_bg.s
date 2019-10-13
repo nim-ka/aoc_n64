@@ -31,7 +31,7 @@ gsDPSetRenderMode G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2
 gsSPEndDisplayList
 
 glabel title_screen_bg_dl_0A000118 # 0x0A000118 - 0x0A000130
-gsSPTexture -1, -1, 0, 0, 1
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON
 gsSPVertex title_screen_bg_vertex_0A000000, 16, 0
 gsSPEndDisplayList
 
@@ -53,7 +53,7 @@ gsSPEndDisplayList
 
 glabel title_screen_bg_dl_0A000190 # 0x0A000190 - 0x0A0001C0
 gsDPPipeSync
-gsSPTexture -1, -1, 0, 0, 0
+gsSPTexture 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF
 gsSPSetGeometryMode G_LIGHTING
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 

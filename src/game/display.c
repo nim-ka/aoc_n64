@@ -25,7 +25,9 @@ void my_rdp_init(void) {
     gDPPipelineMode(gDisplayListHead++, G_PM_1PRIMITIVE);
 
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    gDPSetCombine(gDisplayListHead++, 0xFFFFFF, 0xFFFE793C);
+    gDPSetCombine1CycleLERP(gDisplayListHead++,
+                        0, 0, 0, SHADE,  // CCMUX
+                        0, 0, 0, SHADE); // ACMUX
 
     gDPSetTextureLOD(gDisplayListHead++, G_TL_TILE);
     gDPSetTextureLUT(gDisplayListHead++, G_TT_NONE);
@@ -50,13 +52,12 @@ void my_rdp_init(void) {
  */
 void my_rsp_init(void) {
     gSPClearGeometryMode(gDisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CULL_BOTH | G_FOG
-                                                 | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR
-                                                 | G_LOD);
+                        | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD);
 
     gSPSetGeometryMode(gDisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CULL_BACK | G_LIGHTING);
 
     gSPNumLights(gDisplayListHead++, 1);
-    gSPTexture(gDisplayListHead++, 0, 0, 0, 0, 0);
+    gSPTexture(gDisplayListHead++, 0, 0, 0, G_TX_RENDERTILE, G_OFF);
 
     // @bug Nintendo did not explicitly define the clipping ratio.
     // For Fast3DEX2, this causes the dreaded warped vertices issue
@@ -74,9 +75,9 @@ void clear_z_buffer(void) {
     gDPSetDepthSource(gDisplayListHead++, G_ZS_PIXEL);
     gDPSetDepthImage(gDisplayListHead++, zBufferPtr);
 
-    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, 2, SCREEN_WIDTH, zBufferPtr);
+    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, zBufferPtr);
     gDPSetFillColor(gDisplayListHead++,
-                    GPACK_RGBA5551(255, 255, 240, 0) << 16 | GPACK_RGBA5551(255, 255, 240, 0));
+                    GPACK_ZDZ(G_MAXFBZ, 0) << 16 | GPACK_ZDZ(G_MAXFBZ, 0));
 
     gDPFillRectangle(gDisplayListHead++, 0, BORDER_HEIGHT, SCREEN_WIDTH - 1,
                      SCREEN_HEIGHT - 1 - BORDER_HEIGHT);
@@ -87,7 +88,7 @@ void display_frame_buffer(void) {
     gDPPipeSync(gDisplayListHead++);
 
     gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
-    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, 2, SCREEN_WIDTH,
+    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH,
                      gFrameBuffers[frameBufferIndex]);
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, SCREEN_WIDTH,
                   SCREEN_HEIGHT - BORDER_HEIGHT);

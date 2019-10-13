@@ -107,11 +107,11 @@ Gfx *Geo18_8029D924(s32 run, struct GraphNode *node, UNUSED s32 sp48) {
 #ifdef VERSION_JP
             if (sp30->parameter == 10) {
                 if (gDebugInfo[DEBUG_PAGE_ENEMYINFO][3]) {
-                    gDPSetAlphaCompare(sp38++, 3);
+                    gDPSetAlphaCompare(sp38++, G_AC_DITHER);
                 }
             } else {
                 if (sp34->activeFlags & ACTIVE_FLAG_UNK7) {
-                    gDPSetAlphaCompare(sp38++, 3);
+                    gDPSetAlphaCompare(sp38++, G_AC_DITHER);
                 }
             }
 #else // gDebugInfo accesses were removed in all non-JP versions.
@@ -123,7 +123,7 @@ Gfx *Geo18_8029D924(s32 run, struct GraphNode *node, UNUSED s32 sp48) {
             // one.
             if (sp30->parameter != 10) {
                 if (sp34->activeFlags & ACTIVE_FLAG_UNK7) {
-                    gDPSetAlphaCompare(sp38++, 3);
+                    gDPSetAlphaCompare(sp38++, G_AC_DITHER);
                 }
             }
 #endif

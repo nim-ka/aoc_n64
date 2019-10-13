@@ -256,13 +256,7 @@ vertex     -3,     33,    -87,      0,      0,  0xB0, 0x1E, 0xA3, 0x00
 vertex     86,     27,    -72,      0,      0,  0x25, 0x16, 0x89, 0x00
 
 glabel hoot_seg5_dl_05001B80 # 0x05001B80 - 0x05001C00
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, hoot_seg5_texture_05000A20
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPLoadTextureBlock hoot_seg5_texture_05000A20, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 32, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, 5, 5, G_TX_NOLOD, G_TX_NOLOD
 gsSPLight hoot_seg5_light_050009E0, 1
 gsSPLight hoot_seg5_light_050009D8, 2
 gsSPVertex hoot_seg5_vertex_05001220, 15, 0
@@ -320,9 +314,9 @@ gsSPEndDisplayList
 glabel hoot_seg5_dl_05001DF0 # 0x05001DF0 - 0x05001E38
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_TEXEL0, G_CCMUX_SHADE, G_CCMUX_TEXEL0_ALPHA, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPTexture -32768, -32768, 0, 0, 1
+gsSPTexture 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON
 gsSPDisplayList hoot_seg5_dl_05001B80
-gsSPTexture -32768, -32768, 1, 1, 0
+gsSPTexture 0x8000, 0x8000, 1, G_TX_RENDERTILE + 1, G_OFF
 gsDPPipeSync
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPDisplayList hoot_seg5_dl_05001C00
@@ -363,7 +357,7 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_T
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPLight hoot_seg5_light_05001E40, 1
 gsSPLight hoot_seg5_light_05001E38, 2
 gsSPVertex hoot_seg5_vertex_05002E50, 12, 0
@@ -372,11 +366,11 @@ gsSPEndDisplayList
 
 glabel hoot_seg5_dl_05002F10 # 0x05002F10 - 0x05002F60
 gsDPPipeSync
-gsSPTexture -32768, -32768, 0, 0, 1
+gsSPTexture 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPClearGeometryMode G_CULL_BACK
 gsSPDisplayList hoot_seg5_dl_05002EB0
-gsSPTexture -32768, -32768, 1, 1, 0
+gsSPTexture 0x8000, 0x8000, 1, G_TX_RENDERTILE + 1, G_OFF
 gsDPPipeSync
 gsSPSetGeometryMode G_CULL_BACK
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -411,7 +405,7 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_T
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPLight hoot_seg5_light_05002F68, 1
 gsSPLight hoot_seg5_light_05002F60, 2
 gsSPVertex hoot_seg5_vertex_05002F78, 12, 0
@@ -420,11 +414,11 @@ gsSPEndDisplayList
 
 glabel hoot_seg5_dl_05003038 # 0x05003038 - 0x05003088
 gsDPPipeSync
-gsSPTexture -32768, -32768, 0, 0, 1
+gsSPTexture 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPClearGeometryMode G_CULL_BACK
 gsSPDisplayList hoot_seg5_dl_05002FD8
-gsSPTexture -32768, -32768, 1, 1, 0
+gsSPTexture 0x8000, 0x8000, 1, G_TX_RENDERTILE + 1, G_OFF
 gsDPPipeSync
 gsSPSetGeometryMode G_CULL_BACK
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -459,7 +453,7 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_T
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPLight hoot_seg5_light_05003090, 1
 gsSPLight hoot_seg5_light_05003088, 2
 gsSPVertex hoot_seg5_vertex_050030A0, 12, 0
@@ -468,11 +462,11 @@ gsSPEndDisplayList
 
 glabel hoot_seg5_dl_05003160 # 0x05003160 - 0x050031B0
 gsDPPipeSync
-gsSPTexture -32768, -32768, 0, 0, 1
+gsSPTexture 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPClearGeometryMode G_CULL_BACK
 gsSPDisplayList hoot_seg5_dl_05003100
-gsSPTexture -32768, -32768, 1, 1, 0
+gsSPTexture 0x8000, 0x8000, 1, G_TX_RENDERTILE + 1, G_OFF
 gsDPPipeSync
 gsSPSetGeometryMode G_CULL_BACK
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -507,7 +501,7 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_T
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPLight hoot_seg5_light_050031B8, 1
 gsSPLight hoot_seg5_light_050031B0, 2
 gsSPVertex hoot_seg5_vertex_050031C8, 12, 0
@@ -516,11 +510,11 @@ gsSPEndDisplayList
 
 glabel hoot_seg5_dl_05003288 # 0x05003288 - 0x050032D8
 gsDPPipeSync
-gsSPTexture -32768, -32768, 0, 0, 1
+gsSPTexture 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPClearGeometryMode G_CULL_BACK
 gsSPDisplayList hoot_seg5_dl_05003228
-gsSPTexture -32768, -32768, 1, 1, 0
+gsSPTexture 0x8000, 0x8000, 1, G_TX_RENDERTILE + 1, G_OFF
 gsDPPipeSync
 gsSPSetGeometryMode G_CULL_BACK
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -555,7 +549,7 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_T
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPLight hoot_seg5_light_050032E0, 1
 gsSPLight hoot_seg5_light_050032D8, 2
 gsSPVertex hoot_seg5_vertex_050032F0, 12, 0
@@ -564,11 +558,11 @@ gsSPEndDisplayList
 
 glabel hoot_seg5_dl_050033B0 # 0x050033B0 - 0x05003400
 gsDPPipeSync
-gsSPTexture -32768, -32768, 0, 0, 1
+gsSPTexture 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPClearGeometryMode G_CULL_BACK
 gsSPDisplayList hoot_seg5_dl_05003350
-gsSPTexture -32768, -32768, 1, 1, 0
+gsSPTexture 0x8000, 0x8000, 1, G_TX_RENDERTILE + 1, G_OFF
 gsDPPipeSync
 gsSPSetGeometryMode G_CULL_BACK
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -603,7 +597,7 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_T
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPLight hoot_seg5_light_05003408, 1
 gsSPLight hoot_seg5_light_05003400, 2
 gsSPVertex hoot_seg5_vertex_05003418, 12, 0
@@ -612,11 +606,11 @@ gsSPEndDisplayList
 
 glabel hoot_seg5_dl_050034D8 # 0x050034D8 - 0x05003528
 gsDPPipeSync
-gsSPTexture -32768, -32768, 0, 0, 1
+gsSPTexture 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPClearGeometryMode G_CULL_BACK
 gsSPDisplayList hoot_seg5_dl_05003478
-gsSPTexture -32768, -32768, 1, 1, 0
+gsSPTexture 0x8000, 0x8000, 1, G_TX_RENDERTILE + 1, G_OFF
 gsDPPipeSync
 gsSPSetGeometryMode G_CULL_BACK
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -651,7 +645,7 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_T
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPLight hoot_seg5_light_05003530, 1
 gsSPLight hoot_seg5_light_05003528, 2
 gsSPVertex hoot_seg5_vertex_05003540, 12, 0
@@ -660,11 +654,11 @@ gsSPEndDisplayList
 
 glabel hoot_seg5_dl_05003600 # 0x05003600 - 0x05003650
 gsDPPipeSync
-gsSPTexture -32768, -32768, 0, 0, 1
+gsSPTexture 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPClearGeometryMode G_CULL_BACK
 gsSPDisplayList hoot_seg5_dl_050035A0
-gsSPTexture -32768, -32768, 1, 1, 0
+gsSPTexture 0x8000, 0x8000, 1, G_TX_RENDERTILE + 1, G_OFF
 gsDPPipeSync
 gsSPSetGeometryMode G_CULL_BACK
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -699,7 +693,7 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_T
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPSetTileSize 0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC
 gsSPLight hoot_seg5_light_05003658, 1
 gsSPLight hoot_seg5_light_05003650, 2
 gsSPVertex hoot_seg5_vertex_05003668, 12, 0
@@ -708,11 +702,11 @@ gsSPEndDisplayList
 
 glabel hoot_seg5_dl_05003728 # 0x05003728 - 0x05003778
 gsDPPipeSync
-gsSPTexture -32768, -32768, 0, 0, 1
+gsSPTexture 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPClearGeometryMode G_CULL_BACK
 gsSPDisplayList hoot_seg5_dl_050036C8
-gsSPTexture -32768, -32768, 1, 1, 0
+gsSPTexture 0x8000, 0x8000, 1, G_TX_RENDERTILE + 1, G_OFF
 gsDPPipeSync
 gsSPSetGeometryMode G_CULL_BACK
 gsDPSetCombineModeLERP1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE

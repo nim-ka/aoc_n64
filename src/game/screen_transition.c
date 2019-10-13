@@ -61,11 +61,13 @@ s32 func_802CAF38(s8 a0, u8 a1, struct WarpTransitionData *transData, u8 alpha) 
 
     if (verts != NULL) {
         gSPDisplayList(gDisplayListHead++, dl_proj_mtx_fullscreen)
-            gDPSetCombine(gDisplayListHead++, 0xFFFFFF, 0xFFFE793C)
-                gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2)
-                    gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts), 4, 0)
-                        gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123)
-                            gSPDisplayList(gDisplayListHead++, dl_screen_transition_end)
+        gDPSetCombine1CycleLERP(gDisplayListHead++,
+                            0, 0, 0, SHADE,  // CCMUX
+                            0, 0, 0, SHADE); // ACMUX
+        gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2)
+        gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts), 4, 0)
+        gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123)
+        gSPDisplayList(gDisplayListHead++, dl_screen_transition_end)
     }
     return func_802CAAE0(a0, a1);
 }
@@ -173,43 +175,35 @@ s32 func_802CB9F8(s8 spBB, s8 spBF, struct WarpTransitionData *transData, s8 spC
 
     if (spA8 != NULL) {
         func_802CB6A0(spA8, spBB, transData, spB0, spAE, spAC, spCB); // TODO types
-        gSPDisplayList(gDisplayListHead++, dl_proj_mtx_fullscreen) gDPSetCombine(gDisplayListHead++,
-                                                                                 0xFFFFFF, 0xFFFE793C)
-            gDPSetRenderMode(gDisplayListHead++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2)
-                gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(spA8), 8, 0)
-                    gSPDisplayList(gDisplayListHead++, dl_transition_draw_filled_region) gDPPipeSync(
-                        gDisplayListHead++) gDPSetCombine(gDisplayListHead++, 0x127E24, 0xFFFFF3F9)
-                        gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2)
-                            gDPSetTextureFilter(gDisplayListHead++, G_TF_BILERP) switch (spCB) {
-            case 0:
-                gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_16b, 1, D_8032FF68[spC7])
-                    gDPSetTile(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_MIRROR,
-                               6, G_TX_NOLOD, G_TX_MIRROR, 5, G_TX_NOLOD)
-                        gDPLoadSync(gDisplayListHead++)
-                            gDPLoadBlock(gDisplayListHead++, 7, 0, 0, 1023, 512)
-                                gDPPipeSync(gDisplayListHead++)
-                                    gDPSetTile(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_8b, 4, 0, 0, 0,
-                                               G_TX_MIRROR, 6, G_TX_NOLOD, G_TX_MIRROR, 5, G_TX_NOLOD)
-                                        gDPSetTileSize(gDisplayListHead++, 0, 0, 0, 124, 252) break;
-            case 1:
-                gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_16b, 1, D_8032FF68[spC7])
-                    gDPSetTile(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, 7, 0,
-                               G_TX_NOMIRROR | G_TX_CLAMP, 6, G_TX_NOLOD,
-                               G_TX_NOMIRROR | G_TX_WRAP | G_TX_CLAMP, 6, G_TX_NOLOD)
-                        gDPLoadSync(gDisplayListHead++)
-                            gDPLoadBlock(gDisplayListHead++, 7, 0, 0, 2047, 256)
-                                gDPPipeSync(gDisplayListHead++)
-                                    gDPSetTile(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_8b, 8, 0, 0, 0,
-                                               G_TX_NOMIRROR | G_TX_CLAMP, 6, G_TX_NOLOD,
-                                               G_TX_NOMIRROR | G_TX_WRAP | G_TX_CLAMP, 6, G_TX_NOLOD)
-                                        gDPSetTileSize(gDisplayListHead++, 0, 0, 0, 252, 252) break;
+        gSPDisplayList(gDisplayListHead++, dl_proj_mtx_fullscreen)
+        gDPSetCombine1CycleLERP(gDisplayListHead++,
+                            0, 0, 0, SHADE,  // CCMUX
+                            0, 0, 0, SHADE); // ACMUX
+        gDPSetRenderMode(gDisplayListHead++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2)
+        gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(spA8), 8, 0)
+        gSPDisplayList(gDisplayListHead++, dl_transition_draw_filled_region)
+        gDPPipeSync(gDisplayListHead++)
+        gDPSetCombine1CycleLERP(gDisplayListHead++,
+                            TEXEL0, 0, SHADE, 0,  // CCMUX
+                                0, 0, 0, TEXEL0); // ACMUX
+        gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2)
+        gDPSetTextureFilter(gDisplayListHead++, G_TF_BILERP)
+    switch (spCB) {
+        case 0:
+            gDPLoadTextureBlock(gDisplayListHead++, D_8032FF68[spC7], G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
+                G_TX_WRAP | G_TX_MIRROR, G_TX_WRAP | G_TX_MIRROR, 5, 6, G_TX_NOLOD, G_TX_NOLOD)
+            break;
+        case 1:
+            gDPLoadTextureBlock(gDisplayListHead++, D_8032FF68[spC7], G_IM_FMT_IA, G_IM_SIZ_8b, 64, 64, 0,
+                G_TX_CLAMP, G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD)
+            break;
         }
-        gSPTexture(gDisplayListHead++, -1, -1, 0, 0, G_ON)
-            gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(spA8), 4, 0)
-                gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123)
-                    gSPTexture(gDisplayListHead++, -1, -1, 0, 0, G_OFF)
-                        gSPDisplayList(gDisplayListHead++, dl_screen_transition_end) D_8032FF64[spBB] +=
-            transData->unk10;
+        gSPTexture(gDisplayListHead++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON)
+        gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(spA8), 4, 0)
+        gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123)
+        gSPTexture(gDisplayListHead++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF)
+        gSPDisplayList(gDisplayListHead++, dl_screen_transition_end)
+        D_8032FF64[spBB] += transData->unk10;
     } else {
     }
     return func_802CAAE0(spBB, spBF);
@@ -261,20 +255,19 @@ Gfx *func_802CC2E8(void) {
         make_vertex(verts, 2, 320, 240, -1, 1152, 192, 0, 0, 0, 255);
         make_vertex(verts, 3, 0, 240, -1, -1152, 192, 0, 0, 0, 255);
 
-        gSPDisplayList(g++, dl_proj_mtx_fullscreen) gDPSetCombine(g++, 0x127E24, 0xFFFFF3F9)
-            gDPSetTextureFilter(g++, G_TF_BILERP) gDPSetTextureImage(g++, G_IM_FMT_IA, G_IM_SIZ_16b, 1,
-                                                                     D_8032FF68[1])
-                gDPSetTile(g++, G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_MIRROR | G_TX_WRAP, 6,
-                           G_TX_NOLOD, G_TX_MIRROR | G_TX_WRAP, 5, G_TX_NOLOD) gDPLoadSync(g++)
-                    gDPLoadBlock(g++, 7, 0, 0, 1023, 512) gDPPipeSync(g++)
-                        gDPSetTile(g++, G_IM_FMT_IA, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_MIRROR | G_TX_WRAP,
-                                   6, G_TX_NOLOD, G_TX_MIRROR | G_TX_WRAP, 5, G_TX_NOLOD)
-                            gDPSetTileSize(g++, 0, 0, 0, 124, 252) gSPTexture(g++, -1, -1, 0, 0, G_ON)
-                                gSPVertex(g++, VIRTUAL_TO_PHYSICAL(verts), 4, 0)
-                                    gSPDisplayList(g++, dl_draw_quad_verts_0123)
-                                        gSPTexture(g++, -1, -1, 0, 0, G_OFF)
-                                            gSPDisplayList(g++, dl_screen_transition_end)
-                                                gSPEndDisplayList(g)
+        gSPDisplayList(g++, dl_proj_mtx_fullscreen)
+        gDPSetCombine1CycleLERP(g++,
+                            TEXEL0, 0, SHADE, 0,  // CCMUX
+                                0, 0, 0, TEXEL0); // ACMUX
+        gDPSetTextureFilter(g++, G_TF_BILERP)
+        gDPLoadTextureBlock(g++, D_8032FF68[1], G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
+            G_TX_WRAP | G_TX_MIRROR, G_TX_WRAP | G_TX_MIRROR, 5, 6, G_TX_NOLOD, G_TX_NOLOD)
+        gSPTexture(g++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON)
+        gSPVertex(g++, VIRTUAL_TO_PHYSICAL(verts), 4, 0)
+        gSPDisplayList(g++, dl_draw_quad_verts_0123)
+        gSPTexture(g++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF)
+        gSPDisplayList(g++, dl_screen_transition_end)
+        gSPEndDisplayList(g)
     } else {
         return NULL;
     }

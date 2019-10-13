@@ -3118,6 +3118,15 @@ typedef union {
 			       G_ACMUX_##Ab1, G_ACMUX_##Ad1))		\
 }}
 
+/* Unofficial 1Cycle SetCombineLERP macro  */
+
+#define	gDPSetCombine1CycleLERP(pkt, a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0)	\
+        gDPSetCombineLERP(pkt, a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0,	\
+                a0, b0, c0, d0,	Aa0, Ab0, Ac0, Ad0)	
+
+#define	gsDPSetCombine1CycleLERP(a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0)	\
+        gsDPSetCombineLERP(a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0,	\
+                a0, b0, c0, d0,	Aa0, Ab0, Ac0, Ad0)	
 /*
  * SetCombineMode macros are NOT redunant. It allow the C preprocessor
  * to substitute single parameter which includes commas in the token and
