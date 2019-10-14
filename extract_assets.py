@@ -142,6 +142,7 @@ def main():
                 + ", expected "
                 + expected_sha1
             )
+            sys.exit(1)
 
     # Make sure tools exist
     subprocess.check_call(
