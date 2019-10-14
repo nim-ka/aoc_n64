@@ -224,18 +224,16 @@ static void level_cmd_skippable_nop(void) {
     sCurrentCmd = CMD_NEXT;
 }
 
-// Converting data pointer to function pointer
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wpedantic"
-
 static void level_cmd_call(void) {
-    s32 (*func)(s16, s32) = CMD_GET(void *, 4);
+    typedef s32 (*Func)(s16, s32);
+    Func func = CMD_GET(Func, 4);
     sRegister = func(CMD_GET(s16, 2), sRegister);
     sCurrentCmd = CMD_NEXT;
 }
 
 static void level_cmd_call_loop(void) {
-    s32 (*func)(s16, s32) = CMD_GET(void *, 4);
+    typedef s32 (*Func)(s16, s32);
+    Func func = CMD_GET(Func, 4);
     sRegister = func(CMD_GET(s16, 2), sRegister);
 
     if (sRegister == 0) {
@@ -245,8 +243,6 @@ static void level_cmd_call_loop(void) {
         sCurrentCmd = CMD_NEXT;
     }
 }
-
-#pragma GCC diagnostic pop
 
 static void level_cmd_set_register(void) {
     sRegister = CMD_GET(s16, 2);

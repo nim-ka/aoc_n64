@@ -13,7 +13,11 @@ int main(int argc, char *argv[]) {
     size_t size = ftell(in);
     fseek(in, 0, SEEK_SET);
     char *buffer = malloc(size);
-    fread(buffer, 1, size, in);
+    size_t r = fread(buffer, 1, size, in);
+    if (r != size) {
+        fprintf(stderr, "Failed to read file: %s\n", argv[1]);
+        return 1;
+    }
     fclose(in);
 
     if (size > 0 && size % 16 == 0) {
