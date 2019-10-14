@@ -32,11 +32,11 @@ ACTOR_GROUPS := \
     common1
 
 LEVEL_FILES := $(addsuffix leveldata,$(LEVEL_DIRS))
-MIO0_FILES := $(addprefix $(MIO0_DIR)/,$(addsuffix .mio0,$(SEGMENTS) $(ACTOR_GROUPS) $(LEVEL_FILES)))
+MIO0_FILES := $(addprefix $(MIO0_DIR)/,$(addsuffix .mio0,$(SEGMENTS) $(LEVEL_FILES))) $(addprefix $(BUILD_DIR)/actors/,$(addsuffix .mio0,$(ACTOR_GROUPS)))
 MIO0_OBJ_FILES := $(MIO0_FILES:.mio0=.mio0.o)
 
 SEGMENT_ELF_FILES := $(addprefix $(BUILD_DIR)/bin/,$(addsuffix .elf,$(SEGMENTS)))
-ACTOR_ELF_FILES := $(addprefix $(BUILD_DIR)/bin/,$(addsuffix .elf,$(ACTOR_GROUPS)))
+ACTOR_ELF_FILES := $(addprefix $(BUILD_DIR)/actors/,$(addsuffix .elf,$(ACTOR_GROUPS)))
 LEVEL_ELF_FILES := $(addprefix $(BUILD_DIR)/bin/,$(addsuffix .elf,$(LEVEL_FILES)))
 
 # --------------------------------------
@@ -54,7 +54,7 @@ BOO_DIRS         := bookend book chair small_key mad_piano boo haunted_cage
 MR_I_DIRS        := mr_i_eyeball mr_i_iris swoop snufit dorrie scuttlebug
 HOOT_DIRS        := yellow_sphere_small hoot yoshi_egg thwomp bullet_bill heave_ho
 COINS_DIRS       := mist explosion butterfly coin warp_pipe door bowser_key flame blue_fish pebble leaves warp_collision mario_cap power_meter mushroom_1up star sand dirt transparent_star white_particle wooden_signpost tree
-BUBBA_DIRS       := bubba wiggler lakitu_enemy spiny_egg spiny
+BUBBA_DIRS       := bubba wiggler wiggler_body_part lakitu_enemy spiny_egg spiny
 SKEETER_DIRS     := skeeter seaweed water_mine cyan_fish bub water_ring treasure_chest
 KLEPTO_DIRS      := klepto eyerok pokey tornado
 SEA_DIRS         := clam_shell manta sushi unagi whirlpool
@@ -66,70 +66,70 @@ BOWSER_DIRS      := bowser_flame impact_ring yellow_sphere bowser bomb impact_sm
 MARIO_DIRS       := mario bubble walk_smoke burn_smoke stomp_smoke water_waves sparkle water_splash white_particle_small sparkle_animation
 
 # Actor Files
-AMP_CHUCKYA_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(AMP_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-BOBOMBS_BUBBLE_FILES         := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(KING_BOBOMB_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-BOO_BOOKEND_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BOO_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-CAPSWITCH_SPRINGBOARD_FILES  := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(CAPSWITCH_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-COINS_PIPE_FILES             := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(COINS_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-BOWSER_FLAMES_FILES          := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BOWSER_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-BUBBA_WIGGLER_FILES          := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BUBBA_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-BULLY_BLARGG_FILES           := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BULLY_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-CHILLYCHIEF_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(CHILLYCHIEF_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-HOOT_THWOMP_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(HOOT_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-KOOPA_LOG_FILES              := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(KOOPA_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-KLEPTO_EYEROK_FILES          := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(KLEPTO_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-LAKITU_TOAD_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(LAKITU_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-MARIO_WATER_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(MARIO_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-MOLE_UKIKI_FILES             := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(MOLE_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-MR_I_SWOOP_FILES             := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(MR_I_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-PEACH_TOADSTOOL_FILES        := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(PEACH_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-SEA_CREATURES_FILES          := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SEA_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-SKEETER_FISH_FILES           := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SKEETER_DIRS)),$(basename $(wildcard $(dir)/*.png)))
-SPINDRIFT_PENGUIN_FILES      := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SPINDRIFT_DIRS)),$(basename $(wildcard $(dir)/*.png)))
+AMP_CHUCKYA_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(AMP_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+BOBOMBS_BUBBLE_FILES         := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(KING_BOBOMB_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+BOO_BOOKEND_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BOO_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+CAPSWITCH_SPRINGBOARD_FILES  := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(CAPSWITCH_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+COINS_PIPE_FILES             := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(COINS_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+BOWSER_FLAMES_FILES          := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BOWSER_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+BUBBA_WIGGLER_FILES          := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BUBBA_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+BULLY_BLARGG_FILES           := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BULLY_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+CHILLYCHIEF_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(CHILLYCHIEF_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+HOOT_THWOMP_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(HOOT_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+KOOPA_LOG_FILES              := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(KOOPA_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+KLEPTO_EYEROK_FILES          := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(KLEPTO_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+LAKITU_TOAD_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(LAKITU_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+MARIO_WATER_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(MARIO_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+MOLE_UKIKI_FILES             := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(MOLE_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+MR_I_SWOOP_FILES             := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(MR_I_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+PEACH_TOADSTOOL_FILES        := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(PEACH_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+SEA_CREATURES_FILES          := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SEA_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+SKEETER_FISH_FILES           := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SKEETER_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
+SPINDRIFT_PENGUIN_FILES      := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SPINDRIFT_DIRS)),$(patsubst %.png,%.inc.c,$(wildcard $(dir)/*.png)))
 
 # Actor dependencies
-$(BUILD_DIR)/bin/group0.o: $(addprefix $(BUILD_DIR)/,$(MARIO_WATER_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(MARIO_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group1.o: $(addprefix $(BUILD_DIR)/,$(HOOT_THWOMP_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(HOOT_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group2.o: $(addprefix $(BUILD_DIR)/,$(BULLY_BLARGG_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BULLY_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group3.o: $(addprefix $(BUILD_DIR)/,$(BOBOMBS_BUBBLE_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(KING_BOBOMB_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group4.o: $(addprefix $(BUILD_DIR)/,$(SEA_CREATURES_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SEA_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group5.o: $(addprefix $(BUILD_DIR)/,$(KLEPTO_EYEROK_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(KLEPTO_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group6.o: $(addprefix $(BUILD_DIR)/,$(MOLE_UKIKI_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(MOLE_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group7.o: $(addprefix $(BUILD_DIR)/,$(SPINDRIFT_PENGUIN_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SPINDRIFT_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group8.o: $(addprefix $(BUILD_DIR)/,$(CAPSWITCH_SPRINGBOARD_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(CAPSWITCH_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group9.o: $(addprefix $(BUILD_DIR)/,$(BOO_BOOKEND_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BOO_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group10.o: $(addprefix $(BUILD_DIR)/,$(PEACH_TOADSTOOL_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(PEACH_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group11.o: $(addprefix $(BUILD_DIR)/,$(BUBBA_WIGGLER_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BUBBA_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group12.o: $(addprefix $(BUILD_DIR)/,$(BOWSER_FLAMES_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BOWSER_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group13.o: $(addprefix $(BUILD_DIR)/,$(SKEETER_FISH_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SKEETER_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group14.o: $(addprefix $(BUILD_DIR)/,$(KOOPA_LOG_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(KOOPA_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group15.o: $(addprefix $(BUILD_DIR)/,$(LAKITU_TOAD_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(LAKITU_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group16.o: $(addprefix $(BUILD_DIR)/,$(CHILLYCHIEF_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(CHILLYCHIEF_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/group17.o: $(addprefix $(BUILD_DIR)/,$(MR_I_SWOOP_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(MR_I_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/common0.o: $(addprefix $(BUILD_DIR)/,$(AMP_CHUCKYA_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(AMP_DIRS)),$(wildcard $(dir)/*.s))
-$(BUILD_DIR)/bin/common1.o: $(addprefix $(BUILD_DIR)/,$(COINS_PIPE_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(COINS_DIRS)),$(wildcard $(dir)/*.s))
+$(BUILD_DIR)/actors/group0.o: $(addprefix $(BUILD_DIR)/,$(MARIO_WATER_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(MARIO_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group1.o: $(addprefix $(BUILD_DIR)/,$(HOOT_THWOMP_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(HOOT_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group2.o: $(addprefix $(BUILD_DIR)/,$(BULLY_BLARGG_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BULLY_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group3.o: $(addprefix $(BUILD_DIR)/,$(BOBOMBS_BUBBLE_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(KING_BOBOMB_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group4.o: $(addprefix $(BUILD_DIR)/,$(SEA_CREATURES_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SEA_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group5.o: $(addprefix $(BUILD_DIR)/,$(KLEPTO_EYEROK_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(KLEPTO_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group6.o: $(addprefix $(BUILD_DIR)/,$(MOLE_UKIKI_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(MOLE_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group7.o: $(addprefix $(BUILD_DIR)/,$(SPINDRIFT_PENGUIN_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SPINDRIFT_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group8.o: $(addprefix $(BUILD_DIR)/,$(CAPSWITCH_SPRINGBOARD_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(CAPSWITCH_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group9.o: $(addprefix $(BUILD_DIR)/,$(BOO_BOOKEND_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BOO_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group10.o: $(addprefix $(BUILD_DIR)/,$(PEACH_TOADSTOOL_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(PEACH_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group11.o: $(addprefix $(BUILD_DIR)/,$(BUBBA_WIGGLER_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BUBBA_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group12.o: $(addprefix $(BUILD_DIR)/,$(BOWSER_FLAMES_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BOWSER_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group13.o: $(addprefix $(BUILD_DIR)/,$(SKEETER_FISH_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SKEETER_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group14.o: $(addprefix $(BUILD_DIR)/,$(KOOPA_LOG_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(KOOPA_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group15.o: $(addprefix $(BUILD_DIR)/,$(LAKITU_TOAD_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(LAKITU_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group16.o: $(addprefix $(BUILD_DIR)/,$(CHILLYCHIEF_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(CHILLYCHIEF_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/group17.o: $(addprefix $(BUILD_DIR)/,$(MR_I_SWOOP_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(MR_I_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/common0.o: $(addprefix $(BUILD_DIR)/,$(AMP_CHUCKYA_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(AMP_DIRS)),$(wildcard $(dir)/*.c))
+$(BUILD_DIR)/actors/common1.o: $(addprefix $(BUILD_DIR)/,$(COINS_PIPE_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(COINS_DIRS)),$(wildcard $(dir)/*.c))
 
 # Actor Elf Files
-$(BUILD_DIR)/bin/group0.elf: SEGMENT_ADDRESS := 0x04000000
-$(BUILD_DIR)/bin/group1.elf: SEGMENT_ADDRESS := 0x05000000
-$(BUILD_DIR)/bin/group2.elf: SEGMENT_ADDRESS := 0x05000000
-$(BUILD_DIR)/bin/group3.elf: SEGMENT_ADDRESS := 0x05000000
-$(BUILD_DIR)/bin/group4.elf: SEGMENT_ADDRESS := 0x05000000
-$(BUILD_DIR)/bin/group5.elf: SEGMENT_ADDRESS := 0x05000000
-$(BUILD_DIR)/bin/group6.elf: SEGMENT_ADDRESS := 0x05000000
-$(BUILD_DIR)/bin/group7.elf: SEGMENT_ADDRESS := 0x05000000
-$(BUILD_DIR)/bin/group8.elf: SEGMENT_ADDRESS := 0x05000000
-$(BUILD_DIR)/bin/group9.elf: SEGMENT_ADDRESS := 0x05000000
-$(BUILD_DIR)/bin/group10.elf: SEGMENT_ADDRESS := 0x05000000
-$(BUILD_DIR)/bin/group11.elf: SEGMENT_ADDRESS := 0x05000000
-$(BUILD_DIR)/bin/group12.elf: SEGMENT_ADDRESS := 0x06000000
-$(BUILD_DIR)/bin/group13.elf: SEGMENT_ADDRESS := 0x06000000
-$(BUILD_DIR)/bin/group14.elf: SEGMENT_ADDRESS := 0x06000000
-$(BUILD_DIR)/bin/group15.elf: SEGMENT_ADDRESS := 0x06000000
-$(BUILD_DIR)/bin/group16.elf: SEGMENT_ADDRESS := 0x06000000
-$(BUILD_DIR)/bin/group17.elf: SEGMENT_ADDRESS := 0x06000000
-$(BUILD_DIR)/bin/common0.elf: SEGMENT_ADDRESS := 0x08000000
-$(BUILD_DIR)/bin/common1.elf: SEGMENT_ADDRESS := 0x03000000
+$(BUILD_DIR)/actors/group0.elf: SEGMENT_ADDRESS := 0x04000000
+$(BUILD_DIR)/actors/group1.elf: SEGMENT_ADDRESS := 0x05000000
+$(BUILD_DIR)/actors/group2.elf: SEGMENT_ADDRESS := 0x05000000
+$(BUILD_DIR)/actors/group3.elf: SEGMENT_ADDRESS := 0x05000000
+$(BUILD_DIR)/actors/group4.elf: SEGMENT_ADDRESS := 0x05000000
+$(BUILD_DIR)/actors/group5.elf: SEGMENT_ADDRESS := 0x05000000
+$(BUILD_DIR)/actors/group6.elf: SEGMENT_ADDRESS := 0x05000000
+$(BUILD_DIR)/actors/group7.elf: SEGMENT_ADDRESS := 0x05000000
+$(BUILD_DIR)/actors/group8.elf: SEGMENT_ADDRESS := 0x05000000
+$(BUILD_DIR)/actors/group9.elf: SEGMENT_ADDRESS := 0x05000000
+$(BUILD_DIR)/actors/group10.elf: SEGMENT_ADDRESS := 0x05000000
+$(BUILD_DIR)/actors/group11.elf: SEGMENT_ADDRESS := 0x05000000
+$(BUILD_DIR)/actors/group12.elf: SEGMENT_ADDRESS := 0x06000000
+$(BUILD_DIR)/actors/group13.elf: SEGMENT_ADDRESS := 0x06000000
+$(BUILD_DIR)/actors/group14.elf: SEGMENT_ADDRESS := 0x06000000
+$(BUILD_DIR)/actors/group15.elf: SEGMENT_ADDRESS := 0x06000000
+$(BUILD_DIR)/actors/group16.elf: SEGMENT_ADDRESS := 0x06000000
+$(BUILD_DIR)/actors/group17.elf: SEGMENT_ADDRESS := 0x06000000
+$(BUILD_DIR)/actors/common0.elf: SEGMENT_ADDRESS := 0x08000000
+$(BUILD_DIR)/actors/common1.elf: SEGMENT_ADDRESS := 0x03000000
 
 # --------------------------------------
 # Level Rules

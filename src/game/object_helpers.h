@@ -165,9 +165,9 @@ extern s8 dddStatus;
 // extern ? D_80336704;
 // extern ? D_8033670C;
 
-// extern ? Geo18_8029D890(?);
-// extern ? Geo18_8029D924(?);
-// extern ? geo_switch_anim_state(?);
+extern Gfx *Geo18_8029D890(s32 run, UNUSED struct GraphNode *node, f32 mtx[4][4]);
+extern Gfx *Geo18_8029D924(s32 run, struct GraphNode *node, UNUSED s32 sp48);
+extern s32 geo_switch_anim_state(s32 run, struct GraphNode *node);
 // extern ? geo_switch_area(?);
 extern void func_8029D558(Mat4, struct Object *);
 void apply_object_scale_to_matrix(struct Object *, Mat4, Mat4);

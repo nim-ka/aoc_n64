@@ -69,10 +69,12 @@ struct Animation {
     /*0x06*/ s16 unk06;
     /*0x08*/ s16 unk08;
     /*0x0A*/ s16 unk0A;
-    /*0x0C*/ void *values;
-    /*0x10*/ void *index;
+    /*0x0C*/ const s16 *values;
+    /*0x10*/ const u16 *index;
     /*0x14*/ u32 length; // only used with Mario animations to determine how much to load. 0 otherwise.
 };
+
+#define ANIMINDEX_NUMPARTS(animindex) (sizeof(animindex) / sizeof(u16) / 6 - 1)
 
 struct GraphNode
 {

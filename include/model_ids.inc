@@ -390,8 +390,8 @@
 .set MODEL_ENEMY_LAKITU,                        0x54        # enemy_lakitu_geo
 .set MODEL_SPINY_BALL,                          0x55        # spiny_ball_geo
 .set MODEL_SPINY,                               0x56        # spiny_geo
-.set MODEL_WIGGLER,                             0x57        # wiggler_geo
-.set MODEL_WIGGLER_BODY_PART,                   0x58        # wiggler_body_part_geo
+.set MODEL_WIGGLER_HEAD,                        0x57        # wiggler_head_geo
+.set MODEL_WIGGLER_BODY,                        0x58        # wiggler_body_geo
 .set MODEL_BUBBA,                               0x59        # bubba_geo
 
 # referenced in macro presets. Unknown usage.

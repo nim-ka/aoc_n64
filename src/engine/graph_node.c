@@ -855,8 +855,8 @@ void geo_retreive_animation_translation(struct GraphNodeObject *obj, Vec3f posit
     s16 frame;
 
     if (animation != NULL) {
-        attribute = segmented_to_virtual(animation->index);
-        values = segmented_to_virtual(animation->values);
+        attribute = segmented_to_virtual((void *) animation->index);
+        values = segmented_to_virtual((void *) animation->values);
 
         frame = obj->unk38.animFrame;
 

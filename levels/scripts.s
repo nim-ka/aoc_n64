@@ -348,8 +348,8 @@ glabel script_func_global_12
     load_model_from_geo /*model*/ MODEL_ENEMY_LAKITU,            /*geo*/ enemy_lakitu_geo
     load_model_from_geo /*model*/ MODEL_SPINY_BALL,              /*geo*/ spiny_ball_geo
     load_model_from_geo /*model*/ MODEL_SPINY,                   /*geo*/ spiny_geo
-    load_model_from_geo /*model*/ MODEL_WIGGLER,                 /*geo*/ wiggler_geo
-    load_model_from_geo /*model*/ MODEL_WIGGLER_BODY_PART,       /*geo*/ wiggler_body_part_geo
+    load_model_from_geo /*model*/ MODEL_WIGGLER_HEAD,            /*geo*/ wiggler_head_geo
+    load_model_from_geo /*model*/ MODEL_WIGGLER_BODY,            /*geo*/ wiggler_body_geo
     load_model_from_geo /*model*/ MODEL_BUBBA,                   /*geo*/ bubba_geo
     return
 
@@ -380,7 +380,7 @@ glabel script_func_global_15
     load_model_from_geo /*model*/ MODEL_KOOPA_WITH_SHELL,        /*geo*/ koopa_with_shell_geo
     load_model_from_geo /*model*/ MODEL_KOOPA_WITHOUT_SHELL,     /*geo*/ koopa_without_shell_geo
     load_model_from_geo /*model*/ MODEL_METALLIC_BALL,           /*geo*/ metallic_ball_geo
-    load_model_from_geo /*model*/ MODEL_CHAIN_CHOMP,             /*geo*/ chain_chomp
+    load_model_from_geo /*model*/ MODEL_CHAIN_CHOMP,             /*geo*/ chain_chomp_geo
     load_model_from_geo /*model*/ MODEL_KOOPA_FLAG,              /*geo*/ koopa_flag_geo
     load_model_from_geo /*model*/ MODEL_WOODEN_POST,             /*geo*/ wooden_post_geo
     return

@@ -61,7 +61,7 @@ s32 func_802CAF38(s8 a0, u8 a1, struct WarpTransitionData *transData, u8 alpha) 
 
     if (verts != NULL) {
         gSPDisplayList(gDisplayListHead++, dl_proj_mtx_fullscreen)
-        gDPSetCombine1CycleLERP(gDisplayListHead++,
+        gDPSetCombineLERP1Cycle(gDisplayListHead++,
                             0, 0, 0, SHADE,  // CCMUX
                             0, 0, 0, SHADE); // ACMUX
         gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2)
@@ -176,14 +176,14 @@ s32 func_802CB9F8(s8 spBB, s8 spBF, struct WarpTransitionData *transData, s8 spC
     if (spA8 != NULL) {
         func_802CB6A0(spA8, spBB, transData, spB0, spAE, spAC, spCB); // TODO types
         gSPDisplayList(gDisplayListHead++, dl_proj_mtx_fullscreen)
-        gDPSetCombine1CycleLERP(gDisplayListHead++,
+        gDPSetCombineLERP1Cycle(gDisplayListHead++,
                             0, 0, 0, SHADE,  // CCMUX
                             0, 0, 0, SHADE); // ACMUX
         gDPSetRenderMode(gDisplayListHead++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2)
         gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(spA8), 8, 0)
         gSPDisplayList(gDisplayListHead++, dl_transition_draw_filled_region)
         gDPPipeSync(gDisplayListHead++)
-        gDPSetCombine1CycleLERP(gDisplayListHead++,
+        gDPSetCombineLERP1Cycle(gDisplayListHead++,
                             TEXEL0, 0, SHADE, 0,  // CCMUX
                                 0, 0, 0, TEXEL0); // ACMUX
         gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2)
@@ -256,7 +256,7 @@ Gfx *func_802CC2E8(void) {
         make_vertex(verts, 3, 0, 240, -1, -1152, 192, 0, 0, 0, 255);
 
         gSPDisplayList(g++, dl_proj_mtx_fullscreen)
-        gDPSetCombine1CycleLERP(g++,
+        gDPSetCombineLERP1Cycle(g++,
                             TEXEL0, 0, SHADE, 0,  // CCMUX
                                 0, 0, 0, TEXEL0); // ACMUX
         gDPSetTextureFilter(g++, G_TF_BILERP)

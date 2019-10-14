@@ -902,6 +902,9 @@
 	CVG_DST_CLAMP | ZMODE_OPA |          \
 	GBL_c##clk(G_BL_CLR_IN, G_BL_0, G_BL_CLR_IN, G_BL_1)
 
+/* Custom version of RM_AA_ZB_XLU_SURF with Z_UPD */
+#define RM_CUSTOM_AA_ZB_XLU_SURF(clk)				\
+	RM_AA_ZB_XLU_SURF(clk) | Z_UPD
 
 
 #define	G_RM_AA_ZB_OPA_SURF	RM_AA_ZB_OPA_SURF(1)
@@ -999,6 +1002,9 @@
 #define G_RM_VISCVG2    	RM_VISCVG(2)
 #define G_RM_OPA_CI         RM_OPA_CI(1)
 #define G_RM_OPA_CI2        RM_OPA_CI(2)
+
+#define G_RM_CUSTOM_AA_ZB_XLU_SURF	RM_CUSTOM_AA_ZB_XLU_SURF(1)
+#define G_RM_CUSTOM_AA_ZB_XLU_SURF2	RM_CUSTOM_AA_ZB_XLU_SURF(2)
 
 
 #define	G_RM_FOG_SHADE_A	GBL_c1(G_BL_CLR_FOG, G_BL_A_SHADE, G_BL_CLR_IN, G_BL_1MA)
@@ -2162,7 +2168,15 @@ typedef union {
 	 __gsSP1Triangle_w1f(v00, v01, v02, flag0)),			\
 	 __gsSP1Triangle_w1f(v10, v11, v12, flag1)			\
 }}
-
+#else
+#define gSP2Triangles(pkt, v00, v01, v02, flag0, v10, v11, v12, flag1)	\
+{									\
+	gSP1Triangle(pkt, v00, v01, v02, flag0);			\
+	gSP1Triangle(pkt, v10, v11, v12, flag1);			\
+}
+#define gsSP2Triangles(v00, v01, v02, flag0, v10, v11, v12, flag1)	\
+	gsSP1Triangle(v00, v01, v02, flag0),				\
+	gsSP1Triangle(v10, v11, v12, flag1)
 #endif	/* F3DEX_GBI/F3DLP_GBI */
 
 #if	(defined(F3DEX_GBI)||defined(F3DLP_GBI))
@@ -2867,7 +2881,7 @@ typedef union {
 #define	gsSPClearGeometryMode(word)	gsSPGeometryMode((word),0)
 #define	gSPLoadGeometryMode(pkt, word)	gSPGeometryMode((pkt),-1,(word))
 #define	gsSPLoadGeometryMode(word)	gsSPGeometryMode(-1,(word))
-
+#define gsSPGeometryModeSetFirst(c, s)	gsSPGeometryMode(c, s)
 #else	/* F3DEX_GBI_2 */
 #define	gSPSetGeometryMode(pkt, word)					\
 {									\
@@ -2894,6 +2908,18 @@ typedef union {
 {{									\
 	_SHIFTL(G_CLEARGEOMETRYMODE, 24, 8), (unsigned int)(word)	\
 }}
+
+/*
+ * gsSPGeometryMode
+ * In Fast3DEX2 it is better to use this, as the RSP geometry mode
+ * is able to be set and cleared in a single command.
+ */
+#define gsSPGeometryMode(c, s)						\
+	gsSPClearGeometryMode(c),					\
+	gsSPSetGeometryMode(s)
+#define gsSPGeometryModeSetFirst(c, s)					\
+	gsSPSetGeometryMode(s)						\
+	gsSPClearGeometryMode(c)
 #endif	/* F3DEX_GBI_2 */
 
 #ifdef	F3DEX_GBI_2
@@ -3120,13 +3146,14 @@ typedef union {
 
 /* Unofficial 1Cycle SetCombineLERP macro  */
 
-#define	gDPSetCombine1CycleLERP(pkt, a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0)	\
-        gDPSetCombineLERP(pkt, a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0,	\
-                a0, b0, c0, d0,	Aa0, Ab0, Ac0, Ad0)	
+#define	gDPSetCombineLERP1Cycle(pkt, a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0)\
+	gDPSetCombineLERP(pkt, a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0,	\
+			  a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0)
 
-#define	gsDPSetCombine1CycleLERP(a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0)	\
-        gsDPSetCombineLERP(a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0,	\
-                a0, b0, c0, d0,	Aa0, Ab0, Ac0, Ad0)	
+#define gsDPSetCombineLERP1Cycle(a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0)	\
+	gsDPSetCombineLERP(a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0,		\
+			   a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0)
+
 /*
  * SetCombineMode macros are NOT redunant. It allow the C preprocessor
  * to substitute single parameter which includes commas in the token and

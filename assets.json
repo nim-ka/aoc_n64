@@ -188,6 +188,7 @@
 "actors/haunted_cage/bbh_cage_floor.rgba16.png": [32,32,2048,{"jp":[1462368,49800],"us":[1469536,49800],"eu":[1341504,49800]}],
 "actors/haunted_cage/bbh_cage_ornament.rgba16.png": [32,16,1024,{"jp":[1462368,53896],"us":[1469536,53896],"eu":[1341504,53896]}],
 "actors/haunted_cage/bbh_cage_wooden_base.rgba16.png": [32,16,1024,{"jp":[1462368,54920],"us":[1469536,54920],"eu":[1341504,54920]}],
+"actors/haunted_cage/bbh_cage_garbage.rgba16.png": [32,32,2048,{"jp:":[1462368,57992],"us":[1469536,57992],"eu":[1341504,57992]}],
 "actors/heart/spinning_heart.rgba16.png": [32,32,2048,{"jp":[2032944,55264],"us":[2040320,55264],"eu":[1912288,55264]}],
 "actors/heave_ho/heave-ho_arm_ornament.rgba16.png": [32,32,2048,{"jp":[1215456,68040],"us":[1222624,68040],"eu":[1094592,68040]}],
 "actors/heave_ho/heave-ho_face.rgba16.png": [32,32,2048,{"jp":[1215456,59848],"us":[1222624,59848],"eu":[1094592,59848]}],

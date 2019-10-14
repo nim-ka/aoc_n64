@@ -139,6 +139,7 @@ extern Gfx *Geo18_802775CC(s32 a, struct GraphNode *b, UNUSED Mat4 *c);
 extern s32 geo_switch_mario_cap_effect(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
 extern s32 geo_switch_mario_cap_on_off(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
 extern Gfx *Geo18_80277824(s32 a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *geo_switch_mario_hand_grab_pos(s32 callContext, struct GraphNode *b, Mat4 *c);
 extern Gfx *Geo1C_8027795C(s32 a, struct GraphNode *b, Mat4 *c);
 extern Gfx *geo_render_mirror_mario(s32 a, struct GraphNode *b, UNUSED Mat4 *c);
 extern Gfx *geo_mirror_mario_backface_culling(s32 a, struct GraphNode *b, UNUSED Mat4 *c);

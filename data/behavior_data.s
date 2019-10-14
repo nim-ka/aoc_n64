@@ -1034,7 +1034,7 @@ glabel bhvDoor # 0B0C
     obj_set_int objInteractType, 0x04
 .L13000B14: # 0B14
     obj_or_int objFlags, (OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
-    obj_set_int32 objAnimations, door_seg3_anim_030156C0
+    obj_set_int32 objAnimations, door_seg3_anims_030156C0
     animate 0x00
     collision_data door_seg3_collision_0301CE78
     set_hitbox 0x0050, 0x0064
@@ -4064,7 +4064,7 @@ glabel bhvVolcanoSoundLoop # 3C24
 glabel bhvCastleFlagWaving # 3C38
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
-    obj_set_int32 objAnimations, castle_grounds_seg7_anim_flags
+    obj_set_int32 objAnimations, castle_grounds_seg7_anims_flags
     animate 0x00
     callnative bhv_castle_flag_init
     begin_loop
@@ -4772,7 +4772,7 @@ glabel bhvChainChompGate # 4848
         callnative load_object_collision_model
     end_loop
 
-glabel bhvWiggler # 4878
+glabel bhvWigglerHead # 4878
     begin OBJ_LIST_GENACTOR
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     drop_floor
@@ -4786,7 +4786,7 @@ glabel bhvWiggler # 4878
         callnative bhv_wiggler_update
     end_loop
 
-glabel bhvWigglerBodyPart # 48C0
+glabel bhvWigglerBody # 48C0
     begin OBJ_LIST_GENACTOR
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     obj_set_int32 objAnimations, wiggler_seg5_anims_0500C874

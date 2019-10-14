@@ -125,14 +125,14 @@ LIBULTRA := $(BUILD_DIR)/libultra.a
 ROM := $(BUILD_DIR)/$(TARGET).z64
 ELF := $(BUILD_DIR)/$(TARGET).elf
 LD_SCRIPT := sm64.ld
-MIO0_DIR := $(BUILD_DIR)/mio0
+MIO0_DIR := $(BUILD_DIR)/bin
 SOUND_BIN_DIR := $(BUILD_DIR)/sound
 TEXTURE_DIR := textures
 ACTOR_DIR := actors
 
 # Directories containing source files
-SRC_DIRS := src src/engine src/game src/audio src/menu src/buffers
-ASM_DIRS := asm actors lib data levels assets sound text
+SRC_DIRS := src src/engine src/game src/audio src/menu src/buffers actors
+ASM_DIRS := asm lib data levels assets sound text
 BIN_DIRS := bin bin/$(VERSION)
 
 ULTRA_SRC_DIRS := lib/src lib/src/math
@@ -225,10 +225,10 @@ OBJCOPY   := $(CROSS)objcopy
 PYTHON    := python3
 
 # Check code syntax with host compiler
-CC_CHECK := gcc -fsyntax-only -fsigned-char -nostdinc -fno-builtin -I include -I $(BUILD_DIR)/include -I src -std=gnu90 -Wall -Wextra -Wno-format-security -D_LANGUAGE_C $(VERSION_CFLAGS) $(GRUCODE_CFLAGS)
+CC_CHECK := gcc -fsyntax-only -fsigned-char -nostdinc -fno-builtin -I include -I $(BUILD_DIR) -I $(BUILD_DIR)/include -I src -std=gnu90 -Wall -Wextra -Wno-format-security -D_LANGUAGE_C $(VERSION_CFLAGS) $(GRUCODE_CFLAGS)
 
 ASFLAGS := -march=vr4300 -mabi=32 -I include -I $(BUILD_DIR) $(VERSION_ASFLAGS) $(GRUCODE_ASFLAGS)
-CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn $(OPT_FLAGS) -signed -I include -I $(BUILD_DIR)/include -I src -D_LANGUAGE_C $(VERSION_CFLAGS) $(MIPSISET) $(GRUCODE_CFLAGS)
+CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn $(OPT_FLAGS) -signed -I include -I $(BUILD_DIR) -I $(BUILD_DIR)/include -I src -D_LANGUAGE_C $(VERSION_CFLAGS) $(MIPSISET) $(GRUCODE_CFLAGS)
 OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
 SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
 LDFLAGS := -T undefined_syms.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.$(VERSION).map --no-check-sections $(SYMBOL_LINKING_FLAGS)
@@ -253,6 +253,7 @@ TEXTCONV = $(TOOLS_DIR)/textconv
 IPLFONTUTIL = $(TOOLS_DIR)/iplfontutil
 AIFF_EXTRACT_CODEBOOK = $(TOOLS_DIR)/aiff_extract_codebook
 VADPCM_ENC = $(TOOLS_DIR)/vadpcm_enc
+TRIM_ZEROS = $(TOOLS_DIR)/trim_zeros
 EMULATOR = mupen64plus
 EMU_FLAGS = --noosd
 LOADER = loader64
@@ -333,6 +334,10 @@ $(BUILD_DIR)/src/game/ingame_menu.o: $(BUILD_DIR)/include/text_strings.h
 $(BUILD_DIR)/%: %.png
 	$(N64GRAPHICS) -i $@ -g $< -f $(lastword $(subst ., ,$@))
 
+$(BUILD_DIR)/%.inc.c: $(BUILD_DIR)/% %.png
+	hexdump -v -e '1/1 "0x%X,"' $< > $@
+	echo >> $@
+
 # Color Index CI8
 $(BUILD_DIR)/%.ci8: %.ci8.png
 	$(N64GRAPHICS_CI) -i $@ -g $< -f ci8
@@ -347,10 +352,6 @@ $(BUILD_DIR)/%.ci4: %.ci4.png
 $(BUILD_DIR)/bin/%.o: bin/%.s
 	$(AS) $(ASFLAGS) --no-pad-sections -o $@ $<
 
-# compressed segment generation (actors)
-$(BUILD_DIR)/bin/%.o: actors/%.s
-	$(AS) $(ASFLAGS) --no-pad-sections -o $@ $<
-
 $(BUILD_DIR)/bin/%/leveldata.o: levels/%/leveldata.s
 	$(AS) $(ASFLAGS) --no-pad-sections -o $@ $<
 
@@ -359,6 +360,8 @@ $(BUILD_DIR)/bin/%/header.o: levels/%/header.s $(MIO0_DIR)/%/leveldata.mio0 leve
 
 # TODO: ideally this would be `-Trodata-segment=0x07000000` but that doesn't set the address
 $(BUILD_DIR)/bin/%.elf: $(BUILD_DIR)/bin/%.o
+	$(LD) -e 0 -Ttext=$(SEGMENT_ADDRESS) -Map $@.map -o $@ $<
+$(BUILD_DIR)/actors/%.elf: $(BUILD_DIR)/actors/%.o
 	$(LD) -e 0 -Ttext=$(SEGMENT_ADDRESS) -Map $@.map -o $@ $<
 
 # Override for level.elf, which otherwise matches the above pattern
@@ -369,13 +372,19 @@ $(BUILD_DIR)/bin/%/leveldata.elf: $(BUILD_DIR)/bin/%/leveldata.o $(BUILD_DIR)/bi
 $(BUILD_DIR)/bin/%.bin: $(BUILD_DIR)/bin/%.elf
 	$(OBJCOPY) -j .rodata $< -O binary $@
 
-$(MIO0_DIR)/%.mio0: $(BUILD_DIR)/bin/%.bin
+$(BUILD_DIR)/actors/%.bin_aligned: $(BUILD_DIR)/actors/%.elf
+	$(OBJCOPY) -j .data $< -O binary $@
+
+$(BUILD_DIR)/actors/%.bin: $(BUILD_DIR)/actors/%.bin_aligned
+	$(TRIM_ZEROS) $< $@
+
+$(BUILD_DIR)/%.mio0: $(BUILD_DIR)/%.bin
 	$(MIO0TOOL) $< $@
 
-$(MIO0_DIR)/%.mio0.o: $(MIO0_DIR)/%.mio0.s
+$(BUILD_DIR)/%.mio0.o: $(BUILD_DIR)/%.mio0.s
 	$(AS) $(ASFLAGS) -o $@ $<
 
-$(MIO0_DIR)/%.mio0.s: $(MIO0_DIR)/%.mio0
+$(BUILD_DIR)/%.mio0.s: $(BUILD_DIR)/%.mio0
 	printf ".section .data\n\n.incbin \"$<\"\n" > $@
 
 $(BUILD_DIR)/%.table: %.aiff
@@ -467,7 +476,7 @@ $(BUILD_DIR)/$(TARGET).objdump: $(ELF)
 
 
 .PHONY: all clean distclean default diff test load libultra
-.PRECIOUS: $(MIO0_DIR)/%.mio0 $(MIO0_DIR)/%.mio0.s $(BUILD_DIR)/bin/%.elf $(SOUND_BIN_DIR)/%.ctl $(SOUND_BIN_DIR)/%.tbl $(SOUND_SAMPLE_TABLES) $(SOUND_BIN_DIR)/%.s
+.PRECIOUS: $(BUILD_DIR)/bin/%.elf $(SOUND_BIN_DIR)/%.ctl $(SOUND_BIN_DIR)/%.tbl $(SOUND_SAMPLE_TABLES) $(SOUND_BIN_DIR)/%.s  $(BUILD_DIR)/%
 .DELETE_ON_ERROR:
 
 # Remove built-in rules, to improve performance

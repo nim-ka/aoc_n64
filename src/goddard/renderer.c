@@ -1745,7 +1745,7 @@ void func_801A2388(s32 gotoDl) {
         gSPDisplayList(next_gfx(), osVirtualToPhysical(&marioHeadDl801B5100));
     } else {
         gSPTexture(next_gfx(), 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_OFF);
-        gDPSetCombine1CycleLERP(next_gfx(),
+        gDPSetCombineLERP1Cycle(next_gfx(),
                             0, 0, 0, SHADE,  // CCMUX
                             0, 0, 0, SHADE); // ACMUX
         ;

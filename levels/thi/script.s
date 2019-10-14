@@ -6,8 +6,8 @@ script_func_local_2:
     return
 
 script_func_local_3:
-    object /*model*/ MODEL_NONE,    /*pos*/ -1800,  800, -1500, /*angle*/ 0, 0, 0, /*behParam*/ 0x04000000, /*beh*/ bhvHiddenRedCoinStar, /*acts*/ ALL_ACTS
-    object /*model*/ MODEL_WIGGLER, /*pos*/    17, 1843,   -62, /*angle*/ 0, 0, 0, /*behParam*/ 0x05000000, /*beh*/ bhvWiggler
+    object /*model*/ MODEL_NONE,             /*pos*/ -1800,   800, -1500, /*angle*/ 0,   0, 0, /*behParam*/ 0x04000000, /*beh*/ bhvHiddenRedCoinStar, /*acts*/ ALL_ACTS
+    object /*model*/ MODEL_WIGGLER_HEAD,     /*pos*/    17,  1843,   -62, /*angle*/ 0,   0, 0, /*behParam*/ 0x05000000, /*beh*/ bhvWigglerHead
     return
 
 script_func_local_4:

@@ -100,4 +100,37 @@
 #define TERRAIN_SLIDE  0x0006
 #define TERRAIN_MASK   0x0007
 
+// Collision Data Routine Initiate
+#define COL_INIT() TERRAIN_LOAD_VERTICES
+
+// Collision Vertices Read Initiate
+#define COL_VERTEX_INIT(vtxNum) vtxNum
+
+// Collision Vertex
+#define COL_VERTEX(x, y, z) x, y, z
+
+// Collision Tris Initiate
+#define COL_TRI_INIT(surfType, triNum) surfType, triNum
+
+// Collision Tri
+#define COL_TRI(v1, v2, v3) v1, v2, v3
+
+// Collision Tri With Special Params
+#define COL_TRI_SPECIAL(v1, v2, v3, param) v1, v2, v3, param
+
+// Collision Tris Stop Loading
+#define COL_TRI_STOP() TERRAIN_LOAD_CONTINUE
+
+// End Collision Data
+#define COL_END() TERRAIN_LOAD_END
+
+// Special Object Initiate
+#define COL_SPECIAL_INIT(num) TERRAIN_LOAD_OBJECTS, num
+
+// Water Boxes Initiate
+#define COL_WATER_BOX_INIT(num) TERRAIN_LOAD_ENVIRONMENT, num
+
+// Water Box
+#define COL_WATER_BOX(id, x1, z1, x2, z2, y) id, x1, z1, x2, z2, y
+
 #endif

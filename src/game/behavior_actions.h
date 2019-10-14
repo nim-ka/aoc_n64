@@ -16,4 +16,24 @@ extern void play_penguin_walking_sound(s32);
 extern s32 func_802C5A64(s32*);
 extern void func_802C76E0(s32, f32, f32, f32, f32);
 
+extern s32 Geo18_802B1BB0(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);
+
+// Bowser
+extern Gfx *Geo18_802B7D44(s32 a0, struct GraphNode *node, UNUSED s32 a2);
+extern Gfx *Geo18_802B798C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);
+extern s32 geo_switch_bowser_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx);
+
+// Tuxie
+extern s32 geo_switch_tuxie_mother_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx);
+
+// Cap switch
+extern Gfx *Geo18_802A719C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);
+
+// Snufit
+extern Gfx *Geo18_8030D93C(s32 arg0, struct GraphNode *node, UNUSED void *arg2);
+extern Gfx *Geo18_8030D9AC(s32 arg0, struct GraphNode *node, UNUSED void *arg2);
+
+// Bowser key cutscene
+extern Gfx *Geo18_802BA2B0(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4]);
+
 #endif // _BEHAVIOR_ACTIONS_H

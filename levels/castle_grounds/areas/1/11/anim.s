@@ -1,4 +1,4 @@
-castle_grounds_seg7_anim_values_flags: # 0x0700C7C8 - 0x0700C8F0
+castle_grounds_seg7_animvalues_flags: # 0x0700C7C8 - 0x0700C8F0
 .hword     0,   480, 16383,  4835,  3907,  2463,   721, -1101, -2789, -4125, -4928, -5481, -5883, -6121, -6182, -6054
 .hword -5723, -5177, -4309, -2785,  -812,  1339,  3401,  5102,  6174,  6692,  6939,  6952,  6769,  6428,  5967,  5423
 .hword  3581,  2871,  1610,   109, -1318, -2361, -2855, -3215, -3491, -3677, -3768, -3758, -3642, -3414, -3068, -2526
@@ -10,7 +10,7 @@ castle_grounds_seg7_anim_values_flags: # 0x0700C7C8 - 0x0700C8F0
 .hword  -573,  -807, -1022, -1195, -1305, -1328, -1243, -1060,  -810,  -524,  -233,    32,   242,   418,   595,   766
 .hword   922,  1058,  1164,  1233
 
-castle_grounds_seg7_anim_indexes_flags: # 0x0700C8F0 - 0x0700C944
+castle_grounds_seg7_animindexes_flags: # 0x0700C8F0 - 0x0700C944
 .hword   1,   0,    1,   1,    1,   0 # translate
 .hword   1,   2,    1,   0,    1,   0
 .hword   1,   0,    1,   0,   29, 119
@@ -19,16 +19,16 @@ castle_grounds_seg7_anim_indexes_flags: # 0x0700C8F0 - 0x0700C944
 .hword   1,   0,    1,   0,   29,  32
 .hword   1,   0,    1,   0,   29,   3
 
-castle_grounds_seg7_anim_header_flags: # 0x0700C944 - 0x0700C95C
+castle_grounds_seg7_anim_flags: # 0x0700C944 - 0x0700C95C
 .hword 0 # repeats
 .hword 0
 .hword 0
 .hword 0
 .hword 29 # frame count
 .hword 6 # node count
-.word castle_grounds_seg7_anim_values_flags # 0x0700C7C8
-.word castle_grounds_seg7_anim_indexes_flags # 0x0700C8F0
+.word castle_grounds_seg7_animvalues_flags # 0x0700C7C8
+.word castle_grounds_seg7_animindexes_flags # 0x0700C8F0
 .word 0
 
-glabel castle_grounds_seg7_anim_flags # 0x0700C95C - 0x0700C960
-.word castle_grounds_seg7_anim_header_flags # 0x0700C944
+glabel castle_grounds_seg7_anims_flags # 0x0700C95C - 0x0700C960
+.word castle_grounds_seg7_anim_flags # 0x0700C944

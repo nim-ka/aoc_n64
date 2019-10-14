@@ -389,8 +389,8 @@
 #define MODEL_ENEMY_LAKITU                0x54        // enemy_lakitu_geo
 #define MODEL_SPINY_BALL                  0x55        // spiny_ball_geo
 #define MODEL_SPINY                       0x56        // spiny_geo
-#define MODEL_WIGGLER                     0x57        // wiggler_geo
-#define MODEL_WIGGLER_BODY_PART           0x58        // wiggler_body_part_geo
+#define MODEL_WIGGLER_HEAD                0x57        // wiggler_head_geo
+#define MODEL_WIGGLER_BODY                0x58        // wiggler_body_geo
 #define MODEL_BUBBA                       0x59        // bubba_geo
 
 // referenced in macro presets. Unknown usage.

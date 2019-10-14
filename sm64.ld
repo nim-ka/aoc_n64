@@ -24,7 +24,7 @@ OUTPUT_ARCH (mips)
 #define MIO0_SEG(name, segAddr) \
    BEGIN_SEG(name##_mio0, segAddr) \
    { \
-      BUILD_DIR/mio0/name.mio0.o(.data); \
+      BUILD_DIR/bin/name.mio0.o(.data); \
       . = ALIGN(0x10); \
    } \
    END_SEG(name##_mio0)
@@ -32,7 +32,7 @@ OUTPUT_ARCH (mips)
 #define MIO0_EU_SEG(name, segAddr) \
    BEGIN_SEG(name##_mio0, segAddr) \
    { \
-      BUILD_DIR/mio0/eu/name.mio0.o(.data); \
+      BUILD_DIR/bin/eu/name.mio0.o(.data); \
       . = ALIGN(0x10); \
    } \
    END_SEG(name##_mio0)
@@ -50,11 +50,15 @@ OUTPUT_ARCH (mips)
    END_SEG(name)
 
 #define STANDARD_OBJECTS(name, segAddr, geoAddr) \
-   MIO0_SEG(name, segAddr) \
+   BEGIN_SEG(name##_mio0, segAddr) \
+   { \
+      BUILD_DIR/actors/name.mio0.o(.data); \
+      . = ALIGN(0x10); \
+   } \
+   END_SEG(name##_mio0) \
    BEGIN_SEG(name##_geo, geoAddr) \
    { \
-      BUILD_DIR/actors/name##_geo.o(.geo); \
-      . = ALIGN(0x10); \
+      BUILD_DIR/actors/name##_geo.o(.data); \
    } \
    END_SEG(name##_geo)
 

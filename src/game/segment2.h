@@ -55,5 +55,15 @@ extern u8* main_hud_camera_lut[6];
 extern Gfx dl_draw_text_bg_box[];
 extern Gfx dl_draw_triangle[];
 extern void *seg2_dialog_table[];
+extern Gfx dl_billboard_num_0[];
+extern Gfx dl_billboard_num_1[];
+extern Gfx dl_billboard_num_2[];
+extern Gfx dl_billboard_num_3[];
+extern Gfx dl_billboard_num_4[];
+extern Gfx dl_billboard_num_5[];
+extern Gfx dl_billboard_num_6[];
+extern Gfx dl_billboard_num_7[];
+extern Gfx dl_billboard_num_8[];
+extern Gfx dl_billboard_num_9[];
 
 #endif /* SEGMENT2_H */

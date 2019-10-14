@@ -65,37 +65,10 @@
 .endif
 .endm
 
-# Actor include
-.macro actor name
-.include "actors/\name\()/model.s"
-.include "actors/\name\()/collision.s"
-binid
-.endm
-
-# Actor include (no binid), needed for mario bin (TODO: Better solution?)
-.macro rawactor name
-.include "actors/\name\()/model.s"
-.include "actors/\name\()/collision.s"
-.endm
-
-# Actor geo include
-.macro actorgeo name
-.include "actors/\name\()/geo.s"
-.endm
-
-.macro initbinid
-.set BINID, 0
-.endm
-
-.macro binid
-.dword BINID
-.set BINID, BINID + 1
-.endm
-
 .macro leveldata name
 .section .seg07, "a"
 .align 4
-.incbin "mio0/\name\()/leveldata.mio0"
+.incbin "bin/\name\()/leveldata.mio0"
 .align 4
 .endm
 
