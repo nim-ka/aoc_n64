@@ -578,7 +578,7 @@ enum ValPtrType {
 struct ObjValPtrs {
     /* 0x00 */ struct GdObj header;
     /* 0x14 */ struct GdObj *obj;   // maybe just a void *?
-    /* 0x18 */ s32 offset;
+    /* 0x18 */ size_t offset;
     /* 0x1C */ enum ValPtrType datatype;
     /* 0x20 */ s32 unk20;       // obj type ptr enum? Might be OBJ_TYPES flags?
 }; /* sizeof = 0x24 */

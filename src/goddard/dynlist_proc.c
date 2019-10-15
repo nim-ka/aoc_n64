@@ -201,7 +201,7 @@ struct GdObj *proc_dynlist(struct DynList *dylist) {
                 break;
             case 50:
                 d_add_valptr(Dyn1AsID(dylist), (u32) DynVecY(dylist), Dyn2AsInt(dylist),
-                             (u32) DynVecX(dylist));
+                             (size_t) DynVecX(dylist));
                 break;
             case 29:
                 d_link_with_ptr(Dyn1AsPtr(dylist));
@@ -2318,7 +2318,7 @@ void d_set_shape_offset(f32 x, f32 y, f32 z) {
  *
  * @param type `::ValPtrType`
  */
-void d_add_valptr(DynId objId, u32 vflags, s32 type, u32 offset) {
+void d_add_valptr(DynId objId, u32 vflags, s32 type, size_t offset) {
     struct GdObj *dynobj;      // sp2C
     struct ObjValPtrs *valptr; // sp28
     struct DynObjInfo *info;   // sp24

@@ -9,6 +9,7 @@
 /aiff_extract_codebook
 /vadpcm_enc
 /tabledesign
+/trim_zeros
 !/ido5.3_compiler/lib/*.so
 !/ido5.3_compiler/usr/lib/*.so
 !/ido5.3_compiler/usr/lib/*.so.1

@@ -68,7 +68,7 @@ SECTIONS
 
    BEGIN_SEG(boot, 0x04000000)
    {
-      BUILD_DIR/data/rom_header.o(.text);
+      BUILD_DIR/asm/rom_header.o(.text);
       BUILD_DIR/asm/boot.o(.text);
    }
    END_SEG(boot)
@@ -471,7 +471,6 @@ SECTIONS
       BUILD_DIR/src/engine/graph_node.o(.data*);
       BUILD_DIR/src/engine/graph_node_manager.o(.data*);
       BUILD_DIR/src/engine/math_util.o(.data*);
-      BUILD_DIR/data/trig_tables.o(.data*);
       BUILD_DIR/src/engine/geo_layout.o(.data*);
       BUILD_DIR/src/engine/level_script.o(.data*);
       BUILD_DIR/src/engine/behavior_script.o(.data*);
@@ -501,7 +500,7 @@ SECTIONS
    . = SEG_FRAMEBUFFERS;
    BEGIN_NOLOAD(framebuffers)
    {
-      BUILD_DIR/data/framebuffers.o(.bss*);
+      BUILD_DIR/src/buffers/framebuffers.o(.bss*);
    }
    END_NOLOAD(framebuffers)
 
@@ -656,7 +655,8 @@ SECTIONS
       BUILD_DIR/src/audio/data.o(.bss*);
       BUILD_DIR/src/audio/globals_end.o(.bss*);
       BUILD_DIR/src/audio*.o(.bss*);
-      BUILD_DIR/data/gfx_output_buffer.o(.bss*);
+      . = ALIGN(0x1000);
+      BUILD_DIR/src/buffers/gfx_output_buffer.o(.bss*);
    }
    END_NOLOAD(buffers)
 

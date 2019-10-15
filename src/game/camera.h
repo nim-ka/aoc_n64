@@ -215,8 +215,8 @@ struct Struct8033B2B8
 // Camera command procedures are marked as returning s32, but none of them
 // actually return a value. This causes undefined behavior, which we'd rather
 // avoid on modern GCC. Hence, typedef. Interestingly, the void vs s32
-// difference doesn't affect -g, only -O2.
-#ifdef __GNUC__
+// difference doesn't affect -g codegen, only -O2.
+#if BUGFIXES_CRITICAL
 typedef void CmdRet;
 #else
 typedef s32 CmdRet;

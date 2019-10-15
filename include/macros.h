@@ -13,11 +13,6 @@
 #define UNUSED
 #endif
 
-// Ignore GLOBAL_ASM blocks when syntax-checking with GCC
-#ifdef __GNUC__
-#define GLOBAL_ASM(...)
-#endif
-
 // Static assertions
 #ifdef __GNUC__
 #define STATIC_ASSERT(cond, msg) _Static_assert(cond, msg)

@@ -2,23 +2,24 @@
 
 #include "sm64.h"
 #include "audio/external.h"
+#include "buffers/framebuffers.h"
+#include "game/area.h"
 #include "game/display.h"
 #include "game/game.h"
-#include "geo_layout.h"
-#include "graph_node.h"
-#include "level_script.h"
 #include "game/mario.h"
-#include "math_util.h"
 #include "game/memory.h"
 #include "game/object_helpers.h"
 #include "game/object_list_processor.h"
-#include "game/area.h"
+#include "game/profiler.h"
 #include "game/save_file.h"
 #include "game/sound_init.h"
+#include "goddard/renderer.h"
+#include "geo_layout.h"
+#include "graph_node.h"
+#include "level_script.h"
+#include "math_util.h"
 #include "surface_collision.h"
 #include "surface_load.h"
-#include "goddard/renderer.h"
-#include "game/profiler.h"
 
 #define CMD_GET(type, offset) (*(type *) ((offset) + (u8 *) sCurrentCmd))
 
@@ -281,8 +282,8 @@ static void level_cmd_load_mario_head(void) {
     void *addr = main_pool_alloc(0xE1000, MEMORY_POOL_LEFT);
     if (addr != NULL) {
         gdm_init(addr, 0xE1000);
-        gd_add_to_heap(gZBuffer, SCREEN_WIDTH * SCREEN_HEIGHT * 2); // 0x25800
-        gd_add_to_heap(gFrameBuffer0, SCREEN_WIDTH * SCREEN_HEIGHT * 2 * 3); // 0x70800
+        gd_add_to_heap(gZBuffer, sizeof(gZBuffer)); // 0x25800
+        gd_add_to_heap(gFrameBuffer0, 3 * sizeof(gFrameBuffer0)); // 0x70800
         gdm_setup();
         gdm_maketestdl(CMD_GET(s16, 2));
     } else {

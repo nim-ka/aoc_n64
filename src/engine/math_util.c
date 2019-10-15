@@ -5,7 +5,7 @@
 #include "math_util.h"
 #include "surface_collision.h"
 
-extern s16 gArctanTable[];
+#include "trig_tables.inc.c"
 
 // Variables for a spline curve animation (used for the flight path in the grand star cutscene)
 Vec4s *gSplineKeyframe;

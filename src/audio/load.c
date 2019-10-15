@@ -132,7 +132,7 @@ void *dma_sample_data(u8 *devAddr, u32 size, s32 arg2, u8 *arg3) {
     ssize_t bufferPos;     // v0
     struct SharedDma *dma; // sp58, v1, t0
     u32 transfer;          // v0
-    u32 dmaDevAddr;        // s0
+    uintptr_t dmaDevAddr;  // s0
     u32 i;                 // a0
     u32 dmaIndex;          // sp48, t2
     s32 hasDma = 0;        // t4

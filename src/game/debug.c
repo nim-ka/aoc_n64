@@ -79,13 +79,13 @@ void Stub802C98C0(void) {
  * its difference for consecutive calls.
  */
 s64 get_current_clock(void) {
-    u64 wtf = 0;
+    s64 wtf = 0;
 
     return wtf;
 }
 
 s64 get_clock_difference(UNUSED s64 arg0) {
-    u64 wtf = 0;
+    s64 wtf = 0;
 
     return wtf;
 }

@@ -408,7 +408,7 @@ struct VtxLink *make_vtx_link(struct VtxLink *prevlink, Vtx *data) {
 }
 
 /* @ 22B154 for 0x88; orig name: func8017C984 */
-struct ObjValPtrs *make_valptrs(struct GdObj *obj, s32 flags, enum ValPtrType type, s32 offset) {
+struct ObjValPtrs *make_valptrs(struct GdObj *obj, s32 flags, enum ValPtrType type, size_t offset) {
     struct ObjValPtrs *sp1C = (struct ObjValPtrs *) make_object(OBJ_TYPE_VALPTRS);
 
     sp1C->obj = obj;

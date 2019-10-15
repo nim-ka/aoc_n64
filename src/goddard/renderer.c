@@ -590,8 +590,8 @@ void Unknown8019C288(s32 stickX, s32 stickY) {
 
 /* 24AAA8 -> 24AAE0; orig name: func_8019C2D8 */
 void gd_add_to_heap(void *addr, u32 size) {
-    // TODO: is this `1` for permanance special?
-    gd_add_mem_to_heap(size, (uintptr_t) addr, 1);
+    // TODO: is this `1` for permanence special?
+    gd_add_mem_to_heap(size, addr, 1);
 }
 
 /* 24AAE0 -> 24AB7C */
@@ -2588,7 +2588,7 @@ void gd_init(void) {
     add_to_stacktrace("gd_init");
     i = (u32)(sMemBlockPoolSize - 0x3E800);
     data = gd_allocblock(i);
-    gd_add_mem_to_heap(i, (uintptr_t) data, 0x10);
+    gd_add_mem_to_heap(i, data, 0x10);
     D_801BB184 = (u16) 0xff;
     D_801A867C = 0;
     D_801A8680 = 0;

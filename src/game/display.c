@@ -1,12 +1,13 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "audio/external.h"
+#include "buffers/buffers.h"
+#include "buffers/gfx_output_buffer.h"
 #include "game.h"
 #include "main.h"
 #include "memory.h"
 #include "profiler.h"
-#include "buffers/buffers.h"
-#include "audio/external.h"
 #include "display.h"
 
 int unused8032C690 = 0;
@@ -73,9 +74,9 @@ void clear_z_buffer(void) {
     gDPPipeSync(gDisplayListHead++);
 
     gDPSetDepthSource(gDisplayListHead++, G_ZS_PIXEL);
-    gDPSetDepthImage(gDisplayListHead++, zBufferPtr);
+    gDPSetDepthImage(gDisplayListHead++, gPhysicalZBuffer);
 
-    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, zBufferPtr);
+    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gPhysicalZBuffer);
     gDPSetFillColor(gDisplayListHead++,
                     GPACK_ZDZ(G_MAXFBZ, 0) << 16 | GPACK_ZDZ(G_MAXFBZ, 0));
 
@@ -89,7 +90,7 @@ void display_frame_buffer(void) {
 
     gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
     gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH,
-                     gFrameBuffers[frameBufferIndex]);
+                     gPhysicalFrameBuffers[frameBufferIndex]);
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, SCREEN_WIDTH,
                   SCREEN_HEIGHT - BORDER_HEIGHT);
 }
@@ -176,8 +177,9 @@ void create_task_structure(void) {
     gGfxSPTask->task.t.ucode_data_size = SP_UCODE_DATA_SIZE;
     gGfxSPTask->task.t.dram_stack = (u64 *) gGfxSPTaskStack;
     gGfxSPTask->task.t.dram_stack_size = SP_DRAM_STACK_SIZE8;
-    gGfxSPTask->task.t.output_buff = (u64 *) gGfxSPTaskOutputBuffer;
-    gGfxSPTask->task.t.output_buff_size = (u64 *) (gGfxSPTaskOutputBuffer + 0x1F000);
+    gGfxSPTask->task.t.output_buff = gGfxSPTaskOutputBuffer;
+    gGfxSPTask->task.t.output_buff_size =
+        (u64 *)((u8 *) gGfxSPTaskOutputBuffer + sizeof(gGfxSPTaskOutputBuffer));
     gGfxSPTask->task.t.data_ptr = (u64 *) &gGfxPool->buffer;
     gGfxSPTask->task.t.data_size = entries * sizeof(Gfx);
     gGfxSPTask->task.t.yield_data_ptr = (u64 *) gGfxSPTaskYieldBuffer;
@@ -219,7 +221,7 @@ void func_80247D84(void) {
             fbNum = sCurrFBNum - 1;
         }
 
-        sp18 = (u64 *) PHYSICAL_TO_VIRTUAL(gFrameBuffers[fbNum]);
+        sp18 = (u64 *) PHYSICAL_TO_VIRTUAL(gPhysicalFrameBuffers[fbNum]);
         sp18 += D_8032C648++ * (SCREEN_WIDTH / 4);
 
         for (sp24 = 0; sp24 < ((SCREEN_HEIGHT / 16) + 1); sp24++) {
@@ -269,7 +271,7 @@ void display_and_vsync(void) {
     send_display_list(&gGfxPool->spTask);
     profiler_log_thread5_time(AFTER_DISPLAY_LISTS);
     osRecvMesg(&gGameVblankQueue, &D_80339BEC, OS_MESG_BLOCK);
-    osViSwapBuffer((void *) PHYSICAL_TO_VIRTUAL(gFrameBuffers[sCurrFBNum]));
+    osViSwapBuffer((void *) PHYSICAL_TO_VIRTUAL(gPhysicalFrameBuffers[sCurrFBNum]));
     profiler_log_thread5_time(THREAD5_END);
     osRecvMesg(&gGameVblankQueue, &D_80339BEC, OS_MESG_BLOCK);
     if (++sCurrFBNum == 3) {

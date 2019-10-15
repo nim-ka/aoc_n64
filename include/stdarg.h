@@ -3,9 +3,8 @@
 
 #include <ultra64.h>
 
-// When building with GCC, use the official vaarg macros to avoid warnings
-// and possibly bad codegen.
-#ifdef __GNUC__
+// When not building with IDO, use the builtin vaarg macros for portability.
+#ifndef __sgi
 #define va_list __builtin_va_list
 #define va_start __builtin_va_start
 #define va_arg __builtin_va_arg

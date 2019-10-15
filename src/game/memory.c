@@ -64,14 +64,14 @@ void *get_segment_base_addr(s32 segment) {
 }
 
 void *segmented_to_virtual(void *addr) {
-    u32 segment = (uintptr_t) addr >> 24;
-    u32 offset = (uintptr_t) addr & 0x00FFFFFF;
+    size_t segment = (uintptr_t) addr >> 24;
+    size_t offset = (uintptr_t) addr & 0x00FFFFFF;
 
     return (void *) ((sSegmentTable[segment] + offset) | 0x80000000);
 }
 
-void *virtual_to_segmented(s32 segment, void *addr) {
-    uintptr_t offset = ((uintptr_t) addr & 0x1FFFFFFF) - sSegmentTable[segment];
+void *virtual_to_segmented(u32 segment, void *addr) {
+    size_t offset = ((uintptr_t) addr & 0x1FFFFFFF) - sSegmentTable[segment];
 
     return (void *) ((segment << 24) + offset);
 }
