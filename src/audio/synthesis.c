@@ -422,9 +422,9 @@ u64 *process_notes(u16 *aiBuf, s32 bufLen, u64 *cmd) {
 
                         if (t0 != 0) {
                             // maybe keep a var for t0 * 9?
-                            v0_2 =
-                                dma_sample_data(sampleAddr + (note->samplePosInt - s2 + 0x10) / 16 * 9,
-                                                t0 * 9, flags, &note->sampleDmaIndex);
+                            v0_2 = dma_sample_data(
+                                (uintptr_t) (sampleAddr + (note->samplePosInt - s2 + 0x10) / 16 * 9),
+                                t0 * 9, flags, &note->sampleDmaIndex);
                             a3 = (u32)((uintptr_t) v0_2 & 0xf);
                             aSetBuffer(cmd++, 0, DMEM_ADDR_COMPRESSED_ADPCM_DATA, 0, t0 * 9 + a3);
                             aLoadBuffer(cmd++, VIRTUAL_TO_PHYSICAL2(v0_2 - a3));
