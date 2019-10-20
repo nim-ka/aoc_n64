@@ -624,14 +624,14 @@
 #define /*0x100*/ oEnemyLakituFaceForwardCountdown OBJECT_FIELD_S32(0x1E)
 
 /* Intro Cutscene Lakitu */
-#define /*0x0F8*/ oIntroLakituUnkF8  OBJECT_FIELD_F32(0x1C)
-#define /*0x0FC*/ oIntroLakituUnkFC  OBJECT_FIELD_F32(0x1D)
-#define /*0x100*/ oIntroLakituUnk100 OBJECT_FIELD_F32(0x1E)
-#define /*0x104*/ oIntroLakituUnk104 OBJECT_FIELD_F32(0x1F)
-#define /*0x108*/ oIntroLakituUnk108 OBJECT_FIELD_F32(0x20)
-#define /*0x10C*/ oIntroLakituUnk10C OBJECT_FIELD_F32(0x21)
-#define /*0x110*/ oIntroLakituUnk110 OBJECT_FIELD_F32(0x22)
-#define /*0x1AC*/ oIntroLakituUnk1AC OBJECT_FIELD_OBJ(0x49)
+#define /*0x0F8*/ oIntroLakituSplineSegmentProgress  OBJECT_FIELD_F32(0x1C)
+#define /*0x0FC*/ oIntroLakituSplineSegment          OBJECT_FIELD_F32(0x1D)
+#define /*0x100*/ oIntroLakituUnk100                 OBJECT_FIELD_F32(0x1E)
+#define /*0x104*/ oIntroLakituUnk104                 OBJECT_FIELD_F32(0x1F)
+#define /*0x108*/ oIntroLakituUnk108                 OBJECT_FIELD_F32(0x20)
+#define /*0x10C*/ oIntroLakituUnk10C                 OBJECT_FIELD_F32(0x21)
+#define /*0x110*/ oIntroLakituUnk110                 OBJECT_FIELD_F32(0x22)
+#define /*0x1AC*/ oIntroLakituCloud                  OBJECT_FIELD_OBJ(0x49)
 
 /* Main Menu Button */
 #define /*0x0F4*/ oMenuButtonState       OBJECT_FIELD_S32(0x1B)
@@ -702,9 +702,9 @@
 #define /*0x0F4*/ oOpenableGrillUnkF4 OBJECT_FIELD_OBJ(0x1B)
 
 /* Intro Cutscene Peach */
-#define /*0x108*/ oIntroPeachUnk108 OBJECT_FIELD_F32(0x20)
-#define /*0x10C*/ oIntroPeachUnk10C OBJECT_FIELD_F32(0x21)
-#define /*0x110*/ oIntroPeachUnk110 OBJECT_FIELD_F32(0x22)
+#define /*0x108*/ oIntroPeachYawFromFocus OBJECT_FIELD_F32(0x20)
+#define /*0x10C*/ oIntroPeachPitchFromFocus OBJECT_FIELD_F32(0x21)
+#define /*0x110*/ oIntroPeachDistToCamera OBJECT_FIELD_F32(0x22)
 
 /* Racing Penguin */
 #define /*0x0F4*/ oRacingPenguinInitTextCooldown       OBJECT_FIELD_S32(0x1B)
