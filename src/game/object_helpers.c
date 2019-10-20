@@ -2486,7 +2486,7 @@ void func_802A3C98(f32 sp18, s32 sp1C) {
     }
 }
 
-void set_object_collision_data(struct Object *obj, void *segAddr) {
+void set_object_collision_data(struct Object *obj, const void *segAddr) {
     obj->collisionData = segmented_to_virtual(segAddr);
 }
 

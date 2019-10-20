@@ -52,7 +52,7 @@ extern void bhv_init_room(void); // 802A3978
 extern void obj_enable_rendering_if_mario_in_room(void);
 s32 obj_set_hitbox_and_die_if_attacked(struct ObjectHitbox*,s32,s32);
 void func_802A3C98(f32 sp18, s32 sp1C);
-void set_object_collision_data(struct Object*,void*);
+void set_object_collision_data(struct Object*, const void*);
 void obj_if_hit_wall_bounce_away(void);
 s32 obj_hide_if_mario_far_away_y(f32);
 extern Gfx *Geo18_802A45E4(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4]);

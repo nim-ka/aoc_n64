@@ -40,12 +40,14 @@ OUTPUT_ARCH (mips)
 #define STANDARD_LEVEL(name) \
    BEGIN_SEG(name##_segment_7, 0x07000000) \
    { \
-      BUILD_DIR/bin/name/header.o(.seg07); \
+      BUILD_DIR/levels/name/leveldata.mio0.o(.data); \
+      . = ALIGN(0x10); \
    } \
    END_SEG(name##_segment_7) \
    BEGIN_SEG(name, 0x0E000000) \
    { \
-      BUILD_DIR/bin/name/header.o(.level); \
+      BUILD_DIR/levels/name/script.o(.data); \
+      BUILD_DIR/levels/name/geo.o(.data); \
    } \
    END_SEG(name)
 
@@ -510,7 +512,7 @@ SECTIONS
 
    BEGIN_SEG(entry, 0x10000000)
    {
-      BUILD_DIR/levels/entry.o(.level);
+      BUILD_DIR/levels/entry.o(.data);
    }
    END_SEG(entry)
 
@@ -600,7 +602,7 @@ SECTIONS
       BUILD_DIR/libgoddard.a:shape_helper.o(.data*);
       BUILD_DIR/libgoddard.a:renderer.o(.data*);
       /* goddard texture and DLs */
-      BUILD_DIR/data/goddard_tex_dl.o(.rodata*);
+      BUILD_DIR/data/goddard_tex_dl.o(.data*);
       /* goddard subsystem rodata */
       BUILD_DIR/libgoddard.a:gd_main.o(.rodata*);
       BUILD_DIR/libgoddard.a:gd_memory.o(.rodata*);
@@ -669,12 +671,14 @@ SECTIONS
    /* 0x268020 0x268020-0 [0] */
    BEGIN_SEG(intro, 0x14000000)
    {
-      BUILD_DIR/bin/intro/header.o(.level);
+      BUILD_DIR/levels/intro/script.o(.data);
+      BUILD_DIR/levels/intro/geo.o(.data);
    }
    END_SEG(intro)
    BEGIN_SEG(intro_segment_7, 0x07000000)
    {
-      BUILD_DIR/bin/intro/header.o(.seg07);
+      BUILD_DIR/levels/intro/leveldata.mio0.o(.data);
+      . = ALIGN(0x10);
    }
    END_SEG(intro_segment_7)
 
@@ -708,18 +712,20 @@ SECTIONS
 
    BEGIN_SEG(menu, 0x14000000)
    {
-      BUILD_DIR/bin/menu/header.o(.level);
+      BUILD_DIR/levels/menu/script.o(.data);
+      BUILD_DIR/levels/menu/geo.o(.data);
    }
    END_SEG(menu)
    BEGIN_SEG(menu_segment_7, 0x07000000)
    {
-      BUILD_DIR/bin/menu/header.o(.seg07);
+      BUILD_DIR/levels/menu/leveldata.mio0.o(.data);
+      . = ALIGN(0x10);
    }
    END_SEG(menu_segment_7)
 
    BEGIN_SEG(scripts, 0x15000000)
    {
-      BUILD_DIR/levels/scripts.o(.level);
+      BUILD_DIR/levels/scripts.o(.data);
    }
    END_SEG(scripts)
 

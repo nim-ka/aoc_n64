@@ -392,17 +392,6 @@ struct MovtexQuad {
     s16 textureId; /// texture id
 };
 
-/**
- * Contains an id and an array of MovtexQuad structs.
- */
-struct MovtexQuadCollection {
-    /// identifier for geo nodes to refer to this MovtexQuad collection
-    s16 id;
-    s16 filler;
-    /// points to a short 'n' followed by an array of n MovtexQuad structs
-    void *quadArraySegmented;
-};
-
 /// Variable for a little optimization: only set the texture when it differs from the previous texture
 s16 gMovetexLastTextureId;
 

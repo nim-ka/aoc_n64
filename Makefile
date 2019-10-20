@@ -129,10 +129,11 @@ MIO0_DIR := $(BUILD_DIR)/bin
 SOUND_BIN_DIR := $(BUILD_DIR)/sound
 TEXTURE_DIR := textures
 ACTOR_DIR := actors
+LEVEL_DIRS := $(patsubst levels/%,%,$(dir $(wildcard levels/*/header.h)))
 
 # Directories containing source files
-SRC_DIRS := src src/engine src/game src/audio src/menu src/buffers actors
-ASM_DIRS := asm lib data levels assets sound text
+SRC_DIRS := src src/engine src/game src/audio src/menu src/buffers actors levels text bin data
+ASM_DIRS := asm lib data assets sound
 BIN_DIRS := bin bin/$(VERSION)
 
 ULTRA_SRC_DIRS := lib/src lib/src/math
@@ -141,7 +142,6 @@ ULTRA_BIN_DIRS := lib/bin
 
 GODDARD_SRC_DIRS := src/goddard src/goddard/dynlists
 
-LEVEL_DIRS := $(patsubst levels/%,%,$(dir $(wildcard levels/*/header.s)))
 
 MIPSISET := -mips2 -32
 
@@ -155,12 +155,12 @@ endif
 include Makefile.split
 
 # Source code files
-C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
+LEVEL_C_FILES := $(wildcard levels/*/leveldata.c) $(wildcard levels/*/script.c) $(wildcard levels/*/geo.c)
+C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c)) $(LEVEL_C_FILES)
 S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
 ULTRA_C_FILES := $(foreach dir,$(ULTRA_SRC_DIRS),$(wildcard $(dir)/*.c))
 GODDARD_C_FILES := $(foreach dir,$(GODDARD_SRC_DIRS),$(wildcard $(dir)/*.c))
 ULTRA_S_FILES := $(foreach dir,$(ULTRA_ASM_DIRS),$(wildcard $(dir)/*.s))
-LEVEL_S_FILES := $(addsuffix header.s,$(addprefix bin/,$(LEVEL_DIRS)))
 
 SOUND_BANK_FILES := $(wildcard sound/sound_banks/*.json)
 SOUND_SEQUENCE_FILES := $(wildcard sound/sequences/$(VERSION)/*.m64) \
@@ -180,7 +180,6 @@ SOUND_OBJ_FILES := $(SOUND_BIN_DIR)/sound_data.ctl.o \
 # Object files
 O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
            $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
-           $(foreach file,$(LEVEL_S_FILES),$(BUILD_DIR)/$(file:.s=.o))
 
 ULTRA_O_FILES := $(foreach file,$(ULTRA_S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
                  $(foreach file,$(ULTRA_C_FILES),$(BUILD_DIR)/$(file:.c=.o))
@@ -225,10 +224,10 @@ OBJCOPY   := $(CROSS)objcopy
 PYTHON    := python3
 
 # Check code syntax with host compiler
-CC_CHECK := gcc -fsyntax-only -fsigned-char -nostdinc -fno-builtin -I include -I $(BUILD_DIR) -I $(BUILD_DIR)/include -I src -std=gnu90 -Wall -Wextra -Wno-format-security -DNON_MATCHING -D_LANGUAGE_C $(VERSION_CFLAGS) $(GRUCODE_CFLAGS)
+CC_CHECK := gcc -fsyntax-only -fsigned-char -nostdinc -fno-builtin -I include -I $(BUILD_DIR) -I $(BUILD_DIR)/include -I src -I . -std=gnu90 -Wall -Wextra -Wno-format-security -DNON_MATCHING -D_LANGUAGE_C $(VERSION_CFLAGS) $(GRUCODE_CFLAGS) -DTARGET_N64
 
 ASFLAGS := -march=vr4300 -mabi=32 -I include -I $(BUILD_DIR) $(VERSION_ASFLAGS) $(GRUCODE_ASFLAGS)
-CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn $(OPT_FLAGS) -signed -I include -I $(BUILD_DIR) -I $(BUILD_DIR)/include -I src -D_LANGUAGE_C $(VERSION_CFLAGS) $(MIPSISET) $(GRUCODE_CFLAGS)
+CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn $(OPT_FLAGS) -signed -I include -I $(BUILD_DIR) -I $(BUILD_DIR)/include -I src -I . -D_LANGUAGE_C $(VERSION_CFLAGS) $(MIPSISET) $(GRUCODE_CFLAGS) -DTARGET_N64
 OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
 SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
 LDFLAGS := -T undefined_syms.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.$(VERSION).map --no-check-sections $(SYMBOL_LINKING_FLAGS)
@@ -253,7 +252,7 @@ TEXTCONV = $(TOOLS_DIR)/textconv
 IPLFONTUTIL = $(TOOLS_DIR)/iplfontutil
 AIFF_EXTRACT_CODEBOOK = $(TOOLS_DIR)/aiff_extract_codebook
 VADPCM_ENC = $(TOOLS_DIR)/vadpcm_enc
-TRIM_ZEROS = $(TOOLS_DIR)/trim_zeros
+EXTRACT_DATA_FOR_MIO = $(TOOLS_DIR)/extract_data_for_mio
 EMULATOR = mupen64plus
 EMU_FLAGS = --noosd
 LOADER = loader64
@@ -302,21 +301,21 @@ $(BUILD_DIR)/include/text_strings.h: include/text_strings.h.in
 $(BUILD_DIR)/include/text_menu_strings.h: include/text_menu_strings.h.in
 	$(TEXTCONV) charmap_menu.txt $< $@
 
-$(BUILD_DIR)/text/%.s: text/$(VERSION)/%.s.in
+$(BUILD_DIR)/text/%.inc.c: text/$(VERSION)/%.c.in
 	$(TEXTCONV) charmap.txt $< $@
 
 ifeq ($(VERSION),eu)
-ASM_DIRS += text/de text/en text/fr
+SRC_DIRS += text/de text/en text/fr
 # EU encoded text inserted into individual segment 0x19 files
-$(BUILD_DIR)/bin/$(VERSION)/translation_de.o: $(BUILD_DIR)/text/de/dialog.s $(BUILD_DIR)/text/de/level.s $(BUILD_DIR)/text/de/star.s
-$(BUILD_DIR)/bin/$(VERSION)/translation_en.o: $(BUILD_DIR)/text/en/dialog.s $(BUILD_DIR)/text/en/level.s $(BUILD_DIR)/text/en/star.s
-$(BUILD_DIR)/bin/$(VERSION)/translation_fr.o: $(BUILD_DIR)/text/fr/dialog.s $(BUILD_DIR)/text/fr/level.s $(BUILD_DIR)/text/fr/star.s
+$(BUILD_DIR)/bin/$(VERSION)/translation_de.o: $(BUILD_DIR)/text/de/dialog.inc.c $(BUILD_DIR)/text/de/level.inc.c $(BUILD_DIR)/text/de/star.inc.c
+$(BUILD_DIR)/bin/$(VERSION)/translation_en.o: $(BUILD_DIR)/text/en/dialog.inc.c $(BUILD_DIR)/text/en/level.inc.c $(BUILD_DIR)/text/en/star.inc.c
+$(BUILD_DIR)/bin/$(VERSION)/translation_fr.o: $(BUILD_DIR)/text/fr/dialog.inc.c $(BUILD_DIR)/text/fr/level.inc.c $(BUILD_DIR)/text/fr/star.inc.c
 else
 # non-EU encoded text inserted into segment 0x02
-$(BUILD_DIR)/bin/segment2.o: $(BUILD_DIR)/text/debug.s $(BUILD_DIR)/text/dialog.s $(BUILD_DIR)/text/level.s $(BUILD_DIR)/text/star.s
+$(BUILD_DIR)/bin/segment2.o: $(BUILD_DIR)/text/debug.inc.c $(BUILD_DIR)/text/dialog.inc.c $(BUILD_DIR)/text/level.inc.c $(BUILD_DIR)/text/star.inc.c
 endif
 
-ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(GODDARD_SRC_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(SOUND_SAMPLE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) $(addprefix bin/,$(LEVEL_DIRS)) include) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(LEVEL_DIRS)) $(addprefix $(MIO0_DIR)/,$(VERSION)) $(SOUND_BIN_DIR) $(SOUND_BIN_DIR)/sequences/$(VERSION)
+ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(GODDARD_SRC_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(SOUND_SAMPLE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) include) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(VERSION)) $(SOUND_BIN_DIR) $(SOUND_BIN_DIR)/sequences/$(VERSION)
 
 # Make sure build directory exists before compiling anything
 DUMMY != mkdir -p $(ALL_DIRS)
@@ -349,14 +348,6 @@ $(BUILD_DIR)/%.ci4: %.ci4.png
 ################################################################
 
 # compressed segment generation
-$(BUILD_DIR)/bin/%.o: bin/%.s
-	$(AS) $(ASFLAGS) --no-pad-sections -o $@ $<
-
-$(BUILD_DIR)/bin/%/leveldata.o: levels/%/leveldata.s
-	$(AS) $(ASFLAGS) --no-pad-sections -o $@ $<
-
-$(BUILD_DIR)/bin/%/header.o: levels/%/header.s $(MIO0_DIR)/%/leveldata.mio0 levels/%/script.s
-	$(AS) $(ASFLAGS) --no-pad-sections -o $@ $<
 
 # TODO: ideally this would be `-Trodata-segment=0x07000000` but that doesn't set the address
 $(BUILD_DIR)/bin/%.elf: $(BUILD_DIR)/bin/%.o
@@ -366,17 +357,17 @@ $(BUILD_DIR)/actors/%.elf: $(BUILD_DIR)/actors/%.o
 
 # Override for level.elf, which otherwise matches the above pattern
 .SECONDEXPANSION:
-$(BUILD_DIR)/bin/%/leveldata.elf: $(BUILD_DIR)/bin/%/leveldata.o $(BUILD_DIR)/bin/$$(TEXTURE_BIN).elf
+$(BUILD_DIR)/levels/%/leveldata.elf: $(BUILD_DIR)/levels/%/leveldata.o $(BUILD_DIR)/bin/$$(TEXTURE_BIN).elf
 	$(LD) -e 0 -Ttext=$(SEGMENT_ADDRESS) -Map $@.map --just-symbols=$(BUILD_DIR)/bin/$(TEXTURE_BIN).elf -o $@ $<
 
 $(BUILD_DIR)/bin/%.bin: $(BUILD_DIR)/bin/%.elf
-	$(OBJCOPY) -j .rodata $< -O binary $@
+	$(EXTRACT_DATA_FOR_MIO) $< $@
 
-$(BUILD_DIR)/actors/%.bin_aligned: $(BUILD_DIR)/actors/%.elf
-	$(OBJCOPY) -j .data $< -O binary $@
+$(BUILD_DIR)/actors/%.bin: $(BUILD_DIR)/actors/%.elf
+	$(EXTRACT_DATA_FOR_MIO) $< $@
 
-$(BUILD_DIR)/actors/%.bin: $(BUILD_DIR)/actors/%.bin_aligned
-	$(TRIM_ZEROS) $< $@
+$(BUILD_DIR)/levels/%/leveldata.bin: $(BUILD_DIR)/levels/%/leveldata.elf
+	$(EXTRACT_DATA_FOR_MIO) $< $@
 
 $(BUILD_DIR)/%.mio0: $(BUILD_DIR)/%.bin
 	$(MIO0TOOL) $< $@
@@ -451,7 +442,7 @@ $(BUILD_DIR)/%.o: %.c
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 
-$(BUILD_DIR)/%.o: %.s $(MIO0_FILES)
+$(BUILD_DIR)/%.o: %.s
 	$(AS) $(ASFLAGS) -MD $(BUILD_DIR)/$*.d -o $@ $<
 
 $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)

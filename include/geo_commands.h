@@ -1,6 +1,8 @@
 #ifndef GEO_COMMANDS_H
 #define GEO_COMMANDS_H
 
+#include "command_macros_base.h"
+
 #include "game/shadow.h"
 #include "game/object_helpers.h"
 #include "game/object_helpers2.h"
@@ -9,12 +11,17 @@
 #include "game/mario_misc.h"
 #include "game/mario_actions_cutscene.h"
 
-#define CMD_BBH(a, b, c) (_SHIFTL(a, 24, 8) | _SHIFTL(b, 16, 8) | _SHIFTL(c, 0, 16))
-#define CMD_HH(a, b) (_SHIFTL(a, 16, 16) | _SHIFTL(b, 0, 16))
-#define CMD_W(a) (a)
-#define CMD_PTR(a) ((uintptr_t)(a))
-
-#define CMD_HHHHHH(a, b, c, d, e, f) CMD_HH(a, b), CMD_HH(c, d), CMD_HH(e, f)
+// sky background params
+#define BACKGROUND_OCEAN_SKY        0
+#define BACKGROUND_FLAMING_SKY      1
+#define BACKGROUND_UNDERWATER_CITY  2
+#define BACKGROUND_BELOW_CLOUDS     3
+#define BACKGROUND_SNOW_MOUNTAINS   4
+#define BACKGROUND_DESERT           5
+#define BACKGROUND_HAUNTED          6
+#define BACKGROUND_GREEN_SKY        7
+#define BACKGROUND_ABOVE_CLOUDS     8
+#define BACKGROUND_PURPLE_SKY       9
 
 // geo layout macros
 
@@ -109,7 +116,7 @@
  *   0x06: s16 far
  *   0x08: [GraphNodeFunc function]
 */
-#define GEO_CAMERA_FRUSTUM(fov, near, far), \
+#define GEO_CAMERA_FRUSTUM(fov, near, far) \
     CMD_BBH(0x0A, 0x00, fov), \
     CMD_HH(near, far)
 #define GEO_CAMERA_FRUSTUM_WITH_FUNC(fov, near, far, func) \
@@ -350,6 +357,8 @@
 #define GEO_BACKGROUND(background, function) \
     CMD_BBH(0x19, 0x00, background), \
     CMD_PTR(function)
+#define GEO_BACKGROUND_COLOR(background) \
+    GEO_BACKGROUND(background, NULL)
 
 /**
  * 0x1A: No operation

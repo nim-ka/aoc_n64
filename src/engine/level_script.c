@@ -21,11 +21,14 @@
 #include "surface_collision.h"
 #include "surface_load.h"
 
-#define CMD_GET(type, offset) (*(type *) ((offset) + (u8 *) sCurrentCmd))
+#define CMD_SIZE_SHIFT (sizeof(void *) >> 3)
+#define CMD_PROCESS_OFFSET(offset) ((offset & 3) | ((offset & ~3) << CMD_SIZE_SHIFT))
+
+#define CMD_GET(type, offset) (*(type *) (CMD_PROCESS_OFFSET(offset) + (u8 *) sCurrentCmd))
 
 // These are equal
-#define CMD_NEXT ((struct LevelCommand *) ((u8 *) sCurrentCmd + sCurrentCmd->size))
-#define NEXT_CMD ((struct LevelCommand *) (sCurrentCmd->size + (u8 *) sCurrentCmd))
+#define CMD_NEXT ((struct LevelCommand *) ((u8 *) sCurrentCmd + (sCurrentCmd->size << CMD_SIZE_SHIFT)))
+#define NEXT_CMD ((struct LevelCommand *) ((sCurrentCmd->size << CMD_SIZE_SHIFT) + (u8 *) sCurrentCmd))
 
 struct LevelCommand {
     /*00*/ u8 type;
@@ -86,22 +89,22 @@ static s32 eval_script_op(s8 op, s32 arg) {
 
 static void level_cmd_load_and_execute(void) {
     main_pool_push_state();
-    load_segment(CMD_GET(s16, 2), CMD_GET(void *, 4), CMD_GET(void *, 4 + sizeof(void *)), MEMORY_POOL_LEFT);
+    load_segment(CMD_GET(s16, 2), CMD_GET(void *, 4), CMD_GET(void *, 8), MEMORY_POOL_LEFT);
 
     *sStackTop++ = (uintptr_t) NEXT_CMD;
     *sStackTop++ = (uintptr_t) sStackBase;
     sStackBase = sStackTop;
 
-    sCurrentCmd = segmented_to_virtual(CMD_GET(void *, 4 + 2 * sizeof(void *)));
+    sCurrentCmd = segmented_to_virtual(CMD_GET(void *, 12));
 }
 
 static void level_cmd_exit_and_execute(void) {
-    void *targetAddr = CMD_GET(void *, 4 + 2 * sizeof(void *));
+    void *targetAddr = CMD_GET(void *, 12);
 
     main_pool_pop_state();
     main_pool_push_state();
 
-    load_segment(CMD_GET(s16, 2), CMD_GET(void *, 4), CMD_GET(void *, 4 + sizeof(void *)),
+    load_segment(CMD_GET(s16, 2), CMD_GET(void *, 4), CMD_GET(void *, 8),
             MEMORY_POOL_LEFT);
 
     sStackTop = sStackBase;
@@ -261,19 +264,18 @@ static void level_cmd_pop_pool_state(void) {
 }
 
 static void level_cmd_load_to_fixed_address(void) {
-    load_to_fixed_pool_addr(CMD_GET(void *, 4), CMD_GET(void *, 4 + sizeof(void *)),
-            CMD_GET(void *, 4 + 2 * sizeof(void *)));
+    load_to_fixed_pool_addr(CMD_GET(void *, 4), CMD_GET(void *, 8), CMD_GET(void *, 12));
     sCurrentCmd = CMD_NEXT;
 }
 
 static void level_cmd_load_raw(void) {
-    load_segment(CMD_GET(s16, 2), CMD_GET(void *, 4), CMD_GET(void *, 4 + sizeof(void *)),
+    load_segment(CMD_GET(s16, 2), CMD_GET(void *, 4), CMD_GET(void *, 8),
             MEMORY_POOL_LEFT);
     sCurrentCmd = CMD_NEXT;
 }
 
 static void level_cmd_load_mio0(void) {
-    load_segment_decompress(CMD_GET(s16, 2), CMD_GET(void *, 4), CMD_GET(void *, 4 + sizeof(void *)));
+    load_segment_decompress(CMD_GET(s16, 2), CMD_GET(void *, 4), CMD_GET(void *, 8));
     sCurrentCmd = CMD_NEXT;
 }
 
@@ -293,7 +295,7 @@ static void level_cmd_load_mario_head(void) {
 }
 
 static void level_cmd_load_mio0_texture(void) {
-    func_80278304(CMD_GET(s16, 2), CMD_GET(void *, 4), CMD_GET(void *, 4 + sizeof(void *)));
+    func_80278304(CMD_GET(s16, 2), CMD_GET(void *, 4), CMD_GET(void *, 8));
     sCurrentCmd = CMD_NEXT;
 }
 
@@ -402,7 +404,7 @@ static void level_cmd_23(void) {
     s16 arg0H = CMD_GET(u16, 2) >> 12;
     void *arg1 = CMD_GET(void *, 4);
     // load an f32, but using an integer load instruction for some reason (hence the union)
-    arg2.i = CMD_GET(s32, 4 + sizeof(void *));
+    arg2.i = CMD_GET(s32, 8);
 
     if (model < 256) {
         // GraphNodeScale has a GraphNode at the top. This

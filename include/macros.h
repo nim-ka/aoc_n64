@@ -20,6 +20,13 @@
 #define STATIC_ASSERT(cond, msg) typedef char GLUE2(static_assertion_failed, __LINE__)[(cond) ? 1 : -1]
 #endif
 
+// Align to 8-byte boundary for DMA requirements
+#ifdef __GNUC__
+#define ALIGNED8 __attribute__((aligned(8)))
+#else
+#define ALIGNED8
+#endif
+
 // convert a virtual address to physical.
 #define VIRTUAL_TO_PHYSICAL(addr)   ((uintptr_t)(addr) & 0x1FFFFFFF)
 

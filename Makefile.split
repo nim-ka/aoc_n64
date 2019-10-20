@@ -2,8 +2,8 @@
 # General Rules
 # --------------------------------------
 
-# obtain a list of segments from the *.s files in bin directory
-SEGMENTS := $(notdir $(basename $(wildcard bin/*.s))) $(addprefix $(VERSION)/,$(notdir $(basename $(wildcard bin/$(VERSION)/*.s))))
+# obtain a list of segments from the *.c files in bin directory
+SEGMENTS := $(notdir $(basename $(wildcard bin/*.c))) $(addprefix $(VERSION)/,$(notdir $(basename $(wildcard bin/$(VERSION)/*.c))))
 ACTORS := $(filter %/,$(wildcard actors/*/))
 TEXTURE_DIRS := $(addprefix textures/,$(SEGMENTS)) $(ACTORS) textures/intro_raw
 
@@ -32,12 +32,12 @@ ACTOR_GROUPS := \
     common1
 
 LEVEL_FILES := $(addsuffix leveldata,$(LEVEL_DIRS))
-MIO0_FILES := $(addprefix $(MIO0_DIR)/,$(addsuffix .mio0,$(SEGMENTS) $(LEVEL_FILES))) $(addprefix $(BUILD_DIR)/actors/,$(addsuffix .mio0,$(ACTOR_GROUPS)))
+MIO0_FILES := $(addprefix $(MIO0_DIR)/,$(addsuffix .mio0,$(SEGMENTS))) $(addprefix $(BUILD_DIR)/actors/,$(addsuffix .mio0,$(ACTOR_GROUPS))) $(addprefix $(BUILD_DIR)/levels/,$(addsuffix .mio0,$(LEVEL_FILES)))
 MIO0_OBJ_FILES := $(MIO0_FILES:.mio0=.mio0.o)
 
 SEGMENT_ELF_FILES := $(addprefix $(BUILD_DIR)/bin/,$(addsuffix .elf,$(SEGMENTS)))
 ACTOR_ELF_FILES := $(addprefix $(BUILD_DIR)/actors/,$(addsuffix .elf,$(ACTOR_GROUPS)))
-LEVEL_ELF_FILES := $(addprefix $(BUILD_DIR)/bin/,$(addsuffix .elf,$(LEVEL_FILES)))
+LEVEL_ELF_FILES := $(addprefix $(BUILD_DIR)/levels/,$(addsuffix .elf,$(LEVEL_FILES)))
 
 # --------------------------------------
 # Actor Rules
@@ -141,11 +141,11 @@ $(BUILD_DIR)/actors/common1.elf: SEGMENT_ADDRESS := 0x03000000
 # TODO: Generate these rules from the level configs?
 
 define level_rules = 
-    $(1)_SEG7_FILES     := $$(basename $$(notdir $$(wildcard levels/$(1)/*.png)))
+    $(1)_SEG7_FILES     := $$(patsubst %.png,%.inc.c,$$(notdir $$(wildcard levels/$(1)/*.png)))
     $(1)_SEG7_FILES_RAW := $(shell find levels/$(1)/ -type f -iname '*')
-    $$(BUILD_DIR)/bin/$(1)/leveldata.o: $$(addprefix $$(BUILD_DIR)/levels/$(1)/,$$($(1)_SEG7_FILES)) $$($(1)_SEG7_FILES_RAW)
-    $$(BUILD_DIR)/bin/$(1)/leveldata.elf: SEGMENT_ADDRESS := $(2)
-    $$(BUILD_DIR)/bin/$(1)/leveldata.elf: TEXTURE_BIN := $(3)
+    $$(BUILD_DIR)/levels/$(1)/leveldata.o: $$(addprefix $$(BUILD_DIR)/levels/$(1)/,$$($(1)_SEG7_FILES)) $$($(1)_SEG7_FILES_RAW)
+    $$(BUILD_DIR)/levels/$(1)/leveldata.elf: SEGMENT_ADDRESS := $(2)
+    $$(BUILD_DIR)/levels/$(1)/leveldata.elf: TEXTURE_BIN := $(3)
 endef
 
 $(eval $(call level_rules,bbh,0x07000000,spooky)) # BBH (Big Boo's Haunt)
@@ -188,21 +188,21 @@ $(eval $(call level_rules,menu,0x07000000,generic)) # Menu (File Select)
 # --------------------------------------
 
 # Others
-SEGMENT2_FILES               := $(basename $(wildcard $(TEXTURE_DIR)/segment2/*.png))
-TITLE_SCREEN_BG_FILES        := $(basename $(wildcard $(TEXTURE_DIR)/title_screen_bg/*.png))
-SPOOKY_FILES                 := $(basename $(wildcard $(TEXTURE_DIR)/spooky/*.png))
-GENERIC_FILES                := $(basename $(wildcard $(TEXTURE_DIR)/generic/*.png))
-OUTSIDE_FILES                := $(basename $(wildcard $(TEXTURE_DIR)/outside/*.png))
-SNOW_FILES                   := $(basename $(wildcard $(TEXTURE_DIR)/snow/*.png))
-EFFECT_FILES                 := $(basename $(wildcard $(TEXTURE_DIR)/effect/*.png))
-CAVE_FILES                   := $(basename $(wildcard $(TEXTURE_DIR)/cave/*.png))
-INSIDE_FILES                 := $(basename $(wildcard $(TEXTURE_DIR)/inside/*.png))
-WATER_FILES                  := $(basename $(wildcard $(TEXTURE_DIR)/water/*.png))
-FIRE_TEXTURES_FILES          := $(basename $(wildcard $(TEXTURE_DIR)/fire/*.png))
-SKY_FILES                    := $(basename $(wildcard $(TEXTURE_DIR)/sky/*.png))
-MACHINE_FILES                := $(basename $(wildcard $(TEXTURE_DIR)/machine/*.png))
-MOUNTAIN_FILES               := $(basename $(wildcard $(TEXTURE_DIR)/mountain/*.png))
-GRASS_FILES                  := $(basename $(wildcard $(TEXTURE_DIR)/grass/*.png))
+SEGMENT2_FILES               := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/segment2/*.png))
+TITLE_SCREEN_BG_FILES        := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/title_screen_bg/*.png))
+SPOOKY_FILES                 := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/spooky/*.png))
+GENERIC_FILES                := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/generic/*.png))
+OUTSIDE_FILES                := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/outside/*.png))
+SNOW_FILES                   := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/snow/*.png))
+EFFECT_FILES                 := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/effect/*.png))
+CAVE_FILES                   := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/cave/*.png))
+INSIDE_FILES                 := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/inside/*.png))
+WATER_FILES                  := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/water/*.png))
+FIRE_TEXTURES_FILES          := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/fire/*.png))
+SKY_FILES                    := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/sky/*.png))
+MACHINE_FILES                := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/machine/*.png))
+MOUNTAIN_FILES               := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/mountain/*.png))
+GRASS_FILES                  := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/grass/*.png))
 
 # Texture Files
 $(BUILD_DIR)/bin/segment2.o: $(addprefix $(BUILD_DIR)/,$(SEGMENT2_FILES))
@@ -249,16 +249,16 @@ $(BUILD_DIR)/bin/$(VERSION)/translation_fr.elf: SEGMENT_ADDRESS := 0x19000000
 # --------------------------------------
 
 # Skybox Files
-BBH_SKYBOX_FILES             := $(basename $(wildcard $(TEXTURE_DIR)/bbh_skybox/*.png))
-BIDW_SKYBOX_FILES            := $(basename $(wildcard $(TEXTURE_DIR)/bidw_skybox/*.png))
-BITFS_SKYBOX_FILES           := $(basename $(wildcard $(TEXTURE_DIR)/bitfs_skybox/*.png))
-BITS_SKYBOX_FILES            := $(basename $(wildcard $(TEXTURE_DIR)/bits_skybox/*.png))
-CCM_SKYBOX_FILES             := $(basename $(wildcard $(TEXTURE_DIR)/ccm_skybox/*.png))
-CLOUD_FLOOR_SKYBOX_FILES     := $(basename $(wildcard $(TEXTURE_DIR)/cloud_floor_skybox/*.png))
-CLOUDS_SKYBOX_FILES          := $(basename $(wildcard $(TEXTURE_DIR)/clouds_skybox/*.png))
-SSL_SKYBOX_FILES             := $(basename $(wildcard $(TEXTURE_DIR)/ssl_skybox/*.png))
-WATER_SKYBOX_FILES           := $(basename $(wildcard $(TEXTURE_DIR)/water_skybox/*.png))
-WDW_SKYBOX_FILES             := $(basename $(wildcard $(TEXTURE_DIR)/wdw_skybox/*.png))
+BBH_SKYBOX_FILES             := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/bbh_skybox/*.png))
+BIDW_SKYBOX_FILES            := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/bidw_skybox/*.png))
+BITFS_SKYBOX_FILES           := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/bitfs_skybox/*.png))
+BITS_SKYBOX_FILES            := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/bits_skybox/*.png))
+CCM_SKYBOX_FILES             := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/ccm_skybox/*.png))
+CLOUD_FLOOR_SKYBOX_FILES     := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/cloud_floor_skybox/*.png))
+CLOUDS_SKYBOX_FILES          := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/clouds_skybox/*.png))
+SSL_SKYBOX_FILES             := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/ssl_skybox/*.png))
+WATER_SKYBOX_FILES           := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/water_skybox/*.png))
+WDW_SKYBOX_FILES             := $(patsubst %.png,%.inc.c,$(wildcard $(TEXTURE_DIR)/wdw_skybox/*.png))
 
 # Skybox Files
 $(BUILD_DIR)/bin/bbh_skybox.o: $(addprefix $(BUILD_DIR)/,$(BBH_SKYBOX_FILES))
@@ -289,5 +289,5 @@ $(BUILD_DIR)/bin/wdw_skybox.elf: SEGMENT_ADDRESS := 0x0A000000
 # --------------------------------------
 
 # intro_raw textures are not compressed
-INTRO_RAW_FILES              := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/intro_raw/*.png)))
+INTRO_RAW_FILES              := $(patsubst %.png,%.inc.c,$(notdir $(wildcard $(TEXTURE_DIR)/intro_raw/*.png)))
 $(BUILD_DIR)/data/goddard_tex_dl.o: $(addprefix $(BUILD_DIR)/textures/intro_raw/,$(INTRO_RAW_FILES))

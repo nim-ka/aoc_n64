@@ -312,4 +312,12 @@ struct StructGeo802D2360
     s32 *unk4;
 };
 
+typedef uintptr_t GeoLayout;
+typedef uintptr_t LevelScript;
+typedef s16 Movtex;
+typedef s16 MacroObject;
+typedef s16 Collision;
+typedef s16 Trajectory;
+typedef s16 PaintingData;
+
 #endif

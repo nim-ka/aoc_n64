@@ -247,6 +247,7 @@ extern u32 bhvInitializeChangingWaterLevel[];
 extern u32 bhvTornadoSandParticle[];
 extern u32 bhvTornado[];
 extern u32 bhvMerryGoRoundBooManager[];
+extern u32 bhvPlaysMusicTrackWhenTouched[];
 extern u32 bhvAnimatedTexture[];
 extern u32 bhvBooInCastle[];
 extern u32 bhvBooWithCage[];
