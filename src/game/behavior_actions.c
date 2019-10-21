@@ -70,7 +70,7 @@ struct Struct802C0DF0 {
     u8 unk1;
     u8 unk2;
     u8 model;
-    void *behavior;
+    const BehaviorScript *behavior;
 };
 
 struct Struct8032FE4C {

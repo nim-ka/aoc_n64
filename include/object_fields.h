@@ -20,6 +20,7 @@
 #define OBJECT_FIELD_OBJ(index)           rawData.asObject[index]
 #define OBJECT_FIELD_SURFACE(index)       rawData.asSurface[index]
 #define OBJECT_FIELD_VPTR(index)          rawData.asVoidPtr[index]
+#define OBJECT_FIELD_CVPTR(index)         rawData.asConstVoidPtr[index]
 
 // 0x088 (0x00), the first field, is object-specific and defined below the common fields.
 /* Common fields */
@@ -695,7 +696,7 @@
 /* Object Respawner */
 #define /*0x0F4*/ oRespawnerModelToRespawn    OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ oRespawnerMinSpawnDist      OBJECT_FIELD_F32(0x1C)
-#define /*0x0FC*/ oRespawnerBehaviorToRespawn OBJECT_FIELD_VPTR(0x1D)
+#define /*0x0FC*/ oRespawnerBehaviorToRespawn OBJECT_FIELD_CVPTR(0x1D)
 
 /* Openable Grill */
 #define /*0x088*/ oOpenableGrillUnk88 OBJECT_FIELD_S32(0x00)

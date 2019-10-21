@@ -307,11 +307,11 @@ static void snap_object_to_floor(struct Object *obj) {
  * Spawn an object at the origin with the behavior script at virtual address
  * behScript.
  */
-struct Object *create_object(uintptr_t *behScript) {
+struct Object *create_object(const BehaviorScript *behScript) {
     s32 objListIndex;
     struct Object *obj;
     struct ObjectNode *objList;
-    void *behavior = (void *) behScript;
+    const BehaviorScript *behavior = behScript;
 
     // If the first behavior script command is "begin <object list>", then
     // extract the object list from it

@@ -45,8 +45,6 @@ s8 D_80331508 = 0;
 s8 D_8033150C = 0;
 s8 D_80331510 = 0;
 
-s32 count_objects_with_behavior(void *);
-
 extern void *ccm_seg7_trajectory_snowman;
 extern void *inside_castle_seg7_trajectory_mips;
 

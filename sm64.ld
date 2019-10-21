@@ -555,7 +555,7 @@ SECTIONS
    /* use segmented addressing for behaviors */
    BEGIN_SEG(behavior, 0x13000000)
    {
-      BUILD_DIR/data/behavior_data.o(.behavior);
+      BUILD_DIR/data/behavior_data.o(.data);
    }
    END_SEG(behavior)
 

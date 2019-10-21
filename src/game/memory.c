@@ -70,7 +70,7 @@ void *segmented_to_virtual(const void *addr) {
     return (void *) ((sSegmentTable[segment] + offset) | 0x80000000);
 }
 
-void *virtual_to_segmented(u32 segment, void *addr) {
+void *virtual_to_segmented(u32 segment, const void *addr) {
     size_t offset = ((uintptr_t) addr & 0x1FFFFFFF) - sSegmentTable[segment];
 
     return (void *) ((segment << 24) + offset);

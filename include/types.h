@@ -28,6 +28,15 @@ typedef s16 Vec4s[4];
 
 typedef f32 Mat4[4][4];
 
+typedef uintptr_t GeoLayout;
+typedef uintptr_t LevelScript;
+typedef s16 Movtex;
+typedef s16 MacroObject;
+typedef s16 Collision;
+typedef s16 Trajectory;
+typedef s16 PaintingData;
+typedef uintptr_t BehaviorScript;
+
 enum SpTaskState {
     SPTASK_STATE_NOT_STARTED,
     SPTASK_STATE_RUNNING,
@@ -146,9 +155,10 @@ struct Object
         struct Object *asObject[0x50];
         struct Surface *asSurface[0x50];
         void *asVoidPtr[0x50];
+        const void *asConstVoidPtr[0x50];
     } rawData;
     /*0x1C8*/ u32 unused1;
-    /*0x1CC*/ uintptr_t *behScript;
+    /*0x1CC*/ const BehaviorScript *behScript;
     /*0x1D0*/ u32 stackIndex;
     /*0x1D4*/ uintptr_t stack[8];
     /*0x1F4*/ s16 unk1F4;
@@ -158,7 +168,7 @@ struct Object
     /*0x200*/ f32 hurtboxRadius;
     /*0x204*/ f32 hurtboxHeight;
     /*0x208*/ f32 hitboxDownOffset;
-    /*0x20C*/ void *behavior;
+    /*0x20C*/ const BehaviorScript *behavior;
     /*0x210*/ u32 unused2;
     /*0x214*/ struct Object *platform;
     /*0x218*/ void *collisionData;
@@ -311,13 +321,5 @@ struct StructGeo802D2360
     s32 unk0;
     s32 *unk4;
 };
-
-typedef uintptr_t GeoLayout;
-typedef uintptr_t LevelScript;
-typedef s16 Movtex;
-typedef s16 MacroObject;
-typedef s16 Collision;
-typedef s16 Trajectory;
-typedef s16 PaintingData;
 
 #endif

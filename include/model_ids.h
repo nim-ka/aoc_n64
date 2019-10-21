@@ -1,8 +1,5 @@
 #ifndef _MODEL_IDS_H
 #define _MODEL_IDS_H
-
-// Don't worry about formatting here, this file should be deleted and replaced with model_ids.inc.
-
 #define ACT_1 (1 << 0)
 #define ACT_2 (1 << 1)
 #define ACT_3 (1 << 2)
