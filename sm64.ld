@@ -455,6 +455,8 @@ SECTIONS
       BUILD_DIR/libultra.a:*.o(.bss*);
    }
    END_NOLOAD(main)
+   _mainSegmentNoloadSizeLo = SIZEOF (.main.noload) & 0xffff;
+   _mainSegmentNoloadSizeHi = SIZEOF (.main.noload) >> 16;
 
    ASSERT((. <= SEG_ENGINE), "Error: main segment extended into engine.")
 
