@@ -7,7 +7,21 @@
  * object type. These macros provide access to these fields.
  */
 
-
+#ifdef OBJECT_FIELDS_INDEX_DIRECTLY
+#define OBJECT_FIELD_U32(index)           index
+#define OBJECT_FIELD_S32(index)           index
+#define OBJECT_FIELD_S16(index, subIndex) index
+#define OBJECT_FIELD_F32(index)           index
+#define OBJECT_FIELD_S16P(index)          index
+#define OBJECT_FIELD_S32P(index)          index
+#define OBJECT_FIELD_ANIMS(index)         index
+#define OBJECT_FIELD_WAYPOINT(index)      index
+#define OBJECT_FIELD_CHAIN_SEGMENT(index) index
+#define OBJECT_FIELD_OBJ(index)           index
+#define OBJECT_FIELD_SURFACE(index)       index
+#define OBJECT_FIELD_VPTR(index)          index
+#define OBJECT_FIELD_CVPTR(index)         index
+#else
 #define OBJECT_FIELD_U32(index)           rawData.asU32[index]
 #define OBJECT_FIELD_S32(index)           rawData.asS32[index]
 #define OBJECT_FIELD_S16(index, subIndex) rawData.asS16[index][subIndex]
@@ -21,13 +35,15 @@
 #define OBJECT_FIELD_SURFACE(index)       rawData.asSurface[index]
 #define OBJECT_FIELD_VPTR(index)          rawData.asVoidPtr[index]
 #define OBJECT_FIELD_CVPTR(index)         rawData.asConstVoidPtr[index]
+#endif
 
 // 0x088 (0x00), the first field, is object-specific and defined below the common fields.
 /* Common fields */
 #define /*0x08C*/ oFlags                      OBJECT_FIELD_U32(0x01)
 #define /*0x090*/ oDialogResponse             OBJECT_FIELD_S16(0x02, 0)
 #define /*0x092*/ oDialogState                OBJECT_FIELD_S16(0x02, 1)
-// 0x94/0x98 unused/removed.
+#define /*0x094*/ oUnk94                      OBJECT_FIELD_U32(0x03)
+// 0x98 unused/removed.
 #define /*0x09C*/ oIntangibleTimer            OBJECT_FIELD_S32(0x05)
 #define /*0x0A0*/ O_POS_INDEX                 0x06
 #define /*0x0A0*/ oPosX                       OBJECT_FIELD_F32(O_POS_INDEX + 0)
@@ -161,7 +177,8 @@
 #define /*0x0FC*/ oHomingAmpAvgY     OBJECT_FIELD_F32(0x1D)
 
 /* Arrow Lift */
-#define /*0x0F4*/ oArrowLiftDisplacement OBJECT_FIELD_F32(0x1B)
+#define /*0x0F4*/ oArrowLiftDisplacement       OBJECT_FIELD_F32(0x1B)
+#define /*0x100*/ oArrowLiftUnk100             OBJECT_FIELD_S32(0x1E)
 
 /* Back-and-Forth Platform */
 #define /*0x0F4*/ oBackAndForthPlatformUnkF4  OBJECT_FIELD_F32(0x1B)
