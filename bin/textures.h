@@ -261,34 +261,34 @@ extern const u8 water_0900A800[];
 extern const u8 water_0900B800[];
 
 // bbh_skybox
-extern const u8 *const bbh_skybox_ptrlist_0A014800[];
+extern const u8 *const bbh_skybox_ptrlist[];
 
 // bidw_skybox
-extern const u8 *const bidw_skybox_ptrlist_0A020000[];
+extern const u8 *const bidw_skybox_ptrlist[];
 
 // bitfs_skybox
-extern const u8 *const bitfs_skybox_ptrlist_0A018800[];
+extern const u8 *const bitfs_skybox_ptrlist[];
 
 // bits_skybox
-extern const u8 *const bits_skybox_ptrlist_0A020000[];
+extern const u8 *const bits_skybox_ptrlist[];
 
 // ccm_skybox
-extern const u8 *const ccm_skybox_ptrlist_0A020000[];
+extern const u8 *const ccm_skybox_ptrlist[];
 
 // cloud_floor_skybox
-extern const u8 *const cloud_floor_skybox_ptrlist_0A020000[];
+extern const u8 *const cloud_floor_skybox_ptrlist[];
 
 // clouds_skybox
-extern const u8 *const clouds_skybox_ptrlist_0A014800[];
+extern const u8 *const clouds_skybox_ptrlist[];
 
 // ssl_skybox
-extern const u8 *const ssl_skybox_ptrlist_0A020000[];
+extern const u8 *const ssl_skybox_ptrlist[];
 
 // water_skybox
-extern const u8 *const water_skybox_ptrlist_0A020000[];
+extern const u8 *const water_skybox_ptrlist[];
 
 // wdw_skybox
-extern const u8 *const wdw_skybox_ptrlist_0A020000[];
+extern const u8 *const wdw_skybox_ptrlist[];
 
 // effect
 extern const u8 *const flower_bubbles_textures_ptr_0B002008[];

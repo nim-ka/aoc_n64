@@ -323,7 +323,7 @@ ALIGNED8 static const u8 ccm_skybox_texture_0A01F800[] = {
 };
 
 // 0x0A020000
-const u8 *const ccm_skybox_ptrlist_0A020000[] = {
+const u8 *const ccm_skybox_ptrlist[] = {
     ccm_skybox_texture_0A000000,
     ccm_skybox_texture_0A000800,
     ccm_skybox_texture_0A001000,

@@ -208,7 +208,7 @@ ALIGNED8 static const u8 clouds_skybox_texture_0A014000[] = {
 };
 
 // 0x0A014800
-const u8 *const clouds_skybox_ptrlist_0A014800[] = {
+const u8 *const clouds_skybox_ptrlist[] = {
     clouds_skybox_texture_0A000000,
     clouds_skybox_texture_0A000800,
     clouds_skybox_texture_0A001000,

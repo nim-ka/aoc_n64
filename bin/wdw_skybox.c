@@ -323,7 +323,7 @@ ALIGNED8 static const u8 wdw_skybox_texture_0A01F800[] = {
 };
 
 // 0x0A020000
-const u8 *const wdw_skybox_ptrlist_0A020000[] = {
+const u8 *const wdw_skybox_ptrlist[] = {
     wdw_skybox_texture_0A000000,
     wdw_skybox_texture_0A000800,
     wdw_skybox_texture_0A001000,
