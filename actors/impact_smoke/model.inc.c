@@ -37,7 +37,7 @@ static const Vtx impact_smoke_seg6_vertex_06062A28[] = {
 // 0x06062AA8 - 0x06062AD8
 const Gfx impact_smoke_seg6_dl_06062AA8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, TEXEL0, 0),
+    gsDPSetCombineMode(G_CC_MODULATEFADE, G_CC_MODULATEFADE),
     gsSPGeometryMode(G_LIGHTING, G_SHADING_SMOOTH),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsSPEndDisplayList(),
@@ -59,7 +59,7 @@ const Gfx impact_smoke_seg6_dl_06062AF0[] = {
 const Gfx impact_smoke_seg6_dl_06062B08[] = {
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),

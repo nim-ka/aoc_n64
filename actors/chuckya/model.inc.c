@@ -110,7 +110,7 @@ static const Vtx chuckya_seg8_vertex_08009FB8[] = {
 const Gfx chuckya_seg8_dl_08009FF8[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08007F78),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 64 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(chuckya_seg8_vertex_08009F78, 4, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  3,  1, 0x0),
     gsSPEndDisplayList(),
@@ -120,7 +120,7 @@ const Gfx chuckya_seg8_dl_08009FF8[] = {
 const Gfx chuckya_seg8_dl_0800A030[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08008F78),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 64 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(chuckya_seg8_vertex_08009FB8, 4, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  3,  1, 0x0),
     gsSPEndDisplayList(),
@@ -129,7 +129,7 @@ const Gfx chuckya_seg8_dl_0800A030[] = {
 // 0x0800A068 - 0x0800A0E0
 const Gfx chuckya_seg8_dl_0800A068[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, TEXEL0, 0, 0, 0, TEXEL0),
+    gsDPSetCombineMode(G_CC_DECALRGBA, G_CC_DECALRGBA),
     gsSPClearGeometryMode(G_LIGHTING),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -140,7 +140,7 @@ const Gfx chuckya_seg8_dl_0800A068[] = {
     gsSPDisplayList(chuckya_seg8_dl_0800A030),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
@@ -165,7 +165,7 @@ static const Vtx chuckya_seg8_vertex_0800A120[] = {
 const Gfx chuckya_seg8_dl_0800A160[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08007F78),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 64 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(chuckya_seg8_vertex_0800A0E0, 4, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  3,  1, 0x0),
     gsSPEndDisplayList(),
@@ -175,7 +175,7 @@ const Gfx chuckya_seg8_dl_0800A160[] = {
 const Gfx chuckya_seg8_dl_0800A198[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08008F78),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 64 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(chuckya_seg8_vertex_0800A120, 4, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  3,  1, 0x0),
     gsSPEndDisplayList(),
@@ -184,7 +184,7 @@ const Gfx chuckya_seg8_dl_0800A198[] = {
 // 0x0800A1D0 - 0x0800A248
 const Gfx chuckya_seg8_dl_0800A1D0[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, TEXEL0, 0, 0, 0, TEXEL0),
+    gsDPSetCombineMode(G_CC_DECALRGBA, G_CC_DECALRGBA),
     gsSPClearGeometryMode(G_LIGHTING),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -195,7 +195,7 @@ const Gfx chuckya_seg8_dl_0800A1D0[] = {
     gsSPDisplayList(chuckya_seg8_dl_0800A198),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
@@ -220,7 +220,7 @@ static const Vtx chuckya_seg8_vertex_0800A288[] = {
 const Gfx chuckya_seg8_dl_0800A2C8[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08007F78),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 64 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(chuckya_seg8_vertex_0800A248, 4, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  3,  1, 0x0),
     gsSPEndDisplayList(),
@@ -230,7 +230,7 @@ const Gfx chuckya_seg8_dl_0800A2C8[] = {
 const Gfx chuckya_seg8_dl_0800A300[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08008F78),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 64 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(chuckya_seg8_vertex_0800A288, 4, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  3,  1, 0x0),
     gsSPEndDisplayList(),
@@ -239,7 +239,7 @@ const Gfx chuckya_seg8_dl_0800A300[] = {
 // 0x0800A338 - 0x0800A3B0
 const Gfx chuckya_seg8_dl_0800A338[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, TEXEL0, 0, 0, 0, TEXEL0),
+    gsDPSetCombineMode(G_CC_DECALRGBA, G_CC_DECALRGBA),
     gsSPClearGeometryMode(G_LIGHTING),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -250,7 +250,7 @@ const Gfx chuckya_seg8_dl_0800A338[] = {
     gsSPDisplayList(chuckya_seg8_dl_0800A300),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
@@ -267,7 +267,7 @@ static const Vtx chuckya_seg8_vertex_0800A3B0[] = {
 const Gfx chuckya_seg8_dl_0800A3F0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08007778),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(chuckya_seg8_vertex_0800A3B0, 4, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  2,  3, 0x0),
     gsSPEndDisplayList(),
@@ -276,7 +276,7 @@ const Gfx chuckya_seg8_dl_0800A3F0[] = {
 // 0x0800A428 - 0x0800A498
 const Gfx chuckya_seg8_dl_0800A428[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, TEXEL0, 0, 0, 0, TEXEL0),
+    gsDPSetCombineMode(G_CC_DECALRGBA, G_CC_DECALRGBA),
     gsSPClearGeometryMode(G_LIGHTING),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -286,7 +286,7 @@ const Gfx chuckya_seg8_dl_0800A428[] = {
     gsSPDisplayList(chuckya_seg8_dl_0800A3F0),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
@@ -303,7 +303,7 @@ static const Vtx chuckya_seg8_vertex_0800A498[] = {
 const Gfx chuckya_seg8_dl_0800A4D8[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08007778),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(chuckya_seg8_vertex_0800A498, 4, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  2,  3, 0x0),
     gsSPEndDisplayList(),
@@ -312,7 +312,7 @@ const Gfx chuckya_seg8_dl_0800A4D8[] = {
 // 0x0800A510 - 0x0800A580
 const Gfx chuckya_seg8_dl_0800A510[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, TEXEL0, 0, 0, 0, TEXEL0),
+    gsDPSetCombineMode(G_CC_DECALRGBA, G_CC_DECALRGBA),
     gsSPClearGeometryMode(G_LIGHTING),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -322,7 +322,7 @@ const Gfx chuckya_seg8_dl_0800A510[] = {
     gsSPDisplayList(chuckya_seg8_dl_0800A4D8),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
@@ -339,7 +339,7 @@ static const Vtx chuckya_seg8_vertex_0800A580[] = {
 const Gfx chuckya_seg8_dl_0800A5C0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08007778),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(chuckya_seg8_vertex_0800A580, 4, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  2,  3, 0x0),
     gsSPEndDisplayList(),
@@ -348,7 +348,7 @@ const Gfx chuckya_seg8_dl_0800A5C0[] = {
 // 0x0800A5F8 - 0x0800A668
 const Gfx chuckya_seg8_dl_0800A5F8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, TEXEL0, 0, 0, 0, TEXEL0),
+    gsDPSetCombineMode(G_CC_DECALRGBA, G_CC_DECALRGBA),
     gsSPClearGeometryMode(G_LIGHTING),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -358,7 +358,7 @@ const Gfx chuckya_seg8_dl_0800A5F8[] = {
     gsSPDisplayList(chuckya_seg8_dl_0800A5C0),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
@@ -389,7 +389,7 @@ static const Vtx chuckya_seg8_vertex_0800A680[] = {
 const Gfx chuckya_seg8_dl_0800A700[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08006778),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&chuckya_seg8_light_0800A670, 1),
     gsSPLight(&chuckya_seg8_light_0800A668, 2),
     gsSPVertex(chuckya_seg8_vertex_0800A680, 8, 0),
@@ -401,7 +401,7 @@ const Gfx chuckya_seg8_dl_0800A700[] = {
 // 0x0800A758 - 0x0800A7C8
 const Gfx chuckya_seg8_dl_0800A758[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0),
+    gsDPSetCombineMode(G_CC_MODULATERGBA, G_CC_MODULATERGBA),
     gsSPClearGeometryMode(G_SHADING_SMOOTH),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -411,7 +411,7 @@ const Gfx chuckya_seg8_dl_0800A758[] = {
     gsSPDisplayList(chuckya_seg8_dl_0800A700),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };

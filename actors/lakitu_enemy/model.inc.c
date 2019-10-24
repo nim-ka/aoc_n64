@@ -129,7 +129,7 @@ static const Vtx lakitu_enemy_seg5_vertex_050126B0[] = {
 const Gfx lakitu_enemy_seg5_dl_05012760[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_enemy_seg5_texture_050114E0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&lakitu_enemy_seg5_light_050124E8, 1),
     gsSPLight(&lakitu_enemy_seg5_light_050124E0, 2),
     gsSPVertex(lakitu_enemy_seg5_vertex_05012510, 16, 0),
@@ -169,7 +169,7 @@ const Gfx lakitu_enemy_seg5_dl_05012890[] = {
 // 0x05012910 - 0x05012978
 const Gfx lakitu_enemy_seg5_dl_05012910[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -178,7 +178,7 @@ const Gfx lakitu_enemy_seg5_dl_05012910[] = {
     gsSPDisplayList(lakitu_enemy_seg5_dl_05012760),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPDisplayList(lakitu_enemy_seg5_dl_05012890),
     gsSPEndDisplayList(),
 };
@@ -307,7 +307,7 @@ static const Vtx lakitu_enemy_seg5_vertex_05012E70[] = {
 const Gfx lakitu_enemy_seg5_dl_05012EF0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_enemy_seg5_texture_05011CE0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&lakitu_enemy_seg5_light_05012980, 1),
     gsSPLight(&lakitu_enemy_seg5_light_05012978, 2),
     gsSPVertex(lakitu_enemy_seg5_vertex_05012990, 16, 0),
@@ -357,7 +357,7 @@ const Gfx lakitu_enemy_seg5_dl_05012EF0[] = {
 // 0x05013160 - 0x050131C0
 const Gfx lakitu_enemy_seg5_dl_05013160[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -366,7 +366,7 @@ const Gfx lakitu_enemy_seg5_dl_05013160[] = {
     gsSPDisplayList(lakitu_enemy_seg5_dl_05012EF0),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -409,7 +409,7 @@ const Gfx lakitu_enemy_seg5_dl_05013298[] = {
 // 0x050132D8 - 0x05013320
 const Gfx lakitu_enemy_seg5_dl_050132D8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0),
+    gsDPSetCombineMode(G_CC_MODULATERGBA, G_CC_MODULATERGBA),
     gsSPClearGeometryMode(G_SHADING_SMOOTH),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -424,7 +424,7 @@ const Gfx lakitu_enemy_seg5_dl_05013320[] = {
     gsSPDisplayList(lakitu_enemy_seg5_dl_05013298),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
@@ -434,7 +434,7 @@ const Gfx lakitu_enemy_seg5_dl_05013350[] = {
     gsSPDisplayList(lakitu_enemy_seg5_dl_050132D8),
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_enemy_seg5_texture_0500F4E0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x080),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 64 * 32 - 1, CALC_DXT(64, G_IM_SIZ_16b_BYTES)),
     gsSPBranchList(lakitu_enemy_seg5_dl_05013320),
 };
 
@@ -443,7 +443,7 @@ const Gfx lakitu_enemy_seg5_dl_05013378[] = {
     gsSPDisplayList(lakitu_enemy_seg5_dl_050132D8),
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_enemy_seg5_texture_050104E0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x080),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 64 * 32 - 1, CALC_DXT(64, G_IM_SIZ_16b_BYTES)),
     gsSPBranchList(lakitu_enemy_seg5_dl_05013320),
 };
 

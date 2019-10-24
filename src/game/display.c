@@ -26,9 +26,7 @@ void my_rdp_init(void) {
     gDPPipelineMode(gDisplayListHead++, G_PM_1PRIMITIVE);
 
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    gDPSetCombineLERP1Cycle(gDisplayListHead++,
-                        0, 0, 0, SHADE,  // CCMUX
-                        0, 0, 0, SHADE); // ACMUX
+    gDPSetCombineMode(gDisplayListHead++, G_CC_SHADE, G_CC_SHADE);
 
     gDPSetTextureLOD(gDisplayListHead++, G_TL_TILE);
     gDPSetTextureLUT(gDisplayListHead++, G_TT_NONE);

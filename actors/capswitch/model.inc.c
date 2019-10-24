@@ -90,7 +90,7 @@ static const Vtx capswitch_seg5_vertex_05002CC8[] = {
 const Gfx capswitch_seg5_dl_05002D88[] = {
     gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, capswitch_seg5_texture_05001C48),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 64 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&capswitch_seg5_light_05001BC0, 1),
     gsSPLight(&capswitch_seg5_light_05001BB8, 2),
     gsSPVertex(capswitch_seg5_vertex_05002CC8, 12, 0),
@@ -104,7 +104,7 @@ const Gfx capswitch_seg5_dl_05002D88[] = {
 // 0x05002E00 - 0x05002E60
 const Gfx cap_switch_exclamation_seg5_dl_05002E00[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0),
+    gsDPSetCombineMode(G_CC_MODULATEIA, G_CC_MODULATEIA),
     gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -113,7 +113,7 @@ const Gfx cap_switch_exclamation_seg5_dl_05002E00[] = {
     gsSPDisplayList(capswitch_seg5_dl_05002D88),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -157,7 +157,7 @@ static const Vtx capswitch_seg5_vertex_05002F60[] = {
 const Gfx capswitch_seg5_dl_05003020[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, capswitch_seg5_texture_05002C48),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x03F, 0x200),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 16 * 4 - 1, CALC_DXT(16, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&capswitch_seg5_light_05001BD8, 1),
     gsSPLight(&capswitch_seg5_light_05001BD0, 2),
     gsSPVertex(capswitch_seg5_vertex_05002E60, 16, 0),
@@ -181,7 +181,7 @@ const Gfx capswitch_seg5_dl_05003020[] = {
 // 0x05003120 - 0x05003180
 const Gfx cap_switch_base_seg5_dl_05003120[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -190,7 +190,7 @@ const Gfx cap_switch_base_seg5_dl_05003120[] = {
     gsSPDisplayList(capswitch_seg5_dl_05003020),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 

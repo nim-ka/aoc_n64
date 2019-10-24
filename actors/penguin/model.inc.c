@@ -240,7 +240,7 @@ const Gfx penguin_seg5_dl_05006380[] = {
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD),
     gsDPSetTileSize(0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, SHADE, TEXEL0_ALPHA, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_BLENDRGBA, G_CC_BLENDRGBA),
     gsSPEndDisplayList(),
 };
 
@@ -248,14 +248,14 @@ const Gfx penguin_seg5_dl_05006380[] = {
 const Gfx penguin_seg5_dl_050063C8[] = {
     gsSPDisplayList(penguin_seg5_dl_05006188),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, penguin_seg5_texture_050055E0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPDisplayList(penguin_seg5_dl_050061C8),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPDisplayList(penguin_seg5_dl_050061F8),
     gsSPEndDisplayList(),
 };
@@ -265,7 +265,7 @@ const Gfx penguin_seg5_dl_05006428[] = {
     gsSPDisplayList(penguin_seg5_dl_05006380),
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, penguin_seg5_texture_05002DE0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPDisplayList(penguin_seg5_dl_050063C8),
     gsSPEndDisplayList(),
 };
@@ -275,7 +275,7 @@ const Gfx penguin_seg5_dl_05006458[] = {
     gsSPDisplayList(penguin_seg5_dl_05006380),
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, penguin_seg5_texture_050035E0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPDisplayList(penguin_seg5_dl_050063C8),
     gsSPEndDisplayList(),
 };
@@ -285,7 +285,7 @@ const Gfx penguin_seg5_dl_05006488[] = {
     gsSPDisplayList(penguin_seg5_dl_05006380),
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, penguin_seg5_texture_05003DE0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPDisplayList(penguin_seg5_dl_050063C8),
     gsSPEndDisplayList(),
 };
@@ -295,7 +295,7 @@ const Gfx penguin_seg5_dl_050064B8[] = {
     gsSPDisplayList(penguin_seg5_dl_05006380),
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, penguin_seg5_texture_050045E0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPDisplayList(penguin_seg5_dl_050063C8),
     gsSPEndDisplayList(),
 };
@@ -305,7 +305,7 @@ const Gfx penguin_seg5_dl_050064E8[] = {
     gsSPDisplayList(penguin_seg5_dl_05006380),
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, penguin_seg5_texture_05004DE0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPDisplayList(penguin_seg5_dl_050063C8),
     gsSPEndDisplayList(),
 };

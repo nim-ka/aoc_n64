@@ -69,7 +69,7 @@ static const Vtx ttm_seg7_vertex_0700AD78[] = {
 static const Gfx ttm_seg7_dl_0700AE58[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mountain_09004800),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&ttm_seg7_light_0700AB78, 1),
     gsSPLight(&ttm_seg7_light_0700AB70, 2),
     gsSPVertex(ttm_seg7_vertex_0700AB88, 15, 0),
@@ -96,7 +96,7 @@ static const Gfx ttm_seg7_dl_0700AE58[] = {
 // 0x0700AF90 - 0x0700AFF0
 const Gfx ttm_seg7_dl_0700AF90[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -105,7 +105,7 @@ const Gfx ttm_seg7_dl_0700AF90[] = {
     gsSPDisplayList(ttm_seg7_dl_0700AE58),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 

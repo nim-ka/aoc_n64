@@ -215,7 +215,7 @@ const Gfx ukiki_seg5_dl_0500B1D8[] = {
 // 0x0500B278 - 0x0500B2B8
 const Gfx ukiki_seg5_dl_0500B278[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -229,7 +229,7 @@ const Gfx ukiki_seg5_dl_0500B2B8[] = {
     gsSPDisplayList(ukiki_seg5_dl_0500B040),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPDisplayList(ukiki_seg5_dl_0500B1D8),
     gsSPEndDisplayList(),
 };
@@ -239,7 +239,7 @@ const Gfx ukiki_seg5_dl_0500B2E8[] = {
     gsSPDisplayList(ukiki_seg5_dl_0500B278),
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ukiki_seg5_texture_05007BC0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x080),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 64 * 32 - 1, CALC_DXT(64, G_IM_SIZ_16b_BYTES)),
     gsSPBranchList(ukiki_seg5_dl_0500B2B8),
 };
 
@@ -248,7 +248,7 @@ const Gfx ukiki_seg5_dl_0500B310[] = {
     gsSPDisplayList(ukiki_seg5_dl_0500B278),
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ukiki_seg5_texture_05008BC0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x080),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 64 * 32 - 1, CALC_DXT(64, G_IM_SIZ_16b_BYTES)),
     gsSPBranchList(ukiki_seg5_dl_0500B2B8),
 };
 
@@ -331,7 +331,7 @@ static const Vtx ukiki_seg5_vertex_0500B620[] = {
 const Gfx ukiki_seg5_dl_0500B660[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ukiki_seg5_texture_0500A3C0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&ukiki_seg5_light_0500B340, 1),
     gsSPLight(&ukiki_seg5_light_0500B338, 2),
     gsSPVertex(ukiki_seg5_vertex_0500B350, 15, 0),
@@ -365,7 +365,7 @@ const Gfx ukiki_seg5_dl_0500B660[] = {
 const Gfx ukiki_seg5_dl_0500B7E8[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ukiki_seg5_texture_05009BC0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(ukiki_seg5_vertex_0500B620, 4, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  3,  1, 0x0),
     gsSPEndDisplayList(),
@@ -374,7 +374,7 @@ const Gfx ukiki_seg5_dl_0500B7E8[] = {
 // 0x0500B820 - 0x0500B888
 const Gfx ukiki_seg5_dl_0500B820[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -384,7 +384,7 @@ const Gfx ukiki_seg5_dl_0500B820[] = {
     gsSPDisplayList(ukiki_seg5_dl_0500B7E8),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -414,7 +414,7 @@ static const Vtx ukiki_seg5_vertex_0500B8A0[] = {
 const Gfx ukiki_seg5_dl_0500B920[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ukiki_seg5_texture_0500A3C0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&ukiki_seg5_light_0500B890, 1),
     gsSPLight(&ukiki_seg5_light_0500B888, 2),
     gsSPVertex(ukiki_seg5_vertex_0500B8A0, 8, 0),
@@ -427,7 +427,7 @@ const Gfx ukiki_seg5_dl_0500B920[] = {
 // 0x0500B988 - 0x0500B9E8
 const Gfx ukiki_seg5_dl_0500B988[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -436,7 +436,7 @@ const Gfx ukiki_seg5_dl_0500B988[] = {
     gsSPDisplayList(ukiki_seg5_dl_0500B920),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -467,7 +467,7 @@ static const Vtx ukiki_seg5_vertex_0500BA00[] = {
 const Gfx ukiki_seg5_dl_0500BA90[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ukiki_seg5_texture_0500A3C0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&ukiki_seg5_light_0500B9F0, 1),
     gsSPLight(&ukiki_seg5_light_0500B9E8, 2),
     gsSPVertex(ukiki_seg5_vertex_0500BA00, 9, 0),
@@ -483,7 +483,7 @@ const Gfx ukiki_seg5_dl_0500BA90[] = {
 // 0x0500BB28 - 0x0500BB88
 const Gfx ukiki_seg5_dl_0500BB28[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -492,7 +492,7 @@ const Gfx ukiki_seg5_dl_0500BB28[] = {
     gsSPDisplayList(ukiki_seg5_dl_0500BA90),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -521,7 +521,7 @@ static const Vtx ukiki_seg5_vertex_0500BBA0[] = {
 const Gfx ukiki_seg5_dl_0500BC10[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ukiki_seg5_texture_0500A3C0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&ukiki_seg5_light_0500BB90, 1),
     gsSPLight(&ukiki_seg5_light_0500BB88, 2),
     gsSPVertex(ukiki_seg5_vertex_0500BBA0, 7, 0),
@@ -534,7 +534,7 @@ const Gfx ukiki_seg5_dl_0500BC10[] = {
 // 0x0500BC78 - 0x0500BCD8
 const Gfx ukiki_seg5_dl_0500BC78[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -543,7 +543,7 @@ const Gfx ukiki_seg5_dl_0500BC78[] = {
     gsSPDisplayList(ukiki_seg5_dl_0500BC10),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -576,7 +576,7 @@ static const Vtx ukiki_seg5_vertex_0500BCF0[] = {
 const Gfx ukiki_seg5_dl_0500BDA0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ukiki_seg5_texture_0500A3C0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&ukiki_seg5_light_0500BCE0, 1),
     gsSPLight(&ukiki_seg5_light_0500BCD8, 2),
     gsSPVertex(ukiki_seg5_vertex_0500BCF0, 11, 0),
@@ -592,7 +592,7 @@ const Gfx ukiki_seg5_dl_0500BDA0[] = {
 // 0x0500BE38 - 0x0500BE98
 const Gfx ukiki_seg5_dl_0500BE38[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -601,7 +601,7 @@ const Gfx ukiki_seg5_dl_0500BE38[] = {
     gsSPDisplayList(ukiki_seg5_dl_0500BDA0),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -634,7 +634,7 @@ static const Vtx ukiki_seg5_vertex_0500BEB0[] = {
 const Gfx ukiki_seg5_dl_0500BF60[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ukiki_seg5_texture_0500A3C0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&ukiki_seg5_light_0500BEA0, 1),
     gsSPLight(&ukiki_seg5_light_0500BE98, 2),
     gsSPVertex(ukiki_seg5_vertex_0500BEB0, 11, 0),
@@ -650,7 +650,7 @@ const Gfx ukiki_seg5_dl_0500BF60[] = {
 // 0x0500BFF8 - 0x0500C058
 const Gfx ukiki_seg5_dl_0500BFF8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -659,7 +659,7 @@ const Gfx ukiki_seg5_dl_0500BFF8[] = {
     gsSPDisplayList(ukiki_seg5_dl_0500BF60),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -692,7 +692,7 @@ static const Vtx ukiki_seg5_vertex_0500C070[] = {
 const Gfx ukiki_seg5_dl_0500C120[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ukiki_seg5_texture_0500A3C0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&ukiki_seg5_light_0500C060, 1),
     gsSPLight(&ukiki_seg5_light_0500C058, 2),
     gsSPVertex(ukiki_seg5_vertex_0500C070, 11, 0),
@@ -708,7 +708,7 @@ const Gfx ukiki_seg5_dl_0500C120[] = {
 // 0x0500C1B8 - 0x0500C218
 const Gfx ukiki_seg5_dl_0500C1B8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -717,7 +717,7 @@ const Gfx ukiki_seg5_dl_0500C1B8[] = {
     gsSPDisplayList(ukiki_seg5_dl_0500C120),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -749,7 +749,7 @@ static const Vtx ukiki_seg5_vertex_0500C230[] = {
 const Gfx ukiki_seg5_dl_0500C2D0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ukiki_seg5_texture_0500A3C0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&ukiki_seg5_light_0500C220, 1),
     gsSPLight(&ukiki_seg5_light_0500C218, 2),
     gsSPVertex(ukiki_seg5_vertex_0500C230, 10, 0),
@@ -765,7 +765,7 @@ const Gfx ukiki_seg5_dl_0500C2D0[] = {
 // 0x0500C368 - 0x0500C3C8
 const Gfx ukiki_seg5_dl_0500C368[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -774,7 +774,7 @@ const Gfx ukiki_seg5_dl_0500C368[] = {
     gsSPDisplayList(ukiki_seg5_dl_0500C2D0),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -807,7 +807,7 @@ static const Vtx ukiki_seg5_vertex_0500C3E0[] = {
 const Gfx ukiki_seg5_dl_0500C490[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ukiki_seg5_texture_0500A3C0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&ukiki_seg5_light_0500C3D0, 1),
     gsSPLight(&ukiki_seg5_light_0500C3C8, 2),
     gsSPVertex(ukiki_seg5_vertex_0500C3E0, 11, 0),
@@ -823,7 +823,7 @@ const Gfx ukiki_seg5_dl_0500C490[] = {
 // 0x0500C528 - 0x0500C588
 const Gfx ukiki_seg5_dl_0500C528[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -832,7 +832,7 @@ const Gfx ukiki_seg5_dl_0500C528[] = {
     gsSPDisplayList(ukiki_seg5_dl_0500C490),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -865,7 +865,7 @@ static const Vtx ukiki_seg5_vertex_0500C5A0[] = {
 const Gfx ukiki_seg5_dl_0500C650[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ukiki_seg5_texture_0500A3C0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&ukiki_seg5_light_0500C590, 1),
     gsSPLight(&ukiki_seg5_light_0500C588, 2),
     gsSPVertex(ukiki_seg5_vertex_0500C5A0, 11, 0),
@@ -881,7 +881,7 @@ const Gfx ukiki_seg5_dl_0500C650[] = {
 // 0x0500C6E8 - 0x0500C748
 const Gfx ukiki_seg5_dl_0500C6E8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -890,7 +890,7 @@ const Gfx ukiki_seg5_dl_0500C6E8[] = {
     gsSPDisplayList(ukiki_seg5_dl_0500C650),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -922,7 +922,7 @@ static const Vtx ukiki_seg5_vertex_0500C760[] = {
 const Gfx ukiki_seg5_dl_0500C800[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ukiki_seg5_texture_0500A3C0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&ukiki_seg5_light_0500C750, 1),
     gsSPLight(&ukiki_seg5_light_0500C748, 2),
     gsSPVertex(ukiki_seg5_vertex_0500C760, 10, 0),
@@ -938,7 +938,7 @@ const Gfx ukiki_seg5_dl_0500C800[] = {
 // 0x0500C898 - 0x0500C8F8
 const Gfx ukiki_seg5_dl_0500C898[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -947,7 +947,7 @@ const Gfx ukiki_seg5_dl_0500C898[] = {
     gsSPDisplayList(ukiki_seg5_dl_0500C800),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -979,7 +979,7 @@ static const Vtx ukiki_seg5_vertex_0500C910[] = {
 const Gfx ukiki_seg5_dl_0500C9B0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ukiki_seg5_texture_0500A3C0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&ukiki_seg5_light_0500C900, 1),
     gsSPLight(&ukiki_seg5_light_0500C8F8, 2),
     gsSPVertex(ukiki_seg5_vertex_0500C910, 10, 0),
@@ -995,7 +995,7 @@ const Gfx ukiki_seg5_dl_0500C9B0[] = {
 // 0x0500CA48 - 0x0500CAA8
 const Gfx ukiki_seg5_dl_0500CA48[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -1004,7 +1004,7 @@ const Gfx ukiki_seg5_dl_0500CA48[] = {
     gsSPDisplayList(ukiki_seg5_dl_0500C9B0),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 

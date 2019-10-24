@@ -166,7 +166,7 @@ static const Vtx heave_ho_seg5_vertex_05011D38[] = {
 const Gfx heave_ho_seg5_dl_05011D98[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, heave_ho_seg5_texture_0500E9C8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&heave_ho_seg5_light_05011BD0, 1),
     gsSPLight(&heave_ho_seg5_light_05011BC8, 2),
     gsSPVertex(heave_ho_seg5_vertex_05011BF8, 4, 0),
@@ -178,7 +178,7 @@ const Gfx heave_ho_seg5_dl_05011D98[] = {
 const Gfx heave_ho_seg5_dl_05011DE0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, heave_ho_seg5_texture_050109C8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(heave_ho_seg5_vertex_05011C38, 6, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  2,  3, 0x0),
     gsSP2Triangles( 2,  4,  5, 0x0,  2,  5,  3, 0x0),
@@ -189,7 +189,7 @@ const Gfx heave_ho_seg5_dl_05011DE0[] = {
 const Gfx heave_ho_seg5_dl_05011E28[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, heave_ho_seg5_texture_0500F9C8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x080),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 64 * 32 - 1, CALC_DXT(64, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(heave_ho_seg5_vertex_05011C98, 10, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  3,  1, 0x0),
     gsSP2Triangles( 2,  1,  4, 0x0,  5,  6,  7, 0x0),
@@ -210,7 +210,7 @@ const Gfx heave_ho_seg5_dl_05011E80[] = {
 // 0x05011EC0 - 0x05011F50
 const Gfx heave_ho_seg5_dl_05011EC0[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -224,7 +224,7 @@ const Gfx heave_ho_seg5_dl_05011EC0[] = {
     gsSPDisplayList(heave_ho_seg5_dl_05011E28),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPDisplayList(heave_ho_seg5_dl_05011E80),
     gsSPEndDisplayList(),
 };
@@ -279,7 +279,7 @@ static const Vtx heave_ho_seg5_vertex_05012030[] = {
 const Gfx heave_ho_seg5_dl_050120A0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, heave_ho_seg5_texture_050109C8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&heave_ho_seg5_light_05011F58, 1),
     gsSPLight(&heave_ho_seg5_light_05011F50, 2),
     gsSPVertex(heave_ho_seg5_vertex_05011F80, 11, 0),
@@ -303,7 +303,7 @@ const Gfx heave_ho_seg5_dl_05012100[] = {
 // 0x05012148 - 0x050121B0
 const Gfx heave_ho_seg5_dl_05012148[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -312,7 +312,7 @@ const Gfx heave_ho_seg5_dl_05012148[] = {
     gsSPDisplayList(heave_ho_seg5_dl_050120A0),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPDisplayList(heave_ho_seg5_dl_05012100),
     gsSPEndDisplayList(),
 };
@@ -367,7 +367,7 @@ static const Vtx heave_ho_seg5_vertex_05012290[] = {
 const Gfx heave_ho_seg5_dl_05012300[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, heave_ho_seg5_texture_050109C8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&heave_ho_seg5_light_050121B8, 1),
     gsSPLight(&heave_ho_seg5_light_050121B0, 2),
     gsSPVertex(heave_ho_seg5_vertex_050121E0, 11, 0),
@@ -391,7 +391,7 @@ const Gfx heave_ho_seg5_dl_05012360[] = {
 // 0x050123A8 - 0x05012410
 const Gfx heave_ho_seg5_dl_050123A8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -400,7 +400,7 @@ const Gfx heave_ho_seg5_dl_050123A8[] = {
     gsSPDisplayList(heave_ho_seg5_dl_05012300),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPDisplayList(heave_ho_seg5_dl_05012360),
     gsSPEndDisplayList(),
 };
@@ -455,7 +455,7 @@ static const Vtx heave_ho_seg5_vertex_05012480[] = {
 const Gfx heave_ho_seg5_dl_05012560[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, heave_ho_seg5_texture_0500F1C8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&heave_ho_seg5_light_05012418, 1),
     gsSPLight(&heave_ho_seg5_light_05012410, 2),
     gsSPVertex(heave_ho_seg5_vertex_05012440, 4, 0),
@@ -477,7 +477,7 @@ const Gfx heave_ho_seg5_dl_050125A8[] = {
 // 0x050125F8 - 0x05012670
 const Gfx heave_ho_seg5_dl_050125F8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsSPClearGeometryMode(G_SHADING_SMOOTH),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -487,7 +487,7 @@ const Gfx heave_ho_seg5_dl_050125F8[] = {
     gsSPDisplayList(heave_ho_seg5_dl_05012560),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPDisplayList(heave_ho_seg5_dl_050125A8),
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
@@ -505,7 +505,7 @@ static const Vtx heave_ho_seg5_vertex_05012670[] = {
 const Gfx heave_ho_seg5_dl_050126B0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, heave_ho_seg5_texture_050111C8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x0FF, 0x200),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 16 * 16 - 1, CALC_DXT(16, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(heave_ho_seg5_vertex_05012670, 4, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  3,  1, 0x0),
     gsSPEndDisplayList(),
@@ -514,7 +514,7 @@ const Gfx heave_ho_seg5_dl_050126B0[] = {
 // 0x050126E8 - 0x05012758
 const Gfx heave_ho_seg5_dl_050126E8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, TEXEL0, 0, 0, 0, TEXEL0),
+    gsDPSetCombineMode(G_CC_DECALRGBA, G_CC_DECALRGBA),
     gsSPClearGeometryMode(G_LIGHTING),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -524,7 +524,7 @@ const Gfx heave_ho_seg5_dl_050126E8[] = {
     gsSPDisplayList(heave_ho_seg5_dl_050126B0),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
@@ -551,7 +551,7 @@ static const Vtx heave_ho_seg5_vertex_05012770[] = {
 const Gfx heave_ho_seg5_dl_050127B0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, heave_ho_seg5_texture_050113C8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&heave_ho_seg5_light_05012760, 1),
     gsSPLight(&heave_ho_seg5_light_05012758, 2),
     gsSPVertex(heave_ho_seg5_vertex_05012770, 4, 0),
@@ -562,7 +562,7 @@ const Gfx heave_ho_seg5_dl_050127B0[] = {
 // 0x050127F8 - 0x05012868
 const Gfx heave_ho_seg5_dl_050127F8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0),
+    gsDPSetCombineMode(G_CC_MODULATERGBA, G_CC_MODULATERGBA),
     gsSPClearGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -572,7 +572,7 @@ const Gfx heave_ho_seg5_dl_050127F8[] = {
     gsSPDisplayList(heave_ho_seg5_dl_050127B0),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };

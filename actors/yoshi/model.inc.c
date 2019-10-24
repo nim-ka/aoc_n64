@@ -255,7 +255,7 @@ static const Vtx yoshi_seg5_vertex_0501D410[] = {
 const Gfx yoshi_seg5_dl_0501D440[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, yoshi_seg5_texture_0501C8A0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x0FF, 0x200),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 16 * 16 - 1, CALC_DXT(16, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&yoshi_seg5_light_0501C460, 1),
     gsSPLight(&yoshi_seg5_light_0501C458, 2),
     gsSPVertex(yoshi_seg5_vertex_0501CAA0, 6, 0),
@@ -359,7 +359,7 @@ const Gfx yoshi_seg5_dl_0501D4E0[] = {
 // 0x0501D8F8 - 0x0501D940
 const Gfx yoshi_seg5_dl_0501D8F8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -374,7 +374,7 @@ const Gfx yoshi_seg5_dl_0501D940[] = {
     gsSPDisplayList(yoshi_seg5_dl_0501D488),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPDisplayList(yoshi_seg5_dl_0501D4E0),
     gsSPEndDisplayList(),
 };
@@ -384,7 +384,7 @@ const Gfx yoshi_seg5_dl_0501D970[] = {
     gsSPDisplayList(yoshi_seg5_dl_0501D8F8),
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, yoshi_seg5_texture_0501C4A0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x0FF, 0x200),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 16 * 16 - 1, CALC_DXT(16, G_IM_SIZ_16b_BYTES)),
     gsSPBranchList(yoshi_seg5_dl_0501D940),
 };
 
@@ -393,7 +393,7 @@ const Gfx yoshi_seg5_dl_0501D998[] = {
     gsSPDisplayList(yoshi_seg5_dl_0501D8F8),
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, yoshi_seg5_texture_0501C6A0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x0FF, 0x200),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 16 * 16 - 1, CALC_DXT(16, G_IM_SIZ_16b_BYTES)),
     gsSPBranchList(yoshi_seg5_dl_0501D940),
 };
 

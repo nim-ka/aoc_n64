@@ -60,7 +60,7 @@ static const Vtx moneybag_seg6_vertex_06005280[] = {
 const Gfx moneybag_seg6_dl_06005300[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, moneybag_seg6_texture_060039B0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x080),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 64 * 32 - 1, CALC_DXT(64, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&moneybag_seg6_light_060051B8, 1),
     gsSPLight(&moneybag_seg6_light_060051B0, 2),
     gsSPVertex(moneybag_seg6_vertex_060051E0, 10, 0),
@@ -84,7 +84,7 @@ const Gfx moneybag_seg6_dl_06005358[] = {
 // 0x060053B8 - 0x06005428
 const Gfx moneybag_seg6_dl_060053B8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
+    gsDPSetCombineMode(G_CC_MODULATERGBFADE, G_CC_MODULATERGBFADE),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -93,9 +93,9 @@ const Gfx moneybag_seg6_dl_060053B8[] = {
     gsSPDisplayList(moneybag_seg6_dl_06005300),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+    gsDPSetCombineMode(G_CC_SHADEFADEA, G_CC_SHADEFADEA),
     gsSPDisplayList(moneybag_seg6_dl_06005358),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -142,7 +142,7 @@ static const Vtx moneybag_seg6_vertex_06005520[] = {
 const Gfx moneybag_seg6_dl_06005590[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, moneybag_seg6_texture_060039B0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x080),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 64 * 32 - 1, CALC_DXT(64, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&moneybag_seg6_light_06005430, 1),
     gsSPLight(&moneybag_seg6_light_06005428, 2),
     gsSPVertex(moneybag_seg6_vertex_06005440, 14, 0),
@@ -158,7 +158,7 @@ const Gfx moneybag_seg6_dl_06005590[] = {
 // 0x06005618 - 0x06005688
 const Gfx moneybag_seg6_dl_06005618[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
+    gsDPSetCombineMode(G_CC_MODULATERGBFADE, G_CC_MODULATERGBFADE),
     gsSPClearGeometryMode(G_CULL_BACK),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -168,7 +168,7 @@ const Gfx moneybag_seg6_dl_06005618[] = {
     gsSPDisplayList(moneybag_seg6_dl_06005590),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_CULL_BACK),
     gsSPEndDisplayList(),
 };
@@ -195,7 +195,7 @@ static const Vtx moneybag_seg6_vertex_060056A8[] = {
 const Gfx moneybag_seg6_dl_06005708[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, moneybag_seg6_texture_060049B0),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(moneybag_seg6_vertex_060056A8, 6, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  3,  1, 0x0),
     gsSP2Triangles( 1,  3,  4, 0x0,  5,  0,  2, 0x0),
@@ -205,7 +205,7 @@ const Gfx moneybag_seg6_dl_06005708[] = {
 // 0x06005750 - 0x060057C0
 const Gfx moneybag_seg6_dl_06005750[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, TEXEL0, 0, 0, 0, ENVIRONMENT),
+    gsDPSetCombineMode(G_CC_DECALFADE, G_CC_DECALFADE),
     gsSPClearGeometryMode(G_LIGHTING),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -215,7 +215,7 @@ const Gfx moneybag_seg6_dl_06005750[] = {
     gsSPDisplayList(moneybag_seg6_dl_06005708),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
@@ -292,7 +292,7 @@ static const Vtx moneybag_seg6_vertex_060058D0[] = {
 
 // 0x06005980 - 0x060059F0
 const Gfx moneybag_seg6_dl_06005980[] = {
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+    gsDPSetCombineMode(G_CC_SHADEFADEA, G_CC_SHADEFADEA),
     gsSPLight(&moneybag_seg6_light_060057F8, 1),
     gsSPLight(&moneybag_seg6_light_060057F0, 2),
     gsSPVertex(moneybag_seg6_vertex_06005820, 11, 0),
@@ -300,13 +300,13 @@ const Gfx moneybag_seg6_dl_06005980[] = {
     gsSP2Triangles( 5,  6,  7, 0x0,  5,  7,  8, 0x0),
     gsSP2Triangles( 5,  8,  9, 0x0, 10,  1,  0, 0x0),
     gsSP2Triangles( 0,  4, 10, 0x0,  2,  3,  0, 0x0),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
 // 0x060059F0 - 0x06005A60
 const Gfx moneybag_seg6_dl_060059F0[] = {
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+    gsDPSetCombineMode(G_CC_SHADEFADEA, G_CC_SHADEFADEA),
     gsSPLight(&moneybag_seg6_light_060057F8, 1),
     gsSPLight(&moneybag_seg6_light_060057F0, 2),
     gsSPVertex(moneybag_seg6_vertex_060058D0, 11, 0),
@@ -314,7 +314,7 @@ const Gfx moneybag_seg6_dl_060059F0[] = {
     gsSP2Triangles( 5,  6,  7, 0x0,  8,  5,  7, 0x0),
     gsSP2Triangles( 9,  8,  7, 0x0,  2,  1, 10, 0x0),
     gsSP2Triangles(10,  3,  2, 0x0,  2,  4,  0, 0x0),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 

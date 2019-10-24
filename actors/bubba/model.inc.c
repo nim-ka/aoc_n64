@@ -198,7 +198,7 @@ static const Vtx bubba_seg5_vertex_050049D0[] = {
 const Gfx bubba_seg5_dl_05004A40[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bubba_seg5_texture_05000008),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x1FF, 0x200),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 16 * 32 - 1, CALC_DXT(16, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&bubba_seg5_light_05004410, 1),
     gsSPLight(&bubba_seg5_light_05004408, 2),
     gsSPVertex(bubba_seg5_vertex_05004450, 7, 0),
@@ -212,7 +212,7 @@ const Gfx bubba_seg5_dl_05004A40[] = {
 const Gfx bubba_seg5_dl_05004AA8[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bubba_seg5_texture_05001408),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&bubba_seg5_light_05004428, 1),
     gsSPLight(&bubba_seg5_light_05004420, 2),
     gsSPVertex(bubba_seg5_vertex_050044C0, 15, 0),
@@ -240,7 +240,7 @@ const Gfx bubba_seg5_dl_05004AA8[] = {
 const Gfx bubba_seg5_dl_05004BE8[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bubba_seg5_texture_05001C08),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(bubba_seg5_vertex_05004620, 6, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  2,  1,  3, 0x0),
     gsSP2Triangles( 1,  4,  3, 0x0,  1,  0,  4, 0x0),
@@ -252,7 +252,7 @@ const Gfx bubba_seg5_dl_05004BE8[] = {
 const Gfx bubba_seg5_dl_05004C40[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bubba_seg5_texture_05002408),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x080),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 64 * 32 - 1, CALC_DXT(64, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(bubba_seg5_vertex_05004680, 16, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  3,  4,  5, 0x0),
     gsSP2Triangles( 6,  3,  5, 0x0,  5,  4,  7, 0x0),
@@ -304,7 +304,7 @@ const Gfx bubba_seg5_dl_05004D48[] = {
 // 0x05004E80 - 0x05004F30
 const Gfx bubba_seg5_dl_05004E80[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -322,7 +322,7 @@ const Gfx bubba_seg5_dl_05004E80[] = {
     gsSPDisplayList(bubba_seg5_dl_05004C40),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPDisplayList(bubba_seg5_dl_05004D48),
     gsSPEndDisplayList(),
 };
@@ -489,7 +489,7 @@ static const Vtx bubba_seg5_vertex_050054C8[] = {
 const Gfx bubba_seg5_dl_05005538[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bubba_seg5_texture_05000008),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x1FF, 0x200),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 16 * 32 - 1, CALC_DXT(16, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&bubba_seg5_light_05004F38, 1),
     gsSPLight(&bubba_seg5_light_05004F30, 2),
     gsSPVertex(bubba_seg5_vertex_05004F78, 7, 0),
@@ -503,7 +503,7 @@ const Gfx bubba_seg5_dl_05005538[] = {
 const Gfx bubba_seg5_dl_050055A0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bubba_seg5_texture_05001408),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&bubba_seg5_light_05004F50, 1),
     gsSPLight(&bubba_seg5_light_05004F48, 2),
     gsSPVertex(bubba_seg5_vertex_05004FE8, 15, 0),
@@ -531,7 +531,7 @@ const Gfx bubba_seg5_dl_050055A0[] = {
 const Gfx bubba_seg5_dl_050056E0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bubba_seg5_texture_05001C08),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(bubba_seg5_vertex_05005148, 6, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  1,  0,  3, 0x0),
     gsSP2Triangles( 0,  2,  4, 0x0,  3,  0,  4, 0x0),
@@ -543,7 +543,7 @@ const Gfx bubba_seg5_dl_050056E0[] = {
 const Gfx bubba_seg5_dl_05005738[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bubba_seg5_texture_05002408),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x080),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 64 * 32 - 1, CALC_DXT(64, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(bubba_seg5_vertex_050051A8, 16, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  2,  3,  4, 0x0),
     gsSP2Triangles( 4,  3,  5, 0x0,  0,  4,  6, 0x0),
@@ -595,7 +595,7 @@ const Gfx bubba_seg5_dl_05005840[] = {
 // 0x05005978 - 0x05005A28
 const Gfx bubba_seg5_dl_05005978[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -613,7 +613,7 @@ const Gfx bubba_seg5_dl_05005978[] = {
     gsSPDisplayList(bubba_seg5_dl_05005738),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPDisplayList(bubba_seg5_dl_05005840),
     gsSPEndDisplayList(),
 };

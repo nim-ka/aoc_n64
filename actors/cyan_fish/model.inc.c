@@ -36,7 +36,7 @@ static const Vtx cyan_fish_seg6_vertex_0600DC80[] = {
 const Gfx cyan_fish_seg6_dl_0600DD20[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cyan_fish_seg6_texture_0600D468),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&cyan_fish_seg6_light_0600DC70, 1),
     gsSPLight(&cyan_fish_seg6_light_0600DC68, 2),
     gsSPVertex(cyan_fish_seg6_vertex_0600DC80, 10, 0),
@@ -54,7 +54,7 @@ const Gfx cyan_fish_seg6_dl_0600DD20[] = {
 // 0x0600DDD8 - 0x0600DE38
 const Gfx cyan_fish_seg6_dl_0600DDD8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -63,7 +63,7 @@ const Gfx cyan_fish_seg6_dl_0600DDD8[] = {
     gsSPDisplayList(cyan_fish_seg6_dl_0600DD20),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -89,7 +89,7 @@ static const Vtx cyan_fish_seg6_vertex_0600DE50[] = {
 const Gfx cyan_fish_seg6_dl_0600DE90[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cyan_fish_seg6_texture_0600D468),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&cyan_fish_seg6_light_0600DE40, 1),
     gsSPLight(&cyan_fish_seg6_light_0600DE38, 2),
     gsSPVertex(cyan_fish_seg6_vertex_0600DE50, 4, 0),
@@ -100,7 +100,7 @@ const Gfx cyan_fish_seg6_dl_0600DE90[] = {
 // 0x0600DED8 - 0x0600DF48
 const Gfx cyan_fish_seg6_dl_0600DED8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsSPClearGeometryMode(G_CULL_BACK),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -110,7 +110,7 @@ const Gfx cyan_fish_seg6_dl_0600DED8[] = {
     gsSPDisplayList(cyan_fish_seg6_dl_0600DE90),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_CULL_BACK),
     gsSPEndDisplayList(),
 };
@@ -139,7 +139,7 @@ static const Vtx cyan_fish_seg6_vertex_0600DF60[] = {
 const Gfx cyan_fish_seg6_dl_0600DFC0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cyan_fish_seg6_texture_0600D468),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&cyan_fish_seg6_light_0600DF50, 1),
     gsSPLight(&cyan_fish_seg6_light_0600DF48, 2),
     gsSPVertex(cyan_fish_seg6_vertex_0600DF60, 6, 0),
@@ -153,7 +153,7 @@ const Gfx cyan_fish_seg6_dl_0600DFC0[] = {
 // 0x0600E038 - 0x0600E098
 const Gfx cyan_fish_seg6_dl_0600E038[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -162,7 +162,7 @@ const Gfx cyan_fish_seg6_dl_0600E038[] = {
     gsSPDisplayList(cyan_fish_seg6_dl_0600DFC0),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 

@@ -73,7 +73,7 @@ static const Vtx piranha_plant_seg6_vertex_060153F8[] = {
 const Gfx piranha_plant_seg6_dl_06015438[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, piranha_plant_seg6_texture_060143F8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 64 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&piranha_plant_seg6_light_060113B8, 1),
     gsSPLight(&piranha_plant_seg6_light_060113B0, 2),
     gsSPVertex(piranha_plant_seg6_vertex_060153F8, 4, 0),
@@ -84,7 +84,7 @@ const Gfx piranha_plant_seg6_dl_06015438[] = {
 // 0x06015480 - 0x060154F0
 const Gfx piranha_plant_seg6_dl_06015480[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, TEXEL0, 0, 0, 0, TEXEL0),
+    gsDPSetCombineMode(G_CC_DECALRGBA, G_CC_DECALRGBA),
     gsSPClearGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -94,7 +94,7 @@ const Gfx piranha_plant_seg6_dl_06015480[] = {
     gsSPDisplayList(piranha_plant_seg6_dl_06015438),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
@@ -111,7 +111,7 @@ static const Vtx piranha_plant_seg6_vertex_060154F0[] = {
 const Gfx piranha_plant_seg6_dl_06015530[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, piranha_plant_seg6_texture_060143F8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 64 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&piranha_plant_seg6_light_060113B8, 1),
     gsSPLight(&piranha_plant_seg6_light_060113B0, 2),
     gsSPVertex(piranha_plant_seg6_vertex_060154F0, 4, 0),
@@ -122,7 +122,7 @@ const Gfx piranha_plant_seg6_dl_06015530[] = {
 // 0x06015578 - 0x060155E8
 const Gfx piranha_plant_seg6_dl_06015578[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, TEXEL0, 0, 0, 0, TEXEL0),
+    gsDPSetCombineMode(G_CC_DECALRGBA, G_CC_DECALRGBA),
     gsSPClearGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -132,7 +132,7 @@ const Gfx piranha_plant_seg6_dl_06015578[] = {
     gsSPDisplayList(piranha_plant_seg6_dl_06015530),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
@@ -176,7 +176,7 @@ static const Vtx piranha_plant_seg6_vertex_060156C8[] = {
 const Gfx piranha_plant_seg6_dl_06015798[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, piranha_plant_seg6_texture_06012BF8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&piranha_plant_seg6_light_060113B8, 1),
     gsSPLight(&piranha_plant_seg6_light_060113B0, 2),
     gsSPVertex(piranha_plant_seg6_vertex_060155E8, 14, 0),
@@ -195,7 +195,7 @@ const Gfx piranha_plant_seg6_dl_06015798[] = {
 // 0x06015850 - 0x060158B0
 const Gfx piranha_plant_seg6_dl_06015850[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -204,7 +204,7 @@ const Gfx piranha_plant_seg6_dl_06015850[] = {
     gsSPDisplayList(piranha_plant_seg6_dl_06015798),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -329,7 +329,7 @@ static const Vtx piranha_plant_seg6_vertex_06015DC0[] = {
 const Gfx piranha_plant_seg6_dl_06015E40[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, piranha_plant_seg6_texture_06013BF8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&piranha_plant_seg6_light_060113B8, 1),
     gsSPLight(&piranha_plant_seg6_light_060113B0, 2),
     gsSPVertex(piranha_plant_seg6_vertex_060158B0, 14, 0),
@@ -343,7 +343,7 @@ const Gfx piranha_plant_seg6_dl_06015E40[] = {
 const Gfx piranha_plant_seg6_dl_06015EA8[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, piranha_plant_seg6_texture_060133F8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&piranha_plant_seg6_light_060113D0, 1),
     gsSPLight(&piranha_plant_seg6_light_060113C8, 2),
     gsSPVertex(piranha_plant_seg6_vertex_06015990, 15, 0),
@@ -364,7 +364,7 @@ const Gfx piranha_plant_seg6_dl_06015EA8[] = {
 const Gfx piranha_plant_seg6_dl_06015F68[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, piranha_plant_seg6_texture_060123F8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&piranha_plant_seg6_light_060113B8, 1),
     gsSPLight(&piranha_plant_seg6_light_060113B0, 2),
     gsSPVertex(piranha_plant_seg6_vertex_06015B40, 16, 0),
@@ -398,7 +398,7 @@ const Gfx piranha_plant_seg6_dl_06016060[] = {
 // 0x060160B0 - 0x06016120
 const Gfx piranha_plant_seg6_dl_060160B0[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -408,7 +408,7 @@ const Gfx piranha_plant_seg6_dl_060160B0[] = {
     gsSPDisplayList(piranha_plant_seg6_dl_06015F68),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPDisplayList(piranha_plant_seg6_dl_06016060),
     gsSPEndDisplayList(),
 };
@@ -416,7 +416,7 @@ const Gfx piranha_plant_seg6_dl_060160B0[] = {
 // 0x06016120 - 0x06016190
 const Gfx piranha_plant_seg6_dl_06016120[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, TEXEL0, 0, 0, 0, TEXEL0),
+    gsDPSetCombineMode(G_CC_DECALRGBA, G_CC_DECALRGBA),
     gsSPClearGeometryMode(G_CULL_BACK),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -426,7 +426,7 @@ const Gfx piranha_plant_seg6_dl_06016120[] = {
     gsSPDisplayList(piranha_plant_seg6_dl_06015E40),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_CULL_BACK),
     gsSPEndDisplayList(),
 };
@@ -559,7 +559,7 @@ static const Vtx piranha_plant_seg6_vertex_060166E0[] = {
 const Gfx piranha_plant_seg6_dl_06016750[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, piranha_plant_seg6_texture_06013BF8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&piranha_plant_seg6_light_060113B8, 1),
     gsSPLight(&piranha_plant_seg6_light_060113B0, 2),
     gsSPVertex(piranha_plant_seg6_vertex_06016190, 14, 0),
@@ -573,7 +573,7 @@ const Gfx piranha_plant_seg6_dl_06016750[] = {
 const Gfx piranha_plant_seg6_dl_060167B8[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, piranha_plant_seg6_texture_060133F8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&piranha_plant_seg6_light_060113D0, 1),
     gsSPLight(&piranha_plant_seg6_light_060113C8, 2),
     gsSPVertex(piranha_plant_seg6_vertex_06016270, 15, 0),
@@ -596,7 +596,7 @@ const Gfx piranha_plant_seg6_dl_060167B8[] = {
 const Gfx piranha_plant_seg6_dl_06016890[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, piranha_plant_seg6_texture_060123F8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&piranha_plant_seg6_light_060113B8, 1),
     gsSPLight(&piranha_plant_seg6_light_060113B0, 2),
     gsSPVertex(piranha_plant_seg6_vertex_06016490, 15, 0),
@@ -617,7 +617,7 @@ const Gfx piranha_plant_seg6_dl_06016890[] = {
 const Gfx piranha_plant_seg6_dl_06016960[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, piranha_plant_seg6_texture_060113F8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 64 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(piranha_plant_seg6_vertex_06016680, 6, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  2,  3,  0, 0x0),
     gsSP2Triangles( 2,  4,  3, 0x0,  2,  5,  4, 0x0),
@@ -637,7 +637,7 @@ const Gfx piranha_plant_seg6_dl_060169A8[] = {
 // 0x060169E8 - 0x06016A78
 const Gfx piranha_plant_seg6_dl_060169E8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -651,7 +651,7 @@ const Gfx piranha_plant_seg6_dl_060169E8[] = {
     gsSPDisplayList(piranha_plant_seg6_dl_06016960),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPDisplayList(piranha_plant_seg6_dl_060169A8),
     gsSPEndDisplayList(),
 };
@@ -659,7 +659,7 @@ const Gfx piranha_plant_seg6_dl_060169E8[] = {
 // 0x06016A78 - 0x06016AE8
 const Gfx piranha_plant_seg6_dl_06016A78[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, TEXEL0, 0, 0, 0, TEXEL0),
+    gsDPSetCombineMode(G_CC_DECALRGBA, G_CC_DECALRGBA),
     gsSPClearGeometryMode(G_CULL_BACK),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -669,7 +669,7 @@ const Gfx piranha_plant_seg6_dl_06016A78[] = {
     gsSPDisplayList(piranha_plant_seg6_dl_06016750),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_CULL_BACK),
     gsSPEndDisplayList(),
 };
@@ -694,7 +694,7 @@ static const Vtx piranha_plant_seg6_vertex_06016AE8[] = {
 const Gfx piranha_plant_seg6_dl_06016BA8[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, piranha_plant_seg6_texture_06012BF8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&piranha_plant_seg6_light_060113B8, 1),
     gsSPLight(&piranha_plant_seg6_light_060113B0, 2),
     gsSPVertex(piranha_plant_seg6_vertex_06016AE8, 12, 0),
@@ -707,7 +707,7 @@ const Gfx piranha_plant_seg6_dl_06016BA8[] = {
 // 0x06016C10 - 0x06016C70
 const Gfx piranha_plant_seg6_dl_06016C10[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -716,7 +716,7 @@ const Gfx piranha_plant_seg6_dl_06016C10[] = {
     gsSPDisplayList(piranha_plant_seg6_dl_06016BA8),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -740,7 +740,7 @@ static const Vtx piranha_plant_seg6_vertex_06016C70[] = {
 const Gfx piranha_plant_seg6_dl_06016D30[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, piranha_plant_seg6_texture_06012BF8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&piranha_plant_seg6_light_060113B8, 1),
     gsSPLight(&piranha_plant_seg6_light_060113B0, 2),
     gsSPVertex(piranha_plant_seg6_vertex_06016C70, 12, 0),
@@ -753,7 +753,7 @@ const Gfx piranha_plant_seg6_dl_06016D30[] = {
 // 0x06016D98 - 0x06016DF8
 const Gfx piranha_plant_seg6_dl_06016D98[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -762,7 +762,7 @@ const Gfx piranha_plant_seg6_dl_06016D98[] = {
     gsSPDisplayList(piranha_plant_seg6_dl_06016D30),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
@@ -786,7 +786,7 @@ static const Vtx piranha_plant_seg6_vertex_06016DF8[] = {
 const Gfx piranha_plant_seg6_dl_06016EB8[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, piranha_plant_seg6_texture_06012BF8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&piranha_plant_seg6_light_060113B8, 1),
     gsSPLight(&piranha_plant_seg6_light_060113B0, 2),
     gsSPVertex(piranha_plant_seg6_vertex_06016DF8, 12, 0),
@@ -799,7 +799,7 @@ const Gfx piranha_plant_seg6_dl_06016EB8[] = {
 // 0x06016F20 - 0x06016F80
 const Gfx piranha_plant_seg6_dl_06016F20[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -808,7 +808,7 @@ const Gfx piranha_plant_seg6_dl_06016F20[] = {
     gsSPDisplayList(piranha_plant_seg6_dl_06016EB8),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 

@@ -1252,7 +1252,7 @@ static const Vtx vcutm_seg7_vertex_07006BC8[] = {
 static const Gfx vcutm_seg7_dl_07006C48[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_0900B000),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x1FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 16 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&vcutm_seg7_light_07003008, 1),
     gsSPLight(&vcutm_seg7_light_07003000, 2),
     gsSPVertex(vcutm_seg7_vertex_07003048, 14, 0),
@@ -1411,7 +1411,7 @@ static const Gfx vcutm_seg7_dl_07006C48[] = {
 static const Gfx vcutm_seg7_dl_070074A0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_09009000),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&vcutm_seg7_light_07003020, 1),
     gsSPLight(&vcutm_seg7_light_07003018, 2),
     gsSPVertex(vcutm_seg7_vertex_07004FB8, 15, 0),
@@ -1453,7 +1453,7 @@ static const Gfx vcutm_seg7_dl_070074A0[] = {
 static const Gfx vcutm_seg7_dl_07007660[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_09000800),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&vcutm_seg7_light_07003038, 1),
     gsSPLight(&vcutm_seg7_light_07003030, 2),
     gsSPVertex(vcutm_seg7_vertex_07005558, 15, 0),
@@ -1514,7 +1514,7 @@ static const Gfx vcutm_seg7_dl_07007660[] = {
 static const Gfx vcutm_seg7_dl_07007940[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, vcutm_seg7_texture_07002800),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&vcutm_seg7_light_07003038, 1),
     gsSPLight(&vcutm_seg7_light_07003030, 2),
     gsSPVertex(vcutm_seg7_vertex_07005D18, 16, 0),
@@ -1550,7 +1550,7 @@ static const Gfx vcutm_seg7_dl_07007940[] = {
 static const Gfx vcutm_seg7_dl_07007AD8[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_09003000),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(vcutm_seg7_vertex_07006198, 16, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  3,  1, 0x0),
     gsSP2Triangles( 4,  5,  6, 0x0,  4,  7,  5, 0x0),
@@ -1589,7 +1589,7 @@ static const Gfx vcutm_seg7_dl_07007AD8[] = {
 static const Gfx vcutm_seg7_dl_07007CA0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_0900A000),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(vcutm_seg7_vertex_070067D8, 14, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  3,  4,  5, 0x0),
     gsSP2Triangles( 4,  3,  6, 0x0,  3,  5,  7, 0x0),
@@ -1610,7 +1610,7 @@ static const Gfx vcutm_seg7_dl_07007CA0[] = {
 static const Gfx vcutm_seg7_dl_07007D80[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, vcutm_seg7_texture_07000800),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x080),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 64 * 32 - 1, CALC_DXT(64, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(vcutm_seg7_vertex_070069B8, 14, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  3,  1, 0x0),
     gsSP2Triangles( 0,  4,  5, 0x0,  0,  2,  4, 0x0),
@@ -1640,7 +1640,7 @@ static const Gfx vcutm_seg7_dl_07007E00[] = {
 // 0x07007E88 - 0x07007F90
 const Gfx vcutm_seg7_dl_07007E88[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsSPClearGeometryMode(G_SHADING_SMOOTH),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -1668,7 +1668,7 @@ const Gfx vcutm_seg7_dl_07007E88[] = {
     gsSPDisplayList(vcutm_seg7_dl_07007D80),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPDisplayList(vcutm_seg7_dl_07007E00),
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),

@@ -324,7 +324,7 @@ static const Vtx flyguy_seg8_vertex_08010AF8[] = {
 const Gfx flyguy_seg8_dl_08010B38[] = {
     gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, flyguy_seg8_texture_0800F888),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&flyguy_seg8_light_08010AE8, 1),
     gsSPLight(&flyguy_seg8_light_08010AE0, 2),
     gsSPVertex(flyguy_seg8_vertex_08010AF8, 4, 0),
@@ -335,7 +335,7 @@ const Gfx flyguy_seg8_dl_08010B38[] = {
 // 0x08010B80 - 0x08010BF0
 const Gfx flyguy_seg8_dl_08010B80[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, TEXEL0, 0, SHADE, 0),
+    gsDPSetCombineMode(G_CC_MODULATEIA, G_CC_MODULATEIA),
     gsSPClearGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -345,7 +345,7 @@ const Gfx flyguy_seg8_dl_08010B80[] = {
     gsSPDisplayList(flyguy_seg8_dl_08010B38),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
@@ -543,7 +543,7 @@ static const Vtx flyguy_seg8_vertex_08011348[] = {
 const Gfx flyguy_seg8_dl_080113A8[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, flyguy_seg8_texture_0800F088),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&flyguy_seg8_light_08010BF8, 1),
     gsSPLight(&flyguy_seg8_light_08010BF0, 2),
     gsSPVertex(flyguy_seg8_vertex_08010C38, 9, 0),
@@ -558,7 +558,7 @@ const Gfx flyguy_seg8_dl_080113A8[] = {
 const Gfx flyguy_seg8_dl_08011420[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, flyguy_seg8_texture_0800E088),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x080),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 64 * 32 - 1, CALC_DXT(64, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&flyguy_seg8_light_08010C10, 1),
     gsSPLight(&flyguy_seg8_light_08010C08, 2),
     gsSPVertex(flyguy_seg8_vertex_08010CC8, 6, 0),
@@ -624,7 +624,7 @@ const Gfx flyguy_seg8_dl_080116D0[] = {
 // 0x08011710 - 0x08011798
 const Gfx flyguy_seg8_dl_08011710[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),
@@ -637,7 +637,7 @@ const Gfx flyguy_seg8_dl_08011710[] = {
     gsSPDisplayList(flyguy_seg8_dl_08011420),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPDisplayList(flyguy_seg8_dl_080116D0),
     gsSPEndDisplayList(),
 };

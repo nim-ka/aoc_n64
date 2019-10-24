@@ -60,14 +60,12 @@ s32 func_802CAF38(s8 a0, u8 a1, struct WarpTransitionData *transData, u8 alpha) 
     Vtx *verts = func_802CADB4(transData, alpha);
 
     if (verts != NULL) {
-        gSPDisplayList(gDisplayListHead++, dl_proj_mtx_fullscreen)
-        gDPSetCombineLERP1Cycle(gDisplayListHead++,
-                            0, 0, 0, SHADE,  // CCMUX
-                            0, 0, 0, SHADE); // ACMUX
-        gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2)
-        gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts), 4, 0)
-        gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123)
-        gSPDisplayList(gDisplayListHead++, dl_screen_transition_end)
+        gSPDisplayList(gDisplayListHead++, dl_proj_mtx_fullscreen);
+        gDPSetCombineMode(gDisplayListHead++, G_CC_SHADE, G_CC_SHADE);
+        gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
+        gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts), 4, 0);
+        gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123);
+        gSPDisplayList(gDisplayListHead++, dl_screen_transition_end);
     }
     return func_802CAAE0(a0, a1);
 }
@@ -175,34 +173,30 @@ s32 func_802CB9F8(s8 spBB, s8 spBF, struct WarpTransitionData *transData, s8 spC
 
     if (spA8 != NULL) {
         func_802CB6A0(spA8, spBB, transData, spB0, spAE, spAC, spCB); // TODO types
-        gSPDisplayList(gDisplayListHead++, dl_proj_mtx_fullscreen)
-        gDPSetCombineLERP1Cycle(gDisplayListHead++,
-                            0, 0, 0, SHADE,  // CCMUX
-                            0, 0, 0, SHADE); // ACMUX
-        gDPSetRenderMode(gDisplayListHead++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2)
-        gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(spA8), 8, 0)
-        gSPDisplayList(gDisplayListHead++, dl_transition_draw_filled_region)
-        gDPPipeSync(gDisplayListHead++)
-        gDPSetCombineLERP1Cycle(gDisplayListHead++,
-                            TEXEL0, 0, SHADE, 0,  // CCMUX
-                                0, 0, 0, TEXEL0); // ACMUX
-        gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2)
-        gDPSetTextureFilter(gDisplayListHead++, G_TF_BILERP)
+        gSPDisplayList(gDisplayListHead++, dl_proj_mtx_fullscreen);
+        gDPSetCombineMode(gDisplayListHead++, G_CC_SHADE, G_CC_SHADE);
+        gDPSetRenderMode(gDisplayListHead++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2);
+        gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(spA8), 8, 0);
+        gSPDisplayList(gDisplayListHead++, dl_transition_draw_filled_region);
+        gDPPipeSync(gDisplayListHead++);
+        gDPSetCombineMode(gDisplayListHead++, G_CC_MODULATEIDECALA, G_CC_MODULATEIDECALA);
+        gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
+        gDPSetTextureFilter(gDisplayListHead++, G_TF_BILERP);
     switch (spCB) {
         case 0:
             gDPLoadTextureBlock(gDisplayListHead++, D_8032FF68[spC7], G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
-                G_TX_WRAP | G_TX_MIRROR, G_TX_WRAP | G_TX_MIRROR, 5, 6, G_TX_NOLOD, G_TX_NOLOD)
+                G_TX_WRAP | G_TX_MIRROR, G_TX_WRAP | G_TX_MIRROR, 5, 6, G_TX_NOLOD, G_TX_NOLOD);
             break;
         case 1:
             gDPLoadTextureBlock(gDisplayListHead++, D_8032FF68[spC7], G_IM_FMT_IA, G_IM_SIZ_8b, 64, 64, 0,
-                G_TX_CLAMP, G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD)
+                G_TX_CLAMP, G_TX_CLAMP, 6, 6, G_TX_NOLOD, G_TX_NOLOD);
             break;
         }
-        gSPTexture(gDisplayListHead++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON)
-        gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(spA8), 4, 0)
-        gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123)
-        gSPTexture(gDisplayListHead++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF)
-        gSPDisplayList(gDisplayListHead++, dl_screen_transition_end)
+        gSPTexture(gDisplayListHead++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
+        gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(spA8), 4, 0);
+        gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123);
+        gSPTexture(gDisplayListHead++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF);
+        gSPDisplayList(gDisplayListHead++, dl_screen_transition_end);
         D_8032FF64[spBB] += transData->unk10;
     } else {
     }
@@ -256,18 +250,16 @@ Gfx *func_802CC2E8(void) {
         make_vertex(verts, 3, 0, 240, -1, -1152, 192, 0, 0, 0, 255);
 
         gSPDisplayList(g++, dl_proj_mtx_fullscreen)
-        gDPSetCombineLERP1Cycle(g++,
-                            TEXEL0, 0, SHADE, 0,  // CCMUX
-                                0, 0, 0, TEXEL0); // ACMUX
-        gDPSetTextureFilter(g++, G_TF_BILERP)
+        gDPSetCombineMode(g++, G_CC_MODULATEIDECALA, G_CC_MODULATEIDECALA);
+        gDPSetTextureFilter(g++, G_TF_BILERP);
         gDPLoadTextureBlock(g++, D_8032FF68[1], G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
-            G_TX_WRAP | G_TX_MIRROR, G_TX_WRAP | G_TX_MIRROR, 5, 6, G_TX_NOLOD, G_TX_NOLOD)
-        gSPTexture(g++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON)
-        gSPVertex(g++, VIRTUAL_TO_PHYSICAL(verts), 4, 0)
-        gSPDisplayList(g++, dl_draw_quad_verts_0123)
-        gSPTexture(g++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF)
-        gSPDisplayList(g++, dl_screen_transition_end)
-        gSPEndDisplayList(g)
+            G_TX_WRAP | G_TX_MIRROR, G_TX_WRAP | G_TX_MIRROR, 5, 6, G_TX_NOLOD, G_TX_NOLOD);
+        gSPTexture(g++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
+        gSPVertex(g++, VIRTUAL_TO_PHYSICAL(verts), 4, 0);
+        gSPDisplayList(g++, dl_draw_quad_verts_0123);
+        gSPTexture(g++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF);
+        gSPDisplayList(g++, dl_screen_transition_end);
+        gSPEndDisplayList(g);
     } else {
         return NULL;
     }

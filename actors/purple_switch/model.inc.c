@@ -52,7 +52,7 @@ static const Vtx purple_switch_seg8_vertex_0800C628[] = {
 const Gfx purple_switch_seg8_dl_0800C668[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, purple_switch_seg8_texture_0800C0A8),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x03F, 0x200),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 16 * 4 - 1, CALC_DXT(16, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&purple_switch_seg8_light_0800C098, 1),
     gsSPLight(&purple_switch_seg8_light_0800C090, 2),
     gsSPVertex(purple_switch_seg8_vertex_0800C528, 16, 0),
@@ -67,7 +67,7 @@ const Gfx purple_switch_seg8_dl_0800C668[] = {
 const Gfx purple_switch_seg8_dl_0800C6E0[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, purple_switch_seg8_texture_0800C128),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x1FF, 0x200),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 16 * 32 - 1, CALC_DXT(16, G_IM_SIZ_16b_BYTES)),
     gsSPVertex(purple_switch_seg8_vertex_0800C628, 4, 0),
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  3,  1, 0x0),
     gsSPEndDisplayList(),
@@ -76,7 +76,7 @@ const Gfx purple_switch_seg8_dl_0800C6E0[] = {
 // 0x0800C718 - 0x0800C7A8
 const Gfx purple_switch_seg8_dl_0800C718[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsSPClearGeometryMode(G_SHADING_SMOOTH),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -90,7 +90,7 @@ const Gfx purple_switch_seg8_dl_0800C718[] = {
     gsSPDisplayList(purple_switch_seg8_dl_0800C6E0),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };

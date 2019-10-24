@@ -834,7 +834,7 @@ static const Vtx inside_castle_seg7_vertex_07060A68[] = {
 static const Gfx inside_castle_seg7_dl_07060B58[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_09003000),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&inside_castle_seg7_light_0705E4C8, 1),
     gsSPLight(&inside_castle_seg7_light_0705E4C0, 2),
     gsSPVertex(inside_castle_seg7_vertex_0705E538, 15, 0),
@@ -862,7 +862,7 @@ static const Gfx inside_castle_seg7_dl_07060B58[] = {
 static const Gfx inside_castle_seg7_dl_07060C68[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_0900B000),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&inside_castle_seg7_light_0705E4F8, 1),
     gsSPLight(&inside_castle_seg7_light_0705E4F0, 2),
     gsSPVertex(inside_castle_seg7_vertex_0705E878, 4, 0),
@@ -907,7 +907,7 @@ static const Gfx inside_castle_seg7_dl_07060C68[] = {
 static const Gfx inside_castle_seg7_dl_07060E70[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_09004000),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&inside_castle_seg7_light_0705E4E0, 1),
     gsSPLight(&inside_castle_seg7_light_0705E4D8, 2),
     gsSPVertex(inside_castle_seg7_vertex_0705EE68, 16, 0),
@@ -923,7 +923,7 @@ static const Gfx inside_castle_seg7_dl_07060E70[] = {
 static const Gfx inside_castle_seg7_dl_07060EF8[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_09007000),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 64 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&inside_castle_seg7_light_0705E528, 1),
     gsSPLight(&inside_castle_seg7_light_0705E520, 2),
     gsSPVertex(inside_castle_seg7_vertex_0705EF68, 15, 0),
@@ -978,7 +978,7 @@ static const Gfx inside_castle_seg7_dl_07060EF8[] = {
 static const Gfx inside_castle_seg7_dl_07061188[] = {
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_09009000),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x7FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 64 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPLight(&inside_castle_seg7_light_0705E510, 1),
     gsSPLight(&inside_castle_seg7_light_0705E508, 2),
     gsSPVertex(inside_castle_seg7_vertex_0705F888, 4, 0),
@@ -1085,7 +1085,7 @@ static const Gfx inside_castle_seg7_dl_07061188[] = {
 // 0x070616E8 - 0x07061790
 const Gfx inside_castle_seg7_dl_070616E8[] = {
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(TEXEL0, 0, SHADE, 0, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_MODULATERGB, G_CC_MODULATERGB),
     gsSPClearGeometryMode(G_SHADING_SMOOTH),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -1102,7 +1102,7 @@ const Gfx inside_castle_seg7_dl_070616E8[] = {
     gsSPDisplayList(inside_castle_seg7_dl_07061188),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_OFF),
     gsDPPipeSync(),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };

@@ -603,8 +603,6 @@ SECTIONS
       BUILD_DIR/libgoddard.a:joints.o(.data*);
       BUILD_DIR/libgoddard.a:shape_helper.o(.data*);
       BUILD_DIR/libgoddard.a:renderer.o(.data*);
-      /* goddard texture and DLs */
-      BUILD_DIR/data/goddard_tex_dl.o(.data*);
       /* goddard subsystem rodata */
       BUILD_DIR/libgoddard.a:gd_main.o(.rodata*);
       BUILD_DIR/libgoddard.a:gd_memory.o(.rodata*);

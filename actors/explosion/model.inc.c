@@ -45,13 +45,13 @@ static const u8 explosion_seg3_texture_03003A08[] = {
 
 // 0x03004208 - 0x03004298
 const Gfx explosion_seg3_dl_03004208[] = {
-    gsDPSetCombineLERP1Cycle(0, 0, 0, TEXEL0, TEXEL0, 0, ENVIRONMENT, 0),
+    gsDPSetCombineMode(G_CC_DECALFADEA, G_CC_DECALFADEA),
     gsDPSetEnvColor(255, 255, 255, 150),
     gsSPClearGeometryMode(G_LIGHTING),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD),
     gsDPLoadSync(),
-    gsDPLoadBlock(7, 0, 0, 0x3FF, 0x100),
+    gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD),
     gsDPSetTileSize(0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC),
     gsSPVertex(explosion_seg3_vertex_030009C8, 4, 0),
@@ -60,7 +60,7 @@ const Gfx explosion_seg3_dl_03004208[] = {
     gsDPPipeSync(),
     gsSPSetGeometryMode(G_LIGHTING),
     gsDPSetEnvColor(255, 255, 255, 255),
-    gsDPSetCombineLERP1Cycle(0, 0, 0, SHADE, 0, 0, 0, SHADE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
 
