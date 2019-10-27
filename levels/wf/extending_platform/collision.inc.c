@@ -24,4 +24,3 @@ const Collision wf_seg7_collision_platform[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

@@ -279,4 +279,3 @@ const Gfx vcutm_seg7_dl_07008E10[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

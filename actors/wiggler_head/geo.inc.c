@@ -60,4 +60,3 @@ const uintptr_t wiggler_head_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

@@ -3,7 +3,7 @@
 #include "surface_terrains.h"
 #include "geo_commands.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 #include "monty_mole_hole/model.inc.c"
 UNUSED static const u64 binid_0 = 0;
@@ -23,4 +23,3 @@ UNUSED static const u64 binid_3 = 3;
 
 #include "fwoosh/model.inc.c"
 UNUSED static const u64 binid_4 = 4;
-

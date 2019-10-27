@@ -191,4 +191,3 @@ const Gfx lll_seg7_dl_0701A628[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

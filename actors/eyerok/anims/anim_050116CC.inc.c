@@ -443,4 +443,3 @@ static const struct Animation eyerok_seg5_anim_050116CC = {
     eyerok_seg5_animindex_050114C8,
     0,
 };
-

@@ -91,4 +91,3 @@ static const struct Animation wiggler_seg5_anim_0500C760 = {
     wiggler_seg5_animindex_0500C6DC,
     0,
 };
-

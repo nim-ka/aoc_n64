@@ -146,4 +146,3 @@ const Gfx ttm_seg7_dl_0700F270[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

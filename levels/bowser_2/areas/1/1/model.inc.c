@@ -206,4 +206,3 @@ const Gfx bowser_2_seg7_dl_07001930[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

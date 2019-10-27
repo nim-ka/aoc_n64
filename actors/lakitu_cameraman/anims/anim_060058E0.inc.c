@@ -63,4 +63,3 @@ static const struct Animation lakitu_seg6_anim_060058E0 = {
     lakitu_seg6_animindex_06005844,
     0,
 };
-

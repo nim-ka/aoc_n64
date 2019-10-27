@@ -9,22 +9,22 @@ static const Vtx water_waves_seg4_vertex_04025318[] = {
 };
 
 // 0x04025358
-static const u8 water_waves_seg4_texture_04025358[] = {
+ALIGNED8 static const u8 water_waves_seg4_texture_04025358[] = {
 #include "actors/water_waves/water_waves_0.ia16.inc.c"
 };
 
 // 0x04025B58
-static const u8 water_waves_seg4_texture_04025B58[] = {
+ALIGNED8 static const u8 water_waves_seg4_texture_04025B58[] = {
 #include "actors/water_waves/water_waves_1.ia16.inc.c"
 };
 
 // 0x04026358
-static const u8 water_waves_seg4_texture_04026358[] = {
+ALIGNED8 static const u8 water_waves_seg4_texture_04026358[] = {
 #include "actors/water_waves/water_waves_2.ia16.inc.c"
 };
 
 // 0x04026B58
-static const u8 water_waves_seg4_texture_04026B58[] = {
+ALIGNED8 static const u8 water_waves_seg4_texture_04026B58[] = {
 #include "actors/water_waves/water_waves_3.ia16.inc.c"
 };
 
@@ -85,4 +85,3 @@ const Gfx water_waves_seg4_dl_04027438[] = {
     gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, water_waves_seg4_texture_04026B58),
     gsSPBranchList(water_waves_seg4_dl_040273D8),
 };
-

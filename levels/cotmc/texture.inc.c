@@ -22,4 +22,3 @@ ALIGNED8 static const u8 cotmc_seg7_texture_07002000[] = {
 ALIGNED8 static const u8 cotmc_seg7_texture_07002800[] = {
 #include "levels/cotmc/4.rgba16.inc.c"
 };
-

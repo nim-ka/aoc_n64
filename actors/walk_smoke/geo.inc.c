@@ -12,4 +12,3 @@ const uintptr_t smoke_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

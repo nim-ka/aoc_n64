@@ -6,4 +6,3 @@ const GeoLayout geo_bbh_0005E0[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

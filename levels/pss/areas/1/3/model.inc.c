@@ -101,4 +101,3 @@ const Gfx pss_seg7_dl_0700B3F0[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

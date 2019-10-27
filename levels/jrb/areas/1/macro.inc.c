@@ -64,4 +64,3 @@ const MacroObject jrb_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,             /*yaw*/   0, /*pos*/  5290, -2966, -4740, /*behParam*/ 169),
     MACRO_OBJECT_END(),
 };
-

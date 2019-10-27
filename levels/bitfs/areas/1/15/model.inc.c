@@ -43,4 +43,3 @@ const Gfx bitfs_seg7_dl_0700AB90[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

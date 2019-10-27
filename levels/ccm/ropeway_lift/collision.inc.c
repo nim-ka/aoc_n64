@@ -77,4 +77,3 @@ const Collision ccm_seg7_collision_070163F8[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

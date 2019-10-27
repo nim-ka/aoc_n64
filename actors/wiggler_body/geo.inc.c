@@ -40,4 +40,3 @@ const uintptr_t wiggler_body_geo[] = {
     GEO_CLOSE_NODE(),
     GEO_END(),
 };
-

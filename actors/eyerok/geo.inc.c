@@ -129,4 +129,3 @@ const uintptr_t eyerok_right_hand_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

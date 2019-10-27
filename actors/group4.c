@@ -3,7 +3,7 @@
 #include "surface_terrains.h"
 #include "geo_commands.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 #include "clam_shell/model.inc.c"
 #include "clam_shell/anims/data.inc.c"
@@ -28,4 +28,3 @@ UNUSED static const u64 binid_3 = 3;
 
 #include "whirlpool/model.inc.c"
 UNUSED static const u64 binid_4 = 4;
-

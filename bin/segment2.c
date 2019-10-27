@@ -2,7 +2,7 @@
 #include "sm64.h"
 #include "game/ingame_menu.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 // SM64 (US/JP/EU) Segment 02
 
@@ -134,7 +134,7 @@ ALIGNED8 static const u8 texture_hud_char_U[] = {
 #include "textures/segment2/segment2.03C00.rgba16.inc.c"
 };
 
-#if VERSION_JP == 1 || VERSION_EU == 1
+#if defined(VERSION_JP) || defined(VERSION_EU)
 ALIGNED8 static const u8 texture_hud_char_V[] = {
 #include "textures/segment2/segment2.03E00.rgba16.inc.c"
 };
@@ -154,7 +154,7 @@ ALIGNED8 static const u8 texture_hud_char_Y[] = {
 #include "textures/segment2/segment2.04400.rgba16.inc.c"
 };
 
-#if VERSION_JP == 1 || VERSION_EU == 1
+#if defined(VERSION_JP) || defined(VERSION_EU)
 ALIGNED8 static const u8 texture_hud_char_Z[] = {
 #include "textures/segment2/segment2.04600.rgba16.inc.c"
 };
@@ -1007,7 +1007,7 @@ ALIGNED8 static const u8 texture_font_char_jp_ellipsis[] = {
 };
 
 // EU Small Font
-#elif VERSION_EU == 1
+#elif defined(VERSION_EU)
 
 ALIGNED8 static const u8 texture_font_char_eu_0[] = {
 #include "textures/segment2/font_graphics.05F00.ia1.inc.c"
@@ -1802,7 +1802,7 @@ ALIGNED8 static const u8 texture_hud_char_arrow_down[] = {
 
 // Main HUD print table 0x02008250-0x02008337
 const u8 *const main_hud_lut[] = {
-#if VERSION_EU == 1
+#ifdef VERSION_EU
     texture_hud_char_0, texture_hud_char_1, texture_hud_char_2, texture_hud_char_3,
     texture_hud_char_4, texture_hud_char_5, texture_hud_char_6, texture_hud_char_7,
     texture_hud_char_8, texture_hud_char_9, texture_hud_char_A, texture_hud_char_B,
@@ -1818,7 +1818,7 @@ const u8 *const main_hud_lut[] = {
                   0x0,               0x0, texture_hud_char_multiply, texture_hud_char_coin,
     texture_hud_char_mario_head, texture_hud_char_star,               0x0,               0x0,
     texture_hud_char_apostrophe, texture_hud_char_double_quote, texture_hud_char_umlaut,
-#elif VERSION_US == 1
+#elif defined(VERSION_US)
     texture_hud_char_0, texture_hud_char_1, texture_hud_char_2, texture_hud_char_3,
     texture_hud_char_4, texture_hud_char_5, texture_hud_char_6, texture_hud_char_7,
     texture_hud_char_8, texture_hud_char_9, texture_hud_char_A, texture_hud_char_B,
@@ -1855,7 +1855,7 @@ const u8 *const main_hud_lut[] = {
 
 // Main small font print table 0x02008338-0x02008737
 const u8 *const main_font_lut[] = {
-#if VERSION_EU == 1// EU Font Table
+#ifdef VERSION_EU // EU Font Table
     texture_font_char_eu_0, texture_font_char_eu_1, texture_font_char_eu_2, texture_font_char_eu_3,
     texture_font_char_eu_4, texture_font_char_eu_5, texture_font_char_eu_6, texture_font_char_eu_7,
     texture_font_char_eu_8, texture_font_char_eu_9, texture_font_char_eu_A, texture_font_char_eu_B,
@@ -1922,7 +1922,7 @@ const u8 *const main_font_lut[] = {
     texture_font_char_eu_interpunct,
     texture_font_char_eu_star_hollow,
     0x0, 0x0,
-#elif VERSION_US == 1// US Font Table
+#elif defined(VERSION_US) // US Font Table
     texture_font_char_us_0, texture_font_char_us_1, texture_font_char_us_2, texture_font_char_us_3,
     texture_font_char_us_4, texture_font_char_us_5, texture_font_char_us_6, texture_font_char_us_7,
     texture_font_char_us_8, texture_font_char_us_9, texture_font_char_us_A, texture_font_char_us_B,
@@ -1987,7 +1987,7 @@ const u8 *const main_font_lut[] = {
     texture_font_char_us_question, texture_font_char_us_double_quote_open, texture_font_char_us_double_quote_close, texture_font_char_us_tilde,
                   0x0, texture_font_char_us_coin, texture_font_char_us_star_filled, texture_font_char_us_multiply,
     texture_font_char_us_interpunct, texture_font_char_us_star_hollow,               0x0,               0x0,
-#elif VERSION_JP == 1
+#elif defined(VERSION_JP)
     texture_font_char_jp_0, texture_font_char_jp_1, texture_font_char_jp_2, texture_font_char_jp_3,
     texture_font_char_jp_4, texture_font_char_jp_5, texture_font_char_jp_6, texture_font_char_jp_7,
     texture_font_char_jp_8, texture_font_char_jp_9, texture_font_char_jp_A, texture_font_char_jp_B,
@@ -2075,12 +2075,12 @@ const u8 *const main_hud_camera_lut[] = {
     texture_hud_char_arrow_up, texture_hud_char_arrow_down,
 };
 
-#if VERSION_US == 1
+#if defined(VERSION_US)
 #include "build/us/text/debug.inc.c"
 #include "build/us/text/dialog.inc.c"
 #include "build/us/text/level.inc.c"
 #include "build/us/text/star.inc.c"
-#elif VERSION_JP == 1 /* NTSC-J 1.0 */
+#elif defined(VERSION_JP) /* NTSC-J 1.0 */
 #include "build/jp/text/debug.inc.c"
 #include "build/jp/text/dialog.inc.c"
 #include "build/jp/text/level.inc.c"
@@ -2201,7 +2201,7 @@ static const Vtx vertex_ia8_char[] = {
 // !EU
 #endif
 
-#if VERSION_EU == 1
+#ifdef VERSION_EU
 // 0x020073B0
 const Gfx dl_ia_text_begin[] = {
     gsDPPipeSync(),
@@ -2234,7 +2234,7 @@ const Gfx dl_ia_text_end[] = {
     gsSPEndDisplayList(),
 };
 
-#elif VERSION_US == 1
+#elif defined(VERSION_US)
 const Gfx dl_ia_text_begin[] = {
     gsDPPipeSync(),
     gsSPClearGeometryMode(G_LIGHTING),
@@ -3338,4 +3338,3 @@ const s16 seg2_mesh_order[] = {
     193,   2, 192, 216,   3, 260, 261, 263,
       3, 240, 242, 244,   1, 243,
 };
-

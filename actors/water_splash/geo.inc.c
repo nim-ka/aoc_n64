@@ -13,4 +13,3 @@ const uintptr_t water_splash_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

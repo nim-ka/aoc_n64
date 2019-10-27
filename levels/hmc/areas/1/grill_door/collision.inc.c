@@ -54,4 +54,3 @@ const Collision hmc_seg7_collision_0702B65C[] = {
     COL_END(),
 #endif
 };
-

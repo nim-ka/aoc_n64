@@ -1,4 +1,3 @@
-
 // 0x07015AF0 - 0x07015B1C
 Movtex bitfs_movtex_tris_lava_first_section[] = {
     MOV_TEX_SPD(  2),
@@ -48,4 +47,3 @@ const Gfx bitfs_dl_lava_floor[] = {
     gsSP2Triangles( 4,  7,  5, 0x0,  5,  7,  8, 0x0),
     gsSPEndDisplayList(),
 };
-

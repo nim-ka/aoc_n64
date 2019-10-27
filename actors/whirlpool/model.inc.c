@@ -1,7 +1,7 @@
 // Whirlpool
 
 // 0x05012848
-static const u8 whirlpool_seg5_texture_05012848[] = {
+ALIGNED8 static const u8 whirlpool_seg5_texture_05012848[] = {
 #include "actors/whirlpool/whirlpool.ia16.inc.c"
 };
 
@@ -118,4 +118,3 @@ const Gfx whirlpool_seg5_dl_05013CB8[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

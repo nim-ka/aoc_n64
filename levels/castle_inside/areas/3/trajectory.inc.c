@@ -97,4 +97,3 @@ const Trajectory *const inside_castle_seg7_trajectory_mips[] = {
     inside_castle_seg7_trajectory_mips_6, inside_castle_seg7_trajectory_mips_7,
     inside_castle_seg7_trajectory_mips_8, inside_castle_seg7_trajectory_mips_9,
 };
-

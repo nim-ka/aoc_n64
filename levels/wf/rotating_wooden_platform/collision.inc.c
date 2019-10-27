@@ -31,4 +31,3 @@ const Collision wf_seg7_collision_clocklike_rotation[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

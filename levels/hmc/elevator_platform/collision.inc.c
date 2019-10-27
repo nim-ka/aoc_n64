@@ -24,4 +24,3 @@ const Collision hmc_seg7_collision_elevator[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

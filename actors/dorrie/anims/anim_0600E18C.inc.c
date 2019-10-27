@@ -41,4 +41,3 @@ static const struct Animation dorrie_seg6_anim_0600E18C = {
     dorrie_seg6_animindex_0600E0A8,
     0,
 };
-

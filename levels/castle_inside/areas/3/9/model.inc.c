@@ -42,4 +42,3 @@ const Gfx inside_castle_seg7_dl_07066E90[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

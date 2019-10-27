@@ -11,17 +11,17 @@ static const Light bomb_seg6_light_06057AB0 = {
 };
 
 // 0x06057AC0
-static const u8 bomb_seg6_texture_06057AC0[] = {
+ALIGNED8 static const u8 bomb_seg6_texture_06057AC0[] = {
 #include "actors/bomb/bomb_left_side.rgba16.inc.c"
 };
 
 // 0x06058AC0
-static const u8 bomb_seg6_texture_06058AC0[] = {
+ALIGNED8 static const u8 bomb_seg6_texture_06058AC0[] = {
 #include "actors/bomb/bomb_right_side.rgba16.inc.c"
 };
 
 // 0x06059AC0
-static const u8 bomb_seg6_texture_06059AC0[] = {
+ALIGNED8 static const u8 bomb_seg6_texture_06059AC0[] = {
 #include "actors/bomb/bomb_spike.rgba16.inc.c"
 };
 
@@ -216,4 +216,3 @@ const Gfx bomb_seg6_dl_0605A9C0[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

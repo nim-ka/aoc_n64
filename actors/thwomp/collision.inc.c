@@ -131,4 +131,3 @@ const s16 thwomp_seg5_collision_0500B92C[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

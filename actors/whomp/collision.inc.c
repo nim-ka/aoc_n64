@@ -44,4 +44,3 @@ const s16 whomp_seg6_collision_06020A0C[] = {
 };
 
 UNUSED static const u32 whomp_unused_2 = 0;
-

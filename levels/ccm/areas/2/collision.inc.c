@@ -1877,4 +1877,3 @@ const Collision ccm_seg7_area_2_collision[] = {
     SPECIAL_OBJECT_WITH_YAW_AND_PARAM(/*preset*/ special_wooden_door_warp, /*pos*/ -7628, -5836, -6988, /*yaw*/ 64, /*behParam2*/ 20),
     COL_END(),
 };
-

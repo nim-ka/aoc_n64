@@ -6,4 +6,3 @@ const uintptr_t wooden_post_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

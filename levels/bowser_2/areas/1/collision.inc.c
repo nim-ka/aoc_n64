@@ -23,4 +23,3 @@ const Collision bowser_2_seg7_collision_lava[] = {
     SPECIAL_OBJECT(/*preset*/ special_bowser,     /*pos*/ -8, 1229, -1418),
     COL_END(),
 };
-

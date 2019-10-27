@@ -91,4 +91,3 @@ const Gfx ssl_seg7_dl_07022CF8[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

@@ -28,4 +28,3 @@ const MacroObject lll_seg7_area_2_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_bouncing_fireball,    /*yaw*/ 225, /*pos*/  1420,     0, -1720),
     MACRO_OBJECT_END(),
 };
-

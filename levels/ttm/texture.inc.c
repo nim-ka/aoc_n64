@@ -37,4 +37,3 @@ ALIGNED8 static const u8 ttm_seg7_texture_07003000[] = {
 ALIGNED8 static const u8 ttm_seg7_texture_07004000[] = {
 #include "levels/ttm/7.rgba16.inc.c"
 };
-

@@ -29,4 +29,3 @@ const uintptr_t bowser_key_cutscene_geo[] = {
 GEO_CLOSE_NODE(), //! more close than open nodes
 GEO_END(),
 };
-

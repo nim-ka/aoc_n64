@@ -420,4 +420,3 @@ static const struct Animation unagi_seg5_anim_0500FBF4 = {
     unagi_seg5_animindex_0500FB34,
     0,
 };
-

@@ -1,4 +1,3 @@
-
 // 0x07016F18 - 0x070170A0
 const MacroObject ttm_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_bobomb_buddy_opens_cannon,   /*yaw*/   0, /*pos*/   799, -2668,  3320),
@@ -42,4 +41,3 @@ const MacroObject ttm_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_jumping_box,                 /*yaw*/   0, /*pos*/  4980, -4607,  2680),
     MACRO_OBJECT_END(),
 };
-

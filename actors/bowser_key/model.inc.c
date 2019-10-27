@@ -296,4 +296,3 @@ const Gfx bowser_key_dl[] = {
     gsSP2Triangles( 0,  1,  2, 0x0,  3,  0,  2, 0x0),
     gsSPEndDisplayList(),
 };
-

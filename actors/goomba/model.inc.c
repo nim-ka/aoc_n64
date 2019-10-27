@@ -61,17 +61,17 @@ static const Light goomba_seg8_light_08019520 = {
 };
 
 // 0x08019530
-static const u8 goomba_seg8_texture_08019530[] = {
+ALIGNED8 static const u8 goomba_seg8_texture_08019530[] = {
 #include "actors/goomba/goomba_body.rgba16.inc.c"
 };
 
 // 0x08019D30
-static const u8 goomba_seg8_texture_08019D30[] = {
+ALIGNED8 static const u8 goomba_seg8_texture_08019D30[] = {
 #include "actors/goomba/goomba_face.rgba16.inc.c"
 };
 
 // 0x0801A530
-static const u8 goomba_seg8_texture_0801A530[] = {
+ALIGNED8 static const u8 goomba_seg8_texture_0801A530[] = {
 #include "actors/goomba/goomba_face_blink.rgba16.inc.c"
 };
 
@@ -988,4 +988,3 @@ const Gfx goomba_seg8_dl_0801D760[] = {
     gsSPNumLights(NUMLIGHTS_0), // I cannot tell if they meant to put 0 or 1 here.
     gsSPEndDisplayList(),
 };
-

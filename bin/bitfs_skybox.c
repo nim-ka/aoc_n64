@@ -1,6 +1,6 @@
 #include "sm64.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 // 0x0A000000
 ALIGNED8 static const u8 bitfs_skybox_texture_0A000000[] = {
@@ -330,4 +330,3 @@ const u8 *const bitfs_skybox_ptrlist[] = {
     bitfs_skybox_texture_0A018000,
     bitfs_skybox_texture_0A018000,
 };
-

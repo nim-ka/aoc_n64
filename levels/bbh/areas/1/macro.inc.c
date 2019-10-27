@@ -1,4 +1,3 @@
-
 // 0x070268C4 - 0x07026A1A
 const MacroObject bbh_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_haunted_chair,             /*yaw*/  90, /*pos*/ -1960,   -20,   340),
@@ -37,4 +36,3 @@ const MacroObject bbh_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_1up,                       /*yaw*/   0, /*pos*/ -3040,  1120,  5460),
     MACRO_OBJECT_END(),
 };
-

@@ -96,4 +96,3 @@ const Collision ttc_seg7_collision_clock_pendulum[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

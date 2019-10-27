@@ -1,6 +1,6 @@
 #include "sm64.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 // 0x09000000
 ALIGNED8 const u8 inside_09000000[] = {
@@ -91,4 +91,3 @@ ALIGNED8 const u8 inside_0900B000[] = {
 ALIGNED8 const u8 inside_0900B800[] = {
 #include "textures/inside/inside_castle_textures.0B800.rgba16.inc.c"
 };
-

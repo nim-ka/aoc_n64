@@ -37,4 +37,3 @@ const s16 lll_hexagonal_mesh_seg3_collision_0301CECC[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

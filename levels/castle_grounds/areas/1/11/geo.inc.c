@@ -25,4 +25,3 @@ const GeoLayout castle_grounds_geo_000660[] = {
 GEO_CLOSE_NODE(), //! more close than open nodes
 GEO_END(),
 };
-

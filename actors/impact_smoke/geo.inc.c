@@ -14,4 +14,3 @@ const uintptr_t bowser_impact_smoke_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

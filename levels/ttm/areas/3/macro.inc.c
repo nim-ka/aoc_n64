@@ -24,4 +24,3 @@ const MacroObject ttm_seg7_area_3_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_yellow_coin_2,        /*yaw*/   0, /*pos*/ -1300, -2672, -1550),
     MACRO_OBJECT_END(),
 };
-

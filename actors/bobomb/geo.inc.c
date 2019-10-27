@@ -97,4 +97,3 @@ const uintptr_t bobomb_buddy_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

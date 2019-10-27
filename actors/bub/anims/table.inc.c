@@ -4,4 +4,3 @@ const struct Animation *const bub_seg6_anims_06012354[] = {
     NULL,
     NULL,
 };
-

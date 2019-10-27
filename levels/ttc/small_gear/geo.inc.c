@@ -6,4 +6,3 @@ const GeoLayout ttc_geo_000388[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

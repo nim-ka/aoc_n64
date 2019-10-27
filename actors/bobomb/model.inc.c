@@ -1,32 +1,32 @@
 // Bobomb
 
 // 0x0801DA60
-static const u8 bobomb_seg8_texture_0801DA60[] = {
+ALIGNED8 static const u8 bobomb_seg8_texture_0801DA60[] = {
 #include "actors/bobomb/bob-omb_left_side.rgba16.inc.c"
 };
 
 // 0x0801EA60
-static const u8 bobomb_seg8_texture_0801EA60[] = {
+ALIGNED8 static const u8 bobomb_seg8_texture_0801EA60[] = {
 #include "actors/bobomb/bob-omb_right_side.rgba16.inc.c"
 };
 
 // 0x0801FA60
-static const u8 bobomb_seg8_texture_0801FA60[] = {
+ALIGNED8 static const u8 bobomb_seg8_texture_0801FA60[] = {
 #include "actors/bobomb/bob-omb_buddy_left_side.rgba16.inc.c"
 };
 
 // 0x08020A60
-static const u8 bobomb_seg8_texture_08020A60[] = {
+ALIGNED8 static const u8 bobomb_seg8_texture_08020A60[] = {
 #include "actors/bobomb/bob-omb_buddy_right_side.rgba16.inc.c"
 };
 
 // 0x08021A60
-static const u8 bobomb_seg8_texture_08021A60[] = {
+ALIGNED8 static const u8 bobomb_seg8_texture_08021A60[] = {
 #include "actors/bobomb/bob-omb_eyes.rgba16.inc.c"
 };
 
 // 0x08022260
-static const u8 bobomb_seg8_texture_08022260[] = {
+ALIGNED8 static const u8 bobomb_seg8_texture_08022260[] = {
 #include "actors/bobomb/bob-omb_eyes_blink.rgba16.inc.c"
 };
 
@@ -351,4 +351,3 @@ const Gfx bobomb_seg8_dl_08023480[] = {
     gsSP2Triangles( 8, 11, 12, 0x0,  8, 12, 13, 0x0),
     gsSPEndDisplayList(),
 };
-

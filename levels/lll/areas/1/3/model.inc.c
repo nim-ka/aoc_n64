@@ -38,4 +38,3 @@ const Gfx lll_seg7_dl_070138F8[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

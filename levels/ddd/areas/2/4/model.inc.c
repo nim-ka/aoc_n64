@@ -74,4 +74,3 @@ const Gfx ddd_seg7_dl_07008F80[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

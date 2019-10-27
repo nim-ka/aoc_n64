@@ -1,6 +1,6 @@
 #include "sm64.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 // 0x09000000
 ALIGNED8 const u8 cave_09000000[] = {
@@ -91,4 +91,3 @@ ALIGNED8 const u8 cave_0900B800[] = {
 ALIGNED8 const u8 cave_0900C000[] = {
 #include "textures/cave/hmc_textures.0C000.ia16.inc.c"
 };
-

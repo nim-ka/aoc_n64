@@ -3,7 +3,7 @@
 #include "surface_terrains.h"
 #include "geo_commands.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 #include "bowser_flame/model.inc.c"
 UNUSED static const u64 binid_0 = 0;
@@ -25,4 +25,3 @@ UNUSED static const u64 binid_4 = 4;
 
 #include "impact_smoke/model.inc.c"
 UNUSED static const u64 binid_5 = 5;
-

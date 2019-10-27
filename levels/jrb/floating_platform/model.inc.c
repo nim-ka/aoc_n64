@@ -96,4 +96,3 @@ const Gfx jrb_seg7_dl_07007DC8[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

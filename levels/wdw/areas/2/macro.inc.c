@@ -1,4 +1,3 @@
-
 // 0x07018224 - 0x070183C0
 const MacroObject wdw_seg7_area_2_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_red_coin,                    /*yaw*/   0, /*pos*/ -3720, -1131,   520),
@@ -44,4 +43,3 @@ const MacroObject wdw_seg7_area_2_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_box_1up_running_away,        /*yaw*/   0, /*pos*/  1655, -2160, -1293),
     MACRO_OBJECT_END(),
 };
-

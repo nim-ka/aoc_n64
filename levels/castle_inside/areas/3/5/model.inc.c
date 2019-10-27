@@ -113,4 +113,3 @@ const Gfx inside_castle_seg7_dl_07061C20[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

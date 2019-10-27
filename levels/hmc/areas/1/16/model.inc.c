@@ -60,4 +60,3 @@ const Gfx hmc_seg7_dl_07014E48[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

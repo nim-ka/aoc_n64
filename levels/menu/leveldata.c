@@ -7,7 +7,7 @@
 #include "special_preset_names.h"
 #include "bin/textures.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 // 0x07000000 - 0x07000008
 static const Ambient ambient_light_menu_1 = {
@@ -1843,4 +1843,3 @@ const Collision main_menu_seg7_collision[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

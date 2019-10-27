@@ -34,4 +34,3 @@ static const struct Animation birds_seg5_anim_050009D0 = {
     birds_seg5_animindex_5000970,
     0,
 };
-

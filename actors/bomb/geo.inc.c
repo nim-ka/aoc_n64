@@ -13,4 +13,3 @@ const uintptr_t bowser_bomb_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

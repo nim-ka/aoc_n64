@@ -6,4 +6,3 @@ const GeoLayout vcutm_geo_0001F0[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

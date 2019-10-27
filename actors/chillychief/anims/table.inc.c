@@ -6,4 +6,3 @@ const struct Animation *const chilly_chief_seg6_anims_06003994[] = {
     &chilly_chief_seg6_anim_0600373C,
     NULL,
 };
-

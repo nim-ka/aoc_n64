@@ -9,7 +9,7 @@ static const Vtx white_particle_vertex[] = {
 };
 
 // 0x0302C6A0
-static const u8 white_particle_texture[] = {
+ALIGNED8 static const u8 white_particle_texture[] = {
 #include "actors/white_particle/snow_particle.rgba16.inc.c"
 };
 
@@ -28,4 +28,3 @@ const Gfx white_particle_dl[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

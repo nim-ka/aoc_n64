@@ -42,4 +42,3 @@ const Trajectory bitfs_seg7_trajectory_070159AC[] = {
     TRAJECTORY_POS(39, /*pos*/ -5444, -3072,     0),
     TRAJECTORY_END(),
 };
-

@@ -2,7 +2,7 @@
 
 #include "game/ingame_menu.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 #include "build/eu/text/de/dialog.inc.c"
 #include "build/eu/text/de/level.inc.c"

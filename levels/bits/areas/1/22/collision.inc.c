@@ -74,4 +74,3 @@ const Collision bits_seg7_collision_0701AA84[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

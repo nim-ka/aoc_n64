@@ -6,4 +6,3 @@ const GeoLayout bitfs_geo_0005B8[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

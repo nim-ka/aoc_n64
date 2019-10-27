@@ -43,4 +43,3 @@ const Gfx inside_castle_seg7_dl_07031720[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

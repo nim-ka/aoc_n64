@@ -28,4 +28,3 @@ const GeoLayout cotmc_geo_0001A0[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

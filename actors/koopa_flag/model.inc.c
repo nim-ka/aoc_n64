@@ -31,7 +31,7 @@ static const Light koopa_flag_seg6_light_06000038 = {
 };
 
 // 0x06000048
-static const u8 koopa_flag_seg6_texture_06000048[] = {
+ALIGNED8 static const u8 koopa_flag_seg6_texture_06000048[] = {
 #include "actors/koopa_flag/koopa_flag_banner.rgba16.inc.c"
 };
 
@@ -282,4 +282,3 @@ const Gfx koopa_flag_seg6_dl_06000E38[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

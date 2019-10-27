@@ -45,4 +45,3 @@ const uintptr_t piranha_plant_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

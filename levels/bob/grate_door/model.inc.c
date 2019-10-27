@@ -44,4 +44,3 @@ const Gfx bob_seg7_dl_0700E8A0[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

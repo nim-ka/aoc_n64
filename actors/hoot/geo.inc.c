@@ -60,4 +60,3 @@ const uintptr_t hoot_geo[] = {
 GEO_CLOSE_NODE(), //! more close than open nodes
 GEO_END(),
 };
-

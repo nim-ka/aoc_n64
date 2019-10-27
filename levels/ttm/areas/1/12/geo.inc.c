@@ -9,4 +9,3 @@ const GeoLayout ttm_geo_0008D0[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

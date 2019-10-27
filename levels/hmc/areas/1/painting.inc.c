@@ -547,4 +547,3 @@ struct Painting cotmc_painting = {
     RIPPLE_TRIGGER_CONTINUOUS, 0xFF, 0x00, 0x00, 0x00,
     723.968018f,
 };
-

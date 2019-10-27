@@ -71,4 +71,3 @@ static const struct Animation bub_seg6_anim_0601233C = {
     bub_seg6_animindex_060122DC,
     0,
 };
-

@@ -4,4 +4,3 @@ const struct Animation *const spiny_egg_seg5_anims_050157E4[] = {
     NULL,
     NULL,
 };
-

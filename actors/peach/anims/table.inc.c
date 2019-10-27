@@ -14,4 +14,3 @@ const struct Animation *const peach_seg5_anims_0501C41C[] = {
     &peach_seg5_anim_0501C404,
     NULL,
 };
-

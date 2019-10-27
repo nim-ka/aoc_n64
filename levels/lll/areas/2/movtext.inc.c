@@ -1,4 +1,3 @@
-
 // 0x0702874C - 0x070287A8
 Movtex lll_movtex_tris_lava_floor[] = {
     MOV_TEX_SPD(     1),
@@ -37,8 +36,8 @@ static Movtex lll_movtex_volcano_floor_lava_data[] = {
 };
 
 const struct MovtexQuadCollection lll_movtex_volcano_floor_lava[] = {
-    {10, 0, lll_movtex_volcano_floor_lava_data},
-    {-1, 0, NULL},
+    {10, lll_movtex_volcano_floor_lava_data},
+    {-1, NULL},
 };
 
 // 0x07028820 - 0x070288C8
@@ -77,4 +76,3 @@ const Gfx lll_dl_lavafall_volcano[] = {
     gsSP2Triangles( 2,  6,  1, 0x0,  7,  6,  2, 0x0),
     gsSPEndDisplayList(),
 };
-

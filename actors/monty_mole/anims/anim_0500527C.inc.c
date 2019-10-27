@@ -61,4 +61,3 @@ static const struct Animation monty_mole_seg5_anim_0500527C = {
     monty_mole_seg5_animindex_050051C8,
     0,
 };
-

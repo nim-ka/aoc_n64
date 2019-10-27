@@ -44,4 +44,3 @@ static const struct Animation snowman_seg5_anim_0500CED8 = {
     snowman_seg5_animindex_0500CE60,
     0,
 };
-

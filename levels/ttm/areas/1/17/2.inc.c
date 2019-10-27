@@ -180,4 +180,3 @@ const Gfx ttm_seg7_dl_0700FA18[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

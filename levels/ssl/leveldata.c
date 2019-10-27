@@ -7,7 +7,7 @@
 #include "special_preset_names.h"
 #include "bin/textures.h"
 
-#define const
+#include "make_const_nonconst.h"
 // LEVEL DATA
 #include "levels/ssl/texture.inc.c"
 #include "levels/ssl/areas/2/4/model.inc.c" // This is an oddity, but it is assumed this because of the likelyhood SSL's course used to be smaller in a prototype build and that moving areas around caused this discrepency. (See the 3 Star Course theory)

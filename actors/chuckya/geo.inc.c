@@ -115,4 +115,3 @@ const uintptr_t chuckya_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

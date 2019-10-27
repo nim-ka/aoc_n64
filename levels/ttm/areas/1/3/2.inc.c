@@ -73,4 +73,3 @@ const Gfx ttm_seg7_dl_0700AB08[] = {
     gsSPDisplayList(ttm_seg7_dl_0700AAB8),
     gsSPEndDisplayList(),
 };
-

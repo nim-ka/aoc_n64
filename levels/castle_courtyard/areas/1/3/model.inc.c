@@ -66,4 +66,3 @@ const Gfx castle_courtyard_seg7_dl_07005938[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

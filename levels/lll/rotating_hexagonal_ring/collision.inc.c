@@ -66,4 +66,3 @@ const Collision lll_seg7_collision_rotating_platform[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

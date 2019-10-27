@@ -15,4 +15,3 @@ const uintptr_t purple_marble_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

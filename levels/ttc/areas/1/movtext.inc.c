@@ -1,4 +1,3 @@
-
 // 0x07015F78 - 0x07015F80
 static const Ambient ttc_amb_light_surface_treadmill = {
     {{0x3f, 0x3f, 0x3f}, 0, {0x3f, 0x3f, 0x3f}, 0}
@@ -89,4 +88,3 @@ const Gfx ttc_dl_surface_treadmill[] = {
     gsSP2Triangles( 4,  5, 10, 0x0,  5, 11, 10, 0x0),
     gsSPEndDisplayList(),
 };
-

@@ -7,7 +7,7 @@
 #include "special_preset_names.h"
 #include "bin/textures.h"
 
-#define const
+#include "make_const_nonconst.h"
 // LEVEL DATA
 #include "levels/ttc/texture.inc.c"
 #include "levels/ttc/areas/1/1/model.inc.c"

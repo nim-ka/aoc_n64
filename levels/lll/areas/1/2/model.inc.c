@@ -61,4 +61,3 @@ const Gfx lll_seg7_dl_070137C0[] = {
     gsSPSetGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

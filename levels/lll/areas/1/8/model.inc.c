@@ -230,4 +230,3 @@ const Gfx lll_seg7_dl_07015E20[] = {
     gsSPSetGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

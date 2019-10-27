@@ -7,4 +7,3 @@ const GeoLayout rr_geo_000738[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

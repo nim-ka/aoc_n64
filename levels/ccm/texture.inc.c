@@ -57,4 +57,3 @@ ALIGNED8 static const u8 ccm_seg7_texture_07004300[] = {
 ALIGNED8 static const u8 ccm_seg7_texture_07004B00[] = {
 #include "levels/ccm/11.rgba16.inc.c"
 };
-

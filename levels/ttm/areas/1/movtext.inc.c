@@ -1,4 +1,3 @@
-
 // 0x07017104 - 0x07017124
 static Movtex ttm_movtex_puddle_data[] = {
     MOV_TEX_INIT_LOAD(    1),
@@ -16,8 +15,8 @@ static Movtex ttm_movtex_puddle_data[] = {
 
 // 0x07017124 - 0x07017134
 const struct MovtexQuadCollection ttm_movtex_puddle[] = {
-    { 0, 0, ttm_movtex_puddle_data},
-    {-1, 0, NULL},
+    { 0, ttm_movtex_puddle_data},
+    {-1, NULL},
 };
 
 // 0x07017134 - 0x07017174
@@ -98,4 +97,3 @@ const Gfx ttm_dl_puddle_waterfall[] = {
     gsSP2Triangles( 2,  3,  6, 0x0,  6,  3,  7, 0x0),
     gsSPEndDisplayList(),
 };
-

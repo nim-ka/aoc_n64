@@ -336,4 +336,3 @@ const Gfx ddd_seg7_dl_07008C48[] = {
     gsSPSetGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

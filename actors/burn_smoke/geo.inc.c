@@ -6,4 +6,3 @@ const uintptr_t burn_smoke_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

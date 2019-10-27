@@ -4,4 +4,3 @@ const struct Animation *const manta_seg5_anims_05008EB4[] = {
     NULL,
     NULL,
 };
-

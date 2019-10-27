@@ -3773,4 +3773,3 @@ const Collision bbh_seg7_collision_level[] = {
     COL_WATER_BOX(1, 1536, -1637, 3789, 2662, -2508),
     COL_END(),
 };
-

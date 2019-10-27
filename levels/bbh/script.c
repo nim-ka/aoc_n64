@@ -12,7 +12,7 @@
 
 #include "actors/common1.h"
 
-#define const
+#include "make_const_nonconst.h"
 #include "levels/bbh/header.h"
 
 
@@ -126,4 +126,3 @@ const LevelScript level_bbh_entry[] = {
     SLEEP_BEFORE_EXIT(/*frames*/ 1),
     EXIT(),
 };
-

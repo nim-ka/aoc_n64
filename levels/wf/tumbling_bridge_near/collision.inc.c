@@ -12,4 +12,3 @@ const Collision wf_seg7_collision_tumbling_bridge[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

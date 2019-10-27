@@ -27,4 +27,3 @@ const s16 penguin_seg5_collision_05008B88[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

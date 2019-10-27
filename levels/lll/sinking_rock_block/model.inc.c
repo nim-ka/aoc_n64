@@ -73,4 +73,3 @@ const Gfx lll_seg7_dl_0701A878[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

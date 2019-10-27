@@ -11,12 +11,12 @@ static const Light thwomp_seg5_light_050098F0 = {
 };
 
 // 0x05009900
-static const u8 thwomp_seg5_texture_05009900[] = {
+ALIGNED8 static const u8 thwomp_seg5_texture_05009900[] = {
 #include "actors/thwomp/thwomp_face.rgba16.inc.c"
 };
 
 // 0x0500A900
-static const u8 thwomp_seg5_texture_0500A900[] = {
+ALIGNED8 static const u8 thwomp_seg5_texture_0500A900[] = {
 #include "actors/thwomp/thwomp_surface.rgba16.inc.c"
 };
 
@@ -181,4 +181,3 @@ const Gfx thwomp_seg5_dl_0500B750[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

@@ -17,4 +17,3 @@ ALIGNED8 static const u8 vcutm_seg7_texture_07001800[] = {
 ALIGNED8 static const u8 vcutm_seg7_texture_07002800[] = {
 #include "levels/vcutm/3.rgba16.inc.c"
 };
-

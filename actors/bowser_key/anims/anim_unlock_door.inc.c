@@ -126,4 +126,3 @@ static const struct Animation bowser_key_seg3_anim_unlock_door = {
     bowser_key_seg3_animindex_unlock_door,
     0,
 };
-

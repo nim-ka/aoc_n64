@@ -6,4 +6,3 @@ const uintptr_t tornado_seg5_geo_05014630[] = {
     GEO_CLOSE_NODE(),
     GEO_END(),
 };
-

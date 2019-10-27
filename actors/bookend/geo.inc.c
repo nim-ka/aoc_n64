@@ -27,4 +27,3 @@ const uintptr_t bookend_part_geo[] = {
 GEO_CLOSE_NODE(), //! more close than open nodes
 GEO_END(),
 };
-

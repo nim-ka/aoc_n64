@@ -31,22 +31,22 @@ UNUSED static const Light manta_light_2 = {
 };
 
 // 0x050017A0
-static const u8 manta_seg5_texture_050017A0[] = {
+ALIGNED8 static const u8 manta_seg5_texture_050017A0[] = {
 #include "actors/manta/manta_fin_corner.rgba16.inc.c"
 };
 
 // 0x05001FA0
-static const u8 manta_seg5_texture_05001FA0[] = {
+ALIGNED8 static const u8 manta_seg5_texture_05001FA0[] = {
 #include "actors/manta/manta_gills.rgba16.inc.c"
 };
 
 // 0x05002FA0
-static const u8 manta_seg5_texture_05002FA0[] = {
+ALIGNED8 static const u8 manta_seg5_texture_05002FA0[] = {
 #include "actors/manta/manta_eye.rgba16.inc.c"
 };
 
 // 0x050037A0
-static const u8 manta_seg5_texture_050037A0[] = {
+ALIGNED8 static const u8 manta_seg5_texture_050037A0[] = {
 #include "actors/manta/manta_fin_edge.rgba16.inc.c"
 };
 
@@ -1094,4 +1094,3 @@ const Gfx manta_seg5_dl_05006C08[] = {
     gsSP2Triangles( 5,  6,  7, 0x0,  5,  7,  3, 0x0),
     gsSPEndDisplayList(),
 };
-

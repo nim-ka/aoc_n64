@@ -121,4 +121,3 @@ const Gfx wdw_seg7_dl_070131B8[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

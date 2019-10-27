@@ -15,8 +15,8 @@ static Movtex ssl_movtex_puddle_water_data[] = {
 
 // 0x07012778
 const struct MovtexQuadCollection ssl_movtex_puddle_water[] = {
-    {0, 0, ssl_movtex_puddle_water_data},
-    {-1, 0, NULL},
+    {0, ssl_movtex_puddle_water_data},
+    {-1, NULL},
 };
 
 // 0x07012788 - 0x070127A8
@@ -51,9 +51,9 @@ static Movtex ssl_movtex_toxbox_quicksand_short_mist[] = {
 
 // 0x070127C8 - 0x070127E0
 const struct MovtexQuadCollection ssl_movtex_toxbox_quicksand_mist[] = {
-    {51, 0, ssl_movtex_toxbox_quicksand_large_mist},
-    {52, 0, ssl_movtex_toxbox_quicksand_short_mist},
-    {-1, 0, NULL},
+    {51, ssl_movtex_toxbox_quicksand_large_mist},
+    {52, ssl_movtex_toxbox_quicksand_short_mist},
+    {-1, NULL},
 };
 
 // 0x070127E0
@@ -157,4 +157,3 @@ const Gfx ssl_dl_sides_quicksand[] = {
     gsSP2Triangles(10,  9, 13, 0x0, 13,  9, 12, 0x0),
     gsSPEndDisplayList(),
 };
-

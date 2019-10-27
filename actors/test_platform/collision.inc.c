@@ -29,4 +29,3 @@ const s16 unknown_seg8_collision_080262F8[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

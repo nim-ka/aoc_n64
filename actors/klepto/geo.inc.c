@@ -94,4 +94,3 @@ const uintptr_t klepto_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

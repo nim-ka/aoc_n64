@@ -985,4 +985,3 @@ const Gfx castle_grounds_seg7_dl_070095F0[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

@@ -91,4 +91,3 @@ const Gfx jrb_seg7_dl_070080F8[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

@@ -14,4 +14,3 @@ const Trajectory thi_seg7_trajectory_koopa[] = {
     TRAJECTORY_POS(11, /*pos*/  6814, -1535, -6328),
     TRAJECTORY_END(),
 };
-

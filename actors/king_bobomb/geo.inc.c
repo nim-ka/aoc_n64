@@ -118,4 +118,3 @@ const uintptr_t king_bobomb_geo[] = {
 GEO_CLOSE_NODE(), //! more close than open nodes
 GEO_END(),
 };
-

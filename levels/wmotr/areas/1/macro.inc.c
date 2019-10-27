@@ -1,4 +1,3 @@
-
 // 0x070136A8 - 0x070137AE
 const MacroObject wmotr_seg7_macro_objs[] = {
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_cannon_closed,               /*yaw*/   0, /*pos*/ -4456,   827,   191, /*behParam*/ 0x00),
@@ -29,4 +28,3 @@ const MacroObject wmotr_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_1up,                         /*yaw*/   0, /*pos*/ -3260,  3370, -3945),
     MACRO_OBJECT_END(),
 };
-

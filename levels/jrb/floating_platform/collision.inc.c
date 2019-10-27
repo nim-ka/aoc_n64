@@ -26,4 +26,3 @@ const Collision jrb_seg7_collision_floating_platform[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

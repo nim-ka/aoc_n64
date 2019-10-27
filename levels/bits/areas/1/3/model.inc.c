@@ -389,4 +389,3 @@ const Gfx bits_seg7_dl_070047F0[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

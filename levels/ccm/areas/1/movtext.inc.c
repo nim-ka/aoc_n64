@@ -1,4 +1,3 @@
-
 // 0x070166E8
 static Movtex ccm_movtex_penguin_puddle_water_data[] = {
     MOV_TEX_INIT_LOAD(   1),
@@ -16,7 +15,6 @@ static Movtex ccm_movtex_penguin_puddle_water_data[] = {
 
 // 0x07016708 - 0x07016718
 const struct MovtexQuadCollection ccm_movtex_penguin_puddle_water[] = {
-    {0, 0, ccm_movtex_penguin_puddle_water_data},
-    {-1, 0, NULL},
+    {0, ccm_movtex_penguin_puddle_water_data},
+    {-1, NULL},
 };
-

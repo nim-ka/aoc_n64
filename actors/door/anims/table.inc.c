@@ -7,4 +7,3 @@ const struct Animation *const door_seg3_anims_030156C0[] = {
     &door_seg3_anim_030156A8,
     NULL,
 };
-

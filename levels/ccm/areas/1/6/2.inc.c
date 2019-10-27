@@ -70,4 +70,3 @@ const Gfx ccm_seg7_dl_0700E970[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

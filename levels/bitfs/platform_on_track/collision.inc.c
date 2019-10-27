@@ -24,4 +24,3 @@ const Collision bitfs_seg7_collision_070157E0[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

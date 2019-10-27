@@ -11,7 +11,7 @@ static const Light water_bubble_seg5_light_0500FE70 = {
 };
 
 // 0x0500FE80
-static const u8 water_bubble_seg5_texture_0500FE80[] = {
+ALIGNED8 static const u8 water_bubble_seg5_texture_0500FE80[] = {
 #include "actors/water_bubble/water_bubble.rgba16.inc.c"
 };
 
@@ -222,4 +222,3 @@ const Gfx water_bubble_seg5_dl_05011000[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

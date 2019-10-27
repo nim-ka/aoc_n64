@@ -174,4 +174,3 @@ const Collision ssl_seg7_collision_070284B0[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

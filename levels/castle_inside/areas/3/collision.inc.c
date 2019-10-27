@@ -2611,4 +2611,3 @@ const Collision inside_castle_seg7_collision_ddd_warp_2[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

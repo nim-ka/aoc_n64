@@ -12,4 +12,3 @@ ALIGNED8 static const u8 bowser_3_seg7_texture_07000800[] = {
 ALIGNED8 static const u8 bowser_3_seg7_texture_07001000[] = {
 #include "levels/bowser_3/2.rgba16.inc.c"
 };
-

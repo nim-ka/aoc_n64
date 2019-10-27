@@ -46,4 +46,3 @@ const Trajectory ccm_seg7_trajectory_0701669C[] = {
     TRAJECTORY_POS(8, /*pos*/   571, -4450,  6426),
     TRAJECTORY_END(),
 };
-

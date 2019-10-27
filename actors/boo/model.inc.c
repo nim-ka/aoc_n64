@@ -11,12 +11,12 @@ static const Light boo_seg5_light_05009B30 = {
 };
 
 // 0x05009B40
-static const u8 boo_seg5_texture_05009B40[] = {
+ALIGNED8 static const u8 boo_seg5_texture_05009B40[] = {
 #include "actors/boo/boo_eyes.rgba16.inc.c"
 };
 
 // 0x0500AB40
-static const u8 boo_seg5_texture_0500AB40[] = {
+ALIGNED8 static const u8 boo_seg5_texture_0500AB40[] = {
 #include "actors/boo/boo_mouth.rgba16.inc.c"
 };
 
@@ -357,4 +357,3 @@ const Gfx boo_seg5_dl_0500C1B0[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

@@ -18,4 +18,3 @@ const struct Animation *const koopa_seg6_anims_06011364[] = {
     NULL,
     NULL,
 };
-

@@ -89,4 +89,3 @@ const uintptr_t bully_boss_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

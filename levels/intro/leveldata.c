@@ -7,7 +7,7 @@
 #include "special_preset_names.h"
 #include "bin/textures.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 // 0x07000000 - 0x07000100
 static const Vtx intro_seg7_vertex_07000000[] = {
@@ -3416,4 +3416,3 @@ const f32 intro_seg7_table_0700C880[] = {
     0.048600f, 0.048600f, 0.012800f, 0.012800f,
     0.012800f, 0.000000f, 0.000000f, 0.000000f,
 };
-

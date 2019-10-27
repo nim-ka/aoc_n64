@@ -545,4 +545,3 @@ const Gfx thi_seg7_dl_07006968[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

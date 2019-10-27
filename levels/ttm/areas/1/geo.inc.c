@@ -38,4 +38,3 @@ const GeoLayout ttm_geo_000A70[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

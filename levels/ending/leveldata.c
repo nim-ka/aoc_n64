@@ -7,7 +7,7 @@
 #include "special_preset_names.h"
 #include "bin/textures.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 #ifdef VERSION_EU
 
@@ -1253,4 +1253,3 @@ const Gfx dl_cake_end_screen[] = {
     gsSPEndDisplayList(),
 };
 #endif
-

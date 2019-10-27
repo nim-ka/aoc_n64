@@ -46,4 +46,3 @@ const Collision bbh_seg7_collision_merry_go_round[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

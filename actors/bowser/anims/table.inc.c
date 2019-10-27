@@ -28,4 +28,3 @@ const struct Animation *const bowser_seg6_anims_06057690[] = {
     &bowser_seg6_anim_06056774,
     &bowser_seg6_anim_06057678,
 };
-

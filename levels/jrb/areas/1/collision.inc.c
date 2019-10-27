@@ -879,4 +879,3 @@ const Collision jrb_seg7_area_1_collision[] = {
     COL_WATER_BOX(51, -7818, -1125, 9055, 7814, 1229),
     COL_END(),
 };
-

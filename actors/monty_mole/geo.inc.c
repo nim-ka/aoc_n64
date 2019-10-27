@@ -39,4 +39,3 @@ const uintptr_t monty_mole_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

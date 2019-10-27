@@ -11,12 +11,12 @@ static const Light blue_coin_switch_seg8_light_08000008 = {
 };
 
 // 0x08000018
-static const u8 blue_coin_switch_seg8_texture_08000018[] = {
+ALIGNED8 static const u8 blue_coin_switch_seg8_texture_08000018[] = {
 #include "actors/blue_coin_switch/blue_coin_switch_side.rgba16.inc.c"
 };
 
 // 0x08000418
-static const u8 blue_coin_switch_seg8_texture_08000418[] = {
+ALIGNED8 static const u8 blue_coin_switch_seg8_texture_08000418[] = {
 #include "actors/blue_coin_switch/blue_coin_switch_top.rgba16.inc.c"
 };
 
@@ -94,4 +94,3 @@ const Gfx blue_coin_switch_seg8_dl_08000E08[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

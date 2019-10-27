@@ -61,27 +61,27 @@ UNUSED static const Light monty_mole_light_12 = {
 };
 
 // 0x05000970
-static const u8 monty_mole_seg5_texture_05000970[] = {
+ALIGNED8 static const u8 monty_mole_seg5_texture_05000970[] = {
 #include "actors/monty_mole/monty_mole_cheek.rgba16.inc.c"
 };
 
 // 0x05001170
-static const u8 monty_mole_seg5_texture_05001170[] = {
+ALIGNED8 static const u8 monty_mole_seg5_texture_05001170[] = {
 #include "actors/monty_mole/monty_mole_eye.rgba16.inc.c"
 };
 
 // 0x05001970
-static const u8 monty_mole_seg5_texture_05001970[] = {
+ALIGNED8 static const u8 monty_mole_seg5_texture_05001970[] = {
 #include "actors/monty_mole/monty_mole_nose.rgba16.inc.c"
 };
 
 // 0x05002170
-static const u8 monty_mole_seg5_texture_05002170[] = {
+ALIGNED8 static const u8 monty_mole_seg5_texture_05002170[] = {
 #include "actors/monty_mole/monty_mole_tooth.rgba16.inc.c"
 };
 
 // 0x05002970
-static const u8 monty_mole_seg5_texture_05002970[] = {
+ALIGNED8 static const u8 monty_mole_seg5_texture_05002970[] = {
 #include "actors/monty_mole/monty_mole_claw.rgba16.inc.c"
 };
 
@@ -920,4 +920,3 @@ const Gfx monty_mole_seg5_dl_05004D30[] = {
     gsSPSetGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

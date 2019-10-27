@@ -32,4 +32,3 @@ const Collision bitdw_seg7_collision_0700F7F0[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

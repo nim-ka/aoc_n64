@@ -38,4 +38,3 @@ static const struct Animation chain_chomp_seg6_anim_06025160 = {
     chain_chomp_seg6_animindex_06025100,
     0,
 };
-

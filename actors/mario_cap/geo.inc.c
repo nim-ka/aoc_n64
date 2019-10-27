@@ -79,4 +79,3 @@ const uintptr_t marios_winged_metal_cap_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

@@ -88,4 +88,3 @@ const Gfx bitdw_seg7_dl_070093B0[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

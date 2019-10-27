@@ -7,4 +7,3 @@ const uintptr_t invisible_bowser_accessory_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

@@ -251,4 +251,3 @@ const Gfx inside_castle_seg7_dl_07037988[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

@@ -7,7 +7,7 @@
 #include "special_preset_names.h"
 #include "bin/textures.h"
 
-#define const
+#include "make_const_nonconst.h"
 #include "levels/wmotr/texture.inc.c"
 #include "levels/wmotr/areas/1/model.inc.c"
 #include "levels/wmotr/areas/1/collision.inc.c"

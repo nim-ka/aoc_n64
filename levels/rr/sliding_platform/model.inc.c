@@ -63,4 +63,3 @@ const Gfx rr_seg7_dl_0701ADF8[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

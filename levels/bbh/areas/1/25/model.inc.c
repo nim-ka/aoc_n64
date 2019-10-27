@@ -78,4 +78,3 @@ const Gfx bbh_seg7_dl_07015398[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

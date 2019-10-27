@@ -12,7 +12,7 @@
 
 #include "actors/common1.h"
 
-#define const
+#include "make_const_nonconst.h"
 #include "levels/lll/header.h"
 
 // Unlike most levels, level geometry objects in LLL are defined as regular objects instead of terrain objects.
@@ -217,4 +217,3 @@ const LevelScript level_lll_entry[] = {
     SLEEP_BEFORE_EXIT(/*frames*/ 1),
     EXIT(),
 };
-

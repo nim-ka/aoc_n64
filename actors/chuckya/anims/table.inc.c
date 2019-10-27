@@ -7,4 +7,3 @@ const struct Animation *const chuckya_seg8_anims_0800C070[] = {
     &chuckya_seg8_anim_0800BBEC,
     &chuckya_seg8_anim_0800C058,
 };
-

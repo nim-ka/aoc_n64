@@ -89,4 +89,3 @@ const Collision rr_seg7_collision_rotating_platform_with_fire[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

@@ -241,4 +241,3 @@ const Gfx ccm_seg7_dl_07012BD8[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

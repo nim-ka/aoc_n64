@@ -131,4 +131,3 @@ static const struct Animation peach_seg5_anim_0500F474 = {
     peach_seg5_animindex_500F36C,
     0,
 };
-

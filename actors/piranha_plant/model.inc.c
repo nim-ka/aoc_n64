@@ -32,32 +32,32 @@ static const Light piranha_plant_seg6_light_060113E8 = {
 };
 
 // 0x060113F8
-static const u8 piranha_plant_seg6_texture_060113F8[] = {
+ALIGNED8 static const u8 piranha_plant_seg6_texture_060113F8[] = {
 #include "actors/piranha_plant/piranha_plant_tongue.rgba16.inc.c"
 };
 
 // 0x060123F8
-static const u8 piranha_plant_seg6_texture_060123F8[] = {
+ALIGNED8 static const u8 piranha_plant_seg6_texture_060123F8[] = {
 #include "actors/piranha_plant/piranha_plant_skin.rgba16.inc.c"
 };
 
 // 0x06012BF8
-static const u8 piranha_plant_seg6_texture_06012BF8[] = {
+ALIGNED8 static const u8 piranha_plant_seg6_texture_06012BF8[] = {
 #include "actors/piranha_plant/piranha_plant_stem.rgba16.inc.c"
 };
 
 // 0x060133F8
-static const u8 piranha_plant_seg6_texture_060133F8[] = {
+ALIGNED8 static const u8 piranha_plant_seg6_texture_060133F8[] = {
 #include "actors/piranha_plant/piranha_plant_bottom_lip.rgba16.inc.c"
 };
 
 // 0x06013BF8
-static const u8 piranha_plant_seg6_texture_06013BF8[] = {
+ALIGNED8 static const u8 piranha_plant_seg6_texture_06013BF8[] = {
 #include "actors/piranha_plant/piranha_plant_tooth.rgba16.inc.c"
 };
 
 // 0x060143F8
-static const u8 piranha_plant_seg6_texture_060143F8[] = {
+ALIGNED8 static const u8 piranha_plant_seg6_texture_060143F8[] = {
 #include "actors/piranha_plant/piranha_plant_leaf.rgba16.inc.c"
 };
 
@@ -811,4 +811,3 @@ const Gfx piranha_plant_seg6_dl_06016F20[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

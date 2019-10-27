@@ -32,4 +32,3 @@ ALIGNED8 static const u8 hmc_seg7_texture_07004000[] = {
 ALIGNED8 static const u8 hmc_seg7_texture_07004800[] = {
 #include "levels/hmc/6.rgba16.inc.c"
 };
-

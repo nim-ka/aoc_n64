@@ -6,4 +6,3 @@ const uintptr_t cannon_base_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

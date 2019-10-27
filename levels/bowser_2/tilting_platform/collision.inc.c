@@ -56,4 +56,3 @@ const Collision bowser_2_seg7_collision_tilting_platform[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

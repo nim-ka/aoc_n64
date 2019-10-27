@@ -68,4 +68,3 @@ const Gfx castle_grounds_seg7_dl_0700EA58[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

@@ -84,4 +84,3 @@ const Gfx wdw_seg7_dl_07013E40[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

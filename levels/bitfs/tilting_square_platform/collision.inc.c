@@ -17,4 +17,3 @@ const Collision bitfs_seg7_collision_inverted_pyramid[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

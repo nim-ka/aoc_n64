@@ -4,4 +4,3 @@ const struct Animation *const cyan_fish_seg6_anims_0600E264[] = {
     NULL,
     NULL,
 };
-

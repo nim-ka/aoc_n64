@@ -16,4 +16,3 @@ const struct Animation *const ukiki_seg5_anims_05015784[] = {
     NULL,
     NULL,
 };
-

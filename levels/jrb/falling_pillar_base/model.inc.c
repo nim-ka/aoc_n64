@@ -54,4 +54,3 @@ const Gfx jrb_seg7_dl_0700AFB0[] = {
     gsSPClearGeometryMode(G_FOG),
     gsSPEndDisplayList(),
 };
-

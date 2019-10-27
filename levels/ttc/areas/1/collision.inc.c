@@ -1893,4 +1893,3 @@ const Collision ttc_seg7_collision_level[] = {
     SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_null_start, /*pos*/ 1046, -4822, -266, /*yaw*/ 192), // unused, probably an early way to set intial position
     COL_END(),
 };
-

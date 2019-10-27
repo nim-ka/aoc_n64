@@ -1,4 +1,3 @@
-
 // 0x07003284 - 0x07003330
 const MacroObject sa_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_red_coin,                    /*yaw*/   0, /*pos*/ -2400, -4607, -2400),
@@ -20,4 +19,3 @@ const MacroObject sa_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_fish_group_2,                /*yaw*/   0, /*pos*/ -1000, -4080, -1740),
     MACRO_OBJECT_END(),
 };
-

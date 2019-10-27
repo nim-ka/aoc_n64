@@ -4,7 +4,7 @@
 UNUSED static const u64 cyan_fish_unused_1 = 0;
 
 // 0x0600D468
-static const u8 cyan_fish_seg6_texture_0600D468[] = {
+ALIGNED8 static const u8 cyan_fish_seg6_texture_0600D468[] = {
 #include "actors/cyan_fish/cyan_fish.rgba16.inc.c"
 };
 
@@ -165,4 +165,3 @@ const Gfx cyan_fish_seg6_dl_0600E038[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

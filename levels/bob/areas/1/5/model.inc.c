@@ -1113,4 +1113,3 @@ const Gfx bob_seg7_dl_0700DD18[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

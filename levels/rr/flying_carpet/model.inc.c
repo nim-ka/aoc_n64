@@ -74,4 +74,3 @@ const Gfx dl_flying_carpet_end[] = {
     gsSPSetGeometryMode(G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

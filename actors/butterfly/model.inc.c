@@ -11,7 +11,7 @@ static const Vtx butterfly_seg3_vertex_03004348[] = {
 };
 
 // 0x030043A8
-static const u8 butterfly_seg3_texture_030043A8[] = {
+ALIGNED8 static const u8 butterfly_seg3_texture_030043A8[] = {
 #include "actors/butterfly/butterfly_wing.rgba16.inc.c"
 };
 
@@ -56,4 +56,3 @@ const Gfx butterfly_seg3_dl_030054A0[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

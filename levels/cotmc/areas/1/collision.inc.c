@@ -995,4 +995,3 @@ const Collision cotmc_seg7_collision_level[] = {
     COL_WATER_BOX(0, -1535, -7679, 1536, 3389, 0),
     COL_END(),
 };
-

@@ -113,4 +113,3 @@ const Gfx bits_seg7_dl_07013C78[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

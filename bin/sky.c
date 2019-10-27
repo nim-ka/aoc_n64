@@ -1,6 +1,6 @@
 #include "sm64.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 // 0x09000000
 ALIGNED8 const u8 sky_09000000[] = {
@@ -75,4 +75,3 @@ ALIGNED8 const u8 sky_09007800[] = {
 ALIGNED8 const u8 sky_09008000[] = {
 #include "textures/sky/rr_textures.08000.rgba16.inc.c"
 };
-

@@ -23,4 +23,3 @@ const uintptr_t birds_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

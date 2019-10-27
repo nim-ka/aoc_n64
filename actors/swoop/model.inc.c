@@ -21,22 +21,22 @@ UNUSED static const Light swoop_light_4 = {
 };
 
 // 0x06004270
-static const u8 swoop_seg6_texture_06004270[] = {
+ALIGNED8 static const u8 swoop_seg6_texture_06004270[] = {
 #include "actors/swoop/swoop_body.rgba16.inc.c"
 };
 
 // 0x06004A70
-static const u8 swoop_seg6_texture_06004A70[] = {
+ALIGNED8 static const u8 swoop_seg6_texture_06004A70[] = {
 #include "actors/swoop/swoop_eye.rgba16.inc.c"
 };
 
 // 0x06005270
-static const u8 swoop_seg6_texture_06005270[] = {
+ALIGNED8 static const u8 swoop_seg6_texture_06005270[] = {
 #include "actors/swoop/swoop_nose.rgba16.inc.c"
 };
 
 // 0x06005A70
-static const u8 swoop_seg6_texture_06005A70[] = {
+ALIGNED8 static const u8 swoop_seg6_texture_06005A70[] = {
 #include "actors/swoop/swoop_wing.rgba16.inc.c"
 };
 
@@ -399,4 +399,3 @@ const Gfx swoop_seg6_dl_06006D00[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

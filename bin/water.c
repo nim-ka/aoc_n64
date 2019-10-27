@@ -1,6 +1,6 @@
 #include "sm64.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 // 0x09000000
 ALIGNED8 const u8 water_09000000[] = {
@@ -76,4 +76,3 @@ ALIGNED8 const u8 water_0900A800[] = {
 ALIGNED8 const u8 water_0900B800[] = {
 #include "textures/water/jrb_textures.0B800.rgba16.inc.c"
 };
-

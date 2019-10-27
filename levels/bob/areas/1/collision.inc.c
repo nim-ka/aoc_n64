@@ -1664,4 +1664,3 @@ const Collision bob_seg7_collision_level[] = {
     SPECIAL_OBJECT(/*preset*/ special_bubble_tree, /*pos*/  4208,  927,  3772),
     COL_END(),
 };
-

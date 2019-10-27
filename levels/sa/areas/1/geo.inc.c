@@ -25,4 +25,3 @@ const GeoLayout sa_geo_000170[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

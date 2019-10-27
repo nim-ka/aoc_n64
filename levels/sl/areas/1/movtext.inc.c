@@ -1,4 +1,3 @@
-
 // 0x0700FA30 - 0x0700FA50
 static Movtex sl_movtex_snowman_water_data[] = {
     MOV_TEX_INIT_LOAD(    1),
@@ -31,8 +30,7 @@ static Movtex sl_movtex_ice_bully_water_data[] = {
 
 // 0x0700FA70 - 0x0700FA88
 const struct MovtexQuadCollection sl_movtex_water[] = {
-    {0, 0, sl_movtex_snowman_water_data},
-    {1, 0, sl_movtex_ice_bully_water_data},
-    {-1, 0, NULL},
+    {0, sl_movtex_snowman_water_data},
+    {1, sl_movtex_ice_bully_water_data},
+    {-1, NULL},
 };
-

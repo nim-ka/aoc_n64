@@ -19,7 +19,7 @@ static const Vtx bully_seg5_vertex_05000000[] = {
 };
 
 // 0x050000E0
-static const u8 bully_seg5_texture_050000E0[] = {
+ALIGNED8 static const u8 bully_seg5_texture_050000E0[] = {
 #include "actors/bully/bully_horn.rgba16.inc.c"
 };
 
@@ -101,17 +101,17 @@ static const Light bully_seg5_light_05000458 = {
 
 // //! There's another malformed light entry here.
 // 0x05000468
-static const u8 bully_seg5_texture_05000468[] = {
+ALIGNED8 static const u8 bully_seg5_texture_05000468[] = {
 #include "actors/bully/bully_left_side.rgba16.inc.c"
 };
 
 // 0x05001468
-static const u8 bully_seg5_texture_05001468[] = {
+ALIGNED8 static const u8 bully_seg5_texture_05001468[] = {
 #include "actors/bully/bully_right_side.rgba16.inc.c"
 };
 
 // 0x05002468
-static const u8 bully_seg5_texture_05002468[] = {
+ALIGNED8 static const u8 bully_seg5_texture_05002468[] = {
 #include "actors/bully/bully_eye.rgba16.inc.c"
 };
 
@@ -598,4 +598,3 @@ const Gfx bully_seg5_dl_05003FC8[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

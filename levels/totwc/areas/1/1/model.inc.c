@@ -1097,4 +1097,3 @@ const Gfx totwc_seg7_dl_07005D28[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

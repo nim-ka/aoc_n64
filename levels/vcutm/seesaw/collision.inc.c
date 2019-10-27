@@ -26,4 +26,3 @@ const Collision vcutm_seg7_collision_0700AC44[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

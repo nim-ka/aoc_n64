@@ -411,4 +411,3 @@ const Gfx ttm_seg7_dl_07025F48[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

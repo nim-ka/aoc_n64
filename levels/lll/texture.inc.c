@@ -162,4 +162,3 @@ ALIGNED8 static const u8 lll_seg7_texture_0700EC00[] = {
 ALIGNED8 static const u8 lll_seg7_texture_0700F400[] = {
 #include "levels/lll/32.rgba16.inc.c"
 };
-

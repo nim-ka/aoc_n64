@@ -124,4 +124,3 @@ const Gfx bob_seg7_dl_0700A920[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

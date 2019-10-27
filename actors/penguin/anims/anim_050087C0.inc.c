@@ -178,4 +178,3 @@ static const struct Animation penguin_seg5_anim_050087C0 = {
     penguin_seg5_animindex_05008730,
     0,
 };
-

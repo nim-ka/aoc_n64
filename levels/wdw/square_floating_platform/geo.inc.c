@@ -6,4 +6,3 @@ const GeoLayout wdw_geo_000580[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

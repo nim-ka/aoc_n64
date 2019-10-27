@@ -6,4 +6,3 @@ const struct Animation *const moneybag_seg6_anims_06005E5C[] = {
     &moneybag_seg6_anim_06005D3C,
     &moneybag_seg6_anim_06005E44,
 };
-

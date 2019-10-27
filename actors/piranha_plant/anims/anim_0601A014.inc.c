@@ -143,4 +143,3 @@ static const struct Animation piranha_plant_seg6_anim_0601A014 = {
     piranha_plant_seg6_animindex_06019F6C,
     0,
 };
-

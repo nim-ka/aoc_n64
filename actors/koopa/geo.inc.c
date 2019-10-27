@@ -97,4 +97,3 @@ const uintptr_t koopa_with_shell_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

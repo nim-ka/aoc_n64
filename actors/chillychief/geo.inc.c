@@ -90,4 +90,3 @@ const uintptr_t chilly_chief_big_geo[] = {
     GEO_CLOSE_NODE(),
     GEO_END(),
 };
-

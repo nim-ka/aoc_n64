@@ -2070,4 +2070,3 @@ const Gfx ccm_seg7_dl_0701CE30[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

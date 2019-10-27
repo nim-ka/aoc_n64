@@ -11,12 +11,12 @@ static const Light checkerboard_platform_seg8_light_0800C830 = {
 };
 
 // 0x0800C840
-static const u8 checkerboard_platform_seg8_texture_0800C840[] = {
+ALIGNED8 static const u8 checkerboard_platform_seg8_texture_0800C840[] = {
 #include "actors/checkerboard_platform/checkerboard_platform_side.rgba16.inc.c"
 };
 
 // 0x0800CC40
-static const u8 checkerboard_platform_seg8_texture_0800CC40[] = {
+ALIGNED8 static const u8 checkerboard_platform_seg8_texture_0800CC40[] = {
 #include "actors/checkerboard_platform/checkerboard_platform.rgba16.inc.c"
 };
 
@@ -99,5 +99,4 @@ const Gfx checkerboard_platform_seg8_dl_0800D680[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-
 

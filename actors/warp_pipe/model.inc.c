@@ -99,7 +99,7 @@ static const Vtx warp_pipe_seg3_vertex_03007DC0[] = {
 };
 
 // 0x03007E40
-static const u8 warp_pipe_seg3_texture_03007E40[] = {
+ALIGNED8 static const u8 warp_pipe_seg3_texture_03007E40[] = {
 #include "actors/warp_pipe/warp_pipe_side.rgba16.inc.c"
 };
 
@@ -201,7 +201,7 @@ static const Vtx warp_pipe_seg3_vertex_03009128[] = {
 };
 
 // 0x03009168
-static const u8 warp_pipe_seg3_texture_03009168[] = {
+ALIGNED8 static const u8 warp_pipe_seg3_texture_03009168[] = {
 #include "actors/warp_pipe/warp_pipe_top.rgba16.inc.c"
 };
 
@@ -251,4 +251,3 @@ const Gfx warp_pipe_seg3_dl_03009A50[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

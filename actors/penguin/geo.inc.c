@@ -42,4 +42,3 @@ const uintptr_t penguin_geo[] = {
        GEO_CLOSE_NODE(),
        GEO_END(),
 };
-

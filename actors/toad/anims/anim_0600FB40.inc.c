@@ -392,4 +392,3 @@ static const struct Animation toad_seg6_anim_0600FB40 = {
     toad_seg6_animindex_0600FA44,
     0,
 };
-

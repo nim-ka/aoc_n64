@@ -18,4 +18,3 @@ const uintptr_t number_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

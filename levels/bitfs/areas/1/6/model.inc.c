@@ -121,4 +121,3 @@ const Gfx bitfs_seg7_dl_07004630[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

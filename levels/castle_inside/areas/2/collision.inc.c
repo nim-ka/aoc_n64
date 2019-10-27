@@ -3737,4 +3737,3 @@ const Collision inside_castle_seg7_area_2_collision[] = {
     SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_wooden_door, /*pos*/  -997, 1203,  1178, /*yaw*/   0),
     COL_END(),
 };
-

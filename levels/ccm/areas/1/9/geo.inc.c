@@ -9,4 +9,3 @@ const GeoLayout ccm_geo_0004BC[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

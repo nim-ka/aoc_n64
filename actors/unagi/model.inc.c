@@ -81,32 +81,32 @@ UNUSED static const Light unagi_light_16 = {
 };
 
 // 0x0500AF20
-static const u8 unagi_seg5_texture_0500AF20[] = {
+ALIGNED8 static const u8 unagi_seg5_texture_0500AF20[] = {
 #include "actors/unagi/unagi_body.rgba16.inc.c"
 };
 
 // 0x0500B720
-static const u8 unagi_seg5_texture_0500B720[] = {
+ALIGNED8 static const u8 unagi_seg5_texture_0500B720[] = {
 #include "actors/unagi/unagi_eye.rgba16.inc.c"
 };
 
 // 0x0500B920
-static const u8 unagi_seg5_texture_0500B920[] = {
+ALIGNED8 static const u8 unagi_seg5_texture_0500B920[] = {
 #include "actors/unagi/unagi_head_base.rgba16.inc.c"
 };
 
 // 0x0500C120
-static const u8 unagi_seg5_texture_0500C120[] = {
+ALIGNED8 static const u8 unagi_seg5_texture_0500C120[] = {
 #include "actors/unagi/unagi_tooth.rgba16.inc.c"
 };
 
 // 0x0500C320
-static const u8 unagi_seg5_texture_0500C320[] = {
+ALIGNED8 static const u8 unagi_seg5_texture_0500C320[] = {
 #include "actors/unagi/unagi_mouth.rgba16.inc.c"
 };
 
 // 0x0500C3A0
-static const u8 unagi_seg5_texture_0500C3A0[] = {
+ALIGNED8 static const u8 unagi_seg5_texture_0500C3A0[] = {
 #include "actors/unagi/unagi_tail.rgba16.inc.c"
 };
 
@@ -787,4 +787,3 @@ const Gfx unagi_seg5_dl_0500E258[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

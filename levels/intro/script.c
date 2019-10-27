@@ -14,7 +14,7 @@
 
 #include "actors/common1.h"
 
-#define const
+#include "make_const_nonconst.h"
 #include "levels/intro/header.h"
 
 const LevelScript level_intro_entry_1[] = {
@@ -155,4 +155,3 @@ const LevelScript script_intro_L5[] = {
     SLEEP(/*frames*/ 2),
     EXIT_AND_EXECUTE(/*seg*/ 0x14, _introSegmentRomStart, _introSegmentRomEnd, level_intro_entry_1),
 };
-

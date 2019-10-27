@@ -12,4 +12,3 @@ const Collision bbh_seg7_collision_07026B1C[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

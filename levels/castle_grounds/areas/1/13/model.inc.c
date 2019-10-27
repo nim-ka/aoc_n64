@@ -26,4 +26,3 @@ const Gfx castle_grounds_seg7_us_dl_0700F2E8[] = {
     gsDPSetTextureFilter(G_TF_BILERP),
     gsSPEndDisplayList(),
 };
-

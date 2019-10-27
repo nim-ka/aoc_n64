@@ -22,4 +22,3 @@ const uintptr_t bowser_flames_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

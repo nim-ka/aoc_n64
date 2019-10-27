@@ -2946,4 +2946,3 @@ const Gfx pss_seg7_dl_0700A7C0[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

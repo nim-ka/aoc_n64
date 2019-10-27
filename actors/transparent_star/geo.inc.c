@@ -9,4 +9,3 @@ const uintptr_t transparent_star_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

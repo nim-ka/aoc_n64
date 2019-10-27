@@ -58,4 +58,3 @@ const uintptr_t heave_ho_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

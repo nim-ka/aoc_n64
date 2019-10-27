@@ -30,9 +30,9 @@ static Movtex castle_grounds_movtex_lake_water_data[] = {
 
 // 0x07010E80
 const struct MovtexQuadCollection castle_grounds_movtex_water[] = {
-    {0, 0, castle_grounds_movtex_moat_water_data},
-    {1, 0, castle_grounds_movtex_lake_water_data},
-    {-1, 0, NULL},
+    {0, castle_grounds_movtex_moat_water_data},
+    {1, castle_grounds_movtex_lake_water_data},
+    {-1, NULL},
 };
 
 Movtex castle_grounds_movtex_tris_waterfall[] = {
@@ -67,4 +67,3 @@ const Gfx castle_grounds_dl_waterfall[] = {
     gsSP1Triangle(10, 14, 13, 0x0),
     gsSPEndDisplayList(),
 };
-

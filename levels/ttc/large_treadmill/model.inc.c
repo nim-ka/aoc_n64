@@ -137,4 +137,3 @@ const Gfx ttc_seg7_dl_0700FBB8[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

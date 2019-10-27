@@ -44,4 +44,3 @@ const uintptr_t blue_flame_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

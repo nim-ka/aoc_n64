@@ -25,4 +25,3 @@ const GeoLayout ssl_geo_00088C[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

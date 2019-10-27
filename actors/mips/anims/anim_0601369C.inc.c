@@ -90,4 +90,3 @@ static const struct Animation mips_seg6_anim_0601369C = {
     mips_seg6_animindex_060135C4,
     0,
 };
-

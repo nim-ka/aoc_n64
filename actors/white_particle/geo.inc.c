@@ -6,4 +6,3 @@ const uintptr_t white_particle_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

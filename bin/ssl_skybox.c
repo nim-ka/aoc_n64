@@ -1,6 +1,6 @@
 #include "sm64.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 // 0x0A000000
 ALIGNED8 static const u8 ssl_skybox_texture_0A000000[] = {
@@ -405,4 +405,3 @@ const u8 *const ssl_skybox_ptrlist[] = {
     ssl_skybox_texture_0A01C000,
     ssl_skybox_texture_0A01C800,
 };
-

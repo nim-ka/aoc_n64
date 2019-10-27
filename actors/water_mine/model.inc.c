@@ -11,17 +11,17 @@ static const Light water_mine_seg6_light_0600A4E8 = {
 };
 
 // 0x0600A4F8
-static const u8 water_mine_seg6_texture_0600A4F8[] = {
+ALIGNED8 static const u8 water_mine_seg6_texture_0600A4F8[] = {
 #include "actors/water_mine/water_mine_left_side_unused.rgba16.inc.c"
 };
 
 // 0x0600B4F8
-static const u8 water_mine_seg6_texture_0600B4F8[] = {
+ALIGNED8 static const u8 water_mine_seg6_texture_0600B4F8[] = {
 #include "actors/water_mine/water_mine_right_side_unused.rgba16.inc.c"
 };
 
 // 0x0600C4F8
-static const u8 water_mine_seg6_texture_0600C4F8[] = {
+ALIGNED8 static const u8 water_mine_seg6_texture_0600C4F8[] = {
 #include "actors/water_mine/water_mine_spike_unused.rgba16.inc.c"
 };
 
@@ -216,4 +216,3 @@ const Gfx water_mine_seg6_dl_0600D3F8[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

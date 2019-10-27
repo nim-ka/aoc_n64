@@ -1,4 +1,3 @@
-
 // 0x07012424 - 0x070125F2
 const MacroObject ssl_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_goomba,                    /*yaw*/   0, /*pos*/  6068,    51,  2800),
@@ -49,4 +48,3 @@ const MacroObject ssl_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,           /*yaw*/   0, /*pos*/  5130,    26,  -370, /*behParam*/ 157),
     MACRO_OBJECT_END(),
 };
-

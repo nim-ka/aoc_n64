@@ -39,4 +39,3 @@ static const struct Animation bully_seg5_anim_050043D8 = {
     bully_seg5_animindex_05004330,
     0,
 };
-

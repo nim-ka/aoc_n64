@@ -30,4 +30,3 @@ const GeoLayout pss_geo_000100[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

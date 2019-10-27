@@ -42,4 +42,3 @@ const uintptr_t palm_tree_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

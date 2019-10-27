@@ -12,4 +12,3 @@ const Collision ddd_seg7_collision_bowser_sub_door[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

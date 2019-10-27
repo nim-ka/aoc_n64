@@ -8,4 +8,3 @@ const struct Animation *const mips_seg6_anims_06015634[] = {
     NULL,
     NULL,
 };
-

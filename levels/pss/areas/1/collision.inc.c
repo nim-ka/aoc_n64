@@ -1816,4 +1816,3 @@ const Collision pss_seg7_collision[] = {
     SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_null_start, /*pos*/ 5632, 6656, -5631, /*yaw*/ 192),
     COL_END(),
 };
-

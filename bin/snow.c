@@ -1,6 +1,6 @@
 #include "sm64.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 // 0x09000000
 ALIGNED8 const u8 snow_09000000[] = {
@@ -91,4 +91,3 @@ ALIGNED8 const u8 snow_09009000[] = {
 ALIGNED8 const u8 snow_09009800[] = {
 #include "textures/snow/ccm_textures.09800.ia16.inc.c"
 };
-

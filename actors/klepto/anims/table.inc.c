@@ -10,4 +10,3 @@ const struct Animation *const klepto_seg5_anims_05008CFC[] = {
     NULL,
     NULL,
 };
-

@@ -16,4 +16,3 @@ const Collision jrb_seg7_collision_0700D1DC[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

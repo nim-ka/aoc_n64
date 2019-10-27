@@ -16,4 +16,3 @@ const Collision wf_seg7_collision_sliding_brick_platform[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

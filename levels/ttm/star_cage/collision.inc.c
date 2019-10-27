@@ -26,4 +26,3 @@ const Collision ttm_seg7_collision_ukiki_cage[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

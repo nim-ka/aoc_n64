@@ -10,4 +10,3 @@ const uintptr_t star_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

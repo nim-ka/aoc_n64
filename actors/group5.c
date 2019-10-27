@@ -3,7 +3,7 @@
 #include "surface_terrains.h"
 #include "geo_commands.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 #include "klepto/model.inc.c"
 #include "klepto/anims/data.inc.c"
@@ -21,4 +21,3 @@ UNUSED static const u64 binid_2 = 2;
 #include "tornado/model.inc.c"
 #include "tornado/geo.inc.c"
 UNUSED static const u64 binid_3 = 3;
-

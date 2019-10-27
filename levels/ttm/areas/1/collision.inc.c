@@ -2329,4 +2329,3 @@ const Collision ttm_seg7_area_1_collision[] = {
     COL_WATER_BOX(3, 1586, 898, 3583, 2751, -1637),
     COL_END(),
 };
-

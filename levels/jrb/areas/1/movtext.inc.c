@@ -1,4 +1,3 @@
-
 // 0x0700D28C - 0x0700D2AC
 static Movtex jrb_movtex_water_data[] = {
     MOV_TEX_INIT_LOAD(    1),
@@ -31,9 +30,9 @@ static Movtex jrb_movtex_ocean_cave_water_data[] = {
 
 // 0x0700D2CC
 const struct MovtexQuadCollection jrb_movtex_water[] = {
-    {0, 0, jrb_movtex_water_data},
-    {1, 0, jrb_movtex_ocean_cave_water_data},
-    {-1, 0, NULL},
+    {0, jrb_movtex_water_data},
+    {1, jrb_movtex_ocean_cave_water_data},
+    {-1, NULL},
 };
 
 // 0x0700D2E4, appears if you enter the course the first time, then it disappears when you grab the first star
@@ -53,7 +52,6 @@ static Movtex jrb_movtex_intial_mist_data[] = {
 
 // 0x0700D304
 const struct MovtexQuadCollection jrb_movtex_intial_mist[] = {
-    {51, 0, jrb_movtex_intial_mist_data},
-    {-1, 0, NULL},
+    {51, jrb_movtex_intial_mist_data},
+    {-1, NULL},
 };
-

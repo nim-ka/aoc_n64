@@ -1329,4 +1329,3 @@ const Gfx inside_castle_seg7_dl_070558D0[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

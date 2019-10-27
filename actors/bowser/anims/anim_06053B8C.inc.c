@@ -133,4 +133,3 @@ static const struct Animation bowser_seg6_anim_06053B8C = {
     bowser_seg6_animindex_06053970,
     0,
 };
-

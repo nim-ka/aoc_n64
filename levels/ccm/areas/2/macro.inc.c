@@ -43,4 +43,3 @@ const MacroObject ccm_seg7_area_2_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_1up_sliding,          /*yaw*/   0, /*pos*/ -6369, -1538,  3726),
     MACRO_OBJECT_END(),
 };
-

@@ -55,4 +55,3 @@ const Gfx inside_castle_seg7_dl_0705E450[] = {
     gsSPSetGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

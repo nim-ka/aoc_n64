@@ -26,4 +26,3 @@ const uintptr_t sushi_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

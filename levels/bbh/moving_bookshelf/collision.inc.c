@@ -16,4 +16,3 @@ const Collision bbh_seg7_collision_haunted_bookshelf[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

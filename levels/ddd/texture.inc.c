@@ -22,4 +22,3 @@ ALIGNED8 static const u8 ddd_seg7_texture_07002000[] = {
 ALIGNED8 static const u8 ddd_seg7_texture_07003000[] = {
 #include "levels/ddd/4.rgba16.inc.c"
 };
-

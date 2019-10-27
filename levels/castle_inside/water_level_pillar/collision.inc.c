@@ -24,4 +24,3 @@ const Collision inside_castle_seg7_collision_water_level_pillar[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

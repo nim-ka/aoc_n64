@@ -13,7 +13,7 @@
 #include "actors/common1.h"
 #include "actors/group12.h"
 
-#define const
+#include "make_const_nonconst.h"
 #include "levels/bowser_1/header.h"
 
 const LevelScript level_bowser_1_entry[] = {
@@ -45,4 +45,3 @@ const LevelScript level_bowser_1_entry[] = {
     SLEEP_BEFORE_EXIT(/*frames*/ 1),
     EXIT(),
 };
-

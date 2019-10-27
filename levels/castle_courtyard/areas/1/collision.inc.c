@@ -870,4 +870,3 @@ const Collision castle_courtyard_seg7_collision[] = {
     COL_WATER_BOX(0, -656, -2405, 674, -1074, 51),
     COL_END(),
 };
-

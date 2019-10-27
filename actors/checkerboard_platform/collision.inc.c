@@ -29,4 +29,3 @@ const s16 checkerboard_platform_seg8_collision_0800D710[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

@@ -6,4 +6,3 @@ const uintptr_t yellow_sphere_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

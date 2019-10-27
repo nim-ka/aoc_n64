@@ -5,7 +5,7 @@
 
 #include "levels/intro/header.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 const LevelScript level_script_entry[] = {
     INIT_LEVEL(),
@@ -15,4 +15,3 @@ const LevelScript level_script_entry[] = {
     EXECUTE(/*seg*/ 0x14, /*script*/ _introSegmentRomStart, /*scriptEnd*/ _introSegmentRomEnd, /*entry*/ level_intro_entry_1),
     JUMP(/*target*/ level_script_entry),
 };
-

@@ -5,4 +5,3 @@ const struct Animation *const snowman_seg5_anims_0500D118[] = {
     NULL,
     NULL,
 };
-

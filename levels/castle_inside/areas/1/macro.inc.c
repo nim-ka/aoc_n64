@@ -14,4 +14,3 @@ const MacroObject inside_castle_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_hidden_1up,         /*yaw*/   0, /*pos*/  2036,   800, -1673, /*behParam*/ 1),
     MACRO_OBJECT_END(),
 };
-

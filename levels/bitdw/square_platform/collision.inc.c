@@ -20,4 +20,3 @@ const Collision bitdw_seg7_collision_moving_pyramid[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

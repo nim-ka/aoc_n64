@@ -6,4 +6,3 @@ const GeoLayout castle_geo_000F18[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

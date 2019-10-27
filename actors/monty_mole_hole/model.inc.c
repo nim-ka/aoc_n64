@@ -9,7 +9,7 @@ static const Vtx monty_mole_hole_seg5_vertex_05000000[] = {
 };
 
 // 0x05000040
-static const u8 monty_mole_hole_seg5_texture_05000040[] = {
+ALIGNED8 static const u8 monty_mole_hole_seg5_texture_05000040[] = {
 #include "actors/monty_mole_hole/monty_mole_hole.ia16.inc.c"
 };
 
@@ -28,4 +28,3 @@ const Gfx monty_mole_hole_seg5_dl_05000840[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

@@ -183,4 +183,3 @@ const Gfx rr_seg7_dl_07019AE0[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

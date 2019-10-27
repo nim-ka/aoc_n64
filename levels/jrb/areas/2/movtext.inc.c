@@ -15,7 +15,6 @@ static Movtex jrb_movtex_sinked_boat_water_data[] = {
 
 // 0x0701139C
 const struct MovtexQuadCollection jrb_movtex_sinked_boat_water[] = {
-    {0, 0, jrb_movtex_sinked_boat_water_data},
-    {-1, 0, NULL},
+    {0, jrb_movtex_sinked_boat_water_data},
+    {-1, NULL},
 };
-

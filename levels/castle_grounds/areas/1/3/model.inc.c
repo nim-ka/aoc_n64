@@ -275,4 +275,3 @@ const Gfx castle_grounds_seg7_dl_0700A290[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

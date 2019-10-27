@@ -466,4 +466,3 @@ const s16 dorrie_seg6_collision_0600FBB8[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

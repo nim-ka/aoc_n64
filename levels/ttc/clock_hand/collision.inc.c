@@ -44,4 +44,3 @@ const Collision ttc_seg7_collision_clock_main_rotation[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

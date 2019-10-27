@@ -449,4 +449,3 @@ const Gfx small_key_seg5_dl_05006A68[] = {
     gsSPLight(&small_key_seg5_light_050057E0, 2),
     gsSPBranchList(small_key_seg5_dl_05006700),
 };
-

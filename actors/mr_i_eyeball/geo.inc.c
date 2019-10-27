@@ -6,4 +6,3 @@ const uintptr_t mr_i_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

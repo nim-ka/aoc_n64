@@ -48,4 +48,3 @@ const Gfx hmc_seg7_dl_07019368[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

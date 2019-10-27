@@ -14,4 +14,3 @@ const Trajectory ttm_seg7_trajectory_070170A0[] = {
     TRAJECTORY_POS(11, /*pos*/  4281, -3326,   460),
     TRAJECTORY_END(),
 };
-

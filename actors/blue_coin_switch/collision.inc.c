@@ -27,4 +27,3 @@ const s16 blue_coin_switch_seg8_collision_08000E98[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

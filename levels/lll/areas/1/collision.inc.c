@@ -2734,4 +2734,3 @@ const Collision lll_seg7_area_1_collision[] = {
     COL_END(),
 #endif
 };
-

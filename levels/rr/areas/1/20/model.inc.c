@@ -479,4 +479,3 @@ const Gfx rr_seg7_dl_07018B58[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

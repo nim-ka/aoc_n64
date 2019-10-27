@@ -36,4 +36,3 @@ const GeoLayout sl_geo_0003A8[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

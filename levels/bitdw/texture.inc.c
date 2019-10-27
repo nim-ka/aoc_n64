@@ -17,4 +17,3 @@ ALIGNED8 static const u8 bitdw_seg7_texture_07001000[] = {
 ALIGNED8 static const u8 bitdw_seg7_texture_07001800[] = {
 #include "levels/bitdw/3.rgba16.inc.c"
 };
-

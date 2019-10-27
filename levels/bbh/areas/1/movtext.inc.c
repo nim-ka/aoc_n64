@@ -30,13 +30,12 @@ static Movtex bbh_movtex_merry_go_round_water_side_data[] = {
 
 // 0x07026E24
 const struct MovtexQuadCollection bbh_movtex_merry_go_round_water_entrance[] = {
-    {0, 0, bbh_movtex_merry_go_round_water_entrance_data},
-    {-1, 0, NULL},
+    {0, bbh_movtex_merry_go_round_water_entrance_data},
+    {-1, NULL},
 };
 
 // 0x07026E34
 const struct MovtexQuadCollection bbh_movtex_merry_go_round_water_side[] = {
-    {1, 0, bbh_movtex_merry_go_round_water_side_data},
-    {-1, 0, NULL},
+    {1, bbh_movtex_merry_go_round_water_side_data},
+    {-1, NULL},
 };
-

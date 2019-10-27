@@ -70,4 +70,3 @@ const Collision ttm_seg7_collision_podium_warp[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

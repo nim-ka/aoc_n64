@@ -70,4 +70,3 @@ const Gfx cotmc_seg7_dl_0700A4B8[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

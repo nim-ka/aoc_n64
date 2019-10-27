@@ -7,7 +7,7 @@
 #include "special_preset_names.h"
 #include "bin/textures.h"
 
-#define const
+#include "make_const_nonconst.h"
 #include "levels/bbh/texture.inc.c"
 #include "levels/bbh/areas/1/1/model.inc.c"
 #include "levels/bbh/areas/1/2/model.inc.c"

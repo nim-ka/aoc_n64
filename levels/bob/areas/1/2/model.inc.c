@@ -1909,4 +1909,3 @@ const Gfx bob_seg7_dl_07009D80[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

@@ -53,4 +53,3 @@ const uintptr_t unagi_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

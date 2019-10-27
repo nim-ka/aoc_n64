@@ -9,4 +9,3 @@ const uintptr_t metal_box_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

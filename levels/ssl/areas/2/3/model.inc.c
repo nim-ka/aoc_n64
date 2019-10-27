@@ -85,4 +85,3 @@ const Gfx ssl_seg7_dl_0701FCE0[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

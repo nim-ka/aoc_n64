@@ -31,4 +31,3 @@ const uintptr_t cartoon_star_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

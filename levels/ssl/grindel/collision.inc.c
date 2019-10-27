@@ -26,4 +26,3 @@ const Collision ssl_seg7_collision_grindel[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

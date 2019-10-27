@@ -1,4 +1,3 @@
-
 // 0x070160D8 - 0x0701633C
 const MacroObject wdw_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,             /*yaw*/   0, /*pos*/ -2077,  2816,  -660, /*behParam*/ 81),
@@ -64,4 +63,3 @@ const MacroObject wdw_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_breakable_box_three_coins,   /*yaw*/   0, /*pos*/  4500,     0,  1040),
     MACRO_OBJECT_END(),
 };
-

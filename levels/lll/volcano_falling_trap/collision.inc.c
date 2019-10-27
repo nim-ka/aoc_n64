@@ -28,4 +28,3 @@ const Collision lll_seg7_collision_falling_wall[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

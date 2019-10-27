@@ -12,7 +12,7 @@
 
 #include "actors/common1.h"
 
-#define const
+#include "make_const_nonconst.h"
 #include "levels/ending/header.h"
 
 const LevelScript level_ending_entry[] = {
@@ -34,4 +34,3 @@ const LevelScript level_ending_entry[] = {
     /*17*/ SLEEP(/*frames*/ 1),
     /*18*/ JUMP(level_ending_entry + 17),
 };
-

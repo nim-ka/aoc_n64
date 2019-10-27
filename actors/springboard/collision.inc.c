@@ -78,4 +78,3 @@ const s16 springboard_collision_05001A28[] = {
 };
 
 UNUSED static const u32 springboard_unused_1 = 0;
-

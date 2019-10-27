@@ -41,32 +41,32 @@ static const Light penguin_seg5_light_05002DD0 = {
 };
 
 // 0x05002DE0
-static const u8 penguin_seg5_texture_05002DE0[] = {
+ALIGNED8 static const u8 penguin_seg5_texture_05002DE0[] = {
 #include "actors/penguin/penguin_eye_open.rgba16.inc.c"
 };
 
 // 0x050035E0
-static const u8 penguin_seg5_texture_050035E0[] = {
+ALIGNED8 static const u8 penguin_seg5_texture_050035E0[] = {
 #include "actors/penguin/penguin_eye_half_closed.rgba16.inc.c"
 };
 
 // 0x05003DE0
-static const u8 penguin_seg5_texture_05003DE0[] = {
+ALIGNED8 static const u8 penguin_seg5_texture_05003DE0[] = {
 #include "actors/penguin/penguin_eye_closed.rgba16.inc.c"
 };
 
 // 0x050045E0
-static const u8 penguin_seg5_texture_050045E0[] = {
+ALIGNED8 static const u8 penguin_seg5_texture_050045E0[] = {
 #include "actors/penguin/penguin_eye_angry.rgba16.inc.c"
 };
 
 // 0x05004DE0
-static const u8 penguin_seg5_texture_05004DE0[] = {
+ALIGNED8 static const u8 penguin_seg5_texture_05004DE0[] = {
 #include "actors/penguin/penguin_eye_angry_unused.rgba16.inc.c"
 };
 
 // 0x050055E0
-static const u8 penguin_seg5_texture_050055E0[] = {
+ALIGNED8 static const u8 penguin_seg5_texture_050055E0[] = {
 #include "actors/penguin/penguin_beak.rgba16.inc.c"
 };
 
@@ -706,4 +706,3 @@ const Gfx penguin_seg5_dl_05007540[] = {
     gsSP1Triangle( 2,  9, 13, 0x0),
     gsSPEndDisplayList(),
 };
-

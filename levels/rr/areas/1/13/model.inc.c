@@ -146,4 +146,3 @@ const Gfx rr_seg7_dl_0700E830[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

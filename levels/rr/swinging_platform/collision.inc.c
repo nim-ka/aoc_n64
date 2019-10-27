@@ -77,4 +77,3 @@ const Collision rr_seg7_collision_pendulum[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

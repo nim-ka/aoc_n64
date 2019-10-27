@@ -18,4 +18,3 @@ const Collision castle_grounds_seg7_collision_moat_grills[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

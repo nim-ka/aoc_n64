@@ -899,4 +899,3 @@ const Gfx bitfs_seg7_dl_0700EC78[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

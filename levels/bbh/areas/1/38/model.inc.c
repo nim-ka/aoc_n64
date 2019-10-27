@@ -60,4 +60,3 @@ const Gfx bbh_seg7_dl_0701EEC8[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

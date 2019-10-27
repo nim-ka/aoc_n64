@@ -15,4 +15,3 @@ const uintptr_t treasure_chest_lid_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

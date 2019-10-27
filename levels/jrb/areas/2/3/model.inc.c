@@ -159,4 +159,3 @@ const Gfx jrb_seg7_dl_07010548[] = {
     gsSPSetGeometryMode(G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

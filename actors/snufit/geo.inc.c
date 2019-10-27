@@ -25,4 +25,3 @@ const uintptr_t snufit_geo[] = {
 GEO_CLOSE_NODE(), //! more close than open nodes
 GEO_END(),
 };
-

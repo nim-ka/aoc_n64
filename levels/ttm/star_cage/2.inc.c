@@ -48,4 +48,3 @@ const Gfx ttm_seg7_dl_07013608[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

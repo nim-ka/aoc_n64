@@ -1,4 +1,3 @@
-
 // 0x07001800 - 0x07001808
 static const Ambient wmotr_seg7_light_07001800 = {
     {{0xbf, 0xbf, 0xbf}, 0, {0xbf, 0xbf, 0xbf}, 0}
@@ -4756,4 +4755,3 @@ const Gfx wmotr_seg7_dl_07010608[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

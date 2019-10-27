@@ -52,4 +52,3 @@ const Gfx ccm_seg7_dl_07010B50[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

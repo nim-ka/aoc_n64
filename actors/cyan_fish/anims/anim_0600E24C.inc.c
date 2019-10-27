@@ -46,4 +46,3 @@ static const struct Animation cyan_fish_seg6_anim_0600E24C = {
     cyan_fish_seg6_animindex_0600E204,
     0,
 };
-

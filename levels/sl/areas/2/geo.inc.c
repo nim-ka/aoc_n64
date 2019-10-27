@@ -27,4 +27,3 @@ const GeoLayout sl_geo_000484[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

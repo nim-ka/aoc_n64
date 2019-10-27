@@ -6,4 +6,3 @@ const GeoLayout bowser_2_geo_000170[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

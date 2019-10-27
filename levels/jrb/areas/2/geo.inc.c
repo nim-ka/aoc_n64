@@ -28,4 +28,3 @@ const GeoLayout jrb_geo_000AFC[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

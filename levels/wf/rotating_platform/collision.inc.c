@@ -43,4 +43,3 @@ const Collision wf_seg7_collision_rotating_platform[] = {
     COL_END(),
 };
 
-

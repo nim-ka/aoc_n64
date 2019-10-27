@@ -4,4 +4,3 @@ const struct Animation *const spiny_seg5_anims_05016EAC[] = {
     NULL,
     NULL,
 };
-

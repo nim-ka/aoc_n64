@@ -52,4 +52,3 @@ const Gfx sl_seg7_dl_0700CB58[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

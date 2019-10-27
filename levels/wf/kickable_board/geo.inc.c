@@ -16,4 +16,3 @@ const GeoLayout wf_geo_000BC8[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

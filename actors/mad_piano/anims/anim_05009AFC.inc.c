@@ -33,4 +33,3 @@ static const struct Animation mad_piano_seg5_anim_05009AFC = {
     mad_piano_seg5_animindex_05009AC0,
     0,
 };
-

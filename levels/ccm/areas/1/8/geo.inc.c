@@ -9,4 +9,3 @@ const GeoLayout ccm_geo_000494[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

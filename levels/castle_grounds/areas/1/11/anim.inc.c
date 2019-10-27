@@ -39,4 +39,3 @@ static const struct Animation castle_grounds_seg7_anim_flags = {
 const struct Animation *const castle_grounds_seg7_anims_flags[] = {
     &castle_grounds_seg7_anim_flags, // 0x0700C944
 };
-

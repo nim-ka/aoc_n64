@@ -142,4 +142,3 @@ const Trajectory rr_seg7_trajectory_0702EEE0[] = {
     TRAJECTORY_POS(41, /*pos*/ -4200,  6740, -5100),
     TRAJECTORY_END(),
 };
-

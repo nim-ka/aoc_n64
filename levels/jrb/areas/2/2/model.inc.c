@@ -325,4 +325,3 @@ const Gfx jrb_seg7_dl_0700FE48[] = {
     gsSPSetGeometryMode(G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

@@ -1926,4 +1926,3 @@ const Gfx lll_seg7_dl_070235C8[] = {
     gsSPGeometryMode(G_FOG, G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

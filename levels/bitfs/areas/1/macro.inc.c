@@ -42,4 +42,3 @@ const MacroObject bitfs_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_box_ten_coins,               /*yaw*/   0, /*pos*/ -5340,  4000,   100),
     MACRO_OBJECT_END(),
 };
-

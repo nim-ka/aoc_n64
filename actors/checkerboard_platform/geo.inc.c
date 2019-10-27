@@ -6,4 +6,3 @@ const uintptr_t checkerboard_platform_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

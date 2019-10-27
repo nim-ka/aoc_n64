@@ -225,4 +225,3 @@ const Gfx birds_seg5_dl_05000670[] = {
     gsSP1Triangle( 1,  3,  5, 0x0),
     gsSPEndDisplayList(),
 };
-

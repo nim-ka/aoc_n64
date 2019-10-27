@@ -11,7 +11,7 @@ static const Light cannon_lid_seg8_light_08004048 = {
 };
 
 // 0x08004058
-static const u8 cannon_lid_seg8_texture_08004058[] = {
+ALIGNED8 static const u8 cannon_lid_seg8_texture_08004058[] = {
 #include "actors/cannon_lid/cannon_lid.rgba16.inc.c"
 };
 
@@ -52,5 +52,4 @@ const Gfx cannon_lid_seg8_dl_080048E0[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-
 

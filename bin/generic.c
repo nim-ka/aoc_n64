@@ -1,6 +1,6 @@
 #include "sm64.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 // 0x09000000
 ALIGNED8 const u8 generic_09000000[] = {
@@ -111,4 +111,3 @@ ALIGNED8 const u8 generic_0900A800[] = {
 ALIGNED8 const u8 generic_0900B000[] = {
 #include "textures/generic/bob_textures.0B000.ia16.inc.c"
 };
-

@@ -11,12 +11,12 @@ static const Light poundable_pole_seg6_light_06001040 = {
 };
 
 // 0x06001050
-static const u8 poundable_pole_seg6_texture_06001050[] = {
+ALIGNED8 static const u8 poundable_pole_seg6_texture_06001050[] = {
 #include "actors/poundable_pole/poundable_pole_top.rgba16.inc.c"
 };
 
 // 0x06001850
-static const u8 poundable_pole_seg6_texture_06001850[] = {
+ALIGNED8 static const u8 poundable_pole_seg6_texture_06001850[] = {
 #include "actors/poundable_pole/poundable_pole_side.rgba16.inc.c"
 };
 
@@ -131,4 +131,3 @@ const Gfx poundable_pole_seg6_dl_06002410[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

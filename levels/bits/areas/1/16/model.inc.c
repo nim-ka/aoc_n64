@@ -75,4 +75,3 @@ const Gfx bits_seg7_dl_0700D5A0[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

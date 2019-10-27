@@ -55,4 +55,3 @@ const Gfx vcutm_seg7_dl_070080D0[] = {
     gsSPSetGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

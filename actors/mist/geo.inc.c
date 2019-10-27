@@ -17,4 +17,3 @@ const uintptr_t white_puff_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

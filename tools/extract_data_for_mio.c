@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#define EI_DATA 5
 #define EI_NIDENT 16
 
 #define STT_NOTYPE  0
@@ -151,6 +152,15 @@ static bool elf_get_section_range(uint8_t *file, const char *searched_name, uint
     Elf32_Ehdr *ehdr = (Elf32_Ehdr *)file;
 
     for (int i = 0; i < u16be(ehdr->e_shnum); i++) {
+        if (memcmp("\x7f" "ELF", ehdr->e_ident, 4) != 0) {
+            fprintf(stderr, "Missing ELF magic\n");
+            exit(1);
+        }
+        if (ehdr->e_ident[EI_DATA] != 2) {
+            fprintf(stderr, "ELF file is not big-endian\n");
+            exit(1);
+        }
+
         Elf32_Shdr *shdr = (Elf32_Shdr *)(file + u32be(ehdr->e_shoff) + i * u16be(ehdr->e_shentsize));
         if (u16be(ehdr->e_shstrndx) >= u16be(ehdr->e_shnum)) {
             fprintf(stderr, "Invalid ELF file\n");
@@ -275,9 +285,18 @@ int main(int argc, char *argv[]) {
 #endif
 
     size_t new_size = last_symbol_end - data_address;
-    if (new_size + 16 < data_size) {
+    if (new_size + 16 <= data_size) {
         // There seems to be more than 16 bytes padding or non-identified data, so abort and take the original size
         new_size = data_size;
+    } else {
+        // Make sure we don't cut off non-zero bytes
+        for (size_t i = new_size; i < data_size; i++) {
+            if (file[data_offset + i] != 0) {
+                // Must be some symbol missing, so abort and take the original size
+                new_size = data_size;
+                break;
+            }
+        }
     }
 
     FILE *out = fopen(argv[2], "wb");
@@ -285,4 +304,5 @@ int main(int argc, char *argv[]) {
     fclose(out);
 
     free(file);
+    return 0;
 }

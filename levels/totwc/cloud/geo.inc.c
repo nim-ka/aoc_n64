@@ -9,4 +9,3 @@ const GeoLayout totwc_geo_000160[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

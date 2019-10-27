@@ -96,4 +96,3 @@ const Gfx hmc_seg7_dl_07022DA0[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

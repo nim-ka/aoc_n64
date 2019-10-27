@@ -45,14 +45,13 @@ static Movtex inside_castle_movtex_moat_water_data[] = {
 
 // 0x070790F0 - 0x07079100
 const struct MovtexQuadCollection inside_castle_movtex_green_room_water[] = {
-    {0, 0, inside_castle_movtex_green_room_water_data},
-    {-1, 0, NULL},
+    {0, inside_castle_movtex_green_room_water_data},
+    {-1, NULL},
 };
 
 // 0x07079100 - 0x07079118
 const struct MovtexQuadCollection inside_castle_movtex_moat_water[] = {
-    {1, 0, inside_castle_movtex_moat_leftover_water_data},
-    {2, 0, inside_castle_movtex_moat_water_data},
-    {-1, 0, NULL},
+    {1, inside_castle_movtex_moat_leftover_water_data},
+    {2, inside_castle_movtex_moat_water_data},
+    {-1, NULL},
 };
-

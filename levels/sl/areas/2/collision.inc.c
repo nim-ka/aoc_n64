@@ -411,4 +411,3 @@ const Collision sl_seg7_area_2_collision[] = {
     COL_END(),
 };
 
-

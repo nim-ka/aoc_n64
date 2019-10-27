@@ -60,4 +60,3 @@ static const struct Animation chilly_chief_seg6_anim_060032EC = {
     chilly_chief_seg6_animindex_06003244,
     0,
 };
-

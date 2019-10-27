@@ -12,7 +12,7 @@
 
 #include "actors/common1.h"
 
-#define const
+#include "make_const_nonconst.h"
 #include "levels/wf/header.h"
 
 // Unlike most levels, some of the level geometry objects in WF are defined as regular objects instead of terrain objects.
@@ -166,4 +166,3 @@ const LevelScript level_wf_entry[] = {
     SLEEP_BEFORE_EXIT(/*frames*/ 1),
     EXIT(),
 };
-

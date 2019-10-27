@@ -185,4 +185,3 @@ const Gfx ttm_seg7_dl_0702BB60[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

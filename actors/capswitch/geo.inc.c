@@ -13,4 +13,3 @@ const uintptr_t cap_switch_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

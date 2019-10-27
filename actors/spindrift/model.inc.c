@@ -162,4 +162,3 @@ const Gfx spindrift_seg5_dl_05000328[] = {
     gsSPSetGeometryMode(G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

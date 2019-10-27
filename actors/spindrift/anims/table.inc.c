@@ -5,4 +5,3 @@ const struct Animation *const spindrift_seg5_anims_05002D68[] = {
     NULL,
     NULL,
 };
-

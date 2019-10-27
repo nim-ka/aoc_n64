@@ -3,7 +3,7 @@
 #include "surface_terrains.h"
 #include "geo_commands.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 #include "bird/model.inc.c"
 #include "bird/anims/data.inc.c"
@@ -19,4 +19,3 @@ UNUSED static const u64 binid_1 = 1;
 #include "yoshi/anims/data.inc.c"
 #include "yoshi/anims/table.inc.c"
 UNUSED static const u64 binid_2 = 2;
-

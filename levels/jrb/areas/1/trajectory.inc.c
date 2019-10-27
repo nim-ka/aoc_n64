@@ -22,4 +22,3 @@ const Trajectory jrb_seg7_trajectory_unagi_2[] = {
     TRAJECTORY_POS(8, /*pos*/  9431, -3130,  1400),
     TRAJECTORY_END(),
 };
-

@@ -15,4 +15,3 @@ const Collision jrb_seg7_collision_pillar_base[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

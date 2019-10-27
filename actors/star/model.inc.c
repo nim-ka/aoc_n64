@@ -11,12 +11,12 @@ static const Light star_seg3_light_0302A6E0 = {
 };
 
 // 0x0302A6F0
-static const u8 star_seg3_texture_0302A6F0[] = {
+ALIGNED8 static const u8 star_seg3_texture_0302A6F0[] = {
 #include "actors/star/star_surface.rgba16.inc.c"
 };
 
 // 0x0302AEF0
-static const u8 star_seg3_texture_0302AEF0[] = {
+ALIGNED8 static const u8 star_seg3_texture_0302AEF0[] = {
 #include "actors/star/star_eye.rgba16.inc.c"
 };
 
@@ -125,4 +125,3 @@ const Gfx star_seg3_dl_0302BA18[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

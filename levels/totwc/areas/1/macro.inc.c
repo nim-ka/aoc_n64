@@ -30,4 +30,3 @@ const MacroObject totwc_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_yellow_coin,        /*yaw*/   0, /*pos*/ -1760,  2800,   600),
     MACRO_OBJECT_END(),
 };
-

@@ -1,4 +1,3 @@
-
 // 0x0700E190 - 0x0700E228
 const MacroObject thi_seg7_area_3_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/  1038,  1122,   998),
@@ -18,4 +17,3 @@ const MacroObject thi_seg7_area_3_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_fire_spitter,         /*yaw*/   0, /*pos*/  -224,  1456,   672),
     MACRO_OBJECT_END(),
 };
-

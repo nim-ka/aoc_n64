@@ -193,4 +193,3 @@ static const struct Animation yoshi_seg5_anim_05023E4C = {
     yoshi_seg5_animindex_5023D20,
     0,
 };
-

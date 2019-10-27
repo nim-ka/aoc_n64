@@ -1,4 +1,3 @@
-
 // 0x0700D318 - 0x0700D320
 static const Ambient jrb_seg7_light_0700D318 = {
     {{0x14, 0x30, 0x2c}, 0, {0x14, 0x30, 0x2c}, 0}
@@ -654,4 +653,3 @@ const Gfx jrb_seg7_dl_0700EF00[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

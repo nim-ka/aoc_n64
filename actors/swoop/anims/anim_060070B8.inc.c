@@ -53,4 +53,3 @@ static const struct Animation swoop_seg6_anim_060070B8 = {
     swoop_seg6_animindex_0600704C,
     0,
 };
-

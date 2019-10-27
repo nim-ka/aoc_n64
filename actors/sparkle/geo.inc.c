@@ -17,4 +17,3 @@ const uintptr_t sparkles_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

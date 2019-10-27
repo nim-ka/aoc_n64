@@ -47,4 +47,3 @@ const Gfx hmc_seg7_dl_07013E80[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

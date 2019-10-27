@@ -2,8 +2,8 @@
 
 #include "game/ingame_menu.h"
 
-#define const
+#include "make_const_nonconst.h"
 
-#include "build/eu/text/en/dialog.inc.c"
-#include "build/eu/text/en/level.inc.c"
-#include "build/eu/text/en/star.inc.c"
+#include "text/en/dialog.inc.c"
+#include "text/en/level.inc.c"
+#include "text/en/star.inc.c"

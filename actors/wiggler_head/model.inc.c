@@ -743,4 +743,3 @@ const Gfx wiggler_seg5_dl_0500E678[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

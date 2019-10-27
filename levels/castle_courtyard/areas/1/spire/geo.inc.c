@@ -6,4 +6,3 @@ const GeoLayout castle_courtyard_geo_000200[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

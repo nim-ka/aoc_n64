@@ -26,4 +26,3 @@ const Collision wf_seg7_collision_kickable_board[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

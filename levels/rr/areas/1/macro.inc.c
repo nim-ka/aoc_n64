@@ -63,4 +63,3 @@ const MacroObject rr_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_fire_spitter,                /*yaw*/   0, /*pos*/ -6000,  -440,   -40),
     MACRO_OBJECT_END(),
 };
-

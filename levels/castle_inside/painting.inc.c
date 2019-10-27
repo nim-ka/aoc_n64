@@ -1688,4 +1688,3 @@ struct Painting thi_huge_painting = {
     RIPPLE_TRIGGER_PROXIMITY, 0xFF, 0x00, 0x00, 0x00,
     1638.4f,
 };
-

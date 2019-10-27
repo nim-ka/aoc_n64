@@ -187,4 +187,3 @@ const Collision wf_seg7_collision_tower[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

@@ -47,4 +47,3 @@ const s16 poundable_pole_collision_06002490[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

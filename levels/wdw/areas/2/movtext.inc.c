@@ -15,7 +15,6 @@ static Movtex wdw_movtex_area2_water_data[] = {
 
 // 0x07018778
 const struct MovtexQuadCollection wdw_movtex_area2_water[] = {
-    {0, 0, wdw_movtex_area2_water_data},
-    {-1, 0, NULL},
+    {0, wdw_movtex_area2_water_data},
+    {-1, NULL},
 };
-

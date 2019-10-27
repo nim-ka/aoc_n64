@@ -111,4 +111,3 @@ const uintptr_t red_coin_no_shadow_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

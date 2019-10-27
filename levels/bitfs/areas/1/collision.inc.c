@@ -2079,4 +2079,3 @@ const Collision bitfs_seg7_collision_level[] = {
     SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_level_geo_15, /*pos*/  3123,  3277,  -19, /*yaw*/  0),
     COL_END(),
 };
-

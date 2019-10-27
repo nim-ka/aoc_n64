@@ -6,4 +6,3 @@ const uintptr_t thwomp_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

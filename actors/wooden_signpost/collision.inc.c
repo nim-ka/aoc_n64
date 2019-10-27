@@ -29,4 +29,3 @@ const s16 wooden_signpost_seg3_collision_0302DD80[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

@@ -77,4 +77,3 @@ static const struct Animation hoot_seg5_anim_05005750 = {
     hoot_seg5_animindex_05005600,
     0,
 };
-

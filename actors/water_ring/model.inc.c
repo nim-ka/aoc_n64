@@ -11,7 +11,7 @@ static const Light water_ring_seg6_light_06012370 = {
 };
 
 // 0x06012380
-static const u8 water_ring_seg6_texture_06012380[] = {
+ALIGNED8 static const u8 water_ring_seg6_texture_06012380[] = {
 #include "actors/water_ring/water_ring.rgba16.inc.c"
 };
 
@@ -223,4 +223,3 @@ const Gfx water_ring_seg6_dl_06013AC0[] = {
     gsSPTexture(0x0F80, 0x07C0, 0, G_TX_RENDERTILE, G_OFF),
     gsSPEndDisplayList(),
 };
-

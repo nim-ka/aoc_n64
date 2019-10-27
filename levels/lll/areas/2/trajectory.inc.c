@@ -66,4 +66,3 @@ const Trajectory lll_seg7_trajectory_07028660[] = {
     TRAJECTORY_POS(28, /*pos*/  1076,   950,  -441),
     TRAJECTORY_END(),
 };
-

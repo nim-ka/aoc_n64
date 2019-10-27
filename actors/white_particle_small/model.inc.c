@@ -17,7 +17,7 @@ static const Vtx white_particle_small_unused_vertex[] = {
 };
 
 // 0x04032780
-static const u8 white_particle_small_texture[] = {
+ALIGNED8 static const u8 white_particle_small_texture[] = {
 #include "actors/white_particle_small/small_snow_particle.rgba16.inc.c"
 };
 
@@ -54,4 +54,3 @@ const Gfx white_particle_small_unused_dl[] = {
     gsSPVertex(white_particle_small_unused_vertex, 4, 0),
     gsSPBranchList(white_particle_small_dl_end),
 };
-

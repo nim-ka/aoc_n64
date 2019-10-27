@@ -4,4 +4,3 @@ const struct Animation *const water_ring_seg6_anims_06013F7C[] = {
     NULL,
     NULL,
 };
-

@@ -75,4 +75,3 @@ const Gfx unknown_seg8_dl_08026260[] = {
     gsSP2Triangles( 0,  1,  2, 0x0,  3,  4,  5, 0x0),
     gsSPEndDisplayList(),
 };
-

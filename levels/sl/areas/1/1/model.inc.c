@@ -950,4 +950,3 @@ const Gfx sl_seg7_dl_07005478[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

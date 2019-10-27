@@ -34,4 +34,3 @@ const GeoLayout thi_geo_000608[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

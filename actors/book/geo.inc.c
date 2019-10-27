@@ -6,4 +6,3 @@ const uintptr_t bookend_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

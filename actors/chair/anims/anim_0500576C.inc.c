@@ -27,4 +27,3 @@ static const struct Animation chair_seg5_anim_0500576C = {
     chair_seg5_animindex_05005700,
     0,
 };
-

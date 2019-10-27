@@ -48,4 +48,3 @@ const MacroObject ddd_seg7_area_2_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_koopa_shell_underwater,      /*yaw*/   0, /*pos*/  3886, -4050,  5100),
     MACRO_OBJECT_END(),
 };
-

@@ -333,4 +333,3 @@ const GeoLayout hmc_geo_000B90[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

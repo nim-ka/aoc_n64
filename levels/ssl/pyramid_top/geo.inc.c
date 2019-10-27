@@ -6,4 +6,3 @@ const GeoLayout ssl_geo_000618[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

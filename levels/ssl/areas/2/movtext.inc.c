@@ -1,4 +1,3 @@
-
 // 0x070285F0 - 0x07028660
 const Gfx ssl_dl_pyramid_sand_pathway_floor_begin[] = {
     gsDPPipeSync(),
@@ -115,4 +114,3 @@ const Gfx ssl_dl_pyramid_sand_pathway_side_end[] = {
     gsSP2Triangles( 1,  2,  4, 0x0,  2,  5,  4, 0x0),
     gsSPEndDisplayList(),
 };
-

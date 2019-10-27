@@ -24,4 +24,3 @@ const Collision hmc_seg7_collision_controllable_platform_sub[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

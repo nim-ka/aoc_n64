@@ -1085,4 +1085,3 @@ const Collision wf_seg7_collision_070102D8[] = {
     COL_WATER_BOX(0, -1023, 1024, 3226, 4096, 973),
     COL_END(),
 };
-

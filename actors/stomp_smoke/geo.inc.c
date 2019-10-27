@@ -25,4 +25,3 @@ const uintptr_t mario_TODO_geo_0000E0[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

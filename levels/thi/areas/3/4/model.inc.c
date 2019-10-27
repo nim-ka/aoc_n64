@@ -48,4 +48,3 @@ const Gfx thi_seg7_dl_07009F58[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

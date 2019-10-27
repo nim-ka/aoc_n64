@@ -137,4 +137,3 @@ const GeoLayout lll_geo_000DB0[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

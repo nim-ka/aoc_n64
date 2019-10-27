@@ -16,4 +16,3 @@ const Collision lll_seg7_collision_slow_tilting_platform[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

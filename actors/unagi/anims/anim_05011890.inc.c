@@ -84,4 +84,3 @@ static const struct Animation unagi_seg5_anim_05011890 = {
     unagi_seg5_animindex_050117D0,
     0,
 };
-

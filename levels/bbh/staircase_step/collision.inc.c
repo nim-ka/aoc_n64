@@ -25,4 +25,3 @@ const Collision bbh_seg7_collision_staircase_step[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

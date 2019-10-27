@@ -6,4 +6,3 @@ const struct Animation *const bully_seg5_anims_0500470C[] = {
     &bully_seg5_anim_050046F4,
     NULL,
 };
-

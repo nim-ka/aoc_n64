@@ -114,4 +114,3 @@ const Gfx hmc_seg7_dl_07018200[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

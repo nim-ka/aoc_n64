@@ -55,4 +55,3 @@ const Trajectory ccm_seg7_trajectory_penguin_race[] = {
     TRAJECTORY_POS(52, /*pos*/ -6507, -5841, -6400),
     TRAJECTORY_END(),
 };
-

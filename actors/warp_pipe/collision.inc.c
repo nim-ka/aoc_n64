@@ -95,4 +95,3 @@ const s16 warp_pipe_seg3_collision_03009AC8[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

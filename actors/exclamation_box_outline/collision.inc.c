@@ -29,4 +29,3 @@ const s16 exclamation_box_outline_seg8_collision_08025F78[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

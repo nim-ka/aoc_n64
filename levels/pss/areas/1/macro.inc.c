@@ -43,4 +43,3 @@ const MacroObject pss_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_box_star_1,           /*yaw*/   0, /*pos*/ -6385, -4200,  5770),
     MACRO_OBJECT_END(),
 };
-

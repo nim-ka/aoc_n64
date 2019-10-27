@@ -1,4 +1,3 @@
-
 // 0x0702B8E0
 static Movtex hmc_movtex_dorrie_pool_water_data[] = {
     MOV_TEX_INIT_LOAD(    1),
@@ -15,8 +14,8 @@ static Movtex hmc_movtex_dorrie_pool_water_data[] = {
 };
 
 const struct MovtexQuadCollection hmc_movtex_dorrie_pool_water[] = {
-    {0, 0, hmc_movtex_dorrie_pool_water_data},
-    {-1, 0, NULL},
+    {0, hmc_movtex_dorrie_pool_water_data},
+    {-1, NULL},
 };
 
 // 0x0702B910
@@ -50,8 +49,7 @@ static Movtex hmc_movtex_toxic_maze_rot_clock_mist_data[] = {
 };
 
 const struct MovtexQuadCollection hmc_movtex_toxic_maze_mist[] = {
-    {50, 0, hmc_movtex_toxic_maze_rot_count_clock_mist_data},
-    {51, 0, hmc_movtex_toxic_maze_rot_clock_mist_data},
-    {-1, 0, NULL},
+    {50, hmc_movtex_toxic_maze_rot_count_clock_mist_data},
+    {51, hmc_movtex_toxic_maze_rot_clock_mist_data},
+    {-1, NULL},
 };
-

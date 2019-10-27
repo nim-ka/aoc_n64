@@ -434,4 +434,3 @@ const Gfx ddd_seg7_dl_0700CE48[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

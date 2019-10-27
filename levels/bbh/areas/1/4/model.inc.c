@@ -96,4 +96,3 @@ const Gfx bbh_seg7_dl_07007FD0[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

@@ -54,4 +54,3 @@ const uintptr_t whomp_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

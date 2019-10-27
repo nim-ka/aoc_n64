@@ -31,17 +31,17 @@ static const Light yoshi_seg5_light_0501C490 = {
 };
 
 // 0x0501C4A0
-static const u8 yoshi_seg5_texture_0501C4A0[] = {
+ALIGNED8 static const u8 yoshi_seg5_texture_0501C4A0[] = {
 #include "actors/yoshi/yoshi_eye.rgba16.inc.c"
 };
 
 // 0x0501C6A0
-static const u8 yoshi_seg5_texture_0501C6A0[] = {
+ALIGNED8 static const u8 yoshi_seg5_texture_0501C6A0[] = {
 #include "actors/yoshi/yoshi_eye_blink.rgba16.inc.c"
 };
 
 // 0x0501C8A0
-static const u8 yoshi_seg5_texture_0501C8A0[] = {
+ALIGNED8 static const u8 yoshi_seg5_texture_0501C8A0[] = {
 #include "actors/yoshi/yoshi_nostril.rgba16.inc.c"
 };
 
@@ -2099,4 +2099,3 @@ const Gfx yoshi_seg5_dl_05022608[] = {
     gsSP2Triangles(10, 12,  1, 0x0,  0,  2, 13, 0x0),
     gsSPEndDisplayList(),
 };
-

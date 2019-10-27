@@ -14,7 +14,7 @@
 
 #include "actors/common1.h"
 
-#define const
+#include "make_const_nonconst.h"
 #include "levels/menu/header.h"
 
 const LevelScript level_main_menu_entry_1[] = {
@@ -85,4 +85,3 @@ const LevelScript level_main_menu_entry_2[] = {
     // L1:
     /*42*/ EXIT(),
 };
-

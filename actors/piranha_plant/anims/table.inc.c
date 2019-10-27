@@ -15,4 +15,3 @@ const struct Animation *const piranha_plant_seg6_anims_0601C31C[] = {
 
 // huh? this isnt following the Bin ID format?
 UNUSED static const u64 piranha_plant_unused_1 = 1;
-

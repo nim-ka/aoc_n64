@@ -66,4 +66,3 @@ const Gfx bits_seg7_dl_07008FE8[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

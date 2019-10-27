@@ -108,4 +108,3 @@ const Gfx ddd_seg7_dl_07005C40[] = {
     gsSPSetGeometryMode(G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

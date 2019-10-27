@@ -4,4 +4,3 @@ const struct Animation *const flyguy_seg8_anims_08011A64[] = {
     NULL,
     NULL,
 };
-

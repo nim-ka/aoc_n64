@@ -6,4 +6,3 @@ const GeoLayout lll_geo_000BE0[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

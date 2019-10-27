@@ -22,4 +22,3 @@ const Collision inside_castle_seg7_collision_star_door[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

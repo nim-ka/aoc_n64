@@ -52,4 +52,3 @@ const Gfx ttm_seg7_dl_0700A2E0[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

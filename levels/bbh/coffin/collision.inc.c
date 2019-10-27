@@ -38,4 +38,3 @@ const Collision bbh_seg7_collision_coffin[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

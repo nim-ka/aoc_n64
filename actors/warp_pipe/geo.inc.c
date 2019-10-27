@@ -7,4 +7,3 @@ const uintptr_t warp_pipe_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

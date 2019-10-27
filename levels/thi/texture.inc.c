@@ -7,4 +7,3 @@ ALIGNED8 static const u8 thi_seg7_texture_07000000[] = {
 ALIGNED8 static const u8 thi_seg7_texture_07000800[] = {
 #include "levels/thi/1.rgba16.inc.c"
 };
-

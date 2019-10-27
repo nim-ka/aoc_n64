@@ -176,4 +176,3 @@ const Collision bitfs_seg7_collision_squishable_platform[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

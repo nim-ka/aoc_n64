@@ -10,4 +10,3 @@ const GeoLayout ttm_geo_000920[] = {
     //! Too many open nodes. Unfortunately not exploitable
          GEO_END(),
 };
-

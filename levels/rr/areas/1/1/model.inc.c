@@ -48,4 +48,3 @@ const Gfx dl_cruiser_metal_holes[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

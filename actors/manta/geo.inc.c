@@ -58,4 +58,3 @@ const uintptr_t manta_seg5_geo_05008D14[] = {
     GEO_CLOSE_NODE(),
     GEO_END(),
 };
-

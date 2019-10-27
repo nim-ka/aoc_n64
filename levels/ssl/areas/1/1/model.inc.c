@@ -1805,4 +1805,3 @@ const Gfx ssl_seg7_dl_07009F48[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

@@ -295,4 +295,3 @@ const Gfx rr_seg7_dl_0701A568[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

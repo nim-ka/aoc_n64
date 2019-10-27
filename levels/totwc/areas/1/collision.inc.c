@@ -612,4 +612,3 @@ const Collision totwc_seg7_collision[] = {
     SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_level_geo_03, /*pos*/  2560, -3429, -3583, /*yaw*/  0),
     COL_END(),
 };
-

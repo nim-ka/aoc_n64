@@ -1,4 +1,3 @@
-
 // 0x07011C38 - 0x07011DE8
 const MacroObject wf_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_coin_line_horizontal,        /*yaw*/   0, /*pos*/  3760,   960,  2740),
@@ -46,4 +45,3 @@ const MacroObject wf_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_butterfly_triplet_2,         /*yaw*/   0, /*pos*/  4574,   300,  1130),
     MACRO_OBJECT_END(),
 };
-

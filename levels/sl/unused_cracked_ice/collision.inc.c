@@ -14,4 +14,3 @@ const Collision sl_seg7_collision_pound_explodes[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

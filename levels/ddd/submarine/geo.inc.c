@@ -7,4 +7,3 @@ const GeoLayout ddd_geo_0004A0[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

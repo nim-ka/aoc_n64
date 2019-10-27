@@ -126,4 +126,3 @@ static const struct Animation skeeter_seg6_anim_060071E0 = {
     skeeter_seg6_animindex_06007084,
     0,
 };
-

@@ -12,4 +12,3 @@ const Collision castle_grounds_seg7_collision_cannon_grill[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

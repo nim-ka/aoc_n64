@@ -125,4 +125,3 @@ static const struct Animation king_bobomb_seg5_anim_0500F6C8 = {
     king_bobomb_seg5_animindex_0500F554,
     0,
 };
-

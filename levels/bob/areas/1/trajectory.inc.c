@@ -93,4 +93,3 @@ const Trajectory bob_seg7_trajectory_koopa[] = {
     TRAJECTORY_POS(35, /*pos*/  3660,  4242, -4380),
     TRAJECTORY_END(),
 };
-

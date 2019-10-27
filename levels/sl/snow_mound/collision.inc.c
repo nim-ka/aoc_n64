@@ -18,4 +18,3 @@ const Collision sl_seg7_collision_sliding_snow_mound[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

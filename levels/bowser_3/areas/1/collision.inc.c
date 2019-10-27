@@ -77,4 +77,3 @@ const Collision bowser_3_seg7_collision_level[] = {
     SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_level_geo_03, /*pos*/ -2122,  -204, -2912, /*yaw*/    0),
     COL_END(),
 };
-

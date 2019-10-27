@@ -8,4 +8,3 @@ const struct Animation *const lakitu_enemy_seg5_anims_050144D4[] = {
     NULL,
     NULL,
 };
-

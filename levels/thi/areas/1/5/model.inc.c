@@ -33,4 +33,3 @@ const Gfx thi_seg7_dl_070073C0[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

@@ -105,4 +105,3 @@ const Gfx bitfs_seg7_dl_0700FB38[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

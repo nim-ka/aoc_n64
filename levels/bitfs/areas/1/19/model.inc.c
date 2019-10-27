@@ -38,4 +38,3 @@ const Gfx bitfs_seg7_dl_0700ED90[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

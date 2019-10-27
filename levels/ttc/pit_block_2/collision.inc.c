@@ -26,4 +26,3 @@ const Collision ttc_seg7_collision_070157D8[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

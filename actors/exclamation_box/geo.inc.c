@@ -15,4 +15,3 @@ const uintptr_t exclamation_box_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

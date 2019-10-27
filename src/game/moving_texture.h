@@ -25,7 +25,6 @@ enum MovtexRectTextureId
 struct MovtexQuadCollection {
     /// identifier for geo nodes to refer to this MovtexQuad collection
     s16 id;
-    s16 filler;
     /// points to a short 'n' followed by an array of n MovtexQuad structs
     Movtex *quadArraySegmented;
 };

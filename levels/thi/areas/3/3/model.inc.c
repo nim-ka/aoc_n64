@@ -174,4 +174,3 @@ const Gfx thi_seg7_dl_07009D50[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

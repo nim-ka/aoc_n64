@@ -20,4 +20,3 @@ const uintptr_t chain_chomp_geo[] = {
 GEO_CLOSE_NODE(), //! more close than open nodes
 GEO_END(),
 };
-

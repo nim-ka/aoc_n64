@@ -36,4 +36,3 @@ const Collision lll_seg7_collision_sinking_pyramids[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

@@ -11,7 +11,7 @@ static const Light blue_fish_seg3_light_0301B5D0 = {
 };
 
 // 0x0301B5E0
-static const u8 blue_fish_seg3_texture_0301B5E0[] = {
+ALIGNED8 static const u8 blue_fish_seg3_texture_0301B5E0[] = {
 #include "actors/blue_fish/blue_fish.rgba16.inc.c"
 };
 
@@ -118,4 +118,3 @@ const Gfx blue_fish_seg3_dl_0301C150[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

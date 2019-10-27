@@ -1,22 +1,22 @@
 // Amp
 
 // 0x08000F18
-static const u8 amp_seg8_texture_08000F18[] = {
+ALIGNED8 static const u8 amp_seg8_texture_08000F18[] = {
 #include "actors/amp/amp_electricity.rgba16.inc.c"
 };
 
 // 0x08001318
-static const u8 amp_seg8_texture_08001318[] = {
+ALIGNED8 static const u8 amp_seg8_texture_08001318[] = {
 #include "actors/amp/amp_eyes.rgba16.inc.c"
 };
 
 // 0x08001B18
-static const u8 amp_seg8_texture_08001B18[] = {
+ALIGNED8 static const u8 amp_seg8_texture_08001B18[] = {
 #include "actors/amp/amp_body.rgba16.inc.c"
 };
 
 // 0x08002318
-static const u8 amp_seg8_texture_08002318[] = {
+ALIGNED8 static const u8 amp_seg8_texture_08002318[] = {
 #include "actors/amp/amp_mouth.rgba16.inc.c"
 };
 
@@ -532,4 +532,3 @@ const Gfx amp_seg8_dl_08003E00[] = {
     gsSP2Triangles( 0,  1,  2, 0x0,  0,  2,  3, 0x0),
     gsSPEndDisplayList(),
 };
-

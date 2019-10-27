@@ -458,4 +458,3 @@ const Gfx bitdw_seg7_dl_07008FF0[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

@@ -16,4 +16,3 @@ const uintptr_t cyan_fish_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

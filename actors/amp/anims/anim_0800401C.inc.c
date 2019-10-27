@@ -52,4 +52,3 @@ static const struct Animation amp_seg8_anim_0800401C = {
     amp_seg8_animindex_08003F74,
     0,
 };
-

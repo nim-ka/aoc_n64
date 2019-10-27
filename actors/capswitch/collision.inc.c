@@ -53,4 +53,3 @@ const s16 capswitch_collision_05003448[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

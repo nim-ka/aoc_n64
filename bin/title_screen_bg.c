@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "sm64.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 // 0x0A000000 - 0x0A000100
 static const Vtx title_screen_bg_vertex_0A000000[] = {
@@ -122,4 +122,3 @@ const u8 *const game_over_texture_table[] = {
 };
 
 UNUSED static const u64 title_screen_bg_unused_0 = 0;
-

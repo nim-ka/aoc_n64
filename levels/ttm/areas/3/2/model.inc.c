@@ -49,4 +49,3 @@ const Gfx ttm_seg7_dl_07024C78[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

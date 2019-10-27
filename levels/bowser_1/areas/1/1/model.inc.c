@@ -212,4 +212,3 @@ const Gfx bowser_1_seg7_dl_07002768[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

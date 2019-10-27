@@ -43,4 +43,3 @@ static const struct Animation heave_ho_seg5_anim_05014F28 = {
     heave_ho_seg5_animindex_05014E5C,
     0,
 };
-

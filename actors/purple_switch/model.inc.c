@@ -11,12 +11,12 @@ static const Light purple_switch_seg8_light_0800C098 = {
 };
 
 // 0x0800C0A8
-static const u8 purple_switch_seg8_texture_0800C0A8[] = {
+ALIGNED8 static const u8 purple_switch_seg8_texture_0800C0A8[] = {
 #include "actors/purple_switch/purple_switch_base.rgba16.inc.c"
 };
 
 // 0x0800C128
-static const u8 purple_switch_seg8_texture_0800C128[] = {
+ALIGNED8 static const u8 purple_switch_seg8_texture_0800C128[] = {
 #include "actors/purple_switch/purple_switch_exclamation_point.rgba16.inc.c"
 };
 
@@ -94,4 +94,3 @@ const Gfx purple_switch_seg8_dl_0800C718[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

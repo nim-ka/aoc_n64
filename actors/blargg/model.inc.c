@@ -525,4 +525,3 @@ const Gfx blargg_seg5_dl_05005D00[] = {
     gsSP1Triangle(14,  7,  0, 0x0),
     gsSPEndDisplayList(),
 };
-

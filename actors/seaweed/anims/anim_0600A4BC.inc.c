@@ -64,4 +64,3 @@ static const struct Animation seaweed_seg6_anim_0600A4BC = {
     seaweed_seg6_animindex_0600A474,
     0,
 };
-

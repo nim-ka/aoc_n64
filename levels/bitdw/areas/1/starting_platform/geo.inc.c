@@ -6,4 +6,3 @@ const GeoLayout geo_bitdw_0003C0[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

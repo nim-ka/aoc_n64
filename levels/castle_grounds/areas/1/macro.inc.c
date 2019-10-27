@@ -19,4 +19,3 @@ const MacroObject castle_grounds_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_butterfly_triplet_2, /*yaw*/   0, /*pos*/  6330,   710, -3760),
     MACRO_OBJECT_END(),
 };
-

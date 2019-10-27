@@ -421,4 +421,3 @@ const uintptr_t bowser2_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

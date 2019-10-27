@@ -63,7 +63,7 @@ extern const Gfx ssl_seg7_dl_070235C0[];
 extern const Collision ssl_seg7_area_2_collision[];
 extern const Collision ssl_seg7_area_3_collision[];
 extern const MacroObject ssl_seg7_area_2_macro_objs[];
-extern const s16 ssl_seg7_area_3_macro_objs[];
+extern const MacroObject ssl_seg7_area_3_macro_objs[];
 extern const Collision ssl_seg7_collision_grindel[];
 extern const Collision ssl_seg7_collision_spindel[];
 extern const Collision ssl_seg7_collision_0702808C[];

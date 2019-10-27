@@ -10,4 +10,3 @@ const uintptr_t water_mine_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

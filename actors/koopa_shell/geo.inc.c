@@ -33,4 +33,3 @@ const uintptr_t koopa_shell3_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

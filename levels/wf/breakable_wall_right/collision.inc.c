@@ -13,4 +13,3 @@ const Collision wf_seg7_collision_breakable_wall[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

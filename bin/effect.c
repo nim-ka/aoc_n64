@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "sm64.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 UNUSED static const u64 effect_unused_0 = 0;
 
@@ -173,4 +173,3 @@ const Gfx tiny_bubble_dl_0B006D68[] = {
     gsDPSetTileSize(0, 0, 0, (32 - 1) << G_TEXTURE_IMAGE_FRAC, (32 - 1) << G_TEXTURE_IMAGE_FRAC),
     gsSPEndDisplayList(),
 };
-

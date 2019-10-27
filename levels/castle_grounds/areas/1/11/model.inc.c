@@ -129,4 +129,3 @@ const Gfx castle_grounds_seg7_dl_0700C768[] = {
     gsSPSetGeometryMode(G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

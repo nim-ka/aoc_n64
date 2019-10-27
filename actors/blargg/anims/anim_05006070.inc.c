@@ -46,4 +46,3 @@ static const struct Animation blargg_seg5_anim_05006070 = {
     blargg_seg5_animindex_05006028,
     0,
 };
-

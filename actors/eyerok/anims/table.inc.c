@@ -10,4 +10,3 @@ const struct Animation *const eyerok_seg5_anims_050116E4[] = {
     &eyerok_seg5_anim_0500F3F0,
     NULL,
 };
-

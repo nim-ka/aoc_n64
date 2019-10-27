@@ -29,4 +29,3 @@ const s16 metal_box_seg8_collision_08024C28[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

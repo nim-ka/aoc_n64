@@ -11,12 +11,12 @@ static const Light breakable_box_seg8_light_08011A80 = {
 };
 
 // 0x08011A90
-static const u8 breakable_box_seg8_texture_08011A90[] = {
+ALIGNED8 static const u8 breakable_box_seg8_texture_08011A90[] = {
 #include "actors/breakable_box/crazy_box_surface.rgba16.inc.c"
 };
 
 // 0x08012290
-static const u8 breakable_box_seg8_texture_08012290[] = {
+ALIGNED8 static const u8 breakable_box_seg8_texture_08012290[] = {
 #include "actors/breakable_box/cork_box_surface.rgba16.inc.c"
 };
 
@@ -104,4 +104,3 @@ const Gfx breakable_box_seg8_dl_08012D48[] = {
     gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 32 * 32 - 1, CALC_DXT(32, G_IM_SIZ_16b_BYTES)),
     gsSPBranchList(breakable_box_seg8_dl_08012C30),
 };
-

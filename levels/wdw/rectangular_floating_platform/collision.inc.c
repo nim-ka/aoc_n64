@@ -26,4 +26,3 @@ const Collision wdw_seg7_collision_rect_floating_platform[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

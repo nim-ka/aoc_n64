@@ -50,4 +50,3 @@ const Collision ssl_seg7_collision_tox_box[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

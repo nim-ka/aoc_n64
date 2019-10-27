@@ -258,4 +258,3 @@ const Gfx ccm_seg7_dl_0700E708[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

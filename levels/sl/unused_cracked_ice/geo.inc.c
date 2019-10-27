@@ -6,4 +6,3 @@ const GeoLayout sl_geo_000360[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

@@ -54,4 +54,3 @@ const uintptr_t amp_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

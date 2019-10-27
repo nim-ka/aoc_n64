@@ -8,4 +8,3 @@ const struct Animation *const unagi_seg5_anims_05012824[] = {
     &unagi_seg5_anim_05011D40,
     &unagi_seg5_anim_0501280C,
 };
-

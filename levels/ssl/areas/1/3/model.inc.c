@@ -55,4 +55,3 @@ const Gfx ssl_seg7_dl_0700BC18[] = {
     gsSPSetGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

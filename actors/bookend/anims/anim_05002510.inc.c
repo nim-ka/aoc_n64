@@ -38,4 +38,3 @@ static const struct Animation bookend_seg5_anim_05002510 = {
 };
 
 // what the hell? no values/indexes for the table?
-

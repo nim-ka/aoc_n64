@@ -35,4 +35,3 @@ const Gfx wf_seg7_dl_07005690[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

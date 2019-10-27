@@ -16,4 +16,3 @@ const uintptr_t yoshi_egg_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

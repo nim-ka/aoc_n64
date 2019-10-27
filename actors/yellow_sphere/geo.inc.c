@@ -9,4 +9,3 @@ const uintptr_t bowser_1_yellow_sphere_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

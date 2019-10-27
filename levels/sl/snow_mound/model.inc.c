@@ -57,4 +57,3 @@ const Gfx sl_seg7_dl_0700A780[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

@@ -23,4 +23,3 @@ const Collision wdw_seg7_collision_070186B4[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

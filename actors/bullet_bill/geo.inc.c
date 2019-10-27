@@ -9,4 +9,3 @@ const uintptr_t bullet_bill_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

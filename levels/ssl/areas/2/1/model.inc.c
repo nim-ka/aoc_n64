@@ -4023,4 +4023,3 @@ const Gfx ssl_seg7_dl_0701EE80[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

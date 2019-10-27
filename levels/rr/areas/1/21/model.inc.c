@@ -143,4 +143,3 @@ const Gfx rr_seg7_dl_070191A0[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

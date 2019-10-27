@@ -27,4 +27,3 @@ const uintptr_t springboard_bottom_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

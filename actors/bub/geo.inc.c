@@ -20,4 +20,3 @@ const uintptr_t bub_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

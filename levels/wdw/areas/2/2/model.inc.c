@@ -111,4 +111,3 @@ const Gfx wdw_seg7_dl_07012258[] = {
     gsSPSetGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

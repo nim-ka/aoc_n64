@@ -21,22 +21,22 @@ static const Light bub_seg6_light_0600E298 = {
 };
 
 // 0x0600E2A8
-static const u8 bub_seg6_texture_0600E2A8[] = {
+ALIGNED8 static const u8 bub_seg6_texture_0600E2A8[] = {
 #include "actors/bub/bub_eye_border.rgba16.inc.c"
 };
 
 // 0x0600EAA8
-static const u8 bub_seg6_texture_0600EAA8[] = {
+ALIGNED8 static const u8 bub_seg6_texture_0600EAA8[] = {
 #include "actors/bub/bub_fins.rgba16.inc.c"
 };
 
 // 0x0600F2A8
-static const u8 bub_seg6_texture_0600F2A8[] = {
+ALIGNED8 static const u8 bub_seg6_texture_0600F2A8[] = {
 #include "actors/bub/bub_eyes.rgba16.inc.c"
 };
 
 // 0x060102A8
-static const u8 bub_seg6_texture_060102A8[] = {
+ALIGNED8 static const u8 bub_seg6_texture_060102A8[] = {
 #include "actors/bub/bub_scales.rgba16.inc.c"
 };
 
@@ -405,4 +405,3 @@ const Gfx bub_seg6_dl_06011FA0[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

@@ -95,4 +95,3 @@ const Gfx dl_castle_aquarium_light[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

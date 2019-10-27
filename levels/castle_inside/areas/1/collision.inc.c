@@ -3754,4 +3754,3 @@ const Collision inside_castle_seg7_area_1_collision[] = {
     SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_3star_door,        /*pos*/ -2303,    0, -1074, /*yaw*/   0),
     COL_END(),
 };
-

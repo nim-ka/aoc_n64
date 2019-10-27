@@ -32,4 +32,3 @@ ALIGNED8 static const u8 bbh_seg7_texture_07003400[] = {
 ALIGNED8 static const u8 bbh_seg7_texture_07004400[] = {
 #include "levels/bbh/6.rgba16.inc.c"
 };
-

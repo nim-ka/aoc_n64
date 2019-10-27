@@ -23,4 +23,3 @@ static const struct Animation door_seg3_anim_03015208 = {
     door_seg3_animindex_030151CC,
     0,
 };
-

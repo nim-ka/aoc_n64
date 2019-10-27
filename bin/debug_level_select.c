@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "sm64.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 // 0x07000000 - 0x07000008
 static const Ambient debug_level_select_light_07000000 = {
@@ -2242,5 +2242,4 @@ const Gfx debug_level_select_dl_070063B0[] = {
     gsSP1Triangle( 6,  7,  8, 0x0),
     gsSPEndDisplayList(),
 };
-
 

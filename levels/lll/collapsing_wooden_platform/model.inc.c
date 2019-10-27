@@ -72,4 +72,3 @@ const Gfx lll_seg7_dl_07019160[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

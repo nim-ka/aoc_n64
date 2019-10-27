@@ -41,4 +41,3 @@ const uintptr_t lakitu_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

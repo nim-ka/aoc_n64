@@ -639,4 +639,3 @@ const Gfx thi_seg7_dl_07009670[] = {
     gsSPDisplayList(thi_seg7_dl_07009610),
     gsSPEndDisplayList(),
 };
-

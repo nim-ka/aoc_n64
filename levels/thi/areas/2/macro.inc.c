@@ -1,4 +1,3 @@
-
 // 0x0700DEE4 - 0x0700E18E
 const MacroObject thi_seg7_area_2_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_bobomb_buddy_opens_cannon,   /*yaw*/   0, /*pos*/  1902,  -767,  1318),
@@ -71,4 +70,3 @@ const MacroObject thi_seg7_area_2_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_tiny_goomba,                 /*yaw*/   0, /*pos*/ -2020,  -890,  1720),
     MACRO_OBJECT_END(),
 };
-

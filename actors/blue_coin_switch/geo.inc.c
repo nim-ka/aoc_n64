@@ -8,4 +8,3 @@ const uintptr_t blue_coin_switch_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

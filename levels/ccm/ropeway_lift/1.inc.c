@@ -99,4 +99,3 @@ const Gfx ccm_seg7_dl_07010F28[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

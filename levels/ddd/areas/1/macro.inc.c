@@ -20,4 +20,3 @@ const MacroObject ddd_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_coin_ring_vertical,   /*yaw*/  90, /*pos*/ -2000, -4250,     0),
     MACRO_OBJECT_END(),
 };
-

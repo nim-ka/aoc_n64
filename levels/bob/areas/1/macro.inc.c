@@ -90,4 +90,3 @@ const MacroObject bob_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_breakable_box_small,       /*yaw*/   0, /*pos*/ -6800,  1024,    40),
     MACRO_OBJECT_END(),
 };
-

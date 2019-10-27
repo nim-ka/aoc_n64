@@ -57,4 +57,3 @@ static const struct Animation whomp_seg6_anim_060202DC = {
     whomp_seg6_animindex_06020240,
     0,
 };
-

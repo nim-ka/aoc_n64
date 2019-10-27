@@ -139,4 +139,3 @@ const Gfx ssl_dl_pyramid_quicksand_pit_static[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

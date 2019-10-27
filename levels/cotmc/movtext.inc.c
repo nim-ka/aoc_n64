@@ -1,4 +1,3 @@
-
 // 0x0700BE10 - 0x0700BE88
 const Gfx cotmc_dl_water_begin[] = {
     gsDPPipeSync(),
@@ -58,4 +57,3 @@ const Gfx cotmc_dl_water[] = {
     gsSP2Triangles( 5,  6,  8, 0x0,  8,  6,  9, 0x0),
     gsSPEndDisplayList(),
 };
-

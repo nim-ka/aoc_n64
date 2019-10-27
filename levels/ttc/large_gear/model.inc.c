@@ -42,4 +42,3 @@ const Gfx ttc_seg7_dl_07012278[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

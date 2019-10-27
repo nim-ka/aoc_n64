@@ -90,4 +90,3 @@ static const struct Animation klepto_seg5_anim_050079B0 = {
     klepto_seg5_animindex_0500786C,
     0,
 };
-

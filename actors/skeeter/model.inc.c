@@ -61,12 +61,12 @@ UNUSED static const Light skeeter_light_12 = {
 };
 
 // 0x06000090
-static const u8 skeeter_seg6_texture_06000090[] = {
+ALIGNED8 static const u8 skeeter_seg6_texture_06000090[] = {
 #include "actors/skeeter/skeeter_eye.rgba16.inc.c"
 };
 
 // 0x06000890
-static const u8 skeeter_seg6_texture_06000890[] = {
+ALIGNED8 static const u8 skeeter_seg6_texture_06000890[] = {
 #include "actors/skeeter/skeeter_iris.rgba16.inc.c"
 };
 
@@ -1787,4 +1787,3 @@ const Gfx skeeter_seg6_dl_06005358[] = {
     gsSP2Triangles(12, 13, 14, 0x0, 14, 13, 15, 0x0),
     gsSPEndDisplayList(),
 };
-

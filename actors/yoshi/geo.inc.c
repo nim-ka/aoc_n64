@@ -75,4 +75,3 @@ const uintptr_t yoshi_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

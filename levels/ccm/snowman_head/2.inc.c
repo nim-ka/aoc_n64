@@ -57,4 +57,3 @@ const Gfx ccm_seg7_dl_07013870[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

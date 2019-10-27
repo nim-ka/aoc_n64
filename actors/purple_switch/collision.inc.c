@@ -27,4 +27,3 @@ const s16 purple_switch_seg8_collision_0800C7A8[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

@@ -1,4 +1,3 @@
-
 // 0x07016284 - 0x070163F8
 const MacroObject ccm_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT_WITH_BEH_PARAM(/*preset*/ macro_wooden_signpost,           /*yaw*/ 180, /*pos*/ -2412,  2912,  -878, /*behParam*/ 40),
@@ -40,4 +39,3 @@ const MacroObject ccm_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_box_1up_running_away,      /*yaw*/   0, /*pos*/ -1557,  -205,  1794),
     MACRO_OBJECT_END(),
 };
-

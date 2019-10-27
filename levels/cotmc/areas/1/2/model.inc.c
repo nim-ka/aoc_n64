@@ -742,4 +742,3 @@ const Gfx cotmc_seg7_dl_0700A160[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

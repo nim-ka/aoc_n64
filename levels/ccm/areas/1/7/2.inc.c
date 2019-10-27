@@ -65,4 +65,3 @@ const Gfx ccm_seg7_dl_0700F650[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

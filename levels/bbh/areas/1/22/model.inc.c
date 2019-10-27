@@ -466,4 +466,3 @@ const Gfx bbh_seg7_dl_070139A8[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

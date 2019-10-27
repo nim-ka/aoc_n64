@@ -6,4 +6,3 @@ const uintptr_t cannon_barrel_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

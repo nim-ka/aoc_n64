@@ -6,4 +6,3 @@ const uintptr_t leaves_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

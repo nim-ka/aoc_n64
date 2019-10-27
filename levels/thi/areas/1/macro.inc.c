@@ -42,4 +42,3 @@ const MacroObject thi_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_butterfly_triplet,    /*yaw*/   0, /*pos*/  4844,  -533,  2266),
     MACRO_OBJECT_END(),
 };
-

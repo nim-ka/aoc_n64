@@ -93,4 +93,3 @@ const Gfx ccm_seg7_dl_070109D0[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

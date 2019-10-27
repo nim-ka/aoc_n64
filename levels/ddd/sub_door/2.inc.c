@@ -45,4 +45,3 @@ const Gfx ddd_seg7_dl_07009120[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

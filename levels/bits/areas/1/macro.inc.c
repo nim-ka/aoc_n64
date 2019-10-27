@@ -58,4 +58,3 @@ const MacroObject bits_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_box_1up_running_away,   /*yaw*/   0, /*pos*/  4100, -1050, -1800),
     MACRO_OBJECT_END(),
 };
-

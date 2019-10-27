@@ -92,4 +92,3 @@ const Gfx wf_seg7_dl_07007518[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

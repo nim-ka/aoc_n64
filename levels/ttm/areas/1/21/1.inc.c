@@ -197,4 +197,3 @@ const Gfx ttm_seg7_dl_07011C78[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

@@ -38,4 +38,3 @@ const Collision wf_seg7_collision_small_bomp[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

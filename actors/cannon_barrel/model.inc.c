@@ -21,7 +21,7 @@ static const Light cannon_barrel_seg8_light_08005898 = {
 };
 
 // 0x080058A8
-static const u8 cannon_barrel_seg8_texture_080058A8[] = {
+ALIGNED8 static const u8 cannon_barrel_seg8_texture_080058A8[] = {
 #include "actors/cannon_barrel/cannon_barrel.rgba16.inc.c"
 };
 
@@ -164,4 +164,3 @@ const Gfx cannon_barrel_seg8_dl_08006660[] = {
     gsSPDisplayList(cannon_barrel_seg8_dl_080064C0),
     gsSPEndDisplayList(),
 };
-

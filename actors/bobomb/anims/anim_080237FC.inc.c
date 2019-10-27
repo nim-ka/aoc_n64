@@ -66,4 +66,3 @@ static const struct Animation bobomb_seg8_anim_080237FC = {
     bobomb_seg8_animindex_08023754,
     0,
 };
-

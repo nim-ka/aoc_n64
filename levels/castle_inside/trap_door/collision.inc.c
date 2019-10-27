@@ -12,4 +12,3 @@ const Collision inside_castle_seg7_collision_floor_trap[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

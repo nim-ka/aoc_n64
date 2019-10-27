@@ -392,4 +392,3 @@ const Collision thi_seg7_area_3_collision[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

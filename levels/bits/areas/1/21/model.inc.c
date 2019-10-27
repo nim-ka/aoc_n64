@@ -58,4 +58,3 @@ const Gfx bits_seg7_dl_07012D40[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

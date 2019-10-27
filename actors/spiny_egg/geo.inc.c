@@ -19,4 +19,3 @@ const uintptr_t spiny_ball_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

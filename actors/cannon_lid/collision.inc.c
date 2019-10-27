@@ -15,4 +15,3 @@ const s16 cannon_lid_seg8_collision_08004950[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

@@ -2,7 +2,7 @@
 #include "sm64.h"
 #include "geo_commands.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 #include "common1.h"
 #include "group11.h"

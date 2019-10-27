@@ -25,22 +25,22 @@ static const Vtx coin_seg3_vertex_03005740[] = {
 };
 
 // 0x03005780
-static const u8 coin_seg3_texture_03005780[] = {
+ALIGNED8 static const u8 coin_seg3_texture_03005780[] = {
 #include "actors/coin/coin_front.ia16.inc.c"
 };
 
 // 0x03005F80
-static const u8 coin_seg3_texture_03005F80[] = {
+ALIGNED8 static const u8 coin_seg3_texture_03005F80[] = {
 #include "actors/coin/coin_tilt_right.ia16.inc.c"
 };
 
 // 0x03006780
-static const u8 coin_seg3_texture_03006780[] = {
+ALIGNED8 static const u8 coin_seg3_texture_03006780[] = {
 #include "actors/coin/coin_side.ia16.inc.c"
 };
 
 // 0x03006F80
-static const u8 coin_seg3_texture_03006F80[] = {
+ALIGNED8 static const u8 coin_seg3_texture_03006F80[] = {
 #include "actors/coin/coin_tilt_left.ia16.inc.c"
 };
 
@@ -174,4 +174,3 @@ const Gfx coin_seg3_dl_030079B8[] = {
     gsSPVertex(coin_seg3_vertex_03005740, 4, 0),
     gsSPBranchList(coin_seg3_dl_030077D0),
 };
-

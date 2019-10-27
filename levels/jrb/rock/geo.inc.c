@@ -6,4 +6,3 @@ const GeoLayout jrb_geo_000930[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

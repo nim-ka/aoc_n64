@@ -182,4 +182,3 @@ const Gfx bowser_3_seg7_dl_070046B0[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

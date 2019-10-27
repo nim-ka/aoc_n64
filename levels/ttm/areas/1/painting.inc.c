@@ -570,4 +570,3 @@ struct Painting ttm_slide_painting = {
     RIPPLE_TRIGGER_PROXIMITY, 0xFF, 0x00, 0x00, 0x00,
     460.8f,
 };
-

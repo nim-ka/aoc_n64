@@ -34,4 +34,3 @@ static const struct Animation moneybag_seg6_anim_06005E44 = {
     moneybag_seg6_animindex_06005DE4,
     0,
 };
-

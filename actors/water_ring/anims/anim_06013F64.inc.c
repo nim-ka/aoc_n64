@@ -43,4 +43,3 @@ static const struct Animation water_ring_seg6_anim_06013F64 = {
     water_ring_seg6_animindex_06013F40,
     0,
 };
-

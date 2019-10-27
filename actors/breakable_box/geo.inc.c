@@ -26,4 +26,3 @@ const uintptr_t breakable_box_small_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

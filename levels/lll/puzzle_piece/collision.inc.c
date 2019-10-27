@@ -12,4 +12,3 @@ const Collision lll_seg7_collision_puzzle_piece[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

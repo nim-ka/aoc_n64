@@ -26,4 +26,3 @@ const Collision wdw_seg7_collision_express_elevator_platform[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

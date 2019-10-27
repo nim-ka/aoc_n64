@@ -11,7 +11,7 @@ static const Light metal_box_seg8_light_08023988 = {
 };
 
 // 0x08023998
-static const u8 metal_box_seg8_texture_08023998[] = {
+ALIGNED8 static const u8 metal_box_seg8_texture_08023998[] = {
 #include "actors/metal_box/metal_box_side.rgba16.inc.c"
 };
 
@@ -82,4 +82,3 @@ const Gfx metal_box_dl[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

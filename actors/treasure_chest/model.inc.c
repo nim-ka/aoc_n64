@@ -11,22 +11,22 @@ static const Light treasure_chest_seg6_light_06013F98 = {
 };
 
 // 0x06013FA8
-static const u8 treasure_chest_seg6_texture_06013FA8[] = {
+ALIGNED8 static const u8 treasure_chest_seg6_texture_06013FA8[] = {
 #include "actors/treasure_chest/treasure_chest_lock.rgba16.inc.c"
 };
 
 // 0x060147A8
-static const u8 treasure_chest_seg6_texture_060147A8[] = {
+ALIGNED8 static const u8 treasure_chest_seg6_texture_060147A8[] = {
 #include "actors/treasure_chest/treasure_chest_side.rgba16.inc.c"
 };
 
 // 0x06014FA8
-static const u8 treasure_chest_seg6_texture_06014FA8[] = {
+ALIGNED8 static const u8 treasure_chest_seg6_texture_06014FA8[] = {
 #include "actors/treasure_chest/treasure_chest_lock_top.rgba16.inc.c"
 };
 
 // 0x060157A8
-static const u8 treasure_chest_seg6_texture_060157A8[] = {
+ALIGNED8 static const u8 treasure_chest_seg6_texture_060157A8[] = {
 #include "actors/treasure_chest/treasure_chest_front.rgba16.inc.c"
 };
 
@@ -459,4 +459,3 @@ const Gfx treasure_chest_seg6_dl_060178C0[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

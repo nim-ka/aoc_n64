@@ -39,4 +39,3 @@ const Collision bitfs_seg7_collision_sinking_platform[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

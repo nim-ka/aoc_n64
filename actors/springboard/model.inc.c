@@ -11,12 +11,12 @@ static const Light springboard_seg5_light_05000008 = {
 };
 
 // 0x05000018
-static const u8 springboard_seg5_texture_05000018[] = {
+ALIGNED8 static const u8 springboard_seg5_texture_05000018[] = {
 #include "actors/springboard/springboard_top_unused.rgba16.inc.c"
 };
 
 // 0x05000818
-static const u8 springboard_seg5_texture_05000818[] = {
+ALIGNED8 static const u8 springboard_seg5_texture_05000818[] = {
 #include "actors/springboard/springboard_base_unused.rgba16.inc.c"
 };
 
@@ -257,4 +257,3 @@ const Gfx springboard_checkerboard_seg5_dl_05001900[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

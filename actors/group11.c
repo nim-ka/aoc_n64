@@ -3,7 +3,7 @@
 #include "surface_terrains.h"
 #include "geo_commands.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 #include "bubba/model.inc.c"
 UNUSED static const u64 binid_0 = 0;
@@ -32,4 +32,3 @@ UNUSED static const u64 binid_3 = 3;
 #include "spiny/anims/data.inc.c"
 #include "spiny/anims/table.inc.c"
 UNUSED static const u64 binid_4 = 4;
-

@@ -139,4 +139,3 @@ static const struct Animation ukiki_seg5_anim_0500FC84 = {
     ukiki_seg5_animindex_0500FB64,
     0,
 };
-

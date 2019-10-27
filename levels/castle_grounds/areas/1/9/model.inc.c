@@ -190,4 +190,3 @@ const Gfx castle_grounds_seg7_dl_0700C210[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

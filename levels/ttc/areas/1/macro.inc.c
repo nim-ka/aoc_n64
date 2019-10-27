@@ -112,4 +112,3 @@ const MacroObject ttc_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_ttc_small_treadmill_2, /*yaw*/   0, /*pos*/  1851, -2488,   -98),
     MACRO_OBJECT_END(),
 };
-

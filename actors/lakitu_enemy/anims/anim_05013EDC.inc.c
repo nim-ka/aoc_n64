@@ -117,4 +117,3 @@ static const struct Animation lakitu_enemy_seg5_anim_05013EDC = {
     lakitu_enemy_seg5_animindex_05013E70,
     0,
 };
-

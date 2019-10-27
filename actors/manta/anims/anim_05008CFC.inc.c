@@ -541,4 +541,3 @@ static const struct Animation manta_seg5_anim_05008CFC = {
     manta_seg5_animindex_05008BDC,
     0,
 };
-

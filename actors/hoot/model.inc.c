@@ -121,7 +121,7 @@ static const Light hoot_seg5_light_05000A10 = {
 };
 
 // 0x05000A20
-static const u8 hoot_seg5_texture_05000A20[] = {
+ALIGNED8 static const u8 hoot_seg5_texture_05000A20[] = {
 #include "actors/hoot/hoot_eyes.rgba16.inc.c"
 };
 
@@ -403,12 +403,12 @@ static const Light hoot_seg5_light_05001E40 = {
 };
 
 // 0x05001E50
-static const u8 hoot_seg5_texture_05001E50[] = {
+ALIGNED8 static const u8 hoot_seg5_texture_05001E50[] = {
 #include "actors/hoot/hoot_wing.rgba16.inc.c"
 };
 
 // 0x05002650
-static const u8 hoot_seg5_texture_05002650[] = {
+ALIGNED8 static const u8 hoot_seg5_texture_05002650[] = {
 #include "actors/hoot/hoot_wing_tip.rgba16.inc.c"
 };
 
@@ -1366,4 +1366,3 @@ const Gfx hoot_seg5_dl_05004D48[] = {
     gsSP1Triangle(15,  2,  7, 0x0),
     gsSPEndDisplayList(),
 };
-

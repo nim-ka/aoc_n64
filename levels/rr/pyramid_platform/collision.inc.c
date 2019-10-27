@@ -17,4 +17,3 @@ const Collision rr_seg7_collision_0702967C[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

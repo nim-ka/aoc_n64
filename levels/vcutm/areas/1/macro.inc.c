@@ -33,4 +33,3 @@ const MacroObject vcutm_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_fire_spitter,         /*yaw*/   0, /*pos*/ -4600,  5760, -6140),
     MACRO_OBJECT_END(),
 };
-

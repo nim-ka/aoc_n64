@@ -1349,4 +1349,3 @@ const Collision bitdw_seg7_collision_level[] = {
     SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_level_geo_11, /*pos*/ -3168,   710,   607, /*yaw*/  0),
     COL_END(),
 };
-

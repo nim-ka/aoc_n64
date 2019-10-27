@@ -1713,4 +1713,3 @@ const Gfx cotmc_seg7_dl_07007D48[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

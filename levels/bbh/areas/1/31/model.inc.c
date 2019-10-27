@@ -890,4 +890,3 @@ const Gfx bbh_seg7_dl_07019EF8[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

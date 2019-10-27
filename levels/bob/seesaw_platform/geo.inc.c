@@ -6,4 +6,3 @@ const GeoLayout bob_geo_000458[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

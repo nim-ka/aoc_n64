@@ -32,4 +32,3 @@ static const struct Animation butterfly_seg3_anim_03005698 = {
     butterfly_seg3_animindex_03005644,
     0,
 };
-

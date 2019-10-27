@@ -1,6 +1,6 @@
 #include "sm64.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 // 0x09000000
 ALIGNED8 const u8 machine_09000000[] = {
@@ -86,4 +86,3 @@ ALIGNED8 const u8 machine_09008000[] = {
 ALIGNED8 const u8 machine_09008400[] = {
 #include "textures/machine/ttc_textures.08400.rgba16.inc.c"
 };
-

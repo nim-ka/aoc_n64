@@ -28,4 +28,3 @@ static const struct Animation spiny_egg_seg5_anim_050157CC = {
     spiny_egg_seg5_animindex_05015754,
     0,
 };
-

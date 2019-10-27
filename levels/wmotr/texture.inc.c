@@ -22,4 +22,3 @@ ALIGNED8 static const u8 wmotr_seg7_texture_07001400[] = {
 ALIGNED8 static const u8 wmotr_seg7_texture_07001600[] = {
 #include "levels/wmotr/4.rgba16.inc.c"
 };
-

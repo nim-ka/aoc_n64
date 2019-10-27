@@ -1,6 +1,6 @@
 #include "sm64.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 // 0x0A000000
 ALIGNED8 static const u8 wdw_skybox_texture_0A000000[] = {
@@ -405,4 +405,3 @@ const u8 *const wdw_skybox_ptrlist[] = {
     wdw_skybox_texture_0A01C000,
     wdw_skybox_texture_0A01C800,
 };
-

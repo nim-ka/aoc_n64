@@ -457,4 +457,3 @@ const Gfx spiny_seg5_dl_05016A48[] = {
     gsSPNumLights(NUMLIGHTS_0), // I cannot tell if they meant to put 0 or 1 here.
     gsSPEndDisplayList(),
 };
-

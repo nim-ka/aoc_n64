@@ -16,4 +16,3 @@ const Trajectory hmc_seg7_trajectory_0702B86C[] = {
     TRAJECTORY_POS(13, /*pos*/ 1272, 2000, 5400),
     TRAJECTORY_END(),
 };
-

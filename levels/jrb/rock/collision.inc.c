@@ -38,4 +38,3 @@ const Collision jrb_seg7_collision_rock_solid[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

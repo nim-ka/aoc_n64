@@ -12,7 +12,7 @@
 
 #include "actors/common1.h"
 
-#define const
+#include "make_const_nonconst.h"
 #include "levels/cotmc/header.h"
 
 static const LevelScript script_func_local_1[] = {
@@ -66,4 +66,3 @@ const LevelScript level_cotmc_entry[] = {
     SLEEP_BEFORE_EXIT(/*frames*/ 1),
     EXIT(),
 };
-

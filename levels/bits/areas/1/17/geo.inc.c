@@ -6,4 +6,3 @@ const GeoLayout bits_geo_000598[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

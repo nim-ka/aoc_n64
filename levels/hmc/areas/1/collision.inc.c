@@ -3618,4 +3618,3 @@ const Collision hmc_seg7_collision_level[] = {
     COL_WATER_BOX(51, 1690, -6348, 6298, 819, -821),
     COL_END(),
 };
-

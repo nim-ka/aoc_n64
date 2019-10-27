@@ -20,4 +20,3 @@ const MacroObject sl_seg7_area_2_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_box_1up_running_away,        /*yaw*/   0, /*pos*/  -120,   300, -1740),
     MACRO_OBJECT_END(),
 };
-

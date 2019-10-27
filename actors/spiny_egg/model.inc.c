@@ -440,4 +440,3 @@ const Gfx spiny_egg_seg5_dl_05015740[] = {
     gsSPNumLights(NUMLIGHTS_0), // I cannot tell if they meant to put 0 or 1 here.
     gsSPEndDisplayList(),
 };
-

@@ -27,4 +27,3 @@ const uintptr_t flyguy_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

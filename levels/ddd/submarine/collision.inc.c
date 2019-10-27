@@ -465,4 +465,3 @@ const Collision ddd_seg7_collision_submarine[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

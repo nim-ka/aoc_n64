@@ -1,4 +1,3 @@
-
 // 0x0702A9A8 - 0x0702E9D8
 const Collision rr_seg7_collision_level[] = {
 #ifdef VERSION_JP
@@ -5446,4 +5445,3 @@ const Collision rr_seg7_collision_level[] = {
     COL_END(),
 #endif
 };
-

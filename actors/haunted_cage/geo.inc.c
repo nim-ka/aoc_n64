@@ -11,4 +11,3 @@ const uintptr_t haunted_cage_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

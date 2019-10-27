@@ -33,4 +33,3 @@ const Gfx totwc_seg7_dl_070079A8[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

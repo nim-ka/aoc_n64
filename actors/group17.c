@@ -3,7 +3,7 @@
 #include "surface_terrains.h"
 #include "geo_commands.h"
 
-#define const
+#include "make_const_nonconst.h"
 
 #include "mr_i_eyeball/model.inc.c"
 UNUSED static const u64 binid_0 = 0;
@@ -29,4 +29,3 @@ UNUSED static const u64 binid_4 = 4;
 #include "scuttlebug/anims/data.inc.c"
 #include "scuttlebug/anims/table.inc.c"
 UNUSED static const u64 binid_5 = 5;
-

@@ -13,4 +13,3 @@ const struct Animation *const monty_mole_seg5_anims_05007248[] = {
     NULL,
     NULL,
 };
-

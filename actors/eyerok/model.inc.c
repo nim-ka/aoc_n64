@@ -11,27 +11,27 @@ UNUSED static const Light eyerok_light_2 = {
 };
 
 // 0x05008D40
-static const u8 eyerok_seg5_texture_05008D40[] = {
+ALIGNED8 static const u8 eyerok_seg5_texture_05008D40[] = {
 #include "actors/eyerok/eyerok_bricks.rgba16.inc.c"
 };
 
 // 0x05009540
-static const u8 eyerok_seg5_texture_05009540[] = {
+ALIGNED8 static const u8 eyerok_seg5_texture_05009540[] = {
 #include "actors/eyerok/eyerok_eye_open.rgba16.inc.c"
 };
 
 // 0x05009D40
-static const u8 eyerok_seg5_texture_05009D40[] = {
+ALIGNED8 static const u8 eyerok_seg5_texture_05009D40[] = {
 #include "actors/eyerok/eyerok_eye_mostly_open.rgba16.inc.c"
 };
 
 // 0x0500A540
-static const u8 eyerok_seg5_texture_0500A540[] = {
+ALIGNED8 static const u8 eyerok_seg5_texture_0500A540[] = {
 #include "actors/eyerok/eyerok_eye_mostly_closed.rgba16.inc.c"
 };
 
 // 0x0500AD40
-static const u8 eyerok_seg5_texture_0500AD40[] = {
+ALIGNED8 static const u8 eyerok_seg5_texture_0500AD40[] = {
 #include "actors/eyerok/eyerok_eye_closed.rgba16.inc.c"
 };
 
@@ -752,4 +752,3 @@ const Gfx eyerok_seg5_dl_0500CC30[] = {
     gsSPGeometryMode(G_CULL_FRONT, G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

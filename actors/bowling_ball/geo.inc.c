@@ -25,4 +25,3 @@ const uintptr_t bowling_ball_track_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

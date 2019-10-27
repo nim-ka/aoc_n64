@@ -54,4 +54,3 @@ const Gfx transparent_star_seg3_dl_0302C620[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-

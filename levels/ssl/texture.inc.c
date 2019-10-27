@@ -32,4 +32,3 @@ ALIGNED8 static const u8 ssl_seg7_texture_07002800[] = {
 ALIGNED8 static const u8 ssl_seg7_texture_07003800[] = {
 #include "levels/ssl/6.rgba16.inc.c"
 };
-

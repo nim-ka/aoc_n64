@@ -12,4 +12,3 @@ const Collision thi_seg7_collision_top_trap[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

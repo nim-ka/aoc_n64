@@ -1673,4 +1673,3 @@ const Gfx vcutm_seg7_dl_07007E88[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

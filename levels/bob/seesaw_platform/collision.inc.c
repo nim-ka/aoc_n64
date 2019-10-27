@@ -26,4 +26,3 @@ const Collision bob_seg7_collision_bridge[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

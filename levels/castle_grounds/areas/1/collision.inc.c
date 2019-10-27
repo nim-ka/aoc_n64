@@ -1418,4 +1418,3 @@ const Collision castle_grounds_seg7_collision_level[] = {
     COL_WATER_BOX(1, 1024, -58, 8230, 8137, -81),
     COL_END(),
 };
-

@@ -1324,4 +1324,3 @@ const Collision wdw_seg7_area_2_collision[] = {
     COL_WATER_BOX(0, -3839, -3839, 4608, 4608, -127),
     COL_END(),
 };
-

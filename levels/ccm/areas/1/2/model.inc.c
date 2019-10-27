@@ -47,4 +47,3 @@ const Gfx ccm_seg7_dl_0700B1D8[] = {
     gsSPSetGeometryMode(G_CULL_BACK | G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

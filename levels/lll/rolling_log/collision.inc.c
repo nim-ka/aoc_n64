@@ -50,4 +50,3 @@ const Collision lll_seg7_collision_pitoune[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

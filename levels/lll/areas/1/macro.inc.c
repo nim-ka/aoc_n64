@@ -53,4 +53,3 @@ const MacroObject lll_seg7_area_1_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_box_wing_cap,                /*yaw*/   0, /*pos*/ -5900,   460,  6400),
     MACRO_OBJECT_END(),
 };
-

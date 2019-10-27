@@ -10,4 +10,3 @@ static const struct Animation bookend_seg5_anim_05002528 = {
     bookend_seg5_animindex_0500248C,
     0,
 };
-

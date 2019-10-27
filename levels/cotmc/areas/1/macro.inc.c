@@ -23,4 +23,3 @@ const MacroObject cotmc_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_box_1up_running_away, /*yaw*/   0, /*pos*/   -20,   180,  2060),
     MACRO_OBJECT_END(),
 };
-

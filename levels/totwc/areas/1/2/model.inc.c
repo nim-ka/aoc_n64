@@ -399,4 +399,3 @@ const Gfx totwc_seg7_dl_07007048[] = {
     gsDPSetEnvColor(255, 255, 255, 255),
     gsSPEndDisplayList(),
 };
-

@@ -1823,4 +1823,3 @@ const uintptr_t mario_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

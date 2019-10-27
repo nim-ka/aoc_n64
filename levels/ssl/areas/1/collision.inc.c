@@ -1567,4 +1567,3 @@ const Collision ssl_seg7_area_1_collision[] = {
     COL_WATER_BOX(0, -6911, -7167, -4223, -4607, -127),
     COL_END(),
 };
-

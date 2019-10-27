@@ -94,4 +94,3 @@ static const struct Animation chuckya_seg8_anim_0800C058 = {
     chuckya_seg8_animindex_0800BEE4,
     0,
 };
-

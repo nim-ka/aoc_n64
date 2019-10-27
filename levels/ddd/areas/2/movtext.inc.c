@@ -25,7 +25,6 @@ static Movtex ddd_movtex_area2_water_data[] = {
 
 // 0x0700FD00
 const struct MovtexQuadCollection ddd_movtex_area2_water[] = {
-    {0, 0, ddd_movtex_area2_water_data},
-    {-1, 0, NULL},
+    {0, ddd_movtex_area2_water_data},
+    {-1, NULL},
 };
-

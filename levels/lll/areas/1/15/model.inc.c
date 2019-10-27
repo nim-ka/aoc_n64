@@ -89,4 +89,3 @@ const Gfx lll_seg7_dl_07017F40[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

@@ -31,4 +31,3 @@ static const struct Animation clam_shell_seg5_anim_0500172C = {
     clam_shell_seg5_animindex_050016F0,
     0,
 };
-

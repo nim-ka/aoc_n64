@@ -699,4 +699,3 @@ const Collision ttm_seg7_area_4_collision[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

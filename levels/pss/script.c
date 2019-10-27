@@ -12,7 +12,7 @@
 
 #include "actors/common1.h"
 
-#define const
+#include "make_const_nonconst.h"
 #include "levels/pss/header.h"
 
 const LevelScript level_pss_entry[] = {
@@ -48,4 +48,3 @@ const LevelScript level_pss_entry[] = {
     SLEEP_BEFORE_EXIT(/*frames*/ 1),
     EXIT(),
 };
-

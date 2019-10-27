@@ -27,4 +27,3 @@ const uintptr_t haunted_chair_geo[] = {
 GEO_CLOSE_NODE(), //! more close than open nodes
 GEO_END(),
 };
-

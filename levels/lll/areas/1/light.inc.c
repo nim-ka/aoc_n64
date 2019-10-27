@@ -57,4 +57,3 @@ static const Ambient lll_seg7_light_0700FC78 = {
 static const Light lll_seg7_light_0700FC80 = {
     {{0xff, 0xff, 0xff}, 0, {0xff, 0xff, 0xff}, 0, {0x28, 0x28, 0x28}, 0}
 };
-

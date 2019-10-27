@@ -1,7 +1,7 @@
 // Tornado
 
 // 0x05013128
-static const u8 tornado_seg5_texture_05013128[] = {
+ALIGNED8 static const u8 tornado_seg5_texture_05013128[] = {
 #include "actors/tornado/tornado.ia16.inc.c"
 };
 
@@ -130,4 +130,3 @@ const Gfx tornado_seg5_dl_050145C0[] = {
     gsSPSetGeometryMode(G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

@@ -32,4 +32,3 @@ const uintptr_t enemy_lakitu_geo[] = {
    GEO_CLOSE_NODE(),
    GEO_END(),
 };
-

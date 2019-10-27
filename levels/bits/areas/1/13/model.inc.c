@@ -48,4 +48,3 @@ const Gfx bits_seg7_dl_0700BA18[] = {
     gsSPSetGeometryMode(G_LIGHTING | G_CULL_BACK),
     gsSPEndDisplayList(),
 };
-

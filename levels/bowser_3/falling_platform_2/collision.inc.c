@@ -26,4 +26,3 @@ const Collision bowser_3_seg7_collision_07004C18[] = {
     COL_TRI_STOP(),
     COL_END(),
 };
-

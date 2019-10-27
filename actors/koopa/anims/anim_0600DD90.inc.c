@@ -109,4 +109,3 @@ static const struct Animation koopa_seg6_anim_0600DD90 = {
     koopa_seg6_animindex_0600DCD0,
     0,
 };
-

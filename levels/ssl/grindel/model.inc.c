@@ -139,4 +139,3 @@ const Gfx ssl_seg7_dl_070221E8[] = {
     gsSPSetGeometryMode(G_LIGHTING),
     gsSPEndDisplayList(),
 };
-

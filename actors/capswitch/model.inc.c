@@ -61,12 +61,12 @@ static const Light capswitch_seg5_light_05001C38 = {
 };
 
 // 0x05001C48
-static const u8 capswitch_seg5_texture_05001C48[] = {
+ALIGNED8 static const u8 capswitch_seg5_texture_05001C48[] = {
 #include "actors/capswitch/cap_switch_head.ia16.inc.c"
 };
 
 // 0x05002C48
-static const u8 capswitch_seg5_texture_05002C48[] = {
+ALIGNED8 static const u8 capswitch_seg5_texture_05002C48[] = {
 #include "actors/capswitch/cap_switch_base.rgba16.inc.c"
 };
 
@@ -263,4 +263,3 @@ const Gfx capswitch_seg5_dl_050033B0[] = {
     gsSPDisplayList(capswitch_seg5_dl_05003280),
     gsSPEndDisplayList(),
 };
-

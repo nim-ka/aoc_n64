@@ -86,4 +86,3 @@ const MacroObject hmc_seg7_macro_objs[] = {
     MACRO_OBJECT(/*preset*/ macro_box_1up_running_away,        /*yaw*/   0, /*pos*/ -2700,  2100, -6400),
     MACRO_OBJECT_END(),
 };
-

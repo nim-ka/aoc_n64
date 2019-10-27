@@ -13,7 +13,7 @@ static const Light book_seg5_light_05002560 = {
 };
 
 // 0x05002570
-static const u8 book_seg5_texture_05002570[] = {
+ALIGNED8 static const u8 book_seg5_texture_05002570[] = {
 #include "actors/book/book_cover.rgba16.inc.c"
 };
 
@@ -96,4 +96,3 @@ const Gfx book_seg5_dl_05002FB0[] = {
     gsSPSetGeometryMode(G_SHADING_SMOOTH),
     gsSPEndDisplayList(),
 };
-

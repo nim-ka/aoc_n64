@@ -176,4 +176,3 @@ const Gfx hmc_seg7_dl_07021760[] = {
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
     gsSPEndDisplayList(),
 };
-
