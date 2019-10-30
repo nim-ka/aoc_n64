@@ -791,7 +791,6 @@ SECTIONS
    BEGIN_SEG(assets, __romPos)
    {
       BUILD_DIR/assets/mario_anim_data.o(.data);
-      . = ALIGN(0x10);
       BUILD_DIR/assets/demo_data.o(.data);
       . = ALIGN(0x10);
       gSoundDataADSR = .;

@@ -132,7 +132,7 @@ ACTOR_DIR := actors
 LEVEL_DIRS := $(patsubst levels/%,%,$(dir $(wildcard levels/*/header.h)))
 
 # Directories containing source files
-SRC_DIRS := src src/engine src/game src/audio src/menu src/buffers actors levels text bin data
+SRC_DIRS := src src/engine src/game src/audio src/menu src/buffers actors levels text bin data assets
 ASM_DIRS := asm lib assets sound
 BIN_DIRS := bin bin/$(VERSION)
 
@@ -161,6 +161,7 @@ S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
 ULTRA_C_FILES := $(foreach dir,$(ULTRA_SRC_DIRS),$(wildcard $(dir)/*.c))
 GODDARD_C_FILES := $(foreach dir,$(GODDARD_SRC_DIRS),$(wildcard $(dir)/*.c))
 ULTRA_S_FILES := $(foreach dir,$(ULTRA_ASM_DIRS),$(wildcard $(dir)/*.s))
+GENERATED_C_FILES := $(BUILD_DIR)/assets/mario_anim_data.c
 
 SOUND_BANK_FILES := $(wildcard sound/sound_banks/*.json)
 SOUND_SEQUENCE_FILES := $(wildcard sound/sequences/$(VERSION)/*.m64) \
@@ -180,6 +181,7 @@ SOUND_OBJ_FILES := $(SOUND_BIN_DIR)/sound_data.ctl.o \
 # Object files
 O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
            $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
+           $(foreach file,$(GENERATED_C_FILES),$(file:.c=.o))
 
 ULTRA_O_FILES := $(foreach file,$(ULTRA_S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
                  $(foreach file,$(ULTRA_C_FILES),$(BUILD_DIR)/$(file:.c=.o))
@@ -405,6 +407,9 @@ $(SOUND_BIN_DIR)/%.o: $(SOUND_BIN_DIR)/%.s
 $(SOUND_BIN_DIR)/%.s: $(SOUND_BIN_DIR)/%
 	printf ".section .data\n\n.incbin \"$<\"\n" > $@
 
+$(BUILD_DIR)/assets/mario_anim_data.c: $(wildcard assets/anims/*.inc.c)
+	$(PYTHON) tools/mario_anims_converter.py > $@
+
 # Source code
 $(BUILD_DIR)/src/goddard/%.o: OPT_FLAGS := -g
 $(BUILD_DIR)/src/goddard/%.o: MIPSISET := -mips1
@@ -441,6 +446,10 @@ $(BUILD_DIR)/%.o: %.c
 	@$(CC_CHECK) -MMD -MP -MT $@ -MF $(BUILD_DIR)/$*.d $<
 	$(CC) -c $(CFLAGS) -o $@ $<
 
+
+$(BUILD_DIR)/%.o: $(BUILD_DIR)/%.c
+	@$(CC_CHECK) -MMD -MP -MT $@ -MF $(BUILD_DIR)/$*.d $<
+	$(CC) -c $(CFLAGS) -o $@ $<
 
 $(BUILD_DIR)/%.o: %.s
 	$(AS) $(ASFLAGS) -MD $(BUILD_DIR)/$*.d -o $@ $<
