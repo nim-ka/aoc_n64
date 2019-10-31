@@ -1,6 +1,8 @@
 #ifndef _MACROS_H_
 #define _MACROS_H_
 
+#include "platform_info.h"
+
 #define ARRAY_COUNT(arr) (s32)(sizeof(arr) / sizeof(arr[0]))
 
 #define GLUE(a, b) a ## b

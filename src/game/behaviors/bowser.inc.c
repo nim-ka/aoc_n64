@@ -1296,7 +1296,7 @@ Gfx *Geo18_802B7D44(s32 a0, struct GraphNode *node, UNUSED s32 a2) {
 void ActionFallingBowserPlatform0(void) {
     o->oPlatformUnkF8 = obj_nearest_object_with_behavior(bhvBowser);
     set_object_collision_data(o, D_8032F698[o->oBehParams2ndByte].unk0);
-    if (o->oBowserUnkF8 != 0)
+    if (o->oPlatformUnkF8 != 0)
         o->oAction = 1;
 }
 

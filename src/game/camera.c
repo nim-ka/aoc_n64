@@ -2706,8 +2706,8 @@ void func_802876D0(struct GraphNodeCamera *a) {
     func_80287404(a);
 }
 
-s32 geo_camera_preset_and_pos(s32 a, struct GraphNodeCamera *b, struct AllocOnlyPool *c) {
-    struct GraphNodeCamera *sp2C = b;
+Gfx *geo_camera_preset_and_pos(s32 a, struct GraphNode *b, struct AllocOnlyPool *c) {
+    struct GraphNodeCamera *sp2C = (struct GraphNodeCamera *) b;
     UNUSED struct AllocOnlyPool *sp28 = c;
 
     switch (a) {
@@ -2718,7 +2718,7 @@ s32 geo_camera_preset_and_pos(s32 a, struct GraphNodeCamera *b, struct AllocOnly
             func_802876D0(sp2C);
             break;
     }
-    return 0;
+    return NULL;
 }
 
 void dummy_802877D8(UNUSED struct LevelCamera *c) {
@@ -8724,12 +8724,12 @@ void func_80299D00(s16 a, s16 b, s16 c, f32 d, f32 e, f32 f, f32 g) {
     }
 }
 
-void func_80299DB4(struct GraphNodeCamera *a) {
+void func_80299DB4(struct GraphNodePerspective *a) {
     if (D_8033B230.unk10 != 0.f) {
         D_8033B230.unk8 = coss(D_8033B230.unk14) * D_8033B230.unk10 / 256;
         D_8033B230.unk14 += D_8033B230.unk16;
         camera_approach_f32_symmetric_bool(&D_8033B230.unk10, 0.f, D_8033B230.unk18);
-        a->from[0] += D_8033B230.unk8;
+        a->fov += D_8033B230.unk8;
     } else {
         D_8033B230.unk14 = 0;
     }
@@ -8821,8 +8821,8 @@ void func_8029A288(struct MarioState *m) {
     D_8033B230.fieldOfView = approach_f32(D_8033B230.fieldOfView, targetFoV, 2.f, 2.f);
 }
 
-s32 geo_camera_fov(s32 a, struct GraphNodeCamera *b, UNUSED struct AllocOnlyPool *c) {
-    struct GraphNodeCamera *sp24 = b;
+Gfx *geo_camera_fov(s32 a, struct GraphNode *b, UNUSED struct AllocOnlyPool *c) {
+    struct GraphNodePerspective *sp24 = (struct GraphNodePerspective *) b;
     struct MarioState *marioState = &gMarioStates[0];
     u8 sp1F = D_8033B230.unk0;
 
@@ -8864,9 +8864,9 @@ s32 geo_camera_fov(s32 a, struct GraphNodeCamera *b, UNUSED struct AllocOnlyPool
         }
     }
 
-    sp24->from[0] = D_8033B230.fieldOfView;
+    sp24->fov = D_8033B230.fieldOfView;
     func_80299DB4(sp24);
-    return 0;
+    return NULL;
 }
 
 void set_fov_function(u8 a) {

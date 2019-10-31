@@ -422,7 +422,6 @@ void geo_layout_cmd_node_translation_rotation(void) {
     s16 params = cur_geo_cmd_u8(0x01);
     s16 *cmdPos = (s16 *) gGeoLayoutCommand;
 
-    // TODO 64-bit
     switch ((params & 0x70) >> 4) {
         case 0:
             cmdPos = read_vec3s(translation, &cmdPos[2]);
@@ -439,7 +438,7 @@ void geo_layout_cmd_node_translation_rotation(void) {
         case 3:
             vec3s_copy(translation, gVec3sZero);
             vec3s_set(rotation, 0, (cmdPos[1] << 15) / 180, 0);
-            cmdPos += 2;
+            cmdPos += 2 << CMD_SIZE_SHIFT;
             break;
     }
 
@@ -476,7 +475,7 @@ void geo_layout_cmd_node_translation(void) {
     s16 *cmdPos = (s16 *) gGeoLayoutCommand;
     void *displayList = NULL;
 
-    cmdPos = read_vec3s(translation, &cmdPos[1]); // TODO 64-bit
+    cmdPos = read_vec3s(translation, &cmdPos[1]);
 
     if (params & 0x80) {
         displayList = *(void **) &cmdPos[0];
@@ -512,7 +511,7 @@ void geo_layout_cmd_node_rotation(void) {
     s16 *cmdPos = (s16 *) gGeoLayoutCommand;
     void *displayList = NULL;
 
-    cmdPos = read_vec3s_angle(sp2c, &cmdPos[1]); // TODO 64-bit
+    cmdPos = read_vec3s_angle(sp2c, &cmdPos[1]);
 
     if (params & 0x80) {
         displayList = *(void **) &cmdPos[0];
@@ -576,7 +575,7 @@ void geo_layout_cmd_node_animated_part(void) {
     void *displayList = cur_geo_cmd_ptr(0x08);
     s16 *cmdPos = (s16 *) gGeoLayoutCommand;
 
-    read_vec3s(translation, &cmdPos[1]); // TODO 64-bit
+    read_vec3s(translation, &cmdPos[1]);
 
     graphNode =
         init_graph_node_animated_part(gGraphNodePool, NULL, drawingLayer, displayList, translation);

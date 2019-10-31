@@ -364,7 +364,7 @@ struct Links *make_link_to_obj(struct Links *head, struct GdObj *a1) {
 
     start_memtracker("links");
 
-    newLink = gd_malloc_perm(0x0C);
+    newLink = gd_malloc_perm(sizeof(struct Links));
 
     if (newLink == NULL) {
         fatal_print("Cant allocate link memory!");

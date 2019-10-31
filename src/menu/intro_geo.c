@@ -30,8 +30,8 @@ extern Gfx title_screen_bg_dl_0A000148[];
 extern Gfx title_screen_bg_dl_0A000160[];
 extern Gfx title_screen_bg_dl_0A000178[];
 extern Gfx title_screen_bg_dl_0A000190[];
-extern Gfx mario_title_texture_table[];
-extern Gfx game_over_texture_table[];
+extern const u8 *const mario_title_texture_table[];
+extern const u8 *const game_over_texture_table[];
 
 // intro geo bss
 int gGameOverFrameCounter;
@@ -54,7 +54,7 @@ float introBackgroundOffsetY[] = {
 };
 
 // table that points to either the "Super Mario 64" or "Game Over" tables
-Gfx *introBackgroundTextureType[] = { mario_title_texture_table, game_over_texture_table };
+const u8 *const *introBackgroundTextureType[] = { mario_title_texture_table, game_over_texture_table };
 
 s8 introBackgroundIndexTable[] = {
     INTRO_BACKGROUND_SUPER_MARIO, INTRO_BACKGROUND_SUPER_MARIO, INTRO_BACKGROUND_SUPER_MARIO,
@@ -162,11 +162,11 @@ Gfx *geo18_fade_transition(u32 sp40, struct GraphNode *sp44, UNUSED u32 sp48) {
 }
 
 Gfx *intro_backdrop_one_image(u32 index, s8 *backgroundTable) {
-    Mtx *mtx;             // sp5c
-    Gfx *displayList;     // sp58
-    Gfx *displayListIter; // sp54
-    u32 *vIntroBgTable;   // sp50
-    s32 i;                // sp4c
+    Mtx *mtx;                         // sp5c
+    Gfx *displayList;                 // sp58
+    Gfx *displayListIter;             // sp54
+    const u8 *const *vIntroBgTable;   // sp50
+    s32 i;                            // sp4c
     mtx = alloc_display_list(sizeof(*mtx));
     displayList = alloc_display_list(36 * sizeof(*displayList));
     displayListIter = displayList;

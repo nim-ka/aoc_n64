@@ -26,6 +26,7 @@
 #define OBJECT_FIELD_S32(index)           rawData.asS32[index]
 #define OBJECT_FIELD_S16(index, subIndex) rawData.asS16[index][subIndex]
 #define OBJECT_FIELD_F32(index)           rawData.asF32[index]
+#if !IS_64_BIT
 #define OBJECT_FIELD_S16P(index)          rawData.asS16P[index]
 #define OBJECT_FIELD_S32P(index)          rawData.asS32P[index]
 #define OBJECT_FIELD_ANIMS(index)         rawData.asAnims[index]
@@ -35,6 +36,17 @@
 #define OBJECT_FIELD_SURFACE(index)       rawData.asSurface[index]
 #define OBJECT_FIELD_VPTR(index)          rawData.asVoidPtr[index]
 #define OBJECT_FIELD_CVPTR(index)         rawData.asConstVoidPtr[index]
+#else
+#define OBJECT_FIELD_S16P(index)          ptrData.asS16P[index]
+#define OBJECT_FIELD_S32P(index)          ptrData.asS32P[index]
+#define OBJECT_FIELD_ANIMS(index)         ptrData.asAnims[index]
+#define OBJECT_FIELD_WAYPOINT(index)      ptrData.asWaypoint[index]
+#define OBJECT_FIELD_CHAIN_SEGMENT(index) ptrData.asChainSegment[index]
+#define OBJECT_FIELD_OBJ(index)           ptrData.asObject[index]
+#define OBJECT_FIELD_SURFACE(index)       ptrData.asSurface[index]
+#define OBJECT_FIELD_VPTR(index)          ptrData.asVoidPtr[index]
+#define OBJECT_FIELD_CVPTR(index)         ptrData.asConstVoidPtr[index]
+#endif
 #endif
 
 // 0x088 (0x00), the first field, is object-specific and defined below the common fields.

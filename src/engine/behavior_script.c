@@ -432,10 +432,10 @@ static s32 beh_cmd_obj_bit_clear_int(void) {
     return BEH_CONTINUE;
 }
 
-static s32 beh_cmd_obj_set_int32(void) {
+static s32 beh_cmd_obj_set_anims(void) {
     u8 objectOffset = (u8)((gBehCommand[0] >> 16) & 0xFF);
 
-    cur_object_set_int(objectOffset, gBehCommand[1]);
+    cur_object_set_vptr(objectOffset, gBehCommand[1]);
 
     gBehCommand += 2;
     return BEH_CONTINUE;
@@ -722,7 +722,7 @@ static BehCommandProc BehaviorJumpTable[] = {
     Behavior24,
     beh_cmd_delay_var,
     Behavior26,
-    beh_cmd_obj_set_int32,
+    beh_cmd_obj_set_anims,
     beh_cmd_obj_animate,
     beh_cmd_obj_load_chill_param,
     beh_cmd_collision_data,

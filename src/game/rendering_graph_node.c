@@ -479,7 +479,7 @@ static void geo_process_display_list(struct GraphNodeDisplayList *node) {
  */
 static void geo_process_generated_list(struct GraphNodeGenerated *node) {
     if (node->fnNode.func != NULL) {
-        s32 list = node->fnNode.func(GEO_CONTEXT_RENDER, &node->fnNode.node,
+        Gfx *list = node->fnNode.func(GEO_CONTEXT_RENDER, &node->fnNode.node,
                                      (struct AllocOnlyPool *) gMatStack[gMatStackIndex]);
 
         if (list != 0) {
@@ -497,7 +497,7 @@ static void geo_process_generated_list(struct GraphNodeGenerated *node) {
  * rectangle is drawn instead.
  */
 static void geo_process_background(struct GraphNodeBackground *node) {
-    s32 list = 0;
+    Gfx *list = NULL;
 
     if (node->fnNode.func != NULL) {
         list = node->fnNode.func(GEO_CONTEXT_RENDER, &node->fnNode.node,

@@ -403,7 +403,7 @@ extern void update_camera(struct LevelCamera *);
 extern void reset_camera(struct LevelCamera *);
 extern void init_camera(struct LevelCamera *);
 extern void select_mario_cam_mode(void);
-extern s32 geo_camera_preset_and_pos(s32 a, struct GraphNodeCamera *b, struct AllocOnlyPool *c);
+extern Gfx *geo_camera_preset_and_pos(s32 a, struct GraphNode *b, struct AllocOnlyPool *c);
 extern void dummy_802877D8(struct LevelCamera *);
 extern void dummy_802877EC(struct LevelCamera *);
 extern void vec3f_sub(Vec3f, Vec3f);
@@ -861,6 +861,6 @@ extern void func_8029A7DC(struct Object *, Vec3f, s16, s16, s16, s16);
 // extern ? func_8029B964(?);
 // extern ? bhv_intro_scene_loop(?);
 
-extern s32 geo_camera_fov(s32 a, struct GraphNodeCamera *b, UNUSED struct AllocOnlyPool *c);
+extern Gfx *geo_camera_fov(s32 a, struct GraphNode *b, UNUSED struct AllocOnlyPool *c);
 
 #endif /* _CAMERA_H */

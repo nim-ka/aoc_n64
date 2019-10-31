@@ -245,6 +245,9 @@ static struct Object *allocate_object(struct ObjectNode *objList) {
 
     for (i = 0; i < 0x50; i++) {
         obj->rawData.asU32[i] = 0;
+#if IS_64_BIT
+        obj->ptrData.asVoidPtr[i] = NULL;
+#endif
     }
 
     obj->unused1 = 0;

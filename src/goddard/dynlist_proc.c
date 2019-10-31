@@ -2984,7 +2984,7 @@ void d_set_rot_mtx(Mat4f *src) {
             cpy_mat4(src, &((struct ObjJoint *) sDynListCurObj)->mat128);
             break;
         case OBJ_TYPE_NETS:
-            cpy_mat4(src, &((struct ObjJoint *) sDynListCurObj)->mat168);
+            cpy_mat4(src, &((struct ObjNet *) sDynListCurObj)->mat168);
             break;
         default:
             fatal_printf("%s: Object '%s'(%x) does not support this function.", "dSetRMatrix()",
@@ -3004,7 +3004,7 @@ Mat4f *d_get_rot_mtx_ptr(void) {
         case OBJ_TYPE_JOINTS:
             return &((struct ObjJoint *) sDynListCurObj)->mat128;
         case OBJ_TYPE_NETS:
-            return &((struct ObjJoint *) sDynListCurObj)->mat168;
+            return &((struct ObjNet *) sDynListCurObj)->mat168;
         default:
             fatal_printf("%s: Object '%s'(%x) does not support this function.", "dGetRMatrixPtr()",
                          sDynListCurInfo->name, sDynListCurObj->type);
@@ -3028,7 +3028,7 @@ void d_set_idn_mtx(Mat4f *src) {
             cpy_mat4(src, &((struct ObjNet *) dynobj)->matE8);
             break;
         case OBJ_TYPE_JOINTS:
-            cpy_mat4(src, &((struct ObjNet *) dynobj)->mat168);
+            cpy_mat4(src, &((struct ObjJoint *) dynobj)->mat168);
             break;
         case OBJ_TYPE_LIGHTS:
             ((struct ObjLight *) dynobj)->position.x = (*src)[3][0];

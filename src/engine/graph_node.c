@@ -499,7 +499,7 @@ struct GraphNodeHeldObject *init_graph_node_held_object(struct AllocOnlyPool *po
                                                         struct GraphNodeHeldObject *graphNode,
                                                         struct GraphNodeObject *objNode,
                                                         Vec3s translation,
-                                                        GraphNodeFunc nodeFunc, s32 unused) {
+                                                        GraphNodeFunc nodeFunc, s32 playerIndex) {
     if (pool != NULL) {
         graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeHeldObject));
     }
@@ -509,7 +509,7 @@ struct GraphNodeHeldObject *init_graph_node_held_object(struct AllocOnlyPool *po
         vec3s_copy(graphNode->translation, translation);
         graphNode->objNode = objNode;
         graphNode->fnNode.func = nodeFunc;
-        graphNode->unused = unused;
+        graphNode->playerIndex = playerIndex;
 
         if (nodeFunc != NULL) {
             nodeFunc(GEO_CONTEXT_CREATE, &graphNode->fnNode.node, pool);
