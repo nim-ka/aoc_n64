@@ -1,6 +1,6 @@
 CC := gcc
 CFLAGS := -I . -Wall -Wextra -Wno-unused-parameter -pedantic -std=c99 -O3 -s
-PROGRAMS := n64graphics n64graphics_ci mio0 n64cksum textconv patch_libultra_math iplfontutil aifc_decode aiff_extract_codebook vadpcm_enc tabledesign extract_data_for_mio
+PROGRAMS := n64graphics n64graphics_ci mio0 n64cksum textconv patch_libultra_math iplfontutil aifc_decode aiff_extract_codebook vadpcm_enc tabledesign extract_data_for_mio skyconv
 
 n64graphics_SOURCES := n64graphics.c utils.c
 n64graphics_CFLAGS  := -DN64GRAPHICS_STANDALONE
@@ -32,6 +32,9 @@ vadpcm_enc_CFLAGS := -Wno-unused-result -Wno-uninitialized -Wno-sign-compare -Wn
 
 extract_data_for_mio_SOURCES := extract_data_for_mio.c
 extract_data_for_mio_CFLAGS := -O2
+
+skyconv_SOURCES := skyconv.c n64graphics.c utils.c
+skyconv_CFLAGS := -O2 -lm
 
 all: $(PROGRAMS)
 

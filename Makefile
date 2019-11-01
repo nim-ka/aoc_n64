@@ -255,6 +255,7 @@ IPLFONTUTIL = $(TOOLS_DIR)/iplfontutil
 AIFF_EXTRACT_CODEBOOK = $(TOOLS_DIR)/aiff_extract_codebook
 VADPCM_ENC = $(TOOLS_DIR)/vadpcm_enc
 EXTRACT_DATA_FOR_MIO = $(TOOLS_DIR)/extract_data_for_mio
+SKYCONV = $(TOOLS_DIR)/skyconv
 EMULATOR = mupen64plus
 EMU_FLAGS = --noosd
 LOADER = loader64
@@ -352,6 +353,7 @@ $(BUILD_DIR)/%.ci4: %.ci4.png
 # compressed segment generation
 
 # TODO: ideally this would be `-Trodata-segment=0x07000000` but that doesn't set the address
+
 $(BUILD_DIR)/bin/%.elf: $(BUILD_DIR)/bin/%.o
 	$(LD) -e 0 -Ttext=$(SEGMENT_ADDRESS) -Map $@.map -o $@ $<
 $(BUILD_DIR)/actors/%.elf: $(BUILD_DIR)/actors/%.o

@@ -146,7 +146,7 @@ def main():
 
     # Make sure tools exist
     subprocess.check_call(
-        ["make", "-s", "-C", "tools/", "n64graphics", "mio0", "aifc_decode"]
+        ["make", "-s", "-C", "tools/", "n64graphics", "skyconv", "mio0", "aifc_decode"]
     )
 
     # Go through the assets in roughly alphabetical order (but assets in the same
@@ -201,25 +201,44 @@ def main():
             input = image[pos : pos + size]
             os.makedirs(os.path.dirname(asset), exist_ok=True)
             if asset.endswith(".png"):
-                w, h = meta
-                fmt = asset.split(".")[-2]
-                subprocess.run(
-                    [
-                        "./tools/n64graphics",
-                        "-e",
-                        "/dev/stdin",
-                        "-g",
-                        asset,
-                        "-f",
-                        fmt,
-                        "-w",
-                        str(w),
-                        "-h",
-                        str(h),
-                    ],
-                    input=input,
-                    check=True,
-                )
+                with tempfile.NamedTemporaryFile(prefix="asset") as png_file:
+                    png_file.write(input)
+                    png_file.flush()
+                    if asset.startswith("textures/skyboxes/") or asset.startswith("levels/ending/cake"):
+                        if asset.startswith("textures/skyboxes/"):
+                            imagetype = "sky"
+                        else:
+                            imagetype =  "cake" + ("-eu" if "eu" in asset else "")
+                        subprocess.run(
+                            [
+                                "./tools/skyconv",
+                                "--type",
+                                imagetype,
+                                "--combine",
+                                png_file.name,
+                                asset,
+                            ],
+                            check=True,
+                        )
+                    else:
+                        w, h = meta
+                        fmt = asset.split(".")[-2]
+                        subprocess.run(
+                            [
+                                "./tools/n64graphics",
+                                "-e",
+                                png_file.name,
+                                "-g",
+                                asset,
+                                "-f",
+                                fmt,
+                                "-w",
+                                str(w),
+                                "-h",
+                                str(h),
+                            ],
+                            check=True,
+                        )
             else:
                 with open(asset, "wb") as f:
                     f.write(input)
