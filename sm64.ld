@@ -792,7 +792,6 @@ SECTIONS
    {
       BUILD_DIR/assets/mario_anim_data.o(.data);
       BUILD_DIR/assets/demo_data.o(.data);
-      . = ALIGN(0x10);
       gSoundDataADSR = .;
       BUILD_DIR/sound/sound_data.ctl.o(.data);
       . = ALIGN(0x10);

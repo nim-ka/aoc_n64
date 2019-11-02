@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import re
 import os
 import traceback
@@ -92,7 +93,7 @@ try:
             if lines:
                 parse_file(filename, lines)
 
-    structdef = ["s32 numEntries;", "const struct Animation *addrPlaceholder;", "struct MarioAnimSub entries[" + str(num_headers) + "];"]
+    structdef = ["u32 numEntries;", "const struct Animation *addrPlaceholder;", "struct OffsetSizePair entries[" + str(num_headers) + "];"]
     structobj = [str(num_headers) + ",", "NULL,","{"]
 
     for item in items:

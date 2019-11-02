@@ -247,7 +247,7 @@ struct MarioBodyState
     u8 padding[4];
 };
 
-struct MarioAnimSub
+struct OffsetSizePair
 {
     u32 offset;
     u32 size;
@@ -257,7 +257,7 @@ struct MarioAnimDmaRelatedThing
 {
     u32 count;
     u8 *srcAddr;
-    struct MarioAnimSub anim[1]; // dynamic size
+    struct OffsetSizePair anim[1]; // dynamic size
 };
 
 struct MarioAnimation
