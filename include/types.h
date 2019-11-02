@@ -5,6 +5,7 @@
 // have an appropriate header.
 
 #include <ultra64.h>
+#include "macros.h"
 
 struct Controller
 {
@@ -147,6 +148,7 @@ struct Object
         s32 asS32[0x50];
         s16 asS16[0x50][2];
         f32 asF32[0x50];
+#if !IS_64_BIT
         s16 *asS16P[0x50];
         s32 *asS32P[0x50];
         struct Animation **asAnims[0x50];
@@ -156,7 +158,21 @@ struct Object
         struct Surface *asSurface[0x50];
         void *asVoidPtr[0x50];
         const void *asConstVoidPtr[0x50];
+#endif
     } rawData;
+#if IS_64_BIT
+    union {
+        s16 *asS16P[0x50];
+        s32 *asS32P[0x50];
+        struct Animation **asAnims[0x50];
+        struct Waypoint *asWaypoint[0x50];
+        struct ChainSegment *asChainSegment[0x50];
+        struct Object *asObject[0x50];
+        struct Surface *asSurface[0x50];
+        void *asVoidPtr[0x50];
+        const void *asConstVoidPtr[0x50];
+    } ptrData;
+#endif
     /*0x1C8*/ u32 unused1;
     /*0x1CC*/ const BehaviorScript *behScript;
     /*0x1D0*/ u32 stackIndex;

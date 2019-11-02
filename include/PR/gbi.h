@@ -1167,7 +1167,7 @@ typedef struct {
  * First 8 words are integer portion of the 4x4 matrix
  * Last 8 words are the fraction portion of the 4x4 matrix
  */
-typedef long	Mtx_t[4][4];
+typedef s32	Mtx_t[4][4];
 
 typedef union {
     Mtx_t		m;

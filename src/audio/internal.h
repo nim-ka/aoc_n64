@@ -394,7 +394,7 @@ struct NoteSynthesisBuffers
     s16 samples[0x40];
 };
 
-struct Struct80332190
+struct AudioSessionSettings
 {
     /*0x00*/ u32 frequency;
     /*0x04*/ u8 maxSimultaneousNotes;

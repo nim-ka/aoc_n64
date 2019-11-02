@@ -218,7 +218,7 @@ void func_8031758C(UNUSED s32 arg0) {
 
     D_80226D68 = 144 * 9;
     for (i = 0; i < gMaxSimultaneousNotes * 3; i++) {
-        sSampleDmas[gSampleDmaNumListItems].buffer = soundAlloc(&D_802212C8, D_80226D68);
+        sSampleDmas[gSampleDmaNumListItems].buffer = soundAlloc(&gNotesAndBuffersPool, D_80226D68);
         if (sSampleDmas[gSampleDmaNumListItems].buffer == NULL) {
             goto out1;
         }
@@ -246,7 +246,7 @@ out1:
 
     D_80226D68 = 160 * 9;
     for (i = 0; i < gMaxSimultaneousNotes; i++) {
-        sSampleDmas[gSampleDmaNumListItems].buffer = soundAlloc(&D_802212C8, D_80226D68);
+        sSampleDmas[gSampleDmaNumListItems].buffer = soundAlloc(&gNotesAndBuffersPool, D_80226D68);
         if (sSampleDmas[gSampleDmaNumListItems].buffer == NULL) {
             goto out2;
         }
@@ -717,17 +717,17 @@ void audio_init() {
     gCurrAudioFrameDmaCount = 0;
     gSampleDmaNumListItems = 0;
 
-    func_80316108(D_80333EF0);
+    sound_init_main_pools(D_80333EF0);
 
     for (i = 0; i < NUMAIBUFFERS; i++) {
-        gAiBuffers[i] = soundAlloc(&gSoundPool, 0xa00);
+        gAiBuffers[i] = soundAlloc(&gAudioInitPool, 0xa00);
 
         for (j = 0; j < 0x500; j++) {
             gAiBuffers[i][j] = 0;
         }
     }
 
-    func_80316928(&D_80332190[0]);
+    audio_reset_session(&gAudioSessionPresets[0]);
 
     // Load header for sequence data (assets/music_data.sbk.s)
     gSeqFileHeader = (ALSeqFile *) buf;
@@ -735,7 +735,7 @@ void audio_init() {
     audio_dma_copy_immediate((uintptr_t) data, gSeqFileHeader, 0x10);
     gSequenceCount = gSeqFileHeader->seqCount;
     size = ALIGN16(gSequenceCount * sizeof(ALSeqData) + 4);
-    gSeqFileHeader = soundAlloc(&gSoundPool, size);
+    gSeqFileHeader = soundAlloc(&gAudioInitPool, size);
     audio_dma_copy_immediate((uintptr_t) data, gSeqFileHeader, size);
     alSeqFileNew(gSeqFileHeader, data);
 
@@ -745,8 +745,8 @@ void audio_init() {
     audio_dma_copy_immediate((uintptr_t) data, gAlCtlHeader, 0x10);
     size = gAlCtlHeader->seqCount * sizeof(ALSeqData) + 4;
     size = ALIGN16(size);
-    gCtlEntries = soundAlloc(&gSoundPool, gAlCtlHeader->seqCount * sizeof(struct CtlEntry));
-    gAlCtlHeader = soundAlloc(&gSoundPool, size);
+    gCtlEntries = soundAlloc(&gAudioInitPool, gAlCtlHeader->seqCount * sizeof(struct CtlEntry));
+    gAlCtlHeader = soundAlloc(&gAudioInitPool, size);
     audio_dma_copy_immediate((uintptr_t) data, gAlCtlHeader, size);
     alSeqFileNew(gAlCtlHeader, data);
 
@@ -755,12 +755,12 @@ void audio_init() {
     audio_dma_copy_immediate((uintptr_t) data, gAlTbl, 0x10);
     size = gAlTbl->seqCount * sizeof(ALSeqData) + 4;
     size = ALIGN16(size);
-    gAlTbl = soundAlloc(&gSoundPool, size);
+    gAlTbl = soundAlloc(&gAudioInitPool, size);
     audio_dma_copy_immediate((uintptr_t) gSoundDataRaw, gAlTbl, size);
     alSeqFileNew(gAlTbl, gSoundDataRaw);
 
     // Load bank sets for each sequence (assets/bank_sets.s)
-    gAlBankSets = soundAlloc(&gSoundPool, 0x100);
+    gAlBankSets = soundAlloc(&gAudioInitPool, 0x100);
     audio_dma_copy_immediate((uintptr_t) gBankSetsData, gAlBankSets, 0x100);
 
     func_8031D4B8();

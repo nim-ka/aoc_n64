@@ -605,6 +605,6 @@ void note_init_all(void) {
         note->vibratoState.active = FALSE;
         note->portamento.cur = 0.0f;
         note->portamento.speed = 0.0f;
-        note->synthesisBuffers = soundAlloc(&D_802212C8, sizeof(struct NoteSynthesisBuffers));
+        note->synthesisBuffers = soundAlloc(&gNotesAndBuffersPool, sizeof(struct NoteSynthesisBuffers));
     }
 }

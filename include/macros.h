@@ -29,6 +29,13 @@
 #define ALIGNED8
 #endif
 
+// Align to 16-byte boundary for audio lib requirements
+#ifdef __GNUC__
+#define ALIGNED16 __attribute__((aligned(16)))
+#else
+#define ALIGNED16
+#endif
+
 // convert a virtual address to physical.
 #define VIRTUAL_TO_PHYSICAL(addr)   ((uintptr_t)(addr) & 0x1FFFFFFF)
 

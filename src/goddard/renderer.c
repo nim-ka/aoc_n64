@@ -3091,7 +3091,7 @@ void gd_init(void) {
     s8 *data; // 2c
 
     add_to_stacktrace("gd_init");
-    i = (u32)(sMemBlockPoolSize - 0x3E800);
+    i = (u32)(sMemBlockPoolSize - DOUBLE_SIZE_ON_64_BIT(0x3E800));
     data = gd_allocblock(i);
     gd_add_mem_to_heap(i, data, 0x10);
     D_801BB184 = (u16) 0xff;
