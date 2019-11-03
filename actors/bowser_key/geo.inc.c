@@ -1,5 +1,5 @@
 // 0x16000A84
-const uintptr_t bowser_key_geo[] = {
+const GeoLayout bowser_key_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x9B, 300),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 65536),
@@ -11,7 +11,7 @@ const uintptr_t bowser_key_geo[] = {
 };
 
 // 0x16000AB0
-const uintptr_t bowser_key_cutscene_geo[] = {
+const GeoLayout bowser_key_cutscene_geo[] = {
    GEO_SCALE(0x00, 16384),
    GEO_OPEN_NODE(),
       GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, NULL),

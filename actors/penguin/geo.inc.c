@@ -1,5 +1,5 @@
 // 0x0C000104
-const uintptr_t penguin_geo[] = {
+const GeoLayout penguin_geo[] = {
 #ifdef VERSION_EU
        GEO_SHADOW(SHADOW_CIRCLE_9_VERTS, 0x96, 60),
 #else

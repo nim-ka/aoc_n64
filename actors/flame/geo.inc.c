@@ -1,5 +1,5 @@
 // 0x16000B10
-const uintptr_t red_flame_shadow_geo[] = {
+const GeoLayout red_flame_shadow_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x50, 20),
    GEO_OPEN_NODE(),
       GEO_BRANCH_AND_LINK(red_flame_geo),
@@ -8,7 +8,7 @@ const uintptr_t red_flame_shadow_geo[] = {
 };
 
 // 0x16000B2C
-const uintptr_t red_flame_geo[] = {
+const GeoLayout red_flame_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(8, geo_switch_anim_state),
@@ -27,7 +27,7 @@ const uintptr_t red_flame_geo[] = {
 };
 
 // 0x16000B8C
-const uintptr_t blue_flame_geo[] = {
+const GeoLayout blue_flame_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(8, geo_switch_anim_state),

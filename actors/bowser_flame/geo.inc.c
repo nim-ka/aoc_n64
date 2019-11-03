@@ -1,5 +1,5 @@
 // 0x0D000000
-const uintptr_t bowser_flames_geo[] = {
+const GeoLayout bowser_flames_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(14, geo_switch_anim_state),

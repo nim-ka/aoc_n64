@@ -1,5 +1,5 @@
 // 0x0F000A30
-const uintptr_t metal_box_geo[] = {
+const GeoLayout metal_box_geo[] = {
    GEO_CULLING_RADIUS(500),
    GEO_OPEN_NODE(),
       GEO_SHADOW(SHADOW_SQUARE_PERMANENT, 0xB4, 70),

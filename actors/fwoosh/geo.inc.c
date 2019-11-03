@@ -1,5 +1,5 @@
 // 0x0C00036C
-const uintptr_t fwoosh_geo[] = {
+const GeoLayout fwoosh_geo[] = {
    GEO_CULLING_RADIUS(200),
    GEO_OPEN_NODE(),
       GEO_DISPLAY_LIST(LAYER_TRANSPARENT, fwoosh_seg5_dl_05016040),

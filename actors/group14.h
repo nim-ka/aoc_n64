@@ -4,11 +4,11 @@
 #include "types.h"
 
 // chain_ball
-extern const uintptr_t metallic_ball_geo[];
+extern const GeoLayout metallic_ball_geo[];
 extern const Gfx chain_ball_seg6_dl_060212E8[];
 
 // chain_chomp
-extern const uintptr_t chain_chomp_geo[];
+extern const GeoLayout chain_chomp_geo[];
 extern const Gfx chain_chomp_seg6_dl_06024000[];
 extern const Gfx chain_chomp_seg6_dl_06024040[];
 extern const Gfx chain_chomp_seg6_dl_06024240[];
@@ -24,8 +24,8 @@ extern const Gfx chain_chomp_seg6_dl_06024FC0[];
 extern const struct Animation *const chain_chomp_seg6_anims_06025178[];
 
 // koopa
-extern const uintptr_t koopa_without_shell_geo[];
-extern const uintptr_t koopa_with_shell_geo[];
+extern const GeoLayout koopa_without_shell_geo[];
+extern const GeoLayout koopa_with_shell_geo[];
 extern const Gfx koopa_seg6_dl_06007658[];
 extern const Gfx koopa_seg6_dl_060076B0[];
 extern const Gfx koopa_seg6_dl_06007850[];
@@ -60,7 +60,7 @@ extern const Gfx koopa_seg6_dl_0600C498[];
 extern const struct Animation *const koopa_seg6_anims_06011364[];
 
 // koopa_flag
-extern const uintptr_t koopa_flag_geo[];
+extern const GeoLayout koopa_flag_geo[];
 extern const Gfx koopa_flag_seg6_dl_06000968[];
 extern const Gfx koopa_flag_seg6_dl_06000A08[];
 extern const Gfx koopa_flag_seg6_dl_06000AB8[];
@@ -77,7 +77,7 @@ extern const Gfx koopa_flag_seg6_dl_06000E38[];
 extern const struct Animation *const koopa_flag_seg6_anims_06001028[];
 
 // piranha_plant
-extern const uintptr_t piranha_plant_geo[];
+extern const GeoLayout piranha_plant_geo[];
 extern const Gfx piranha_plant_seg6_dl_06015438[];
 extern const Gfx piranha_plant_seg6_dl_06015480[];
 extern const Gfx piranha_plant_seg6_dl_06015530[];
@@ -106,14 +106,14 @@ extern const Gfx piranha_plant_seg6_dl_06016F20[];
 extern const struct Animation *const piranha_plant_seg6_anims_0601C31C[];
 
 // poundable_pole
-extern const uintptr_t wooden_post_geo[];
+extern const GeoLayout wooden_post_geo[];
 extern const Gfx poundable_pole_seg6_dl_060022F0[];
 extern const Gfx poundable_pole_seg6_dl_06002358[];
 extern const Gfx poundable_pole_seg6_dl_06002410[];
 extern const s16 poundable_pole_collision_06002490[];
 
 // whomp
-extern const uintptr_t whomp_geo[];
+extern const GeoLayout whomp_geo[];
 extern const Gfx whomp_seg6_dl_0601F4F8[];
 extern const Gfx whomp_seg6_dl_0601F570[];
 extern const Gfx whomp_seg6_dl_0601F5A8[];

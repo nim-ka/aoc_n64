@@ -1,5 +1,5 @@
 // 0x0F000518
-const uintptr_t flyguy_geo[] = {
+const GeoLayout flyguy_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x96, 100),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

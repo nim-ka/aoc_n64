@@ -1,5 +1,5 @@
 // 0x0C000000
-const uintptr_t clam_shell_geo[] = {
+const GeoLayout clam_shell_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

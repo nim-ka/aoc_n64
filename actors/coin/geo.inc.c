@@ -1,5 +1,5 @@
 // 0x1600013C
-const uintptr_t yellow_coin_geo[] = {
+const GeoLayout yellow_coin_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0xB4, 50),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(8, geo_switch_anim_state),
@@ -18,7 +18,7 @@ const uintptr_t yellow_coin_geo[] = {
 };
 
 // 0x160001A0
-const uintptr_t yellow_coin_no_shadow_geo[] = {
+const GeoLayout yellow_coin_no_shadow_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(8, geo_switch_anim_state),
@@ -37,7 +37,7 @@ const uintptr_t yellow_coin_no_shadow_geo[] = {
 };
 
 // 0x16000200
-const uintptr_t blue_coin_geo[] = {
+const GeoLayout blue_coin_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0xB4, 80),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(8, geo_switch_anim_state),
@@ -56,7 +56,7 @@ const uintptr_t blue_coin_geo[] = {
 };
 
 // 0x16000264
-const uintptr_t blue_coin_no_shadow_geo[] = {
+const GeoLayout blue_coin_no_shadow_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(8, geo_switch_anim_state),
@@ -75,7 +75,7 @@ const uintptr_t blue_coin_no_shadow_geo[] = {
 };
 
 // 0x160002C4
-const uintptr_t red_coin_geo[] = {
+const GeoLayout red_coin_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0xB4, 80),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(8, geo_switch_anim_state),
@@ -94,7 +94,7 @@ const uintptr_t red_coin_geo[] = {
 };
 
 // 0x16000328
-const uintptr_t red_coin_no_shadow_geo[] = {
+const GeoLayout red_coin_no_shadow_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(8, geo_switch_anim_state),

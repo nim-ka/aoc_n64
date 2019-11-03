@@ -1,5 +1,5 @@
 // 0x160000A8
-const uintptr_t butterfly_geo[] = {
+const GeoLayout butterfly_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0xB4, 25),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

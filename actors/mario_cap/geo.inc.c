@@ -1,5 +1,5 @@
 // 0x16000CA4
-const uintptr_t marios_cap_geo[] = {
+const GeoLayout marios_cap_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_9_VERTS, 0xB4, 75),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
@@ -16,7 +16,7 @@ const uintptr_t marios_cap_geo[] = {
 };
 
 // 0x16000CF0
-const uintptr_t marios_metal_cap_geo[] = {
+const GeoLayout marios_metal_cap_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_9_VERTS, 0xB4, 75),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
@@ -33,7 +33,7 @@ const uintptr_t marios_metal_cap_geo[] = {
 };
 
 // 0x16000D3C
-const uintptr_t marios_wing_cap_geo[] = {
+const GeoLayout marios_wing_cap_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_9_VERTS, 0xB4, 75),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
@@ -57,7 +57,7 @@ const uintptr_t marios_wing_cap_geo[] = {
 };
 
 // 0x16000DA8
-const uintptr_t marios_winged_metal_cap_geo[] = {
+const GeoLayout marios_winged_metal_cap_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_9_VERTS, 0xB4, 75),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

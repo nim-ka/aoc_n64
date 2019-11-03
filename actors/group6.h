@@ -4,12 +4,12 @@
 #include "types.h"
 
 // fwoosh
-extern const uintptr_t fwoosh_geo[];
+extern const GeoLayout fwoosh_geo[];
 extern const Gfx fwoosh_seg5_dl_05016008[];
 extern const Gfx fwoosh_seg5_dl_05016040[];
 
 // monty_mole
-extern const uintptr_t monty_mole_geo[];
+extern const GeoLayout monty_mole_geo[];
 extern const Gfx monty_mole_seg5_dl_05003208[];
 extern const Gfx monty_mole_seg5_dl_050032A0[];
 extern const Gfx monty_mole_seg5_dl_05003438[];
@@ -46,7 +46,7 @@ extern const Gfx smoke_seg5_dl_05007AC0[];
 extern const Gfx smoke_seg5_dl_05007AF8[];
 
 // ukiki
-extern const uintptr_t ukiki_geo[];
+extern const GeoLayout ukiki_geo[];
 extern const Gfx ukiki_seg5_dl_0500B040[];
 extern const Gfx ukiki_seg5_dl_0500B1D8[];
 extern const Gfx ukiki_seg5_dl_0500B278[];

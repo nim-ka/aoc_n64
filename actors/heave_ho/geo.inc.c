@@ -1,5 +1,5 @@
 // 0x0C00028C
-const uintptr_t heave_ho_geo[] = {
+const GeoLayout heave_ho_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0xC8, 100),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

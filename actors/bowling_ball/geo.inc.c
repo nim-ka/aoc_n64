@@ -3,7 +3,7 @@
 // exact same DL being referenced.
 
 // 0x0F000640
-const uintptr_t bowling_ball_geo[] = {
+const GeoLayout bowling_ball_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0xC8, 280),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 170393),
@@ -15,7 +15,7 @@ const uintptr_t bowling_ball_geo[] = {
 };
 
 // 0x0F00066C
-const uintptr_t bowling_ball_track_geo[] = {
+const GeoLayout bowling_ball_track_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 170393),

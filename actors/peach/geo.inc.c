@@ -1,5 +1,5 @@
 // 0x0C000098
-const uintptr_t peach_geo_000098[] = {
+const GeoLayout peach_geo_000098[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, NULL),
@@ -63,7 +63,7 @@ const uintptr_t peach_geo_000098[] = {
 };
 
 // 0x0C000254
-const uintptr_t peach_geo_000254[] = {
+const GeoLayout peach_geo_000254[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_ANIMATED_PART(LAYER_TRANSPARENT, 0, 0, 0, NULL),
@@ -135,7 +135,7 @@ const uintptr_t peach_geo_000254[] = {
 };
 
 // 0x0C000410
-const uintptr_t peach_geo[] = {
+const GeoLayout peach_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_9_VERTS, 0x96, 100),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

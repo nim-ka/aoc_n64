@@ -1,5 +1,5 @@
 // 0x0F0004FC
-const uintptr_t heart_geo[] = {
+const GeoLayout heart_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x64, 100),
    GEO_OPEN_NODE(),
       GEO_DISPLAY_LIST(LAYER_TRANSPARENT, heart_seg8_dl_0800DFE0),

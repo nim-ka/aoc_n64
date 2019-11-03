@@ -1,5 +1,5 @@
 // 0x0D000114
-const uintptr_t toad_geo_000114[] = {
+const GeoLayout toad_geo_000114[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, NULL),
@@ -53,7 +53,7 @@ const uintptr_t toad_geo_000114[] = {
 };
 
 // 0x0D00027C
-const uintptr_t toad_geo_00027C[] = {
+const GeoLayout toad_geo_00027C[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_ANIMATED_PART(LAYER_TRANSPARENT, 0, 0, 0, NULL),
@@ -119,7 +119,7 @@ const uintptr_t toad_geo_00027C[] = {
 };
 
 // 0x0D0003E4
-const uintptr_t toad_geo[] = {
+const GeoLayout toad_geo[] = {
    GEO_CULLING_RADIUS(1000),
    GEO_OPEN_NODE(),
       GEO_SHADOW(SHADOW_CIRCLE_9_VERTS, 0x96, 100),

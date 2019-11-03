@@ -1,5 +1,5 @@
 // 0x0D000230
-const uintptr_t dorrie_geo[] = {
+const GeoLayout dorrie_geo[] = {
    GEO_CULLING_RADIUS(5000),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

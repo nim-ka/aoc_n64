@@ -1,5 +1,5 @@
 // 0x0F0001C0
-const uintptr_t cannon_barrel_geo[] = {
+const GeoLayout cannon_barrel_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_DISPLAY_LIST(LAYER_OPAQUE, cannon_barrel_seg8_dl_08006660),

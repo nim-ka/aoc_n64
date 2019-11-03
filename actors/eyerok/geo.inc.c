@@ -1,5 +1,5 @@
 // 0x0C0002AC
-const uintptr_t eyerok_geo_0002AC[] = {
+const GeoLayout eyerok_geo_0002AC[] = {
    GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, NULL),
    GEO_OPEN_NODE(),
       GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, NULL),
@@ -105,7 +105,7 @@ const uintptr_t eyerok_geo_0002AC[] = {
 };
 
 // 0x0C0005A8
-const uintptr_t eyerok_left_hand_geo[] = {
+const GeoLayout eyerok_left_hand_geo[] = {
    GEO_SHADOW(SHADOW_SQUARE_SCALABLE, 0xB4, 300),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
@@ -119,7 +119,7 @@ const uintptr_t eyerok_left_hand_geo[] = {
 };
 
 // 0x0C0005E4
-const uintptr_t eyerok_right_hand_geo[] = {
+const GeoLayout eyerok_right_hand_geo[] = {
    GEO_SHADOW(SHADOW_SQUARE_SCALABLE, 0xB4, 300),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

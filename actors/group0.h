@@ -4,68 +4,68 @@
 #include "types.h"
 
 // bubble
-extern const uintptr_t bubble_geo[];
-extern const uintptr_t purple_marble_geo[];
+extern const GeoLayout bubble_geo[];
+extern const GeoLayout purple_marble_geo[];
 extern const Gfx bubble_seg4_dl_0401DD60[];
 extern const Gfx bubble_seg4_dl_0401DDE0[];
 
 // burn_smoke
-extern const uintptr_t burn_smoke_geo[];
+extern const GeoLayout burn_smoke_geo[];
 extern const Gfx burn_smoke_seg4_dl_04022000[];
 extern const Gfx burn_smoke_seg4_dl_04022028[];
 extern const Gfx burn_smoke_seg4_dl_04022048[];
 extern const Gfx burn_smoke_seg4_dl_04022070[];
 
 // mario
-extern const uintptr_t mario_geo_face_and_wings[];
-extern const uintptr_t mario_geo_left_hand[];
-extern const uintptr_t mario_geo_right_hand[];
-extern const uintptr_t mario_geo_body[];
-extern const uintptr_t mario_geo_medium_poly_left_hand[];
-extern const uintptr_t mario_geo_medium_poly_right_hand[];
-extern const uintptr_t mario_geo_medium_poly_body[];
-extern const uintptr_t mario_geo_low_poly_face_and_wings[];
-extern const uintptr_t mario_geo_low_poly_left_hand[];
-extern const uintptr_t mario_geo_low_poly_right_hand[];
-extern const uintptr_t mario_geo_low_poly_body[];
-extern const uintptr_t mario_vanish_geo_face_and_wings[];
-extern const uintptr_t mario_vanish_geo_left_hand[];
-extern const uintptr_t mario_vanish_geo_right_hand[];
-extern const uintptr_t mario_vanish_geo_body[];
-extern const uintptr_t mario_vanish_geo_medium_poly_left_hand[];
-extern const uintptr_t mario_vanish_geo_medium_poly_right_hand[];
-extern const uintptr_t mario_vanish_geo_medium_poly_body[];
-extern const uintptr_t mario_vanish_geo_low_poly_face_and_wings[];
-extern const uintptr_t mario_vanish_geo_low_poly_left_hand[];
-extern const uintptr_t mario_vanish_geo_low_poly_right_hand[];
-extern const uintptr_t mario_vanish_geo_low_poly_body[];
-extern const uintptr_t mario_metal_geo_face_and_wings[];
-extern const uintptr_t mario_metal_geo_left_hand[];
-extern const uintptr_t mario_metal_geo_right_hand[];
-extern const uintptr_t mario_metal_geo_body[];
-extern const uintptr_t mario_metal_geo_medium_poly_left_hand[];
-extern const uintptr_t mario_metal_geo_medium_poly_right_hand[];
-extern const uintptr_t mario_metal_geo_medium_poly_body[];
-extern const uintptr_t mario_metal_geo_low_poly_face_and_wings[];
-extern const uintptr_t mario_metal_geo_low_poly_left_hand[];
-extern const uintptr_t mario_metal_geo_low_poly_right_hand[];
-extern const uintptr_t mario_metal_geo_low_poly_body[];
-extern const uintptr_t mario_metal_vanish_geo_face_and_wings[];
-extern const uintptr_t mario_metal_vanish_geo_left_hand[];
-extern const uintptr_t mario_metal_vanish_geo_right_hand[];
-extern const uintptr_t mario_metal_vanish_geo_body[];
-extern const uintptr_t mario_metal_vanish_geo_medium_poly_left_hand[];
-extern const uintptr_t mario_metal_vanish_geo_medium_poly_right_hand[];
-extern const uintptr_t mario_metal_vanish_geo_medium_poly_body[];
-extern const uintptr_t mario_metal_vanish_geo_low_poly_face_and_wings[];
-extern const uintptr_t mario_metal_vanish_geo_low_poly_left_hand[];
-extern const uintptr_t mario_metal_vanish_geo_low_poly_right_hand[];
-extern const uintptr_t mario_metal_vanish_geo_low_poly_body[];
-extern const uintptr_t mario_geo_load_body[];
-extern const uintptr_t mario_geo_load_medium_poly_body[];
-extern const uintptr_t mario_geo_load_low_poly_body[];
-extern const uintptr_t mario_geo_render_body[];
-extern const uintptr_t mario_geo[];
+extern const GeoLayout mario_geo_face_and_wings[];
+extern const GeoLayout mario_geo_left_hand[];
+extern const GeoLayout mario_geo_right_hand[];
+extern const GeoLayout mario_geo_body[];
+extern const GeoLayout mario_geo_medium_poly_left_hand[];
+extern const GeoLayout mario_geo_medium_poly_right_hand[];
+extern const GeoLayout mario_geo_medium_poly_body[];
+extern const GeoLayout mario_geo_low_poly_face_and_wings[];
+extern const GeoLayout mario_geo_low_poly_left_hand[];
+extern const GeoLayout mario_geo_low_poly_right_hand[];
+extern const GeoLayout mario_geo_low_poly_body[];
+extern const GeoLayout mario_vanish_geo_face_and_wings[];
+extern const GeoLayout mario_vanish_geo_left_hand[];
+extern const GeoLayout mario_vanish_geo_right_hand[];
+extern const GeoLayout mario_vanish_geo_body[];
+extern const GeoLayout mario_vanish_geo_medium_poly_left_hand[];
+extern const GeoLayout mario_vanish_geo_medium_poly_right_hand[];
+extern const GeoLayout mario_vanish_geo_medium_poly_body[];
+extern const GeoLayout mario_vanish_geo_low_poly_face_and_wings[];
+extern const GeoLayout mario_vanish_geo_low_poly_left_hand[];
+extern const GeoLayout mario_vanish_geo_low_poly_right_hand[];
+extern const GeoLayout mario_vanish_geo_low_poly_body[];
+extern const GeoLayout mario_metal_geo_face_and_wings[];
+extern const GeoLayout mario_metal_geo_left_hand[];
+extern const GeoLayout mario_metal_geo_right_hand[];
+extern const GeoLayout mario_metal_geo_body[];
+extern const GeoLayout mario_metal_geo_medium_poly_left_hand[];
+extern const GeoLayout mario_metal_geo_medium_poly_right_hand[];
+extern const GeoLayout mario_metal_geo_medium_poly_body[];
+extern const GeoLayout mario_metal_geo_low_poly_face_and_wings[];
+extern const GeoLayout mario_metal_geo_low_poly_left_hand[];
+extern const GeoLayout mario_metal_geo_low_poly_right_hand[];
+extern const GeoLayout mario_metal_geo_low_poly_body[];
+extern const GeoLayout mario_metal_vanish_geo_face_and_wings[];
+extern const GeoLayout mario_metal_vanish_geo_left_hand[];
+extern const GeoLayout mario_metal_vanish_geo_right_hand[];
+extern const GeoLayout mario_metal_vanish_geo_body[];
+extern const GeoLayout mario_metal_vanish_geo_medium_poly_left_hand[];
+extern const GeoLayout mario_metal_vanish_geo_medium_poly_right_hand[];
+extern const GeoLayout mario_metal_vanish_geo_medium_poly_body[];
+extern const GeoLayout mario_metal_vanish_geo_low_poly_face_and_wings[];
+extern const GeoLayout mario_metal_vanish_geo_low_poly_left_hand[];
+extern const GeoLayout mario_metal_vanish_geo_low_poly_right_hand[];
+extern const GeoLayout mario_metal_vanish_geo_low_poly_body[];
+extern const GeoLayout mario_geo_load_body[];
+extern const GeoLayout mario_geo_load_medium_poly_body[];
+extern const GeoLayout mario_geo_load_low_poly_body[];
+extern const GeoLayout mario_geo_render_body[];
+extern const GeoLayout mario_geo[];
 extern const Gfx mario_butt_dl[];
 extern const Gfx mario_butt[];
 extern const Gfx mario_metal_butt[];
@@ -264,7 +264,7 @@ extern const Gfx mario_metal_cap_wings[];
 extern const Gfx mario_metal_cap_wings_transparent[];
 
 // sparkle
-extern const uintptr_t sparkles_geo[];
+extern const GeoLayout sparkles_geo[];
 extern const Gfx sparkles_seg4_dl_0402A490[];
 extern const Gfx sparkles_seg4_dl_0402A4F8[];
 extern const Gfx sparkles_seg4_dl_0402A510[];
@@ -274,7 +274,7 @@ extern const Gfx sparkles_seg4_dl_0402A558[];
 extern const Gfx sparkles_seg4_dl_0402A570[];
 
 // sparkle_animation
-extern const uintptr_t sparkles_animation_geo[];
+extern const GeoLayout sparkles_animation_geo[];
 extern const Gfx sparkles_animation_seg4_dl_04035288[];
 extern const Gfx sparkles_animation_seg4_dl_04035300[];
 extern const Gfx sparkles_animation_seg4_dl_04035318[];
@@ -283,8 +283,8 @@ extern const Gfx sparkles_animation_seg4_dl_04035348[];
 extern const Gfx sparkles_animation_seg4_dl_04035360[];
 
 // stomp_smoke
-extern const uintptr_t spot_on_ground_geo[];
-extern const uintptr_t mario_TODO_geo_0000E0[];
+extern const GeoLayout spot_on_ground_geo[];
+extern const GeoLayout mario_TODO_geo_0000E0[];
 extern const Gfx stomp_smoke_seg4_dl_04025148[];
 extern const Gfx stomp_smoke_seg4_dl_04025190[];
 extern const Gfx stomp_smoke_seg4_dl_040251C8[];
@@ -303,7 +303,7 @@ extern const Gfx stomp_smoke_seg4_dl_040252E8[];
 extern const Gfx stomp_smoke_seg4_dl_04025300[];
 
 // walk_smoke
-extern const uintptr_t smoke_geo[];
+extern const GeoLayout smoke_geo[];
 extern const Gfx smoke_seg4_dl_040216A0[];
 extern const Gfx smoke_seg4_dl_04021718[];
 extern const Gfx smoke_seg4_dl_04021730[];
@@ -314,7 +314,7 @@ extern const Gfx smoke_seg4_dl_04021790[];
 extern const Gfx smoke_seg4_dl_040217A8[];
 
 // water_splash
-extern const uintptr_t water_splash_geo[];
+extern const GeoLayout water_splash_geo[];
 extern const Gfx water_splash_seg4_dl_040325C8[];
 extern const Gfx water_splash_seg4_dl_04032640[];
 extern const Gfx water_splash_seg4_dl_04032658[];
@@ -326,8 +326,8 @@ extern const Gfx water_splash_seg4_dl_040326D0[];
 extern const Gfx water_splash_seg4_dl_040326E8[];
 
 // water_waves
-extern const uintptr_t water_waves_surface_geo[];
-extern const uintptr_t water_waves_geo[];
+extern const GeoLayout water_waves_surface_geo[];
+extern const GeoLayout water_waves_geo[];
 extern const Gfx water_waves_seg4_dl_04027358[];
 extern const Gfx water_waves_seg4_dl_040273A0[];
 extern const Gfx water_waves_seg4_dl_040273D8[];

@@ -1,5 +1,5 @@
 // 0x0D000480
-const uintptr_t whomp_geo[] = {
+const GeoLayout whomp_geo[] = {
    GEO_CULLING_RADIUS(2000),
    GEO_OPEN_NODE(),
       GEO_TRANSLATE_NODE(0x00, 0, 0, -50),

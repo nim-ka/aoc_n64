@@ -4,7 +4,7 @@
 #include "types.h"
 
 // penguin
-extern const uintptr_t penguin_geo[];
+extern const GeoLayout penguin_geo[];
 extern const Gfx penguin_seg5_dl_05006188[];
 extern const Gfx penguin_seg5_dl_050061C8[];
 extern const Gfx penguin_seg5_dl_050061F8[];
@@ -25,8 +25,8 @@ extern const struct Animation *const penguin_seg5_anims_05008B74[];
 extern const s16 penguin_seg5_collision_05008B88[];
 
 // snowman
-extern const uintptr_t mr_blizzard_hidden_geo[];
-extern const uintptr_t mr_blizzard_geo[];
+extern const GeoLayout mr_blizzard_hidden_geo[];
+extern const GeoLayout mr_blizzard_geo[];
 extern const Gfx snowman_seg5_dl_0500C4C8[];
 extern const Gfx snowman_seg5_dl_0500C500[];
 extern const Gfx snowman_seg5_dl_0500C5B0[];
@@ -44,7 +44,7 @@ extern const Gfx snowman_seg5_dl_0500CCE8[];
 extern const struct Animation *const snowman_seg5_anims_0500D118[];
 
 // spindrift
-extern const uintptr_t spindrift_geo[];
+extern const GeoLayout spindrift_geo[];
 extern const Gfx spindrift_seg5_dl_050002A0[];
 extern const Gfx spindrift_seg5_dl_05000328[];
 extern const Gfx spindrift_seg5_dl_05002710[];

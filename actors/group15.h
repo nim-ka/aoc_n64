@@ -4,14 +4,14 @@
 #include "types.h"
 
 // boo_castle
-extern const uintptr_t boo_castle_geo[];
+extern const GeoLayout boo_castle_geo[];
 extern const Gfx boo_castle_seg6_dl_06017A10[];
 extern const Gfx boo_castle_seg6_dl_06017A78[];
 extern const Gfx boo_castle_seg6_dl_06017AD0[];
 extern const Gfx boo_castle_seg6_dl_06017CE0[];
 
 // lakitu_cameraman
-extern const uintptr_t lakitu_geo[];
+extern const GeoLayout lakitu_geo[];
 extern const Gfx lakitu_seg6_dl_06003C80[];
 extern const Gfx lakitu_seg6_dl_06003DB0[];
 extern const Gfx lakitu_seg6_dl_06003E30[];
@@ -33,7 +33,7 @@ extern const Gfx lakitu_seg6_dl_06005610[];
 extern const struct Animation *const lakitu_seg6_anims_060058F8[];
 
 // mips
-extern const uintptr_t mips_geo[];
+extern const GeoLayout mips_geo[];
 extern const Gfx mips_seg6_dl_06010600[];
 extern const Gfx mips_seg6_dl_06010748[];
 extern const Gfx mips_seg6_dl_060107B8[];
@@ -62,9 +62,9 @@ extern const Gfx mips_seg6_dl_06011FC0[];
 extern const struct Animation *const mips_seg6_anims_06015634[];
 
 // toad
-extern const uintptr_t toad_geo_000114[];
-extern const uintptr_t toad_geo_00027C[];
-extern const uintptr_t toad_geo[];
+extern const GeoLayout toad_geo_000114[];
+extern const GeoLayout toad_geo_00027C[];
+extern const GeoLayout toad_geo[];
 extern const Gfx toad_seg6_dl_06007300[];
 extern const Gfx toad_seg6_dl_06007498[];
 extern const Gfx toad_seg6_dl_060076C0[];

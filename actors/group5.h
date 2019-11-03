@@ -4,9 +4,9 @@
 #include "types.h"
 
 // eyerok
-extern const uintptr_t eyerok_geo_0002AC[];
-extern const uintptr_t eyerok_left_hand_geo[];
-extern const uintptr_t eyerok_right_hand_geo[];
+extern const GeoLayout eyerok_geo_0002AC[];
+extern const GeoLayout eyerok_left_hand_geo[];
+extern const GeoLayout eyerok_right_hand_geo[];
 extern const Gfx eyerok_seg5_dl_0500B6B8[];
 extern const Gfx eyerok_seg5_dl_0500B748[];
 extern const Gfx eyerok_seg5_dl_0500B930[];
@@ -32,7 +32,7 @@ extern const Gfx eyerok_seg5_dl_0500CC30[];
 extern const struct Animation *const eyerok_seg5_anims_050116E4[];
 
 // klepto
-extern const uintptr_t klepto_geo[];
+extern const GeoLayout klepto_geo[];
 extern const Gfx klepto_seg5_dl_05003A68[];
 extern const Gfx klepto_seg5_dl_05003AC0[];
 extern const Gfx klepto_seg5_dl_05003B40[];
@@ -68,8 +68,8 @@ extern const Gfx klepto_seg5_dl_05005178[];
 extern const struct Animation *const klepto_seg5_anims_05008CFC[];
 
 // pokey
-extern const uintptr_t pokey_head_geo[];
-extern const uintptr_t pokey_body_part_geo[];
+extern const GeoLayout pokey_head_geo[];
+extern const GeoLayout pokey_body_part_geo[];
 extern const Gfx pokey_seg5_dl_05012750[];
 extern const Gfx pokey_seg5_dl_05012798[];
 extern const Gfx pokey_seg5_dl_050127D8[];
@@ -80,6 +80,6 @@ extern const Gfx pokey_seg5_dl_050130B0[];
 // tornado
 extern const Gfx tornado_seg5_dl_05014450[];
 extern const Gfx tornado_seg5_dl_050145C0[];
-extern const uintptr_t tornado_seg5_geo_05014630[];
+extern const GeoLayout tornado_seg5_geo_05014630[];
 
 #endif

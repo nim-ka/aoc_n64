@@ -1,5 +1,5 @@
 // 0x0F000000
-const uintptr_t blue_coin_switch_geo[] = {
+const GeoLayout blue_coin_switch_geo[] = {
    GEO_CULLING_RADIUS(300),
    GEO_OPEN_NODE(),
       GEO_OPEN_NODE(),

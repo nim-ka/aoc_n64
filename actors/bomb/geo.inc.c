@@ -1,5 +1,5 @@
 // 0x0D000B78 / 0BBC
-const uintptr_t bowser_bomb_geo[] = {
+const GeoLayout bowser_bomb_geo[] = {
    GEO_CULLING_RADIUS(1000),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 196608),

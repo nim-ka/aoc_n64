@@ -4,8 +4,8 @@
 #include "types.h"
 
 // blue_fish
-extern const uintptr_t fish_shadow_geo[];
-extern const uintptr_t fish_geo[];
+extern const GeoLayout fish_shadow_geo[];
+extern const GeoLayout fish_geo[];
 extern const Gfx blue_fish_seg3_dl_0301BEC0[];
 extern const Gfx blue_fish_seg3_dl_0301BFB8[];
 extern const Gfx blue_fish_seg3_dl_0301C0A8[];
@@ -13,24 +13,24 @@ extern const Gfx blue_fish_seg3_dl_0301C150[];
 extern const struct Animation *const blue_fish_seg3_anims_0301C2B0[];
 
 // bowser_key
-extern const uintptr_t bowser_key_geo[];
-extern const uintptr_t bowser_key_cutscene_geo[];
+extern const GeoLayout bowser_key_geo[];
+extern const GeoLayout bowser_key_cutscene_geo[];
 extern const Gfx bowser_key_dl[];
 extern const struct Animation *const bowser_key_seg3_anims_list[];
 
 // butterfly
-extern const uintptr_t butterfly_geo[];
+extern const GeoLayout butterfly_geo[];
 extern const Gfx butterfly_seg3_dl_03005408[];
 extern const Gfx butterfly_seg3_dl_030054A0[];
 extern const struct Animation *const butterfly_seg3_anims_030056B0[];
 
 // coin
-extern const uintptr_t yellow_coin_geo[];
-extern const uintptr_t yellow_coin_no_shadow_geo[];
-extern const uintptr_t blue_coin_geo[];
-extern const uintptr_t blue_coin_no_shadow_geo[];
-extern const uintptr_t red_coin_geo[];
-extern const uintptr_t red_coin_no_shadow_geo[];
+extern const GeoLayout yellow_coin_geo[];
+extern const GeoLayout yellow_coin_no_shadow_geo[];
+extern const GeoLayout blue_coin_geo[];
+extern const GeoLayout blue_coin_no_shadow_geo[];
+extern const GeoLayout red_coin_geo[];
+extern const GeoLayout red_coin_no_shadow_geo[];
 extern const Gfx coin_seg3_dl_03007780[];
 extern const Gfx coin_seg3_dl_030077D0[];
 extern const Gfx coin_seg3_dl_03007800[];
@@ -47,8 +47,8 @@ extern const Gfx coin_seg3_dl_03007990[];
 extern const Gfx coin_seg3_dl_030079B8[];
 
 // dirt
-extern const uintptr_t dirt_animation_geo[];
-extern const uintptr_t cartoon_star_geo[];
+extern const GeoLayout dirt_animation_geo[];
+extern const GeoLayout cartoon_star_geo[];
 extern const Gfx dirt_seg3_dl_0302BFF8[];
 extern const Gfx dirt_seg3_dl_0302C028[];
 extern const Gfx dirt_seg3_dl_0302C238[];
@@ -64,17 +64,17 @@ extern const Gfx dirt_seg3_dl_0302C420[];
 extern const Gfx dirt_seg3_dl_0302C458[];
 
 // door
-extern const uintptr_t castle_door_geo[];
-extern const uintptr_t cabin_door_geo[];
-extern const uintptr_t wooden_door_geo[];
-extern const uintptr_t wooden_door2_geo[];
-extern const uintptr_t metal_door_geo[];
-extern const uintptr_t hazy_maze_door_geo[];
-extern const uintptr_t haunted_door_geo[];
-extern const uintptr_t castle_door_0_star_geo[];
-extern const uintptr_t castle_door_1_star_geo[];
-extern const uintptr_t castle_door_3_stars_geo[];
-extern const uintptr_t key_door_geo[];
+extern const GeoLayout castle_door_geo[];
+extern const GeoLayout cabin_door_geo[];
+extern const GeoLayout wooden_door_geo[];
+extern const GeoLayout wooden_door2_geo[];
+extern const GeoLayout metal_door_geo[];
+extern const GeoLayout hazy_maze_door_geo[];
+extern const GeoLayout haunted_door_geo[];
+extern const GeoLayout castle_door_0_star_geo[];
+extern const GeoLayout castle_door_1_star_geo[];
+extern const GeoLayout castle_door_3_stars_geo[];
+extern const GeoLayout key_door_geo[];
 extern const Gfx door_seg3_dl_03013C10[];
 extern const Gfx door_seg3_dl_03013CC8[];
 extern const Gfx door_seg3_dl_03013D78[];
@@ -115,7 +115,7 @@ extern const Gfx door_seg3_dl_03015158[];
 extern const struct Animation *const door_seg3_anims_030156C0[];
 
 // explosion
-extern const uintptr_t explosion_geo[];
+extern const GeoLayout explosion_geo[];
 extern const Gfx explosion_seg3_dl_03004208[];
 extern const Gfx explosion_seg3_dl_03004298[];
 extern const Gfx explosion_seg3_dl_030042B0[];
@@ -126,9 +126,9 @@ extern const Gfx explosion_seg3_dl_03004310[];
 extern const Gfx explosion_seg3_dl_03004328[];
 
 // flame
-extern const uintptr_t red_flame_shadow_geo[];
-extern const uintptr_t red_flame_geo[];
-extern const uintptr_t blue_flame_geo[];
+extern const GeoLayout red_flame_shadow_geo[];
+extern const GeoLayout red_flame_geo[];
+extern const GeoLayout blue_flame_geo[];
 extern const Gfx flame_seg3_dl_0301B320[];
 extern const Gfx flame_seg3_dl_0301B3B0[];
 extern const Gfx flame_seg3_dl_0301B3C8[];
@@ -149,14 +149,14 @@ extern const Gfx flame_seg3_dl_0301B590[];
 extern const Gfx flame_seg3_dl_0301B5A8[];
 
 // leaves
-extern const uintptr_t leaves_geo[];
+extern const GeoLayout leaves_geo[];
 extern const Gfx leaves_seg3_dl_0301CDE0[];
 
 // mario_cap
-extern const uintptr_t marios_cap_geo[];
-extern const uintptr_t marios_metal_cap_geo[];
-extern const uintptr_t marios_wing_cap_geo[];
-extern const uintptr_t marios_winged_metal_cap_geo[];
+extern const GeoLayout marios_cap_geo[];
+extern const GeoLayout marios_metal_cap_geo[];
+extern const GeoLayout marios_wing_cap_geo[];
+extern const GeoLayout marios_winged_metal_cap_geo[];
 extern const Gfx mario_cap_seg3_dl_03022B30[];
 extern const Gfx mario_cap_seg3_dl_03022B68[];
 extern const Gfx mario_cap_seg3_dl_03022CC8[];
@@ -173,18 +173,18 @@ extern const Gfx mario_cap_seg3_dl_03023160[];
 extern const Gfx mario_cap_seg3_dl_03023298[];
 
 // mist
-extern const uintptr_t mist_geo[];
-extern const uintptr_t white_puff_geo[];
+extern const GeoLayout mist_geo[];
+extern const GeoLayout white_puff_geo[];
 extern const Gfx mist_seg3_dl_03000880[];
 extern const Gfx mist_seg3_dl_03000920[];
 
 // mushroom_1up
-extern const uintptr_t mushroom_1up_geo[];
+extern const GeoLayout mushroom_1up_geo[];
 extern const Gfx mushroom_1up_seg3_dl_0302A628[];
 extern const Gfx mushroom_1up_seg3_dl_0302A660[];
 
 // number
-extern const uintptr_t number_geo[];
+extern const GeoLayout number_geo[];
 
 // pebble
 extern const Gfx pebble_seg3_dl_0301CB00[];
@@ -199,23 +199,23 @@ extern const Gfx dl_power_meter_health_segments_end[];
 extern const Gfx sand_seg3_dl_0302BCD0[];
 
 // star
-extern const uintptr_t star_geo[];
+extern const GeoLayout star_geo[];
 extern const Gfx star_seg3_dl_0302B7B0[];
 extern const Gfx star_seg3_dl_0302B870[];
 extern const Gfx star_seg3_dl_0302B9C0[];
 extern const Gfx star_seg3_dl_0302BA18[];
 
 // transparent_star
-extern const uintptr_t transparent_star_geo[];
+extern const GeoLayout transparent_star_geo[];
 extern const Gfx transparent_star_seg3_dl_0302C560[];
 extern const Gfx transparent_star_seg3_dl_0302C620[];
 
 // tree
-extern const uintptr_t bubbly_tree_geo[];
-extern const uintptr_t spiky_tree_geo[];
-extern const uintptr_t snow_tree_geo[];
-extern const uintptr_t spiky_tree1_geo[];
-extern const uintptr_t palm_tree_geo[];
+extern const GeoLayout bubbly_tree_geo[];
+extern const GeoLayout spiky_tree_geo[];
+extern const GeoLayout snow_tree_geo[];
+extern const GeoLayout spiky_tree1_geo[];
+extern const GeoLayout palm_tree_geo[];
 extern const Gfx tree_seg3_dl_0302FE88[];
 extern const Gfx tree_seg3_dl_0302FEB8[];
 extern const Gfx tree_seg3_dl_0302FEE8[];
@@ -229,7 +229,7 @@ extern const s16 door_seg3_collision_0301CE78[];
 extern const s16 lll_hexagonal_mesh_seg3_collision_0301CECC[];
 
 // warp_pipe
-extern const uintptr_t warp_pipe_geo[];
+extern const GeoLayout warp_pipe_geo[];
 extern const Gfx warp_pipe_seg3_dl_03008E40[];
 extern const Gfx warp_pipe_seg3_dl_03008F98[];
 extern const Gfx warp_pipe_seg3_dl_03009968[];
@@ -238,11 +238,11 @@ extern const Gfx warp_pipe_seg3_dl_03009A50[];
 extern const s16 warp_pipe_seg3_collision_03009AC8[];
 
 // white_particle
-extern const uintptr_t white_particle_geo[];
+extern const GeoLayout white_particle_geo[];
 extern const Gfx white_particle_dl[];
 
 // wooden_signpost
-extern const uintptr_t wooden_signpost_geo[];
+extern const GeoLayout wooden_signpost_geo[];
 extern const Gfx wooden_signpost_seg3_dl_0302D9C8[];
 extern const Gfx wooden_signpost_seg3_dl_0302DA48[];
 extern const Gfx wooden_signpost_seg3_dl_0302DC40[];

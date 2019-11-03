@@ -1,5 +1,5 @@
 // 0x0D000448
-const uintptr_t mips_geo[] = {
+const GeoLayout mips_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x96, 100),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

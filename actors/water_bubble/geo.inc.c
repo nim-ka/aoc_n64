@@ -1,5 +1,5 @@
 // 0x0C000308
-const uintptr_t water_bomb_geo[] = {
+const GeoLayout water_bomb_geo[] = {
    GEO_CULLING_RADIUS(150),
    GEO_OPEN_NODE(),
       GEO_OPEN_NODE(),
@@ -10,7 +10,7 @@ const uintptr_t water_bomb_geo[] = {
 };
 
 // 0x0C000328
-const uintptr_t water_bomb_shadow_geo[] = {
+const GeoLayout water_bomb_shadow_geo[] = {
    GEO_CULLING_RADIUS(150),
    GEO_OPEN_NODE(),
       GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x64, 160),

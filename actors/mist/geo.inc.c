@@ -1,5 +1,5 @@
 // 0x16000000
-const uintptr_t mist_geo[] = {
+const GeoLayout mist_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_ASM(0, Geo18_8029D924),
@@ -9,7 +9,7 @@ const uintptr_t mist_geo[] = {
 };
 
 // 0x16000020
-const uintptr_t white_puff_geo[] = {
+const GeoLayout white_puff_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_ASM(0, Geo18_8029D924),

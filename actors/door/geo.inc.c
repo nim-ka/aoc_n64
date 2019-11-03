@@ -1,5 +1,5 @@
 // 0x160003A8
-const uintptr_t castle_door_geo[] = {
+const GeoLayout castle_door_geo[] = {
    GEO_TRANSLATE_NODE(0x00, 78, 0, 0),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
@@ -26,7 +26,7 @@ GEO_END(),
 };
 
 // 0x1600043C
-const uintptr_t cabin_door_geo[] = {
+const GeoLayout cabin_door_geo[] = {
    GEO_TRANSLATE_NODE(0x00, 78, 0, 0),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
@@ -53,7 +53,7 @@ GEO_END(),
 };
 
 // 0x160004D0
-const uintptr_t wooden_door_geo[] = {
+const GeoLayout wooden_door_geo[] = {
    GEO_TRANSLATE_NODE(0x00, 78, 0, 0),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
@@ -80,7 +80,7 @@ GEO_END(),
 };
 
 // 0x16000564
-const uintptr_t wooden_door2_geo[] = {
+const GeoLayout wooden_door2_geo[] = {
    GEO_TRANSLATE_NODE(0x00, 78, 0, 0),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
@@ -107,7 +107,7 @@ GEO_END(),
 };
 
 // 0x160005F8
-const uintptr_t metal_door_geo[] = {
+const GeoLayout metal_door_geo[] = {
    GEO_TRANSLATE_NODE(0x00, 78, 0, 0),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
@@ -134,7 +134,7 @@ GEO_END(),
 };
 
 // 0x1600068C
-const uintptr_t hazy_maze_door_geo[] = {
+const GeoLayout hazy_maze_door_geo[] = {
    GEO_TRANSLATE_NODE(0x00, 78, 0, 0),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
@@ -161,7 +161,7 @@ GEO_END(),
 };
 
 // 0x16000720
-const uintptr_t haunted_door_geo[] = {
+const GeoLayout haunted_door_geo[] = {
    GEO_TRANSLATE_NODE(0x00, 78, 0, 0),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
@@ -188,7 +188,7 @@ GEO_END(),
 };
 
 // 0x160007B4
-const uintptr_t castle_door_0_star_geo[] = {
+const GeoLayout castle_door_0_star_geo[] = {
    GEO_TRANSLATE_NODE(0x00, 78, 0, 0),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
@@ -221,7 +221,7 @@ GEO_END(),
 };
 
 // 0x16000868
-const uintptr_t castle_door_1_star_geo[] = {
+const GeoLayout castle_door_1_star_geo[] = {
    GEO_TRANSLATE_NODE(0x00, 78, 0, 0),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
@@ -254,7 +254,7 @@ GEO_END(),
 };
 
 // 0x1600091C
-const uintptr_t castle_door_3_stars_geo[] = {
+const GeoLayout castle_door_3_stars_geo[] = {
    GEO_TRANSLATE_NODE(0x00, 78, 0, 0),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
@@ -287,7 +287,7 @@ GEO_END(),
 };
 
 // 0x160009D0
-const uintptr_t key_door_geo[] = {
+const GeoLayout key_door_geo[] = {
    GEO_TRANSLATE_NODE(0x00, 78, 0, 0),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

@@ -1,5 +1,5 @@
 // 0x0D0000B0
-const uintptr_t bowser_1_yellow_sphere_geo[] = {
+const GeoLayout bowser_1_yellow_sphere_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_BILLBOARD(),

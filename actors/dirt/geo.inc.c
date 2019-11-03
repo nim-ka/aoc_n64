@@ -1,5 +1,5 @@
 // 0x16000ED4
-const uintptr_t dirt_animation_geo[] = {
+const GeoLayout dirt_animation_geo[] = {
    GEO_CULLING_RADIUS(300),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(6, geo_switch_anim_state),
@@ -17,7 +17,7 @@ const uintptr_t dirt_animation_geo[] = {
 
 // This is probably wrongly named according to the Bin IDs...
 // 0x16000F24
-const uintptr_t cartoon_star_geo[] = {
+const GeoLayout cartoon_star_geo[] = {
    GEO_CULLING_RADIUS(300),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(5, geo_switch_anim_state),

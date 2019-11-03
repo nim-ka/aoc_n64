@@ -1,5 +1,5 @@
 // 0x16000FB4
-const uintptr_t wooden_signpost_geo[] = {
+const GeoLayout wooden_signpost_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0xC8, 60),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

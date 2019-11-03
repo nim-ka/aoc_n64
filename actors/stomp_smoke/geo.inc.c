@@ -1,5 +1,5 @@
 // 0x1700009C
-const uintptr_t spot_on_ground_geo[] = {
+const GeoLayout spot_on_ground_geo[] = {
    GEO_SWITCH_CASE(6, geo_switch_anim_state),
    GEO_OPEN_NODE(),
       GEO_DISPLAY_LIST(LAYER_TRANSPARENT, stomp_smoke_seg4_dl_040251F8),
@@ -13,7 +13,7 @@ const uintptr_t spot_on_ground_geo[] = {
 };
 
 // 0x170000E0
-const uintptr_t mario_TODO_geo_0000E0[] = {
+const GeoLayout mario_TODO_geo_0000E0[] = {
    GEO_SWITCH_CASE(6, geo_switch_anim_state),
    GEO_OPEN_NODE(),
       GEO_DISPLAY_LIST(LAYER_TRANSPARENT, stomp_smoke_seg4_dl_04025288),

@@ -15,14 +15,14 @@ extern const Gfx chilly_chief_seg6_dl_06002EB8[];
 extern const Gfx chilly_chief_seg6_dl_06002EF0[];
 extern const Gfx chilly_chief_seg6_dl_06002FC8[];
 extern const Gfx chilly_chief_seg6_dl_06003010[];
-extern const uintptr_t chilly_chief_geo[];
-extern const uintptr_t chilly_chief_big_geo[];
+extern const GeoLayout chilly_chief_geo[];
+extern const GeoLayout chilly_chief_big_geo[];
 extern const struct Animation *const chilly_chief_seg6_anims_06003994[];
 
 // moneybag
-extern const uintptr_t moneybag_geo_000000[];
-extern const uintptr_t moneybag_geo_000078[];
-extern const uintptr_t moneybag_geo[];
+extern const GeoLayout moneybag_geo_000000[];
+extern const GeoLayout moneybag_geo_000078[];
+extern const GeoLayout moneybag_geo[];
 extern const Gfx moneybag_seg6_dl_06005300[];
 extern const Gfx moneybag_seg6_dl_06005358[];
 extern const Gfx moneybag_seg6_dl_060053B8[];

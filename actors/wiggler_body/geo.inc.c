@@ -1,5 +1,5 @@
 // 0x0500C778
-const uintptr_t wiggler_body_geo[] = {
+const GeoLayout wiggler_body_geo[] = {
     GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x96, 0x64),
     GEO_OPEN_NODE(),
       GEO_SCALE(0, 16384),

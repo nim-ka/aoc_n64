@@ -1,5 +1,5 @@
 // 0x0C000000
-const uintptr_t monty_mole_geo[] = {
+const GeoLayout monty_mole_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

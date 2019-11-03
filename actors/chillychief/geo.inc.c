@@ -1,6 +1,6 @@
 // Why are these scripts compressed unlike the other ones?
 // 0x06003754
-const uintptr_t chilly_chief_geo[] = {
+const GeoLayout chilly_chief_geo[] = {
     GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0xC8, 0x46),
     GEO_OPEN_NODE(),
         GEO_SCALE(0, 0x7333),
@@ -46,7 +46,7 @@ const uintptr_t chilly_chief_geo[] = {
 };
 
 // 0x06003874
-const uintptr_t chilly_chief_big_geo[] = {
+const GeoLayout chilly_chief_big_geo[] = {
     GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0xC8, 0xD2),
     GEO_OPEN_NODE(),
         GEO_SCALE(0, 0xE666),

@@ -1,5 +1,5 @@
 // 0x0D000358
-const uintptr_t piranha_plant_geo[] = {
+const GeoLayout piranha_plant_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x9B, 200),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

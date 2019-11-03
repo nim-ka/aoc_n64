@@ -1,5 +1,5 @@
 // 0x0C000000
-const uintptr_t bubba_geo[] = {
+const GeoLayout bubba_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(2, geo_switch_anim_state),

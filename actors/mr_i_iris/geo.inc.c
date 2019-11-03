@@ -1,5 +1,5 @@
 // 0x0D00001C
-const uintptr_t mr_i_iris_geo[] = {
+const GeoLayout mr_i_iris_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(20, geo_switch_anim_state),

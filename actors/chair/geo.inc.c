@@ -1,5 +1,5 @@
 // 0x0C0000D8
-const uintptr_t haunted_chair_geo[] = {
+const GeoLayout haunted_chair_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x96, 100),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

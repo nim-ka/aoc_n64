@@ -4,7 +4,7 @@
 #include "types.h"
 
 // capswitch
-extern const uintptr_t cap_switch_geo[];
+extern const GeoLayout cap_switch_geo[];
 extern const Gfx capswitch_seg5_dl_05002D88[];
 extern const Gfx cap_switch_exclamation_seg5_dl_05002E00[];
 extern const Gfx capswitch_seg5_dl_05003020[];
@@ -18,9 +18,9 @@ extern const s16 capswitch_collision_050033D0[];
 extern const s16 capswitch_collision_05003448[];
 
 // springboard
-extern const uintptr_t springboard_top_geo[];
-extern const uintptr_t springboard_spring_geo[];
-extern const uintptr_t springboard_bottom_geo[];
+extern const GeoLayout springboard_top_geo[];
+extern const GeoLayout springboard_spring_geo[];
+extern const GeoLayout springboard_bottom_geo[];
 extern const Gfx springboard_checkerboard_seg5_dl_050016B8[];
 extern const Gfx springboard_spring_seg5_dl_05001800[];
 extern const Gfx springboard_checkerboard_seg5_dl_05001900[];

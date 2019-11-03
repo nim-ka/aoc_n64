@@ -1,5 +1,5 @@
 // 0x17000230
-const uintptr_t water_splash_geo[] = {
+const GeoLayout water_splash_geo[] = {
    GEO_SWITCH_CASE(8, geo_switch_anim_state),
    GEO_OPEN_NODE(),
       GEO_DISPLAY_LIST(LAYER_ALPHA, water_splash_seg4_dl_04032640),

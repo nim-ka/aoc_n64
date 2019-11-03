@@ -1,5 +1,5 @@
 // 0x0C00021C
-const uintptr_t mr_blizzard_hidden_geo[] = {
+const GeoLayout mr_blizzard_hidden_geo[] = {
    GEO_SCALE(0x00, 16384),
    GEO_OPEN_NODE(),
       GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, NULL),
@@ -48,7 +48,7 @@ const uintptr_t mr_blizzard_hidden_geo[] = {
 };
 
 // 0x0C000348
-const uintptr_t mr_blizzard_geo[] = {
+const GeoLayout mr_blizzard_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0xB4, 160),
    GEO_OPEN_NODE(),
       GEO_BRANCH_AND_LINK(mr_blizzard_hidden_geo),

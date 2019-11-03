@@ -4,7 +4,7 @@
 #include "types.h"
 
 // clam_shell
-extern const uintptr_t clam_shell_geo[];
+extern const GeoLayout clam_shell_geo[];
 extern const Gfx clam_shell_seg5_dl_050011A8[];
 extern const Gfx clam_shell_seg5_dl_05001238[];
 extern const Gfx clam_shell_seg5_dl_050012B8[];
@@ -54,11 +54,11 @@ extern const Gfx manta_seg5_dl_05006750[];
 extern const Gfx manta_seg5_dl_05006B08[];
 extern const Gfx manta_seg5_dl_05006B70[];
 extern const Gfx manta_seg5_dl_05006C08[];
-extern const uintptr_t manta_seg5_geo_05008D14[];
+extern const GeoLayout manta_seg5_geo_05008D14[];
 extern const struct Animation *const manta_seg5_anims_05008EB4[];
 
 // sushi
-extern const uintptr_t sushi_geo[];
+extern const GeoLayout sushi_geo[];
 extern const Gfx sushi_seg5_dl_05009CC0[];
 extern const Gfx sushi_seg5_dl_05009DD0[];
 extern const Gfx sushi_seg5_dl_05009F30[];
@@ -75,7 +75,7 @@ extern const Gfx sushi_seg5_dl_0500A990[];
 extern const struct Animation *const sushi_seg5_anims_0500AE54[];
 
 // unagi
-extern const uintptr_t unagi_geo[];
+extern const GeoLayout unagi_geo[];
 extern const Gfx unagi_seg5_dl_0500CCE0[];
 extern const Gfx unagi_seg5_dl_0500CD30[];
 extern const Gfx unagi_seg5_dl_0500CDD0[];

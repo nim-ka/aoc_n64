@@ -1,5 +1,5 @@
 // 0x16000040
-const uintptr_t explosion_geo[] = {
+const GeoLayout explosion_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(9, geo_switch_anim_state),

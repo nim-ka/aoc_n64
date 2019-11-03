@@ -1,5 +1,5 @@
 // 0x0F0005D0
-const uintptr_t breakable_box_geo[] = {
+const GeoLayout breakable_box_geo[] = {
    GEO_CULLING_RADIUS(500),
    GEO_OPEN_NODE(),
       GEO_SHADOW(SHADOW_SQUARE_PERMANENT, 0xB4, 240),
@@ -15,7 +15,7 @@ const uintptr_t breakable_box_geo[] = {
 };
 
 // 0x0F000610
-const uintptr_t breakable_box_small_geo[] = {
+const GeoLayout breakable_box_small_geo[] = {
    GEO_CULLING_RADIUS(500),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(2, geo_switch_anim_state),

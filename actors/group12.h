@@ -4,7 +4,7 @@
 #include "types.h"
 
 // bomb
-extern const uintptr_t bowser_bomb_geo[];
+extern const GeoLayout bowser_bomb_geo[];
 extern const Gfx bomb_seg6_dl_0605A7C0[];
 extern const Gfx bomb_seg6_dl_0605A7F8[];
 extern const Gfx bomb_seg6_dl_0605A830[];
@@ -12,12 +12,12 @@ extern const Gfx bomb_seg6_dl_0605A8A8[];
 extern const Gfx bomb_seg6_dl_0605A9C0[];
 
 // bowser
-extern const uintptr_t bowser_geo_0000D8[];
-extern const uintptr_t bowser_geo_000424[];
-extern const uintptr_t bowser_geo_000770[];
-extern const uintptr_t bowser_shadow_geo[];
-extern const uintptr_t bowser_geo[];
-extern const uintptr_t bowser2_geo[];
+extern const GeoLayout bowser_geo_0000D8[];
+extern const GeoLayout bowser_geo_000424[];
+extern const GeoLayout bowser_geo_000770[];
+extern const GeoLayout bowser_shadow_geo[];
+extern const GeoLayout bowser_geo[];
+extern const GeoLayout bowser2_geo[];
 extern const Gfx bowser_seg6_dl_06039110[];
 extern const Gfx bowser_seg6_dl_060391C8[];
 extern const Gfx bowser_seg6_dl_06039260[];
@@ -93,7 +93,7 @@ extern const struct Animation *const bowser_seg6_anims_06057690[];
 extern const s16 bowser_seg6_unkmoveshorts_060576FC[];
 
 // bowser_flame
-extern const uintptr_t bowser_flames_geo[];
+extern const GeoLayout bowser_flames_geo[];
 extern const Gfx flame_seg6_dl_0601C080[];
 extern const Gfx flame_seg6_dl_0601C0B0[];
 extern const Gfx flame_seg6_dl_0601C0C8[];
@@ -114,13 +114,13 @@ extern const Gfx flame_seg6_dl_0601C888[];
 extern const Gfx flame_seg6_dl_0601C928[];
 
 // impact_ring
-extern const uintptr_t invisible_bowser_accessory_geo[];
+extern const GeoLayout invisible_bowser_accessory_geo[];
 extern const Gfx impact_ring_seg6_dl_0601EA50[];
 extern const Gfx impact_ring_seg6_dl_0601EA88[];
 extern const Gfx impact_ring_seg6_dl_0601EAC0[];
 
 // impact_smoke
-extern const uintptr_t bowser_impact_smoke_geo[];
+extern const GeoLayout bowser_impact_smoke_geo[];
 extern const Gfx impact_smoke_seg6_dl_06062AA8[];
 extern const Gfx impact_smoke_seg6_dl_06062AD8[];
 extern const Gfx impact_smoke_seg6_dl_06062AF0[];
@@ -131,7 +131,7 @@ extern const Gfx impact_smoke_seg6_dl_06062C78[];
 extern const Gfx impact_smoke_seg6_dl_06062D18[];
 
 // yellow_sphere
-extern const uintptr_t bowser_1_yellow_sphere_geo[];
+extern const GeoLayout bowser_1_yellow_sphere_geo[];
 extern const Gfx yellow_sphere_seg6_dl_0601F388[];
 extern const Gfx yellow_sphere_seg6_dl_0601F3C0[];
 

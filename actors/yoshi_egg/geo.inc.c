@@ -1,5 +1,5 @@
 // 0x0C0001E4
-const uintptr_t yoshi_egg_geo[] = {
+const GeoLayout yoshi_egg_geo[] = {
    GEO_SCALE(0x00, 16384),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(8, geo_switch_anim_state),

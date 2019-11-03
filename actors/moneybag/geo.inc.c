@@ -1,5 +1,5 @@
 // 0x0D000000
-const uintptr_t moneybag_geo_000000[] = {
+const GeoLayout moneybag_geo_000000[] = {
    GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, NULL),
    GEO_OPEN_NODE(),
       GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, moneybag_seg6_dl_06005750),
@@ -19,7 +19,7 @@ const uintptr_t moneybag_geo_000000[] = {
 };
 
 // 0x0D000078
-const uintptr_t moneybag_geo_000078[] = {
+const GeoLayout moneybag_geo_000078[] = {
    GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, NULL),
    GEO_OPEN_NODE(),
       GEO_ANIMATED_PART(LAYER_TRANSPARENT, 0, 0, 0, moneybag_seg6_dl_06005750),
@@ -39,7 +39,7 @@ const uintptr_t moneybag_geo_000078[] = {
 };
 
 // 0x0D0000F0
-const uintptr_t moneybag_geo[] = {
+const GeoLayout moneybag_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0xC8, 100),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

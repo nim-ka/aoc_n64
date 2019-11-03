@@ -1,5 +1,5 @@
 // 0x0C000188
-const uintptr_t small_key_geo[] = {
+const GeoLayout small_key_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x96, 80),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

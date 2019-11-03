@@ -1,5 +1,5 @@
 // 0x0C000224
-const uintptr_t boo_geo[] = {
+const GeoLayout boo_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x96, 70),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 26214),

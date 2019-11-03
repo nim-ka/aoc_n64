@@ -4,7 +4,7 @@
 #include "types.h"
 
 // dorrie
-extern const uintptr_t dorrie_geo[];
+extern const GeoLayout dorrie_geo[];
 extern const Gfx dorrie_seg6_dl_0600B8E8[];
 extern const Gfx dorrie_seg6_dl_0600B940[];
 extern const Gfx dorrie_seg6_dl_0600BAF8[];
@@ -36,11 +36,11 @@ extern const s16 dorrie_seg6_collision_0600F644[];
 extern const s16 dorrie_seg6_collision_0600FBB8[];
 
 // mr_i_eyeball
-extern const uintptr_t mr_i_geo[];
+extern const GeoLayout mr_i_geo[];
 extern const Gfx mr_i_eyeball_seg6_dl_06002080[];
 
 // mr_i_iris
-extern const uintptr_t mr_i_iris_geo[];
+extern const GeoLayout mr_i_iris_geo[];
 extern const Gfx mr_i_iris_seg6_dl_06004170[];
 extern const Gfx mr_i_iris_seg6_dl_060041D8[];
 extern const Gfx mr_i_iris_seg6_dl_060041F0[];
@@ -48,7 +48,7 @@ extern const Gfx mr_i_iris_seg6_dl_06004208[];
 extern const Gfx mr_i_iris_seg6_dl_06004220[];
 
 // scuttlebug
-extern const uintptr_t scuttlebug_geo[];
+extern const GeoLayout scuttlebug_geo[];
 extern const Gfx scuttlebug_seg6_dl_06013988[];
 extern const Gfx scuttlebug_seg6_dl_060139C0[];
 extern const Gfx scuttlebug_seg6_dl_060139F8[];
@@ -71,7 +71,7 @@ extern const Gfx scuttlebug_seg6_dl_06014378[];
 extern const struct Animation *const scuttlebug_seg6_anims_06015064[];
 
 // snufit
-extern const uintptr_t snufit_geo[];
+extern const GeoLayout snufit_geo[];
 extern const Gfx snufit_seg6_dl_060091E0[];
 extern const Gfx snufit_seg6_dl_06009278[];
 extern const Gfx snufit_seg6_dl_060092F0[];
@@ -87,7 +87,7 @@ extern const Gfx snufit_seg6_dl_06009B18[];
 extern const Gfx snufit_seg6_dl_06009B68[];
 
 // swoop
-extern const uintptr_t swoop_geo[];
+extern const GeoLayout swoop_geo[];
 extern const Gfx swoop_seg6_dl_060065B8[];
 extern const Gfx swoop_seg6_dl_060066F8[];
 extern const Gfx swoop_seg6_dl_06006758[];

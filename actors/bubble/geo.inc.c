@@ -1,5 +1,5 @@
 // 0x17000000
-const uintptr_t bubble_geo[] = {
+const GeoLayout bubble_geo[] = {
    GEO_SWITCH_CASE(1, geo_switch_anim_state),
    GEO_OPEN_NODE(),
       GEO_DISPLAY_LIST(LAYER_ALPHA, bubble_seg4_dl_0401DD60),
@@ -8,7 +8,7 @@ const uintptr_t bubble_geo[] = {
 };
 
 // 0x1700001C
-const uintptr_t purple_marble_geo[] = {
+const GeoLayout purple_marble_geo[] = {
    GEO_SWITCH_CASE(1, geo_switch_anim_state),
    GEO_OPEN_NODE(),
       GEO_DISPLAY_LIST(LAYER_ALPHA, bubble_seg4_dl_0401DDE0),

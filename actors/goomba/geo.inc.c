@@ -1,5 +1,5 @@
 // 0x0F0006E4
-const uintptr_t goomba_geo[] = {
+const GeoLayout goomba_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x96, 100),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

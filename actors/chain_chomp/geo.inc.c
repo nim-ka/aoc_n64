@@ -1,5 +1,5 @@
 // 0x0D0005EC
-const uintptr_t chain_chomp_geo[] = {
+const GeoLayout chain_chomp_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x96, 200),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

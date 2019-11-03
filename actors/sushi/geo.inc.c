@@ -1,5 +1,5 @@
 // 0x0C000068
-const uintptr_t sushi_geo[] = {
+const GeoLayout sushi_geo[] = {
    GEO_CULLING_RADIUS(800),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

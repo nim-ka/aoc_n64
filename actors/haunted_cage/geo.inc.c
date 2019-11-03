@@ -1,5 +1,5 @@
 // 0x0C000274
-const uintptr_t haunted_cage_geo[] = {
+const GeoLayout haunted_cage_geo[] = {
    GEO_CULLING_RADIUS(300),
    GEO_OPEN_NODE(),
       GEO_SHADOW(SHADOW_CIRCLE_9_VERTS, 0x96, 100),

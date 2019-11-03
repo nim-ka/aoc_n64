@@ -4,7 +4,7 @@
 #include "types.h"
 
 // king_bobomb
-extern const uintptr_t king_bobomb_geo[];
+extern const GeoLayout king_bobomb_geo[];
 extern const Gfx king_bobomb_seg5_dl_0500A4B8[];
 extern const Gfx king_bobomb_seg5_dl_0500A4F0[];
 extern const Gfx king_bobomb_seg5_dl_0500A5A0[];
@@ -33,8 +33,8 @@ extern const Gfx king_bobomb_seg5_dl_0500B6C0[];
 extern const struct Animation *const king_bobomb_seg5_anims_0500FE30[];
 
 // water_bubble
-extern const uintptr_t water_bomb_geo[];
-extern const uintptr_t water_bomb_shadow_geo[];
+extern const GeoLayout water_bomb_geo[];
+extern const GeoLayout water_bomb_shadow_geo[];
 extern const Gfx water_bubble_seg5_dl_05010D30[];
 extern const Gfx water_bubble_seg5_dl_05011000[];
 

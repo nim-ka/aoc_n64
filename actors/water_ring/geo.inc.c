@@ -1,5 +1,5 @@
 // 0x0D000414
-const uintptr_t water_ring_geo[] = {
+const GeoLayout water_ring_geo[] = {
    GEO_SCALE(0x00, 32768),
    GEO_OPEN_NODE(),
       GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, NULL),

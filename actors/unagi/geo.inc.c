@@ -1,5 +1,5 @@
 // 0x0C00010C
-const uintptr_t unagi_geo[] = {
+const GeoLayout unagi_geo[] = {
    GEO_CULLING_RADIUS(2000),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

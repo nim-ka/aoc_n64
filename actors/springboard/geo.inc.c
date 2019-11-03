@@ -1,6 +1,6 @@
 // top of beta trampoline - unused
 // 0x0C000000
-const uintptr_t springboard_top_geo[] = {
+const GeoLayout springboard_top_geo[] = {
    GEO_CULLING_RADIUS(500),
    GEO_OPEN_NODE(),
       GEO_DISPLAY_LIST(LAYER_OPAQUE, springboard_checkerboard_seg5_dl_050016B8),
@@ -10,7 +10,7 @@ const uintptr_t springboard_top_geo[] = {
 
 // middle of beta trampoline - unused
 // 0x0C000018
-const uintptr_t springboard_spring_geo[] = {
+const GeoLayout springboard_spring_geo[] = {
    GEO_CULLING_RADIUS(500),
    GEO_OPEN_NODE(),
       GEO_DISPLAY_LIST(LAYER_OPAQUE, springboard_spring_seg5_dl_05001800),
@@ -20,7 +20,7 @@ const uintptr_t springboard_spring_geo[] = {
 
 // bottom of beta trampoline - unused
 // 0x0C000030
-const uintptr_t springboard_bottom_geo[] = {
+const GeoLayout springboard_bottom_geo[] = {
    GEO_CULLING_RADIUS(500),
    GEO_OPEN_NODE(),
       GEO_DISPLAY_LIST(LAYER_OPAQUE, springboard_checkerboard_seg5_dl_05001900),

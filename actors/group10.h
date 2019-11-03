@@ -4,7 +4,7 @@
 #include "types.h"
 
 // bird
-extern const uintptr_t birds_geo[];
+extern const GeoLayout birds_geo[];
 extern const Gfx birds_seg5_dl_05000528[];
 extern const Gfx birds_seg5_dl_05000598[];
 extern const Gfx birds_seg5_dl_05000600[];
@@ -12,9 +12,9 @@ extern const Gfx birds_seg5_dl_05000670[];
 extern const struct Animation *const birds_seg5_anims_050009E8[];
 
 // peach
-extern const uintptr_t peach_geo_000098[];
-extern const uintptr_t peach_geo_000254[];
-extern const uintptr_t peach_geo[];
+extern const GeoLayout peach_geo_000098[];
+extern const GeoLayout peach_geo_000254[];
+extern const GeoLayout peach_geo[];
 extern const Gfx peach_seg5_dl_05005648[];
 extern const Gfx peach_seg5_dl_05005750[];
 extern const Gfx peach_seg5_dl_05005780[];
@@ -68,7 +68,7 @@ extern const Gfx peach_seg5_us_dl_0500A188[];
 extern const struct Animation *const peach_seg5_anims_0501C41C[];
 
 // yoshi
-extern const uintptr_t yoshi_geo[];
+extern const GeoLayout yoshi_geo[];
 extern const Gfx yoshi_seg5_dl_0501D440[];
 extern const Gfx yoshi_seg5_dl_0501D488[];
 extern const Gfx yoshi_seg5_dl_0501D4E0[];

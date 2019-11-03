@@ -1,5 +1,5 @@
 // 0x0C000290
-const uintptr_t spiny_ball_geo[] = {
+const GeoLayout spiny_ball_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x96, 100),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

@@ -1,5 +1,5 @@
 // 0x16000E14
-const uintptr_t number_geo[] = {
+const GeoLayout number_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_SWITCH_CASE(10, geo_switch_anim_state),

@@ -1,5 +1,5 @@
 // 0x0D000090
-const uintptr_t invisible_bowser_accessory_geo[] = {
+const GeoLayout invisible_bowser_accessory_geo[] = {
    GEO_CULLING_RADIUS(10000),
    GEO_OPEN_NODE(),
       GEO_ASM(20, Geo18_8029D924),

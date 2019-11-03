@@ -1,5 +1,5 @@
 // 0x0C0001B4
-const uintptr_t mad_piano_geo[] = {
+const GeoLayout mad_piano_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x96, 100),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

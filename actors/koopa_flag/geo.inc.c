@@ -1,5 +1,5 @@
 // 0x0D000000
-const uintptr_t koopa_flag_geo[] = {
+const GeoLayout koopa_flag_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

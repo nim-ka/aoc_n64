@@ -1,5 +1,5 @@
 // 0x0C000048
-const uintptr_t cap_switch_geo[] = {
+const GeoLayout cap_switch_geo[] = {
    GEO_CULLING_RADIUS(600),
    GEO_OPEN_NODE(),
       GEO_DISPLAY_LIST(LAYER_TRANSPARENT_DECAL, cap_switch_exclamation_seg5_dl_05002E00),

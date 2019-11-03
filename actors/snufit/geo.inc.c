@@ -1,5 +1,5 @@
 // 0x0D0001A0
-const uintptr_t snufit_geo[] = {
+const GeoLayout snufit_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x96, 100),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

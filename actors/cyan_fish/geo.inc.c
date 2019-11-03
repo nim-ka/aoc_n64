@@ -1,5 +1,5 @@
 // 0x0D000324
-const uintptr_t cyan_fish_geo[] = {
+const GeoLayout cyan_fish_geo[] = {
    GEO_SCALE(0x00, 16384),
    GEO_OPEN_NODE(),
       GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, NULL),

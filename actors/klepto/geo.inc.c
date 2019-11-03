@@ -1,5 +1,5 @@
 // 0x0C000000
-const uintptr_t klepto_geo[] = {
+const GeoLayout klepto_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x96, 250),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 65536),

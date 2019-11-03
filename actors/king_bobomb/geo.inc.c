@@ -1,5 +1,5 @@
 // 0x0C000000
-const uintptr_t king_bobomb_geo[] = {
+const GeoLayout king_bobomb_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x96, 300),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

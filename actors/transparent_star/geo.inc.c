@@ -1,5 +1,5 @@
 // 0x16000F6C
-const uintptr_t transparent_star_geo[] = {
+const GeoLayout transparent_star_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x9B, 100),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),

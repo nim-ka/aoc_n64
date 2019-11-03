@@ -1,5 +1,5 @@
 // 0x0D000BB8 / 0BFC
-const uintptr_t bowser_impact_smoke_geo[] = {
+const GeoLayout bowser_impact_smoke_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
       GEO_ASM(0, Geo18_8029D924),

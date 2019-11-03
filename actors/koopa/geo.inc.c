@@ -1,5 +1,5 @@
 // 0x0D0000D0
-const uintptr_t koopa_without_shell_geo[] = {
+const GeoLayout koopa_without_shell_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x9B, 100),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
@@ -49,7 +49,7 @@ const uintptr_t koopa_without_shell_geo[] = {
 };
 
 // 0x0D000214
-const uintptr_t koopa_with_shell_geo[] = {
+const GeoLayout koopa_with_shell_geo[] = {
    GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0x9B, 100),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 16384),
