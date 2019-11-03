@@ -1,7 +1,8 @@
 #include <ultra64.h>
-#include <stdarg.h>
 #include <macros.h>
 #include <config.h>
+#include <stdarg.h>
+#include <stdio.h>
 
 #include "prevent_bss_reordering.h"
 #include "gd_types.h"

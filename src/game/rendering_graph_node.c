@@ -442,7 +442,7 @@ static void geo_process_billboard(struct GraphNodeBillboard *node) {
                    gCurGraphNodeCamera->roll);
     if (gCurGraphNodeHeldObject != NULL) {
         mtxf_scale_vec3f(gMatStack[gMatStackIndex], gMatStack[gMatStackIndex],
-                         gCurGraphNodeHeldObject->objNode->scale);
+                         gCurGraphNodeHeldObject->objNode->header.gfx.scale);
     } else if (gCurGraphNodeObject != NULL) {
         mtxf_scale_vec3f(gMatStack[gMatStackIndex], gMatStack[gMatStackIndex],
                          gCurGraphNodeObject->scale);
@@ -866,8 +866,8 @@ void geo_process_held_object(struct GraphNodeHeldObject *node) {
     if (node->fnNode.func != NULL) {
         node->fnNode.func(GEO_CONTEXT_RENDER, &node->fnNode.node, gMatStack[gMatStackIndex]);
     }
-    if (node->objNode != NULL && node->objNode->sharedChild != NULL) {
-        s32 hasAnimation = (node->objNode->node.flags & GRAPH_RENDER_HAS_ANIMATION) != 0;
+    if (node->objNode != NULL && node->objNode->header.gfx.sharedChild != NULL) {
+        s32 hasAnimation = (node->objNode->header.gfx.node.flags & GRAPH_RENDER_HAS_ANIMATION) != 0;
 
         translation[0] = node->translation[0] / 4.0f;
         translation[1] = node->translation[1] / 4.0f;
@@ -880,7 +880,7 @@ void geo_process_held_object(struct GraphNodeHeldObject *node) {
         gMatStack[gMatStackIndex + 1][3][2] = gMatStack[gMatStackIndex][3][2];
         mtxf_mul(gMatStack[gMatStackIndex + 1], mat, gMatStack[gMatStackIndex + 1]);
         mtxf_scale_vec3f(gMatStack[gMatStackIndex + 1], gMatStack[gMatStackIndex + 1],
-                         node->objNode->scale);
+                         node->objNode->header.gfx.scale);
         if (node->fnNode.func != NULL) {
             node->fnNode.func(GEO_CONTEXT_HELD_OBJ, &node->fnNode.node,
                               (struct AllocOnlyPool *) gMatStack[gMatStackIndex + 1]);
@@ -896,11 +896,11 @@ void geo_process_held_object(struct GraphNodeHeldObject *node) {
         gGeoTempState.data = gCurAnimData;
         gCurAnimType = 0;
         gCurGraphNodeHeldObject = (void *) node;
-        if (node->objNode->unk38.curAnim != NULL) {
-            geo_set_animation_globals(&node->objNode->unk38, hasAnimation);
+        if (node->objNode->header.gfx.unk38.curAnim != NULL) {
+            geo_set_animation_globals(&node->objNode->header.gfx.unk38, hasAnimation);
         }
 
-        geo_process_node_and_siblings(node->objNode->sharedChild);
+        geo_process_node_and_siblings(node->objNode->header.gfx.sharedChild);
         gCurGraphNodeHeldObject = NULL;
         gCurAnimType = gGeoTempState.type;
         gCurAnimEnabled = gGeoTempState.enabled;

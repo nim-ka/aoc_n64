@@ -4,6 +4,6 @@
 
 #include "make_const_nonconst.h"
 
-#include "build/eu/text/fr/dialog.inc.c"
-#include "build/eu/text/fr/level.inc.c"
-#include "build/eu/text/fr/star.inc.c"
+#include "text/fr/dialog.inc.c"
+#include "text/fr/level.inc.c"
+#include "text/fr/star.inc.c"

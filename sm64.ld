@@ -794,16 +794,12 @@ SECTIONS
       BUILD_DIR/assets/demo_data.o(.data);
       gSoundDataADSR = .;
       BUILD_DIR/sound/sound_data.ctl.o(.data);
-      . = ALIGN(0x10);
       gSoundDataRaw = .;
       BUILD_DIR/sound/sound_data.tbl.o(.data);
-      . = ALIGN(0x10);
       gMusicData = .;
       BUILD_DIR/sound/sequences.bin.o(.data);
-      . = ALIGN(0x10);
       gBankSetsData = .;
       BUILD_DIR/sound/bank_sets.o(.data);
-      . = ALIGN(0x10);
    }
    END_SEG(assets)
 

@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include <macros.h>
 #include <config.h>
+#include <stdio.h>
 #include "gd_types.h"
 #include "bad_declarations.h"
 #include "prevent_bss_reordering.h"

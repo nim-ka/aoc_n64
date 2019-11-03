@@ -1,5 +1,7 @@
 #include <ultra64.h>
 #include <macros.h>
+#include <stdio.h>
+
 #include "gd_types.h"
 #include "old_menu.h"
 #include "objects.h"

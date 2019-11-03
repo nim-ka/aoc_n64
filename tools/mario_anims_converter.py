@@ -137,10 +137,7 @@ try:
             structobj.append("{" + ",".join(arr) + "},")
 
     print("#include \"types.h\"")
-    print("")
-    print("#ifndef offsetof")
-    print("#define offsetof(st, m) ((size_t)&(((st *)0)->m))")
-    print("#endif")
+    print("#include \"stddef.h\"")
     print("")
 
     print("const struct MarioAnimsObj {")

@@ -9,8 +9,6 @@
 #include "level_update.h"
 #include "geo_misc.h"
 
-#include "bin/textures.h"
-
 
 /**
  * @file skybox.c
@@ -62,6 +60,17 @@ struct Skybox {
 struct Skybox sSkyBoxInfo[2];
 
 typedef const u8 *const SkyboxTexture[80];
+
+extern SkyboxTexture bbh_skybox_ptrlist;
+extern SkyboxTexture bidw_skybox_ptrlist;
+extern SkyboxTexture bitfs_skybox_ptrlist;
+extern SkyboxTexture bits_skybox_ptrlist;
+extern SkyboxTexture ccm_skybox_ptrlist;
+extern SkyboxTexture cloud_floor_skybox_ptrlist;
+extern SkyboxTexture clouds_skybox_ptrlist;
+extern SkyboxTexture ssl_skybox_ptrlist;
+extern SkyboxTexture water_skybox_ptrlist;
+extern SkyboxTexture wdw_skybox_ptrlist;
 
 SkyboxTexture *sSkyboxTextures[10] = {
     &water_skybox_ptrlist,
@@ -215,7 +224,7 @@ void draw_skybox_tile_grid(Gfx **dlist, s8 background, s8 player, s8 colorIndex)
         for (col = 0; col < 3; col++) {
             s32 tileIndex = sSkyBoxInfo[player].upperLeftTile + row * SKYBOX_COLS + col;
             const u8 *const texture =
-                (*(SkyboxTexture *) segmented_to_virtual((void *) sSkyboxTextures[background]))[tileIndex];
+                (*(SkyboxTexture *) segmented_to_virtual(sSkyboxTextures[background]))[tileIndex];
             Vtx *vertices = make_skybox_rect(tileIndex, colorIndex);
 
             gDPSetTextureImage((*dlist)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture);

@@ -497,7 +497,7 @@ struct GraphNodeBackground *init_graph_node_background(struct AllocOnlyPool *poo
  */
 struct GraphNodeHeldObject *init_graph_node_held_object(struct AllocOnlyPool *pool,
                                                         struct GraphNodeHeldObject *graphNode,
-                                                        struct GraphNodeObject *objNode,
+                                                        struct Object *objNode,
                                                         Vec3s translation,
                                                         GraphNodeFunc nodeFunc, s32 playerIndex) {
     if (pool != NULL) {

@@ -60,9 +60,6 @@ struct VblankHandler
     OSMesg msg;
 };
 
-// NOTE: Since ObjectNode is the first member of Object, it is difficult to determine
-// whether some of these pointers point to ObjectNode or Object.
-
 #define ANIM_FLAG_NOLOOP     (1 << 0) // 0x01
 #define ANIM_FLAG_FORWARD    (1 << 1) // 0x02
 #define ANIM_FLAG_2          (1 << 2) // 0x04
@@ -108,7 +105,6 @@ struct GraphNodeObject_sub
     /*0x10 0x48*/ s32 animAccel;
 };
 
-// TODO this is the first member of ObjectNode/Object
 struct GraphNodeObject
 {
     /*0x00*/ struct GraphNode node;
@@ -130,6 +126,9 @@ struct ObjectNode
     struct ObjectNode *next;
     struct ObjectNode *prev;
 };
+
+// NOTE: Since ObjectNode is the first member of Object, it is difficult to determine
+// whether some of these pointers point to ObjectNode or Object.
 
 struct Object
 {
@@ -330,12 +329,6 @@ struct MarioState
     /*0xBC*/ f32 peakHeight;
     /*0xC0*/ f32 quicksandDepth;
     /*0xC4*/ f32 unkC4;
-};
-
-struct StructGeo802D2360
-{
-    s32 unk0;
-    s32 *unk4;
 };
 
 #endif

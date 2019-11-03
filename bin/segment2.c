@@ -2075,16 +2075,11 @@ const u8 *const main_hud_camera_lut[] = {
     texture_hud_char_arrow_up, texture_hud_char_arrow_down,
 };
 
-#if defined(VERSION_US)
-#include "build/us/text/debug.inc.c"
-#include "build/us/text/dialog.inc.c"
-#include "build/us/text/level.inc.c"
-#include "build/us/text/star.inc.c"
-#elif defined(VERSION_JP) /* NTSC-J 1.0 */
-#include "build/jp/text/debug.inc.c"
-#include "build/jp/text/dialog.inc.c"
-#include "build/jp/text/level.inc.c"
-#include "build/jp/text/star.inc.c"
+#ifndef VERSION_EU
+#include "text/debug.inc.c"
+#include "text/dialog.inc.c"
+#include "text/level.inc.c"
+#include "text/star.inc.c"
 #endif
 
 UNUSED static const u64 segment2_unused_0 = 0;

@@ -1254,7 +1254,7 @@ s32 geo_switch_bowser_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx) {
     struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *) node;
     if (run == TRUE) {
         if (gCurGraphNodeHeldObject != NULL)
-            obj = (struct Object *) gCurGraphNodeHeldObject->objNode;
+            obj = gCurGraphNodeHeldObject->objNode;
         switch (sp36 = obj->oBowserEyesShut) {
             case 0: // eyes open, handle eye looking direction
                 func_802B70C8(obj, switchCase);
@@ -1278,7 +1278,7 @@ Gfx *Geo18_802B7D44(s32 a0, struct GraphNode *node, UNUSED s32 a2) {
         sp24 = (struct Object *) gCurGraphNodeObject;
         sp20 = (struct GraphNodeGenerated *) node;
         if (gCurGraphNodeHeldObject != 0)
-            sp24 = (struct Object *) gCurGraphNodeHeldObject->objNode;
+            sp24 = gCurGraphNodeHeldObject->objNode;
         if (sp24->oOpacity == 0xFF)
             sp20->fnNode.node.flags = (sp20->fnNode.node.flags & 0xFF) | 0x100;
         else

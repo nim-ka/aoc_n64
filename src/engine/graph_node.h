@@ -344,7 +344,7 @@ struct GraphNodeHeldObject
 {
     /*0x00*/ struct FnGraphNode fnNode;
     /*0x18*/ s32 playerIndex;
-    /*0x1C*/ struct GraphNodeObject *objNode; // assumed type
+    /*0x1C*/ struct Object *objNode;
     /*0x20*/ Vec3s translation;
 };
 
@@ -402,7 +402,7 @@ struct GraphNodeGenerated *init_graph_node_generated(struct AllocOnlyPool *pool,
 struct GraphNodeBackground *init_graph_node_background(struct AllocOnlyPool *pool, struct GraphNodeBackground *sp1c,
     u16 sp22, GraphNodeFunc sp24, s32 sp28);
 struct GraphNodeHeldObject *init_graph_node_held_object(struct AllocOnlyPool *pool, struct GraphNodeHeldObject *sp1c,
-    struct GraphNodeObject *objNode, Vec3s translation, GraphNodeFunc nodeFunc, s32 playerIndex);
+    struct Object *objNode, Vec3s translation, GraphNodeFunc nodeFunc, s32 playerIndex);
 
 struct GraphNode *geo_add_child(struct GraphNode *, struct GraphNode *);
 struct GraphNode *geo_remove_child(struct GraphNode *);

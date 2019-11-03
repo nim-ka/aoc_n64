@@ -1,5 +1,5 @@
-#ifndef _STDLIB_H_
-#define _STDLIB_H_
+#ifndef STDLIB_H
+#define STDLIB_H
 
 typedef struct lldiv_t
 {
@@ -13,7 +13,7 @@ typedef struct ldiv_t
     long rem;
 } ldiv_t;
 
-lldiv_t lldiv(long long, long long);
-ldiv_t ldiv(long, long);
+lldiv_t lldiv(long long num, long long denom);
+ldiv_t ldiv(long num, long denom);
 
 #endif

@@ -454,9 +454,9 @@ Gfx *geo_switch_mario_hand_grab_pos(s32 callContext, struct GraphNode *b, Mat4 *
     struct MarioState *sp24 = &gMarioStates[sp2C->playerIndex];
 
     if (callContext == GEO_CONTEXT_RENDER) {
-        sp2C->objNode = 0;
+        sp2C->objNode = NULL;
         if (sp24->heldObj != NULL) {
-            sp2C->objNode = (struct GraphNodeObject *) sp24->heldObj;
+            sp2C->objNode = sp24->heldObj;
             switch (sp24->marioBodyState->grabPos) {
                 case GRAB_POS_LIGHT_OBJ:
                     if (sp24->action & ACT_FLAG_THROWING) {

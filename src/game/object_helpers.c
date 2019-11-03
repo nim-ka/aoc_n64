@@ -78,8 +78,7 @@ Gfx *Geo18_8029D924(s32 run, struct GraphNode *node, UNUSED s32 sp48) {
         sp2C = (struct GraphNodeGenerated *) node;
 
         if (gCurGraphNodeHeldObject) {
-            sp34 = (struct Object *)
-                       gCurGraphNodeHeldObject->objNode; // TODO: change this to object pointer?
+            sp34 = gCurGraphNodeHeldObject->objNode;
         }
 
         sp28 = sp34->oOpacity;
@@ -153,8 +152,8 @@ s32 geo_switch_anim_state(s32 run, struct GraphNode *node) {
         // cast the pointer.
         switchCase = (struct GraphNodeSwitchCase *) node;
 
-        if (gCurGraphNodeHeldObject != 0) {
-            obj = (struct Object *) gCurGraphNodeHeldObject->objNode;
+        if (gCurGraphNodeHeldObject != NULL) {
+            obj = gCurGraphNodeHeldObject->objNode;
         }
 
         // if the case is greater than the number of cases, set to 0 to avoid overflowing

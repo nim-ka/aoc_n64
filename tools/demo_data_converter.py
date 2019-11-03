@@ -63,10 +63,7 @@ def main():
         structobj.append("{" + ",".join(hex(x) for x in demobytes) + "},")
 
     print("#include \"types.h\"")
-    print("")
-    print("#ifndef offsetof")
-    print("#define offsetof(st, m) ((size_t)&(((st *)0)->m))")
-    print("#endif")
+    print("#include \"stddef.h\"")
     print("")
 
     print("struct DemoInputsObj {")

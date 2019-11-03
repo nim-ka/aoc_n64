@@ -67,7 +67,7 @@ Gfx *func_802E2F58(s32 arg0, struct Object *arg1, UNUSED s32 arg2) {
         sp28 = arg1;
         sp24 = arg1;
         if (gCurGraphNodeHeldObject != NULL) {
-            sp2c = (struct Object *) gCurGraphNodeHeldObject->objNode;
+            sp2c = gCurGraphNodeHeldObject->objNode;
         }
 
         sp34 = alloc_display_list(3 * sizeof(Gfx));

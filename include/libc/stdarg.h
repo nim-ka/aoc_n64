@@ -1,7 +1,5 @@
-#ifndef _STDARG_H_
-#define _STDARG_H_
-
-#include <ultra64.h>
+#ifndef STDARG_H
+#define STDARG_H
 
 // When not building with IDO, use the builtin vaarg macros for portability.
 #ifndef __sgi

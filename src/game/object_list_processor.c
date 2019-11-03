@@ -482,7 +482,7 @@ void spawn_objects_from_info(UNUSED s32 unused, struct SpawnInfo *spawnInfo) {
                 geo_make_first_child(&object->header.gfx.node);
             }
 
-            geo_obj_init_spawninfo((struct GraphNodeObject *) object, spawnInfo);
+            geo_obj_init_spawninfo(&object->header.gfx, spawnInfo);
 
             object->oPosX = spawnInfo->startPos[0];
             object->oPosY = spawnInfo->startPos[1];

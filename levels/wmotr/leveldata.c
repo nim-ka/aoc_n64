@@ -5,7 +5,7 @@
 #include "level_misc_macros.h"
 #include "macro_preset_names.h"
 #include "special_preset_names.h"
-#include "bin/textures.h"
+#include "textures.h"
 
 #include "make_const_nonconst.h"
 #include "levels/wmotr/texture.inc.c"
