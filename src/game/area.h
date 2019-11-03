@@ -210,14 +210,14 @@ struct WarpTransitionData
     /*0x01*/ u8 green;
     /*0x02*/ u8 blue;
 
-    /*0x04*/ s16 startCircleRadius;
-    /*0x06*/ s16 endCircleRadius;
-    /*0x08*/ s16 startCircleX;
-    /*0x0A*/ s16 startCircleY;
-    /*0x0C*/ s16 endCircleX;
-    /*0x0E*/ s16 endCircleY;
+    /*0x04*/ s16 startTexRadius;
+    /*0x06*/ s16 endTexRadius;
+    /*0x08*/ s16 startTexX;
+    /*0x0A*/ s16 startTexY;
+    /*0x0C*/ s16 endTexX;
+    /*0x0E*/ s16 endTexY;
 
-    /*0x10*/ s16 unk10;
+    /*0x10*/ s16 texTimer; // always 0, does seems to affect transition when disabled
 };
 
 #define WARP_TRANSITION_FADE_FROM_COLOR  0x00
