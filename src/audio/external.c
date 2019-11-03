@@ -24,11 +24,11 @@
 
 // No-op printf macro which leaves string literals in rodata in IDO. (IDO
 // doesn't support variadic macros, so instead they let the parameter list
-// expand to a no-op comma expression.) See goddard/gd_main.h.
-#ifdef __GNUC__
-#define stubbed_printf(...)
-#else
+// expand to a no-op comma expression.) See also goddard/gd_main.h.
+#ifdef __sgi
 #define stubbed_printf
+#else
+#define stubbed_printf(...)
 #endif
 
 struct Sound {

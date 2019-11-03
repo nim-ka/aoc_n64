@@ -1,6 +1,5 @@
 #include <ultra64.h>
 #include <macros.h>
-#include <config.h>
 #include <stdarg.h>
 #include <stdio.h>
 
@@ -920,7 +919,7 @@ void gd_printf(const char *format, ...) {
     va_end(args);
 
     *csr = '\0';
-    if ((intptr_t) csr - (intptr_t) buf >= ARRAY_COUNT(buf) - 1) {
+    if (csr - buf >= ARRAY_COUNT(buf) - 1) {
         fatal_printf("printf too long");
     }
 }
@@ -1418,7 +1417,7 @@ struct GdDisplayList *create_child_gdl(s32 id, struct GdDisplayList *srcDl) {
 //! @bug No return statement, despite return value being used.
 //!      Goddard lucked out that `v0` return from alloc_displaylist()
 //!      is not overwriten, as that pointer is what should be returned
-#if BUGFIX_GODDARD_MISSING_RETURN
+#ifdef AVOID_UB
     return newDl;
 #endif
 }
@@ -2720,7 +2719,7 @@ s32 setup_view_buffers(const char *name, struct ObjView *view, UNUSED s32 ulx, U
 //!      doesn't use four of its parameters, this function may have
 //!      had a fair amount of its code commented out. In game, the
 //!      returned value is always 0, so the fix returns that value
-#if BUGFIX_GODDARD_MISSING_RETURN
+#ifdef NON_MATCHING
     return 0;
 #endif
 }

@@ -6,29 +6,31 @@ default: all
 
 ### Build Options ###
 
+# These options can either be changed by modifying the makefile, or
+# by building with 'make SETTING=value'. 'make clean' may be required.
+
 # Version of the game to build
 VERSION ?= us
 # Graphics microcode used
 GRUCODE ?= f3d_old
 # If COMPARE is 1, check the output sha1sum when building 'all'
 COMPARE ?= 1
-# If NON_MATCHING is 1, define the NON_MATCHING macro when building
+# If NON_MATCHING is 1, define the NON_MATCHING and AVOID_UB macros when building (recommended)
 NON_MATCHING ?= 0
-# If ENDIAN_IND is 1, enable non-matching code changes that try to ensure
-# endianness independence
-ENDIAN_IND ?= 0
+# Build for the N64 (turn this off for ports)
+TARGET_N64 ?= 1
 
 # Release
 
 ifeq ($(VERSION),jp)
-  VERSION_CFLAGS := -DVERSION_JP=1
+  VERSION_CFLAGS := -DVERSION_JP
   VERSION_ASFLAGS := --defsym VERSION_JP=1
   GRUCODE_CFLAGS := -DF3D_OLD
   GRUCODE_ASFLAGS := --defsym F3D_OLD=1
   TARGET := sm64.jp
 else
 ifeq ($(VERSION),us)
-  VERSION_CFLAGS := -DVERSION_US=1
+  VERSION_CFLAGS := -DVERSION_US
   VERSION_ASFLAGS := --defsym VERSION_US=1
   GRUCODE_CFLAGS := -DF3D_OLD
   GRUCODE_ASFLAGS := --defsym F3D_OLD=1
@@ -36,7 +38,7 @@ ifeq ($(VERSION),us)
 else
 ifeq ($(VERSION),eu)
   $(warning Building EU is experimental and is prone to breaking. Try at your own risk.)
-  VERSION_CFLAGS := -DVERSION_EU=1
+  VERSION_CFLAGS := -DVERSION_EU
   VERSION_ASFLAGS := --defsym VERSION_EU=1
   GRUCODE_CFLAGS := -DF3D_NEW
   GRUCODE_ASFLAGS := --defsym F3D_NEW=1
@@ -50,13 +52,13 @@ endif
 # Microcode
 
 ifeq ($(GRUCODE),f3dex) # Fast3DEX
-  GRUCODE_CFLAGS := -DF3DEX_GBI=1
+  GRUCODE_CFLAGS := -DF3DEX_GBI
   GRUCODE_ASFLAGS := --defsym F3DEX_GBI_SHARED=1 --defsym F3DEX_GBI=1
   TARGET := $(TARGET).f3dex
   COMPARE := 0
 else
 ifeq ($(GRUCODE), f3dex2) # Fast3DEX2
-  GRUCODE_CFLAGS := -DF3DEX_GBI_2=1
+  GRUCODE_CFLAGS := -DF3DEX_GBI_2
   GRUCODE_ASFLAGS := --defsym F3DEX_GBI_SHARED=1 --defsym F3DEX_GBI_2=1
   TARGET := $(TARGET).f3dex2
   COMPARE := 0
@@ -69,7 +71,7 @@ ifeq ($(GRUCODE),f3d_new) # Fast3D 2.0H (Shindou)
 else
 ifeq ($(GRUCODE),f3dzex) # Fast3DZEX (2.0J / Animal Forest - Dōbutsu no Mori)
   $(warning Fast3DZEX is experimental. Try at your own risk.)
-  GRUCODE_CFLAGS := -DF3DEX_GBI_2=1
+  GRUCODE_CFLAGS := -DF3DEX_GBI_2
   GRUCODE_ASFLAGS := --defsym F3DEX_GBI_SHARED=1 --defsym F3DZEX_GBI=1
   TARGET := $(TARGET).f3dzex
   COMPARE := 0
@@ -78,13 +80,12 @@ endif
 endif
 endif
 
-ifeq ($(NON_MATCHING),1)
-  VERSION_CFLAGS := $(VERSION_CFLAGS) -DNON_MATCHING=1
-  COMPARE := 0
+ifeq ($(TARGET_N64),0)
+  NON_MATCHING := 1
 endif
 
-ifeq ($(ENDIAN_IND),1)
-  VERSION_CFLAGS := $(VERSION_CFLAGS) -DENDIAN_IND=1
+ifeq ($(NON_MATCHING),1)
+  VERSION_CFLAGS := $(VERSION_CFLAGS) -DNON_MATCHING -DAVOID_UB
   COMPARE := 0
 endif
 
@@ -191,10 +192,10 @@ GODDARD_O_FILES := $(foreach file,$(GODDARD_C_FILES),$(BUILD_DIR)/$(file:.c=.o))
 # Automatic dependency files
 DEP_FILES := $(O_FILES:.o=.d) $(ULTRA_O_FILES:.o=.d) $(GODDARD_O_FILES:.o=.d) $(BUILD_DIR)/$(LD_SCRIPT).d
 
-# Files with NON_MATCHING ifdefs
-NON_MATCHING_C_FILES != grep -rl NON_MATCHING $(wildcard src/audio/*.c) $(wildcard src/game/*.c)
-NON_MATCHING_O_FILES = $(foreach file,$(NON_MATCHING_C_FILES),$(BUILD_DIR)/$(file:.c=.o))
-NON_MATCHING_DEP = $(BUILD_DIR)/src/audio/non_matching_dep
+# Files with GLOBAL_ASM blocks
+GLOBAL_ASM_C_FILES != grep -rl GLOBAL_ASM $(wildcard src/audio/*.c) $(wildcard src/game/*.c)
+GLOBAL_ASM_O_FILES = $(foreach file,$(GLOBAL_ASM_C_FILES),$(BUILD_DIR)/$(file:.c=.o))
+GLOBAL_ASM_DEP = $(BUILD_DIR)/src/audio/non_matching_dep
 
 # Segment elf files
 SEG_FILES := $(SEGMENT_ELF_FILES) $(ACTOR_ELF_FILES) $(LEVEL_ELF_FILES)
@@ -225,13 +226,18 @@ OBJDUMP   := $(CROSS)objdump
 OBJCOPY   := $(CROSS)objcopy
 PYTHON    := python3
 
-INCLUDE_CFLAGS := -I include -I include/libc -I $(BUILD_DIR) -I $(BUILD_DIR)/include -I src -I .
+ifeq ($(TARGET_N64),1)
+  TARGET_CFLAGS := -nostdinc -I include/libc -DTARGET_N64
+  CC_CFLAGS := -fno-builtin
+endif
+
+INCLUDE_CFLAGS := -I include -I $(BUILD_DIR) -I $(BUILD_DIR)/include -I src -I .
 
 # Check code syntax with host compiler
-CC_CHECK := gcc -fsyntax-only -fsigned-char -nostdinc -fno-builtin $(INCLUDE_CFLAGS) -std=gnu90 -Wall -Wextra -Wno-format-security -DNON_MATCHING $(VERSION_CFLAGS) $(GRUCODE_CFLAGS) -DTARGET_N64
+CC_CHECK := gcc -fsyntax-only -fsigned-char $(CC_CFLAGS) $(TARGET_CFLAGS) $(INCLUDE_CFLAGS) -std=gnu90 -Wall -Wextra -Wno-format-security -DNON_MATCHING -DAVOID_UB $(VERSION_CFLAGS) $(GRUCODE_CFLAGS)
 
 ASFLAGS := -march=vr4300 -mabi=32 -I include -I $(BUILD_DIR) $(VERSION_ASFLAGS) $(GRUCODE_ASFLAGS)
-CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn $(OPT_FLAGS) -signed $(INCLUDE_CFLAGS) $(VERSION_CFLAGS) $(MIPSISET) $(GRUCODE_CFLAGS) -DTARGET_N64
+CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -signed $(OPT_FLAGS) $(TARGET_CFLAGS) $(INCLUDE_CFLAGS) $(VERSION_CFLAGS) $(MIPSISET) $(GRUCODE_CFLAGS)
 OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
 SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
 LDFLAGS := -T undefined_syms.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.$(VERSION).map --no-check-sections $(SYMBOL_LINKING_FLAGS)
@@ -420,7 +426,7 @@ $(BUILD_DIR)/assets/demo_data.c: assets/demo_data.json $(wildcard assets/demos/*
 # Source code
 $(BUILD_DIR)/src/goddard/%.o: OPT_FLAGS := -g
 $(BUILD_DIR)/src/goddard/%.o: MIPSISET := -mips1
-$(NON_MATCHING_O_FILES): CC := $(PYTHON) tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
+$(GLOBAL_ASM_O_FILES): CC := $(PYTHON) tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
 $(BUILD_DIR)/src/audio/%.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0
 $(BUILD_DIR)/src/audio/load.o: OPT_FLAGS := -O2 -framepointer -Wo,-loopunroll,0
 $(BUILD_DIR)/lib/src/%.o: OPT_FLAGS :=
@@ -438,10 +444,10 @@ $(BUILD_DIR)/lib/src/_Ldtob.o: OPT_FLAGS := -O3
 $(BUILD_DIR)/lib/src/_Printf.o: OPT_FLAGS := -O3
 endif
 
-# Rebuild files with '#ifdef NON_MATCHING' when that macro changes.
-$(NON_MATCHING_O_FILES): $(NON_MATCHING_DEP).$(NON_MATCHING)
-$(NON_MATCHING_DEP).$(NON_MATCHING):
-	@rm -f $(NON_MATCHING_DEP).*
+# Rebuild files with 'GLOBAL_ASM' if the NON_MATCHING macro macro changes.
+$(GLOBAL_ASM_O_FILES): $(GLOBAL_ASM_DEP).$(NON_MATCHING)
+$(GLOBAL_ASM_DEP).$(NON_MATCHING):
+	@rm -f $(GLOBAL_ASM_DEP).*
 	touch $@
 
 $(BUILD_DIR)/lib/src/math/%.o: lib/src/math/%.c

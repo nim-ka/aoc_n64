@@ -217,7 +217,7 @@ struct Struct8033B2B8
 // actually return a value. This causes undefined behavior, which we'd rather
 // avoid on modern GCC. Hence, typedef. Interestingly, the void vs s32
 // difference doesn't affect -g codegen, only -O2.
-#if BUGFIXES_CRITICAL
+#ifdef AVOID_UB
 typedef void CmdRet;
 #else
 typedef s32 CmdRet;

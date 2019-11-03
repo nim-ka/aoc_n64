@@ -25,7 +25,7 @@ extern s32 load_mario_head(void (*aniFn)(struct ObjAnimator *));
 extern void load_shapes2(void);
 
 // see bad_declarations.h
-#if !GD_USE_BAD_DECLARATIONS
+#ifndef GD_USE_BAD_DECLARATIONS
 extern struct ObjFace* make_face_with_colour(f32, f32, f32);
 #endif
 

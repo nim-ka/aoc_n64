@@ -1,6 +1,5 @@
 #include <ultra64.h>
 #include <macros.h>
-#include <config.h>
 #include <stdio.h>
 
 #include "gd_types.h"
@@ -1145,7 +1144,7 @@ s32 create_shape_gddl(struct ObjShape *s) {
         printf("Generated 'UNKNOWN' (%d) display list ok.(%d)\n", shapedl, enddl);
     }
 
-#if BUGFIX_GODDARD_MISSING_RETURN
+#ifdef AVOID_UB
     return shapedl;
 #endif
 }

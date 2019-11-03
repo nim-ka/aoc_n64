@@ -1719,7 +1719,7 @@ typedef struct {
  */
 typedef union {
 	Gwords		words;
-#if !defined(F3D_OLD) && !defined(__x86_64__) && !defined(__i386__)
+#if !defined(F3D_OLD) && IS_BIG_ENDIAN && !IS_64_BIT
 	Gdma		dma;
 	Gtri		tri;
 	Gline3D		line;
@@ -1738,7 +1738,7 @@ typedef union {
 	Gsettilesize	settilesize;
 	Gloadtlut	loadtlut;
 #endif
-        long long int	force_structure_alignment;
+	long long int	force_structure_alignment;
 } Gfx;
 
 /*
