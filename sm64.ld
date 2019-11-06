@@ -75,6 +75,11 @@ SECTIONS
    }
    END_SEG(boot)
 
+   . = 0x80000400;
+   BEGIN_NOLOAD(zbuffer) {
+      BUILD_DIR/src/buffers/zbuffer.o(.bss*);
+   }
+
    /* lib/src/__osDevMgrMain.c and lib/src/osCreateViManager.c contain infinite
     * loops compiled without -g, which cause the return statements and the .o
     * files themselves to be aligned to 32-byte boundaries. But in the binary,
