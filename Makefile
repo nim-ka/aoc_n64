@@ -453,7 +453,7 @@ $(GLOBAL_ASM_DEP).$(NON_MATCHING):
 $(BUILD_DIR)/lib/src/math/%.o: lib/src/math/%.c
 	@$(CC_CHECK) -MMD -MP -MT $@ -MF $(BUILD_DIR)/lib/src/math/$*.d $<
 	$(CC) -c $(CFLAGS) -o $@ $<
-	tools/patch_libultra_math $@ || rm $@
+	tools/patch_libultra_math $@
 
 $(BUILD_DIR)/%.o: %.c
 	@$(CC_CHECK) -MMD -MP -MT $@ -MF $(BUILD_DIR)/$*.d $<
@@ -489,7 +489,7 @@ $(BUILD_DIR)/$(TARGET).objdump: $(ELF)
 
 
 .PHONY: all clean distclean default diff test load libultra
-.PRECIOUS: $(BUILD_DIR)/bin/%.elf $(SOUND_BIN_DIR)/%.ctl $(SOUND_BIN_DIR)/%.tbl $(SOUND_SAMPLE_TABLES) $(SOUND_BIN_DIR)/%.s  $(BUILD_DIR)/%
+.PRECIOUS: $(BUILD_DIR)/bin/%.elf $(SOUND_BIN_DIR)/%.ctl $(SOUND_BIN_DIR)/%.tbl $(SOUND_SAMPLE_TABLES) $(SOUND_BIN_DIR)/%.s $(BUILD_DIR)/%
 .DELETE_ON_ERROR:
 
 # Remove built-in rules, to improve performance
