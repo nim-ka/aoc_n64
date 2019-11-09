@@ -2,6 +2,7 @@
 #define _AUDIO_EFFECTS_H
 
 #include "internal.h"
+#include "platform_info.h"
 
 #define ADSR_STATE_DISABLED 0
 #define ADSR_STATE_INITIAL 1
@@ -21,6 +22,14 @@
 #define ADSR_HANG -1
 #define ADSR_GOTO -2
 #define ADSR_RESTART -3
+
+// Envelopes are always stored as big endian, to match sequence files which are
+// byte blobs and can embed envelopes. Hence this byteswapping macro.
+#if IS_BIG_ENDIAN
+#define BSWAP16(x) (x)
+#else
+#define BSWAP16(x) (((x) & 0xff) << 8 | (((x) >> 8) & 0xff))
+#endif
 
 void sequence_player_process_sound(struct SequencePlayer *seqPlayer);
 void note_vibrato_update(struct Note *note);

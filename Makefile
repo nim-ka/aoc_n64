@@ -134,7 +134,7 @@ LEVEL_DIRS := $(patsubst levels/%,%,$(dir $(wildcard levels/*/header.h)))
 
 # Directories containing source files
 SRC_DIRS := src src/engine src/game src/audio src/menu src/buffers actors levels text bin data assets
-ASM_DIRS := asm lib sound
+ASM_DIRS := asm lib
 BIN_DIRS := bin bin/$(VERSION)
 
 ULTRA_SRC_DIRS := lib/src lib/src/math
@@ -193,7 +193,7 @@ GODDARD_O_FILES := $(foreach file,$(GODDARD_C_FILES),$(BUILD_DIR)/$(file:.c=.o))
 DEP_FILES := $(O_FILES:.o=.d) $(ULTRA_O_FILES:.o=.d) $(GODDARD_O_FILES:.o=.d) $(BUILD_DIR)/$(LD_SCRIPT).d
 
 # Files with GLOBAL_ASM blocks
-GLOBAL_ASM_C_FILES != grep -rl GLOBAL_ASM $(wildcard src/audio/*.c) $(wildcard src/game/*.c)
+GLOBAL_ASM_C_FILES != grep -rl 'GLOBAL_ASM(' $(wildcard src/audio/*.c) $(wildcard src/game/*.c)
 GLOBAL_ASM_O_FILES = $(foreach file,$(GLOBAL_ASM_C_FILES),$(BUILD_DIR)/$(file:.c=.o))
 GLOBAL_ASM_DEP = $(BUILD_DIR)/src/audio/non_matching_dep
 
@@ -241,6 +241,7 @@ CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -signed $(OPT_F
 OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
 SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
 LDFLAGS := -T undefined_syms.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.$(VERSION).map --no-check-sections $(SYMBOL_LINKING_FLAGS)
+ENDIAN_BITWIDTH := $(BUILD_DIR)/endian-and-bitwidth
 
 ifeq ($(shell getconf LONG_BIT), 32)
   # Work around memory allocation bug in QEMU
@@ -396,17 +397,24 @@ $(BUILD_DIR)/%.table: %.aiff
 $(BUILD_DIR)/%.aifc: $(BUILD_DIR)/%.table %.aiff
 	$(VADPCM_ENC) -c $^ $@
 
-$(SOUND_BIN_DIR)/sound_data.ctl: sound/sound_banks/ $(SOUND_BANK_FILES) $(SOUND_SAMPLE_AIFCS)
-	$(PYTHON) tools/assemble_sound.py $(BUILD_DIR)/sound/samples/ sound/sound_banks/ $(SOUND_BIN_DIR)/sound_data.ctl $(SOUND_BIN_DIR)/sound_data.tbl $(VERSION_CFLAGS)
+$(ENDIAN_BITWIDTH): tools/determine-endian-bitwidth.c
+	$(CC) -c $(CFLAGS) -o $@.dummy2 $< 2>$@.dummy1; true
+	grep -o 'msgbegin --endian .* --bitwidth .* msgend' $@.dummy1 > $@.dummy2
+	head -n1 <$@.dummy2 | cut -d' ' -f2-5 > $@
+	@rm $@.dummy1
+	@rm $@.dummy2
+
+$(SOUND_BIN_DIR)/sound_data.ctl: sound/sound_banks/ $(SOUND_BANK_FILES) $(SOUND_SAMPLE_AIFCS) $(ENDIAN_BITWIDTH)
+	$(PYTHON) tools/assemble_sound.py $(BUILD_DIR)/sound/samples/ sound/sound_banks/ $(SOUND_BIN_DIR)/sound_data.ctl $(SOUND_BIN_DIR)/sound_data.tbl $(VERSION_CFLAGS) $$(cat $(ENDIAN_BITWIDTH))
 
 $(SOUND_BIN_DIR)/sound_data.tbl: $(SOUND_BIN_DIR)/sound_data.ctl
-	touch $@
+	@true
 
-$(SOUND_BIN_DIR)/sequences.bin: $(SOUND_BANK_FILES) sound/sequences.json sound/sequences/ sound/sequences/$(VERSION)/ $(SOUND_SEQUENCE_FILES)
-	$(PYTHON) tools/assemble_sound.py --sequences $@ $(SOUND_BIN_DIR)/bank_sets sound/sound_banks/ sound/sequences.json $(SOUND_SEQUENCE_FILES) $(VERSION_CFLAGS)
+$(SOUND_BIN_DIR)/sequences.bin: $(SOUND_BANK_FILES) sound/sequences.json sound/sequences/ sound/sequences/$(VERSION)/ $(SOUND_SEQUENCE_FILES) $(ENDIAN_BITWIDTH)
+	$(PYTHON) tools/assemble_sound.py --sequences $@ $(SOUND_BIN_DIR)/bank_sets sound/sound_banks/ sound/sequences.json $(SOUND_SEQUENCE_FILES) $(VERSION_CFLAGS) $$(cat $(ENDIAN_BITWIDTH))
 
 $(SOUND_BIN_DIR)/bank_sets: $(SOUND_BIN_DIR)/sequences.bin
-	touch $@
+	@true
 
 $(SOUND_BIN_DIR)/%.m64: $(SOUND_BIN_DIR)/%.o
 	$(OBJCOPY) -j .rodata $< -O binary $@
@@ -426,7 +434,6 @@ $(BUILD_DIR)/assets/demo_data.c: assets/demo_data.json $(wildcard assets/demos/*
 # Source code
 $(BUILD_DIR)/src/goddard/%.o: OPT_FLAGS := -g
 $(BUILD_DIR)/src/goddard/%.o: MIPSISET := -mips1
-$(GLOBAL_ASM_O_FILES): CC := $(PYTHON) tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
 $(BUILD_DIR)/src/audio/%.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0
 $(BUILD_DIR)/src/audio/load.o: OPT_FLAGS := -O2 -framepointer -Wo,-loopunroll,0
 $(BUILD_DIR)/lib/src/%.o: OPT_FLAGS :=
@@ -444,7 +451,11 @@ $(BUILD_DIR)/lib/src/_Ldtob.o: OPT_FLAGS := -O3
 $(BUILD_DIR)/lib/src/_Printf.o: OPT_FLAGS := -O3
 endif
 
-# Rebuild files with 'GLOBAL_ASM' if the NON_MATCHING macro macro changes.
+ifeq ($(NON_MATCHING),0)
+$(GLOBAL_ASM_O_FILES): CC := $(PYTHON) tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
+endif
+
+# Rebuild files with 'GLOBAL_ASM' if the NON_MATCHING flag changes.
 $(GLOBAL_ASM_O_FILES): $(GLOBAL_ASM_DEP).$(NON_MATCHING)
 $(GLOBAL_ASM_DEP).$(NON_MATCHING):
 	@rm -f $(GLOBAL_ASM_DEP).*
