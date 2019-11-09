@@ -1247,7 +1247,7 @@ void func_802B70C8(struct Object *a0, struct GraphNodeSwitchCase *switchCase) {
  * state. Checks whether oBowserEyesShut is TRUE and closes eyes if so and processes
  * direction otherwise.
  */
-s32 geo_switch_bowser_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx) {
+Gfx *geo_switch_bowser_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx) {
     UNUSED s16 sp36;
     UNUSED s32 unused;
     struct Object *obj = (struct Object *) gCurGraphNodeObject;
@@ -1265,7 +1265,7 @@ s32 geo_switch_bowser_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx) {
         }
         obj->oBowserUnk1AE++;
     }
-    return 0;
+    return NULL;
 }
 
 Gfx *Geo18_802B7D44(s32 a0, struct GraphNode *node, UNUSED s32 a2) {

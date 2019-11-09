@@ -2187,7 +2187,7 @@ Gfx *geo_file_select_strings_and_menu_cursor(s32 callContext, UNUSED struct Grap
  * Relocates cursor position of the last save if the game goes back to the Mario Screen
  * either completing a course choosing "SAVE & QUIT" or having a game over.
  */
-void lvl_init_menu_values_and_cursor_pos(UNUSED s32 arg, UNUSED s32 unused) {
+s32 lvl_init_menu_values_and_cursor_pos(UNUSED s32 arg, UNUSED s32 unused) {
     sSelectedButtonID = MENU_BUTTON_NONE;
     sCurrentMenuLevel = MENU_LAYER_MAIN;
     sTextBaseAlpha = 0;
@@ -2223,6 +2223,11 @@ void lvl_init_menu_values_and_cursor_pos(UNUSED s32 arg, UNUSED s32 unused) {
     sMainMenuTimer = 0;
     sEraseYesNoHoverState = MENU_ERASE_HOVER_NONE;
     sSoundMode = save_file_get_sound_mode();
+
+    //! no return value
+#ifdef AVOID_UB
+    return 0;
+#endif
 }
 
 /**
@@ -2230,7 +2235,7 @@ void lvl_init_menu_values_and_cursor_pos(UNUSED s32 arg, UNUSED s32 unused) {
  * When a save file is selected, it returns fileNum value
  * defined in load_main_menu_save_file.
  */
-int lvl_update_obj_and_load_file_selected(UNUSED s32 arg, UNUSED s32 unused) {
+s32 lvl_update_obj_and_load_file_selected(UNUSED s32 arg, UNUSED s32 unused) {
     area_update_objects();
     return sSelectedFileNum;
 }

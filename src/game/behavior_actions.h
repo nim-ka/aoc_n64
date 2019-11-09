@@ -548,15 +548,15 @@ void BehDustSmokeLoop(void);
 void BehYoshiLoop(void);
 void bhvLllVolcanoFallingTrap_loop(void);
 
-extern s32 Geo18_802B1BB0(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);
+extern Gfx *Geo18_802B1BB0(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);
 
 // Bowser
 extern Gfx *Geo18_802B7D44(s32 a0, struct GraphNode *node, UNUSED s32 a2);
 extern Gfx *Geo18_802B798C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);
-extern s32 geo_switch_bowser_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx);
+extern Gfx *geo_switch_bowser_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx);
 
 // Tuxie
-extern s32 geo_switch_tuxie_mother_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx);
+extern Gfx *geo_switch_tuxie_mother_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx);
 
 // Cap switch
 extern Gfx *Geo18_802A719C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);

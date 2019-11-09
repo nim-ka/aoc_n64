@@ -186,7 +186,7 @@ void func_802AA618(s32 sp18, s32 sp1C, f32 sp20) {
 #include "behaviors/breakable_box.inc.c"
 
 // not sure what this is doing here. not in a behavior file.
-s32 Geo18_802B1BB0(s32 run, UNUSED struct GraphNode *node, Mat4 mtx) {
+Gfx *Geo18_802B1BB0(s32 run, UNUSED struct GraphNode *node, Mat4 mtx) {
     Mat4 sp20;
     struct Object *sp1C;
 
@@ -198,7 +198,7 @@ s32 Geo18_802B1BB0(s32 run, UNUSED struct GraphNode *node, Mat4 mtx) {
             func_8029EA0C(sp1C->prevObj);
         }
     }
-    return 0;
+    return NULL;
 }
 
 #include "behaviors/heave_ho.inc.c"

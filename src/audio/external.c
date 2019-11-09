@@ -150,10 +150,11 @@ u8 sSoundRequestCount = 0;
 #define MARIO_IS_IN_AREA 6
 #define MARIO_IS_IN_ROOM 7
 
-#define DYN1(cond1, val1, res) 1 << (15 - cond1) | res, val1
-#define DYN2(cond1, val1, cond2, val2, res) 1 << (15 - cond1) | 1 << (15 - cond2) | res, val1, val2
-#define DYN3(cond1, val1, cond2, val2, cond3, val3, res)                                               \
-    1 << (15 - cond1) | 1 << (15 - cond2) | 1 << (15 - cond3) | res, val1, val2, val3
+#define DYN1(cond1, val1, res) (s16)(1 << (15 - cond1) | res), val1
+#define DYN2(cond1, val1, cond2, val2, res) \
+    (s16)(1 << (15 - cond1) | 1 << (15 - cond2) | res), val1, val2
+#define DYN3(cond1, val1, cond2, val2, cond3, val3, res) \
+    (s16)(1 << (15 - cond1) | 1 << (15 - cond2) | 1 << (15 - cond3) | res), val1, val2, val3
 
 s16 sDynBbh[] = {
     SEQ_LEVEL_SPOOKY,

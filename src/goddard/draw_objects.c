@@ -1118,7 +1118,12 @@ void unref_8017AEDC(struct ObjGroup *grp) {
  * @bug Nothing is returned if the DL is created
  * @note Contains string literals that suggest a removed `printf` call
  */
-s32 create_shape_gddl(struct ObjShape *s) {
+#ifdef AVOID_UB
+void
+#else
+s32
+#endif
+create_shape_gddl(struct ObjShape *s) {
     struct ObjShape *shape = s; // 24
     s32 shapedl;                // 20
     UNUSED s32 enddl;           // 1C
@@ -1126,7 +1131,11 @@ s32 create_shape_gddl(struct ObjShape *s) {
     create_shape_mtl_gddls(shape);
     shapedl = gd_startdisplist(7);
     if (shapedl == 0) {
+#ifdef AVOID_UB
+        return;
+#else
         return -1;
+#endif
     }
 
     setup_lights();
@@ -1143,10 +1152,6 @@ s32 create_shape_gddl(struct ObjShape *s) {
     } else {
         printf("Generated 'UNKNOWN' (%d) display list ok.(%d)\n", shapedl, enddl);
     }
-
-#ifdef AVOID_UB
-    return shapedl;
-#endif
 }
 
 /**

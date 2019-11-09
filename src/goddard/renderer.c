@@ -2719,7 +2719,7 @@ s32 setup_view_buffers(const char *name, struct ObjView *view, UNUSED s32 ulx, U
 //!      doesn't use four of its parameters, this function may have
 //!      had a fair amount of its code commented out. In game, the
 //!      returned value is always 0, so the fix returns that value
-#ifdef NON_MATCHING
+#ifdef AVOID_UB
     return 0;
 #endif
 }

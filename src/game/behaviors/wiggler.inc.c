@@ -230,7 +230,8 @@ static void wiggler_act_walk(void) {
     } else {
         //! Every object's health is initially 2048, and wiggler's doesn't change
         //  to 4 until after this runs the first time. It indexes out of bounds
-        //  and uses the value 113762.3 for one frame on US.
+        //  and uses the value 113762.3 for one frame on US. This is fixed down
+        //  below in bhv_wiggler_update if AVOID_UB is defined.
         obj_forward_vel_approach(sWigglerSpeeds[o->oHealth - 1], 1.0f);
 
         if (o->oWigglerWalkAwayFromWallTimer != 0) {
@@ -398,6 +399,10 @@ void bhv_wiggler_update(void) {
     // PARTIAL_UPDATE
 
     if (o->oAction == WIGGLER_ACT_UNINITIALIZED) {
+#ifdef AVOID_UB
+        // See comment in wiggler_act_walk
+        o->oHealth = 4;
+#endif
         wiggler_init_segments();
     } else {
         if (o->oAction == WIGGLER_ACT_FALL_THROUGH_FLOOR) {
