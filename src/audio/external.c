@@ -1398,18 +1398,19 @@ void func_8031F96C(u8 player) {
 
 #ifdef NON_MATCHING
 void process_level_music_dynamics(void) {
-    u8 musicDynIndex;       // sp57
-    s16 conditionValues[8]; // sp44
-    u8 conditionTypes[8];   // sp3C
-    s16 dur1;               // sp3A
-    s16 dur2;               // sp38
-    u32 conditionBits;      // s0
-    u32 tempBits;           // v1
-    u16 bit;                // a1
-    u8 condIndex;           // a0 (same as numConditions?)
-    u8 i;                   // s1
+    s32 conditionBits;      // s0
+    UNUSED u32 unused;
+    u8 musicDynIndex;       // sp57 87
     u8 j;                   // v0
+    s16 conditionValues[8]; // sp44 68
+    u8 conditionTypes[8];   // sp3C 60
+    s16 dur1;               // sp3A 58
+    s16 dur2;               // sp38 56
+    u16 bit;                // a1
+    u8 i;                   // s1
+    u8 condIndex;           // a0 (same as numConditions?), v1
     u16 bit2;               // s0, v1
+    u32 tempBits;           // v1
 
     func_8031F96C(0);
     func_8031F96C(2);
@@ -1428,11 +1429,9 @@ void process_level_music_dynamics(void) {
     musicDynIndex = sLevelDynamics[gCurrLevelNum][1] & 0xff;
     i = 2;
     while (conditionBits & 0xff00) {
-        condIndex = 0;
-        for (j = 0, bit = 0x8000; j<8; j++, bit = bit>> 1) {
+        for (j = 0, condIndex = 0, bit = 0x8000; j < 8; j++, bit = bit >> 1) {
             if (conditionBits & bit) {
-                s16 val = sLevelDynamics[gCurrLevelNum][i];
-                conditionValues[condIndex] = val;
+                conditionValues[condIndex] = sLevelDynamics[gCurrLevelNum][i];
                 i++;
                 conditionTypes[condIndex] = j;
                 condIndex++;
@@ -1441,7 +1440,6 @@ void process_level_music_dynamics(void) {
 
         for (j = 0; j < condIndex; j++) {
             // (having all 'temp' share a single variable affects regalloc)
-            UNUSED s16 temp;
             switch (conditionTypes[j]) {
                 case MARIO_X_GE: {
                     s16 temp = gMarioStates[0].pos[0];
@@ -1480,14 +1478,14 @@ void process_level_music_dynamics(void) {
                     break;
                 }
                 case MARIO_IS_IN_AREA: {
-                    s16 temp = gCurrAreaIndex;
-                    if (temp != conditionValues[j])
+                    //s16 temp = gCurrAreaIndex;
+                    if (gCurrAreaIndex != conditionValues[j])
                         j = condIndex + 1;
                     break;
                 }
                 case MARIO_IS_IN_ROOM: {
-                    s16 temp = gMarioCurrentRoom;
-                    if (temp != conditionValues[j])
+                    //s16 temp = gMarioCurrentRoom;
+                    if (gMarioCurrentRoom != conditionValues[j])
                         j = condIndex + 1;
                     break;
                 }
