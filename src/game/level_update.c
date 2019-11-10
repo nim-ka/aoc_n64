@@ -24,6 +24,7 @@
 #include "memory.h"
 #include "eu_translation.h"
 #endif
+#include "level_table.h"
 
 #define PLAY_MODE_NORMAL 0
 #define PLAY_MODE_PAUSED 2

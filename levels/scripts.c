@@ -2,6 +2,7 @@
 #include "sm64.h"
 #include "game/level_update.h"
 #include "level_commands.h"
+#include "game/area.h"
 
 #include "segment_symbols.h"
 
@@ -60,43 +61,52 @@
 #include "levels/bowser_3/header.h"
 #include "levels/ttm/header.h"
 
-static const LevelScript script_func_local_1[1 + 31 * 3 + 1];
+#include "level_table.h"
+
+#define STUB_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7)
+#define DEFINE_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9) + 3
+static const LevelScript script_exec_level_table[2
+  #include "level_defines.h"
+];
+#undef DEFINE_LEVEL
+#undef STUB_LEVEL
+
 static const LevelScript script_L1[4];
 static const LevelScript script_L2[4];
 static const LevelScript script_L3[4];
 static const LevelScript script_L4[4];
 static const LevelScript script_L5[4];
-static const LevelScript script_L6[4 + 1];
-static const LevelScript script_L7[4 + 1];
-static const LevelScript script_L8[4 + 1];
-static const LevelScript script_L9[4 + 1];
-static const LevelScript script_L10[4 + 1];
-static const LevelScript script_L11[4 + 1];
-static const LevelScript script_L12[4 + 1];
-static const LevelScript script_L13[4 + 1];
-static const LevelScript script_L14[4 + 1];
-static const LevelScript script_L15[4 + 1];
-static const LevelScript script_L16[4 + 1];
-static const LevelScript script_L17[4 + 1];
-static const LevelScript script_L18[4 + 1];
-static const LevelScript script_L19[4 + 1];
-static const LevelScript script_L20[4 + 1];
-static const LevelScript script_L21[4 + 1];
-static const LevelScript script_L22[4 + 1];
-static const LevelScript script_L23[4 + 1];
-static const LevelScript script_L24[4 + 1];
-static const LevelScript script_L25[4 + 1];
-static const LevelScript script_L26[4 + 1];
-static const LevelScript script_L27[4 + 1];
-static const LevelScript script_L28[4 + 1];
-static const LevelScript script_L29[4 + 1];
-static const LevelScript script_L30[4 + 1];
-static const LevelScript script_L31[4 + 1];
-static const LevelScript script_L32[4 + 1];
-static const LevelScript script_L33[4 + 1];
-static const LevelScript script_L34[4 + 1];
-static const LevelScript script_L35[4 + 1];
-static const LevelScript script_L36[4 + 1];
+static const LevelScript script_exec_bbh[4 + 1];
+static const LevelScript script_exec_ccm[4 + 1];
+static const LevelScript script_exec_castle_inside[4 + 1];
+static const LevelScript script_exec_hmc[4 + 1];
+static const LevelScript script_exec_ssl[4 + 1];
+static const LevelScript script_exec_bob[4 + 1];
+static const LevelScript script_exec_sl[4 + 1];
+static const LevelScript script_exec_wdw[4 + 1];
+static const LevelScript script_exec_jrb[4 + 1];
+static const LevelScript script_exec_thi[4 + 1];
+static const LevelScript script_exec_ttc[4 + 1];
+static const LevelScript script_exec_rr[4 + 1];
+static const LevelScript script_exec_castle_grounds[4 + 1];
+static const LevelScript script_exec_bitdw[4 + 1];
+static const LevelScript script_exec_vcutm[4 + 1];
+static const LevelScript script_exec_bitfs[4 + 1];
+static const LevelScript script_exec_sa[4 + 1];
+static const LevelScript script_exec_bits[4 + 1];
+static const LevelScript script_exec_lll[4 + 1];
+static const LevelScript script_exec_ddd[4 + 1];
+static const LevelScript script_exec_wf[4 + 1];
+static const LevelScript script_exec_ending[4 + 1];
+static const LevelScript script_exec_castle_courtyard[4 + 1];
+static const LevelScript script_exec_pss[4 + 1];
+static const LevelScript script_exec_cotmc[4 + 1];
+static const LevelScript script_exec_totwc[4 + 1];
+static const LevelScript script_exec_bowser_1[4 + 1];
+static const LevelScript script_exec_wmotr[4 + 1];
+static const LevelScript script_exec_bowser_2[4 + 1];
+static const LevelScript script_exec_bowser_3[4 + 1];
+static const LevelScript script_exec_ttm[4 + 1];
 
 
 const LevelScript level_main_scripts_entry[] = {
@@ -157,7 +167,7 @@ const LevelScript level_main_scripts_entry[] = {
     CALL(/*arg*/ 0, /*func*/ lvl_init_from_save_file),
     LOOP_BEGIN(),
         EXECUTE(/*seg*/ 0x14, _menuSegmentRomStart, _menuSegmentRomEnd, level_main_menu_entry_2),
-        JUMP_LINK(script_func_local_1),
+        JUMP_LINK(script_exec_level_table),
         SLEEP(/*frames*/ 1),
     LOOP_UNTIL(/*op*/ OP_LT, /*arg*/ 0),
     JUMP_IF(/*op*/ OP_EQ, /*arg*/ -1, script_L2),
@@ -187,196 +197,28 @@ static const LevelScript script_L5[] = {
     EXIT_AND_EXECUTE(/*seg*/ 0x14, _introSegmentRomStart, _introSegmentRomEnd, level_intro_entry_4),
 };
 
-static const LevelScript script_func_local_1[] = {
+// Include the level jumptable.
+
+#define STUB_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7)
+
+#define DEFINE_LEVEL(_0, levelenum, _2, folder, _4, _5, _6, _7, _8, _9) JUMP_IF(OP_EQ, levelenum, script_exec_ ## folder),
+
+static const LevelScript script_exec_level_table[] = {
     GET_OR_SET(/*op*/ OP_GET, /*var*/ VAR_CURR_LEVEL_NUM),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 4, script_L6),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 5, script_L7),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 6, script_L8),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 7, script_L9),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 8, script_L10),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 9, script_L11),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 10, script_L12),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 11, script_L13),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 12, script_L14),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 13, script_L15),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 14, script_L16),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 15, script_L17),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 16, script_L18),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 17, script_L19),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 18, script_L20),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 19, script_L21),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 20, script_L22),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 21, script_L23),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 22, script_L24),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 23, script_L25),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 24, script_L26),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 25, script_L27),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 26, script_L28),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 27, script_L29),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 28, script_L30),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 29, script_L31),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 30, script_L32),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 31, script_L33),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 33, script_L34),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 34, script_L35),
-    JUMP_IF(/*op*/ OP_EQ, /*arg*/ 36, script_L36),
+    #include "levels/level_defines.h"
     EXIT(),
 };
+#undef DEFINE_LEVEL
 
-static const LevelScript script_L6[] = {
-    EXECUTE(/*seg*/ 0x0E, _bbhSegmentRomStart, _bbhSegmentRomEnd, level_bbh_entry),
-    RETURN(),
+#define DEFINE_LEVEL(_0, _1, _2, folder, _4, _5, _6, _7, _8, _9) \
+static const LevelScript script_exec_ ## folder [] = { \
+    EXECUTE(0x0E, _ ## folder ## SegmentRomStart, _ ## folder ## SegmentRomEnd, level_ ## folder ## _entry), \
+    RETURN(), \
 };
 
-static const LevelScript script_L7[] = {
-    EXECUTE(/*seg*/ 0x0E, _ccmSegmentRomStart, _ccmSegmentRomEnd, level_ccm_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L8[] = {
-    EXECUTE(/*seg*/ 0x0E, _castle_insideSegmentRomStart, _castle_insideSegmentRomEnd, level_castle_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L9[] = {
-    EXECUTE(/*seg*/ 0x0E, _hmcSegmentRomStart, _hmcSegmentRomEnd, level_hmc_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L10[] = {
-    EXECUTE(/*seg*/ 0x0E, _sslSegmentRomStart, _sslSegmentRomEnd, level_ssl_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L11[] = {
-    EXECUTE(/*seg*/ 0x0E, _bobSegmentRomStart, _bobSegmentRomEnd, level_bob_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L12[] = {
-    EXECUTE(/*seg*/ 0x0E, _slSegmentRomStart, _slSegmentRomEnd, level_sl_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L13[] = {
-    EXECUTE(/*seg*/ 0x0E, _wdwSegmentRomStart, _wdwSegmentRomEnd, level_wdw_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L14[] = {
-    EXECUTE(/*seg*/ 0x0E, _jrbSegmentRomStart, _jrbSegmentRomEnd, level_jrb_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L15[] = {
-    EXECUTE(/*seg*/ 0x0E, _thiSegmentRomStart, _thiSegmentRomEnd, level_thi_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L16[] = {
-    EXECUTE(/*seg*/ 0x0E, _ttcSegmentRomStart, _ttcSegmentRomEnd, level_ttc_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L17[] = {
-    EXECUTE(/*seg*/ 0x0E, _rrSegmentRomStart, _rrSegmentRomEnd, level_rr_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L18[] = {
-    EXECUTE(/*seg*/ 0x0E, _castle_groundsSegmentRomStart, _castle_groundsSegmentRomEnd, level_castle_grounds_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L19[] = {
-    EXECUTE(/*seg*/ 0x0E, _bitdwSegmentRomStart, _bitdwSegmentRomEnd, level_bitdw_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L20[] = {
-    EXECUTE(/*seg*/ 0x0E, _vcutmSegmentRomStart, _vcutmSegmentRomEnd, level_vcutm_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L21[] = {
-    EXECUTE(/*seg*/ 0x0E, _bitfsSegmentRomStart, _bitfsSegmentRomEnd, level_bitfs_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L22[] = {
-    EXECUTE(/*seg*/ 0x0E, _saSegmentRomStart, _saSegmentRomEnd, level_sa_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L23[] = {
-    EXECUTE(/*seg*/ 0x0E, _bitsSegmentRomStart, _bitsSegmentRomEnd, level_bits_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L24[] = {
-    EXECUTE(/*seg*/ 0x0E, _lllSegmentRomStart, _lllSegmentRomEnd, level_lll_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L25[] = {
-    EXECUTE(/*seg*/ 0x0E, _dddSegmentRomStart, _dddSegmentRomEnd, level_ddd_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L26[] = {
-    EXECUTE(/*seg*/ 0x0E, _wfSegmentRomStart, _wfSegmentRomEnd, level_wf_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L27[] = {
-    EXECUTE(/*seg*/ 0x0E, _endingSegmentRomStart, _endingSegmentRomEnd, level_ending_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L28[] = {
-    EXECUTE(/*seg*/ 0x0E, _castle_courtyardSegmentRomStart, _castle_courtyardSegmentRomEnd, level_castle_courtyard_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L29[] = {
-    EXECUTE(/*seg*/ 0x0E, _pssSegmentRomStart, _pssSegmentRomEnd, level_pss_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L30[] = {
-    EXECUTE(/*seg*/ 0x0E, _cotmcSegmentRomStart, _cotmcSegmentRomEnd, level_cotmc_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L31[] = {
-    EXECUTE(/*seg*/ 0x0E, _totwcSegmentRomStart, _totwcSegmentRomEnd, level_totwc_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L32[] = {
-    EXECUTE(/*seg*/ 0x0E, _bowser_1SegmentRomStart, _bowser_1SegmentRomEnd, level_bowser_1_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L33[] = {
-    EXECUTE(/*seg*/ 0x0E, _wmotrSegmentRomStart, _wmotrSegmentRomEnd, level_wmotr_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L34[] = {
-    EXECUTE(/*seg*/ 0x0E, _bowser_2SegmentRomStart, _bowser_2SegmentRomEnd, level_bowser_2_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L35[] = {
-    EXECUTE(/*seg*/ 0x0E, _bowser_3SegmentRomStart, _bowser_3SegmentRomEnd, level_bowser_3_entry),
-    RETURN(),
-};
-
-static const LevelScript script_L36[] = {
-    EXECUTE(/*seg*/ 0x0E, _ttmSegmentRomStart, _ttmSegmentRomEnd, level_ttm_entry),
-    RETURN(),
-};
+#include "levels/level_defines.h"
+#undef STUB_LEVEL
+#undef DEFINE_LEVEL
 
 const LevelScript script_func_global_1[] = {
     LOAD_MODEL_FROM_GEO(MODEL_BLUE_COIN_SWITCH,        blue_coin_switch_geo),

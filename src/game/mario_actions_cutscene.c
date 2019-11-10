@@ -23,6 +23,7 @@
 #include "engine/behavior_script.h"
 #include "behavior_data.h"
 #include "object_list_processor.h"
+#include "level_table.h"
 
 // TODO: put this elsewhere
 enum SaveOption { SAVE_OPT_SAVE_AND_CONTINUE = 1, SAVE_OPT_SAVE_AND_QUIT, SAVE_OPT_CONTINUE_DONT_SAVE };

@@ -14,6 +14,7 @@
 #include "game/room.h"
 #include "game/camera.h"
 #include "seq_ids.h"
+#include "level_table.h"
 
 // N.B. sound banks are different from the audio banks referred to in other
 // files. We should really fix our naming to be less ambiguous...
@@ -202,50 +203,18 @@ s16 sDynNone[] = { SEQ_SOUND_PLAYER, 0 };
 u8 sCurrentMusicDynamic = 0xff;
 u8 sBackgroundMusicForDynamics = SEQUENCE_NONE;
 
+#define STUB_LEVEL(_0, _1, _2, _3, _4, _5, _6, leveldyn) leveldyn,
+#define DEFINE_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7, _8, leveldyn) leveldyn,
+
 #define _ sDynNone
 s16 *sLevelDynamics[] = {
     _,         // LEVEL_NONE
-    _,         // LEVEL_UNKNOWN_1
-    _,         // LEVEL_UNKNOWN_2
-    _,         // LEVEL_UNKNOWN_3
-    sDynBbh,   // LEVEL_BBH
-    _,         // LEVEL_CCM
-    _,         // LEVEL_CASTLE
-    sDynHmc,   // LEVEL_HMC
-    _,         // LEVEL_SSL
-    _,         // LEVEL_BOB
-    _,         // LEVEL_SL
-    sDynWdw,   // LEVEL_WDW
-    sDynJrb,   // LEVEL_JRB
-    _,         // LEVEL_THI
-    _,         // LEVEL_TTC
-    _,         // LEVEL_RR
-    _,         // LEVEL_CASTLE_GROUNDS
-    _,         // LEVEL_BITDW
-    _,         // LEVEL_VCUTM
-    _,         // LEVEL_BITFS
-    _,         // LEVEL_SA
-    _,         // LEVEL_BITS
-    _,         // LEVEL_LLL
-    sDynDdd,   // LEVEL_DDD
-    _,         // LEVEL_WF
-    _,         // LEVEL_ENDING
-    _,         // LEVEL_CASTLE_COURTYARD
-    _,         // LEVEL_PSS
-    _,         // LEVEL_COTMC
-    _,         // LEVEL_TOTWC
-    _,         // LEVEL_BOWSER_1
-    _,         // LEVEL_WMOTR
-    _,         // LEVEL_UNKNOWN_32
-    _,         // LEVEL_BOWSER_2
-    _,         // LEVEL_BOWSER_3
-    _,         // LEVEL_UNKNOWN_35
-    _,         // LEVEL_TTM
-    _,         // LEVEL_UNKNOWN_37
-    sDynUnk38, // LEVEL_UNKNOWN_38
+    #include "levels/level_defines.h"
 };
 STATIC_ASSERT(ARRAY_COUNT(sLevelDynamics) == LEVEL_COUNT, "change this array if you are adding levels");
 #undef _
+#undef STUB_LEVEL
+#undef DEFINE_LEVEL
 
 struct MusicDynamic {
     /*0x0*/ s16 bits1;
@@ -269,100 +238,29 @@ struct MusicDynamic sMusicDynamics[8] = {
     { 0xffff, 0, 127, 100, 0x0000, 0, 0, 100 }, // any (unused)
 };
 
+#define STUB_LEVEL(_0, _1, _2, _3, echo1, echo2, echo3, _7) { echo1, echo2, echo3 },
+#define DEFINE_LEVEL(_0, _1, _2, _3, _4, _5, echo1, echo2, echo3, _9) { echo1, echo2, echo3 },
+
 u8 gAreaEchoLevel[][3] = {
     { 0x00, 0x00, 0x00 }, // LEVEL_NONE
-    { 0x00, 0x00, 0x00 }, // LEVEL_UNKNOWN_1
-    { 0x00, 0x00, 0x00 }, // LEVEL_UNKNOWN_2
-    { 0x00, 0x00, 0x00 }, // LEVEL_UNKNOWN_3
-    { 0x28, 0x28, 0x28 }, // LEVEL_BBH
-    { 0x10, 0x38, 0x38 }, // LEVEL_CCM
-    { 0x20, 0x20, 0x30 }, // LEVEL_CASTLE
-    { 0x28, 0x28, 0x28 }, // LEVEL_HMC
-    { 0x08, 0x30, 0x30 }, // LEVEL_SSL
-    { 0x08, 0x08, 0x08 }, // LEVEL_BOB
-    { 0x10, 0x28, 0x28 }, // LEVEL_SL
-    { 0x10, 0x18, 0x18 }, // LEVEL_WDW
-    { 0x10, 0x18, 0x18 }, // LEVEL_JRB
-    { 0x0c, 0x0c, 0x20 }, // LEVEL_THI
-    { 0x18, 0x18, 0x18 }, // LEVEL_TTC
-    { 0x20, 0x20, 0x20 }, // LEVEL_RR
-    { 0x08, 0x08, 0x08 }, // LEVEL_CASTLE_GROUNDS
-    { 0x28, 0x28, 0x28 }, // LEVEL_BITDW
-    { 0x28, 0x28, 0x28 }, // LEVEL_VCUTM
-    { 0x28, 0x28, 0x28 }, // LEVEL_BITFS
-    { 0x10, 0x10, 0x10 }, // LEVEL_SA
-    { 0x28, 0x28, 0x28 }, // LEVEL_BITS
-    { 0x08, 0x30, 0x30 }, // LEVEL_LLL
-    { 0x10, 0x20, 0x20 }, // LEVEL_DDD
-    { 0x08, 0x08, 0x08 }, // LEVEL_WF
-    { 0x00, 0x00, 0x00 }, // LEVEL_ENDING
-    { 0x08, 0x08, 0x08 }, // LEVEL_CASTLE_COURTYARD
-    { 0x28, 0x28, 0x28 }, // LEVEL_PSS
-    { 0x28, 0x28, 0x28 }, // LEVEL_COTMC
-    { 0x20, 0x20, 0x20 }, // LEVEL_TOTWC
-    { 0x40, 0x40, 0x40 }, // LEVEL_BOWSER_1
-    { 0x28, 0x28, 0x28 }, // LEVEL_WMOTR
-    { 0x70, 0x00, 0x00 }, // LEVEL_UNKNOWN_32
-    { 0x40, 0x40, 0x40 }, // LEVEL_BOWSER_2
-    { 0x40, 0x40, 0x40 }, // LEVEL_BOWSER_3
-    { 0x00, 0x00, 0x00 }, // LEVEL_UNKNOWN_35
-    { 0x08, 0x08, 0x08 }, // LEVEL_TTM
-    { 0x00, 0x00, 0x00 }, // LEVEL_UNKNOWN_37
-    { 0x00, 0x00, 0x00 }, // LEVEL_UNKNOWN_38
+    #include "levels/level_defines.h"
 };
 STATIC_ASSERT(ARRAY_COUNT(gAreaEchoLevel) == LEVEL_COUNT, "change this array if you are adding levels");
+#undef STUB_LEVEL
+#undef DEFINE_LEVEL
 
-#ifdef VERSION_JP
-#define VAL_DIFF 25000
-#else
-#define VAL_DIFF 60000
-#endif
+#define STUB_LEVEL(_0, _1, _2, volume, _4, _5, _6, _7) volume,
+#define DEFINE_LEVEL(_0, _1, _2, _3, _4, volume, _6, _7, _8, _9) volume,
 
 u16 D_80332028[] = {
     20000,    // LEVEL_NONE
-    20000,    // LEVEL_UNKNOWN_1
-    20000,    // LEVEL_UNKNOWN_2
-    20000,    // LEVEL_UNKNOWN_3
-    28000,    // LEVEL_BBH
-    17000,    // LEVEL_CCM
-    20000,    // LEVEL_CASTLE
-    16000,    // LEVEL_HMC
-    15000,    // LEVEL_SSL
-    15000,    // LEVEL_BOB
-    14000,    // LEVEL_SL
-    17000,    // LEVEL_WDW
-    20000,    // LEVEL_JRB
-    20000,    // LEVEL_THI
-    18000,    // LEVEL_TTC
-    20000,    // LEVEL_RR
-    25000,    // LEVEL_CASTLE_GROUNDS
-    16000,    // LEVEL_BITDW
-    30000,    // LEVEL_VCUTM
-    16000,    // LEVEL_BITFS
-    20000,    // LEVEL_SA
-    16000,    // LEVEL_BITS
-    22000,    // LEVEL_LLL
-    17000,    // LEVEL_DDD
-    13000,    // LEVEL_WF
-    20000,    // LEVEL_ENDING
-    20000,    // LEVEL_CASTLE_COURTYARD
-    20000,    // LEVEL_PSS
-    18000,    // LEVEL_COTMC
-    20000,    // LEVEL_TOTWC
-    VAL_DIFF, // LEVEL_BOWSER_1
-    20000,    // LEVEL_WMOTR
-    20000,    // LEVEL_UNKNOWN_32
-    VAL_DIFF, // LEVEL_BOWSER_2
-    VAL_DIFF, // LEVEL_BOWSER_3
-    20000,    // LEVEL_UNKNOWN_35
-    15000,    // LEVEL_TTM
-    20000,    // LEVEL_UNKNOWN_37
-    20000,    // LEVEL_UNKNOWN_38
+    #include "levels/level_defines.h"
 };
 
-#undef VAL_DIFF
-
 STATIC_ASSERT(ARRAY_COUNT(D_80332028) == LEVEL_COUNT, "change this array if you are adding levels");
+
+#undef STUB_LEVEL
+#undef DEFINE_LEVEL
 
 #define AUDIO_MAX_DISTANCE US_FLOAT(22000.0)
 

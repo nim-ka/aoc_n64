@@ -145,40 +145,23 @@ define level_rules =
     $$(BUILD_DIR)/levels/$(1)/leveldata.elf: TEXTURE_BIN := $(2)
 endef
 
-$(eval $(call level_rules,bbh,spooky)) # BBH (Big Boo's Haunt)
-$(eval $(call level_rules,ccm,snow)) # CCM (Cool Cool Mountain)
-$(eval $(call level_rules,castle_inside,inside)) # Castle Inside (Inside Princess Peach's Castle)
-$(eval $(call level_rules,hmc,cave))# HMC (Hazy Maze Cave)
-$(eval $(call level_rules,ssl,generic)) # SSL (Shifting Sand Land)
-$(eval $(call level_rules,bob,generic)) # BOB (Bob-Omb Battlefield)
-$(eval $(call level_rules,sl,snow)) # SL (Snowman's Land)
-$(eval $(call level_rules,wdw,grass)) # WDW (Wet Dry World)
-$(eval $(call level_rules,jrb,water)) # JRB (Jolly Roger Bay)
-$(eval $(call level_rules,thi,grass)) # THI (Tiny Huge Island)
-$(eval $(call level_rules,ttc,machine)) # TTC (Tick Tock Clock)
-$(eval $(call level_rules,rr,sky)) # RR (Rainbow Ride)
-$(eval $(call level_rules,castle_grounds,outside)) # Castle Grounds (Outside Princess Peach's Castle)
-$(eval $(call level_rules,bitdw,sky)) # BitDW (Bowser in the Dark World)
-$(eval $(call level_rules,vcutm,outside)) # VCUTM (Vanish Cap under the Moat)
-$(eval $(call level_rules,bitfs,sky)) # BITFS (Bowser in the Fire Sea)
-$(eval $(call level_rules,sa,inside)) # SA (The Secret Aquarium)
-$(eval $(call level_rules,bits,sky)) # BITS (Bowser in the Sky)
-$(eval $(call level_rules,lll,fire)) # LLL (Lethal Lava Land)
-$(eval $(call level_rules,ddd,water)) # DDD (Dire Dire Docks)
-$(eval $(call level_rules,wf,grass)) # WF (Whomp's Fortress)
-$(eval $(call level_rules,ending,generic)) # Ending
-$(eval $(call level_rules,castle_courtyard,outside)) # Castle Courtyard (The Courtyard of Princess Peach's Castle)
-$(eval $(call level_rules,pss,mountain)) # PSS (The Princess's Secret Slide)
-$(eval $(call level_rules,cotmc,cave)) # COTMC (Cavern of the Metal Cap)
-$(eval $(call level_rules,totwc,sky)) # TOTWC (Tower of the Wing Cap)
-$(eval $(call level_rules,bowser_1,generic)) # BOWSER_1 (Bowser in the Dark World [Boss Area])
-$(eval $(call level_rules,wmotr,generic)) # WMOTR (Wing Mario over the Rainbow)
-$(eval $(call level_rules,bowser_2,fire)) # BOWSER_2 (Bowser in the Fire Sea [Boss Area])
-$(eval $(call level_rules,bowser_3,generic)) # BOWSER_3 (Bowser in the Sky [Boss Area])
-$(eval $(call level_rules,totwc,sky)) # TOTWC (Tower of the Wing Cap)
-$(eval $(call level_rules,ttm,mountain)) # TTM (Tall Tall Mountain)
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(MAKECMDGOALS),distclean)
+$(BUILD_DIR)/level_rules.mk: levels/level_rules.mk levels/level_defines.h
+	$(CPP) $(VERSION_CFLAGS) -I . -o $@ $<
+include $(BUILD_DIR)/level_rules.mk
+endif
+endif
+
+# --------------------------------------
+# Extra Level Rules
+# --------------------------------------
 $(eval $(call level_rules,intro,generic)) # Intro (Super Mario 64 Logo)
 $(eval $(call level_rules,menu,generic)) # Menu (File Select)
+
+# --------------------------------------
+# Cake Texture Rules
+# --------------------------------------
 
 # Ending cake textures are generated in a special way
 $(BUILD_DIR)/levels/ending/cake_eu.inc.c: levels/ending/cake_eu.png

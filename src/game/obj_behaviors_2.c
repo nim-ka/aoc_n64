@@ -28,6 +28,7 @@
 #include "geo_misc.h"
 #include "save_file.h"
 #include "room.h"
+#include "level_table.h"
 
 extern struct Animation *wiggler_seg5_anims_0500C874[];
 extern struct Animation *spiny_egg_seg5_anims_050157E4[];

@@ -28,6 +28,7 @@
 #include "paintings.h"
 #include "prevent_bss_reordering.h"
 #include "engine/graph_node.h"
+#include "level_table.h"
 
 #define CBUTTON_MASK (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS)
 

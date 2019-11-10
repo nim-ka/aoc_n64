@@ -30,6 +30,7 @@
 #include "save_file.h"
 #include "sound_init.h"
 #include "engine/surface_collision.h"
+#include "level_table.h"
 
 u32 unused80339F10;
 s8 filler80339F1C[20];
