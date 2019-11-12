@@ -801,10 +801,10 @@ s32 act_unlocking_key_door(struct MarioState *m) {
 
     switch (m->marioObj->header.gfx.unk38.animFrame) {
         case 79:
-            play_sound(SOUND_GENERAL_SWITCH4, m->marioObj->header.gfx.cameraToObject);
+            play_sound(SOUND_GENERAL_DOOR_INSERT_KEY, m->marioObj->header.gfx.cameraToObject);
             break;
         case 111:
-            play_sound(SOUND_GENERAL_SWITCH2, m->marioObj->header.gfx.cameraToObject);
+            play_sound(SOUND_GENERAL_DOOR_TURN_KEY, m->marioObj->header.gfx.cameraToObject);
             break;
     }
 

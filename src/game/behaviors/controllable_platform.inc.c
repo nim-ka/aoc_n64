@@ -30,7 +30,7 @@ void bhv_controllable_platform_sub_loop(void) {
             if (gMarioObject->platform == o) {
                 D_80331694 = o->oBehParams2ndByte;
                 o->oAction = 1;
-                PlaySound2(SOUND_GENERAL_SWITCH3);
+                PlaySound2(SOUND_GENERAL_MOVING_PLATFORM_SWITCH);
             }
             break;
 
