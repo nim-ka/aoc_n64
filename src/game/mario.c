@@ -36,7 +36,7 @@ u32 unused80339F10;
 s8 filler80339F1C[20];
 
 /**************************************************
- *                    ANIMATIONS                   *
+ *                    ANIMATIONS                  *
  **************************************************/
 
 /**
@@ -230,7 +230,7 @@ s16 return_mario_anim_y_translation(struct MarioState *m) {
 }
 
 /**************************************************
- *                      AUDIO                      *
+ *                      AUDIO                     *
  **************************************************/
 
 /**
@@ -365,7 +365,7 @@ void play_mario_sound(struct MarioState *m, s32 actionSound, s32 marioSound) {
 }
 
 /**************************************************
- *                     ACTIONS                     *
+ *                     ACTIONS                    *
  **************************************************/
 
 /**
@@ -1659,7 +1659,7 @@ void mario_update_hitbox_and_cap_model(struct MarioState *m) {
  */
 static void debug_update_mario_cap(u16 button, s32 flags, u16 capTimer, u16 capMusic) {
     // This checks for Z_TRIG instead of Z_DOWN flag
-    //(which is also what other debug functions do),
+    // (which is also what other debug functions do),
     // so likely debug behavior rather than unused behavior.
     if ((gPlayer1Controller->buttonDown & Z_TRIG) && (gPlayer1Controller->buttonPressed & button)
         && ((gMarioState->flags & flags) == 0)) {
@@ -1759,7 +1759,7 @@ s32 execute_mario_action(UNUSED struct Object *o) {
 }
 
 /**************************************************
- *                  INITIALIZATION                 *
+ *                  INITIALIZATION                *
  **************************************************/
 
 void init_mario(void) {
