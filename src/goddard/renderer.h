@@ -69,7 +69,7 @@ extern void add_tri_to_dl(f32, f32, f32, f32, f32, f32, f32, f32, f32);
 extern void func_801A0038(void);
 extern void func_801A0070(void);
 extern void func_801A02B8(f32);
-extern void func_801A0324(s32);
+extern void set_light_id(s32);
 extern void set_light_num(s32);
 extern s32 create_mtl_gddl(s32);
 extern void branch_to_gddl(s32);

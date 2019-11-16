@@ -1005,7 +1005,7 @@ void apply_obj_draw_fn(struct GdObj *obj) {
  * Count input `ObjLight` as an active light, if it wasn't already counted.
  */
 void register_light(struct ObjLight *light) {
-    func_801A0324(light->id);
+    set_light_id(light->id);
     gd_setproperty(GD_PROP_LIGHTING, 2.0f, 0.0f, 0.0f);
     if (light->flags & LIGHT_NEW_UNCOUNTED) {
         sNumActiveLights++;
@@ -1048,7 +1048,7 @@ void Proc8017A980(struct ObjLight *light) {
         }
         sp24 *= sp20;
     }
-    func_801A0324(light->id);
+    set_light_id(light->id);
     gd_setproperty(GD_PROP_DIFUSE_COLOUR, light->diffuse.r * sp24, light->diffuse.g * sp24,
                    light->diffuse.b * sp24);
     gd_setproperty(GD_PROP_LIGHT_DIR, sLightPositionCache[light->id].x,

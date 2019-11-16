@@ -26,6 +26,7 @@
 #define GD_VIRTUAL_TO_PHYSICAL(addr) ((uintptr_t)(addr) &0x0FFFFFFF)
 #define GD_LOWER_24(addr) ((uintptr_t)(addr) &0x00FFFFFF)
 #define GD_LOWER_29(addr) (((uintptr_t)(addr)) & 0x1FFFFFFF)
+
 #define MTX_INTPART_PACK(w1, w2) (((w1) &0xFFFF0000) | (((w2) >> 16) & 0xFFFF))
 #define MTX_FRACPART_PACK(w1, w2) ((((w1) << 16) & 0xFFFF0000) | ((w2) &0xFFFF))
 #define LOOKAT_PACK(c) ((s32) MIN(((c) * (128.0)), 127.0) & 0xff)
@@ -67,16 +68,9 @@ struct GdDisplayList {
 #define DL_CURRENT_GFX(dl) ((dl)->gfx[(dl)->curGfxIdx])
 #define DL_CURRENT_VP(dl) ((dl)->vp[(dl)->curVpIdx])
 
-union UnkInternal {
-    s32 w;
-    struct {
-        s8 b0, b1, b2, b3;
-    } bytes;
+struct LightDirVec {
+    s32 x, y, z;
 };
-
-struct Unk801BB1B8 {
-    union UnkInternal u0, u4, u8;
-}; // sizeof = 0x0C bytes
 
 enum DynListBankFlag { TABLE_END = -1, STD_LIST_BANK = 3 };
 
@@ -125,13 +119,12 @@ static Mtx sIdnMtx;           // @ 801BB100
 static Mat4f sInitIdnMat4;    // @ 801BB140
 static s8 sVtxCvrtNormBuf[3]; // @ 801BB180
 static s16 D_801BB184;
-static s32 D_801BB188;
+static s32 sNumLights;
 static struct GdColour sAmbScaleColour;       // @ 801BB190
 static struct GdColour sLightScaleColours[2]; // @ 801BB1A0
-static struct Unk801BB1B8 D_801BB1B8[2];
-static s32 D_801BB1D0; // light id? from Proc8017A980 or register_light; used to offset into diffuse or
-                       // ambient arrays
-static Hilite D_801BB1D8[600];
+static struct LightDirVec sLightDirections[2];
+static s32 sLightId;
+static Hilite sHilites[600];
 static struct GdVec3f D_801BD758;
 static struct GdVec3f D_801BD768; // had to migrate earlier
 static u32 D_801BD774;
@@ -1942,13 +1935,13 @@ void func_801A02B8(f32 arg0) {
 
 /* 24EAF4 -> 24EB0C */
 // light id?
-void func_801A0324(s32 arg0) {
-    D_801BB1D0 = arg0;
+void set_light_id(s32 index) {
+    sLightId = index;
 }
 
 /* 24EB0C -> 24EB24; orig name: func_801A033C */
 void set_light_num(s32 n) {
-    D_801BB188 = n;
+    sNumLights = n;
 }
 
 /* 24EB24 -> 24EC18 */
@@ -1995,7 +1988,7 @@ void func_801A0478(s32 idx, // material GdDl number; offsets into hilite array
     if (idx >= 0xc8) {
         fatal_printf("too many hilites");
     }
-    hilite = &D_801BB1D8[idx];
+    hilite = &sHilites[idx];
 
     gDPSetPrimColor(next_gfx(), 0, 0, (s32)(colour->r * 255.0f), (s32)(colour->g * 255.0f),
                     (s32)(colour->b * 255.0f), 255);
@@ -2026,10 +2019,10 @@ void func_801A0478(s32 idx, // material GdDl number; offsets into hilite array
 /* 24F03C -> 24FDB8 */
 s32 func_801A086C(s32 id, struct GdColour *colour, s32 arg2) {
     UNUSED u32 pad60[2];
-    s32 i;                 // 5c
-    s32 sp58 = D_801BB188; // number of lights?
-    s32 sp4C[3];           // converted color array
-    s32 sp40[3];           // bytes from weird struct in bss
+    s32 i;
+    s32 numLights = sNumLights;
+    s32 scaledColours[3];
+    s32 lightDir[3];
 
     if (id > 0) {
         reset_dlnum_indices(id);
@@ -2046,7 +2039,7 @@ s32 func_801A086C(s32 id, struct GdColour *colour, s32 arg2) {
             func_801A2388(FALSE);
             func_801A2388(FALSE);
             func_801A2388(FALSE);
-            sp58 = 2;
+            numLights = 2;
             break;
         case 0x01:
             func_801A2374(TRUE);
@@ -2056,10 +2049,7 @@ s32 func_801A086C(s32 id, struct GdColour *colour, s32 arg2) {
             if (id >= 200) {
                 fatal_printf("too many hilites");
             }
-            // the macro does the 0xFFF mask,
-            // but it seems goddard unnecessarily masked the parameters as well
-            gDPSetTileSize(next_gfx(), G_TX_RENDERTILE, D_801BB1D8[id].h.x1 & 0xFFF, D_801BB1D8[id].h.y1 & 0xFFF,
-                           (D_801BB1D8[id].h.x1 + ((32 - 1) << G_TEXTURE_IMAGE_FRAC)) & 0xFFF, (D_801BB1D8[id].h.y1 + ((32 - 1) << G_TEXTURE_IMAGE_FRAC)) & 0xFFF);
+            gDPSetHilite1Tile(next_gfx(), G_TX_RENDERTILE, &sHilites[id], 32, 32);
             break;
         case 0x04:
             break;
@@ -2094,39 +2084,39 @@ s32 func_801A086C(s32 id, struct GdColour *colour, s32 arg2) {
             break;
     }
     // L801A0EF4
-    sp4C[0] = (s32)(colour->r * sAmbScaleColour.r * 255.0f);
-    sp4C[1] = (s32)(colour->g * sAmbScaleColour.g * 255.0f);
-    sp4C[2] = (s32)(colour->b * sAmbScaleColour.b * 255.0f);
+    scaledColours[0] = (s32)(colour->r * sAmbScaleColour.r * 255.0f);
+    scaledColours[1] = (s32)(colour->g * sAmbScaleColour.g * 255.0f);
+    scaledColours[2] = (s32)(colour->b * sAmbScaleColour.b * 255.0f);
     // 801A0FE4
-    DL_CURRENT_LIGHT(sCurrentGdDl).a.l.col[0] = sp4C[0];
-    DL_CURRENT_LIGHT(sCurrentGdDl).a.l.col[1] = sp4C[1];
-    DL_CURRENT_LIGHT(sCurrentGdDl).a.l.col[2] = sp4C[2];
+    DL_CURRENT_LIGHT(sCurrentGdDl).a.l.col[0] = scaledColours[0];
+    DL_CURRENT_LIGHT(sCurrentGdDl).a.l.col[1] = scaledColours[1];
+    DL_CURRENT_LIGHT(sCurrentGdDl).a.l.col[2] = scaledColours[2];
     // 801A1068
-    DL_CURRENT_LIGHT(sCurrentGdDl).a.l.colc[0] = sp4C[0];
-    DL_CURRENT_LIGHT(sCurrentGdDl).a.l.colc[1] = sp4C[1];
-    DL_CURRENT_LIGHT(sCurrentGdDl).a.l.colc[2] = sp4C[2];
+    DL_CURRENT_LIGHT(sCurrentGdDl).a.l.colc[0] = scaledColours[0];
+    DL_CURRENT_LIGHT(sCurrentGdDl).a.l.colc[1] = scaledColours[1];
+    DL_CURRENT_LIGHT(sCurrentGdDl).a.l.colc[2] = scaledColours[2];
     // 801A10EC
-    gSPNumLights(next_gfx(), sp58);
-    for (i = 0; i < sp58; i++) { // L801A1134
-        sp4C[0] = colour->r * sLightScaleColours[i].r * 255.0f;
-        sp4C[1] = colour->g * sLightScaleColours[i].g * 255.0f;
-        sp4C[2] = colour->b * sLightScaleColours[i].b * 255.0f;
+    gSPNumLights(next_gfx(), numLights);
+    for (i = 0; i < numLights; i++) { // L801A1134
+        scaledColours[0] = colour->r * sLightScaleColours[i].r * 255.0f;
+        scaledColours[1] = colour->g * sLightScaleColours[i].g * 255.0f;
+        scaledColours[2] = colour->b * sLightScaleColours[i].b * 255.0f;
         // 801A1260
-        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.col[0] = sp4C[0];
-        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.col[1] = sp4C[1];
-        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.col[2] = sp4C[2];
-        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.colc[0] = sp4C[0];
-        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.colc[1] = sp4C[1];
-        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.colc[2] = sp4C[2];
+        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.col[0] = scaledColours[0];
+        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.col[1] = scaledColours[1];
+        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.col[2] = scaledColours[2];
+        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.colc[0] = scaledColours[0];
+        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.colc[1] = scaledColours[1];
+        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.colc[2] = scaledColours[2];
 
         // 801A13B0
-        sp40[0] = D_801BB1B8[i].u0.bytes.b3;
-        sp40[1] = D_801BB1B8[i].u4.bytes.b3;
-        sp40[2] = D_801BB1B8[i].u8.bytes.b3;
+        lightDir[0] = (s8)sLightDirections[i].x;
+        lightDir[1] = (s8)sLightDirections[i].y;
+        lightDir[2] = (s8)sLightDirections[i].z;
         // 801A141C
-        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.dir[0] = sp40[0];
-        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.dir[1] = sp40[1];
-        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.dir[2] = sp40[2];
+        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.dir[0] = lightDir[0];
+        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.dir[1] = lightDir[1];
+        DL_CURRENT_LIGHT(sCurrentGdDl).l[i].l.dir[2] = lightDir[2];
         // 801A14C4
         gSPLight(next_gfx(), osVirtualToPhysical(&DL_CURRENT_LIGHT(sCurrentGdDl).l[i]), i + 1);
     }
@@ -2548,14 +2538,14 @@ void gd_setproperty(enum GdProperty prop, f32 f1, f32 f2, f32 f3) {
             sAmbScaleColour.b = f3;
             break;
         case GD_PROP_LIGHT_DIR:
-            D_801BB1B8[D_801BB1D0].u0.w = (s32)(f1 * 120.f);
-            D_801BB1B8[D_801BB1D0].u4.w = (s32)(f2 * 120.f);
-            D_801BB1B8[D_801BB1D0].u8.w = (s32)(f3 * 120.f);
+            sLightDirections[sLightId].x = (s32)(f1 * 120.f);
+            sLightDirections[sLightId].y = (s32)(f2 * 120.f);
+            sLightDirections[sLightId].z = (s32)(f3 * 120.f);
             break;
         case GD_PROP_DIFUSE_COLOUR:
-            sLightScaleColours[D_801BB1D0].r = f1;
-            sLightScaleColours[D_801BB1D0].g = f2;
-            sLightScaleColours[D_801BB1D0].b = f3;
+            sLightScaleColours[sLightId].r = f1;
+            sLightScaleColours[sLightId].g = f2;
+            sLightScaleColours[sLightId].b = f3;
             break;
         case GD_PROP_CULLING:
             parm = (s32) f1;
@@ -3105,7 +3095,7 @@ void gd_init(void) {
     sNewZPresses = 0;
     sGdDlCount = 0;
     D_801A8674 = 0;
-    D_801BB1D0 = 0;
+    sLightId = 0;
     sAmbScaleColour.r = 0.0f;
     sAmbScaleColour.g = 0.0f;
     sAmbScaleColour.b = 0.0f;
@@ -3114,12 +3104,12 @@ void gd_init(void) {
         sLightScaleColours[i].r = 1.0f;
         sLightScaleColours[i].g = 0.0f;
         sLightScaleColours[i].b = 0.0f;
-        D_801BB1B8[i].u0.w = 0;
-        D_801BB1B8[i].u4.w = 120;
-        D_801BB1B8[i].u8.w = 0;
+        sLightDirections[i].x = 0;
+        sLightDirections[i].y = 120;
+        sLightDirections[i].z = 0;
     }
 
-    D_801BB188 = 2;
+    sNumLights = 2;
     set_identity_mat4(&sInitIdnMat4);
     mat4_to_Mtx(&sInitIdnMat4, &sIdnMtx);
     remove_all_memtrackers();
