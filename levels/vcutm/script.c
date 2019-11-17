@@ -3,6 +3,7 @@
 #include "behavior_data.h"
 #include "model_ids.h"
 #include "seq_ids.h"
+#include "dialog_ids.h"
 #include "segment_symbols.h"
 #include "level_commands.h"
 
@@ -62,7 +63,7 @@ const LevelScript level_vcutm_entry[] = {
         JUMP_LINK(script_func_local_2),
         TERRAIN(/*terrainData*/ vcutm_seg7_collision),
         MACRO_OBJECTS(/*objList*/ vcutm_seg7_macro_objs),
-        SHOW_DIALOG(/*index*/ 0x00, /*dialogid*/ 0x81),
+        SHOW_DIALOG(/*index*/ 0x00, DIALOG_129),
         SET_BACKGROUND_MUSIC(/*settingsPreset*/ 0x0000, /*seq*/ SEQ_LEVEL_SLIDE),
         TERRAIN_TYPE(/*terrainType*/ TERRAIN_STONE),
     END_AREA(),

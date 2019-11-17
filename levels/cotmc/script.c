@@ -3,6 +3,7 @@
 #include "behavior_data.h"
 #include "model_ids.h"
 #include "seq_ids.h"
+#include "dialog_ids.h"
 #include "segment_symbols.h"
 #include "level_commands.h"
 
@@ -53,7 +54,7 @@ const LevelScript level_cotmc_entry[] = {
         JUMP_LINK(script_func_local_1),
         TERRAIN(/*terrainData*/ cotmc_seg7_collision_level),
         MACRO_OBJECTS(/*objList*/ cotmc_seg7_macro_objs),
-        SHOW_DIALOG(/*index*/ 0x00, /*dialogid*/ 0x82),
+        SHOW_DIALOG(/*index*/ 0x00, DIALOG_130),
         SET_BACKGROUND_MUSIC(/*settingsPreset*/ 0x0004, /*seq*/ SEQ_LEVEL_UNDERGROUND),
         TERRAIN_TYPE(/*terrainType*/ TERRAIN_STONE),
     END_AREA(),

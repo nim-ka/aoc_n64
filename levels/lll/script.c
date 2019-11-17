@@ -3,6 +3,7 @@
 #include "behavior_data.h"
 #include "model_ids.h"
 #include "seq_ids.h"
+#include "dialog_ids.h"
 #include "segment_symbols.h"
 #include "level_commands.h"
 
@@ -191,7 +192,7 @@ const LevelScript level_lll_entry[] = {
         JUMP_LINK(script_func_local_5),
         TERRAIN(/*terrainData*/ lll_seg7_area_1_collision),
         MACRO_OBJECTS(/*objList*/ lll_seg7_area_1_macro_objs),
-        SHOW_DIALOG(/*index*/ 0x00, /*dialogid*/ 0x61),
+        SHOW_DIALOG(/*index*/ 0x00, DIALOG_097),
         SET_BACKGROUND_MUSIC(/*settingsPreset*/ 0x0000, /*seq*/ SEQ_LEVEL_HOT),
         TERRAIN_TYPE(/*terrainType*/ TERRAIN_STONE),
     END_AREA(),

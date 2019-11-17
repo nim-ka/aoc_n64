@@ -76,7 +76,7 @@ void yoshi_talk_loop(void) {
         SetObjAnimation(0);
         if (set_mario_npc_dialog(1) == 2) {
             o->activeFlags |= 0x20;
-            if (cutscene_object_with_dialog(CUTSCENE_DIALOG_1, o, 161)) {
+            if (cutscene_object_with_dialog(CUTSCENE_DIALOG_1, o, DIALOG_161)) {
                 o->activeFlags &= ~0x20;
                 o->oInteractStatus = 0;
                 o->oHomeX = sYoshiHomeLocations[2];

@@ -133,7 +133,7 @@ ACTOR_DIR := actors
 LEVEL_DIRS := $(patsubst levels/%,%,$(dir $(wildcard levels/*/header.h)))
 
 # Directories containing source files
-SRC_DIRS := src src/engine src/game src/audio src/menu src/buffers actors levels text bin data assets
+SRC_DIRS := src src/engine src/game src/audio src/menu src/buffers actors levels bin data assets
 ASM_DIRS := asm lib
 BIN_DIRS := bin bin/$(VERSION)
 
@@ -219,7 +219,7 @@ endif
 
 AS        := $(CROSS)as
 CC        := $(QEMU_IRIX) -silent -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/bin/cc
-CPP       := cpp -P
+CPP       := cpp -P -Wno-trigraphs
 LD        := $(CROSS)ld
 AR        := $(CROSS)ar
 OBJDUMP   := $(CROSS)objdump
@@ -313,21 +313,26 @@ $(BUILD_DIR)/include/text_strings.h: include/text_strings.h.in
 $(BUILD_DIR)/include/text_menu_strings.h: include/text_menu_strings.h.in
 	$(TEXTCONV) charmap_menu.txt $< $@
 
-$(BUILD_DIR)/text/%.inc.c: text/$(VERSION)/%.c.in
-	$(TEXTCONV) charmap.txt $< $@
-
 ifeq ($(VERSION),eu)
-SRC_DIRS += text/de text/en text/fr
+TEXT_DIRS := text/de text/us text/fr
+
 # EU encoded text inserted into individual segment 0x19 files
-$(BUILD_DIR)/bin/$(VERSION)/translation_de.o: $(BUILD_DIR)/text/de/dialog.inc.c $(BUILD_DIR)/text/de/level.inc.c $(BUILD_DIR)/text/de/star.inc.c
-$(BUILD_DIR)/bin/$(VERSION)/translation_en.o: $(BUILD_DIR)/text/en/dialog.inc.c $(BUILD_DIR)/text/en/level.inc.c $(BUILD_DIR)/text/en/star.inc.c
-$(BUILD_DIR)/bin/$(VERSION)/translation_fr.o: $(BUILD_DIR)/text/fr/dialog.inc.c $(BUILD_DIR)/text/fr/level.inc.c $(BUILD_DIR)/text/fr/star.inc.c
+$(BUILD_DIR)/bin/eu/translation_en.o: $(BUILD_DIR)/text/us/define_text.inc.c
+$(BUILD_DIR)/bin/eu/translation_de.o: $(BUILD_DIR)/text/de/define_text.inc.c
+$(BUILD_DIR)/bin/eu/translation_fr.o: $(BUILD_DIR)/text/fr/define_text.inc.c
+
 else
+TEXT_DIRS := text/$(VERSION)
+
 # non-EU encoded text inserted into segment 0x02
-$(BUILD_DIR)/bin/segment2.o: $(BUILD_DIR)/text/debug.inc.c $(BUILD_DIR)/text/dialog.inc.c $(BUILD_DIR)/text/level.inc.c $(BUILD_DIR)/text/star.inc.c
+$(BUILD_DIR)/bin/segment2.o: $(BUILD_DIR)/text/$(VERSION)/define_text.inc.c
 endif
 
-ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(GODDARD_SRC_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(SOUND_SAMPLE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) include) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(VERSION)) $(SOUND_BIN_DIR) $(SOUND_BIN_DIR)/sequences/$(VERSION)
+$(BUILD_DIR)/text/%/define_text.inc.c: text/define_text.inc.c text/%/courses.h text/%/dialogs.h
+	$(CPP) $(VERSION_CFLAGS) $< -o $@ -I text/$*/
+	$(TEXTCONV) charmap.txt $@ $@
+
+ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(GODDARD_SRC_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(TEXT_DIRS) $(SOUND_SAMPLE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) include) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(VERSION)) $(SOUND_BIN_DIR) $(SOUND_BIN_DIR)/sequences/$(VERSION)
 
 # Make sure build directory exists before compiling anything
 DUMMY != mkdir -p $(ALL_DIRS)

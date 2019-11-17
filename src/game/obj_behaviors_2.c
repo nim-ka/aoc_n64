@@ -15,6 +15,7 @@
 #include "obj_behaviors_2.h"
 #include "audio/external.h"
 #include "seq_ids.h"
+#include "dialog_ids.h"
 #include "level_update.h"
 #include "memory.h"
 #include "platform_displacement.h"

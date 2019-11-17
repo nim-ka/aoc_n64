@@ -2075,11 +2075,13 @@ const u8 *const main_hud_camera_lut[] = {
     texture_hud_char_arrow_up, texture_hud_char_arrow_down,
 };
 
-#ifndef VERSION_EU
-#include "text/debug.inc.c"
-#include "text/dialog.inc.c"
-#include "text/level.inc.c"
-#include "text/star.inc.c"
+// If you change the language here, the following Makefile rule also needs to
+// change, to generate the right version of define_text.inc.c:
+// $(BUILD_DIR)/bin/segment2.o: $(BUILD_DIR)/text/$(VERSION)/define_text.inc.c
+#ifdef VERSION_JP
+#include "text/jp/define_text.inc.c"
+#elif defined(VERSION_US)
+#include "text/us/define_text.inc.c"
 #endif
 
 UNUSED static const u64 segment2_unused_0 = 0;

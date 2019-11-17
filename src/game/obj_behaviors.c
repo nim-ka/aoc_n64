@@ -28,6 +28,7 @@
 #include "ingame_menu.h"
 #include "interaction.h"
 #include "level_table.h"
+#include "dialog_ids.h"
 #include "levels/course_table.h"
 
 #define o gCurrentObject

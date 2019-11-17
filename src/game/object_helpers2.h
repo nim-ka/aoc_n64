@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+// TODO: join this together with object_helpers.h
+
 #define WAYPOINT_FLAGS_END -1
 #define WAYPOINT_FLAGS_INITIALIZED 0x8000
 #define WAYPOINT_MASK_00FF 0x00FF

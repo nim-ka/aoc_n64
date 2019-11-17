@@ -236,7 +236,7 @@ static void print_act_selector_strings(void) {
 #ifndef VERSION_EU
     unsigned char myScore[] = { TEXT_MYSCORE };
     unsigned char starNumbers[] = { TEXT_ZERO };
-    u8 **levelNameTbl = segmented_to_virtual(seg2_level_name_table);
+    u8 **levelNameTbl = segmented_to_virtual(seg2_course_name_table);
     u8 *currLevelName = segmented_to_virtual(levelNameTbl[gCurrCourseNum - 1]);
     u8 **actNameTbl = segmented_to_virtual(seg2_act_name_table);
     u8 *selectedActName;

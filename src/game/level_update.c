@@ -2,6 +2,7 @@
 
 #include "sm64.h"
 #include "seq_ids.h"
+#include "dialog_ids.h"
 #include "audio/external.h"
 #include "level_update.h"
 #include "game.h"
@@ -228,15 +229,15 @@ void func_8024980C(u32 arg) {
     u32 dialogID = gCurrentArea->dialog[arg];
 
     switch (dialogID) {
-        case 129:
+        case DIALOG_129:
             gotAchievement = save_file_get_flags() & SAVE_FLAG_HAVE_VANISH_CAP;
             break;
 
-        case 130:
+        case DIALOG_130:
             gotAchievement = save_file_get_flags() & SAVE_FLAG_HAVE_METAL_CAP;
             break;
 
-        case 131:
+        case DIALOG_131:
             gotAchievement = save_file_get_flags() & SAVE_FLAG_HAVE_WING_CAP;
             break;
 

@@ -373,9 +373,9 @@ void BobombBuddyTalkLoop(void) {
 
             case BOBOMB_BUDDY_ROLE_CANNON:
                 if (gCurrCourseNum == COURSE_BOB)
-                    BobombBuddyCannonLoop(4, 105);
+                    BobombBuddyCannonLoop(DIALOG_004, DIALOG_105);
                 else
-                    BobombBuddyCannonLoop(47, 106);
+                    BobombBuddyCannonLoop(DIALOG_047, DIALOG_106);
                 break;
         }
     }

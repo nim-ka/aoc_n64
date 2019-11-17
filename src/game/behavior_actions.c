@@ -17,6 +17,7 @@
 #include "level_update.h"
 #include "audio/external.h"
 #include "seq_ids.h"
+#include "dialog_ids.h"
 #include "save_file.h"
 #include "area.h"
 #include "engine/graph_node.h"

@@ -5,6 +5,7 @@
 #include "sm64.h"
 #include "camera.h"
 #include "seq_ids.h"
+#include "dialog_ids.h"
 #include "audio/external.h"
 #include "mario_misc.h"
 #include "game.h"
@@ -5609,7 +5610,7 @@ s16 cutscene_object_with_dialog(u8 cutsceneTable, struct Object *o, s16 dialogID
             if (dialogID != -1) {
                 D_8033B320 = dialogID;
             } else {
-                D_8033B320 = 1;
+                D_8033B320 = DIALOG_001;
             }
         } else {
             sp1E = D_8032CFFC;
@@ -6534,13 +6535,13 @@ CmdRet bowser_fight_intro_dialog(UNUSED struct LevelCamera *c) {
 
     switch (gCurrLevelNum) {
         case LEVEL_BOWSER_1:
-            dialog = 67;
+            dialog = DIALOG_067;
             break;
         case LEVEL_BOWSER_2:
-            dialog = 92;
+            dialog = DIALOG_092;
             break;
         default:
-            dialog = 93;
+            dialog = DIALOG_093;
     }
 
     create_dialog_box(dialog);
@@ -7459,7 +7460,7 @@ CmdRet CutsceneCapSwitchPress0_3(struct LevelCamera *c) {
 }
 
 CmdRet CutsceneCapSwitchPress0_6(UNUSED struct LevelCamera *c) {
-    create_dialog_box_with_response(gCutsceneFocus->oBehParams2ndByte + 10);
+    create_dialog_box_with_response(gCutsceneFocus->oBehParams2ndByte + DIALOG_010);
 }
 
 static void unused_802968E8(struct LevelCamera *c) {
@@ -7571,7 +7572,7 @@ s32 intro_peach_move_camera_start_to_pipe(struct LevelCamera *c, struct Cutscene
 }
 
 CmdRet peach_letter_text(UNUSED struct LevelCamera *c) {
-    create_dialog_box(20);
+    create_dialog_box(DIALOG_020);
 }
 
 #ifndef VERSION_JP
@@ -7622,7 +7623,7 @@ CmdRet CutsceneIntroPeach3_3(UNUSED struct LevelCamera *c) {
 }
 
 CmdRet intro_pipe_exit_text(UNUSED struct LevelCamera *c) {
-    create_dialog_box(33);
+    create_dialog_box(DIALOG_033);
 }
 
 #ifndef VERSION_JP

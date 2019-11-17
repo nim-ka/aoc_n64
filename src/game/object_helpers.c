@@ -25,6 +25,7 @@
 #include "object_list_processor.h"
 #include "room.h"
 #include "level_table.h"
+#include "dialog_ids.h"
 
 #include "object_helpers.h"
 #include "object_helpers2.h"

@@ -115,7 +115,7 @@ static void camera_lakitu_intro_act_show_dialog(void) {
                     }
                 }
             }
-        } else if (obj_update_dialog_with_cutscene(2, DIALOG_UNK2_FLAG_0, CUTSCENE_DIALOG_1, 34) != 0) {
+        } else if (obj_update_dialog_with_cutscene(2, DIALOG_UNK2_FLAG_0, CUTSCENE_DIALOG_1, DIALOG_034) != 0) {
             o->oCameraLakituFinishedDialog = TRUE;
         }
     }

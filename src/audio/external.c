@@ -14,6 +14,7 @@
 #include "game/room.h"
 #include "game/camera.h"
 #include "seq_ids.h"
+#include "dialog_ids.h"
 #include "level_table.h"
 
 // N.B. sound banks are different from the audio banks referred to in other
@@ -71,7 +72,7 @@ s32 gAudioErrorFlags = 0;
 s32 sGameLoopTicked = 0;
 
 // Dialog sounds
-// The US difference is the sound for Dialog037 ("I win! You lose! Ha ha ha ha!
+// The US difference is the sound for DIALOG_037 ("I win! You lose! Ha ha ha ha!
 // You're no slouch, but I'm a better sledder! Better luck next time!"), spoken
 // by Koopa instead of the penguin in JP.
 
@@ -94,7 +95,7 @@ s32 sGameLoopTicked = 0;
 #define DIFF TUXIE
 #endif
 
-u8 sDialogSpeaker[170] = {
+u8 sDialogSpeaker[] = {
     //       0      1      2      3      4      5      6      7      8      9
     /* 0*/ _,     BOMB,  BOMB,  BOMB,  BOMB,  KOOPA, KOOPA, KOOPA, _,     KOOPA,
     /* 1*/ _,     _,     _,     _,     _,     _,     _,     KBOMB, _,     _,
@@ -115,6 +116,7 @@ u8 sDialogSpeaker[170] = {
     /*16*/ _,     YOSHI, _,     _,     _,     _,     _,     _,     WIGLR, _
 };
 #undef _
+STATIC_ASSERT(ARRAY_COUNT(sDialogSpeaker) == DIALOG_COUNT, "change this array if you are adding dialogs");
 
 s32 sDialogSpeakerVoice[15] = {
     SOUND_OBJ_UKIKI_CHATTER_LONG,
@@ -211,11 +213,10 @@ u8 sBackgroundMusicForDynamics = SEQUENCE_NONE;
 #define DEFINE_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7, _8, leveldyn) leveldyn,
 
 #define _ sDynNone
-s16 *sLevelDynamics[] = {
+s16 *sLevelDynamics[LEVEL_COUNT] = {
     _,         // LEVEL_NONE
     #include "levels/level_defines.h"
 };
-STATIC_ASSERT(ARRAY_COUNT(sLevelDynamics) == LEVEL_COUNT, "change this array if you are adding levels");
 #undef _
 #undef STUB_LEVEL
 #undef DEFINE_LEVEL
@@ -243,23 +244,20 @@ struct MusicDynamic sMusicDynamics[8] = {
 #define STUB_LEVEL(_0, _1, _2, _3, echo1, echo2, echo3, _7) { echo1, echo2, echo3 },
 #define DEFINE_LEVEL(_0, _1, _2, _3, _4, _5, echo1, echo2, echo3, _9) { echo1, echo2, echo3 },
 
-u8 gAreaEchoLevel[][3] = {
+u8 gAreaEchoLevel[LEVEL_COUNT][3] = {
     { 0x00, 0x00, 0x00 }, // LEVEL_NONE
     #include "levels/level_defines.h"
 };
-STATIC_ASSERT(ARRAY_COUNT(gAreaEchoLevel) == LEVEL_COUNT, "change this array if you are adding levels");
 #undef STUB_LEVEL
 #undef DEFINE_LEVEL
 
 #define STUB_LEVEL(_0, _1, _2, volume, _4, _5, _6, _7) volume,
 #define DEFINE_LEVEL(_0, _1, _2, _3, _4, volume, _6, _7, _8, _9) volume,
 
-u16 D_80332028[] = {
+u16 D_80332028[LEVEL_COUNT] = {
     20000,    // LEVEL_NONE
     #include "levels/level_defines.h"
 };
-
-STATIC_ASSERT(ARRAY_COUNT(D_80332028) == LEVEL_COUNT, "change this array if you are adding levels");
 
 #undef STUB_LEVEL
 #undef DEFINE_LEVEL
@@ -1724,7 +1722,7 @@ void play_dialog_sound(u8 dialogID) {
 
 #ifndef VERSION_JP
     // "You've stepped on the (Wing|Metal|Vanish) Cap Switch"
-    if (dialogID == 10 || dialogID == 11 || dialogID == 12) {
+    if (dialogID == DIALOG_010 || dialogID == DIALOG_011 || dialogID == DIALOG_012) {
         play_puzzle_jingle();
     }
 #endif

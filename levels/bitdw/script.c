@@ -3,6 +3,7 @@
 #include "behavior_data.h"
 #include "model_ids.h"
 #include "seq_ids.h"
+#include "dialog_ids.h"
 #include "segment_symbols.h"
 #include "level_commands.h"
 
@@ -98,7 +99,7 @@ const LevelScript level_bitdw_entry[] = {
         JUMP_LINK(script_func_local_3),
         TERRAIN(/*terrainData*/ bitdw_seg7_collision_level),
         MACRO_OBJECTS(/*objList*/ bitdw_seg7_macro_objs),
-        SHOW_DIALOG(/*index*/ 0x00, /*dialogid*/ 0x5A),
+        SHOW_DIALOG(/*index*/ 0x00, DIALOG_090),
         SET_BACKGROUND_MUSIC(/*settingsPreset*/ 0x0000, /*seq*/ SEQ_LEVEL_KOOPA_ROAD),
         TERRAIN_TYPE(/*terrainType*/ TERRAIN_STONE),
     END_AREA(),

@@ -18,6 +18,7 @@
 #include "behavior_data.h"
 #include "text_strings.h"
 #include "file_select.h"
+#include "dialog_ids.h"
 
 /**
  * @file file_select.c
@@ -2042,13 +2043,13 @@ static void print_save_file_scores(s8 fileIndex) {
     unsigned char textMario[] = { TEXT_MARIO };
 #ifdef VERSION_JP
     unsigned char textFileLetter[] = { TEXT_ZERO };
-    void **levelNameTable = segmented_to_virtual(seg2_level_name_table);
+    void **levelNameTable = segmented_to_virtual(seg2_course_name_table);
 #endif
     unsigned char textHiScore[] = { TEXT_HI_SCORE };
     unsigned char textMyScore[] = { TEXT_MY_SCORE };
 #ifdef VERSION_US
     unsigned char textFileLetter[] = { TEXT_ZERO };
-    void **levelNameTable = segmented_to_virtual(seg2_level_name_table);
+    void **levelNameTable = segmented_to_virtual(seg2_course_name_table);
 #endif
 
     textFileLetter[0] = fileIndex + ASCII_TO_DIALOG('A'); // get letter of file selected
