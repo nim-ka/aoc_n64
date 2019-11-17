@@ -375,16 +375,16 @@ s8 sUnused8033EF8 = 24;
 struct CtlEntry *gCtlEntries;
 s32 gAiFrequency;
 u32 D_80226D68;
-s32 D_80226D6C;
+s32 gMaxAudioCmds;
 
 s32 gMaxSimultaneousNotes;
-s32 D_80226D74;
+s32 gSamplesPerFrameTarget;
 s32 gMinAiBufferLength;
 s16 gTempoInternalToExternal;
 s8 gAudioUpdatesPerFrame;
 s8 gSoundMode;
 
-volatile s32 gActiveAudioFrames;
+volatile s32 gAudioFrameCount;
 volatile s32 gCurrAudioFrameDmaCount;
 
 s32 gAudioTaskIndex;
@@ -402,4 +402,4 @@ s16 gAiBufferLengths[NUMAIBUFFERS];
 u32 gUnused80226E58[0x10];
 u16 gUnused80226E98[0x10];
 
-u32 D_80226EB8;
+u32 gAudioRandom;

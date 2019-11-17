@@ -340,7 +340,7 @@ struct MultiTextEntry {
 #define TEXT_THE_RAW ASCII_TO_DIALOG('t'), ASCII_TO_DIALOG('h'), ASCII_TO_DIALOG('e'), 0x00
 #define TEXT_YOU_RAW ASCII_TO_DIALOG('y'), ASCII_TO_DIALOG('o'), ASCII_TO_DIALOG('u'), 0x00
 
-enum MutliStringIDs { STRING_THE, STRING_YOU };
+enum MultiStringIDs { STRING_THE, STRING_YOU };
 
 /*
  * Place the multi-text string according to the ID passed. (US, EU)

@@ -57,7 +57,7 @@ void sequence_player_process_sound(struct SequencePlayer *seqPlayer) {
 
             channelVolume =
                 seqChannel->seqPlayer->fadeVolume * (seqChannel->volume * seqChannel->volumeScale);
-            if (seqChannel->seqPlayer->muted && (seqChannel->muteBehavior & MUTE_BEHAVIOR_20) != 0) {
+            if (seqChannel->seqPlayer->muted && (seqChannel->muteBehavior & MUTE_BEHAVIOR_SOFTEN) != 0) {
                 channelVolume *= seqChannel->seqPlayer->muteVolumeScale;
             }
 

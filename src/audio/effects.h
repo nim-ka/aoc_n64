@@ -1,5 +1,5 @@
-#ifndef _AUDIO_EFFECTS_H
-#define _AUDIO_EFFECTS_H
+#ifndef AUDIO_EFFECTS_H
+#define AUDIO_EFFECTS_H
 
 #include "internal.h"
 #include "platform_info.h"
@@ -37,4 +37,4 @@ void note_vibrato_init(struct Note *note);
 void adsr_init(struct AdsrState *adsr, struct AdsrEnvelope *envelope, s16 *volOut);
 s32 adsr_update(struct AdsrState *adsr);
 
-#endif /* _AUDIO_EFFECTS_H */
+#endif /* AUDIO_EFFECTS_H */
