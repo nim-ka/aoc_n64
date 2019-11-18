@@ -137,8 +137,8 @@ Gfx *geo18_fade_transition(u32 sp40, struct GraphNode *sp44, UNUSED void *contex
         displayList = alloc_display_list(5 * sizeof(*displayList));
         displayListIter = displayList;
         gSPDisplayList(displayListIter++, dl_proj_mtx_fullscreen);
-        gDPSetEnvColor(displayListIter++, 0xFF, 0xFF, 0xFF, gTitleFadeCounter);
-        if (gTitleFadeCounter == 0xFF) {
+        gDPSetEnvColor(displayListIter++, 255, 255, 255, gTitleFadeCounter);
+        if (gTitleFadeCounter == 255) {
             if (0) {
             }
             graphNode->flags = (graphNode->flags & 0xFF) | 0x100;

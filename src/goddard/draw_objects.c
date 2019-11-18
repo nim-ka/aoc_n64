@@ -111,7 +111,7 @@ static struct GdVec3f sGrabCords;             ///< x, y grabbable point near cur
  * Set the ambient light color and turn on G_CULL_BACK.
  */
 void setup_lights(void) {
-    set_light_num(2);
+    set_light_num(NUMLIGHTS_2);
     gd_setproperty(GD_PROP_AMB_COLOUR, 0.5f, 0.5f, 0.5f);
     gd_setproperty(GD_PROP_CULLING, 1.0f, 0.0f, 0.0f); // set G_CULL_BACK
     return;

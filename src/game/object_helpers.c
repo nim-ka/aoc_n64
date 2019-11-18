@@ -130,7 +130,7 @@ Gfx *Geo18_8029D924(s32 run, struct GraphNode *node, UNUSED void *context) {
 #endif
         }
 
-        gDPSetEnvColor(sp38++, 0xFF, 0xFF, 0xFF, sp28);
+        gDPSetEnvColor(sp38++, 255, 255, 255, sp28);
         gSPEndDisplayList(sp38);
     }
 

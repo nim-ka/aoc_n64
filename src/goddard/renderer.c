@@ -3109,7 +3109,7 @@ void gd_init(void) {
         sLightDirections[i].z = 0;
     }
 
-    sNumLights = 2;
+    sNumLights = NUMLIGHTS_2;
     set_identity_mat4(&sInitIdnMat4);
     mat4_to_Mtx(&sInitIdnMat4, &sIdnMtx);
     remove_all_memtrackers();
