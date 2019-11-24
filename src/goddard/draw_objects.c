@@ -210,7 +210,7 @@ void draw_shape(struct ObjShape *shape, s32 flag, f32 c, f32 d, f32 e, // "sweep
         sUseSelectedColor = TRUE;
         sSelectedColour = gd_get_colour(colorIdx);
         if (sSelectedColour != NULL) {
-            func_801A086C(-1, sSelectedColour, 64);
+            func_801A086C(-1, sSelectedColour, GD_MTL_LIGHTS);
         } else {
             fatal_print("Draw_shape(): Bad colour");
         }
@@ -310,7 +310,7 @@ void draw_light(struct ObjLight *light) {
 void draw_material(struct ObjMaterial *mtl) {
     s32 mtlType = mtl->type; // 24
 
-    if (mtlType == GD_MTL_UNK16) {
+    if (mtlType == GD_MTL_SHINE_DL) {
         if (sPhongLight != NULL && sPhongLight->unk30 > 0.0f) {
             if (gViewUpdateCamera != NULL) {
                 func_801A0478(mtl->gddlNumber, gViewUpdateCamera, &sPhongLight->position,
@@ -319,13 +319,13 @@ void draw_material(struct ObjMaterial *mtl) {
                 fatal_printf("draw_material() no active camera for phong");
             }
         } else {
-            mtlType = GD_MTL_UNK04;
+            mtlType = GD_MTL_BREAK;
         }
     }
     if (sUseSelectedColor == FALSE) {
         func_801A086C(mtl->gddlNumber, &mtl->Kd, mtlType);
     } else {
-        func_801A086C(mtl->gddlNumber, sSelectedColour, GD_MTL_UNK64);
+        func_801A086C(mtl->gddlNumber, sSelectedColour, GD_MTL_LIGHTS);
     }
 }
 
@@ -770,25 +770,23 @@ void drawscene(enum SceneType process, struct ObjGroup *interactables, struct Ob
     sUnreadShapeFlag = 0;
     sUpdateViewState.unreadCounter = 0;
     restart_timer("draw1");
-    set_gd_mtx_parameters(5); // G_MTX_PROJECTION | G_MTX_MUL | G_MTX_NOPUSH;
+    set_gd_mtx_parameters(G_MTX_PROJECTION | G_MTX_MUL | G_MTX_PUSH);
     if (sUpdateViewState.view->unk38 == 1) {
-        // guPerspective
-        func_801A3C8C(sUpdateViewState.view->clipping.z,
+        gd_create_perspective_matrix(sUpdateViewState.view->clipping.z,
                       sUpdateViewState.view->lowerRight.x / sUpdateViewState.view->lowerRight.y,
                       sUpdateViewState.view->clipping.x, sUpdateViewState.view->clipping.y);
     } else {
-        // guOrtho
-        func_801A3AF0(
+        gd_create_ortho_matrix(
             -sUpdateViewState.view->lowerRight.x / 2.0, sUpdateViewState.view->lowerRight.x / 2.0,
             -sUpdateViewState.view->lowerRight.y / 2.0, sUpdateViewState.view->lowerRight.y / 2.0,
             sUpdateViewState.view->clipping.x, sUpdateViewState.view->clipping.y);
     }
 
     if (lightgrp != NULL) {
-        set_gd_mtx_parameters(6); // G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_NOPUSH
+        set_gd_mtx_parameters(G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_PUSH);
         apply_to_obj_types_in_group(OBJ_TYPE_LIGHTS | OBJ_TYPE_PARTICLES,
                                     (applyproc_t) apply_obj_draw_fn, lightgrp);
-        set_gd_mtx_parameters(5);
+        set_gd_mtx_parameters(G_MTX_PROJECTION | G_MTX_MUL | G_MTX_PUSH);
     }
 
     if (gViewUpdateCamera != NULL) {
@@ -798,8 +796,8 @@ void drawscene(enum SceneType process, struct ObjGroup *interactables, struct Ob
     }
 
     setup_lights();
-    set_gd_mtx_parameters(6);
-    push_idn_mtx_cur_gddl();
+    set_gd_mtx_parameters(G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_PUSH);
+    idn_mtx_push_gddl();
     sSceneProcessType = process;
 
     if ((sNumActiveLights = sUpdateViewState.view->flags & VIEW_LIGHT)) {
@@ -844,7 +842,7 @@ void nop_obj_draw(UNUSED struct GdObj *nop) {
 void draw_shape_faces(struct ObjShape *shape) {
     sUpdateViewState.mtlDlNum = 0;
     sUpdateViewState.unreadCounter = 0;
-    func_801A2374(FALSE);
+    gddl_is_loading_stub_dl(FALSE);
     sUnreadShapeFlag = (s32) shape->flag & 1;
     func_801A02B8(shape->unk58);
     if (shape->gdDls[gGdFrameBuf] != 0) {
@@ -1143,7 +1141,7 @@ create_shape_gddl(struct ObjShape *s) {
     if (shape->unk3C == 0) {
         draw_shape_faces(shape);
     }
-    enddl = gd_end_dl();
+    enddl = gd_enddlsplist_parent();
     shape->gdDls[0] = shapedl;
     shape->gdDls[1] = shapedl;
 
@@ -1517,7 +1515,7 @@ void update_view(struct ObjView *view) {
     }
 
     border_active_view();
-    gd_end_dl();
+    gd_enddlsplist_parent();
     imout();
     return;
 }
