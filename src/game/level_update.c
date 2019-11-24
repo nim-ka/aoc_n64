@@ -1248,7 +1248,7 @@ s32 lvl_init_from_save_file(UNUSED s16 arg0, s32 levelNum) {
     disable_warp_checkpoint();
     save_file_move_cap_to_default_location();
     select_mario_cam_mode();
-    func_802E2F40();
+    set_yoshi_as_not_dead();
 
     return levelNum;
 }

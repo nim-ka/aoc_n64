@@ -1280,9 +1280,9 @@ Gfx *Geo18_802B7D44(s32 a0, struct GraphNode *node, UNUSED s32 a2) {
         if (gCurGraphNodeHeldObject != 0)
             sp24 = gCurGraphNodeHeldObject->objNode;
         if (sp24->oOpacity == 0xFF)
-            sp20->fnNode.node.flags = (sp20->fnNode.node.flags & 0xFF) | 0x100;
+            sp20->fnNode.node.flags = (sp20->fnNode.node.flags & 0xFF) | GRAPH_NODE_TYPE_FUNCTIONAL;
         else
-            sp20->fnNode.node.flags = (sp20->fnNode.node.flags & 0xFF) | (0x100 | 0x400);
+            sp20->fnNode.node.flags = (sp20->fnNode.node.flags & 0xFF) | (GRAPH_NODE_TYPE_FUNCTIONAL | GRAPH_NODE_TYPE_400);
         sp28 = sp2C = alloc_display_list(2 * sizeof(Gfx));
 
         if (sp24->oBowserUnk1B2 != 0) {

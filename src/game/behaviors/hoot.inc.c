@@ -240,7 +240,7 @@ void HootAwakeLoop(void) {
         o->oTimer = 0;
     }
 
-    SetObjectVisibility(o, 2000);
+    set_object_visibility(o, 2000);
 }
 
 void bhv_hoot_loop(void) {

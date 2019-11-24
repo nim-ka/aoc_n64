@@ -11,7 +11,7 @@ void bhv_yoshi_init(void) {
     o->oBuoyancy = 1.3f;
     o->oInteractionSubtype = INT_SUBTYPE_NPC;
 
-    if (save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24) < 120 || D_80331508 == 1) {
+    if (save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24) < 120 || sYoshiDead == TRUE) {
         o->activeFlags = 0;
     }
 }
@@ -21,9 +21,9 @@ void yoshi_walk_loop(void) {
     s16 sp24 = o->header.gfx.unk38.animFrame;
 
     o->oForwardVel = 10.0f;
-    sp26 = ObjectStep();
+    sp26 = object_step();
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oYoshiTargetYaw, 0x500);
-    if (IsPointCloseToObject(o, o->oHomeX, 3174.0f, o->oHomeZ, 200))
+    if (is_point_close_to_object(o, o->oHomeX, 3174.0f, o->oHomeZ, 200))
         o->oAction = YOSHI_ACT_IDLE;
 
     SetObjAnimation(1);
@@ -96,13 +96,13 @@ void yoshi_walk_and_jump_off_roof_loop(void) {
     s16 sp26 = o->header.gfx.unk38.animFrame;
 
     o->oForwardVel = 10.0f;
-    ObjectStep();
+    object_step();
     SetObjAnimation(1);
     if (o->oTimer == 0)
         cutscene_object(CUTSCENE_STAR_SPAWN, o);
 
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oYoshiTargetYaw, 0x500);
-    if (IsPointCloseToObject(o, o->oHomeX, 3174.0f, o->oHomeZ, 200)) {
+    if (is_point_close_to_object(o, o->oHomeX, 3174.0f, o->oHomeZ, 200)) {
         SetObjAnimation(2);
         PlaySound2(SOUND_GENERAL_ENEMY_ALERT1);
         o->oForwardVel = 50.0f;
@@ -123,7 +123,7 @@ void yoshi_finish_jumping_and_despawn_loop(void) {
     if (o->oPosY < 2100.0f) {
         set_mario_npc_dialog(0);
         gCutsceneActive = 1;
-        D_80331508 = 1;
+        sYoshiDead = 1;
         o->activeFlags = 0;
     }
 }

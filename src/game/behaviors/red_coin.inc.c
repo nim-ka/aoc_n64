@@ -39,7 +39,7 @@ void bhv_red_coin_loop(void) {
             create_sound_spawner(SOUND_GENERAL_RED_COIN);
 #endif
             if (o->parentObj->oHiddenStarTriggerCounter != 8) {
-                SpawnOrangeNumber(o->parentObj->oHiddenStarTriggerCounter, 0, 0, 0);
+                spawn_orange_number(o->parentObj->oHiddenStarTriggerCounter, 0, 0, 0);
             }
 
 #ifndef VERSION_JP
