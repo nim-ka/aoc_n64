@@ -1420,14 +1420,14 @@ const BehaviorScript bhvDddMovingPole[] = {
 };
 
 // 1030
-const BehaviorScript bhvBitfsTiltingSquarePlatform[] = {
+const BehaviorScript bhvBitfsTiltingInvertedPyramid[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OBJ_OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     COLLISION_DATA(bitfs_seg7_collision_inverted_pyramid),
     OBJ_SET_POS(),
-    CALLNATIVE(bhv_tilting_platform_init),
+    CALLNATIVE(bhv_platform_normals_init),
     BEGIN_LOOP(),
-        CALLNATIVE(bhv_tilting_platform_loop),
+        CALLNATIVE(bhv_tilting_inverted_pyramid_loop),
         CALLNATIVE(load_object_collision_model),
     END_LOOP(),
 };
@@ -1438,7 +1438,7 @@ const BehaviorScript bhvSquishablePlatform[] = {
     OBJ_OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     COLLISION_DATA(bitfs_seg7_collision_squishable_platform),
     OBJ_SET_FLOAT(oCollisionDistance, 0x2710),
-    CALLNATIVE(bhv_tilting_platform_init),
+    CALLNATIVE(bhv_platform_normals_init),
     BEGIN_LOOP(),
         CALLNATIVE(bhv_squishable_platform_loop),
         CALLNATIVE(load_object_collision_model),
@@ -1700,9 +1700,9 @@ const BehaviorScript bhvAnotherTiltingPlatform[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OBJ_OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     OBJ_SET_POS(),
-    CALLNATIVE(bhv_tilting_platform_init),
+    CALLNATIVE(bhv_platform_normals_init),
     BEGIN_LOOP(),
-        CALLNATIVE(bhv_tilting_platform_loop),
+        CALLNATIVE(bhv_tilting_inverted_pyramid_loop),
         CALLNATIVE(load_object_collision_model),
     END_LOOP(),
 };
@@ -2479,15 +2479,15 @@ const BehaviorScript bhvLllSinkingSquarePlatforms[] = {
 };
 
 // 1EF8
-const BehaviorScript bhvLllTiltingSquarePlatform[] = {
+const BehaviorScript bhvLllTiltingInvertedPyramid[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OBJ_OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     COLLISION_DATA(lll_seg7_collision_inverted_pyramid),
     OBJ_ADD_FLOAT(oPosY, 5),
     OBJ_SET_POS(),
-    CALLNATIVE(bhv_tilting_platform_init),
+    CALLNATIVE(bhv_platform_normals_init),
     BEGIN_LOOP(),
-        CALLNATIVE(bhv_tilting_platform_loop),
+        CALLNATIVE(bhv_tilting_inverted_pyramid_loop),
         CALLNATIVE(load_object_collision_model),
     END_LOOP(),
 };

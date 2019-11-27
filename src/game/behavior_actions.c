@@ -246,7 +246,7 @@ void func_802B2328(
 #include "behaviors/lll_volcano_flames.inc.c"
 #include "behaviors/lll_hexagonal_ring.inc.c"
 #include "behaviors/lll_sinking_rectangle.inc.c"
-#include "behaviors/lll_tilting_platform.inc.c"
+#include "behaviors/tilting_inverted_pyramid.inc.c"
 #include "behaviors/koopa_shell.inc.c"
 #include "behaviors/tox_box.inc.c"
 #include "behaviors/piranha_plant.inc.c"
