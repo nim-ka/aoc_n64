@@ -385,6 +385,15 @@ u32 common_air_action_step(struct MarioState *m, u32 landAction, s32 animation, 
                         m->vel[1] = 0.0f;
                     }
 
+                    //! Hands-free holding. Bonking while no wall is referenced
+                    // sets Mario's action to a non-holding action without
+                    // dropping the object, causing the hands-free holding
+                    // glitch. This can be achieved using an exposed ceiling,
+                    // out of bounds, grazing the bottom of a wall while
+                    // falling such that the final quarter step does not find a
+                    // wall collision, or by rising into the top of a wall such
+                    // that the final quarter step detects a ledge, but you are
+                    // not able to ledge grab it.
                     if (m->forwardVel >= 38.0f) {
                         m->particleFlags |= PARTICLE_1;
                         set_mario_action(m, ACT_BACKWARD_AIR_KB, 0);

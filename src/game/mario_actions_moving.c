@@ -941,7 +941,7 @@ s32 act_hold_heavy_walking(struct MarioState *m) {
     }
 
     if (m->input & INPUT_UNKNOWN_5) {
-        return set_mario_action(m, ACT_UNKNOWN_008, 0);
+        return set_mario_action(m, ACT_HOLD_HEAVY_IDLE, 0);
     }
 
     m->intendedMag *= 0.1f;
@@ -1165,7 +1165,7 @@ s32 act_hold_decelerating(struct MarioState *m) {
     }
 
     if (update_decelerating_speed(m)) {
-        return set_mario_action(m, ACT_UNKNOWN_007, 0);
+        return set_mario_action(m, ACT_HOLD_IDLE, 0);
     }
 
     m->intendedMag *= 0.4f;

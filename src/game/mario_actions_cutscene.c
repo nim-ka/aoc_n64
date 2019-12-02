@@ -413,7 +413,7 @@ s32 act_reading_npc_dialog(struct MarioState *m) {
         if (m->flags & MARIO_CAP_IN_HAND) {
             set_mario_action(m, ACT_PUTTING_ON_CAP, 0);
         } else {
-            set_mario_action(m, m->heldObj == NULL ? ACT_IDLE : ACT_UNKNOWN_007, 0);
+            set_mario_action(m, m->heldObj == NULL ? ACT_IDLE : ACT_HOLD_IDLE, 0);
         }
     }
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
