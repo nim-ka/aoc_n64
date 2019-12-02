@@ -4,7 +4,7 @@
 #include "types.h"
 #include "area.h"
 
-#include "levels/course_table.h"
+#include "course_table.h"
 
 #define EEPROM_SIZE 0x200
 #define NUM_SAVE_FILES 4

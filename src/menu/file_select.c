@@ -2071,33 +2071,33 @@ static void print_save_file_scores(s8 fileIndex) {
 #ifdef VERSION_JP
 #define PADCHAR 0
 #define PRINT_COURSE_SCORES(courseIndex, pad)                                                               \
-    print_menu_generic_string(23 + (pad * 3), 35 + 12 * courseIndex, segmented_to_virtual(levelNameTable[courseIndex]));  \
-    print_score_file_star_score(fileIndex, courseIndex, 152, 35 + 12 * courseIndex);                        \
-    print_score_file_course_coin_score(fileIndex, courseIndex, 213, 35 + 12 * courseIndex);
+    print_menu_generic_string(23 + (pad * 3), 23 + 12 * courseIndex, segmented_to_virtual(levelNameTable[courseIndex - 1]));  \
+    print_score_file_star_score(fileIndex, courseIndex - 1, 152, 23 + 12 * courseIndex);                        \
+    print_score_file_course_coin_score(fileIndex, courseIndex - 1, 213, 23 + 12 * courseIndex);
 #else
 #define PADCHAR 1
 #define PRINT_COURSE_SCORES(courseIndex, pad)                                                               \
-    print_menu_generic_string(23 + (pad * 3), 35 + 12 * courseIndex, segmented_to_virtual(levelNameTable[courseIndex]));  \
-    print_score_file_star_score(fileIndex, courseIndex, 171, 35 + 12 * courseIndex);                        \
-    print_score_file_course_coin_score(fileIndex, courseIndex, 213, 35 + 12 * courseIndex);
+    print_menu_generic_string(23 + (pad * 3), 23 + 12 * courseIndex, segmented_to_virtual(levelNameTable[courseIndex - 1]));  \
+    print_score_file_star_score(fileIndex, courseIndex - 1, 171, 23 + 12 * courseIndex);                        \
+    print_score_file_course_coin_score(fileIndex, courseIndex - 1, 213, 23 + 12 * courseIndex);
 #endif
 
     // Course values are indexed, from Bob-omb Battlefield to Rainbow Ride
-    PRINT_COURSE_SCORES(0, PADCHAR) // BOB
-    PRINT_COURSE_SCORES(1, PADCHAR) // WF
-    PRINT_COURSE_SCORES(2, PADCHAR) // JRB
-    PRINT_COURSE_SCORES(3, PADCHAR) // CCM
-    PRINT_COURSE_SCORES(4, PADCHAR) // BBH
-    PRINT_COURSE_SCORES(5, PADCHAR) // HMC
-    PRINT_COURSE_SCORES(6, PADCHAR) // LLL
-    PRINT_COURSE_SCORES(7, PADCHAR) // SSL
-    PRINT_COURSE_SCORES(8, PADCHAR) // DDD
-    PRINT_COURSE_SCORES(9, 0)  // SL
-    PRINT_COURSE_SCORES(10, 0) // WDW
-    PRINT_COURSE_SCORES(11, 0) // TTM
-    PRINT_COURSE_SCORES(12, 0) // THI
-    PRINT_COURSE_SCORES(13, 0) // TTC
-    PRINT_COURSE_SCORES(14, 0) // RR
+    PRINT_COURSE_SCORES(COURSE_BOB, PADCHAR) // BOB
+    PRINT_COURSE_SCORES(COURSE_WF, PADCHAR) // WF
+    PRINT_COURSE_SCORES(COURSE_JRB, PADCHAR) // JRB
+    PRINT_COURSE_SCORES(COURSE_CCM, PADCHAR) // CCM
+    PRINT_COURSE_SCORES(COURSE_BBH, PADCHAR) // BBH
+    PRINT_COURSE_SCORES(COURSE_HMC, PADCHAR) // HMC
+    PRINT_COURSE_SCORES(COURSE_LLL, PADCHAR) // LLL
+    PRINT_COURSE_SCORES(COURSE_SSL, PADCHAR) // SSL
+    PRINT_COURSE_SCORES(COURSE_DDD, PADCHAR) // DDD
+    PRINT_COURSE_SCORES(COURSE_SL, 0)  // SL
+    PRINT_COURSE_SCORES(COURSE_WDW, 0) // WDW
+    PRINT_COURSE_SCORES(COURSE_TTM, 0) // TTM
+    PRINT_COURSE_SCORES(COURSE_THI, 0) // THI
+    PRINT_COURSE_SCORES(COURSE_TTC, 0) // TTC
+    PRINT_COURSE_SCORES(COURSE_RR, 0) // RR
 
 #undef PRINT_COURSE_SCORES
 #undef PADCHAR

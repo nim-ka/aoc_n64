@@ -29,7 +29,7 @@
 #include "interaction.h"
 #include "level_table.h"
 #include "dialog_ids.h"
-#include "levels/course_table.h"
+#include "course_table.h"
 
 /**
  * @file obj_behaviors.c

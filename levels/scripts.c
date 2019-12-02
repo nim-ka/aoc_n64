@@ -29,42 +29,13 @@
 
 #include "levels/menu/header.h"
 #include "levels/intro/header.h"
-#include "levels/bbh/header.h"
-#include "levels/ccm/header.h"
-#include "levels/castle_inside/header.h"
-#include "levels/hmc/header.h"
-#include "levels/ssl/header.h"
-#include "levels/bob/header.h"
-#include "levels/sl/header.h"
-#include "levels/wdw/header.h"
-#include "levels/jrb/header.h"
-#include "levels/thi/header.h"
-#include "levels/ttc/header.h"
-#include "levels/rr/header.h"
-#include "levels/castle_grounds/header.h"
-#include "levels/bitdw/header.h"
-#include "levels/vcutm/header.h"
-#include "levels/bitfs/header.h"
-#include "levels/sa/header.h"
-#include "levels/bits/header.h"
-#include "levels/lll/header.h"
-#include "levels/ddd/header.h"
-#include "levels/wf/header.h"
-#include "levels/ending/header.h"
-#include "levels/castle_courtyard/header.h"
-#include "levels/pss/header.h"
-#include "levels/cotmc/header.h"
-#include "levels/totwc/header.h"
-#include "levels/bowser_1/header.h"
-#include "levels/wmotr/header.h"
-#include "levels/bowser_2/header.h"
-#include "levels/bowser_3/header.h"
-#include "levels/ttm/header.h"
+
+#include "level_headers.h"
 
 #include "level_table.h"
 
-#define STUB_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7)
-#define DEFINE_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9) + 3
+#define STUB_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7, _8)
+#define DEFINE_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10) + 3
 static const LevelScript script_exec_level_table[2
   #include "level_defines.h"
 ];
@@ -76,38 +47,14 @@ static const LevelScript script_L2[4];
 static const LevelScript script_L3[4];
 static const LevelScript script_L4[4];
 static const LevelScript script_L5[4];
-static const LevelScript script_exec_bbh[4 + 1];
-static const LevelScript script_exec_ccm[4 + 1];
-static const LevelScript script_exec_castle_inside[4 + 1];
-static const LevelScript script_exec_hmc[4 + 1];
-static const LevelScript script_exec_ssl[4 + 1];
-static const LevelScript script_exec_bob[4 + 1];
-static const LevelScript script_exec_sl[4 + 1];
-static const LevelScript script_exec_wdw[4 + 1];
-static const LevelScript script_exec_jrb[4 + 1];
-static const LevelScript script_exec_thi[4 + 1];
-static const LevelScript script_exec_ttc[4 + 1];
-static const LevelScript script_exec_rr[4 + 1];
-static const LevelScript script_exec_castle_grounds[4 + 1];
-static const LevelScript script_exec_bitdw[4 + 1];
-static const LevelScript script_exec_vcutm[4 + 1];
-static const LevelScript script_exec_bitfs[4 + 1];
-static const LevelScript script_exec_sa[4 + 1];
-static const LevelScript script_exec_bits[4 + 1];
-static const LevelScript script_exec_lll[4 + 1];
-static const LevelScript script_exec_ddd[4 + 1];
-static const LevelScript script_exec_wf[4 + 1];
-static const LevelScript script_exec_ending[4 + 1];
-static const LevelScript script_exec_castle_courtyard[4 + 1];
-static const LevelScript script_exec_pss[4 + 1];
-static const LevelScript script_exec_cotmc[4 + 1];
-static const LevelScript script_exec_totwc[4 + 1];
-static const LevelScript script_exec_bowser_1[4 + 1];
-static const LevelScript script_exec_wmotr[4 + 1];
-static const LevelScript script_exec_bowser_2[4 + 1];
-static const LevelScript script_exec_bowser_3[4 + 1];
-static const LevelScript script_exec_ttm[4 + 1];
 
+#define STUB_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7, _8)
+#define DEFINE_LEVEL(_0, _1, _2, folder, _4, _5, _6, _7, _8, _9, _10) static const LevelScript script_exec_ ## folder [4 + 1];
+
+#include "level_defines.h"
+
+#undef DEFINE_LEVEL
+#undef STUB_LEVEL
 
 const LevelScript level_main_scripts_entry[] = {
     LOAD_MIO0(/*seg*/ 0x04, _group0_mio0SegmentRomStart, _group0_mio0SegmentRomEnd),
@@ -199,9 +146,9 @@ static const LevelScript script_L5[] = {
 
 // Include the level jumptable.
 
-#define STUB_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7)
+#define STUB_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7, _8)
 
-#define DEFINE_LEVEL(_0, levelenum, _2, folder, _4, _5, _6, _7, _8, _9) JUMP_IF(OP_EQ, levelenum, script_exec_ ## folder),
+#define DEFINE_LEVEL(_0, levelenum, _2, folder, _4, _5, _6, _7, _8, _9, _10) JUMP_IF(OP_EQ, levelenum, script_exec_ ## folder),
 
 static const LevelScript script_exec_level_table[] = {
     GET_OR_SET(/*op*/ OP_GET, /*var*/ VAR_CURR_LEVEL_NUM),
@@ -210,7 +157,7 @@ static const LevelScript script_exec_level_table[] = {
 };
 #undef DEFINE_LEVEL
 
-#define DEFINE_LEVEL(_0, _1, _2, folder, _4, _5, _6, _7, _8, _9) \
+#define DEFINE_LEVEL(_0, _1, _2, folder, _4, _5, _6, _7, _8, _9, _10) \
 static const LevelScript script_exec_ ## folder [] = { \
     EXECUTE(0x0E, _ ## folder ## SegmentRomStart, _ ## folder ## SegmentRomEnd, level_ ## folder ## _entry), \
     RETURN(), \

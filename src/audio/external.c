@@ -209,8 +209,8 @@ s16 sDynNone[] = { SEQ_SOUND_PLAYER, 0 };
 u8 sCurrentMusicDynamic = 0xff;
 u8 sBackgroundMusicForDynamics = SEQUENCE_NONE;
 
-#define STUB_LEVEL(_0, _1, _2, _3, _4, _5, _6, leveldyn) leveldyn,
-#define DEFINE_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7, _8, leveldyn) leveldyn,
+#define STUB_LEVEL(_0, _1, _2, _3, _4, _5, _6, leveldyn, _8) leveldyn,
+#define DEFINE_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7, _8, leveldyn, _10) leveldyn,
 
 #define _ sDynNone
 s16 *sLevelDynamics[LEVEL_COUNT] = {
@@ -241,8 +241,8 @@ struct MusicDynamic sMusicDynamics[8] = {
     { 0xffff, 127, 100, 0x0000, 0, 100 }, // any (unused)
 };
 
-#define STUB_LEVEL(_0, _1, _2, _3, echo1, echo2, echo3, _7) { echo1, echo2, echo3 },
-#define DEFINE_LEVEL(_0, _1, _2, _3, _4, _5, echo1, echo2, echo3, _9) { echo1, echo2, echo3 },
+#define STUB_LEVEL(_0, _1, _2, _3, echo1, echo2, echo3, _7, _8) { echo1, echo2, echo3 },
+#define DEFINE_LEVEL(_0, _1, _2, _3, _4, _5, echo1, echo2, echo3, _9, _10) { echo1, echo2, echo3 },
 
 u8 gAreaEchoLevel[LEVEL_COUNT][3] = {
     { 0x00, 0x00, 0x00 }, // LEVEL_NONE
@@ -251,8 +251,8 @@ u8 gAreaEchoLevel[LEVEL_COUNT][3] = {
 #undef STUB_LEVEL
 #undef DEFINE_LEVEL
 
-#define STUB_LEVEL(_0, _1, _2, volume, _4, _5, _6, _7) volume,
-#define DEFINE_LEVEL(_0, _1, _2, _3, _4, volume, _6, _7, _8, _9) volume,
+#define STUB_LEVEL(_0, _1, _2, volume, _4, _5, _6, _7, _8) volume,
+#define DEFINE_LEVEL(_0, _1, _2, _3, _4, volume, _6, _7, _8, _9, _10) volume,
 
 u16 D_80332028[LEVEL_COUNT] = {
     20000,    // LEVEL_NONE

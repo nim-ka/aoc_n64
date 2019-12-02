@@ -18,7 +18,7 @@
 #include "audio/external.h"
 #include "behavior_data.h"
 #include "dialog_ids.h"
-#include "levels/course_table.h"
+#include "course_table.h"
 
 #define INT_GROUND_POUND_OR_TWIRL (1 << 0) // 0x00000001
 #define INT_PUNCH (1 << 1)                 // 0x00000002

@@ -17,8 +17,8 @@
 
 #define PRESS_START_DEMO_TIMER 800
 
-#define STUB_LEVEL(textname, _1, _2, _3, _4, _5, _6, _7) textname,
-#define DEFINE_LEVEL(textname, _1, _2, _3, _4, _5, _6, _7, _8, _9) textname,
+#define STUB_LEVEL(textname, _1, _2, _3, _4, _5, _6, _7, _8) textname,
+#define DEFINE_LEVEL(textname, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10) textname,
 
 static char gLevelSelect_StageNamesText[64][16] = {
     #include "levels/level_defines.h"

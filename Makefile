@@ -430,6 +430,11 @@ $(SOUND_BIN_DIR)/%.o: $(SOUND_BIN_DIR)/%.s
 $(SOUND_BIN_DIR)/%.s: $(SOUND_BIN_DIR)/%
 	printf ".section .data\n\n.incbin \"$<\"\n" > $@
 
+$(BUILD_DIR)/levels/scripts.o: $(BUILD_DIR)/include/level_headers.h
+
+$(BUILD_DIR)/include/level_headers.h: levels/level_headers.h.in
+	$(CPP) -I . levels/level_headers.h.in | $(PYTHON) tools/output_level_headers.py > $(BUILD_DIR)/include/level_headers.h
+
 $(BUILD_DIR)/assets/mario_anim_data.c: $(wildcard assets/anims/*.inc.c)
 	$(PYTHON) tools/mario_anims_converter.py > $@
 

@@ -760,8 +760,8 @@ SECTIONS
    MIO0_SEG(inside, 0x09000000)
    MIO0_SEG(effect, 0x0B000000)
 
-#define STUB_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7)
-#define DEFINE_LEVEL(_0, _1, _2, folder, _4, _5, _6, _7, _8, _9) STANDARD_LEVEL(folder)
+#define STUB_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7, _8)
+#define DEFINE_LEVEL(_0, _1, _2, folder, _4, _5, _6, _7, _8, _9, _10) STANDARD_LEVEL(folder)
 
    #include "levels/level_defines.h"
 
