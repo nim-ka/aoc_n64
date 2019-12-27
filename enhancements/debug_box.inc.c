@@ -29,14 +29,14 @@
  *        gDPSetScissor(...);
  *    //...
  * 
- * Now just call debug_box() whenever you want to draw a one!
+ * Now just call debug_box() whenever you want to draw one!
  *
  * debug_box by default takes two arguments: a center and bounds vec3f.
- * This will draw a box starting from the poitn (center - bounds) to (center + bounds). 
+ * This will draw a box starting from the point (center - bounds) to (center + bounds).
  *
- * Use debug_box_rot to rotate the box in the xz-plane.
+ * Use debug_box_rot to draw a box rotated in the xz-plane.
  *
- * If you want to draw a box by specifying the min and max points, use debug_box_pos() instead.
+ * If you want to draw a box by specifying min and max points, use debug_box_pos() instead.
  */
 
 /**
@@ -102,9 +102,8 @@ static const Gfx dl_debug_draw_box[] = {
  */
 static void append_debug_box(Vec3f center, Vec3f bounds, s16 yaw)
 {
-    // The memory pool D_8033A124 appears to be used by graphics effects so I just used it
     if (sNumBoxes >= MAX_DEBUG_BOXES ||
-       (sBoxes[sNumBoxes] = mem_pool_alloc(D_8033A124, sizeof(struct DebugBox))) == NULL) {
+       (sBoxes[sNumBoxes] = mem_pool_alloc(gEffectsMemoryPool, sizeof(struct DebugBox))) == NULL) {
         return;
     }
 
@@ -180,8 +179,6 @@ static void render_box(struct DebugBox *box)
 
     if (verts != NULL) {
         if (box->yaw != 0) {
-            //XXX: There might be a better way to do this
-
             // Translate to the origin, rotate, then translate back, effectively rotating the box about
             // its center
             translate =     alloc_display_list(sizeof(Mtx));
@@ -227,10 +224,10 @@ void render_debug_boxes()
         return;
     }
 
-    mtx = alloc_display_list(sizeof(*mtx));
+    mtx = alloc_display_list(sizeof(Mtx));
     if (mtx == NULL) {
         for (i = 0; i < sNumBoxes; ++i) {
-            mem_pool_free(D_8033A124, sBoxes[i]);
+            mem_pool_free(gEffectsMemoryPool, sBoxes[i]);
         }
         sNumBoxes = 0;
         return;
@@ -244,7 +241,7 @@ void render_debug_boxes()
 
     for (i = 0; i < sNumBoxes; ++i) {
         render_box(sBoxes[i]);
-        mem_pool_free(D_8033A124, sBoxes[i]);
+        mem_pool_free(gEffectsMemoryPool, sBoxes[i]);
     }
 
     sNumBoxes = 0;
