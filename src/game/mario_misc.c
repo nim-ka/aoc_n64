@@ -114,15 +114,15 @@ static void bhvToadMessage_talking(void) {
         switch (gCurrentObject->oToadMessageDialogId) {
             case TOAD_STAR_1_DIALOG:
                 gCurrentObject->oToadMessageDialogId = TOAD_STAR_1_DIALOG_AFTER;
-                bhv_spawn_star_objects(0);
+                bhv_spawn_star_no_level_exit(0);
                 break;
             case TOAD_STAR_2_DIALOG:
                 gCurrentObject->oToadMessageDialogId = TOAD_STAR_2_DIALOG_AFTER;
-                bhv_spawn_star_objects(1);
+                bhv_spawn_star_no_level_exit(1);
                 break;
             case TOAD_STAR_3_DIALOG:
                 gCurrentObject->oToadMessageDialogId = TOAD_STAR_3_DIALOG_AFTER;
-                bhv_spawn_star_objects(2);
+                bhv_spawn_star_no_level_exit(2);
                 break;
         }
     }

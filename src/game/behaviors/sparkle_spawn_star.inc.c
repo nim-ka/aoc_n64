@@ -12,7 +12,7 @@ struct ObjectHitbox sSparkleSpawnStarHitbox = {
     /* hurtboxHeight: */ 0,
 };
 
-void bhv_unused_080c_init(void) {
+void bhv_spawned_star_init(void) {
     s32 sp24;
     if (!(o->oInteractionSubtype & INT_SUBTYPE_NO_EXIT))
         o->oBehParams = o->parentObj->oBehParams;
@@ -53,7 +53,7 @@ void func_802AA918(void) {
         o->oAngleVelYaw -= 0x40;
 }
 
-void bhv_unused_080c_loop(void) {
+void bhv_spawned_star_loop(void) {
     if (o->oAction == 0) {
         if (o->oTimer == 0) {
             cutscene_object(CUTSCENE_STAR_SPAWN, o);
@@ -110,8 +110,8 @@ void bhv_unused_080c_loop(void) {
     o->oInteractStatus = 0;
 }
 
-void bhv_spawn_star_objects(u32 sp20) {
-    struct Object *sp1C = spawn_object(o, MODEL_STAR, bhvUnused080C);
+void bhv_spawn_star_no_level_exit(u32 sp20) {
+    struct Object *sp1C = spawn_object(o, MODEL_STAR, bhvSpawnedStarNoLevelExit);
     sp1C->oBehParams = sp20 << 24;
     sp1C->oInteractionSubtype = INT_SUBTYPE_NO_EXIT;
     set_object_angle(sp1C, 0, 0, 0);
