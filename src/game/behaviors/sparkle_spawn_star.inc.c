@@ -89,14 +89,14 @@ void bhv_spawned_star_loop(void) {
         if (o->oVelY < -4.0f)
             o->oVelY = -4.0f;
         if (o->oVelY < 0 && o->oPosY < o->oHomeY) {
-            gCutsceneActive = 1;
+            gObjCutsceneDone = TRUE;
             o->oVelY = 0;
             o->oGravity = 0;
             o->oAction++;
         }
         spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
     } else if (o->oAction == 2) {
-        if (gCurrLevelCamera->cutscene == 0 && gCutsceneNumber == 0) {
+        if (gCamera->cutscene == 0 && gRecentCutscene == 0) {
             clear_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
             o->activeFlags &= ~0x20;
             o->oAction++;

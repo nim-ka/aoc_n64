@@ -936,7 +936,7 @@ void reset_dialog_render_state(void) {
     level_set_transition(0, 0);
 
     if (gDialogBoxType == DIALOG_TYPE_ZOOM) {
-        stop_mario(2);
+        trigger_cutscene_dialog(2);
     }
 
     gDialogBoxScale = 19.0f;
@@ -1676,7 +1676,7 @@ u16 gCutsceneMsgFade = 0;
 s16 gCutsceneMsgIndex = -1;
 s16 gCutsceneMsgDuration = -1;
 s16 gCutsceneMsgTimer = 0;
-s8 gDialogCameraAngleIndex = CAM_ANGLE_LAKITU_MARIO;
+s8 gDialogCameraAngleIndex = CAM_SELECTION_MARIO;
 s8 gDialogCourseActNum = 1;
 
 #ifdef VERSION_JP
@@ -1790,7 +1790,7 @@ void render_dialog_entries(void) {
                 play_sound(SOUND_MENU_MESSAGE_DISAPPEAR, gDefaultSoundArgs);
 
                 if (gDialogBoxType == DIALOG_TYPE_ZOOM) {
-                    stop_mario(2);
+                    trigger_cutscene_dialog(2);
                 }
 
                 gDialogResponse = gDialogLineNum;
@@ -2112,10 +2112,10 @@ void reset_red_coins_collected(void) {
 }
 
 void change_dialog_camera_angle(void) {
-    if (select_or_activate_mario_cam(0) == CAM_ANGLE_LAKITU_MARIO) {
-        gDialogCameraAngleIndex = CAM_ANGLE_LAKITU_MARIO;
+    if (cam_select_alt_mode(0) == CAM_SELECTION_MARIO) {
+        gDialogCameraAngleIndex = CAM_SELECTION_MARIO;
     } else {
-        gDialogCameraAngleIndex = CAM_ANGLE_LAKITU_FIXED;
+        gDialogCameraAngleIndex = CAM_SELECTION_FIXED;
     }
 }
 
@@ -2341,10 +2341,10 @@ void render_pause_camera_options(s16 x, s16 y, s8 *index, s16 xIndex) {
 
     switch (index[0]) {
         case 1:
-            select_or_activate_mario_cam(1);
+            cam_select_alt_mode(1);
             break;
         case 2:
-            select_or_activate_mario_cam(2);
+            cam_select_alt_mode(2);
             break;
     }
 }

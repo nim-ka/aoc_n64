@@ -1589,8 +1589,8 @@ void obj_shake_y(f32 amount) {
     }
 }
 
-void func_802A11B4(UNUSED struct Object *a0, s32 a1) {
-    gPlayerStatusForCamera->unk1C[1] = (s16) a1;
+void obj_start_cam_action(UNUSED struct Object *obj, s32 custceneStatus) {
+    gPlayerCameraState->cameraEvent = (s16) custceneStatus;
     gSecondCameraFocus = o;
 }
 
@@ -2791,8 +2791,8 @@ s32 mario_is_within_rectangle(s16 minX, s16 maxX, s16 minZ, s16 maxZ) {
     return TRUE;
 }
 
-void ShakeScreen(s32 sp18) {
-    func_8027F440(sp18, o->oPosX, o->oPosY, o->oPosZ);
+void ShakeScreen(s32 shake) {
+    set_camera_shake_from_point(shake, o->oPosX, o->oPosY, o->oPosZ);
 }
 
 s32 attack_collided_non_mario_object(struct Object *obj) {

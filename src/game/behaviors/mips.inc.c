@@ -244,7 +244,7 @@ void bhv_mips_held(void) {
 
         if (set_mario_npc_dialog(1) == 2) {
             o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
-            if (cutscene_object_with_dialog(CUTSCENE_DIALOG_1, o, dialogID)) {
+            if (cutscene_object_with_dialog(CUTSCENE_DIALOG, o, dialogID)) {
                 o->oInteractionSubtype |= INT_SUBTYPE_DROP_IMMEDIATELY;
                 o->activeFlags &= ~ACTIVE_FLAG_INITIATED_TIME_STOP;
                 o->oMipsStarStatus = MIPS_STAR_STATUS_SHOULD_SPAWN_STAR;
