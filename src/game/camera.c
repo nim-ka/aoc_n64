@@ -9861,7 +9861,7 @@ CmdRet cutscene_enter_painting(struct Camera *c) {
 
     if (ripplingPainting != NULL) {
         paintingAngle[0] = 0;
-        paintingAngle[1] = (ripplingPainting->vYRotation / 360.f) * 65536.f; // convert degrees to IAU
+        paintingAngle[1] = (s32)((ripplingPainting->vYRotation / 360.f) * 65536.f); // convert degrees to IAU
         paintingAngle[2] = 0;
 
         focusOffset[0] = ripplingPainting->vSize / 2.0f;
