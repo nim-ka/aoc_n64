@@ -109,7 +109,7 @@ void func_802B392C(s32 *a) {
     if (o->oMoveFlags & 1) {
         a[0]++;
         if (a[0] < 4) {
-            obj_start_cam_action(o, CAM_EVENT_BOWSER_THROW_BOUNCE);
+            obj_start_cam_event(o, CAM_EVENT_BOWSER_THROW_BOUNCE);
             func_802AA618(0, 0, 60.0f);
             PlaySound2(SOUND_OBJ_BOWSER_WALK);
         }
@@ -459,7 +459,7 @@ s32 func_802B4A94(void) {
         func_802AA618(0, 0, 60.0f);
         set_obj_animation_and_sound_state(8);
         o->header.gfx.unk38.animFrame = 0;
-        obj_start_cam_action(o, CAM_EVENT_BOWSER_JUMP);
+        obj_start_cam_event(o, CAM_EVENT_BOWSER_JUMP);
         if (BITDW) {
             if (o->oDistanceToMario < 850.0f)
                 gMarioObject->oInteractStatus |= INTERACT_GRABBABLE;
@@ -1161,7 +1161,7 @@ void bhv_bowser_init(void) {
     o->oBehParams2ndByte = level;
     o->oBowserUnk1B2 = D_8032F690[level];
     o->oHealth = D_8032F694[level];
-    obj_start_cam_action(o, CAM_EVENT_BOWSER_INIT);
+    obj_start_cam_event(o, CAM_EVENT_BOWSER_INIT);
     o->oAction = 5;
     o->oBowserUnk1AE = 0;
     o->oBowserEyesShut = 0;

@@ -540,7 +540,7 @@ struct CutsceneVariable
  */
 struct Camera
 {
-    /*0x00*/ u8 mode; // What type of preset the camera uses (see defines above)
+    /*0x00*/ u8 mode; // What type of mode the camera uses (see defines above)
     /*0x01*/ u8 defMode;
     /**
      * Determines what direction mario moves in when the analog stick is moved.
@@ -646,14 +646,14 @@ struct LakituState
     /*0xA0*/ s16 shakeYawVel;
     /*0xA2*/ s16 shakeYawDecay;
 
-    // posH,Vspeed: How fast lakitu flies towards his goalPos.
-    /// By default HSpeed is 0.8, so lakitu flies 80% of the horz distance to his goal each frame.
+    // focH,Vspeed: how fast lakitu turns towards his goalFocus.
+    /// By default HSpeed is 0.8, so lakitu turns 80% of the horz distance to his goal each frame.
     /*0xA4*/ f32 focHSpeed;
-    /// By default VSpeed is 0.3, so lakitu flies 30% of the vert distance to his goal each frame.
+    /// By default VSpeed is 0.3, so lakitu turns 30% of the vert distance to his goal each frame.
     /*0xA8*/ f32 focVSpeed;
 
-    // focH,Vspeed: how fast lakitu turns towards his goalFocus.
-    /// By default they are 0.3, so lakitu will turn 30% of the way towards his goal each frame.
+    // posH,Vspeed: How fast lakitu flies towards his goalPos.
+    /// By default they are 0.3, so lakitu will fly 30% of the way towards his goal each frame.
     /*0xAC*/ f32 posHSpeed;
     /*0xB0*/ f32 posVSpeed;
 

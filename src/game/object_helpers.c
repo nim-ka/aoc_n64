@@ -1589,8 +1589,8 @@ void obj_shake_y(f32 amount) {
     }
 }
 
-void obj_start_cam_action(UNUSED struct Object *obj, s32 custceneStatus) {
-    gPlayerCameraState->cameraEvent = (s16) custceneStatus;
+void obj_start_cam_event(UNUSED struct Object *obj, s32 cameraEvent) {
+    gPlayerCameraState->cameraEvent = (s16) cameraEvent;
     gSecondCameraFocus = o;
 }
 

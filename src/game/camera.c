@@ -47,7 +47,6 @@
  *      pitch: rotation about the X-axis, measured from +Y.
  *          Unlike yaw and roll, pitch is bounded in +-0x4000 (90 degrees).
  *          Pitch is 0 when the camera points parallel to the xz-plane (+Y points straight up).
- *          Positive pitch rotates up towards +Y.
  *
  *      yaw: rotation about the Y-axis, measured from (absolute) +Z.
  *          Positive yaw rotates clockwise, towards +X.
@@ -97,7 +96,6 @@ Vec3f sOldFocus;
  * Direction controlled by player 2, moves the focus during the credits.
  */
 Vec3f sPlayer2FocusOffset;
-
 /**
  * The pitch used for the credits easter egg.
  */
@@ -109,7 +107,7 @@ s16 sCreditsPlayer2Yaw;
 /**
  * Used to decide when to zoom out in the pause menu.
  */
-u8 gFramesPaused;
+u8 sFramesPaused;
 
 struct CameraFOVStatus sFOVState;
 struct TransitionInfo sModeTransition;
@@ -139,7 +137,7 @@ s16 sSelectionFlags;
 s16 unused8033B316;
 /**
  * Flags that determine whether the player has already rotated left or right. Used in radial mode to
- * determine whether to rotate all the way, or just to 45 degrees.
+ * determine whether to rotate all the way, or just to 60 degrees.
  */
 s16 s2ndRotateFlags;
 s16 unused8033B31A;
@@ -749,8 +747,7 @@ s16 look_down_slopes(s16 camYaw) {
     f32 xOff = sMarioCamState->pos[0] + sins(camYaw) * 40.f;
     f32 zOff = sMarioCamState->pos[2] + coss(camYaw) * 40.f;
 
-    floorDY =
-        find_floor(xOff, sMarioCamState->pos[1], zOff, &floor) - sMarioCamState->pos[1];
+    floorDY = find_floor(xOff, sMarioCamState->pos[1], zOff, &floor) - sMarioCamState->pos[1];
 
     if (floor != NULL) {
         if (floor->type != SURFACE_WALL_MISC && floorDY > 0) {
@@ -1023,7 +1020,7 @@ void radial_camera_move(struct Camera *c) {
 
 /**
  * Moves lakitu from zoomed in to zoomed out and vice versa.
- * When C-Down is not pressed, sLakituDist and sLakituPitch decrease to 0.
+ * When C-Down mode is not active, sLakituDist and sLakituPitch decrease to 0.
  */
 void lakitu_zoom(f32 rangeDist, s16 rangePitch) {
     if (sLakituDist < 0) {
@@ -1072,7 +1069,7 @@ void update_yaw_and_dist_from_c_up(UNUSED struct Camera *c) {
 
     sModeOffsetYaw = sModeInfo.transitionStart.yaw - sAreaYaw;
     sLakituDist = sModeInfo.transitionStart.dist - dist;
-    // No longer in C_UP
+    // No longer in C-Up
     gCameraMovementFlags &= ~CAM_MOVING_INTO_MODE;
 }
 
@@ -3011,7 +3008,7 @@ void update_camera(struct Camera *c) {
             }
         }
     }
-    // The cutscene could have just ended on this frame in play_cutscene(), so check for a new one
+    // If not in a cutscene, do mode processing
     if (c->cutscene == 0) {
         sYawSpeed = 0x400;
 
@@ -3226,7 +3223,7 @@ void init_camera(struct Camera *c) {
     gPrevLevel = gCurrLevelArea / 16;
     gCurrLevelArea = gCurrLevelNum * 16 + gCurrentArea->index;
     sSelectionFlags &= CAM_MODE_MARIO_SELECTED;
-    gFramesPaused = 0;
+    sFramesPaused = 0;
     gLakituState.mode = c->mode;
     gLakituState.defMode = c->defMode;
     gLakituState.posHSpeed = 0.3f;
@@ -3397,7 +3394,7 @@ void zoom_out_if_paused_and_outside(struct GraphNodeCamera *camera) {
         areaBit = 0;
     }
     if (gCameraMovementFlags & CAM_MOVE_PAUSE_SCREEN) {
-        if (gFramesPaused > 1) {
+        if (sFramesPaused > 1) {
             if (sZoomOutAreaMasks[areaMaskIndex] & areaBit) {
 
                 camera->focus[0] = gCamera->areaCenX;
@@ -3410,10 +3407,10 @@ void zoom_out_if_paused_and_outside(struct GraphNodeCamera *camera) {
                 }
             }
         } else {
-            gFramesPaused++;
+            sFramesPaused++;
         }
     } else {
-        gFramesPaused = 0;
+        sFramesPaused = 0;
     }
 }
 
