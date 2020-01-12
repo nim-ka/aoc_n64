@@ -1577,7 +1577,7 @@ s32 act_jump_kick(struct MarioState *m) {
 
     animFrame = m->marioObj->header.gfx.unk38.animFrame;
     if (animFrame == 0) {
-        m->marioBodyState->unk0B = 0x86;
+        m->marioBodyState->punchState = (2 << 6) | 6;
     }
     if (animFrame >= 0 && animFrame < 8) {
         m->flags |= MARIO_KICKING;

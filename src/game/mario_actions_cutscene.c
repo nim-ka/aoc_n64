@@ -418,7 +418,7 @@ s32 act_reading_npc_dialog(struct MarioState *m) {
     }
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
-    vec3s_set(m->marioBodyState->unk12, m->actionTimer, 0, 0);
+    vec3s_set(m->marioBodyState->headAngle, m->actionTimer, 0, 0);
 
     if (m->actionState != 8) {
         m->actionState++;
@@ -499,7 +499,7 @@ s32 act_reading_automatic_dialog(struct MarioState *m) {
         }
     }
     // apply head turn
-    vec3s_set(m->marioBodyState->unk12, m->actionTimer, 0, 0);
+    vec3s_set(m->marioBodyState->headAngle, m->actionTimer, 0, 0);
     return FALSE;
 }
 

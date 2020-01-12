@@ -1525,7 +1525,7 @@ void mario_reset_bodystate(struct MarioState *m) {
     bodyState->eyeState = MARIO_EYES_BLINK;
     bodyState->handState = MARIO_HAND_FISTS;
     bodyState->modelState = 0;
-    bodyState->unk07 = 0;
+    bodyState->wingFlutter = FALSE;
 
     m->flags &= ~MARIO_METAL_SHOCK;
 }
@@ -1820,7 +1820,7 @@ void init_mario(void) {
 
     mario_reset_bodystate(gMarioState);
     update_mario_info_for_cam(gMarioState);
-    gMarioState->marioBodyState->unk0B = 0;
+    gMarioState->marioBodyState->punchState = 0;
 
     gMarioState->marioObj->oPosX = gMarioState->pos[0];
     gMarioState->marioObj->oPosY = gMarioState->pos[1];
