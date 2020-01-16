@@ -5869,12 +5869,12 @@ const BehaviorScript bhvPenguinRaceShortcutCheck[] = {
     END_LOOP(),
 };
 
-const BehaviorScript bhvCoffinManager[] = {
+const BehaviorScript bhvCoffinSpawner[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     CALL_NATIVE(bhv_init_room),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhv_coffin_manager_loop),
+        CALL_NATIVE(bhv_coffin_spawner_loop),
     END_LOOP(),
 };
 

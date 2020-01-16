@@ -382,6 +382,18 @@
     #define BBH_DYNAMIC_SURFACE_ROOM 0
     #define BBH_OUTSIDE_ROOM 13
 
+/* Coffin Spawner */
+    /* oAction */
+    #define COFFIN_SPAWNER_ACT_COFFINS_UNLOADED 0
+
+/* Coffin */
+    /* oAction */
+    #define COFFIN_ACT_IDLE     0
+    #define COFFIN_ACT_STAND_UP 1
+
+    /* oBehParams2ndByte */
+    #define COFFIN_BP_STATIC 0
+
 /* WDW Arrow Lift */
     /* oAction */
     #define ARROW_LIFT_ACT_IDLE 0

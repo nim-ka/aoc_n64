@@ -524,7 +524,7 @@ extern const BehaviorScript bhvBird[];
 extern const BehaviorScript bhvRacingPenguin[];
 extern const BehaviorScript bhvPenguinRaceFinishLine[];
 extern const BehaviorScript bhvPenguinRaceShortcutCheck[];
-extern const BehaviorScript bhvCoffinManager[];
+extern const BehaviorScript bhvCoffinSpawner[];
 extern const BehaviorScript bhvCoffin[];
 extern const BehaviorScript bhvClamShell[];
 extern const BehaviorScript bhvSkeeter[];
