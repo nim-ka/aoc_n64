@@ -865,6 +865,17 @@
     #define SKEETER_ACT_LUNGE 1
     #define SKEETER_ACT_WALK 2
 
+/* Tweester */
+    /* oAction */
+    #define TWEESTER_ACT_IDLE  0
+    #define TWEESTER_ACT_CHASE 1
+    #define TWEESTER_ACT_HIDE  2
+
+    /* oSubAction */
+    #define TWEESTER_SUB_ACT_WAIT  0
+
+    #define TWEESTER_SUB_ACT_CHASE 0
+
 /* Triplet butterfly */
     /* oAction */
     #define TRIPLET_BUTTERFLY_ACT_INIT 0
