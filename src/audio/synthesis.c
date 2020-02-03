@@ -738,8 +738,8 @@ u64 *synthesis_process_notes(u16 *aiBuf, s32 bufLen, u64 *cmd) {
             if (noteSubEu->isSyntheticWave) {
                 noteSamplesDmemAddrBeforeResampling =
                     DMEM_ADDR_UNCOMPRESSED_NOTE + synthesisState->samplePosInt * 2;
-                synthesisState->samplePosInt += (samplesLenFixedPoint >> 10);
-                cmd = load_wave_samples(cmd, noteSubEu, synthesisState, samplesLenFixedPoint >> 10);
+                synthesisState->samplePosInt += (samplesLenFixedPoint >> 0x10);
+                cmd = load_wave_samples(cmd, noteSubEu, synthesisState, samplesLenFixedPoint >> 0x10);
             }
 #else
             if (note->sound == NULL) {
@@ -798,7 +798,11 @@ u64 *synthesis_process_notes(u16 *aiBuf, s32 bufLen, u64 *cmd) {
                         u32 nEntries; // v1
                         curLoadedBook = audioBookSample->book->book;
                         nEntries = audioBookSample->book->order * audioBookSample->book->npredictors;
+#ifdef VERSION_EU
+                        aLoadADPCM(cmd++, nEntries * 16, VIRTUAL_TO_PHYSICAL2(curLoadedBook + noteSubEu->unk1b234));
+#else
                         aLoadADPCM(cmd++, nEntries * 16, VIRTUAL_TO_PHYSICAL2(curLoadedBook));
+#endif
                     }
 
 #ifdef VERSION_EU
@@ -952,8 +956,8 @@ u64 *synthesis_process_notes(u16 *aiBuf, s32 bufLen, u64 *cmd) {
                                          (samplesLenAdjusted - nAdpcmSamplesProcessed) * 2);
 #ifdef VERSION_EU
                             noteSubEu->finished = 1;
-                            noteSubEu->finished = 1;
-                            noteSubEu->enabled = 0;
+                            note->noteSubEu.finished = 1;
+                            note->noteSubEu.enabled = 0;
 #else
                             note->samplePosInt = 0;
                             note->finished = 1;
@@ -1049,6 +1053,9 @@ u64 *synthesis_process_notes(u16 *aiBuf, s32 bufLen, u64 *cmd) {
                 flags = A_INIT;
                 noteSubEu->needsInit = FALSE;
             }
+
+            cmd = final_resample(cmd, synthesisState, bufLen * 2, resamplingRateFixedPoint,
+                                 noteSamplesDmemAddrBeforeResampling, flags);
 #else
             if (note->needsInit == TRUE) {
                 flags = A_INIT;
@@ -1075,8 +1082,6 @@ u64 *synthesis_process_notes(u16 *aiBuf, s32 bufLen, u64 *cmd) {
             }
 
 #ifdef VERSION_EU
-            cmd = final_resample(cmd, synthesisState, bufLen * 2, resamplingRateFixedPoint,
-                                 noteSamplesDmemAddrBeforeResampling, flags);
             cmd = process_envelope(cmd, noteSubEu, synthesisState, bufLen, 0, s0);
 #else
             cmd = process_envelope(cmd, note, bufLen, 0, s0, flags);
