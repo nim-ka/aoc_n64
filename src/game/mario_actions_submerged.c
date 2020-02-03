@@ -193,7 +193,7 @@ static u32 perform_water_step(struct MarioState *m) {
     return stepResult;
 }
 
-static void func_80270504(struct MarioState *m) {
+static BAD_RETURN(u32) func_80270504(struct MarioState *m) {
     struct Object *marioObj = m->marioObj;
 
     if (marioObj->header.gfx.angle[0] > 0) {
@@ -482,9 +482,7 @@ static void func_802713A8(struct MarioState *m) {
     s16 animFrame = m->marioObj->header.gfx.unk38.animFrame;
 
     // (this need to be on one line to match on PAL)
-    if (animFrame == 0 || animFrame == 12) {
-        play_sound(SOUND_ACTION_UNKNOWN434, m->marioObj->header.gfx.cameraToObject);
-    }
+    if (animFrame == 0 || animFrame == 12) play_sound(SOUND_ACTION_UNKNOWN434, m->marioObj->header.gfx.cameraToObject);
 }
 
 static s32 check_water_jump(struct MarioState *m) {

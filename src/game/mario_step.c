@@ -71,8 +71,8 @@ void transfer_bully_speed(struct BullyCollisionData *obj1, struct BullyCollision
     //! Bully battery
 }
 
-void init_bully_collision_data(struct BullyCollisionData *data, f32 posX, f32 posZ, f32 forwardVel,
-                               s16 yaw, f32 conversionRatio, f32 radius) {
+BAD_RETURN(s32) init_bully_collision_data(struct BullyCollisionData *data, f32 posX, f32 posZ,
+                               f32 forwardVel, s16 yaw, f32 conversionRatio, f32 radius) {
     if (forwardVel < 0.0f) {
         forwardVel *= -1.0f;
         yaw += 0x8000;

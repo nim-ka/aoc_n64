@@ -17,14 +17,19 @@ pipeline {
         sh './extract_assets.py jp us eu'
       }
     }
-    stage('Build J Source') {
-      steps {
-        sh 'make -j4 VERSION=jp'
-      }
-    }
     stage('Build U Source') {
       steps {
         sh 'make -j4 VERSION=us'
+      }
+    }
+    stage('Build E Source') {
+      steps {
+        sh 'make -j4 VERSION=eu'
+      }
+    }
+    stage('Build J Source') {
+      steps {
+        sh 'make -j4 VERSION=jp'
       }
     }
     stage('Test Enhancements') {

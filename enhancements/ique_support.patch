@@ -269,21 +269,44 @@ index 71d0b7d6..c855cc20 100644
      return sp34;
  }
 diff --git a/lib/src/osInitialize.c b/lib/src/osInitialize.c
-index d0035425..5383f67e 100644
+index 0b9f7128..660d1991 100644
 --- a/lib/src/osInitialize.c
 +++ b/lib/src/osInitialize.c
-@@ -1,5 +1,6 @@
+@@ -1,6 +1,7 @@
  #include "libultra_internal.h"
+ #include "hardware.h"
  #include <macros.h>
 +#include <PR/console_type.h>
  
  #define PIF_ADDR_START (void *) 0x1FC007FC
  
-@@ -26,6 +27,7 @@ void osInitialize(void) {
-     u32 sp34;
-     u32 sp30 = 0;
+@@ -46,6 +47,7 @@ void osInitialize(void) {
+     UNUSED u32 eu_sp30;
+ #endif
      UNUSED u32 sp2c;
 +    gConsoleType = get_console_type();
      D_80365CD0 = TRUE;
      __osSetSR(__osGetSR() | 0x20000000);
      __osSetFpcCsr(0x01000800);
+diff --git a/sm64.ld b/sm64.ld
+index 59a5a2a6..c8976649 100755
+--- a/sm64.ld
++++ b/sm64.ld
+@@ -256,6 +256,8 @@ SECTIONS
+       BUILD_DIR/libultra.a:func_802F7140.o(.text)
+       BUILD_DIR/libultra.a:func_802F71A0.o(.text)
+       BUILD_DIR/libultra.a:func_802F71F0.o(.text)
++      BUILD_DIR/libultra.a:consoleType.o(.text)
++      BUILD_DIR/libultra.a:skGetId.o(.text)
+ 
+       BUILD_DIR/lib/rsp.o(.text);
+ 
+@@ -369,6 +371,8 @@ SECTIONS
+       BUILD_DIR/libultra.a:__osGetCause.o(.text);
+       BUILD_DIR/libultra.a:__osAtomicDec.o(.text);
+       BUILD_DIR/libultra.a:guLookAtRef.o(.text); /* Fast3DEX2 only */
++      BUILD_DIR/libultra.a:consoleType.o(.text);
++      BUILD_DIR/libultra.a:skGetId.o(.text);
+       BUILD_DIR/lib/rsp.o(.text);
+ #endif
+ 
