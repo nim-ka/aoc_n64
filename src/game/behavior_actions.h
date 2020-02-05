@@ -562,8 +562,8 @@ extern Gfx *geo_switch_tuxie_mother_eyes(s32 run, struct GraphNode *node, UNUSED
 extern Gfx *Geo18_802A719C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);
 
 // Snufit
-extern Gfx *Geo18_8030D93C(s32 arg0, struct GraphNode *node, UNUSED void *arg2);
-extern Gfx *Geo18_8030D9AC(s32 arg0, struct GraphNode *node, UNUSED void *arg2);
+extern Gfx *geo_snufit_move_mask(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c);
+extern Gfx *geo_snufit_scale_body(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c);
 
 // Bowser key cutscene
 extern Gfx *Geo18_802BA2B0(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4]);

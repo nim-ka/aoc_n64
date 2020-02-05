@@ -887,16 +887,16 @@
 #define /*0x0F4*/ oSnowmanWindBlowingUnkF4 OBJECT_FIELD_S32(0x1B)
 
 /* Snufit */
-#define /*0x0F4*/ oSnufitUnkF4  OBJECT_FIELD_S32(0x1B)
-#define /*0x0F8*/ oSnufitUnkF8  OBJECT_FIELD_F32(0x1C)
-#define /*0x100*/ oSnufitUnk100 OBJECT_FIELD_S32(0x1E)
-#define /*0x104*/ oSnufitUnk104 OBJECT_FIELD_S32(0x1F)
-#define /*0x108*/ oSnufitUnk108 OBJECT_FIELD_S32(0x20)
-#define /*0x10C*/ oSnufitUnk10C OBJECT_FIELD_S32(0x21)
-#define /*0x1AC*/ oSnufitUnk1AC OBJECT_FIELD_S16(0x49, 0)
-#define /*0x1AE*/ oSnufitUnk1AE OBJECT_FIELD_S16(0x49, + 1)
-#define /*0x1B0*/ oSnufitUnk1B0 OBJECT_FIELD_S16(0x4A, 0)
-#define /*0x1B2*/ oSnufitUnk1B2 OBJECT_FIELD_S16(0x4A, + 1)
+#define /*0x0F4*/ oSnufitRecoil          OBJECT_FIELD_S32(0x1B)
+#define /*0x0F8*/ oSnufitScale           OBJECT_FIELD_F32(0x1C)
+#define /*0x100*/ oSnufitCircularPeriod  OBJECT_FIELD_S32(0x1E)
+#define /*0x104*/ oSnufitBodyScalePeriod OBJECT_FIELD_S32(0x1F)
+#define /*0x108*/ oSnufitBodyBaseScale   OBJECT_FIELD_S32(0x20)
+#define /*0x10C*/ oSnufitBullets         OBJECT_FIELD_S32(0x21)
+#define /*0x1AC*/ oSnufitXOffset         OBJECT_FIELD_S16(0x49, 0)
+#define /*0x1AE*/ oSnufitYOffset         OBJECT_FIELD_S16(0x49, + 1)
+#define /*0x1B0*/ oSnufitZOffset         OBJECT_FIELD_S16(0x4A, 0)
+#define /*0x1B2*/ oSnufitBodyScale       OBJECT_FIELD_S16(0x4A, + 1)
 
 /* Spindel */
 #define /*0x0F4*/ oSpindelUnkF4 OBJECT_FIELD_S32(0x1B)

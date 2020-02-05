@@ -865,6 +865,11 @@
     #define SKEETER_ACT_LUNGE 1
     #define SKEETER_ACT_WALK 2
 
+/* Snufit */
+    /* oAction */
+    #define SNUFIT_ACT_IDLE  0
+    #define SNUFIT_ACT_SHOOT 1
+
 /* Tweester */
     /* oAction */
     #define TWEESTER_ACT_IDLE  0

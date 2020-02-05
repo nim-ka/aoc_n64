@@ -5759,7 +5759,7 @@ const BehaviorScript bhvSnufit[] = {
     SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 30, /*Gravity*/ 0, /*Bounciness*/ -50, /*Drag*/ 0, /*Friction*/ 0, /*Buoyancy*/ 0, /*Unused*/ 0, 0),
     CALL_NATIVE(bhv_init_room),
     BEGIN_LOOP(),
-        SET_INT(oSnufitUnkF4, 0),
+        SET_INT(oSnufitRecoil, 0),
         CALL_NATIVE(bhv_snufit_loop),
     END_LOOP(),
 };
