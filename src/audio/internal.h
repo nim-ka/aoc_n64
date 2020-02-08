@@ -506,7 +506,9 @@ struct Note
     /* U/J, EU  */
     /*0xA4, 0x00*/ struct AudioListItem listItem;
     /*      0x10*/ struct NoteSynthesisState synthesisState;
+#ifdef TARGET_N64
     u8 pad0[12];
+#endif
     /*0x04, 0x30*/ u8 priority;
     /*      0x31*/ u8 waveId;
     /*      0x32*/ u8 sampleCountIndex;
@@ -643,20 +645,40 @@ struct AudioBufferParametersEU {
 
 struct EuAudioCmd {
     union {
+#if IS_BIG_ENDIAN
         struct {
             u8 op;
             u8 arg1;
             u8 arg2;
             u8 arg3;
         } s;
+#else
+        struct {
+            u8 arg3;
+            u8 arg2;
+            u8 arg1;
+            u8 op;
+        } s;
+#endif
         s32 first;
     } u;
     union {
         s32 as_s32;
         u32 as_u32;
         f32 as_f32;
+#if IS_BIG_ENDIAN
         u8 as_u8;
         s8 as_s8;
+#else
+        struct {
+            u8 pad0[3];
+            u8 as_u8;
+        };
+        struct {
+            u8 pad1[3];
+            s8 as_s8;
+        };
+#endif
     } u2;
 };
 
