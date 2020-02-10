@@ -106,7 +106,7 @@ void ActionFishGroup2(void) {
         sp18 *= 127;
         PlaySound2(SOUND_GENERAL_MOVING_WATER);
     }
-    if (o->oTimer < LEVEL_SA)
+    if (o->oTimer < 20)
         func_8029ED98(0, 4.0f);
     else
         func_8029ED98(0, 1.0f);
