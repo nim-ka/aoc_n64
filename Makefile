@@ -477,6 +477,11 @@ $(BUILD_DIR)/lib/src/sprintf.o: OPT_FLAGS := -O3
 $(BUILD_DIR)/src/audio/%.o: OPT_FLAGS := -O2
 $(BUILD_DIR)/src/audio/load.o: OPT_FLAGS := -O2
 $(BUILD_DIR)/src/audio/external.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0
+else
+
+# The source-to-source optimizer copt is enabled for audio. This makes it use
+# acpp, which needs -Wp,-+ to handle C++-style comments.
+$(BUILD_DIR)/src/audio/effects.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0 -sopt,-inline=sequence_channel_process_sound,-scalaroptimize=1 -Wp,-+
 endif
 
 ifeq ($(NON_MATCHING),0)
