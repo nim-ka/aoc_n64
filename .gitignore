@@ -43,6 +43,7 @@
 .vscode/*
 
 # General project-specific ignores
+__pycache__/*
 doxygen/doxygen/*
 build/*
 *.dump

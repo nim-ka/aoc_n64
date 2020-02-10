@@ -1610,7 +1610,7 @@ void update_game_sound(void) {
 #if defined(VERSION_EU) && !defined(NON_MATCHING)
 // Just regalloc differences
 void play_sequence(u8 player, u8 seqId, u16 fadeTimer);
-GLOBAL_ASM("asm/non_matchings/eu/play_sequence.s")
+GLOBAL_ASM("asm/non_matchings/eu/audio/play_sequence.s")
 #else
 
 void play_sequence(u8 player, u8 seqId, u16 fadeTimer) {
