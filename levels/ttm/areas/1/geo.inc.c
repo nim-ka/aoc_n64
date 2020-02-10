@@ -27,7 +27,7 @@ const GeoLayout ttm_geo_000A70[] = {
                GEO_ASM(0x3604, geo_movtex_draw_nocolor),
                GEO_ASM(0x3605, geo_movtex_draw_nocolor),
                GEO_ASM(0x3601, geo_movtex_draw_water_regions),
-               GEO_ASM(    0, geo_enfvx_main),
+               GEO_ASM(    0, geo_envfx_main),
             GEO_CLOSE_NODE(),
          GEO_CLOSE_NODE(),
       GEO_CLOSE_NODE(),

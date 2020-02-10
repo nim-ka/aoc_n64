@@ -641,7 +641,7 @@ void bounce_back_from_attack(struct MarioState *m, u32 interaction) {
     }
 }
 
-u32 func_8024D664(struct MarioState *m, struct Object *o) {
+u32 should_push_or_pull_door(struct MarioState *m, struct Object *o) {
     f32 dx = o->oPosX - m->pos[0];
     f32 dz = o->oPosZ - m->pos[2];
 
@@ -776,7 +776,7 @@ u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, struct O
 
         if (!noExit) {
             drop_queued_background_music();
-            func_8024924C(126);
+            fadeout_level_music(126);
         }
 
         play_sound(SOUND_MENU_STAR_SOUND, m->marioObj->header.gfx.cameraToObject);
@@ -888,7 +888,7 @@ u32 interact_warp_door(struct MarioState *m, UNUSED u32 interactType, struct Obj
         }
 
         if (m->action == ACT_WALKING || m->action == ACT_DECELERATING) {
-            actionArg = func_8024D664(m, o) + 0x00000004;
+            actionArg = should_push_or_pull_door(m, o) + 0x00000004;
 
             if (doorAction == 0) {
                 if (actionArg & 0x00000001) {
@@ -953,7 +953,7 @@ u32 interact_door(struct MarioState *m, UNUSED u32 interactType, struct Object *
 
     if (m->action == ACT_WALKING || m->action == ACT_DECELERATING) {
         if (numStars >= requiredNumStars) {
-            u32 actionArg = func_8024D664(m, o);
+            u32 actionArg = should_push_or_pull_door(m, o);
             u32 enterDoorAction;
             u32 doorSaveFileFlag;
 
@@ -1008,7 +1008,7 @@ u32 interact_door(struct MarioState *m, UNUSED u32 interactType, struct Object *
     } else if (m->action == ACT_IDLE && sDisplayingDoorText == TRUE && requiredNumStars == 70) {
         m->interactObj = o;
         m->usedObj = o;
-        return set_mario_action(m, ACT_ENTERING_STAR_DOOR, func_8024D664(m, o));
+        return set_mario_action(m, ACT_ENTERING_STAR_DOOR, should_push_or_pull_door(m, o));
     }
 
     return FALSE;
@@ -1233,7 +1233,7 @@ u32 interact_shock(struct MarioState *m, UNUSED u32 interactType, struct Object 
     return FALSE;
 }
 
-static u32 func_8024EF8C(UNUSED struct MarioState *m, UNUSED u32 interactType, struct Object *o) {
+static u32 interact_stub(UNUSED struct MarioState *m, UNUSED u32 interactType, struct Object *o) {
     if (!(o->oInteractionSubtype & INT_SUBTYPE_DELAY_INVINCIBILITY)) {
         sDelayInvincTimer = TRUE;
     }
@@ -1560,7 +1560,7 @@ u32 interact_grabbable(struct MarioState *m, u32 interactType, struct Object *o)
     return FALSE;
 }
 
-u32 func_8024FC94(struct MarioState *m, u32 arg) {
+u32 mario_can_talk(struct MarioState *m, u32 arg) {
     s16 val6;
 
     if ((m->action & ACT_FLAG_IDLE) != 0x00000000) {
@@ -1594,8 +1594,8 @@ u32 func_8024FC94(struct MarioState *m, u32 arg) {
 #define SIGN_RANGE 0x4000
 #endif
 
-u32 func_8024FD2C(struct MarioState *m, struct Object *o) {
-    if ((m->input & READ_MASK) && func_8024FC94(m, 0) && object_facing_mario(m, o, SIGN_RANGE)) {
+u32 check_read_sign(struct MarioState *m, struct Object *o) {
+    if ((m->input & READ_MASK) && mario_can_talk(m, 0) && object_facing_mario(m, o, SIGN_RANGE)) {
         s16 facingDYaw = (s16)(o->oMoveAngleYaw + 0x8000) - m->faceAngle[1];
         if (facingDYaw >= -SIGN_RANGE && facingDYaw <= SIGN_RANGE) {
             f32 targetX = o->oPosX + 105.0f * sins(o->oMoveAngleYaw);
@@ -1614,8 +1614,8 @@ u32 func_8024FD2C(struct MarioState *m, struct Object *o) {
     return FALSE;
 }
 
-u32 func_8024FEC0(struct MarioState *m, struct Object *o) {
-    if ((m->input & READ_MASK) && func_8024FC94(m, 1)) {
+u32 check_npc_talk(struct MarioState *m, struct Object *o) {
+    if ((m->input & READ_MASK) && mario_can_talk(m, 1)) {
         s16 facingDYaw = mario_angle_to_object(m, o) - m->faceAngle[1];
         if (facingDYaw >= -0x4000 && facingDYaw <= 0x4000) {
             o->oInteractStatus = INT_STATUS_INTERACTED;
@@ -1636,9 +1636,9 @@ u32 interact_text(struct MarioState *m, UNUSED u32 interactType, struct Object *
     u32 interact = FALSE;
 
     if (o->oInteractionSubtype & INT_SUBTYPE_SIGN) {
-        interact = func_8024FD2C(m, o);
+        interact = check_read_sign(m, o);
     } else if (o->oInteractionSubtype & INT_SUBTYPE_NPC) {
-        interact = func_8024FEC0(m, o);
+        interact = check_npc_talk(m, o);
     } else {
         push_mario_out_of_object(m, o, 2.0f);
     }

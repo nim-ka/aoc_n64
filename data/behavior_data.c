@@ -1278,7 +1278,7 @@ const BehaviorScript bhvEndToad[] = {
     LOAD_ANIMATIONS(oAnimations, toad_seg6_anims_0600FB58),
     ANIMATE(0),
     BEGIN_LOOP(),
-        CALL_NATIVE(BehEndToadLoop),
+        CALL_NATIVE(bhv_end_toad_loop),
     END_LOOP(),
 };
 
@@ -1288,7 +1288,7 @@ const BehaviorScript bhvEndPeach[] = {
     LOAD_ANIMATIONS(oAnimations, peach_seg5_anims_0501C41C),
     ANIMATE(0),
     BEGIN_LOOP(),
-        CALL_NATIVE(BehEndPeachLoop),
+        CALL_NATIVE(bhv_end_peach_loop),
     END_LOOP(),
 };
 
@@ -3469,18 +3469,18 @@ const BehaviorScript bhvToadMessage[] = {
     SET_HITBOX(/*Radius*/ 80, /*Height*/ 100),
     SET_INT(oIntangibleTimer, 0),
     CALL_NATIVE(bhv_init_room),
-    CALL_NATIVE(bhvToadMessage_init),
+    CALL_NATIVE(bhv_toad_message_init),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhvToadMessage_loop),
+        CALL_NATIVE(bhv_toad_message_loop),
     END_LOOP(),
 };
 
 const BehaviorScript bhvUnlockDoorStar[] = {
     BEGIN(OBJ_LIST_LEVEL),
     OR_INT(oFlags, (OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
-    CALL_NATIVE(bhvUnlockDoorStar_init),
+    CALL_NATIVE(bhv_unlock_door_star_init),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhvUnlockDoorStar_loop),
+        CALL_NATIVE(bhv_unlock_door_star_loop),
     END_LOOP(),
 };
 

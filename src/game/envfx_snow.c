@@ -21,7 +21,7 @@
  * implementation for flowers (unused), lava bubbles and jetstream bubbles
  * can be found.
  * The main entry point for envfx is at the bottom of this file, which is
- * called from geo_enfvx_main in level_geo.c
+ * called from geo_envfx_main in level_geo.c
  */
 
 // Might be duplicate
