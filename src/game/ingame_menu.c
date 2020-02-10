@@ -1193,11 +1193,6 @@ u32 ensure_nonnegative(s16 value) {
     return value;
 }
 
-#if defined(VERSION_EU) && !defined(NON_MATCHING)
-// TODO: EU is not quite matching
-void handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 lowerBound);
-GLOBAL_ASM("asm/non_matchings/eu/handle_dialog_text_and_pages.s")
-#else
 #ifdef VERSION_JP
 void handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog)
 #else
@@ -1205,6 +1200,9 @@ void handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 l
 #endif
 {
     UNUSED s32 pad[2];
+#ifdef VERSION_EU
+    s16 startY = 14;
+#endif
 
     u8 strChar;
 
@@ -1236,10 +1234,7 @@ void handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 l
     strIdx = gDialogTextPos;
 #ifdef VERSION_EU
     gDialogX = 0;
-
-    // If this is turned into "gDialogY2 = 14;" with a symbol gDialogY2 that
-    // alises gDialogY the code matches...
-    gDialogY = 14;
+    gDialogY = startY;
 #endif
 
     if (gDialogBoxState == DIALOG_STATE_HORIZONTAL) {
@@ -1463,7 +1458,6 @@ void handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 l
 
     gLastDialogLineNum = lineNum;
 }
-#endif
 
 #ifdef VERSION_JP
 #define X_VAL4_1 50
