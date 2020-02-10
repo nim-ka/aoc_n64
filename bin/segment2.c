@@ -82,7 +82,7 @@ ALIGNED8 static const u8 texture_hud_char_I[] = {
 #include "textures/segment2/segment2.02400.rgba16.inc.c"
 };
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
 ALIGNED8 static const u8 texture_hud_char_J[] = {
 #include "textures/segment2/segment2.02600.rgba16.inc.c"
 };
@@ -112,7 +112,7 @@ ALIGNED8 static const u8 texture_hud_char_P[] = {
 #include "textures/segment2/segment2.03200.rgba16.inc.c"
 };
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
 ALIGNED8 static const u8 texture_hud_char_Q[] = {
 #include "textures/segment2/segment2.03400.rgba16.inc.c"
 };
@@ -134,7 +134,7 @@ ALIGNED8 static const u8 texture_hud_char_U[] = {
 #include "textures/segment2/segment2.03C00.rgba16.inc.c"
 };
 
-#if defined(VERSION_JP) || defined(VERSION_EU)
+#if defined(VERSION_JP) || defined(VERSION_EU) || defined(VERSION_SH)
 ALIGNED8 static const u8 texture_hud_char_V[] = {
 #include "textures/segment2/segment2.03E00.rgba16.inc.c"
 };
@@ -144,7 +144,7 @@ ALIGNED8 static const u8 texture_hud_char_W[] = {
 #include "textures/segment2/segment2.04000.rgba16.inc.c"
 };
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
 ALIGNED8 static const u8 texture_hud_char_X[] = {
 #include "textures/segment2/segment2.04200.rgba16.inc.c"
 };
@@ -154,7 +154,7 @@ ALIGNED8 static const u8 texture_hud_char_Y[] = {
 #include "textures/segment2/segment2.04400.rgba16.inc.c"
 };
 
-#if defined(VERSION_JP) || defined(VERSION_EU)
+#if defined(VERSION_JP) || defined(VERSION_EU) || defined(VERSION_SH)
 ALIGNED8 static const u8 texture_hud_char_Z[] = {
 #include "textures/segment2/segment2.04600.rgba16.inc.c"
 };
@@ -174,7 +174,7 @@ ALIGNED8 static const u8 texture_hud_char_umlaut[] = {
 };
 #endif
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
 ALIGNED8 static const u8 texture_hud_char_exclamation[] = {
 #include "textures/segment2/segment2.04C00.rgba16.inc.c"// JP !
 };
@@ -212,13 +212,13 @@ ALIGNED8 static const u8 texture_hud_char_star[] = {
 #include "textures/segment2/segment2.05C00.rgba16.inc.c"
 };
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
 ALIGNED8 static const u8 texture_hud_char_decimal_point[] = {
 #include "textures/segment2/segment2.05E00.rgba16.inc.c"
 };
 #endif
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
 ALIGNED8 static const u8 texture_hud_char_beta_key[] = {
 #include "textures/segment2/segment2.06000.rgba16.inc.c"
 };
@@ -345,7 +345,7 @@ ALIGNED8 static const u8 texture_credits_char_period[] = {
 };
 
 // JP Small Font
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
 ALIGNED8 static const u8 texture_font_char_jp_0[] = {
 #include "textures/segment2/segment2.07100.ia1.inc.c"
 };
@@ -1987,7 +1987,7 @@ const u8 *const main_font_lut[] = {
     texture_font_char_us_question, texture_font_char_us_double_quote_open, texture_font_char_us_double_quote_close, texture_font_char_us_tilde,
                   0x0, texture_font_char_us_coin, texture_font_char_us_star_filled, texture_font_char_us_multiply,
     texture_font_char_us_interpunct, texture_font_char_us_star_hollow,               0x0,               0x0,
-#elif defined(VERSION_JP)
+#elif defined(VERSION_JP) || defined(VERSION_SH)
     texture_font_char_jp_0, texture_font_char_jp_1, texture_font_char_jp_2, texture_font_char_jp_3,
     texture_font_char_jp_4, texture_font_char_jp_5, texture_font_char_jp_6, texture_font_char_jp_7,
     texture_font_char_jp_8, texture_font_char_jp_9, texture_font_char_jp_A, texture_font_char_jp_B,
@@ -2078,7 +2078,7 @@ const u8 *const main_hud_camera_lut[] = {
 // If you change the language here, the following Makefile rule also needs to
 // change, to generate the right version of define_text.inc.c:
 // $(BUILD_DIR)/bin/segment2.o: $(BUILD_DIR)/text/$(VERSION)/define_text.inc.c
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
 #include "text/jp/define_text.inc.c"
 #elif defined(VERSION_US)
 #include "text/us/define_text.inc.c"

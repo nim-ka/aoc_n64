@@ -1359,7 +1359,7 @@ void bhv_menu_button_manager_init(void) {
     sTextBaseAlpha = 0;
 }
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
     #define SAVE_FILE_SOUND SOUND_MENU_STAR_SOUND
 #else
     #define SAVE_FILE_SOUND SOUND_MENU_STAR_SOUND_OKEY_DOKEY
@@ -1729,7 +1729,7 @@ void print_save_file_star_count(s8 fileIndex, s16 x, s16 y) {
     }
 }
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
     #define SELECT_FILE_X 96
     #define SCORE_X 50
     #define COPY_X 115
@@ -1785,7 +1785,7 @@ void print_main_menu_strings(void) {
     print_generic_string(SCORE_X, 39, textScore);
     print_generic_string(COPY_X, 39, textCopy);
     print_generic_string(ERASE_X, 39, textErase);
-#ifndef VERSION_JP
+#if !defined(VERSION_JP) && !defined(VERSION_SH)
     sSoundTextX = get_str_x_pos_from_center(254, textSoundModes[sSoundMode], 10.0f);
 #endif
     print_generic_string(SOUNDMODE_X1, 39, textSoundModes[sSoundMode]);
@@ -1871,7 +1871,7 @@ void score_menu_display_message(s8 messageID) {
     }
 }
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
     #define RETURN_X     45
     #define COPYFILE_X1  128
     #define ERASEFILE_X1 228
@@ -1955,7 +1955,7 @@ void print_score_menu_strings(void) {
 #endif
 }
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
     #define NOFILE_COPY_X  90
     #define COPY_FILE_X    90
     #define COPYIT_WHERE_X 90
@@ -2074,7 +2074,7 @@ void copy_menu_update_message(void) {
     }
 }
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
     #define VIEWSCORE_X1 133
     #define ERASEFILE_X2 220
 #elif VERSION_EU
@@ -2137,7 +2137,7 @@ void print_copy_menu_strings(void) {
 #endif
 }
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
     #define CURSOR_X 160.0f
     #define MENU_ERASE_YES_MIN_X 0x91
     #define MENU_ERASE_YES_MAX_X 0xA4
@@ -2214,7 +2214,7 @@ void print_erase_menu_prompt(s16 x, s16 y) {
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
 }
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
     #define ERASE_FILE_X     96
     #define NOSAVE_DATA_X3   90
     #define MARIO_ERASED_VAR 3
@@ -2325,7 +2325,7 @@ void erase_menu_update_message(void) {
     }
 }
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
 #define VIEWSCORE_X2 133
 #define COPYFILE_X2 223
 #else
@@ -2389,7 +2389,7 @@ void print_erase_menu_strings(void) {
     #endif
 }
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
     #define SOUND_HUD_X 96
 #elif VERSION_US
     #define SOUND_HUD_X 88
@@ -2501,7 +2501,7 @@ void print_score_file_course_coin_score(s8 fileIndex, s16 courseIndex, s16 x, s1
     u8 stars = save_file_get_star_flags(fileIndex, courseIndex);
     unsigned char textCoinX[] = { TEXT_COIN_X };
     unsigned char textStar[] = { TEXT_STAR };
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
     #define LENGTH 5
 #else
     #define LENGTH 8
@@ -2525,7 +2525,7 @@ void print_score_file_course_coin_score(s8 fileIndex, s16 courseIndex, s16 x, s1
     }
     // HISCORE
     else {
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
         // Print "[coin] x"
         print_menu_generic_string(x, y, textCoinX);
         // Print coin highscore
@@ -2568,7 +2568,7 @@ void print_score_file_star_score(s8 fileIndex, s16 courseIndex, s16 x, s16 y) {
     print_menu_generic_string(x, y, starScoreText);
 }
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
     #define MARIO_X 28
     #define FILE_LETTER_X 86
     #define LEVEL_NAME_X 23
@@ -2610,7 +2610,7 @@ void print_score_file_star_score(s8 fileIndex, s16 courseIndex, s16 x, s16 y) {
     }
 #else
     unsigned char textMario[] = { TEXT_MARIO };
-    #ifdef VERSION_JP
+    #if defined(VERSION_JP) || defined(VERSION_SH)
         unsigned char textFileLetter[] = { TEXT_ZERO };
         void **levelNameTable = segmented_to_virtual(seg2_course_name_table);
     #endif
@@ -2640,7 +2640,7 @@ void print_score_file_star_score(s8 fileIndex, s16 courseIndex, s16 x, s16 y) {
 //! Huge print list, for loops exist for a reason!
 //  PADCHAR is used to difference an x position value between
 //  JP and US when the course number is only one digit.
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
     #define PADCHAR 0
     #define PRINT_COURSE_SCORES(courseIndex, pad)                                                               \
         print_menu_generic_string(23 + (pad * 3), 23 + 12 * courseIndex, segmented_to_virtual(levelNameTable[courseIndex - 1]));  \

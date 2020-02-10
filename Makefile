@@ -43,7 +43,18 @@ ifeq ($(VERSION),eu)
   GRUCODE_ASFLAGS := --defsym F3D_NEW=1
   TARGET := sm64.eu
 else
+ifeq ($(VERSION),sh)
+  $(warning Building SH is experimental and is prone to breaking. Try at your own risk.)
+  VERSION_CFLAGS := -DVERSION_SH
+  VERSION_ASFLAGS := --defsym VERSION_SH=1
+  GRUCODE_CFLAGS := -DF3D_NEW
+  GRUCODE_ASFLAGS := --defsym F3D_NEW=1
+  TARGET := sm64.sh
+# TODO: GET RID OF THIS!!! We should mandate assets for Shindou like EU but we dont have the addresses extracted yet so we'll just pretend you have everything extracted for now.
+  NOEXTRACT := 1 
+else
   $(error unknown version "$(VERSION)")
+endif
 endif
 endif
 endif
@@ -148,7 +159,11 @@ MIPSISET := -mips2 -32
 ifeq ($(VERSION),eu)
   OPT_FLAGS := -O2
 else
+ifeq ($(VERSION),sh)
+  OPT_FLAGS := -O2
+else
   OPT_FLAGS := -g
+endif
 endif
 
 # File dependencies and variables for specific files
@@ -163,11 +178,20 @@ GODDARD_C_FILES := $(foreach dir,$(GODDARD_SRC_DIRS),$(wildcard $(dir)/*.c))
 ULTRA_S_FILES := $(foreach dir,$(ULTRA_ASM_DIRS),$(wildcard $(dir)/*.s))
 GENERATED_C_FILES := $(BUILD_DIR)/assets/mario_anim_data.c $(BUILD_DIR)/assets/demo_data.c
 
+ifeq ($(VERSION),sh)
+SOUND_BANK_FILES := $(wildcard sound/sound_banks/*.json)
+SOUND_SEQUENCE_FILES := $(wildcard sound/sequences/jp/*.m64) \
+    $(wildcard sound/sequences/*.m64) \
+    $(foreach file,$(wildcard sound/sequences/jp/*.s),$(BUILD_DIR)/$(file:.s=.m64)) \
+    $(foreach file,$(wildcard sound/sequences/*.s),$(BUILD_DIR)/$(file:.s=.m64))
+else
 SOUND_BANK_FILES := $(wildcard sound/sound_banks/*.json)
 SOUND_SEQUENCE_FILES := $(wildcard sound/sequences/$(VERSION)/*.m64) \
     $(wildcard sound/sequences/*.m64) \
     $(foreach file,$(wildcard sound/sequences/$(VERSION)/*.s),$(BUILD_DIR)/$(file:.s=.m64)) \
     $(foreach file,$(wildcard sound/sequences/*.s),$(BUILD_DIR)/$(file:.s=.m64))
+endif
+
 SOUND_SAMPLE_DIRS := $(wildcard sound/samples/*)
 SOUND_SAMPLE_AIFFS := $(foreach dir,$(SOUND_SAMPLE_DIRS),$(wildcard $(dir)/*.aiff))
 SOUND_SAMPLE_TABLES := $(foreach file,$(SOUND_SAMPLE_AIFFS),$(BUILD_DIR)/$(file:.aiff=.table))
@@ -325,10 +349,16 @@ $(BUILD_DIR)/levels/menu/leveldata.o: $(BUILD_DIR)/text/de/define_courses.inc.c
 $(BUILD_DIR)/levels/menu/leveldata.o: $(BUILD_DIR)/text/fr/define_courses.inc.c
 
 else
+ifeq ($(VERSION),sh)
+TEXT_DIRS := text/jp
+$(BUILD_DIR)/bin/segment2.o: $(BUILD_DIR)/text/jp/define_text.inc.c
+
+else
 TEXT_DIRS := text/$(VERSION)
 
 # non-EU encoded text inserted into segment 0x02
 $(BUILD_DIR)/bin/segment2.o: $(BUILD_DIR)/text/$(VERSION)/define_text.inc.c
+endif
 endif
 
 $(BUILD_DIR)/text/%/define_courses.inc.c: text/define_courses.inc.c text/%/courses.h
@@ -422,8 +452,13 @@ $(SOUND_BIN_DIR)/sound_data.ctl: sound/sound_banks/ $(SOUND_BANK_FILES) $(SOUND_
 $(SOUND_BIN_DIR)/sound_data.tbl: $(SOUND_BIN_DIR)/sound_data.ctl
 	@true
 
+ifeq ($(VERSION),sh)
+$(SOUND_BIN_DIR)/sequences.bin: $(SOUND_BANK_FILES) sound/sequences.json sound/sequences/ sound/sequences/jp/ $(SOUND_SEQUENCE_FILES) $(ENDIAN_BITWIDTH)
+	$(PYTHON) tools/assemble_sound.py --sequences $@ $(SOUND_BIN_DIR)/bank_sets sound/sound_banks/ sound/sequences.json $(SOUND_SEQUENCE_FILES) $(VERSION_CFLAGS) $$(cat $(ENDIAN_BITWIDTH))
+else
 $(SOUND_BIN_DIR)/sequences.bin: $(SOUND_BANK_FILES) sound/sequences.json sound/sequences/ sound/sequences/$(VERSION)/ $(SOUND_SEQUENCE_FILES) $(ENDIAN_BITWIDTH)
 	$(PYTHON) tools/assemble_sound.py --sequences $@ $(SOUND_BIN_DIR)/bank_sets sound/sound_banks/ sound/sequences.json $(SOUND_SEQUENCE_FILES) $(VERSION_CFLAGS) $$(cat $(ENDIAN_BITWIDTH))
+endif
 
 $(SOUND_BIN_DIR)/bank_sets: $(SOUND_BIN_DIR)/sequences.bin
 	@true

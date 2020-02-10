@@ -244,7 +244,7 @@ void print_course_number(void) {
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 }
 
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
 #define ACT_NAME_X 158
 #else
 #define ACT_NAME_X 163
@@ -321,6 +321,9 @@ void print_act_selector_strings(void) {
     // TODO: allow it to be declared.
 #ifdef VERSION_EU
     print_generic_string(get_str_x_pos_from_center(160, currLevelName + 3, 10.0f), 33, currLevelName + 3);
+#elif defined(VERSION_SH)
+    lvlNameX = get_str_x_pos_from_center_scale(160, currLevelName + 3, 10.0f);
+    print_generic_string(lvlNameX, 33, currLevelName + 3);
 #else
     lvlNameX = get_str_x_pos_from_center(160, currLevelName + 3, 10.0f);
     print_generic_string(lvlNameX, 33, currLevelName + 3);
@@ -342,6 +345,9 @@ void print_act_selector_strings(void) {
 // TODO: Same merge issues as levelNameX above.
 #ifdef VERSION_EU
         print_menu_generic_string(get_str_x_pos_from_center(ACT_NAME_X, selectedActName, 8.0f), 81, selectedActName);
+#elif defined(VERSION_SH)
+        actNameX = get_str_x_pos_from_center_scale(ACT_NAME_X, selectedActName, 8.0f);
+        print_menu_generic_string(actNameX, 81, selectedActName);
 #else
         actNameX = get_str_x_pos_from_center(ACT_NAME_X, selectedActName, 8.0f);
         print_menu_generic_string(actNameX, 81, selectedActName);
@@ -414,7 +420,7 @@ s32 lvl_update_obj_and_load_act_button_actions(UNUSED s32 arg, UNUSED s32 unused
 #else
         if ((gPlayer3Controller->buttonPressed & (A_BUTTON | START_BUTTON | B_BUTTON | Z_TRIG))) {
 #endif
-#ifdef VERSION_JP
+#if defined(VERSION_JP) || defined(VERSION_SH)
             play_sound(SOUND_MENU_STAR_SOUND, gDefaultSoundArgs);
 #else
             play_sound(SOUND_MENU_STAR_SOUND_LETS_A_GO, gDefaultSoundArgs);

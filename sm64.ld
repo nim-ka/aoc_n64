@@ -148,7 +148,7 @@ SECTIONS
       BUILD_DIR/src/audio/seqplayer.o(.text);
       BUILD_DIR/src/audio/external.o(.text);
       BUILD_DIR/src/audio/port_eu.o(.text);
-#ifdef VERSION_EU
+#if defined(VERSION_EU) || defined(VERSION_SH)
       BUILD_DIR/libultra.a:string.o(.text);
       BUILD_DIR/libultra.a:_Printf.o(.text);
       BUILD_DIR/libultra.a:llmuldiv.o(.text);

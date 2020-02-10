@@ -135,12 +135,19 @@ void create_thread(OSThread *thread, OSId id, void (*entry)(void *), void *arg, 
     osCreateThread(thread, id, entry, arg, sp, pri);
 }
 
+#ifdef VERSION_SH
+extern void func_sh_802F69CC(void);
+#endif
+
 void handle_nmi_request(void) {
     gResetTimer = 1;
     D_8032C648 = 0;
     func_80320890();
     sound_banks_disable(2, 0x037A);
     func_802491FC(90);
+#ifdef VERSION_SH
+    func_sh_802F69CC();
+#endif
 }
 
 void receive_new_tasks(void) {
@@ -204,14 +211,24 @@ void pretend_audio_sptask_done(void) {
     osSendMesg(&gIntrMesgQueue, (OSMesg) MESG_SP_COMPLETE, OS_MESG_NOBLOCK);
 }
 
+#ifdef VERSION_SH
+extern void func_sh_8024CC7C(void);
+#endif
+
 void handle_vblank(void) {
     UNUSED s32 pad; // needed to pad the stack
 
     Dummy802461EC();
     sNumVblanks++;
+#ifdef VERSION_SH
+    if (gResetTimer > 0 && gResetTimer < 100) {
+        gResetTimer++;
+    }
+#else
     if (gResetTimer > 0) {
         gResetTimer++;
     }
+#endif
 
     receive_new_tasks();
 
@@ -238,6 +255,9 @@ void handle_vblank(void) {
             start_sptask(M_GFXTASK);
         }
     }
+#ifdef VERSION_SH
+    func_sh_8024CC7C();
+#endif
 
     // Notify the game loop about the vblank.
     if (gVblankHandler1 != NULL) {
@@ -397,12 +417,12 @@ void turn_off_audio(void) {
  * Initialize hardware, start main thread, then idle.
  */
 void thread1_idle(UNUSED void *arg) {
-#ifdef VERSION_US
+#if defined(VERSION_US) || defined(VERSION_SH)
     s32 sp24 = osTvType;
 #endif
 
     osCreateViManager(OS_PRIORITY_VIMGR);
-#ifdef VERSION_US
+#if defined(VERSION_US) || defined(VERSION_SH)
     if (sp24 == TV_TYPE_NTSC) {
         osViSetMode(&osViModeTable[OS_VI_NTSC_LAN1]);
     } else {

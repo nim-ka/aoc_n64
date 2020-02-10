@@ -1110,7 +1110,7 @@ u64 *synthesis_process_notes(u16 *aiBuf, s32 bufLen, u64 *cmd) {
 
     return cmd;
 }
-#elif defined(VERSION_JP)
+#elif defined(VERSION_JP) || defined(VERSION_SH) // todo: extract this nonmatching if applicable.
 GLOBAL_ASM("asm/non_matchings/synthesis_process_notes_jp.s")
 #elif defined(VERSION_US)
 GLOBAL_ASM("asm/non_matchings/synthesis_process_notes_us.s")
