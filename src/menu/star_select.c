@@ -17,7 +17,7 @@
 #include "behavior_data.h"
 #include "text_strings.h"
 #include "star_select.h"
-#include "game/eu_translation.h"
+#include "eu_translation.h"
 
 /**
  * @file star_select.c
@@ -211,21 +211,23 @@ void print_course_number(void) {
 
     create_dl_translation_matrix(MENU_MTX_PUSH, 158.0f, 81.0f, 0.0f);
 
+    // Full wood texture in JP & US, lower part of it on EU
     gSPDisplayList(gDisplayListHead++, dl_menu_rgba16_wood_course);
 
 #ifdef VERSION_EU
+    // Change upper part of the wood texture depending of the language defined
     switch (language) {
-        case 0:
+        case LANGUAGE_ENGLISH:
             gSPDisplayList(gDisplayListHead++, dl_menu_texture_course_upper);
             break;
-        case 1:
+        case LANGUAGE_FRENCH:
             gSPDisplayList(gDisplayListHead++, dl_menu_texture_niveau_upper);
             break;
-        case 2:
+        case LANGUAGE_GERMAN:
             gSPDisplayList(gDisplayListHead++, dl_menu_texture_kurs_upper);
             break;
     }
-    
+
     gSPDisplayList(gDisplayListHead++, dl_menu_rgba16_wood_course_end);
 #endif
 
@@ -284,22 +286,22 @@ void print_act_selector_strings(void) {
 
 #ifdef VERSION_EU
     switch (language) {
-        case 0:
+        case LANGUAGE_ENGLISH:
             actNameTbl = segmented_to_virtual(act_name_table_eu_en);
             levelNameTbl = segmented_to_virtual(course_name_table_eu_en);
             break;
-        case 1:
+        case LANGUAGE_FRENCH:
             actNameTbl = segmented_to_virtual(act_name_table_eu_fr);
             levelNameTbl = segmented_to_virtual(course_name_table_eu_fr);
             break;
-        case 2:
+        case LANGUAGE_GERMAN:
             actNameTbl = segmented_to_virtual(act_name_table_eu_de);
             levelNameTbl = segmented_to_virtual(course_name_table_eu_de);
             break;
     }
     currLevelName = segmented_to_virtual(levelNameTbl[gCurrCourseNum - 1]);
 #endif
-    
+
     // Print the coin highscore.
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
@@ -316,9 +318,7 @@ void print_act_selector_strings(void) {
         print_generic_string(102, 118, myScore);
 #endif
     }
-    // Print the level name; add 3 to skip the number and spacing to get to the actual string to center.
-    // TODO: There has to be a way to merge these, but US seems to need lvlNameX and EU doesn't
-    // TODO: allow it to be declared.
+
 #ifdef VERSION_EU
     print_generic_string(get_str_x_pos_from_center(160, currLevelName + 3, 10.0f), 33, currLevelName + 3);
 #elif defined(VERSION_SH)
@@ -342,7 +342,7 @@ void print_act_selector_strings(void) {
     // Print the name of the selected act.
     if (sVisibleStars != 0) {
         selectedActName = segmented_to_virtual(actNameTbl[(gCurrCourseNum - 1) * 6 + sSelectedActIndex]);
-// TODO: Same merge issues as levelNameX above.
+
 #ifdef VERSION_EU
         print_menu_generic_string(get_str_x_pos_from_center(ACT_NAME_X, selectedActName, 8.0f), 81, selectedActName);
 #elif defined(VERSION_SH)
