@@ -157,9 +157,8 @@ void play_menu_sounds(s16 soundMenuFlags) {
  * Plays the painting eject sound effect if it has not already been played
  */
 void play_painting_eject_sound(void) {
-    if (ripplingPainting != NULL
-        && ripplingPainting->rippleStatus == 2) // ripple when Mario enters painting
-    {
+    if (gRipplingPainting != NULL && gRipplingPainting->state == PAINTING_ENTERED) {
+        // ripple when Mario enters painting
         if (paintingEjectSoundPlayed == FALSE) {
             play_sound(SOUND_GENERAL_PAINTING_EJECT,
                        gMarioStates[0].marioObj->header.gfx.cameraToObject);

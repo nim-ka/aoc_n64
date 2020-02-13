@@ -10000,22 +10000,22 @@ BAD_RETURN(s32) cutscene_enter_painting(struct Camera *c) {
     set_fov_function(CAM_FOV_APP_20);
     sStatusFlags |= CAM_FLAG_SMOOTH_MOVEMENT;
 
-    if (ripplingPainting != NULL) {
+    if (gRipplingPainting != NULL) {
         paintingAngle[0] = 0;
-        paintingAngle[1] = (s32)((ripplingPainting->vYRotation / 360.f) * 65536.f); // convert degrees to IAU
+        paintingAngle[1] = (s32)((gRipplingPainting->yaw / 360.f) * 65536.f); // convert degrees to IAU
         paintingAngle[2] = 0;
 
-        focusOffset[0] = ripplingPainting->vSize / 2;
+        focusOffset[0] = gRipplingPainting->size / 2;
         focusOffset[1] = focusOffset[0];
         focusOffset[2] = 0;
 
-        paintingPos[0] = ripplingPainting->vXPos;
-        paintingPos[1] = ripplingPainting->vYPos;
-        paintingPos[2] = ripplingPainting->vZPos;
+        paintingPos[0] = gRipplingPainting->posX;
+        paintingPos[1] = gRipplingPainting->posY;
+        paintingPos[2] = gRipplingPainting->posZ;
 
         offset_rotated(focus, paintingPos, focusOffset, paintingAngle);
         approach_vec3f_asymptotic(c->focus, focus, 0.1f, 0.1f, 0.1f);
-        focusOffset[2] = -(((ripplingPainting->vSize * 1000.f) / 2) / 307.f);
+        focusOffset[2] = -(((gRipplingPainting->size * 1000.f) / 2) / 307.f);
         offset_rotated(focus, paintingPos, focusOffset, paintingAngle);
         floorHeight = find_floor(focus[0], focus[1] + 500.f, focus[2], &highFloor) + 125.f;
 

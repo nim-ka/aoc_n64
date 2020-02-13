@@ -120,7 +120,7 @@ extern void* D_060576FC;
 // extern ? D_8032F738;
 // extern ? D_8032F728;
 // extern ? D_8032F754;
-extern s8 dddStatus;
+extern s8 gDDDPaintingStatus;
 // extern ? D_8035FEE8;
 // extern ? sCageUkikiPath;
 // extern ? sUkikiActions;
