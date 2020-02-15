@@ -81,19 +81,16 @@ u8 sAudioSynthesisPad[0x20];
 #endif
 
 #if defined(VERSION_EU)
-#ifndef NON_MATCHING
-GLOBAL_ASM("asm/non_matchings/eu/audio/prepare_reverb_ring_buffer.s")
-#else
 // Equivalent functionality as the US/JP version,
 // just that the reverb structure is chosen from an array with index
 void prepare_reverb_ring_buffer(s32 chunkLen, u32 updateIndex, s32 reverbIndex) {
-    struct SynthesisReverb *reverb = &gSynthesisReverbs[reverbIndex];
     struct ReverbRingBufferItem *item;
+    struct SynthesisReverb *reverb = &gSynthesisReverbs[reverbIndex];
     s32 srcPos;
     s32 dstPos;
     s32 nSamples;
-    //s32 numSamplesAfterDownsampling;
     s32 excessiveSamples;
+    s32 UNUSED pad[3];
     if (reverb->downsampleRate != 1) {
         if (reverb->framesLeftToIgnore == 0) {
             // Now that the RSP has finished, downsample the samples produced two frames ago by skipping
@@ -105,9 +102,9 @@ void prepare_reverb_ring_buffer(s32 chunkLen, u32 updateIndex, s32 reverbIndex) 
 
             for (srcPos = 0, dstPos = 0; dstPos < item->lengths[0] / 2;
                  srcPos += reverb->downsampleRate, dstPos++) {
-                reverb->ringBuffer.left[dstPos + item->startPos] =
+                reverb->ringBuffer.left[item->startPos + dstPos] =
                     item->toDownsampleLeft[srcPos];
-                reverb->ringBuffer.right[dstPos + item->startPos] =
+                reverb->ringBuffer.right[item->startPos + dstPos] =
                     item->toDownsampleRight[srcPos];
             }
             for (dstPos = 0; dstPos < item->lengths[1] / 2; srcPos += reverb->downsampleRate, dstPos++) {
@@ -117,11 +114,9 @@ void prepare_reverb_ring_buffer(s32 chunkLen, u32 updateIndex, s32 reverbIndex) 
         }
     }
 
-    //numSamplesAfterDownsampling =
-    nSamples = chunkLen / reverb->downsampleRate;
-    excessiveSamples =
-        (nSamples + reverb->nextRingBufferPos) - reverb->bufSizePerChannel;
     item = &reverb->items[reverb->curFrame][updateIndex];
+    nSamples = chunkLen / reverb->downsampleRate;
+    excessiveSamples = (nSamples + reverb->nextRingBufferPos) - reverb->bufSizePerChannel;
     if (excessiveSamples < 0) {
         // There is space in the ring buffer before it wraps around
         item->lengths[0] = nSamples * 2;
@@ -130,7 +125,6 @@ void prepare_reverb_ring_buffer(s32 chunkLen, u32 updateIndex, s32 reverbIndex) 
         reverb->nextRingBufferPos += nSamples;
     } else {
         // Ring buffer wrapped around
-        //nSamples = numSamplesAfterDownsampling - excessiveSamples;
         item->lengths[0] = (nSamples - excessiveSamples) * 2;
         item->lengths[1] = excessiveSamples * 2;
         item->startPos = reverb->nextRingBufferPos;
@@ -140,7 +134,6 @@ void prepare_reverb_ring_buffer(s32 chunkLen, u32 updateIndex, s32 reverbIndex) 
     item->numSamplesAfterDownsampling = nSamples;
     item->chunkLen = chunkLen;
 }
-#endif
 #else
 void prepare_reverb_ring_buffer(s32 chunkLen, u32 updateIndex) {
     struct ReverbRingBufferItem *item;
@@ -261,50 +254,33 @@ s32 get_volume_ramping(u16 sourceVol, u16 targetVol, s32 arg2) {
 #endif
 
 #ifdef VERSION_EU
-#ifndef NON_MATCHING
-GLOBAL_ASM("asm/non_matchings/eu/audio/synthesis_execute.s")
-#else
+//TODO: (Scrub C) pointless mask and whitespace
 u64 *synthesis_execute(u64 *cmdBuf, s32 *writtenCmds, u16 *aiBuf, s32 bufLen) {
-    s32 nextVolRampTable;
-    s32 temp;
-    s32 i;
-    s32 remaining;
+    s32 i, j;
     f32 *leftVolRamp;
     f32 *rightVolRamp;
-    s32 chunkLen;
-    s32 j;
     u32 *aiBufPtr;
     u64 *cmd = cmdBuf;
+    s32 chunkLen;
+    s32 nextVolRampTable;
 
     for (i = gAudioBufferParameters.updatesPerFrame; i > 0; i--) {
         process_sequences(i - 1);
         synthesis_load_note_subs_eu(gAudioBufferParameters.updatesPerFrame - i);
     }
     aSegment(cmd++, 0, 0);
-    remaining = bufLen;
     aiBufPtr = (u32 *) aiBuf;
     for (i = gAudioBufferParameters.updatesPerFrame; i > 0; i--) {
         if (i == 1) {
-            leftVolRamp = gLeftVolRampings[nextVolRampTable];
-            rightVolRamp = gRightVolRampings[nextVolRampTable];
-            chunkLen = remaining;
+            // self-assignment has no affect when added here, could possibly simplify a macro definition
+            chunkLen = bufLen; nextVolRampTable = nextVolRampTable; leftVolRamp = gLeftVolRampings[nextVolRampTable]; rightVolRamp = gRightVolRampings[nextVolRampTable & 0xFFFFFFFF];
         } else {
-            temp = remaining / i;
-            if (temp >= gAudioBufferParameters.samplesPerUpdateMax) {
-                leftVolRamp = gLeftVolRampings[2];
-                rightVolRamp = gRightVolRampings[2];
-                chunkLen = gAudioBufferParameters.samplesPerUpdateMax;
-                nextVolRampTable = 2;
-            } else if (temp <= gAudioBufferParameters.samplesPerUpdateMin) {
-                leftVolRamp = gLeftVolRampings[0];
-                rightVolRamp = gRightVolRampings[0];
-                chunkLen = gAudioBufferParameters.samplesPerUpdateMin;
-                nextVolRampTable = 0;
+            if (bufLen / i >= gAudioBufferParameters.samplesPerUpdateMax) {
+                chunkLen = gAudioBufferParameters.samplesPerUpdateMax; nextVolRampTable = 2; leftVolRamp = gLeftVolRampings[2]; rightVolRamp = gRightVolRampings[2];
+            } else if (bufLen / i <= gAudioBufferParameters.samplesPerUpdateMin) {
+                chunkLen = gAudioBufferParameters.samplesPerUpdateMin; nextVolRampTable = 0; leftVolRamp = gLeftVolRampings[0]; rightVolRamp = gRightVolRampings[0];
             } else {
-                leftVolRamp = gLeftVolRampings[1];
-                rightVolRamp = gRightVolRampings[1];
-                chunkLen = gAudioBufferParameters.samplesPerUpdate;
-                nextVolRampTable = 1;
+                chunkLen = gAudioBufferParameters.samplesPerUpdate; nextVolRampTable = 1; leftVolRamp = gLeftVolRampings[1]; rightVolRamp = gRightVolRampings[1];
             }
         }
         gCurrentLeftVolRamping = leftVolRamp;
@@ -315,19 +291,19 @@ u64 *synthesis_execute(u64 *cmdBuf, s32 *writtenCmds, u16 *aiBuf, s32 bufLen) {
             }
         }
         cmd = synthesis_do_one_audio_update((u16 *) aiBufPtr, chunkLen, cmd, gAudioBufferParameters.updatesPerFrame - i);
-        remaining -= chunkLen;
+        bufLen -= chunkLen;
         aiBufPtr += chunkLen;
     }
-    for (i = 0; i < gNumSynthesisReverbs; i++) {
-        if (gSynthesisReverbs[i].framesLeftToIgnore != 0) {
-            gSynthesisReverbs[i].framesLeftToIgnore--;
+
+    for (j = 0; j < gNumSynthesisReverbs; j++) {
+        if (gSynthesisReverbs[j].framesLeftToIgnore != 0) {
+            gSynthesisReverbs[j].framesLeftToIgnore--;
         }
-        gSynthesisReverbs[i].curFrame ^= 1;
+        gSynthesisReverbs[j].curFrame ^= 1;
     }
     *writtenCmds = cmd - cmdBuf;
     return cmd;
 }
-#endif
 #else
 // bufLen will be divisible by 16
 u64 *synthesis_execute(u64 *cmdBuf, s32 *writtenCmds, u16 *aiBuf, s32 bufLen) {
@@ -416,31 +392,30 @@ u64 *synthesis_resample_and_mix_reverb(u64 *cmd, s32 bufLen, s16 reverbIndex, s1
 }
 #endif
 
-#ifndef NON_MATCHING
-GLOBAL_ASM("asm/non_matchings/eu/audio/func_eu_802e00d8.s")
-u64 *func_eu_802e00d8(u64 *cmd, s16 reverbIndex, s16 updateIndex);
-#else
-u64 *func_eu_802e00d8(u64 *cmd, s16 reverbIndex, s16 updateIndex) {
-    struct SynthesisReverb *reverb;
+u64 *func_eu_802e00d8(u64 *cmdBuf, s16 reverbIndex, s16 updateIndex) {
     struct ReverbRingBufferItem *item;
+    struct SynthesisReverb *reverb;
+    u64 *cmd = cmdBuf;
 
     reverb = &gSynthesisReverbs[reverbIndex];
     item = &reverb->items[reverb->curFrame][updateIndex];
     if (reverb->useReverb != 0) {
+        if (1) {
+        }
         if (reverb->downsampleRate == 1) {
-            cmd = synthesis_save_reverb_ring_buffer(cmd, DMEM_ADDR_WET_LEFT_CH, item->startPos, item->lengths[0], reverbIndex);
+            cmd = cmdBuf = synthesis_save_reverb_ring_buffer(cmd, DMEM_ADDR_WET_LEFT_CH, item->startPos, item->lengths[0], reverbIndex);
             if (item->lengths[1] != 0) {
                 cmd = synthesis_save_reverb_ring_buffer(cmd, DMEM_ADDR_WET_LEFT_CH + item->lengths[0], 0, item->lengths[1], reverbIndex);
+                cmdBuf = cmd;
             }
         } else {
-            aSetBuffer(cmd++, 0, 0, DMEM_ADDR_WET_LEFT_CH, DEFAULT_LEN_2CH);
-            aSaveBuffer(cmd++, VIRTUAL_TO_PHYSICAL2(reverb->items[reverb->curFrame][updateIndex].toDownsampleLeft));
+            aSetBuffer(cmdBuf++, 0, 0, DMEM_ADDR_WET_LEFT_CH, DEFAULT_LEN_2CH);
+            aSaveBuffer(cmdBuf++, VIRTUAL_TO_PHYSICAL2(reverb->items[reverb->curFrame][updateIndex].toDownsampleLeft));
             reverb->resampleFlags = 0;
         }
     }
-    return cmd;
+    return cmdBuf;
 }
-#endif
 #endif
 
 #ifdef VERSION_EU
