@@ -2773,7 +2773,6 @@ const Gfx dl_paintings_draw_ripples[] = {
     gsSPEndDisplayList(),
 };
 
-// 14A60-15BAD: count and triangles?
 // 14A60: triangle mesh
 // 0x02014A60
 const s16 seg2_painting_triangle_mesh[] = {

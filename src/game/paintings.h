@@ -154,7 +154,7 @@ struct PaintingMeshVertex {
 extern struct PaintingMeshVertex *gPaintingMesh;
 extern Vec3f *gPaintingTriNorms;
 extern struct Painting *gRipplingPainting;
-extern s8 gDDDPaintingStatus;
+extern s8 gDddPaintingStatus;
 
 extern Gfx *geo_painting_draw(s32 run, struct GraphNode *node, void *context);
 extern Gfx *geo_painting_update(s32 run, struct GraphNode *node, f32 c[4][4]);

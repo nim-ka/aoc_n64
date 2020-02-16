@@ -15,10 +15,23 @@
 /**
  * @file paintings.c
  *
- * Implements the rippling painting effect. Paintings are GraphNodes that exists without being connected
+ * Implements the rippling painting effect. Paintings are GraphNodes that exist without being connected
  * to any particular object.
  *
  * Paintings are defined in level data. Look at levels/castle_inside/painting.inc.c for examples.
+ *
+ * The ripple effect uses data that is split into several parts:
+ *      The mesh positions are generated from a base mesh. See seg2_painting_triangle_mesh near the
+ *          bottom of bin/segment2.c
+ *
+ *      The lighting for the ripple is also generated from a base table, seg2_painting_mesh_neighbor_tris
+ *          in bin/segment2.c
+ *
+ *      Each painting's texture uses yet another table to map its texture to the mesh.
+ *          These maps are in level data, see levels/castle_inside/painting.inc.c for example.
+ *
+ *      Finally, each painting has two display lists, normal and rippling, which are defined in the same
+ *      level data file as the Painting itself. See levels/castle_inside/painting.inc.c.
  *
  *
  * Painting state machine:
@@ -125,7 +138,7 @@ f32 gPaintingMarioXPos, gPaintingMarioYPos, gPaintingMarioZPos;
  * When a painting is rippling, this mesh is generated each frame using the Painting's parameters.
  *
  * This mesh only contains the vertex positions and normals.
- * Paintings use an additional array for mapping a texture to the mesh, see Painting::textureMaps.
+ * Paintings use an additional array to map textures to the mesh.
  */
 struct PaintingMeshVertex *gPaintingMesh;
 
@@ -142,28 +155,28 @@ struct Painting *gRipplingPainting;
 /**
  * Whether the DDD painting is moved forward, should being moving backwards, or has already moved backwards.
  */
-s8 gDDDPaintingStatus;
+s8 gDddPaintingStatus;
 
-struct Painting *hmcPaintings[] = {
+struct Painting *sHmcPaintings[] = {
     &cotmc_painting,
     NULL,
 };
 
-struct Painting *insideCastlePaintings[] = {
+struct Painting *sInsideCastlePaintings[] = {
     &bob_painting, &ccm_painting, &wf_painting,  &jrb_painting,      &lll_painting,
     &ssl_painting, &hmc_painting, &ddd_painting, &wdw_painting,      &thi_tiny_painting,
     &ttm_painting, &ttc_painting, &sl_painting,  &thi_huge_painting, NULL,
 };
 
-struct Painting *ttmPaintings[] = {
+struct Painting *sTtmPaintings[] = {
     &ttm_slide_painting,
     NULL,
 };
 
-struct Painting **paintingGroups[] = {
-    hmcPaintings,
-    insideCastlePaintings,
-    ttmPaintings,
+struct Painting **sPaintingGroups[] = {
+    sHmcPaintings,
+    sInsideCastlePaintings,
+    sTtmPaintings,
 };
 
 s16 gPaintingUpdateCounter = 1;
@@ -192,7 +205,7 @@ void stop_other_paintings(s16 *idptr, struct Painting *paintingGroup[]) {
  * @return mario's y position inside the painting (bounded).
  */
 f32 painting_mario_y(struct Painting *painting) {
-    //! unnecessary use of double constants
+    //! Unnecessary use of double constants
     // Add 50 to make the ripple closer to mario's center of mass.
     f32 relY = gPaintingMarioYPos - painting->posY + 50.0;
 
@@ -621,7 +634,7 @@ s16 calculate_ripple_at_point(struct Painting *painting, f32 posX, f32 posY) {
 }
 
 /**
- * If movable, return the ripple funtion at (posX, posY)
+ * If movable, return the ripple function at (posX, posY)
  * else return 0
  */
 s16 ripple_if_movable(struct Painting *painting, s16 movable, s16 posX, s16 posY) {
@@ -636,6 +649,21 @@ s16 ripple_if_movable(struct Painting *painting, s16 movable, s16 posX, s16 posY
 /**
  * Allocates and generates a mesh for the rippling painting effect by modifying the passed in `mesh`
  * based on the painting's current ripple state.
+ *
+ * The `mesh` table describes the location of mesh vertices, whether they move when rippling, and what
+ * triangles they belong to.
+ *
+ * The static mesh passed in is organized into two lists. This function only uses the first list,
+ * painting_calculate_triangle_normals below uses the second one.
+ *
+ * The first list describes the vertices in this format:
+ *      numVertices
+ *      v0 x, v0 y, movable
+ *      ...
+ *      vN x, vN y, movable
+ *      Where x and y are from 0 to PAINTING_SIZE, movable is 0 or 1.
+ *
+ * The mesh used in game, seg2_painting_triangle_mesh, is in bin/segment2.c.
  */
 void painting_generate_mesh(struct Painting *painting, s16 *mesh, s16 numTris) {
     s16 i;
@@ -655,7 +683,19 @@ void painting_generate_mesh(struct Painting *painting, s16 *mesh, s16 numTris) {
 }
 
 /**
- * Calculate the normals of each triangle in the generated ripple mesh.
+ * Calculate the surface normals of each triangle in the generated ripple mesh.
+ *
+ * The static mesh passed in is organized into two lists. This function uses the second list,
+ * painting_generate_mesh above uses the first one.
+ *
+ * The second list in `mesh` describes the mesh's triangles in this format:
+ *      numTris
+ *      tri0 v0, tri0 v1, tri0 v2
+ *      ...
+ *      triN v0, triN v1, triN v2
+ *      Where each v0, v1, v2 is an index into the first list in `mesh`.
+ *
+ * The mesh used in game, seg2_painting_triangle_mesh, is in bin/segment2.c.
  */
 void painting_calculate_triangle_normals(s16 *mesh, s16 numVtx, s16 numTris) {
     s16 i;
@@ -664,7 +704,7 @@ void painting_calculate_triangle_normals(s16 *mesh, s16 numVtx, s16 numTris) {
     if (gPaintingTriNorms == NULL) {
     }
     for (i = 0; i < numTris; i++) {
-        s16 tri = numVtx * 3 + i * 3 + 2; // Add 2 because of the 2 length entries preceeding the list
+        s16 tri = numVtx * 3 + i * 3 + 2; // Add 2 because of the 2 length entries preceding the list
         s16 v0 = mesh[tri];
         s16 v1 = mesh[tri + 1];
         s16 v2 = mesh[tri + 2];
@@ -689,25 +729,36 @@ void painting_calculate_triangle_normals(s16 *mesh, s16 numVtx, s16 numTris) {
 }
 
 /**
- * This function converts a decimal to a signed byte by
- * multiplying it by 127 or 128 and rounding away from 0.
+ * Rounds a floating-point component of a normal vector to an s8 by multiplying it by 127 or 128 and
+ * rounding away from 0.
  */
 s8 normalize_component(f32 comp) {
-    s8 convertedFloat;
+    s8 rounded;
 
     if (comp > 0.0) {
-        convertedFloat = comp * 127.0 + 0.5; // round up
+        rounded = comp * 127.0 + 0.5; // round up
     } else if (comp < 0.0) {
-        convertedFloat = comp * 128.0 - 0.5; // round down
+        rounded = comp * 128.0 - 0.5; // round down
     } else {
-        convertedFloat = 0; // don't round 0
+        rounded = 0;                  // don't round 0
     }
-    return convertedFloat;
+    return rounded;
 }
 
 /**
  * Approximates the painting mesh's vertex normals by averaging the normals of all triangles sharing a
  * vertex. Used for gouraud lighting.
+ *
+ * After each triangle's surface normal is calculated, the `neighborTris` table describes which triangles
+ * each vertex should use when calculating the average normal vector.
+ *
+ * The table is a list of entries in this format:
+ *      numNeighbors, tri0, tri1, ..., triN
+ *
+ *      Where each 'tri' is an index into gPaintingTriNorms.
+ *      Entry i in `neighborTris` corresponds to the vertex at gPaintingMesh[i]
+ *
+ * The table used in game, seg2_painting_mesh_neighbor_tris, is in bin/segment2.c.
  */
 void painting_average_vertex_normals(s16 *neighborTris, s16 numVtx) {
     UNUSED s16 unused;
@@ -723,7 +774,7 @@ void painting_average_vertex_normals(s16 *neighborTris, s16 numVtx) {
         f32 nz = 0.0f;
         f32 nlen;
 
-        // The first entry is the number of adjacent tris
+        // The first number of each entry is the number of adjacent tris
         neighbors = neighborTris[entry];
         for (j = 0; j < neighbors; j++) {
             tri = neighborTris[entry + j + 1];
@@ -734,7 +785,7 @@ void painting_average_vertex_normals(s16 *neighborTris, s16 numVtx) {
         // Move to the next vertex's entry
         entry += neighbors + 1;
 
-        // average the normals of all the neighboring tris
+        // average the surface normals from each neighboring tri
         nx /= neighbors;
         ny /= neighbors;
         nz /= neighbors;
@@ -1016,7 +1067,7 @@ void reset_painting(struct Painting *painting) {
  * When the painting reaches backPos, a save flag is set so that the painting will spawn at backPos
  * whenever it loads.
  *
- * This function also sets gDDDPaintingStatus, which controls the warp:
+ * This function also sets gDddPaintingStatus, which controls the warp:
  *  0 (0b00): set x coordinate to frontPos
  *  2 (0b10): set x coordinate to backPos
  *  3 (0b11): same as 2. Bit 0 is ignored
@@ -1034,12 +1085,12 @@ void move_ddd_painting(struct Painting *painting, f32 frontPos, f32 backPos, f32
     if (!bowsersSubBeaten && !dddBack) {
         // If we haven't collected the star or moved the painting, put the painting at the front
         painting->posX = frontPos;
-        gDDDPaintingStatus = 0;
+        gDddPaintingStatus = 0;
     } else if (bowsersSubBeaten && !dddBack) {
         // If we've collected the star but not moved the painting back,
         // Each frame, move the painting by a certain speed towards the back area.
         painting->posX += speed;
-        gDDDPaintingStatus = BOWSERS_SUB_BEATEN;
+        gDddPaintingStatus = BOWSERS_SUB_BEATEN;
         if (painting->posX >= backPos) {
             painting->posX = backPos;
             // Tell the save file that we've moved DDD back.
@@ -1048,7 +1099,7 @@ void move_ddd_painting(struct Painting *painting, f32 frontPos, f32 backPos, f32
     } else if (bowsersSubBeaten && dddBack) {
         // If the painting has already moved back, place it in the back position.
         painting->posX = backPos;
-        gDDDPaintingStatus = BOWSERS_SUB_BEATEN | DDD_BACK;
+        gDddPaintingStatus = BOWSERS_SUB_BEATEN | DDD_BACK;
     }
 }
 
@@ -1143,7 +1194,7 @@ Gfx *geo_painting_draw(s32 callContext, struct GraphNode *node, UNUSED void *con
     s32 group = (gen->parameter >> 8) & 0xFF;
     s32 id = gen->parameter & 0xFF;
     Gfx *paintingDlist = NULL;
-    struct Painting **paintingGroup = paintingGroups[group];
+    struct Painting **paintingGroup = sPaintingGroups[group];
     struct Painting *painting = segmented_to_virtual(paintingGroup[id]);
 
     if (callContext != GEO_CONTEXT_RENDER) {
