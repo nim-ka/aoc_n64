@@ -427,91 +427,71 @@ u64 *synthesis_save_reverb_samples(u64 *cmdBuf, s16 reverbIndex, s16 updateIndex
 GLOBAL_ASM("asm/non_matchings/eu/audio/synthesis_do_one_audio_update.s")
 #else
 u64 *synthesis_do_one_audio_update(u16 *aiBuf, s32 bufLen, u64 *cmd, u32 updateIndex) {
-    u8 sp84[60];
-    struct SynthesisReverb *sp60;
+    u8 noteIndices[60];
     s32 temp_lo;
-    s32 temp_lo_2;
-    u8 temp_v1;
-    u8 temp_v1_2;
-    struct NoteSubEu *temp_t5;
-    struct NoteSubEu *temp_v0;
-    s32 phi_s1;
-    s16 phi_s2;
-    s16 phi_s3;
-    s32 phi_s1_2;
-    s32 phi_v1_2;
-    s32 phi_s1_3;
-    s16 phi_s3_2;
-    s32 phi_s1_4;
-    u8 *phi_s0_2;
-    s32 bufLen2;
+    struct NoteSubEu *noteSubEu;
+    s32 i;
+    s16 j;
+    s16 notePos = 0;
 
     if (gNumSynthesisReverbs == 0) {
-        phi_s2 = 0;
-        for (phi_s1 = 0; phi_s1 < gMaxSimultaneousNotes; phi_s1++) {
-            if (gNoteSubsEu[gMaxSimultaneousNotes * updateIndex + phi_s1].enabled) {
-                sp84[phi_s2++] = phi_s1;
+        for (i = 0; i < gMaxSimultaneousNotes; i++) {
+            if (gNoteSubsEu[gMaxSimultaneousNotes * updateIndex + i].enabled) {
+                noteIndices[notePos++] = i;
             }
         }
     } else {
-        phi_s2 = 0;
-        for (phi_s3 = 0; phi_s3 < gNumSynthesisReverbs; phi_s3++) {
-            for (phi_s1_2 = 0; phi_s1_2 < gMaxSimultaneousNotes; phi_s1_2++) {
-                temp_v0 = &gNoteSubsEu[gMaxSimultaneousNotes * updateIndex + phi_s1_2];
-                if (temp_v0->enabled) {
-                    if (phi_s3 == temp_v0->reverbIndex) {
-                        sp84[phi_s2++] = phi_s1_2;
-                    }
+        for (j = 0; j < gNumSynthesisReverbs; j++) {
+            for (i = 0; i < gMaxSimultaneousNotes; i++) {
+                noteSubEu = &gNoteSubsEu[gMaxSimultaneousNotes * updateIndex + i];
+                if (noteSubEu->enabled && j == noteSubEu->reverbIndex) {
+                    noteIndices[notePos++] = i;
                 }
             }
         }
-        phi_v1_2 = gMaxSimultaneousNotes * updateIndex;
-        for (phi_s1_3 = 0; phi_s1_3 < gMaxSimultaneousNotes; phi_s1_3++) {
-            if (gNoteSubsEu[phi_v1_2].enabled) {
-                if (temp_v0->reverbIndex >= gNumSynthesisReverbs) {
-                    sp84[phi_s2++] = phi_s1_3;
-                }
+        for (i = 0; i < gMaxSimultaneousNotes; i++) {
+            noteSubEu = &gNoteSubsEu[gMaxSimultaneousNotes * updateIndex + i];
+            if (noteSubEu->enabled && noteSubEu->reverbIndex >= gNumSynthesisReverbs) {
+                noteIndices[notePos++] = i;
             }
-            phi_v1_2++;
         }
     }
     aClearBuffer(cmd++, DMEM_ADDR_LEFT_CH, DEFAULT_LEN_2CH);
-    phi_s1_4 = 0;
-    for (phi_s3_2 = 0; phi_s3_2 < gNumSynthesisReverbs; phi_s3_2++) {
-        sp60 = &gSynthesisReverbs[phi_s3_2];
-        gUseReverb = sp60->useReverb;
+    i = 0;
+    for (j = 0; j < gNumSynthesisReverbs; j++) {
+        gUseReverb = gSynthesisReverbs[j].useReverb;
         if (gUseReverb != 0) {
-            cmd = synthesis_resample_and_mix_reverb(cmd, bufLen, phi_s3_2, (s16) updateIndex);
+            cmd = synthesis_resample_and_mix_reverb(cmd, bufLen, j, updateIndex);
         }
-        for (; phi_s1_4 < phi_s2; phi_s1_4++) {
-            temp_v1 = sp84[phi_s1_4];
+        for (; i < notePos; i++) {
             temp_lo = updateIndex * gMaxSimultaneousNotes;
-            if (phi_s3_2 == gNoteSubsEu[temp_v1 + temp_lo].reverbIndex) {
-                cmd = synthesis_process_note(&gNotes[temp_v1], &gNoteSubsEu[temp_v1 + temp_lo], &gNotes[temp_v1].synthesisState, aiBuf, bufLen, cmd);
+            if (j == gNoteSubsEu[temp_lo + noteIndices[i]].reverbIndex) {
+                cmd = synthesis_process_note(&gNotes[noteIndices[i]],
+                                             &gNoteSubsEu[temp_lo + noteIndices[i]],
+                                             &gNotes[noteIndices[i]].synthesisState,
+                                             aiBuf, bufLen, cmd);
             } else {
                 break;
             }
         }
-        if (sp60->useReverb != 0) {
-            cmd = synthesis_save_reverb_samples(cmd, phi_s3_2, (s16) updateIndex);
+        if (gSynthesisReverbs[j].useReverb != 0) {
+            cmd = synthesis_save_reverb_samples(cmd, j, updateIndex);
         }
     }
-    phi_s0_2 = &sp84[phi_s1_4];
-    for (; phi_s1_4 < phi_s2; phi_s1_4++) {
-        temp_v1_2 = *phi_s0_2;
-        temp_lo_2 = updateIndex * gMaxSimultaneousNotes;
-        temp_t5 = &gNoteSubsEu[temp_v1_2 + temp_lo_2];
-        if (IS_BANK_LOAD_COMPLETE(temp_t5->bankId) == TRUE) {
-            cmd = synthesis_process_note(&gNotes[temp_v1_2], &gNoteSubsEu[temp_v1_2 + temp_lo_2], &gNotes[temp_v1_2].synthesisState, aiBuf, bufLen, cmd);
+    for (; i < notePos; i++) {
+        temp_lo = updateIndex * gMaxSimultaneousNotes;
+        if (IS_BANK_LOAD_COMPLETE(gNoteSubsEu[temp_lo + noteIndices[i]].bankId) == TRUE) {
+            cmd = synthesis_process_note(&gNotes[noteIndices[i]],
+                                         &gNoteSubsEu[temp_lo + noteIndices[i]],
+                                         &gNotes[noteIndices[i]].synthesisState,
+                                         aiBuf, bufLen, cmd);
         } else {
-            gAudioErrorFlags = (temp_t5->bankId + (phi_s1_4 << 8)) + 0x10000000;
+            gAudioErrorFlags = (gNoteSubsEu[temp_lo + noteIndices[i]].bankId + (i << 8)) + 0x10000000;
         }
-        phi_s0_2++;
     }
-    bufLen2 = bufLen * 2;
-    aSetBuffer(cmd++, 0, 0, DMEM_ADDR_TEMP, bufLen2);
+    aSetBuffer(cmd++, 0, 0, DMEM_ADDR_TEMP, bufLen * 2);
     aInterleave(cmd++, DMEM_ADDR_LEFT_CH, DMEM_ADDR_RIGHT_CH);
-    aSetBuffer(cmd++, 0, 0, DMEM_ADDR_TEMP, bufLen2 * 2);
+    aSetBuffer(cmd++, 0, 0, DMEM_ADDR_TEMP, bufLen * 2 * 2);
     aSaveBuffer(cmd++, VIRTUAL_TO_PHYSICAL2(aiBuf));
     return cmd;
 }
