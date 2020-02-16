@@ -36,7 +36,7 @@ static void skeeter_act_idle(void) {
         set_obj_animation_and_sound_state(3);
         o->oForwardVel = 0.0f;
 
-        if (o->oTimer > o->oSkeeterWaitTime && func_8029F788()) {
+        if (o->oTimer > o->oSkeeterWaitTime && obj_check_if_near_anim_end()) {
             o->oAction = SKEETER_ACT_WALK;
         }
     } else {
@@ -49,7 +49,7 @@ static void skeeter_act_idle(void) {
                                    5, 50, 200)) {
                 if (o->oSkeeterWaitTime != 0) {
                     o->oSkeeterWaitTime -= 1;
-                } else if (func_8029F788()) {
+                } else if (obj_check_if_near_anim_end()) {
                     PlaySound2(SOUND_OBJ_WALKING_WATER);
                     o->oAction = SKEETER_ACT_LUNGE;
                     o->oForwardVel = 80.0f;
@@ -73,7 +73,7 @@ static void skeeter_act_lunge(void) {
             o->oFlags &= ~0x00000008;
         }
 
-        if (obj_forward_vel_approach(0.0f, 0.8f) && func_8029F828()) {
+        if (obj_forward_vel_approach(0.0f, 0.8f) && obj_check_if_at_anim_end()) {
             o->oMoveAngleYaw = o->oFaceAngleYaw;
 
             if (o->oDistanceToMario >= 25000.0f) {
@@ -98,7 +98,7 @@ static void skeeter_act_walk(void) {
         obj_forward_vel_approach(o->oSkeeterUnkFC, 0.4f);
         sp24 = 0.12f * o->oForwardVel;
 
-        func_8029ED98(2, sp24);
+        obj_init_anim_accel_and_sound(2, sp24);
         func_802F9378(3, 13, SOUND_OBJ_SKEETER_WALK);
 
         if (o->oSkeeterUnkF8 != 0) {
@@ -117,7 +117,7 @@ static void skeeter_act_walk(void) {
                     o->oSkeeterUnkFC = 10.0f;
                     if (o->oSkeeterWaitTime != 0) {
                         o->oSkeeterWaitTime -= 1;
-                    } else if (func_8029F788() != 0) {
+                    } else if (obj_check_if_near_anim_end() != 0) {
                         if (RandomU16() & 0x0003) {
                             o->oSkeeterTargetAngle = obj_random_fixed_turn(0x2000);
                             o->oSkeeterWaitTime = random_linear_offset(100, 100);

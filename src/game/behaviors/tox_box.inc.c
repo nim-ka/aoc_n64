@@ -10,7 +10,7 @@ s8 *D_8032F96C[] = { D_8032F8F0, D_8032F924, D_8032F948 };
 
 void func_802BCF78(void) {
     if (o->oDistanceToMario < 3000.0f)
-        ShakeScreen(SHAKE_POS_SMALL);
+        shake_screen_from_object(SHAKE_POS_SMALL);
 }
 
 void func_802BCFC4(f32 a0, f32 a1, s16 a2, s16 a3) // 0x18 0x1c 0x22 0x26
@@ -22,9 +22,9 @@ void func_802BCFC4(f32 a0, f32 a1, s16 a2, s16 a3) // 0x18 0x1c 0x22 0x26
     if ((s16) o->oFaceAnglePitch < 0)
         a3 = -a3;
     o->oFaceAngleRoll += a3;
-    func_802A2A38();
+    obj_set_pos_via_transform();
     if (o->oTimer == 7) {
-        o->oAction = func_802A32E0();
+        o->oAction = obj_progress_direction_table();
 #ifndef VERSION_JP
         PlaySound2(SOUND_GENERAL_UNK46);
 #else
@@ -52,22 +52,22 @@ void ActionToxBox1(void) {
         func_802BCF78();
     o->oPosY = o->oHomeY + 3.0f;
     if (o->oTimer == 20)
-        o->oAction = func_802A32E0();
+        o->oAction = obj_progress_direction_table();
 }
 
 void ActionToxBox2(void) {
     if (o->oTimer == 20)
-        o->oAction = func_802A32E0();
+        o->oAction = obj_progress_direction_table();
 }
 
 void ActionToxBox3(void) {
     if (o->oTimer == 20)
-        o->oAction = func_802A32E0();
+        o->oAction = obj_progress_direction_table();
 }
 
 void ActionToxBox0(void) {
     s8 *sp1C = D_8032F96C[o->oBehParams2ndByte];
-    o->oAction = func_802A32A4(sp1C);
+    o->oAction = obj_set_direction_table(sp1C);
 }
 
 void (*sToxBoxActions[])(void) = { ActionToxBox0, ActionToxBox1, ActionToxBox2, ActionToxBox3,

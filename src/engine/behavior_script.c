@@ -806,7 +806,7 @@ void cur_object_exec_behavior(void) {
     }
 
     if (flagsLo & OBJ_FLAG_0800) {
-        func_802A2270(gCurrentObject);
+        set_throw_matrix_from_transform(gCurrentObject);
     }
 
     if (flagsLo & OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE) {

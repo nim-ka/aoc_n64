@@ -182,7 +182,7 @@ static void func_8030DBA8(void) {
 static void eyerok_hand_act_sleep(void) {
     if (o->parentObj->oAction != EYEROK_BOSS_ACT_SLEEP
         && ++o->oEyerokHandWakeUpTimer > -3 * o->oBehParams2ndByte) {
-        if (func_8029F788()) {
+        if (obj_check_if_near_anim_end()) {
             o->parentObj->oEyerokBossNumHands += 1;
             o->oAction = EYEROK_HAND_ACT_IDLE;
             o->collisionData = segmented_to_virtual(&ssl_seg7_collision_07028274);
@@ -200,7 +200,7 @@ static void eyerok_hand_act_sleep(void) {
             o->collisionData = segmented_to_virtual(&ssl_seg7_collision_07028370);
         }
 
-        func_8029F6F0();
+        obj_reverse_anim();
         o->oPosX = o->oHomeX + 724.0f * o->oBehParams2ndByte;
     }
 }
@@ -274,7 +274,7 @@ static void eyerok_hand_act_show_eye(void) {
         if (o->parentObj->oEyerokBossActiveHand == 0) {
             if (o->oAnimState < 3) {
                 o->oAnimState += 1;
-            } else if (func_8029F788()) {
+            } else if (obj_check_if_near_anim_end()) {
                 val06 = (s16)(o->oAngleToMario - o->oFaceAngleYaw) * o->oBehParams2ndByte;
                 o->oAction = EYEROK_HAND_ACT_CLOSE;
             }
@@ -342,7 +342,7 @@ static void eyerok_hand_act_become_active(void) {
 static void eyerok_hand_act_die(void) {
     if (func_802F92B0(1)) {
         o->parentObj->oEyerokBossUnk1AC = 0;
-        func_802A3C98(150.0f, 1);
+        explode_obj_and_spawn_coins(150.0f, 1);
         create_sound_spawner(SOUND_OBJ2_EYEROK_SOUND_LONG);
     }
 

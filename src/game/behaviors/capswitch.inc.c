@@ -26,10 +26,10 @@ void ActionActivateCapSwitch1(void) {
 void ActionActivateCapSwitch2(void) {
     s32 sp1C;
     if (o->oTimer < 5) {
-        func_802A3398(2, 4, 0.5f, 0.1f);
+        obj_scale_over_time(2, 4, 0.5f, 0.1f);
         if (o->oTimer == 4) {
-            ShakeScreen(SHAKE_POS_SMALL);
-            func_802A3004();
+            shake_screen_from_object(SHAKE_POS_SMALL);
+            spawn_mist_particles();
             spawn_triangle_break_particles(60, 139, 0.3f, o->oBehParams2ndByte);
         }
     } else {
@@ -56,9 +56,9 @@ Gfx *Geo18_802A719C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx) {
     if (run == TRUE) {
         sp1C = (struct Object *) gCurGraphNodeObject;
         if (sp1C->prevObj != NULL) {
-            func_8029D704(sp20, mtx, gCurGraphNodeCamera->matrixPtr);
-            func_8029D558(sp20, sp1C->prevObj);
-            func_8029EA0C(sp1C->prevObj);
+            create_transformation_from_matrices(sp20, mtx, gCurGraphNodeCamera->matrixPtr);
+            update_pos_from_parent_transformation(sp20, sp1C->prevObj);
+            set_gfx_pos_from_pos(sp1C->prevObj);
         }
     }
     return NULL;

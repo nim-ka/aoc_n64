@@ -4,7 +4,7 @@ void bhv_blue_fish_loop(void) {
     f32 sp24;
     switch (o->oAction) {
         case 0:
-            func_8029ED98(0, 1.0f);
+            obj_init_anim_accel_and_sound(0, 1.0f);
             if (o->oTimer == 0) {
                 o->oBlueFishUnk100 = RandomSign() << 11;
                 o->oBlueFishUnkF4 = RandomFloat() * 2;
@@ -25,13 +25,13 @@ void bhv_blue_fish_loop(void) {
             o->oVelY = -sins(o->oFaceAnglePitch) * o->oForwardVel;
             break;
         case 1:
-            func_8029ED98(0, 2.0f);
+            obj_init_anim_accel_and_sound(0, 2.0f);
             o->oMoveAngleYaw = (s32)(o->oBlueFishUnk100 + o->oMoveAngleYaw);
             if (o->oTimer == 15)
                 o->oAction++;
             break;
         case 2:
-            func_8029ED98(0, 1.0f);
+            obj_init_anim_accel_and_sound(0, 1.0f);
             if (o->oTimer >= o->oBlueFishUnkF8 + 60)
                 o->oAction++;
             if (o->oTimer < (o->oBlueFishUnkF8 + 60) / 2)
@@ -40,7 +40,7 @@ void bhv_blue_fish_loop(void) {
                 o->oFaceAnglePitch += o->oAngleVelPitch;
             break;
         case 3:
-            func_8029ED98(0, 2.0f);
+            obj_init_anim_accel_and_sound(0, 2.0f);
             o->oMoveAngleYaw = (s32)(o->oBlueFishUnk100 + o->oMoveAngleYaw);
             if (o->oTimer == 15)
                 o->oAction = 0;

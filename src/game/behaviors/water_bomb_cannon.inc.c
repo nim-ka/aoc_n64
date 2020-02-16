@@ -11,7 +11,7 @@ void bhv_bubble_cannon_barrel_loop(void) {
         o->oFaceAnglePitch = o->parentObj->oMoveAnglePitch;
 
         if ((o->oCannonBarrelBubblesUnkF4 += o->oForwardVel) > 0.0f) {
-            func_802A2A38();
+            obj_set_pos_via_transform();
             obj_forward_vel_approach(-5.0f, 18.0f);
         } else {
             o->oCannonBarrelBubblesUnkF4 = 0.0f;

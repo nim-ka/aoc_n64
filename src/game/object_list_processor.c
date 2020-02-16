@@ -519,7 +519,7 @@ void spawn_objects_from_info(UNUSED s32 unused, struct SpawnInfo *spawnInfo) {
     }
 }
 
-void stub_8029CA50() {
+void stub_obj_list_processor_1() {
 }
 
 /**
@@ -545,7 +545,7 @@ void clear_objects(void) {
     clear_object_lists(gObjectListArray);
 
     stub_80385BF0();
-    stub_8029CA50();
+    stub_obj_list_processor_1();
 
     for (i = 0; i < OBJECT_POOL_CAPACITY; i++) {
         gObjectPool[i].activeFlags = ACTIVE_FLAGS_DEACTIVATED;

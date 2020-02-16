@@ -48,7 +48,7 @@ void func_802F5E20(void) {
             o->oMoveAngleRoll = 0x4000 / 3;
     }
 
-    func_802A2A38();
+    obj_set_pos_via_transform();
     if (sp1E == 0)
         PlaySound2(SOUND_GENERAL_MOVING_WATER);
 }
@@ -81,7 +81,7 @@ void bhv_manta_ray_loop(void) {
             func_802F5E20();
             func_802F5FD8();
             if (o->oMantaUnk1AC == 5) {
-                func_802A3004();
+                spawn_mist_particles();
                 create_star(-3180.0f, -3600.0f, 120.0f);
                 o->oAction = 1;
             }

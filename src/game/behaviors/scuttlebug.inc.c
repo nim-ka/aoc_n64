@@ -104,7 +104,7 @@ void bhv_scuttlebug_loop(void) {
         sp18 = 1.0f;
     else
         sp18 = 3.0f;
-    func_8029ED98(0, sp18);
+    obj_init_anim_accel_and_sound(0, sp18);
     if (o->oMoveFlags & 3)
         func_802BE2E8(1, 23, SOUND_OBJ2_SCUTTLEBUG_WALK);
     if (o->parentObj != o) {

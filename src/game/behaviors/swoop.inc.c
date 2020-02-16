@@ -42,8 +42,8 @@ static void swoop_act_idle(void) {
  * him. Return to home once mario is far away.
  */
 static void swoop_act_move(void) {
-    func_8029ED98(0, 2.0f);
-    if (func_8029F788()) {
+    obj_init_anim_accel_and_sound(0, 2.0f);
+    if (obj_check_if_near_anim_end()) {
         PlaySound2(SOUND_OBJ_UNKNOWN6);
     }
 

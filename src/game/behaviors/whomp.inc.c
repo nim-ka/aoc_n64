@@ -15,7 +15,7 @@ void func_802C61CC(void) {
 }
 
 void ActionWhomp0(void) {
-    func_8029ED98(0, 1.0f);
+    obj_init_anim_accel_and_sound(0, 1.0f);
     obj_set_pos_to_home();
     if (o->oBehParams2ndByte != 0) {
         gSecondCameraFocus = o;
@@ -38,7 +38,7 @@ void ActionWhomp0(void) {
 void ActionWhomp7(void) {
     if (o->oSubAction == 0) {
         o->oForwardVel = 0.0f;
-        func_8029ED98(0, 1.0f);
+        obj_init_anim_accel_and_sound(0, 1.0f);
         if (o->oTimer > 31)
             o->oSubAction++;
         else
@@ -61,14 +61,14 @@ void ActionWhomp1(void) {
         sp1C = 200.0f;
     else
         sp1C = 700.0f;
-    func_8029ED98(0, 1.0f);
+    obj_init_anim_accel_and_sound(0, 1.0f);
     o->oForwardVel = 3.0f;
     if (sp20 > sp1C)
         o->oAction = 7;
     else if (sp26 < 0x2000) {
         if (o->oDistanceToMario < 1500.0f) {
             o->oForwardVel = 9.0f;
-            func_8029ED98(0, 3.0f);
+            obj_init_anim_accel_and_sound(0, 3.0f);
         }
         if (o->oDistanceToMario < 300.0f)
             o->oAction = 3;
@@ -78,7 +78,7 @@ void ActionWhomp1(void) {
 
 void ActionWhomp2(void) {
     s16 sp1E;
-    func_8029ED98(0, 1.0f);
+    obj_init_anim_accel_and_sound(0, 1.0f);
     o->oForwardVel = 3.0f;
     obj_rotate_yaw_toward(o->oAngleToMario, 0x200);
     if (o->oTimer > 30) {
@@ -86,7 +86,7 @@ void ActionWhomp2(void) {
         if (sp1E < 0x2000) {
             if (o->oDistanceToMario < 1500.0f) {
                 o->oForwardVel = 9.0f;
-                func_8029ED98(0, 3.0f);
+                obj_init_anim_accel_and_sound(0, 3.0f);
             }
             if (o->oDistanceToMario < 300.0f)
                 o->oAction = 3;
@@ -101,8 +101,8 @@ void ActionWhomp2(void) {
 
 void ActionWhomp3(void) {
     o->oForwardVel = 0.0f;
-    func_8029ED98(1, 1.0f);
-    if (func_8029F788())
+    obj_init_anim_accel_and_sound(1, 1.0f);
+    if (obj_check_if_near_anim_end())
         o->oAction = 4;
 }
 
@@ -124,7 +124,7 @@ void ActionWhomp4(void) {
 void ActionWhomp5(void) {
     if (o->oSubAction == 0 && o->oMoveFlags & 1) {
         PlaySound2(SOUND_OBJ_WHOMP_LOWPRIO);
-        ShakeScreen(SHAKE_POS_SMALL);
+        shake_screen_from_object(SHAKE_POS_SMALL);
         o->oVelY = 0.0f;
         o->oSubAction++;
     }
@@ -146,7 +146,7 @@ void func_802C6954(void) {
                 func_802B8F7C(&o->oPosX, &gMarioObject->oPosX);
                 func_802AA618(0, 0, 100.0f);
                 spawn_triangle_break_particles(20, 138, 3.0f, 4);
-                ShakeScreen(SHAKE_POS_SMALL);
+                shake_screen_from_object(SHAKE_POS_SMALL);
                 func_802B8F7C(&o->oPosX, pos);
             }
             o->oSubAction++;
@@ -215,7 +215,7 @@ void ActionWhomp8(void) {
             obj_become_intangible();
             func_802AA618(0, 0, 200.0f);
             spawn_triangle_break_particles(20, 138, 3.0f, 4);
-            ShakeScreen(SHAKE_POS_SMALL);
+            shake_screen_from_object(SHAKE_POS_SMALL);
             o->oPosY += 100.0f;
             create_star(180.0f, 3880.0f, 340.0f);
             PlaySound2(SOUND_OBJ_KING_WHOMP_DEATH);
@@ -224,7 +224,7 @@ void ActionWhomp8(void) {
     } else {
         func_802AA618(0, 0, 100.0f);
         spawn_triangle_break_particles(20, 138, 3.0f, 4);
-        ShakeScreen(SHAKE_POS_SMALL);
+        shake_screen_from_object(SHAKE_POS_SMALL);
         create_sound_spawner(SOUND_OBJ_THWOMP);
         mark_object_for_deletion(o);
     }

@@ -153,7 +153,7 @@ void piranha_plant_attacked(void) {
     obj_become_intangible();
     set_obj_animation_and_sound_state(2);
     o->oInteractStatus = 0;
-    if (func_8029F788())
+    if (obj_check_if_near_anim_end())
         o->oAction = PIRANHA_PLANT_ACT_SHRINK_AND_DIE;
 #if BUGFIX_PIRANHA_PLANT_STATE_RESET
     piranha_plant_reset_when_far(); // see this function's comment
@@ -260,7 +260,7 @@ void piranha_plant_act_biting(void) {
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x400);
 
     if (o->oDistanceToMario > 500.0f)
-        if (func_8029F788())
+        if (obj_check_if_near_anim_end())
             o->oAction = PIRANHA_PLANT_ACT_STOPPED_BITING;
 
     // If the player is wearing the Metal Cap and interacts with the Piranha
@@ -293,7 +293,7 @@ void piranha_plant_act_stopped_biting(void) {
     obj_become_intangible();
     set_obj_animation_and_sound_state(6);
 
-    if (func_8029F788())
+    if (obj_check_if_near_anim_end())
         o->oAction = PIRANHA_PLANT_ACT_SLEEPING;
 
     /**

@@ -11,7 +11,7 @@ f32 WaterRingCalcMarioDistInFront(void) {
 }
 
 void WaterRingInit(void) {
-    SetObjAnimation(0);
+    set_object_animation(0);
     o->oWaterRingScalePhaseX = (s32)(RandomFloat() * 4096.0f) + 0x1000;
     o->oWaterRingScalePhaseY = (s32)(RandomFloat() * 4096.0f) + 0x1000;
     o->oWaterRingScalePhaseZ = (s32)(RandomFloat() * 4096.0f) + 0x1000;
@@ -37,7 +37,7 @@ void WaterRingInit(void) {
 void bhv_jet_stream_water_ring_init(void) {
     WaterRingInit();
     o->oOpacity = 70;
-    SetObjAnimation(0);
+    set_object_animation(0);
     o->oFaceAnglePitch = 0x8000;
 }
 
@@ -178,7 +178,7 @@ void bhv_jet_stream_ring_spawner_loop(void) {
             JetStreamRingSpawnerActiveLoop();
 
             if (o->oWaterRingSpawnerRingsCollected == 5) {
-                func_802A3004();
+                spawn_mist_particles();
 
                 create_star(3400.0f, -3200.0f, -500.0f);
 

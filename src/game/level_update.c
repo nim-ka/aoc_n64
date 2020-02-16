@@ -462,7 +462,7 @@ void warp_area(void) {
     if (sWarpDest.type != WARP_TYPE_NOT_WARPING) {
         if (sWarpDest.type == WARP_TYPE_CHANGE_AREA) {
             level_control_timer(TIMER_CONTROL_HIDE);
-            func_8027AA88();
+            unload_mario_area();
             load_area(sWarpDest.areaIdx);
         }
 

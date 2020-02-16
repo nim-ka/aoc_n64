@@ -49,7 +49,7 @@ void bhv_donut_platform_update(void) {
         if (o->oDistanceToMario > 2500.0f) {
             mark_object_for_deletion(o);
         } else {
-            func_802A3C98(150.0f, 1);
+            explode_obj_and_spawn_coins(150.0f, 1);
             create_sound_spawner(SOUND_GENERAL_DONUT_PLATFORM_EXPLOSION);
         }
     } else {

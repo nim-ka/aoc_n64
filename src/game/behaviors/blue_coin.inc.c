@@ -98,7 +98,7 @@ void bhv_blue_coin_switch_loop(void) {
                 o->oPosY = gMarioObject->oPosY - 40.0f;
 
                 // Spawn particles. There's a function that calls this same function
-                // with the same arguments, func_802A3004, why didn't they just call that?
+                // with the same arguments, spawn_mist_particles, why didn't they just call that?
                 func_802AA618(0, 0, 46.0f);
             } else {
                 // Have collision while receding

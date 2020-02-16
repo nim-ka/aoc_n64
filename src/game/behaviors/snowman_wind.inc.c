@@ -11,7 +11,7 @@ void bhv_snowman_wind_blowing_loop(void) {
         o->oDistanceToMario = 0;
         func_802B8F7C(pos, &o->oPosX);
         set_object_pos(o, 1100, 3328, 1164);
-        if (func_802A3FF8(1000.0f, 30.0f, 0x7FFF))
+        if (should_start_dialog_check(1000.0f, 30.0f, 0x7FFF))
             o->oSubAction++;
         func_802B8F7C(&o->oPosX, pos);
     } else if (o->oSubAction == 1) {

@@ -178,7 +178,7 @@ static void chain_chomp_sub_act_turn(void) {
         if (abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw) < 0x800) {
             if (o->oTimer > 30) {
                 if (obj_check_anim_frame(0)) {
-                    func_8029F6F0();
+                    obj_reverse_anim();
                     if (o->oTimer > 40) {
                         // Increase the maximum distance from the pivot and enter
                         // the lunging sub-action.
@@ -247,7 +247,7 @@ static void chain_chomp_sub_act_lunge(void) {
     }
 
     if (o->oTimer < 30) {
-        func_8029F6F0();
+        obj_reverse_anim();
     }
 }
 
@@ -537,7 +537,7 @@ void bhv_chain_chomp_gate_init(void) {
  */
 void bhv_chain_chomp_gate_update(void) {
     if (o->parentObj->oChainChompHitGate) {
-        func_802A3034(SOUND_GENERAL_WALL_EXPLOSION);
+        spawn_mist_particles_with_sound(SOUND_GENERAL_WALL_EXPLOSION);
         set_camera_shake_from_point(SHAKE_POS_SMALL, o->oPosX, o->oPosY, o->oPosZ);
         func_802AA618(0, 0x7F, 200.0f);
         spawn_triangle_break_particles(30, 0x8A, 3.0f, 4);

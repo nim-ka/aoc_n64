@@ -19,7 +19,7 @@ void ActionMrIParticle0(void) {
         o->oAction = 1;
     else if ((o->oTimer >= 101) || (0x200 & o->oMoveFlags) || (8 & (s16) o->activeFlags)) {
         mark_object_for_deletion(o);
-        func_802A3004();
+        spawn_mist_particles();
     }
 }
 
@@ -105,7 +105,7 @@ void ActionMrI3(void) {
     } else if (o->oTimer < 168) {
         if (o->oTimer == 104) {
             obj_become_intangible();
-            func_802A3004();
+            spawn_mist_particles();
             o->oMrISize = sp1C * 0.6;
             if (o->oBehParams2ndByte) {
                 o->oPosY += 100.0f;

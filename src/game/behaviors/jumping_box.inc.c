@@ -29,7 +29,7 @@ void ActionJumpingBox0(void) {
 void ActionJumpingBox1(void) {
     if (o->oMoveFlags & (0x200 | 0x40 | 0x20 | 0x10 | 0x8 | 0x1)) {
         mark_object_for_deletion(o);
-        func_802A3004();
+        spawn_mist_particles();
     }
 }
 
@@ -52,7 +52,7 @@ void bhv_jumping_box_loop(void) {
         case HELD_HELD:
             copy_object_pos(o, gMarioObject);
             obj_set_model(MODEL_BREAKABLE_BOX_SMALL);
-            func_8029FA5C(-1, 0);
+            unrender_and_reset_obj_state(-1, 0);
             break;
         case HELD_THROWN:
             obj_get_thrown_or_placed(40.0f, 20.0f, 1);
@@ -64,7 +64,7 @@ void bhv_jumping_box_loop(void) {
     }
     if (o->oInteractStatus & INTERACT_HIT_FROM_BELOW) {
         create_sound_spawner(SOUND_GENERAL_BREAK_BOX);
-        func_802A3C98(46.0f, 1);
+        explode_obj_and_spawn_coins(46.0f, 1);
     }
     o->oInteractStatus = 0;
 }

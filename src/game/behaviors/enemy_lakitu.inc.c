@@ -104,7 +104,7 @@ static void enemy_lakitu_sub_act_no_spiny(void) {
             o->prevObj = spiny;
             spiny->oAction = SPINY_ACT_HELD_BY_LAKITU;
 
-            func_8029EE20(spiny, spiny_egg_seg5_anims_050157E4, 0);
+            obj_init_anim_and_sound(spiny, spiny_egg_seg5_anims_050157E4, 0);
 
             o->oEnemyLakituNumSpinies += 1;
             o->oSubAction = ENEMY_LAKITU_SUB_ACT_HOLD_SPINY;
@@ -141,7 +141,7 @@ static void enemy_lakitu_sub_act_throw_spiny(void) {
         o->prevObj = NULL;
     }
 
-    if (func_8029F788()) {
+    if (obj_check_if_near_anim_end()) {
         o->oSubAction = ENEMY_LAKITU_SUB_ACT_NO_SPINY;
         o->oEnemyLakituSpinyCooldown = random_linear_offset(100, 100);
     }

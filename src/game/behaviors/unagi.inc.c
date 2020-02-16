@@ -48,7 +48,7 @@ void unagi_act_1_4(s32 arg0) {
             o->oForwardVel = 40.0f;
         }
     } else {
-        if (func_8029F828()) {
+        if (obj_check_if_at_anim_end()) {
             if (o->oAction != arg0 && (o->oPathedPrevWaypointFlags & 0xFF) >= 7) {
                 set_obj_animation_and_sound_state(3);
             } else {
@@ -72,7 +72,7 @@ void unagi_act_1_4(s32 arg0) {
     obj_roll_to_match_yaw_turn(o->oPathedTargetYaw, 0x2000, 100);
 
     obj_forward_vel_approach(10.0f, 0.2f);
-    func_802A2A38();
+    obj_set_pos_via_transform();
 }
 
 void unagi_act_2(void) {
@@ -115,7 +115,7 @@ void unagi_act_3(void) {
             }
         } else if (o->oUnagiUnk110 == 0.0f) {
             set_obj_animation_and_sound_state(0);
-            if (func_8029F828()) {
+            if (obj_check_if_at_anim_end()) {
                 if (o->oUnagiUnk1AC < 1000.0f) {
                     o->oAction = 4;
                     o->oForwardVel = o->oUnagiUnkF8;

@@ -310,7 +310,7 @@ static void level_cmd_init_level(void) {
 
 static void level_cmd_clear_level(void) {
     clear_objects();
-    func_8027A7C4();
+    clear_area_graph_nodes();
     clear_areas();
     main_pool_pop_state();
 
@@ -631,7 +631,7 @@ static void level_cmd_load_area(void) {
 }
 
 static void level_cmd_unload_area(void) {
-    func_8027A998();
+    unload_area();
     sCurrentCmd = CMD_NEXT;
 }
 
@@ -649,7 +649,7 @@ static void level_cmd_set_mario_start_pos(void) {
 }
 
 static void level_cmd_2C(void) {
-    func_8027AA88();
+    unload_mario_area();
     sCurrentCmd = CMD_NEXT;
 }
 

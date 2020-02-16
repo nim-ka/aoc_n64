@@ -274,7 +274,7 @@ static s32 boo_update_during_death(void) {
         }
 
         if (o->oTimer > 30 || o->oMoveFlags & 0x200) {
-            func_802A3004();
+            spawn_mist_particles();
             o->oBooDeathStatus = BOO_DEATH_STATUS_DEAD;
 
             if (o->oBooParentBigBoo != NULL) {
@@ -352,11 +352,11 @@ static void boo_chase_mario(f32 a0, s16 a1, f32 a2) {
         if (mario_is_in_air_action() == 0) {
             sp1C = o->oPosY - gMarioObject->oPosY;
             if (a0 < sp1C && sp1C < 500.0f) {
-                o->oVelY = func_802A0BF4(o->oPosY, gMarioObject->oPosY + 50.0f, 10.f, 2.0f);
+                o->oVelY = increment_velocity_toward_range(o->oPosY, gMarioObject->oPosY + 50.0f, 10.f, 2.0f);
             }
         }
         
-        func_8029F684(10.0f - o->oBooNegatedAggressiveness, a2);
+        set_obj_vel_from_mario_vel(10.0f - o->oBooNegatedAggressiveness, a2);
         
         if (o->oForwardVel != 0.0f) {
             boo_oscillate(FALSE);
@@ -623,7 +623,7 @@ static void ActionBooGivingStar3(void) {
         }
     } else {
         if (o->oTimer == 0) {
-            func_802A3004();
+            spawn_mist_particles();
             o->oBooBaseScale -= 0.5;
         }
         
@@ -799,7 +799,7 @@ void obj_set_secondary_camera_focus(void) {
 }
 
 void bhv_animated_texture_loop(void) {
-    func_802A3470();
+    obj_set_pos_to_home_with_debug();
 }
 
 void bhv_boo_in_castle_loop(void) {
@@ -898,7 +898,7 @@ void bhv_boo_boss_spawned_bridge_loop(void) {
                 PlaySound2(SOUND_GENERAL_UNKNOWN4_LOWPRIO);
             }
             
-            if (func_802A362C(o->oTimer)) {
+            if (obj_move_up_and_down(o->oTimer)) {
                 o->oAction++;
             }
             

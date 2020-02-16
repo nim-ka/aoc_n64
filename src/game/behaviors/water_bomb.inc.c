@@ -221,7 +221,7 @@ static void water_bomb_act_shot_from_cannon(void) {
         }
 
         o->header.gfx.scale[0] = o->header.gfx.scale[2] = 2.0f - o->header.gfx.scale[1];
-        func_802A2A38();
+        obj_set_pos_via_transform();
     }
 }
 

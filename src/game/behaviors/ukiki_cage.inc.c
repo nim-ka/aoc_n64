@@ -19,7 +19,7 @@ void bhv_ukiki_cage_star_loop(void) {
         case UKIKI_CAGE_STAR_ACT_IN_CAGE:
             // Initialization to see if the star is collected (blue) or not (yellow).
             if (o->oTimer == 0) {
-                if (func_802A377C(1)
+                if (bit_shift_left(1)
                     & save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1)) {
                         obj_set_model(MODEL_TRANSPARENT_STAR);
                     }
@@ -35,7 +35,7 @@ void bhv_ukiki_cage_star_loop(void) {
             break;
         case UKIKI_CAGE_STAR_ACT_SPAWN_STAR:
             mark_object_for_deletion(o);
-            func_802A3004();
+            spawn_mist_particles();
             spawn_triangle_break_particles(20, 138, 0.7, 3);
             create_star(2500.0f, -1200.0f, 1300.0f);
             break;

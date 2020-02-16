@@ -16,7 +16,7 @@ void func_802F05DC(void) {
     sp1E = object_step_without_floor_orient();
     if ((sp1E & 0x09) == 0x01 && o->oVelY > 10.0f) {
         PlaySound2(SOUND_GENERAL_GRINDEL_ROLL);
-        func_802A3004();
+        spawn_mist_particles();
     }
 
     if (o->oForwardVel > 70.0)

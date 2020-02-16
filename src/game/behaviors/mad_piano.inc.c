@@ -37,7 +37,7 @@ static void mad_piano_act_attack(void) {
         o->oTimer = 0;
     }
 
-    if (o->oTimer > 80 && func_8029F788()) {
+    if (o->oTimer > 80 && obj_check_if_near_anim_end()) {
         o->oAction = MAD_PIANO_ACT_WAIT;
         o->oForwardVel = 0.0f;
         obj_become_intangible();

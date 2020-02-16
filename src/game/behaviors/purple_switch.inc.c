@@ -27,11 +27,11 @@ void bhv_purple_switch_loop(void) {
          * Immediately transition to the ticking state.
          */
         case PURPLE_SWITCH_PRESSED:
-            func_802A3398(2, 3, 1.5f, 0.2f);
+            obj_scale_over_time(2, 3, 1.5f, 0.2f);
             if (o->oTimer == 3) {
                 PlaySound2(SOUND_GENERAL2_PURPLE_SWITCH);
                 o->oAction = PURPLE_SWITCH_TICKING;
-                ShakeScreen(SHAKE_POS_SMALL);
+                shake_screen_from_object(SHAKE_POS_SMALL);
             }
             break;
         /**
@@ -59,7 +59,7 @@ void bhv_purple_switch_loop(void) {
          * idle state.
          */
         case PURPLE_SWITCH_UNPRESSED:
-            func_802A3398(2, 3, 0.2f, 1.5f);
+            obj_scale_over_time(2, 3, 0.2f, 1.5f);
             if (o->oTimer == 3) {
                 o->oAction = PURPLE_SWITCH_IDLE;
             }

@@ -1,7 +1,7 @@
 // hoot.c.inc
 
 void bhv_hoot_init(void) {
-    SetObjAnimation(0);
+    set_object_animation(0);
 
     o->oHomeX = o->oPosX + 800.0f;
     o->oHomeY = o->oPosY - 150.0f;
@@ -228,9 +228,9 @@ void HootAwakeLoop(void) {
     if (o->oInteractStatus == INTERACT_HOOT) {
         HootActionLoop();
 
-        SetObjAnimation(1);
+        set_object_animation(1);
     } else {
-        SetObjAnimation(0);
+        set_object_animation(0);
 
         HootTurnToHome();
         HootFloorBounce();

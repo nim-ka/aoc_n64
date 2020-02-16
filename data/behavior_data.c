@@ -3695,7 +3695,7 @@ const BehaviorScript bhvBobombFuseSmoke[] = {
     CALL_NATIVE(bhv_bobomb_fuse_smoke_init),
     DELAY(1),
     BEGIN_LOOP(),
-        CALL_NATIVE(BehDustSmokeLoop),
+        CALL_NATIVE(bhv_dust_smoke_loop),
         ADD_INT(oAnimState, 1),
     END_LOOP(),
 };
@@ -3944,7 +3944,7 @@ const BehaviorScript bhvBobombBullyDeathSmoke[] = {
     CALL_NATIVE(bhv_bobomb_bully_death_smoke_init),
     DELAY(1),
     BEGIN_LOOP(),
-        CALL_NATIVE(BehDustSmokeLoop),
+        CALL_NATIVE(bhv_dust_smoke_loop),
         ADD_INT(oAnimState, 1),
     END_LOOP(),
 };
@@ -3956,7 +3956,7 @@ const BehaviorScript bhvSmoke[] = {
     SET_INT(oAnimState, -1),
     DELAY(1),
     BEGIN_LOOP(),
-        CALL_NATIVE(BehDustSmokeLoop),
+        CALL_NATIVE(bhv_dust_smoke_loop),
         ADD_INT(oAnimState, 1),
     END_LOOP(),
 };

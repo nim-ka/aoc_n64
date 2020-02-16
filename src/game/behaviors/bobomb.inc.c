@@ -174,7 +174,7 @@ void BobombFreeLoop(void) {
 
 void BobombHeldLoop(void) {
     o->header.gfx.node.flags |= 0x10; /* bit 4 */
-    SetObjAnimation(1);
+    set_object_animation(1);
     obj_set_pos_relative(gMarioObject, 0, 60.0f, 100.0);
 
     o->oBobombFuseLit = 1;
@@ -192,7 +192,7 @@ void BobombDroppedLoop(void) {
     obj_get_dropped();
 
     o->header.gfx.node.flags &= ~0x10; /* bit 4 = 0 */
-    SetObjAnimation(0);
+    set_object_animation(0);
 
     o->oHeldState = 0;
     o->oAction = BOBOMB_ACT_PATROL;

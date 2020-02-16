@@ -285,7 +285,7 @@ void bhv_goomba_update(void) {
         if ((animSpeed = o->oForwardVel / o->oGoombaScale * 0.4f) < 1.0f) {
             animSpeed = 1.0f;
         }
-        func_8029ED98(0, animSpeed);
+        obj_init_anim_accel_and_sound(0, animSpeed);
 
         switch (o->oAction) {
             case GOOMBA_ACT_WALK:

@@ -53,7 +53,7 @@ void func_802B0F54(void) {
         if (obj_wait_then_blink(360, 20))
             o->oAction = 0;
         if (obj_was_attacked_or_ground_pounded()) {
-            func_802A3004();
+            spawn_mist_particles();
             spawn_triangle_break_particles(30, 138, 3.0f, 4);
             o->oAction++;
             PlaySound2(SOUND_GENERAL_BREAK_BOX);

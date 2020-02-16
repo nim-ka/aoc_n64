@@ -182,7 +182,7 @@ void print_displaying_credits_entry(void) {
 
 void bhv_end_peach_loop(void) {
     set_obj_animation_and_sound_state(sEndPeachAnimation);
-    if (func_8029F788()) {
+    if (obj_check_if_near_anim_end()) {
         // anims: 0-3, 4, 5, 6-8, 9, 10, 11
         if (sEndPeachAnimation < 3 || sEndPeachAnimation == 6 || sEndPeachAnimation == 7) {
             sEndPeachAnimation++;
@@ -194,7 +194,7 @@ void bhv_end_toad_loop(void) {
     s32 toadAnimIndex = (gCurrentObject->oPosX >= 0.0f);
 
     set_obj_animation_and_sound_state(sEndToadAnims[toadAnimIndex]);
-    if (func_8029F788()) {
+    if (obj_check_if_near_anim_end()) {
         // 0-1, 2-3, 4, 5, 6, 7
         if (sEndToadAnims[toadAnimIndex] == 0 || sEndToadAnims[toadAnimIndex] == 2) {
             sEndToadAnims[toadAnimIndex]++;
@@ -2494,7 +2494,7 @@ static s32 act_end_peach_cutscene(struct MarioState *m) {
     sEndCutsceneVp.vp.vscale[1] = 360;
     sEndCutsceneVp.vp.vtrans[0] = 640;
     sEndCutsceneVp.vp.vtrans[1] = 480;
-    func_8027A220(NULL, &sEndCutsceneVp, 0, 0, 0);
+    override_viewport_and_clip(NULL, &sEndCutsceneVp, 0, 0, 0);
 
     return FALSE;
 }
@@ -2546,7 +2546,7 @@ static s32 act_credits_cutscene(struct MarioState *m) {
         sEndCutsceneVp.vp.vtrans[1] =
             (gCurrCreditsEntry->unk02 & 0x20 ? height : -height) * 66 / 100 + 480;
 
-        func_8027A220(&sEndCutsceneVp, 0, 0, 0, 0);
+        override_viewport_and_clip(&sEndCutsceneVp, 0, 0, 0, 0);
     }
 
     if (m->actionTimer == TIMER_CREDITS_PROGRESS) {

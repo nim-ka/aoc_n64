@@ -17,7 +17,7 @@ void bhv_spawned_star_init(void) {
     if (!(o->oInteractionSubtype & INT_SUBTYPE_NO_EXIT))
         o->oBehParams = o->parentObj->oBehParams;
     sp24 = (o->oBehParams >> 24) & 0xFF;
-    if (func_802A377C(sp24) & save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1))
+    if (bit_shift_left(sp24) & save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1))
         obj_set_model(MODEL_TRANSPARENT_STAR);
     PlaySound2(SOUND_GENERAL2_STAR_APPEARS);
 }
@@ -67,7 +67,7 @@ void bhv_spawned_star_loop(void) {
             o->oMoveAngleYaw = obj_angle_to_home();
             o->oVelY = 50.0f;
             o->oGravity = -4.0f;
-            func_802A3004();
+            spawn_mist_particles();
         }
         PlaySound(SOUND_ENV_STAR);
         spawn_object(o, MODEL_NONE, bhvSparkleSpawn);

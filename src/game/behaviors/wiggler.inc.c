@@ -100,9 +100,9 @@ void bhv_wiggler_body_part_update(void) {
     segment->posY = o->oPosY;
 
     // Inherit walking animation speed from wiggler
-    func_8029ED98(0, o->parentObj->oWigglerWalkAnimSpeed);
+    obj_init_anim_accel_and_sound(0, o->parentObj->oWigglerWalkAnimSpeed);
     if (o->parentObj->oWigglerWalkAnimSpeed == 0.0f) {
-        func_8029F6F0();
+        obj_reverse_anim();
     }
 
     if (o->parentObj->oAction == WIGGLER_ACT_SHRINK) {
@@ -144,7 +144,7 @@ void wiggler_init_segments(void) {
             bodyPart =
                 spawn_object_relative(i, 0, 0, 0, o, MODEL_WIGGLER_BODY, bhvWigglerBody);
             if (bodyPart != NULL) {
-                func_8029EE20(bodyPart, wiggler_seg5_anims_0500C874, 0);
+                obj_init_anim_and_sound(bodyPart, wiggler_seg5_anims_0500C874, 0);
                 bodyPart->header.gfx.unk38.animFrame = (23 * i) % 26 - 1;
             }
         }
@@ -410,12 +410,12 @@ void bhv_wiggler_update(void) {
             treat_far_home_as_mario(1200.0f);
 
             // Walking animation and sound
-            func_8029ED98(0, o->oWigglerWalkAnimSpeed);
+            obj_init_anim_accel_and_sound(0, o->oWigglerWalkAnimSpeed);
             if (o->oWigglerWalkAnimSpeed != 0.0f) {
                 func_802F9378(0, 13,
                               o->oHealth >= 4 ? SOUND_OBJ_WIGGLER_LOW_PITCH : SOUND_OBJ_WIGGLER_HIGH_PITCH);
             } else {
-                func_8029F6F0();
+                obj_reverse_anim();
             }
 
             obj_update_floor_and_walls();

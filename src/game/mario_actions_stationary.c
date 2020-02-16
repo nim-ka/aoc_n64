@@ -15,7 +15,7 @@
 #include "save_file.h"
 #include "camera.h"
 
-s32 check_common_idle_exits(struct MarioState *m) {
+s32 check_common_idle_cancels(struct MarioState *m) {
     mario_drop_held_object(m);
     if (m->floor->normal.y < 0.29237169f) {
         return mario_push_off_steep_floor(m, ACT_FREEFALL, 0);
@@ -57,7 +57,7 @@ s32 check_common_idle_exits(struct MarioState *m) {
     return 0;
 }
 
-s32 check_common_hold_idle_exits(struct MarioState *m) {
+s32 check_common_hold_idle_cancels(struct MarioState *m) {
     if (m->floor->normal.y < 0.29237169f) {
         return mario_push_off_steep_floor(m, ACT_HOLD_FREEFALL, 0);
     }
@@ -113,7 +113,7 @@ s32 act_idle(struct MarioState *m) {
         return set_mario_action(m, ACT_PANTING, 0);
     }
 
-    if (check_common_idle_exits(m)) {
+    if (check_common_idle_cancels(m)) {
         return 1;
     }
 
@@ -182,7 +182,7 @@ s32 act_start_sleeping(struct MarioState *m) {
     s32 sp24;
 #endif
 
-    if (check_common_idle_exits(m)) {
+    if (check_common_idle_cancels(m)) {
         return 1;
     }
 
@@ -420,7 +420,7 @@ s32 act_shivering(struct MarioState *m) {
 s32 act_coughing(struct MarioState *m) {
     s32 sp1C;
 
-    if (check_common_idle_exits(m)) {
+    if (check_common_idle_cancels(m)) {
         return 1;
     }
 
@@ -454,7 +454,7 @@ s32 act_hold_idle(struct MarioState *m) {
         return drop_and_set_mario_action(m, ACT_IN_QUICKSAND, 0);
     }
 
-    if (check_common_hold_idle_exits(m)) {
+    if (check_common_hold_idle_cancels(m)) {
         return 1;
     }
 
@@ -516,7 +516,7 @@ s32 act_in_quicksand(struct MarioState *m) {
         return set_mario_action(m, ACT_IDLE, 0);
     }
 
-    if (check_common_idle_exits(m) != 0) {
+    if (check_common_idle_cancels(m) != 0) {
         return 1;
     }
 
@@ -577,7 +577,7 @@ s32 act_panting(struct MarioState *m) {
         return set_mario_action(m, ACT_IDLE, 0);
     }
 
-    if (check_common_idle_exits(m)) {
+    if (check_common_idle_cancels(m)) {
         return 1;
     }
 
@@ -604,7 +604,7 @@ s32 act_hold_panting_unused(struct MarioState *m) {
         return set_mario_action(m, ACT_HOLD_IDLE, 0);
     }
 
-    if (check_common_hold_idle_exits(m) != 0) {
+    if (check_common_hold_idle_cancels(m) != 0) {
         return 1;
     }
 
@@ -835,7 +835,7 @@ s32 landing_step(struct MarioState *m, s32 arg1, u32 action) {
     return 0;
 }
 
-s32 check_common_landing_exits(struct MarioState *m, u32 action) {
+s32 check_common_landing_cancels(struct MarioState *m, u32 action) {
     if (m->input & INPUT_UNKNOWN_10) {
         return set_mario_action(m, ACT_UNKNOWN_026, 0);
     }
@@ -864,7 +864,7 @@ s32 check_common_landing_exits(struct MarioState *m, u32 action) {
 }
 
 s32 act_jump_land_stop(struct MarioState *m) {
-    if (check_common_landing_exits(m, 0)) {
+    if (check_common_landing_cancels(m, 0)) {
         return 1;
     }
 
@@ -873,7 +873,7 @@ s32 act_jump_land_stop(struct MarioState *m) {
 }
 
 s32 act_double_jump_land_stop(struct MarioState *m) {
-    if (check_common_landing_exits(m, 0)) {
+    if (check_common_landing_cancels(m, 0)) {
         return 1;
     }
 
@@ -882,7 +882,7 @@ s32 act_double_jump_land_stop(struct MarioState *m) {
 }
 
 s32 act_side_flip_land_stop(struct MarioState *m) {
-    if (check_common_landing_exits(m, 0)) {
+    if (check_common_landing_cancels(m, 0)) {
         return 1;
     }
 
@@ -892,7 +892,7 @@ s32 act_side_flip_land_stop(struct MarioState *m) {
 }
 
 s32 act_freefall_land_stop(struct MarioState *m) {
-    if (check_common_landing_exits(m, 0)) {
+    if (check_common_landing_cancels(m, 0)) {
         return 1;
     }
 
@@ -901,7 +901,7 @@ s32 act_freefall_land_stop(struct MarioState *m) {
 }
 
 s32 act_triple_jump_land_stop(struct MarioState *m) {
-    if (check_common_landing_exits(m, ACT_JUMP)) {
+    if (check_common_landing_cancels(m, ACT_JUMP)) {
         return 1;
     }
 
@@ -914,7 +914,7 @@ s32 act_backflip_land_stop(struct MarioState *m) {
         m->input &= -3;
     }
 
-    if (check_common_landing_exits(m, ACT_BACKFLIP)) {
+    if (check_common_landing_cancels(m, ACT_BACKFLIP)) {
         return 1;
     }
 
@@ -925,7 +925,7 @@ s32 act_backflip_land_stop(struct MarioState *m) {
 s32 act_lava_boost_land(struct MarioState *m) {
     m->input &= -0x2011;
 
-    if (check_common_landing_exits(m, 0)) {
+    if (check_common_landing_cancels(m, 0)) {
         return 1;
     }
 
@@ -935,7 +935,7 @@ s32 act_lava_boost_land(struct MarioState *m) {
 
 s32 act_long_jump_land_stop(struct MarioState *m) {
     m->input &= -0x2001;
-    if (check_common_landing_exits(m, ACT_JUMP)) {
+    if (check_common_landing_cancels(m, ACT_JUMP)) {
         return 1;
     }
 

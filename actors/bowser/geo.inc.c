@@ -350,7 +350,7 @@ const GeoLayout bowser_shadow_geo[] = {
 const GeoLayout bowser_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
-      GEO_ASM(0, Geo18_8029D924),
+      GEO_ASM(0, geo_update_layer_transparency),
 #ifdef VERSION_JP
       GEO_SWITCH_CASE(2, geo_switch_anim_state),
 #endif
@@ -387,7 +387,7 @@ const GeoLayout bowser_geo[] = {
 const GeoLayout bowser2_geo[] = {
    GEO_NODE_START(),
    GEO_OPEN_NODE(),
-      GEO_ASM(0, Geo18_8029D924),
+      GEO_ASM(0, geo_update_layer_transparency),
 
 #ifdef VERSION_JP
       GEO_SWITCH_CASE(2, geo_switch_anim_state),

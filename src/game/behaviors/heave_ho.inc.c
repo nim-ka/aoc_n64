@@ -26,14 +26,14 @@ void bhv_heave_ho_throw_mario_loop(void) {
 void ActionHeaveHo1(void) {
     s32 sp1C = 0;
     o->oForwardVel = 0.0f;
-    func_8029F6F0();
+    obj_reverse_anim();
     while (1) {
         if (D_8032F460[sp1C][0] == -1) {
             o->oAction = 2;
             break;
         }
         if (o->oTimer < D_8032F460[sp1C][0]) {
-            func_8029ED98(2, D_8032F460[sp1C][1]);
+            obj_init_anim_accel_and_sound(2, D_8032F460[sp1C][1]);
             break;
         }
         sp1C++;
@@ -53,7 +53,7 @@ void ActionHeaveHo2(void) {
         }
     } else
         o->oHeaveHoUnkF4 = 1.0f;
-    func_8029ED98(0, o->oHeaveHoUnkF4);
+    obj_init_anim_accel_and_sound(0, o->oHeaveHoUnkF4);
     o->oForwardVel = o->oHeaveHoUnkF4 * 10.0f;
     angleVel = o->oHeaveHoUnkF4 * 0x400;
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, angleVel);
@@ -64,10 +64,10 @@ void ActionHeaveHo3(void) {
     if (o->oTimer == 0)
         o->oHeaveHoUnk88 = 2;
     if (o->oTimer == 1) {
-        func_8029ED98(1, 1.0f);
+        obj_init_anim_accel_and_sound(1, 1.0f);
         o->numCollidedObjs = 20;
     }
-    if (func_8029F788())
+    if (obj_check_if_near_anim_end())
         o->oAction = 1;
 }
 
@@ -111,7 +111,7 @@ void bhv_heave_ho_loop(void) {
             func_802B18B4();
             break;
         case HELD_HELD:
-            func_8029FA5C(0, 0);
+            unrender_and_reset_obj_state(0, 0);
             break;
         case HELD_THROWN:
             obj_get_dropped();

@@ -6,7 +6,7 @@ void func_802B95A4(void) {
         case 0:
             if (obj_is_mario_ground_pounding_platform()) {
                 o->oAction++;
-                func_802A3004();
+                spawn_mist_particles();
             }
             break;
         case 1:

@@ -158,7 +158,7 @@ static void spiny_act_thrown_by_lakitu(void) {
         if (o->oMoveFlags & OBJ_MOVE_LANDED) {
             PlaySound2(SOUND_OBJ_SPINY_UNK59);
             obj_set_model(MODEL_SPINY);
-            func_8029EE20(o, spiny_seg5_anims_05016EAC, 0);
+            obj_init_anim_and_sound(o, spiny_seg5_anims_05016EAC, 0);
             o->oGraphYOffset = -17.0f;
 
             o->oFaceAnglePitch = 0;

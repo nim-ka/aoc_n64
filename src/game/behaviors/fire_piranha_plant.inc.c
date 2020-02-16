@@ -52,7 +52,7 @@ static void fire_piranha_plant_act_hide(void) {
         o->oMoveAngleYaw += (s32) o->oFirePiranhaPlantDeathSpinVel;
         approach_f32_ptr(&o->oFirePiranhaPlantDeathSpinVel, 0.0f, 200.0f);
 
-        if (func_8029F788()) {
+        if (obj_check_if_near_anim_end()) {
             if (--o->oFirePiranhaPlantDeathSpinTimer == 0) {
                 PlaySound2(SOUND_OBJ_ENEMY_DEFEAT_SHRINK);
             }
@@ -87,7 +87,7 @@ static void fire_piranha_plant_act_hide(void) {
         }
     }
 
-    func_8029F728();
+    obj_extend_anim_if_at_end();
 }
 
 static void fire_piranha_plant_act_grow(void) {

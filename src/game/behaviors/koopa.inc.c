@@ -147,7 +147,7 @@ static void koopa_walk(void) {
 
     if (o->oKoopaCountdown != 0) {
         o->oKoopaCountdown -= 1;
-    } else if (func_8029F788()) {
+    } else if (obj_check_if_near_anim_end()) {
         o->oSubAction += 1;
     }
 }
@@ -245,7 +245,7 @@ static void koopa_shelled_act_lying(void) {
         koopa_dive_update_speed(0.3f);
     } else if (o->oKoopaCountdown != 0) {
         o->oKoopaCountdown -= 1;
-        func_8029F728();
+        obj_extend_anim_if_at_end();
     } else if (func_802F92B0(6)) {
         o->oAction = KOOPA_SHELLED_ACT_STOPPED;
     }
@@ -425,7 +425,7 @@ static void koopa_unshelled_act_dive(void) {
         koopa_dive_update_speed(0.5f);
     } else if (o->oKoopaCountdown != 0) {
         o->oKoopaCountdown -= 1;
-        func_8029F728();
+        obj_extend_anim_if_at_end();
     } else if (func_802F92B0(6)) {
         o->oAction = KOOPA_UNSHELLED_ACT_RUN;
     }
@@ -499,7 +499,7 @@ static void koopa_the_quick_act_wait_before_race(void) {
 
     if (o->oKoopaTheQuickInitTextboxCooldown != 0) {
         o->oKoopaTheQuickInitTextboxCooldown -= 1;
-    } else if (obj_is_mario_in_range_and_ready_to_speak(400.0f, 400.0f)) {
+    } else if (should_start_dialog_check_copy(400.0f, 400.0f)) {
         //! The next action doesn't execute until next frame, giving mario one
         //  frame where he can jump, and thus no longer be ready to speak.
         //  (On J, he has two frames and doing this enables time stop - see
@@ -584,7 +584,7 @@ static s32 koopa_the_quick_detect_bowling_ball(void) {
 static void koopa_the_quick_animate_footsteps(void) {
     //! With high negative speed (using the bowling ball deceleration), we can
     //  index out of the animation's bounds
-    func_8029ED98(9, o->oForwardVel * 0.09f);
+    obj_init_anim_accel_and_sound(9, o->oForwardVel * 0.09f);
     koopa_play_footstep_sound(2, 17);
 }
 
@@ -678,9 +678,9 @@ static void koopa_the_quick_act_race(void) {
  */
 static void koopa_the_quick_act_decelerate(void) {
     obj_forward_vel_approach(3.0f, 1.0f);
-    func_8029ED98(9, 0.99f);
+    obj_init_anim_accel_and_sound(9, 0.99f);
 
-    if (func_8029F788()) {
+    if (obj_check_if_near_anim_end()) {
         o->oAction = KOOPA_THE_QUICK_ACT_STOP;
         o->oForwardVel = 3.0f;
     }
@@ -708,7 +708,7 @@ static void koopa_the_quick_act_after_race(void) {
     set_obj_animation_and_sound_state(7);
 
     if (o->parentObj->oKoopaRaceEndpointUnk100 == 0) {
-        if (obj_is_mario_in_range_and_ready_to_speak(400.0f, 400.0f)) {
+        if (should_start_dialog_check_copy(400.0f, 400.0f)) {
             stop_background_music(SEQUENCE_ARGS(4, SEQ_LEVEL_SLIDE));
 
             // Determine which text to display

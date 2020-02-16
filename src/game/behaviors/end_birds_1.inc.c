@@ -25,5 +25,5 @@ void bhv_end_birds_1_loop(void) {
             break;
     }
 
-    func_802A2A38();
+    obj_set_pos_via_transform();
 }

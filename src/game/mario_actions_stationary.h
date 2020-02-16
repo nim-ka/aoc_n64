@@ -5,8 +5,8 @@
 
 #define INPUT_UNKNOWN_A41F 0xA41F
 
-extern s32 check_common_idle_exits(struct MarioState *);
-extern s32 check_common_hold_idle_exits(struct MarioState *);
+extern s32 check_common_idle_cancels(struct MarioState *);
+extern s32 check_common_hold_idle_cancels(struct MarioState *);
 extern s32 act_idle(struct MarioState *);
 extern void play_anim_sound(struct MarioState *, u32, s32, u32);
 extern s32 act_start_sleeping(struct MarioState *);
@@ -32,7 +32,7 @@ extern s32 act_start_crawling(struct MarioState *);
 extern s32 act_stop_crawling(struct MarioState *);
 extern s32 act_unknown_026(struct MarioState *);
 extern s32 landing_step(struct MarioState *, s32, u32);
-extern s32 check_common_landing_exits(struct MarioState *, u32);
+extern s32 check_common_landing_cancels(struct MarioState *, u32);
 extern s32 act_jump_land_stop(struct MarioState *);
 extern s32 act_double_jump_land_stop(struct MarioState *);
 extern s32 act_side_flip_land_stop(struct MarioState *);

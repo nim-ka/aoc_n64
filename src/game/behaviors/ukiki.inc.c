@@ -37,9 +37,9 @@ s32 is_hat_ukiki_and_mario_has_hat(void) {
 }
 
 /**
- * Unused copy of Geo18_8029D890. Perhaps a copy paste mistake.
+ * Unused copy of geo_update_projectile_pos_from_parent. Perhaps a copy paste mistake.
  */
-Gfx *unused_Geo18_8029D890(s32 run,UNUSED struct GraphNode *node, Mat4 mtx) {
+Gfx *geo_update_projectile_pos_from_parent_copy(s32 run,UNUSED struct GraphNode *node, Mat4 mtx) {
     Mat4 mtx2;
     struct Object* obj;
 
@@ -48,9 +48,9 @@ Gfx *unused_Geo18_8029D890(s32 run,UNUSED struct GraphNode *node, Mat4 mtx) {
         obj = (struct Object*)gCurGraphNodeObject;
 
         if (obj->prevObj != NULL) {
-            func_8029D704(mtx2, mtx, gCurGraphNodeCamera->matrixPtr);
-            func_8029D558(mtx2, obj->prevObj);
-            func_8029EA0C(obj->prevObj);
+            create_transformation_from_matrices(mtx2, mtx, gCurGraphNodeCamera->matrixPtr);
+            update_pos_from_parent_transformation(mtx2, obj->prevObj);
+            set_gfx_pos_from_pos(obj->prevObj);
         }
     }
 
@@ -78,7 +78,7 @@ void idle_ukiki_taunt(void) {
         case UKIKI_SUB_ACT_TAUNT_ITCH:
             set_obj_animation_and_sound_state(UKIKI_ANIM_ITCH);
 
-            if (func_8029F788()) {
+            if (obj_check_if_near_anim_end()) {
                 o->oSubAction = UKIKI_SUB_ACT_TAUNT_NONE;
             }
             break;
@@ -86,7 +86,7 @@ void idle_ukiki_taunt(void) {
         case UKIKI_SUB_ACT_TAUNT_SCREECH:
             set_obj_animation_and_sound_state(UKIKI_ANIM_SCREECH);
 
-            if (func_8029F788()) {
+            if (obj_check_if_near_anim_end()) {
                 o->oUkikiTauntCounter++;
             }
 
@@ -98,7 +98,7 @@ void idle_ukiki_taunt(void) {
         case UKIKI_SUB_ACT_TAUNT_JUMP_CLAP:
             set_obj_animation_and_sound_state(UKIKI_ANIM_JUMP_CLAP);
 
-            if (func_8029F788()) {
+            if (obj_check_if_near_anim_end()) {
                 o->oUkikiTauntCounter++;
             }
 
@@ -110,7 +110,7 @@ void idle_ukiki_taunt(void) {
         case UKIKI_SUB_ACT_TAUNT_HANDSTAND:
             set_obj_animation_and_sound_state(UKIKI_ANIM_HANDSTAND);
 
-            if (func_8029F788()) {
+            if (obj_check_if_near_anim_end()) {
                 o->oSubAction = UKIKI_SUB_ACT_TAUNT_NONE;
             }
             break;
@@ -262,7 +262,7 @@ void ukiki_act_run(void) {
 
     //! @bug (Ukikispeedia) This function sets forward speed to 0.9 * Mario's
     //! forward speed, which means ukiki can move at hyperspeed rates.
-    func_8029F684(20.0f, 0.9f);
+    set_obj_vel_from_mario_vel(20.0f, 0.9f);
 
     if (fleeMario) {
         if (o->oDistanceToMario > o->oUkikiChaseFleeRange) {
@@ -298,7 +298,7 @@ void ukiki_act_jump(void) {
 
     if (o->oSubAction == 0) {
         if (o->oTimer == 0) {
-            func_8029FA1C(RandomFloat() * 10.0f + 45.0f, UKIKI_ANIM_JUMP);
+            set_obj_vel_y_and_anim(RandomFloat() * 10.0f + 45.0f, UKIKI_ANIM_JUMP);
         } else if (o->oMoveFlags & OBJ_MOVE_MASK_NOT_AIR) {
             o->oSubAction++;
             o->oVelY = 0.0f;
@@ -308,7 +308,7 @@ void ukiki_act_jump(void) {
         set_obj_animation_and_sound_state(UKIKI_ANIM_LAND);
         obj_become_tangible();
 
-        if (func_8029F788()) {
+        if (obj_check_if_near_anim_end()) {
             o->oAction = UKIKI_ACT_RUN;
         }
     }
@@ -375,7 +375,7 @@ void ukiki_act_go_to_cage(void) {
             set_obj_animation_and_sound_state(UKIKI_ANIM_JUMP_CLAP);
             obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
 
-            if (func_802A3FF8(200.0f, 30.0f, 0x7FFF)) {
+            if (should_start_dialog_check(200.0f, 30.0f, 0x7FFF)) {
                 o->oSubAction++; // fallthrough
             } else {
             break;
@@ -399,7 +399,7 @@ void ukiki_act_go_to_cage(void) {
             break;
 
         case UKIKI_SUB_ACT_CAGE_JUMP_TO_CAGE:
-            func_8029FA1C(55.0f, UKIKI_ANIM_JUMP);
+            set_obj_vel_y_and_anim(55.0f, UKIKI_ANIM_JUMP);
             o->oForwardVel = 36.0f;
             o->oSubAction++;
             break;
@@ -618,7 +618,7 @@ void bhv_ukiki_loop(void) {
             break;
 
         case HELD_HELD:
-            func_8029FA5C(UKIKI_ANIM_HELD, 0);
+            unrender_and_reset_obj_state(UKIKI_ANIM_HELD, 0);
             copy_object_pos(o, gMarioObject);
 
             if (o->oBehParams2ndByte == UKIKI_HAT) {

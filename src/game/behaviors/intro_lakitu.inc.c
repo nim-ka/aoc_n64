@@ -204,7 +204,7 @@ void bhv_intro_lakitu_loop(void) {
                 gCurrentObject->oMoveAnglePitch = 0xE00;
             }
             gCurrentObject->oFaceAnglePitch = 0;
-            func_802A2A38();
+            obj_set_pos_via_transform();
             break;
 
         case 102:
@@ -219,7 +219,7 @@ void bhv_intro_lakitu_loop(void) {
             gCurrentObject->oMoveAnglePitch =
                 camera_approach_s16_symmetric(gCurrentObject->oMoveAnglePitch, -0x2000, 0x5A);
             gCurrentObject->oFaceAnglePitch = 0;
-            func_802A2A38();
+            obj_set_pos_via_transform();
             break;
     }
 }

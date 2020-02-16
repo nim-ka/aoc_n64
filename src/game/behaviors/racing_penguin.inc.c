@@ -19,7 +19,7 @@ void bhv_racing_penguin_init(void) {
 
 static void racing_penguin_act_wait_for_mario(void) {
     if (o->oTimer > o->oRacingPenguinInitTextCooldown && o->oPosY - gMarioObject->oPosY <= 0.0f
-        && obj_is_mario_in_range_and_ready_to_speak(400.0f, 400.0f)) {
+        && should_start_dialog_check_copy(400.0f, 400.0f)) {
         o->oAction = RACING_PENGUIN_ACT_SHOW_INIT_TEXT;
     }
 }
@@ -88,7 +88,7 @@ static void racing_penguin_act_race(void) {
         set_obj_animation_and_sound_state(1);
         obj_rotate_yaw_toward(o->oPathedTargetYaw, (s32)(15.0f * o->oForwardVel));
 
-        if (func_8029F828() && (o->oMoveFlags & 0x00000003)) {
+        if (obj_check_if_at_anim_end() && (o->oMoveFlags & 0x00000003)) {
             spawn_object_relative_with_scale(0, 0, -100, 0, 4.0f, o, MODEL_SMOKE, bhvWhitePuffSmoke2);
         }
     }
@@ -122,7 +122,7 @@ static void racing_penguin_act_show_final_text(void) {
             set_obj_animation_and_sound_state(3);
             o->oForwardVel = 0.0f;
 
-            if (obj_is_mario_in_range_and_ready_to_speak(400.0f, 400.0f)) {
+            if (should_start_dialog_check_copy(400.0f, 400.0f)) {
                 if (o->oRacingPenguinMarioWon) {
                     if (o->oRacingPenguinMarioCheated) {
                         o->oRacingPenguinFinalTextbox = DIALOG_132;

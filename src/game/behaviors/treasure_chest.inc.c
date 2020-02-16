@@ -161,7 +161,7 @@ void bhv_treasure_chest_jrb_loop(void) {
 
         case 1:
             if (o->oTimer == 60) {
-                func_802A3004();
+                spawn_mist_particles();
                 create_star(-1800.0f, -2500.0f, -1700.0f);
                 o->oAction = 2;
             }
@@ -193,7 +193,7 @@ void bhv_treasure_chest_loop(void) {
 
         case 1:
             if (o->oTimer == 60) {
-                func_802A3004();
+                spawn_mist_particles();
                 create_star(-1900.0f, -4000.0f, -1400.0f);
                 o->oAction = 2;
             }

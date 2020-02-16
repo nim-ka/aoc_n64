@@ -7,7 +7,7 @@ struct Struct8032FE4C D_8032FE4C[] = { { 60, 0, 6.0f, 1.0f },  { 30, 3, 0.0f, 1.
 
 s32 func_802C7AD0(void) {
     o->oForwardVel = 0.0f;
-    func_8029ED98(0, 1.0f);
+    obj_init_anim_accel_and_sound(0, 1.0f);
     o->oAngleVelYaw = 0x400;
     o->oMoveAngleYaw += o->oAngleVelYaw;
     if (o->oTimer == 31)
@@ -40,7 +40,7 @@ void bhv_walking_penguin_loop(void) {
                 o->oAction++;
             else {
                 o->oForwardVel = D_8032FE4C[o->oWalkingPenguinUnk10C].unk2;
-                func_8029ED98(D_8032FE4C[o->oWalkingPenguinUnk10C].unk1,
+                obj_init_anim_accel_and_sound(D_8032FE4C[o->oWalkingPenguinUnk10C].unk1,
                               D_8032FE4C[o->oWalkingPenguinUnk10C].unk3);
             }
             break;
@@ -50,7 +50,7 @@ void bhv_walking_penguin_loop(void) {
             break;
         case 2:
             o->oForwardVel = 12.0f;
-            func_8029ED98(0, 2.0f);
+            obj_init_anim_accel_and_sound(0, 2.0f);
             if (o->oPosX > 1700.0f)
                 o->oAction++;
             break;

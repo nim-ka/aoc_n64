@@ -25,7 +25,7 @@ void bhv_hidden_star_loop(void) {
         case 1:
             if (o->oTimer > 2) {
                 func_802F1B84(o->oPosX, o->oPosY, o->oPosZ);
-                func_802A3004();
+                spawn_mist_particles();
                 o->activeFlags = 0;
             }
             break;
@@ -67,7 +67,7 @@ void bhv_bowser_course_red_coin_star_loop(void) {
         case 1:
             if (o->oTimer > 2) {
                 func_802F1BD4(o->oPosX, o->oPosY, o->oPosZ);
-                func_802A3004();
+                spawn_mist_particles();
                 o->activeFlags = 0;
             }
             break;

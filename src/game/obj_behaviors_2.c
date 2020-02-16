@@ -387,12 +387,12 @@ static s32 clamp_f32(f32 *value, f32 minimum, f32 maximum) {
 
 static void func_802F927C(s32 arg0) {
     set_obj_animation_and_sound_state(arg0);
-    func_8029F728();
+    obj_extend_anim_if_at_end();
 }
 
 static s32 func_802F92B0(s32 arg0) {
     set_obj_animation_and_sound_state(arg0);
-    return func_8029F788();
+    return obj_check_if_near_anim_end();
 }
 
 static s32 func_802F92EC(s32 arg0, s32 arg1) {
@@ -401,7 +401,7 @@ static s32 func_802F92EC(s32 arg0, s32 arg1) {
 }
 
 static s32 func_802F932C(s32 arg0) {
-    if (func_8029F828()) {
+    if (obj_check_if_at_anim_end()) {
         set_obj_animation_and_sound_state(arg0);
         return TRUE;
     }
@@ -670,16 +670,16 @@ static void obj_die_if_health_non_positive(void) {
 
     if (o->oHealth <= 0) {
         if (o->oDeathSound == 0) {
-            func_802A3034(SOUND_OBJ_DEFAULT_DEATH);
+            spawn_mist_particles_with_sound(SOUND_OBJ_DEFAULT_DEATH);
         } else if (o->oDeathSound > 0) {
 #ifdef VERSION_EU
             new_var = o->oDeathSound;
-            func_802A3034(new_var);
+            spawn_mist_particles_with_sound(new_var);
 #else
-            func_802A3034(o->oDeathSound);
+            spawn_mist_particles_with_sound(o->oDeathSound);
 #endif
         } else {
-            func_802A3004();
+            spawn_mist_particles();
         }
 
         if ((s32)o->oNumLootCoins < 0) {
@@ -819,7 +819,7 @@ static void obj_act_knockback(UNUSED f32 baseScale) {
     obj_update_floor_and_walls();
 
     if (o->header.gfx.unk38.curAnim != NULL) {
-        func_8029F728();
+        obj_extend_anim_if_at_end();
     }
 
     //! Dies immediately if above lava
@@ -838,7 +838,7 @@ static void obj_act_squished(f32 baseScale) {
     obj_update_floor_and_walls();
 
     if (o->header.gfx.unk38.curAnim != NULL) {
-        func_8029F728();
+        obj_extend_anim_if_at_end();
     }
 
     if (approach_f32_ptr(&o->header.gfx.scale[1], targetScaleY, baseScale * 0.14f)) {
@@ -902,7 +902,7 @@ static s32 obj_check_attacks(struct ObjectHitbox *hitbox, s32 attackedMarioActio
 
 static s32 obj_move_for_one_second(s32 endAction) {
     obj_update_floor_and_walls();
-    func_8029F728();
+    obj_extend_anim_if_at_end();
 
     if (o->oTimer > 30) {
         o->oAction = endAction;

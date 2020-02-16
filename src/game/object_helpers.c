@@ -36,8 +36,8 @@ static s8 sLevelsWithRooms[] = { LEVEL_BBH, LEVEL_CASTLE, LEVEL_HMC, -1 };
 s32 sGrabReleaseState;
 
 // These can be static:
-extern void func_8029D704(Mat4, Mat4, Mat4);
-extern void func_8029EA0C(struct Object *);
+extern void create_transformation_from_matrices(Mat4, Mat4, Mat4);
+extern void set_gfx_pos_from_pos(struct Object *);
 extern void translate_object_local(struct Object *, s16, s16);
 extern void copy_object_pos(struct Object *, struct Object *);
 extern void copy_object_angle(struct Object *, struct Object *);
@@ -49,22 +49,22 @@ extern void spawn_triangle_break_particles(s32, s32, f32, s32);
 
 #define o gCurrentObject
 
-Gfx *Geo18_8029D890(s32 run, UNUSED struct GraphNode *node, f32 mtx[4][4]) {
+Gfx *geo_update_projectile_pos_from_parent(s32 run, UNUSED struct GraphNode *node, f32 mtx[4][4]) {
     Mat4 sp20;
     struct Object *sp1C;
 
     if (run == TRUE) {
         sp1C = (struct Object *) gCurGraphNodeObject; // TODO: change global type to Object pointer
         if (sp1C->prevObj) {
-            func_8029D704(sp20, mtx, gCurGraphNodeCamera->matrixPtr);
-            func_8029D558(sp20, sp1C->prevObj);
-            func_8029EA0C(sp1C->prevObj);
+            create_transformation_from_matrices(sp20, mtx, gCurGraphNodeCamera->matrixPtr);
+            update_pos_from_parent_transformation(sp20, sp1C->prevObj);
+            set_gfx_pos_from_pos(sp1C->prevObj);
         }
     }
     return NULL;
 }
 
-Gfx *Geo18_8029D924(s32 run, struct GraphNode *node, UNUSED void *context) {
+Gfx *geo_update_layer_transparency(s32 run, struct GraphNode *node, UNUSED void *context) {
     Gfx *sp3C, *sp38;
     struct Object *sp34;
     struct GraphNodeGenerated *sp30;
@@ -211,7 +211,7 @@ Gfx *geo_switch_area(s32 run, struct GraphNode *node) {
     return NULL;
 }
 
-void func_8029D558(Mat4 a0, struct Object *a1) {
+void update_pos_from_parent_transformation(Mat4 a0, struct Object *a1) {
     f32 spC, sp8, sp4;
 
     spC = a1->oParentRelativePosX;
@@ -245,7 +245,7 @@ void apply_object_scale_to_matrix(struct Object *obj, Mat4 dst, Mat4 src) {
     dst[3][3] = src[3][3];
 }
 
-void func_8029D704(Mat4 a0, Mat4 a1, Mat4 a2) {
+void create_transformation_from_matrices(Mat4 a0, Mat4 a1, Mat4 a2) {
     f32 spC, sp8, sp4;
 
     spC = a2[3][0] * a2[0][0] + a2[3][1] * a2[0][1] + a2[3][2] * a2[0][2];
@@ -488,7 +488,7 @@ struct Object *spawn_object_rel_with_rot(struct Object *parent, u32 model,
     return newObj;
 }
 
-struct Object *Unknown8029E330(struct Object *sp20, s32 model, const BehaviorScript *sp28) {
+struct Object *spawn_obj_with_transform_flags(struct Object *sp20, s32 model, const BehaviorScript *sp28) {
     struct Object *sp1C = spawn_object(sp20, model, sp28);
     sp1C->oFlags |= OBJ_FLAG_0020 | OBJ_FLAG_0800;
     return sp1C;
@@ -647,13 +647,13 @@ void copy_object_angle(struct Object *dst, struct Object *src) {
     dst->oFaceAngleRoll = src->oFaceAngleRoll;
 }
 
-void func_8029EA0C(struct Object *a0) {
+void set_gfx_pos_from_pos(struct Object *a0) {
     a0->header.gfx.pos[0] = a0->oPosX;
     a0->header.gfx.pos[1] = a0->oPosY;
     a0->header.gfx.pos[2] = a0->oPosZ;
 }
 
-void Unknown8029EA34(struct Object *sp20, u32 sp24) {
+void obj_init_anim_from_offset(struct Object *sp20, u32 sp24) {
     struct Animation **sp1C;
 
     sp1C = o->oAnimations;
@@ -734,7 +734,7 @@ void obj_scale(f32 scale) {
     o->header.gfx.scale[2] = scale;
 }
 
-void SetObjAnimation(s32 arg0) {
+void set_object_animation(s32 arg0) {
     struct Animation **sp1C = o->oAnimations;
     geo_obj_init_animation(&o->header.gfx, sp1C + arg0);
 }
@@ -745,14 +745,14 @@ void set_obj_animation_and_sound_state(s32 arg0) {
     o->oSoundStateID = arg0;
 }
 
-void func_8029ED98(u32 a0, f32 a1) {
+void obj_init_anim_accel_and_sound(u32 a0, f32 a1) {
     struct Animation **sp1C = o->oAnimations;
     s32 sp18 = (s32)(a1 * 65536.0f);
     geo_obj_init_animation_accel(&o->header.gfx, sp1C + a0, sp18);
     o->oSoundStateID = a0;
 }
 
-void func_8029EE20(struct Object *a0, struct Animation **a1, u32 a2) {
+void obj_init_anim_and_sound(struct Object *a0, struct Animation **a1, u32 a2) {
     struct Animation **sp1C = a1;
     a0->oAnimations = a1;
     geo_obj_init_animation(&a0->header.gfx, sp1C + a2);
@@ -968,7 +968,7 @@ void obj_change_action(s32 action) {
     obj_reset_timer_and_subaction();
 }
 
-void func_8029F684(f32 f12, f32 f14) {
+void set_obj_vel_from_mario_vel(f32 f12, f32 f14) {
     f32 sp4 = gMarioStates[0].forwardVel;
     f32 sp0 = f12 * f14;
 
@@ -979,20 +979,20 @@ void func_8029F684(f32 f12, f32 f14) {
     }
 }
 
-BAD_RETURN(s16) func_8029F6F0(void) {
+BAD_RETURN(s16) obj_reverse_anim(void) {
     if (o->header.gfx.unk38.animFrame >= 0) {
         o->header.gfx.unk38.animFrame--;
     }
 }
 
-BAD_RETURN(s32) func_8029F728(void) {
+BAD_RETURN(s32) obj_extend_anim_if_at_end(void) {
     s32 sp4 = o->header.gfx.unk38.animFrame;
     s32 sp0 = o->header.gfx.unk38.curAnim->unk08 - 2;
     
     if (sp4 == sp0) o->header.gfx.unk38.animFrame--;
 }
 
-s32 func_8029F788(void) {
+s32 obj_check_if_near_anim_end(void) {
     u32 spC = (s32) o->header.gfx.unk38.curAnim->flags;
     s32 sp8 = o->header.gfx.unk38.animFrame;
     s32 sp4 = o->header.gfx.unk38.curAnim->unk08 - 2;
@@ -1011,7 +1011,7 @@ s32 func_8029F788(void) {
     return sp0;
 }
 
-s32 func_8029F828(void) {
+s32 obj_check_if_at_anim_end(void) {
     s32 sp4 = o->header.gfx.unk38.animFrame;
     s32 sp0 = o->header.gfx.unk38.curAnim->unk08 - 1;
 
@@ -1042,7 +1042,7 @@ s32 obj_check_anim_frame_in_range(s32 startFrame, s32 rangeLength) {
     }
 }
 
-s32 Unknown8029F930(s16 *a0) {
+s32 obj_check_frame_prior_current_frame(s16 *a0) {
     s16 sp6 = o->header.gfx.unk38.animFrame;
 
     while (*a0 != -1) {
@@ -1072,12 +1072,12 @@ s32 mario_is_dive_sliding(void) {
     }
 }
 
-void func_8029FA1C(f32 sp18, s32 sp1C) {
+void set_obj_vel_y_and_anim(f32 sp18, s32 sp1C) {
     o->oVelY = sp18;
     set_obj_animation_and_sound_state(sp1C);
 }
 
-void func_8029FA5C(s32 sp18, s32 sp1C) {
+void unrender_and_reset_obj_state(s32 sp18, s32 sp1C) {
     obj_become_intangible();
     obj_disable_rendering();
 
@@ -1399,7 +1399,7 @@ void obj_move_y(f32 gravity, f32 bounce, f32 buoyancy) {
     }
 }
 
-static void nop_802A0964(void) {
+static void stub_obj_helpers_1(void) {
 }
 
 static s32 clear_move_flag(u32 *bitSet, s32 flag) {
@@ -1452,7 +1452,7 @@ void obj_compute_vel_xz(void) {
     o->oVelZ = o->oForwardVel * coss(o->oMoveAngleYaw);
 }
 
-f32 func_802A0BF4(f32 value, f32 center, f32 zeroThreshold, f32 increment) {
+f32 increment_velocity_toward_range(f32 value, f32 center, f32 zeroThreshold, f32 increment) {
     f32 relative;
     if ((relative = value - center) > 0) {
         if (relative < zeroThreshold) {
@@ -1589,7 +1589,7 @@ void obj_start_cam_event(UNUSED struct Object *obj, s32 cameraEvent) {
     gSecondCameraFocus = o;
 }
 
-void Unknown802A11E4(UNUSED s32 sp0, UNUSED s32 sp4, f32 sp8) {
+void set_mario_interact_hoot_if_in_range(UNUSED s32 sp0, UNUSED s32 sp4, f32 sp8) {
     if (o->oDistanceToMario < sp8) {
         gMarioObject->oInteractStatus = 1;
     }
@@ -1668,7 +1668,7 @@ f32 obj_abs_y_dist_to_home(void) {
     return dist;
 }
 
-s32 Unknown802A1548() {
+s32 obj_advance_looping_anim() {
     s32 spC = o->header.gfx.unk38.animFrame;
     s32 sp8 = o->header.gfx.unk38.curAnim->unk08;
     s32 sp4;
@@ -1900,7 +1900,7 @@ s16 obj_angle_to_home(void) {
     return angle;
 }
 
-void func_802A2008(struct Object *a0, struct Object *a1) {
+void obj_set_gfx_pos_at_obj_pos(struct Object *a0, struct Object *a1) {
     a0->header.gfx.pos[0] = a1->oPosX;
     a0->header.gfx.pos[1] = a1->oPosY + a1->oGraphYOffset;
     a0->header.gfx.pos[2] = a1->oPosZ;
@@ -1942,7 +1942,7 @@ void build_object_transform_from_pos_and_angle(struct Object *obj, s16 posIndex,
     mtxf_rotate_zxy_and_translate(obj->transform, translate, rotation);
 }
 
-void func_802A2270(struct Object *obj) {
+void set_throw_matrix_from_transform(struct Object *obj) {
     if (obj->oFlags & OBJ_FLAG_0020) {
         build_object_transform_from_pos_and_angle(obj, O_POS_INDEX, O_FACE_ANGLE_INDEX);
         apply_scale_to_object_transform(obj);
@@ -1973,7 +1973,7 @@ void build_object_transform_relative_to_parent(struct Object *obj) {
     obj_scale(1.0f);
 }
 
-void Unknown802A2380(struct Object *a0) {
+void create_transform_from_self(struct Object *a0) {
     a0->oFlags &= ~OBJ_FLAG_TRANSFORM_RELATIVE_TO_PARENT;
     a0->oFlags |= OBJ_FLAG_0800;
 
@@ -2080,7 +2080,7 @@ void translate_object_xz_random(struct Object *obj, f32 rangeLength) {
     obj->oPosZ += RandomFloat() * rangeLength - rangeLength * 0.5f;
 }
 
-static void func_802A297C(struct Object *a0) {
+static void build_vel_from_transform(struct Object *a0) {
     f32 spC = a0->oUnkC0;
     f32 sp8 = a0->oUnkBC;
     f32 sp4 = a0->oForwardVel;
@@ -2090,9 +2090,9 @@ static void func_802A297C(struct Object *a0) {
     a0->oVelZ = a0->transform[0][2] * spC + a0->transform[1][2] * sp8 + a0->transform[2][2] * sp4;
 }
 
-void func_802A2A38(void) {
+void obj_set_pos_via_transform(void) {
     build_object_transform_from_pos_and_angle(o, O_PARENT_RELATIVE_POS_INDEX, O_MOVE_ANGLE_INDEX);
-    func_802A297C(o);
+    build_vel_from_transform(o);
     o->oPosX += o->oVelX;
     o->oPosY += o->oVelY;
     o->oPosZ += o->oVelZ;
@@ -2274,11 +2274,11 @@ s32 obj_is_mario_ground_pounding_platform(void) {
     return FALSE;
 }
 
-void func_802A3004(void) {
+void spawn_mist_particles(void) {
     func_802AA618(0, 0, 46.0f);
 }
 
-void func_802A3034(s32 sp18) {
+void spawn_mist_particles_with_sound(s32 sp18) {
     func_802AA618(0, 0, 46.0f);
     create_sound_spawner(sp18);
 }
@@ -2308,7 +2308,7 @@ void obj_push_mario_away_from_cylinder(f32 radius, f32 extentY) {
     }
 }
 
-void BehDustSmokeLoop(void) {
+void bhv_dust_smoke_loop(void) {
     o->oPosX += o->oVelX;
     o->oPosY += o->oVelY;
     o->oPosZ += o->oVelZ;
@@ -2320,17 +2320,17 @@ void BehDustSmokeLoop(void) {
     o->oSmokeTimer++;
 }
 
-static void nop_802A3294(void) {
+static void stub_obj_helpers_2(void) {
 }
 
-s32 func_802A32A4(s8 *a0) {
+s32 obj_set_direction_table(s8 *a0) {
     o->oToxBoxUnk1AC = a0;
     o->oToxBoxUnk1B0 = 0;
 
     return *(s8 *) o->oToxBoxUnk1AC;
 }
 
-s32 func_802A32E0(void) {
+s32 obj_progress_direction_table(void) {
     s8 spF;
     s8 *sp8 = o->oToxBoxUnk1AC;
     s32 sp4 = o->oToxBoxUnk1B0 + 1;
@@ -2346,10 +2346,10 @@ s32 func_802A32E0(void) {
     return spF;
 }
 
-void nop_802A3380(UNUSED s32 sp0, UNUSED s32 sp4) {
+void stub_obj_helpers_3(UNUSED s32 sp0, UNUSED s32 sp4) {
 }
 
-void func_802A3398(s32 a0, s32 a1, f32 sp10, f32 sp14) {
+void obj_scale_over_time(s32 a0, s32 a1, f32 sp10, f32 sp14) {
     f32 sp4 = sp14 - sp10;
     f32 sp0 = (f32) o->oTimer / a1;
 
@@ -2366,14 +2366,14 @@ void func_802A3398(s32 a0, s32 a1, f32 sp10, f32 sp14) {
     }
 }
 
-void func_802A3470(void) {
+void obj_set_pos_to_home_with_debug(void) {
     o->oPosX = o->oHomeX + gDebugInfo[5][0];
     o->oPosY = o->oHomeY + gDebugInfo[5][1];
     o->oPosZ = o->oHomeZ + gDebugInfo[5][2];
     obj_scale(gDebugInfo[5][3] / 100.0f + 1.0l);
 }
 
-void nop_802A3544(void) {
+void stub_obj_helpers_4(void) {
 }
 
 s32 obj_is_mario_on_platform(void) {
@@ -2398,7 +2398,7 @@ s32 obj_shake_y_until(s32 cycles, s32 amount) {
     }
 }
 
-s32 func_802A362C(s32 a0) {
+s32 obj_move_up_and_down(s32 a0) {
     if (a0 >= 4 || a0 < 0) {
         return 1;
     }
@@ -2412,7 +2412,7 @@ void obj_call_action_function(void (*actionFunctions[])(void)) {
     actionFunction();
 }
 
-static struct Object *func_802A36D8(s32 sp20, s32 sp24) {
+static struct Object *spawn_star_with_no_lvl_exit(s32 sp20, s32 sp24) {
     struct Object *sp1C = spawn_object(o, MODEL_STAR, bhvSpawnedStarNoLevelExit);
     sp1C->oSparkleSpawnUnk1B0 = sp24;
     sp1C->oBehParams = o->oBehParams;
@@ -2424,11 +2424,11 @@ static struct Object *func_802A36D8(s32 sp20, s32 sp24) {
 // old unused initializer for 2d star spawn behavior.
 // speculation: was 2d spawn handler from spaceworld 1995.
 // uses behavior parameters not used in the current sparkle code.
-void Unknown802A3750(void) {
-    func_802A36D8(0, 0);
+void spawn_base_star_with_no_lvl_exit(void) {
+    spawn_star_with_no_lvl_exit(0, 0);
 }
 
-s32 func_802A377C(s32 a0) {
+s32 bit_shift_left(s32 a0) {
     return D_8032F0A4[a0];
 }
 
@@ -2469,7 +2469,7 @@ s32 item_in_array(s8 item, s8 *array) {
     return FALSE;
 }
 
-static void nop_802A3968(void) {
+static void stub_obj_helpers_5(void) {
 }
 
 void bhv_init_room(void) {
@@ -2534,7 +2534,7 @@ s32 obj_set_hitbox_and_die_if_attacked(struct ObjectHitbox *hitbox, s32 deathSou
 
     if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         if (o->oInteractStatus & INT_STATUS_WAS_ATTACKED) {
-            func_802A3004();
+            spawn_mist_particles();
             spawn_object_loot_yellow_coins(o, o->oNumLootCoins, 20.0f);
             mark_object_for_deletion(o);
             create_sound_spawner(deathSound);
@@ -2547,7 +2547,7 @@ s32 obj_set_hitbox_and_die_if_attacked(struct ObjectHitbox *hitbox, s32 deathSou
     return interacted;
 }
 
-void func_802A3C98(f32 sp18, s32 sp1C) {
+void explode_obj_and_spawn_coins(f32 sp18, s32 sp1C) {
     func_802AA618(0, 0, sp18);
     spawn_triangle_break_particles(30, 138, 3.0f, 4);
     mark_object_for_deletion(o);
@@ -2579,7 +2579,7 @@ s32 obj_hide_if_mario_far_away_y(f32 distY) {
     }
 }
 
-Gfx *Geo18_802A45E4(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4]) {
+Gfx *geo_offset_klepto_held_object(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4]) {
     if (run == TRUE) {
         ((struct GraphNodeTranslationRotation *) node->next)->translation[0] = 300;
         ((struct GraphNodeTranslationRotation *) node->next)->translation[1] = 300;
@@ -2589,7 +2589,7 @@ Gfx *Geo18_802A45E4(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4]) {
     return NULL;
 }
 
-s32 Unknown802A3E84(s32 a0, struct GraphNode *a1, UNUSED s32 sp8) {
+s32 geo_offset_klepto_debug(s32 a0, struct GraphNode *a1, UNUSED s32 sp8) {
     if (a0 == 1) {
         ((struct GraphNode_802A45E4 *) a1->next)->unk18 = gDebugInfo[4][0];
         ((struct GraphNode_802A45E4 *) a1->next)->unk1A = gDebugInfo[4][1];
@@ -2626,7 +2626,7 @@ void clear_time_stop_flags(s32 flag) {
     gTimeStopState = gTimeStopState & (flag ^ 0xFFFFFFFF);
 }
 
-s32 func_802A3FF8(f32 radius, f32 height, UNUSED s32 unused) {
+s32 should_start_dialog_check(f32 radius, f32 height, UNUSED s32 unused) {
     f32 latDistToMario;
     UNUSED s16 angleFromMario;
 
@@ -2644,8 +2644,8 @@ s32 func_802A3FF8(f32 radius, f32 height, UNUSED s32 unused) {
     return FALSE;
 }
 
-s32 obj_is_mario_in_range_and_ready_to_speak(f32 radius, f32 height) {
-    return func_802A3FF8(radius, height, 0x1000);
+s32 should_start_dialog_check_copy(f32 radius, f32 height) {
+    return should_start_dialog_check(radius, height, 0x1000);
 }
 
 static void obj_end_dialog(s32 dialogFlags, s32 dialogResult) {
@@ -2852,7 +2852,7 @@ s32 mario_is_within_rectangle(s16 minX, s16 maxX, s16 minZ, s16 maxZ) {
     return TRUE;
 }
 
-void ShakeScreen(s32 shake) {
+void shake_screen_from_object(s32 shake) {
     set_camera_shake_from_point(shake, o->oPosX, o->oPosY, o->oPosZ);
 }
 
@@ -2896,19 +2896,19 @@ void copy_object_behavior_params(struct Object *dst, struct Object *src) {
     dst->oBehParams2ndByte = src->oBehParams2ndByte;
 }
 
-void func_802A4A70(s32 sp18, s32 sp1C) {
+void set_obj_anim_and_frame(s32 sp18, s32 sp1C) {
     set_obj_animation_and_sound_state(sp18);
     o->header.gfx.unk38.animFrame = sp1C;
 }
 
-s32 func_802A4AB0(s32 sp18) {
+s32 set_obj_anim_and_check_if_near_end(s32 sp18) {
     set_obj_animation_and_sound_state(sp18);
-    return func_8029F788();
+    return obj_check_if_near_anim_end();
 }
 
-void func_802A4AEC(s32 sp18) {
+void set_obj_anim_and_extend(s32 sp18) {
     set_obj_animation_and_sound_state(sp18);
-    func_8029F728();
+    obj_extend_anim_if_at_end();
 }
 
 s32 obj_check_grabbed_mario(void) {

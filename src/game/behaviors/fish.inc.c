@@ -25,7 +25,7 @@ void ActionFish0(void) {
         for (i = 0; i < sp38; i++) {
             sp28 = spawn_object(o, model, bhvFishGroup2);
             sp28->oBehParams2ndByte = o->oBehParams2ndByte;
-            func_8029EE20(sp28, sp2C, 0);
+            obj_init_anim_and_sound(sp28, sp2C, 0);
             translate_object_xyz_random(sp28, 700.0f);
         }
         o->oAction = 1;
@@ -62,9 +62,9 @@ void func_802BF59C(s32 a0) {
 void ActionFishGroup1(void) {
     f32 sp1C = o->oPosY - gMarioObject->oPosY;
     if (o->oTimer < 10)
-        func_8029ED98(0, 2.0f);
+        obj_init_anim_accel_and_sound(0, 2.0f);
     else
-        func_8029ED98(0, 1.0f);
+        obj_init_anim_accel_and_sound(0, 1.0f);
     if (o->oTimer == 0) {
         o->oForwardVel = RandomFloat() * 2 + 3.0f;
         if (gCurrLevelNum == LEVEL_SA)
@@ -107,9 +107,9 @@ void ActionFishGroup2(void) {
         PlaySound2(SOUND_GENERAL_MOVING_WATER);
     }
     if (o->oTimer < 20)
-        func_8029ED98(0, 4.0f);
+        obj_init_anim_accel_and_sound(0, 4.0f);
     else
-        func_8029ED98(0, 1.0f);
+        obj_init_anim_accel_and_sound(0, 1.0f);
     if (o->oForwardVel < o->oFishGroupUnk108)
         o->oForwardVel = o->oForwardVel + 0.5;
     o->oFishGroupUnkF8 = gMarioObject->oPosY + o->oFishGroupUnkFC;
@@ -131,7 +131,7 @@ void ActionFishGroup2(void) {
 }
 
 void ActionFishGroup0(void) {
-    func_8029ED98(0, 1.0f);
+    obj_init_anim_accel_and_sound(0, 1.0f);
     o->header.gfx.unk38.animFrame = (s16)(RandomFloat() * 28.0f);
     o->oFishGroupUnk10C = RandomFloat() * 300.0f;
     obj_scale(RandomFloat() * 0.4 + 0.8);

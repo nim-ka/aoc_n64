@@ -190,7 +190,7 @@ static void klepto_act_wait_for_mario(void) {
 static void klepto_act_turn_toward_mario(void) {
     klepto_target_mario();
 
-    if (func_8030F158() && func_8029F828() && o->oKleptoDistanceToTarget > 800.0f
+    if (func_8030F158() && obj_check_if_at_anim_end() && o->oKleptoDistanceToTarget > 800.0f
         && abs_angle_diff(o->oAngleToMario, o->oFaceAngleYaw) < 0x800 && o->oKleptoUnk1B0 < 0x400) {
         PlaySound2(SOUND_OBJ_KLEPTO1);
         o->oAction = KLEPTO_ACT_DIVE_AT_MARIO;
@@ -260,7 +260,7 @@ static void klepto_act_struck_by_mario(void) {
     obj_face_yaw_approach(o->oMoveAngleYaw + 0x8000, 800);
     obj_face_roll_approach(0, 800);
 
-    if (func_8029F788()) {
+    if (obj_check_if_near_anim_end()) {
         o->oAction = KLEPTO_ACT_RETREAT;
         o->oGravity = 0.0f;
 

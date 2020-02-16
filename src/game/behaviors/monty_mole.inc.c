@@ -263,7 +263,7 @@ static void monty_mole_act_rise_from_hole(void) {
         o->oPosY = o->oFloorHeight + 50.0f;
         o->oVelY = 0.0f;
 
-        if (func_8029F788()) {
+        if (obj_check_if_near_anim_end()) {
             o->oAction = MONTY_MOLE_ACT_SPAWN_ROCK;
         }
     }
@@ -309,7 +309,7 @@ static void monty_mole_act_throw_rock(void) {
         o->prevObj = NULL;
     }
 
-    if (func_8029F788()) {
+    if (obj_check_if_near_anim_end()) {
         o->oAction = MONTY_MOLE_ACT_BEGIN_JUMP_INTO_HOLE;
     }
 }

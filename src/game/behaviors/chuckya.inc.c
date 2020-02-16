@@ -5,7 +5,7 @@ void func_802A8D18(f32 sp28, f32 sp2C, s32 sp30) {
         case 0:
             break;
         case 1:
-            func_802A2008(gMarioObject, o);
+            obj_set_gfx_pos_at_obj_pos(gMarioObject, o);
             break;
         case 2:
             gMarioObject->oInteractStatus |= (sp30 + INT_STATUS_MARIO_UNK2);
@@ -125,7 +125,7 @@ void ActionChuckya0(void) {
 
 void ActionChuckya1(void) {
     if (o->oSubAction == 0) {
-        if (func_802A4AB0(0))
+        if (set_obj_anim_and_check_if_near_end(0))
             o->oSubAction++;
         o->oChuckyaUnkFC = RandomFloat() * 30.0f + 10.0f;
         o->oChuckyaUnk100 = 0;
@@ -171,7 +171,7 @@ void ActionChuckya2(void) {
     if (o->oMoveFlags & (0x200 | 0x40 | 0x20 | 0x10 | 0x8 | 0x1)) {
         mark_object_for_deletion(o);
         spawn_object_loot_yellow_coins(o, 5, 20.0f);
-        func_802A3034(SOUND_OBJ_CHUCKYA_DEATH);
+        spawn_mist_particles_with_sound(SOUND_OBJ_CHUCKYA_DEATH);
     }
 }
 
@@ -198,7 +198,7 @@ void bhv_chuckya_loop(void) {
             func_802A97B8();
             break;
         case HELD_HELD:
-            func_8029FA5C(2, 0);
+            unrender_and_reset_obj_state(2, 0);
             break;
         case HELD_THROWN:
         case HELD_DROPPED:

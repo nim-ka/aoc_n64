@@ -80,7 +80,7 @@ void bhv_koopa_shell_loop(void) {
             o->oFaceAngleYaw = gMarioObject->oMoveAngleYaw;
             if (o->oInteractStatus & INT_STATUS_STOP_RIDING) {
                 mark_object_for_deletion(o);
-                func_802A3004();
+                spawn_mist_particles();
                 o->oAction = 0;
             }
             break;

@@ -123,7 +123,7 @@ void ActionTuxiesMother0(void) {
     } else {
         switch (o->oSubAction) {
             case 0:
-                if (obj_is_mario_in_range_and_ready_to_speak(300.0f, 100.0f))
+                if (should_start_dialog_check_copy(300.0f, 100.0f))
                     if (sp2C == 0)
                         o->oSubAction++;
                 break;
@@ -271,7 +271,7 @@ void bhv_small_penguin_loop(void) {
             func_802BF048();
             break;
         case HELD_HELD:
-            func_8029FA5C(0, 0);
+            unrender_and_reset_obj_state(0, 0);
             if (obj_has_behavior(bhvPenguinBaby))
                 set_object_behavior(o, bhvSmallPenguin);
             copy_object_pos(o, gMarioObject);

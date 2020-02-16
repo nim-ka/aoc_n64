@@ -28,7 +28,7 @@ void bhv_moneybag_init(void) {
     o->oGravity = 3.0f;
     o->oFriction = 1.0f;
     o->oBuoyancy = 2.0f;
-    SetObjAnimation(0);
+    set_object_animation(0);
     o->oOpacity = 0;
 }
 
@@ -59,20 +59,20 @@ void MoneybagJump(s8 collisionFlags) {
 
     switch (o->oMoneybagJumpState) {
         case MONEYBAG_JUMP_PREPARE:
-            SetObjAnimation(1);
+            set_object_animation(1);
             if (animFrame == 5) {
                 o->oForwardVel = 20.0f;
                 o->oVelY = 40.0f;
             }
 
-            if (func_8029F788() == 1) {
+            if (obj_check_if_near_anim_end() == 1) {
                 o->oMoneybagJumpState = MONEYBAG_JUMP_JUMP;
                 PlaySound2(SOUND_GENERAL_BOING2_LOWPRIO);
             }
             break;
 
         case MONEYBAG_JUMP_JUMP:
-            SetObjAnimation(2);
+            set_object_animation(2);
 
             if ((collisionFlags & 1) == 1) /* bit 0 */
             {
@@ -83,14 +83,14 @@ void MoneybagJump(s8 collisionFlags) {
             break;
 
         case MONEYBAG_JUMP_JUMP_AND_BOUNCE:
-            SetObjAnimation(3);
+            set_object_animation(3);
 
-            if (func_8029F788() == 1)
+            if (obj_check_if_near_anim_end() == 1)
                 o->oMoneybagJumpState = MONEYBAG_JUMP_LANDING;
             break;
 
         case MONEYBAG_JUMP_WALK_AROUND:
-            SetObjAnimation(4);
+            set_object_animation(4);
             o->oForwardVel = 10.0f;
 
             if (o->oTimer >= 61) {
@@ -101,7 +101,7 @@ void MoneybagJump(s8 collisionFlags) {
             break;
 
         case MONEYBAG_JUMP_WALK_HOME:
-            SetObjAnimation(4);
+            set_object_animation(4);
             o->oForwardVel = 5.0f;
             break;
     }
@@ -151,7 +151,7 @@ void MoneybagReturnHomeLoop(void) {
 #ifndef VERSION_JP
         PlaySound2(SOUND_GENERAL_VANISH_SFX);
 #endif
-        SetObjAnimation(0);
+        set_object_animation(0);
         o->oAction = MONEYBAG_ACT_DISAPPEAR;
         o->oMoneybagJumpState = MONEYBAG_JUMP_LANDING;
     }
@@ -174,7 +174,7 @@ void MoneybagDeathLoop(void) {
     if (o->oTimer == 1) {
         obj_spawn_yellow_coins(o, 5);
         create_sound_spawner(SOUND_GENERAL_SPLATTERING);
-        func_802A3004();
+        spawn_mist_particles();
         o->activeFlags = 0;
     }
 }

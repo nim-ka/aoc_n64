@@ -62,7 +62,7 @@ void dorrie_begin_head_raise(s32 liftingMario) {
 
 void dorrie_act_lower_head(void) {
     if (func_802F92EC(2, 35)) {
-        func_8029F6F0();
+        obj_reverse_anim();
 
 #ifdef VERSION_JP
         if (o->oTimer > 150) {
@@ -94,7 +94,7 @@ void dorrie_act_lower_head(void) {
 
 void dorrie_act_raise_head(void) {
     o->collisionData = segmented_to_virtual(dorrie_seg6_collision_0600F644);
-    if (func_8029F788()) {
+    if (obj_check_if_near_anim_end()) {
         o->oAction = DORRIE_ACT_MOVE;
     } else if (o->oDorrieLiftingMario && o->header.gfx.unk38.animFrame < 74) {
         if (set_mario_npc_dialog(2) == 2) {
@@ -104,7 +104,7 @@ void dorrie_act_raise_head(void) {
             }
             dorrie_raise_head();
         } else {
-            func_8029F6F0();
+            obj_reverse_anim();
         }
     }
 }

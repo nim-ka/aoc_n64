@@ -68,7 +68,7 @@ void bhv_surface_wave_shrinking_init(void) {
     if ((RandomU16() & 0xFF) <= 0) // weird
     {
         sp1C = spawn_water_splash(o, &D_8032FDF4);
-        func_8029EE20(sp1C, blue_fish_seg3_anims_0301C2B0, 0);
+        obj_init_anim_and_sound(sp1C, blue_fish_seg3_anims_0301C2B0, 0);
     }
 }
 

@@ -9,7 +9,7 @@ void bhv_wf_breakable_wall_loop(void) {
             create_sound_spawner(SOUND_GENERAL_WALL_EXPLOSION);
             o->oInteractType = 8;
             o->oDamageOrCoinValue = 1;
-            func_802A3C98(80.0f, 0);
+            explode_obj_and_spawn_coins(80.0f, 0);
         }
     } else
         obj_become_intangible();

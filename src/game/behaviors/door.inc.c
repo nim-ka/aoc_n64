@@ -14,7 +14,7 @@ s32 D_8032F330[] = { SOUND_GENERAL_CLOSE_WOOD_DOOR, SOUND_GENERAL_CLOSE_IRON_DOO
 
 void func_802AC070(s32 sp18) {
     set_obj_animation_and_sound_state(sp18);
-    if (func_8029F788())
+    if (obj_check_if_near_anim_end())
         o->oAction = 0;
 }
 

@@ -90,7 +90,7 @@ static void func_8030702C(void) {
                                                     MODEL_WHITE_PARTICLE, bhvMrBlizzardSnowball);
     } else if (obj_check_anim_frame(10)) {
         o->prevObj = o->oMrBlizzardUnkF8;
-    } else if (func_8029F788()) {
+    } else if (obj_check_if_near_anim_end()) {
         if (o->oMrBlizzardUnk10C < 0.0f) {
             o->oAction = 1;
         } else {
@@ -237,7 +237,7 @@ static void func_80307990(void) {
     if (func_802F92EC(1, 7)) {
         PlaySound2(SOUND_OBJ2_SCUTTLEBUG_ALERT);
         o->prevObj = o->oMrBlizzardUnkF8 = NULL;
-    } else if (func_8029F788()) {
+    } else if (obj_check_if_near_anim_end()) {
         o->oAction = 0;
     }
 }
