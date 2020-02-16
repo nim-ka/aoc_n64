@@ -753,10 +753,8 @@ void func_8031D838(s32 player, FadeT fadeInTime, u8 targetVolume) {
 #ifdef VERSION_EU
 extern void func_802ad7a0(void);
 
-void maybe_tick_game_sound(void)
-{
-    if (sGameLoopTicked != 0)
-    {
+void maybe_tick_game_sound(void) {
+    if (sGameLoopTicked != 0) {
         update_game_sound();
         sGameLoopTicked = 0;
     }
@@ -764,6 +762,7 @@ void maybe_tick_game_sound(void)
 }
 
 void func_eu_802e9bec(s32 player, s32 channel, s32 arg2) {
+    // EU verson of unused_803209D8
     // chan->stopSomething2 = arg2?
     func_802ad770(0x08000000 | (player & 0xff) << 16 | (channel & 0xff) << 8, (s8) arg2);
 }
@@ -1635,7 +1634,7 @@ void play_sequence(u8 player, u8 seqId, u16 fadeTimer) {
     if (player == 0) {
         temp_ret = func_803200E4(0);
         if (temp_ret != 0xff) {
-            gSequencePlayers[0].unkEu28 = (f32) temp_ret / US_FLOAT(127.0);
+            gSequencePlayers[0].fadeVolumeScale = (f32) temp_ret / US_FLOAT(127.0);
         }
     }
 #else

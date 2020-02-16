@@ -392,7 +392,7 @@ u64 *synthesis_resample_and_mix_reverb(u64 *cmd, s32 bufLen, s16 reverbIndex, s1
 }
 #endif
 
-u64 *func_eu_802e00d8(u64 *cmdBuf, s16 reverbIndex, s16 updateIndex) {
+u64 *synthesis_save_reverb_samples(u64 *cmdBuf, s16 reverbIndex, s16 updateIndex) {
     struct ReverbRingBufferItem *item;
     struct SynthesisReverb *reverb;
     u64 *cmd = cmdBuf;
@@ -403,12 +403,16 @@ u64 *func_eu_802e00d8(u64 *cmdBuf, s16 reverbIndex, s16 updateIndex) {
         if (1) {
         }
         if (reverb->downsampleRate == 1) {
+            // Put the oldest samples in the ring buffer into the wet channels
             cmd = cmdBuf = synthesis_save_reverb_ring_buffer(cmd, DMEM_ADDR_WET_LEFT_CH, item->startPos, item->lengths[0], reverbIndex);
             if (item->lengths[1] != 0) {
+                // Ring buffer wrapped
                 cmd = synthesis_save_reverb_ring_buffer(cmd, DMEM_ADDR_WET_LEFT_CH + item->lengths[0], 0, item->lengths[1], reverbIndex);
                 cmdBuf = cmd;
             }
         } else {
+            // Downsampling is done later by CPU when RSP is done, therefore we need to have double
+            // buffering. Left and right buffers are adjacent in memory.
             aSetBuffer(cmdBuf++, 0, 0, DMEM_ADDR_WET_LEFT_CH, DEFAULT_LEN_2CH);
             aSaveBuffer(cmdBuf++, VIRTUAL_TO_PHYSICAL2(reverb->items[reverb->curFrame][updateIndex].toDownsampleLeft));
             reverb->resampleFlags = 0;
@@ -455,7 +459,7 @@ u64 *synthesis_do_one_audio_update(u16 *aiBuf, s32 bufLen, u64 *cmd, u32 updateI
             for (phi_s1_2 = 0; phi_s1_2 < gMaxSimultaneousNotes; phi_s1_2++) {
                 temp_v0 = &gNoteSubsEu[gMaxSimultaneousNotes * updateIndex + phi_s1_2];
                 if (temp_v0->enabled) {
-                    if (phi_s3 == temp_v0->unk1b567) {
+                    if (phi_s3 == temp_v0->reverbIndex) {
                         sp84[phi_s2++] = phi_s1_2;
                     }
                 }
@@ -464,7 +468,7 @@ u64 *synthesis_do_one_audio_update(u16 *aiBuf, s32 bufLen, u64 *cmd, u32 updateI
         phi_v1_2 = gMaxSimultaneousNotes * updateIndex;
         for (phi_s1_3 = 0; phi_s1_3 < gMaxSimultaneousNotes; phi_s1_3++) {
             if (gNoteSubsEu[phi_v1_2].enabled) {
-                if (temp_v0->unk1b567 >= gNumSynthesisReverbs) {
+                if (temp_v0->reverbIndex >= gNumSynthesisReverbs) {
                     sp84[phi_s2++] = phi_s1_3;
                 }
             }
@@ -482,14 +486,14 @@ u64 *synthesis_do_one_audio_update(u16 *aiBuf, s32 bufLen, u64 *cmd, u32 updateI
         for (; phi_s1_4 < phi_s2; phi_s1_4++) {
             temp_v1 = sp84[phi_s1_4];
             temp_lo = updateIndex * gMaxSimultaneousNotes;
-            if (phi_s3_2 == gNoteSubsEu[temp_v1 + temp_lo].unk1b567) {
+            if (phi_s3_2 == gNoteSubsEu[temp_v1 + temp_lo].reverbIndex) {
                 cmd = synthesis_process_note(&gNotes[temp_v1], &gNoteSubsEu[temp_v1 + temp_lo], &gNotes[temp_v1].synthesisState, aiBuf, bufLen, cmd);
             } else {
                 break;
             }
         }
         if (sp60->useReverb != 0) {
-            cmd = func_eu_802e00d8(cmd, phi_s3_2, (s16) updateIndex);
+            cmd = synthesis_save_reverb_samples(cmd, phi_s3_2, (s16) updateIndex);
         }
     }
     phi_s0_2 = &sp84[phi_s1_4];
@@ -774,14 +778,14 @@ u64 *synthesis_process_notes(u16 *aiBuf, s32 bufLen, u64 *cmd) {
                         curLoadedBook = audioBookSample->book->book;
                         nEntries = audioBookSample->book->order * audioBookSample->book->npredictors;
 #ifdef VERSION_EU
-                        aLoadADPCM(cmd++, nEntries * 16, VIRTUAL_TO_PHYSICAL2(curLoadedBook + noteSubEu->unk1b234));
+                        aLoadADPCM(cmd++, nEntries * 16, VIRTUAL_TO_PHYSICAL2(curLoadedBook + noteSubEu->bookOffset));
 #else
                         aLoadADPCM(cmd++, nEntries * 16, VIRTUAL_TO_PHYSICAL2(curLoadedBook));
 #endif
                     }
 
 #ifdef VERSION_EU
-                    if (noteSubEu->unk1b234) {
+                    if (noteSubEu->bookOffset) {
                         curLoadedBook = (s16 *) &euUnknownData_80301950; // what's this? never read
                     }
 #endif

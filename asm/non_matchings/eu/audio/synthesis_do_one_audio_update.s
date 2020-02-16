@@ -219,7 +219,7 @@ glabel synthesis_do_one_audio_update
 /* 09FD44 802E0544 13000005 */  beqz  $t8, .L80200F0C
 /* 09FD48 802E0548 001E3400 */   sll   $a2, $fp, 0x10
 /* 09FD4C 802E054C 00065C03 */  sra   $t3, $a2, 0x10
-/* 09FD50 802E0550 0C0B8036 */  jal   func_eu_802e00d8
+/* 09FD50 802E0550 0C0B8036 */  jal   synthesis_save_reverb_samples
 /* 09FD54 802E0554 01603025 */   move  $a2, $t3
 /* 09FD58 802E0558 0040A025 */  move  $s4, $v0
 .L80200F0C:

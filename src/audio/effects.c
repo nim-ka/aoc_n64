@@ -13,44 +13,44 @@
 #endif
 
 #ifdef VERSION_EU
-static void sequence_channel_process_sound(struct SequenceChannel *seqChannel, s32 arg1) {
-    f32 weight;
+static void sequence_channel_process_sound(struct SequenceChannel *seqChannel, s32 recalculateVolume) {
+    f32 channelVolume;
     s32 i;
 
-    if (seqChannel->unk1.as_bitfields.unk0b40 || arg1) {
-        weight = seqChannel->volume * seqChannel->volumeScale * seqChannel->seqPlayer->unkEu2C;
+    if (seqChannel->changes.as_bitfields.volume || recalculateVolume) {
+        channelVolume = seqChannel->volume * seqChannel->volumeScale * seqChannel->seqPlayer->appliedFadeVolume;
         if (seqChannel->seqPlayer->muted && (seqChannel->muteBehavior & MUTE_BEHAVIOR_SOFTEN) != 0) {
-            weight = seqChannel->seqPlayer->muteVolumeScale * weight;
+            channelVolume = seqChannel->seqPlayer->muteVolumeScale * channelVolume;
         }
-        seqChannel->panChannelWeight = weight;
+        seqChannel->appliedVolume = channelVolume;
     }
 
-    if (seqChannel->unk1.as_bitfields.unk0b20) {
-        seqChannel->pan = seqChannel->unk9 * seqChannel->unkA;
+    if (seqChannel->changes.as_bitfields.pan) {
+        seqChannel->pan = seqChannel->newPan * seqChannel->panChannelWeight;
     }
 
     for (i = 0; i < 4; ++i) {
         struct SequenceChannelLayer *layer = seqChannel->layers[i];
         if (layer != NULL && layer->enabled && layer->note != NULL) {
-            if (layer->unkEu0b4) {
+            if (layer->notePropertiesNeedInit) {
                 layer->noteFreqScale = layer->freqScale * seqChannel->freqScale;
-                layer->noteVelocity = layer->velocitySquare * seqChannel->panChannelWeight;
-                layer->notePan = (seqChannel->pan + layer->euUnk5 * (0x80 - seqChannel->unkA)) >> 7;
-                layer->unkEu0b4 = 0;
+                layer->noteVelocity = layer->velocitySquare * seqChannel->appliedVolume;
+                layer->notePan = (seqChannel->pan + layer->pan * (0x80 - seqChannel->panChannelWeight)) >> 7;
+                layer->notePropertiesNeedInit = FALSE;
             } else {
-                if (seqChannel->unk1.as_bitfields.unk0b80) {
+                if (seqChannel->changes.as_bitfields.freqScale) {
                     layer->noteFreqScale = layer->freqScale * seqChannel->freqScale;
                 }
-                if (seqChannel->unk1.as_bitfields.unk0b40 || arg1) {
-                    layer->noteVelocity = layer->velocitySquare * seqChannel->panChannelWeight;
+                if (seqChannel->changes.as_bitfields.volume || recalculateVolume) {
+                    layer->noteVelocity = layer->velocitySquare * seqChannel->appliedVolume;
                 }
-                if (seqChannel->unk1.as_bitfields.unk0b20) {
-                    layer->notePan = (seqChannel->pan + layer->euUnk5 * (0x80 - seqChannel->unkA)) >> 7;
+                if (seqChannel->changes.as_bitfields.pan) {
+                    layer->notePan = (seqChannel->pan + layer->pan * (0x80 - seqChannel->panChannelWeight)) >> 7;
                 }
             }
         }
     }
-    seqChannel->unk1.as_u8 = 0;
+    seqChannel->changes.as_u8 = 0;
 }
 #else
 static void sequence_channel_process_sound(struct SequenceChannel *seqChannel) {
@@ -84,7 +84,7 @@ void sequence_player_process_sound(struct SequencePlayer *seqPlayer) {
     if (seqPlayer->fadeTimer != 0) {
         seqPlayer->fadeVolume += seqPlayer->fadeVelocity;
 #ifdef VERSION_EU
-        seqPlayer->unk_eu = TRUE;
+        seqPlayer->recalculateVolume = TRUE;
 #endif
 
         if (seqPlayer->fadeVolume > US_FLOAT2(1)) {
@@ -119,8 +119,8 @@ void sequence_player_process_sound(struct SequencePlayer *seqPlayer) {
     }
 
 #ifdef VERSION_EU
-    if (seqPlayer->unk_eu) {
-        seqPlayer->unkEu2C = seqPlayer->fadeVolume * seqPlayer->unkEu28;
+    if (seqPlayer->recalculateVolume) {
+        seqPlayer->appliedFadeVolume = seqPlayer->fadeVolume * seqPlayer->fadeVolumeScale;
     }
 #endif
 
@@ -129,7 +129,7 @@ void sequence_player_process_sound(struct SequencePlayer *seqPlayer) {
         if (IS_SEQUENCE_CHANNEL_VALID(seqPlayer->channels[i]) == TRUE
             && seqPlayer->channels[i]->enabled == TRUE) {
 #ifdef VERSION_EU
-            sequence_channel_process_sound(seqPlayer->channels[i], seqPlayer->unk_eu);
+            sequence_channel_process_sound(seqPlayer->channels[i], seqPlayer->recalculateVolume);
 #else
             sequence_channel_process_sound(seqPlayer->channels[i]);
 #endif
@@ -137,7 +137,7 @@ void sequence_player_process_sound(struct SequencePlayer *seqPlayer) {
     }
 
 #ifdef VERSION_EU
-    seqPlayer->unk_eu = FALSE;
+    seqPlayer->recalculateVolume = FALSE;
 #endif
 }
 

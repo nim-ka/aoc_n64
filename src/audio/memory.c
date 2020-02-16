@@ -95,8 +95,7 @@ f64 root_newton_step(f64 x, s32 k, f64 d)
  *
  * @return the root, or 1.0 if d is 0
  */
-f64 kth_root(f64 d, s32 k)
-{
+f64 kth_root(f64 d, s32 k) {
     f64 root = 1.5;
     f64 next;
     f64 diff;
@@ -128,7 +127,7 @@ f64 kth_root(f64 d, s32 k)
 #endif
 
 #ifdef VERSION_EU
-void func_eu_802e1cd0(s32 UNUSED unused, s32 len) {
+void build_vol_rampings_table(s32 UNUSED unused, s32 len) {
     s32 i;
     s32 step;
     s32 d;
@@ -548,7 +547,7 @@ void decrease_reverb_gain(void) {
 #endif
 
 #ifdef VERSION_EU
-s32 func_eu_802E2AA0(void) {
+s32 audio_shut_down_and_reset_step(void) {
     s32 i;
     s32 j;
     switch (gAudioResetStatus) {
@@ -621,7 +620,6 @@ void wait_for_audio_frames(s32 frames) {
 void audio_reset_session(struct AudioSessionSettings *preset) {
 #else
 void audio_reset_session(void) {
-    // TODO: verify compilation again and try to match better
     struct AudioSessionSettingsEU *preset = &gAudioSessionPresets[gAudioResetPresetIdToLoad];
     struct ReverbSettingsEU *reverbSettings;
 #endif
@@ -886,7 +884,7 @@ void audio_reset_session(void) {
     init_sample_dma_buffers(gMaxSimultaneousNotes);
 
 #ifdef VERSION_EU
-    func_eu_802e1cd0(0, gAudioBufferParameters.samplesPerUpdate);
+    build_vol_rampings_table(0, gAudioBufferParameters.samplesPerUpdate);
 #endif
 
     osWritebackDCacheAll();

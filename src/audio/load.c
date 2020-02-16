@@ -19,8 +19,7 @@ struct SharedDma {
 };                            // size = 0x10
 
 // EU only
-void func_802ada64(void);
-s32  func_eu_802E2AA0(void);
+void port_eu_init(void);
 
 struct Note *gNotes;
 
@@ -923,7 +922,7 @@ void audio_init() {
 
     D_EU_802298D0 = 20.03042f;
     gRefreshRate = 50;
-    func_802ada64();
+    port_eu_init();
     if (k) {
     }
 #endif
@@ -958,7 +957,7 @@ void audio_init() {
 #ifdef VERSION_EU
     gAudioResetPresetIdToLoad = 0;
     gAudioResetStatus = 1;
-    func_eu_802E2AA0();
+    audio_shut_down_and_reset_step();
 #else
     audio_reset_session(&gAudioSessionPresets[0]);
 #endif
