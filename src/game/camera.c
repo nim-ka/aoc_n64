@@ -8175,7 +8175,6 @@ BAD_RETURN(s32) cutscene_bowser_arena_end(struct Camera *c) {
     transition_next_state(c, 20);
     sStatusFlags |= CAM_FLAG_UNUSED_CUTSCENE_ACTIVE;
     sModeOffsetYaw = sMarioCamState->faceAngle[1] + DEGREES(90);
-    //! This appears to do nothing
     gSecondCameraFocus->oBowserUnk88 = 2;
 }
 
