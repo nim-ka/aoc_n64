@@ -423,34 +423,35 @@ u64 *synthesis_save_reverb_samples(u64 *cmdBuf, s16 reverbIndex, s16 updateIndex
 #endif
 
 #ifdef VERSION_EU
-#ifndef NON_MATCHING
-GLOBAL_ASM("asm/non_matchings/eu/audio/synthesis_do_one_audio_update.s")
-#else
 u64 *synthesis_do_one_audio_update(u16 *aiBuf, s32 bufLen, u64 *cmd, u32 updateIndex) {
-    u8 noteIndices[60];
-    s32 temp_lo;
     struct NoteSubEu *noteSubEu;
+    u8 noteIndices[56];
+    s32 temp;
     s32 i;
     s16 j;
     s16 notePos = 0;
 
     if (gNumSynthesisReverbs == 0) {
         for (i = 0; i < gMaxSimultaneousNotes; i++) {
-            if (gNoteSubsEu[gMaxSimultaneousNotes * updateIndex + i].enabled) {
+            temp = updateIndex;
+            if (gNoteSubsEu[gMaxSimultaneousNotes * temp + i].enabled) {
                 noteIndices[notePos++] = i;
             }
         }
     } else {
         for (j = 0; j < gNumSynthesisReverbs; j++) {
             for (i = 0; i < gMaxSimultaneousNotes; i++) {
-                noteSubEu = &gNoteSubsEu[gMaxSimultaneousNotes * updateIndex + i];
+                temp = updateIndex;
+                noteSubEu = &gNoteSubsEu[gMaxSimultaneousNotes * temp + i];
                 if (noteSubEu->enabled && j == noteSubEu->reverbIndex) {
                     noteIndices[notePos++] = i;
                 }
             }
         }
+
         for (i = 0; i < gMaxSimultaneousNotes; i++) {
-            noteSubEu = &gNoteSubsEu[gMaxSimultaneousNotes * updateIndex + i];
+            temp = updateIndex;
+            noteSubEu = &gNoteSubsEu[gMaxSimultaneousNotes * temp + i];
             if (noteSubEu->enabled && noteSubEu->reverbIndex >= gNumSynthesisReverbs) {
                 noteIndices[notePos++] = i;
             }
@@ -464,12 +465,16 @@ u64 *synthesis_do_one_audio_update(u16 *aiBuf, s32 bufLen, u64 *cmd, u32 updateI
             cmd = synthesis_resample_and_mix_reverb(cmd, bufLen, j, updateIndex);
         }
         for (; i < notePos; i++) {
-            temp_lo = updateIndex * gMaxSimultaneousNotes;
-            if (j == gNoteSubsEu[temp_lo + noteIndices[i]].reverbIndex) {
+            temp = updateIndex;
+            temp *= gMaxSimultaneousNotes;
+            if (j == gNoteSubsEu[temp + noteIndices[i]].reverbIndex) {
+                if (1) {
+                }
                 cmd = synthesis_process_note(&gNotes[noteIndices[i]],
-                                             &gNoteSubsEu[temp_lo + noteIndices[i]],
+                                             &gNoteSubsEu[temp + noteIndices[i]],
                                              &gNotes[noteIndices[i]].synthesisState,
                                              aiBuf, bufLen, cmd);
+                continue;
             } else {
                 break;
             }
@@ -479,23 +484,25 @@ u64 *synthesis_do_one_audio_update(u16 *aiBuf, s32 bufLen, u64 *cmd, u32 updateI
         }
     }
     for (; i < notePos; i++) {
-        temp_lo = updateIndex * gMaxSimultaneousNotes;
-        if (IS_BANK_LOAD_COMPLETE(gNoteSubsEu[temp_lo + noteIndices[i]].bankId) == TRUE) {
+        temp = updateIndex;
+        temp *= gMaxSimultaneousNotes;
+        if (IS_BANK_LOAD_COMPLETE(gNoteSubsEu[temp + noteIndices[i]].bankId) == TRUE) {
             cmd = synthesis_process_note(&gNotes[noteIndices[i]],
-                                         &gNoteSubsEu[temp_lo + noteIndices[i]],
+                                         &gNoteSubsEu[temp + noteIndices[i]],
                                          &gNotes[noteIndices[i]].synthesisState,
                                          aiBuf, bufLen, cmd);
         } else {
-            gAudioErrorFlags = (gNoteSubsEu[temp_lo + noteIndices[i]].bankId + (i << 8)) + 0x10000000;
+            gAudioErrorFlags = (gNoteSubsEu[temp + noteIndices[i]].bankId + (i << 8)) + 0x10000000;
         }
     }
-    aSetBuffer(cmd++, 0, 0, DMEM_ADDR_TEMP, bufLen * 2);
+
+    temp = bufLen * 2;
+    aSetBuffer(cmd++, 0, 0, DMEM_ADDR_TEMP, temp);
     aInterleave(cmd++, DMEM_ADDR_LEFT_CH, DMEM_ADDR_RIGHT_CH);
-    aSetBuffer(cmd++, 0, 0, DMEM_ADDR_TEMP, bufLen * 2 * 2);
+    aSetBuffer(cmd++, 0, 0, DMEM_ADDR_TEMP, temp * 2);
     aSaveBuffer(cmd++, VIRTUAL_TO_PHYSICAL2(aiBuf));
     return cmd;
 }
-#endif
 #else
 u64 *synthesis_do_one_audio_update(u16 *aiBuf, s32 bufLen, u64 *cmd, u32 updateIndex) {
     UNUSED s32 pad1[1];
