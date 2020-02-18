@@ -468,8 +468,6 @@ u64 *synthesis_do_one_audio_update(u16 *aiBuf, s32 bufLen, u64 *cmd, u32 updateI
             temp = updateIndex;
             temp *= gMaxSimultaneousNotes;
             if (j == gNoteSubsEu[temp + noteIndices[i]].reverbIndex) {
-                if (1) {
-                }
                 cmd = synthesis_process_note(&gNotes[noteIndices[i]],
                                              &gNoteSubsEu[temp + noteIndices[i]],
                                              &gNotes[noteIndices[i]].synthesisState,
