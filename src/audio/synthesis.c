@@ -348,49 +348,43 @@ u64 *synthesis_execute(u64 *cmdBuf, s32 *writtenCmds, u16 *aiBuf, s32 bufLen) {
 
 
 #ifdef VERSION_EU
-#ifndef NON_MATCHING
-GLOBAL_ASM("asm/non_matchings/eu/audio/synthesis_resample_and_mix_reverb.s")
-u64 *synthesis_resample_and_mix_reverb(u64 *cmd, s32 bufLen, s16 reverbIndex, s16 updateIndex);
-#else
 u64 *synthesis_resample_and_mix_reverb(u64 *cmd, s32 bufLen, s16 reverbIndex, s16 updateIndex) {
-    struct ReverbRingBufferItem *item; // sp5C
+    struct ReverbRingBufferItem *item;
     s16 temp_t9; // sp5a
     s16 sp58; // sp58
-    struct SynthesisReverb *reverb;
 
-    reverb = &gSynthesisReverbs[reverbIndex];
-    item = &reverb->items[reverb->curFrame][updateIndex];
+    item = &gSynthesisReverbs[reverbIndex].items[gSynthesisReverbs[reverbIndex].curFrame][updateIndex];
 
     aClearBuffer(cmd++, DMEM_ADDR_WET_LEFT_CH, DEFAULT_LEN_2CH);
-    if (reverb->downsampleRate == 1) {
+    if (gSynthesisReverbs[reverbIndex].downsampleRate == 1) {
         cmd = synthesis_load_reverb_ring_buffer(cmd, DMEM_ADDR_WET_LEFT_CH, item->startPos, item->lengths[0], reverbIndex);
         if (item->lengths[1] != 0) {
             cmd = synthesis_load_reverb_ring_buffer(cmd, DMEM_ADDR_WET_LEFT_CH + item->lengths[0], 0, item->lengths[1], reverbIndex);
         }
         aSetBuffer(cmd++, 0, 0, 0, DEFAULT_LEN_2CH);
         aMix(cmd++, 0, 0x7fff, DMEM_ADDR_WET_LEFT_CH, DMEM_ADDR_LEFT_CH);
-        aMix(cmd++, 0, 0x8000 + reverb->reverbGain, DMEM_ADDR_WET_LEFT_CH, DMEM_ADDR_WET_LEFT_CH);
+        aMix(cmd++, 0, 0x8000 + gSynthesisReverbs[reverbIndex].reverbGain, DMEM_ADDR_WET_LEFT_CH, DMEM_ADDR_WET_LEFT_CH);
     } else {
-        temp_t9 = (item->startPos & 7) * 2;
-        sp58 = ALIGN(temp_t9 + item->lengths[0], 4);
+        temp_t9 = (item->startPos % 8u) * 2;
+        sp58 = ALIGN(item->lengths[0] + (sp58=temp_t9), 4);
+
         cmd = synthesis_load_reverb_ring_buffer(cmd, 0x20, (item->startPos - temp_t9 / 2), DEFAULT_LEN_1CH, reverbIndex);
         if (item->lengths[1] != 0) {
             cmd = synthesis_load_reverb_ring_buffer(cmd, 0x20 + sp58, 0, DEFAULT_LEN_1CH - sp58, reverbIndex);
         }
 
         aSetBuffer(cmd++, 0, temp_t9 + DMEM_ADDR_ADPCM_RESAMPLED, DMEM_ADDR_WET_LEFT_CH, bufLen * 2);
-        aResample(cmd++, reverb->resampleFlags, reverb->resampleRate, VIRTUAL_TO_PHYSICAL2(reverb->resampleStateLeft));
+        aResample(cmd++, gSynthesisReverbs[reverbIndex].resampleFlags, gSynthesisReverbs[reverbIndex].resampleRate, VIRTUAL_TO_PHYSICAL2(gSynthesisReverbs[reverbIndex].resampleStateLeft));
 
         aSetBuffer(cmd++, 0, temp_t9 + DMEM_ADDR_ADPCM_RESAMPLED2, DMEM_ADDR_WET_RIGHT_CH, bufLen * 2);
-        aResample(cmd++, reverb->resampleFlags, reverb->resampleRate, VIRTUAL_TO_PHYSICAL2(reverb->resampleStateRight));
+        aResample(cmd++, gSynthesisReverbs[reverbIndex].resampleFlags, gSynthesisReverbs[reverbIndex].resampleRate, VIRTUAL_TO_PHYSICAL2(gSynthesisReverbs[reverbIndex].resampleStateRight));
 
         aSetBuffer(cmd++, 0, 0, 0, DEFAULT_LEN_2CH);
         aMix(cmd++, 0, 0x7fff, DMEM_ADDR_WET_LEFT_CH, DMEM_ADDR_LEFT_CH);
-        aMix(cmd++, 0, 0x8000 + reverb->reverbGain, DMEM_ADDR_WET_LEFT_CH, DMEM_ADDR_WET_LEFT_CH);
+        aMix(cmd++, 0, 0x8000 + gSynthesisReverbs[reverbIndex].reverbGain, DMEM_ADDR_WET_LEFT_CH, DMEM_ADDR_WET_LEFT_CH);
     }
     return cmd;
 }
-#endif
 
 u64 *synthesis_save_reverb_samples(u64 *cmdBuf, s16 reverbIndex, s16 updateIndex) {
     struct ReverbRingBufferItem *item;
