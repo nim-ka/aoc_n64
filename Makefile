@@ -274,6 +274,9 @@ else
   CC_CHECK += -m32
 endif
 
+# Prevent a crash with -sopt
+export LANG := C
+
 ####################### Other Tools #########################
 
 # N64 tools
