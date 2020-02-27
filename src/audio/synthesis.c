@@ -1298,41 +1298,44 @@ u64 *process_envelope(u64 *cmd, struct NoteSubEu *note, struct NoteSynthesisStat
     return cmd;
 }
 
-#if defined(VERSION_EU) && !defined(NON_MATCHING)
-GLOBAL_ASM("asm/non_matchings/eu/audio/note_apply_headset_pan_effects.s")
-#else
 #ifdef VERSION_EU
 u64 *note_apply_headset_pan_effects(u64 *cmd, struct NoteSubEu *noteSubEu, struct NoteSynthesisState *note, s32 bufLen, s32 flags, s32 leftRight) {
 #else
 u64 *note_apply_headset_pan_effects(u64 *cmd, struct Note *note, s32 bufLen, s32 flags, s32 leftRight) {
 #endif
     u16 dest;
-    u16 prevPanShift;
-    u16 panShift;
     u16 pitch; // t2
 #ifndef VERSION_EU
+    u16 prevPanShift;
+    u16 panShift;
     UNUSED s32 padding[11];
+#else
+    u8 prevPanShift;
+    u8 panShift;
+    UNUSED u8 unkDebug;
 #endif
 
     switch (leftRight) {
         case 1:
             dest = DMEM_ADDR_LEFT_CH;
-            note->prevHeadsetPanLeft = 0;
 #ifndef VERSION_EU
+            note->prevHeadsetPanLeft = 0;
             panShift = note->headsetPanRight;
 #else
             panShift = noteSubEu->headsetPanRight;
+            note->prevHeadsetPanLeft = 0;
 #endif
             prevPanShift = note->prevHeadsetPanRight;
             note->prevHeadsetPanRight = panShift;
             break;
         case 2:
             dest = DMEM_ADDR_RIGHT_CH;
-            note->prevHeadsetPanRight = 0;
 #ifndef VERSION_EU
+            note->prevHeadsetPanRight = 0;
             panShift = note->headsetPanLeft;
 #else
             panShift = noteSubEu->headsetPanLeft;
+            note->prevHeadsetPanRight = 0;
 #endif
 
             prevPanShift = note->prevHeadsetPanLeft;
@@ -1355,13 +1358,23 @@ u64 *note_apply_headset_pan_effects(u64 *cmd, struct Note *note, s32 bufLen, s32
             aSetBuffer(cmd++, 0, 0, DMEM_ADDR_TEMP, 32);
             aSaveBuffer(cmd++, VIRTUAL_TO_PHYSICAL2(note->synthesisBuffers->panResampleState));
 
+#ifdef VERSION_EU
+            pitch = (bufLen << 0xf) / (bufLen + panShift - prevPanShift + 8);
+            if (pitch) {
+            }
+#else
             pitch = (bufLen << 0xf) / (panShift + bufLen - prevPanShift + 8);
+#endif
             aSetBuffer(cmd++, 0, DMEM_ADDR_NOTE_PAN_TEMP + 8, DMEM_ADDR_TEMP,
                        panShift + bufLen - prevPanShift);
             aResample(cmd++, 0, pitch, VIRTUAL_TO_PHYSICAL2(note->synthesisBuffers->panResampleState));
         } else {
             pitch = (panShift == 0) ? (bufLen << 0xf) / (bufLen - prevPanShift - 4)
                                     : (bufLen << 0xf) / (bufLen + panShift - prevPanShift);
+#if defined(VERSION_EU) && !defined(AVOID_UB)
+            if (unkDebug) { // UB
+            }
+#endif
             aSetBuffer(cmd++, 0, DMEM_ADDR_NOTE_PAN_TEMP, DMEM_ADDR_TEMP,
                        panShift + bufLen - prevPanShift);
             aResample(cmd++, 0, pitch, VIRTUAL_TO_PHYSICAL2(note->synthesisBuffers->panResampleState));
@@ -1393,7 +1406,6 @@ u64 *note_apply_headset_pan_effects(u64 *cmd, struct Note *note, s32 bufLen, s32
 
     return cmd;
 }
-#endif
 
 #if !defined(VERSION_EU)
 // Moved to playback.c in EU
