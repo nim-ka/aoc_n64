@@ -1606,12 +1606,6 @@ void update_game_sound(void) {
 #undef ARG2_VAL1
 #undef ARG2_VAL2
 
-#if defined(VERSION_EU) && !defined(NON_MATCHING)
-// Just regalloc differences
-void play_sequence(u8 player, u8 seqId, u16 fadeTimer);
-GLOBAL_ASM("asm/non_matchings/eu/audio/play_sequence.s")
-#else
-
 void play_sequence(u8 player, u8 seqId, u16 fadeTimer) {
     u8 temp_ret;
     u8 i;
@@ -1628,8 +1622,8 @@ void play_sequence(u8 player, u8 seqId, u16 fadeTimer) {
     }
 
 #ifdef VERSION_EU
-    func_802ad770(0x46000000 | (player & 0xff) << 16, seqId & 0x80);
-    func_802ad74c(0x82000000 | (player & 0xff) << 16 | ((seqId & 0x7f) & 0xff) << 8, fadeTimer);
+    func_802ad770(0x46000000 | ((u8)(u32)player) << 16, seqId & 0x80);
+    func_802ad74c(0x82000000 | ((u8)(u32)player) << 16 | ((u8)(seqId & 0x7f)) << 8, fadeTimer);
 
     if (player == 0) {
         temp_ret = func_803200E4(0);
@@ -1652,7 +1646,6 @@ void play_sequence(u8 player, u8 seqId, u16 fadeTimer) {
     }
 #endif
 }
-#endif
 
 void sequence_player_fade_out(u8 player, u16 fadeTimer) {
 #ifdef VERSION_EU
