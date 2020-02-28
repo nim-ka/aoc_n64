@@ -244,18 +244,18 @@ void sequence_player_disable_channels(struct SequencePlayer *seqPlayer, u16 chan
     }
 }
 
-#if defined(VERSION_EU) && !defined(NON_MATCHING)
-GLOBAL_ASM("asm/non_matchings/eu/audio/sequence_channel_enable.s")
-#else
 void sequence_channel_enable(struct SequencePlayer *seqPlayer, u8 channelIndex, void *arg2) {
     struct SequenceChannel *seqChannel = seqPlayer->channels[channelIndex];
     s32 i;
 
 #ifdef VERSION_EU
     if (IS_SEQUENCE_CHANNEL_VALID(seqChannel) == FALSE) {
-        // not matching exactly, but this is the logic at least (stubbed printfs?)
-        if (seqPlayer == &gSequencePlayers[0]) {
-        } else if (seqPlayer == &gSequencePlayers[1]) {
+        struct SequencePlayer *bgMusic = &gSequencePlayers[0];
+        struct SequencePlayer *miscMusic = &gSequencePlayers[1];
+
+        if (seqPlayer == bgMusic) {
+        } else if (seqPlayer == miscMusic) {
+        } else {
         }
     } else {
 #else
@@ -273,7 +273,6 @@ void sequence_channel_enable(struct SequencePlayer *seqPlayer, u8 channelIndex, 
         }
     }
 }
-#endif
 
 void sequence_player_disable(struct SequencePlayer *seqPlayer) {
     sequence_player_disable_channels(seqPlayer, 0xffff);
