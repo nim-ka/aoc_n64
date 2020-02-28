@@ -1686,14 +1686,10 @@ GLOBAL_ASM("asm/non_matchings/sequence_channel_process_script_jp.s")
 GLOBAL_ASM("asm/non_matchings/sequence_channel_process_script_us.s")
 #endif
 
-#if defined(VERSION_EU) && !defined(NON_MATCHING)
-GLOBAL_ASM("asm/non_matchings/eu/audio/sequence_player_process_sequence.s")
-#else
 void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
     u8 cmd;
     u8 loBits;
     u8 temp;
-    s8 tempSigned;
     s32 value;
     s32 i;
     u16 u16v;
@@ -1755,6 +1751,10 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
         if (osRecvMesg(&seqPlayer->seqDmaMesgQueue, NULL, 0) == -1) {
             return;
         }
+#ifndef AVOID_UB
+        if (temp) {
+        }
+#endif
 #else
         if (seqPlayer->seqDmaMesg == NULL) {
             return;
@@ -1788,6 +1788,10 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
 
     state = &seqPlayer->scriptState;
     if (seqPlayer->delay > 1) {
+#ifndef AVOID_UB
+        if (temp) {
+        }
+#endif
         seqPlayer->delay--;
     } else {
 #ifdef VERSION_EU
@@ -1801,7 +1805,11 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
                     sequence_player_disable(seqPlayer);
                     break;
                 }
+#ifdef VERSION_EU
+                state->pc = state->stack[--state->depth];
+#else
                 state->depth--, state->pc = state->stack[state->depth];
+#endif
             }
 
             if (cmd == 0xfd) // seq_delay
@@ -1870,14 +1878,14 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
                     case 0xf4:
                     case 0xf3:
                     case 0xf2:
-                        tempSigned = m64_read_u8(state);
+                        temp = m64_read_u8(state);
                         if (cmd == 0xf3 && value != 0) {
                             break;
                         }
                         if (cmd == 0xf2 && value >= 0) {
                             break;
                         }
-                        state->pc += tempSigned;
+                        state->pc += (s8)temp;
                         break;
 #endif
 
@@ -1939,7 +1947,7 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
                             case SEQUENCE_PLAYER_STATE_2:
                                 seqPlayer->fadeTimer = u16v;
                                 seqPlayer->state = temp;
-                                seqPlayer->fadeVelocity = (0.0f - seqPlayer->fadeVolume) / (s32) u16v;
+                                seqPlayer->fadeVelocity = (0.0f - seqPlayer->fadeVolume) / (s32) (u16v & 0xFFFFu);
                                 break;
                         }
                         break;
@@ -1985,16 +1993,16 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
                         break;
 
                     case 0xda: // seq_changevol
-                        tempSigned = m64_read_u8(state);
+                        temp = m64_read_u8(state);
                         seqPlayer->fadeVolume =
-                            seqPlayer->fadeVolume + (f32) tempSigned / US_FLOAT(127.0);
+                            seqPlayer->fadeVolume + (f32) (s8)temp / US_FLOAT(127.0);
                         break;
 #endif
 
 #ifdef VERSION_EU
                     case 0xd9:
-                        tempSigned = m64_read_u8(state);
-                        seqPlayer->fadeVolumeScale = tempSigned / 127.0f;
+                        temp = m64_read_u8(state);
+                        seqPlayer->fadeVolumeScale = (s8)temp / 127.0f;
                         break;
 #endif
 
@@ -2009,8 +2017,8 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
                         break;
 
                     case 0xd5: // seq_setmutescale
-                        tempSigned = m64_read_u8(state);
-                        seqPlayer->muteVolumeScale = (f32) tempSigned / US_FLOAT(127.0);
+                        temp = m64_read_u8(state);
+                        seqPlayer->muteVolumeScale = (f32) (s8)temp / US_FLOAT(127.0);
                         break;
 
                     case 0xd4: // seq_mute
@@ -2122,7 +2130,6 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
 #endif
     }
 }
-#endif
 
 // This runs 240 times per second.
 void process_sequences(UNUSED s32 iterationsRemaining) {
