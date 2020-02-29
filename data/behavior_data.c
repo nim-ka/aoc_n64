@@ -2082,7 +2082,7 @@ const BehaviorScript bhvBlueFish[] = {
     LOAD_ANIMATIONS(oAnimations, blue_fish_seg3_anims_0301C2B0),
     ANIMATE(0),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhv_blue_fish_loop),
+        CALL_NATIVE(bhv_blue_fish_movement_loop),
     END_LOOP(),
 };
 
@@ -2503,16 +2503,16 @@ const BehaviorScript bhvLargeFishGroup[] = {
     DISABLE_RENDERING(),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhv_fish_loop),
+        CALL_NATIVE(bhv_large_fish_group_loop),
     END_LOOP(),
 };
 
-const BehaviorScript bhvFishGroup2[] = {
+const BehaviorScript bhvFish[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     SET_HOME(),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhv_fish_group_2_loop),
+        CALL_NATIVE(bhv_fish_loop),
     END_LOOP(),
 };
 

@@ -197,6 +197,24 @@
     #define BOBOMB_BUDDY_HAS_NOT_TALKED 0
     #define BOBOMB_BUDDY_HAS_TALKED 2
 
+/* Fish */
+    /* oAction */
+    #define FISH_ACT_INIT 0
+    #define FISH_ACT_ACTIVE 1
+    #define FISH_ACT_RESPAWN 2
+
+/* Blue_Fish */
+    /* oAction */
+    #define BLUE_FISH_ACT_DIVE 0
+    #define BLUE_FISH_ACT_TURN 1
+    #define BLUE_FISH_ACT_ASCEND 2
+    #define BLUE_FISH_ACT_TURN_BACK 3
+    
+    /* oAction: bhv_blue_fish_spawn_loop */
+    #define BLUE_FISH_ACT_SPAWN 0
+    #define BLUE_FISH_ACT_ROOM 1
+    #define BLUE_FISH_ACT_DUPLICATE 2
+
 /* Cannon Trap Door */
     /* oAction */
     #define CANNON_TRAP_DOOR_ACT_CLOSED 0
