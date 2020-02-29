@@ -307,7 +307,6 @@ static void unused_803163D4() {
 }
 #endif
 
-#if defined(VERSION_EU) || defined(NON_MATCHING)
 void *alloc_bank_or_seq(struct SoundMultiPool *arg0, s32 arg1, s32 size, s32 arg3, s32 id) {
     // arg3 = 0, 1 or 2?
 
@@ -315,17 +314,19 @@ void *alloc_bank_or_seq(struct SoundMultiPool *arg0, s32 arg1, s32 size, s32 arg
     struct PersistentPool *persistent = &arg0->persistent;
     struct SoundAllocPool *pool;
     void *ret;
-#ifdef VERSION_EU
-    u8 firstVal;
-    u8 secondVal;
+#ifndef VERSION_EU
+    u16 UNUSED _firstVal;
+    u16 UNUSED _secondVal;
 #else
-    s32 firstVal;
-    s32 secondVal;
+    u16 firstVal;
+    u16 secondVal;
 #endif
     u32 nullID = -1;
     u8 *table;
     u8 isSound;
 #ifndef VERSION_EU
+    u16 firstVal;
+    u16 secondVal;
     u32 bothDiscardable;
     u32 leftDiscardable, rightDiscardable;
     u32 leftNotLoaded, rightNotLoaded;
@@ -342,7 +343,7 @@ void *alloc_bank_or_seq(struct SoundMultiPool *arg0, s32 arg1, s32 size, s32 arg
             isSound = TRUE;
         }
 
-        firstVal =  (tp->entries[0].id == (s8)nullID ? SOUND_LOAD_STATUS_NOT_LOADED : table[tp->entries[0].id]); // a3, a2
+        firstVal  = (tp->entries[0].id == (s8)nullID ? SOUND_LOAD_STATUS_NOT_LOADED : table[tp->entries[0].id]); // a3, a2
         secondVal = (tp->entries[1].id == (s8)nullID ? SOUND_LOAD_STATUS_NOT_LOADED : table[tp->entries[1].id]); // a1
 
 #ifndef VERSION_EU
@@ -360,7 +361,7 @@ void *alloc_bank_or_seq(struct SoundMultiPool *arg0, s32 arg1, s32 size, s32 arg
             tp->nextSide = 1;
         } else if (bothDiscardable) {
             // Use the opposite side from last time.
-        } else if (leftDiscardable) {
+        } else if (firstVal == SOUND_LOAD_STATUS_DISCARDABLE) { //??!
             tp->nextSide = 0;
         } else if (rightDiscardable) {
             tp->nextSide = 1;
@@ -505,14 +506,9 @@ void *alloc_bank_or_seq(struct SoundMultiPool *arg0, s32 arg1, s32 size, s32 arg
 #ifdef VERSION_EU
     return persistent->entries[persistent->numEntries++].ptr;
 #else
-    persistent->numEntries++;
-    return persistent->entries[persistent->numEntries - 1].ptr;
+    persistent->numEntries++; return persistent->entries[persistent->numEntries - 1].ptr;
 #endif
 }
-
-#else
-GLOBAL_ASM("asm/non_matchings/alloc_bank_or_seq.s")
-#endif
 
 void *get_bank_or_seq(struct SoundMultiPool *arg0, s32 arg1, s32 id) {
     u32 i;
