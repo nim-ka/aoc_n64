@@ -1,8 +1,8 @@
 # Super Mario 64
 
-This repo contains a full decompilation of Super Mario 64 (J) and (U).
+This repo contains a full decompilation of Super Mario 64 (J), (U), and (E).
 The source and data have been decompiled but complete naming and documentation
-all of the code and data is still a work in progress. Decompiling the (E) ROM
+all of the code and data is still a work in progress. Decompiling the Shindou ROM
 is also an ongoing effort.
 
 It builds the following ROMs:
