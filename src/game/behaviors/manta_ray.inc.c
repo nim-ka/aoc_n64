@@ -22,8 +22,8 @@ void bhv_manta_ray_init(void) {
     struct Object *sp1C;
     sp1C = spawn_object(o, MODEL_NONE, bhvMantaRayRingManager);
     o->parentObj = sp1C;
-    set_object_hitbox(o, &sMantaRayHitbox);
-    obj_scale(2.5f);
+    obj_set_hitbox(o, &sMantaRayHitbox);
+    cur_obj_scale(2.5f);
 }
 
 void func_802F5E20(void) {
@@ -32,7 +32,7 @@ void func_802F5E20(void) {
 
     sp1E = o->header.gfx.unk38.animFrame;
     gCurrentObject->oPathedWaypointsS16 = &D_803316A8;
-    sp18 = obj_follow_path(sp18);
+    sp18 = cur_obj_follow_path(sp18);
     o->oMantaUnkF8 = o->oPathedTargetYaw;
     o->oMantaUnkF4 = o->oPathedTargetPitch;
     o->oForwardVel = 10.0f;
@@ -48,7 +48,7 @@ void func_802F5E20(void) {
             o->oMoveAngleRoll = 0x4000 / 3;
     }
 
-    obj_set_pos_via_transform();
+    cur_obj_set_pos_via_transform();
     if (sp1E == 0)
         PlaySound2(SOUND_GENERAL_MOVING_WATER);
 }

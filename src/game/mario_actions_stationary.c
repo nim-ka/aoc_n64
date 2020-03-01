@@ -1167,7 +1167,7 @@ s32 mario_execute_stationary_action(struct MarioState *m) {
 
     if (!sp24) {
         if (m->input & INPUT_IN_WATER) {
-            m->particleFlags |= PARTICLE_7;
+            m->particleFlags |= PARTICLE_IDLE_WATER_WAVE;
         }
     }
 

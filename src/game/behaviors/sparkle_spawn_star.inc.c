@@ -18,12 +18,12 @@ void bhv_spawned_star_init(void) {
         o->oBehParams = o->parentObj->oBehParams;
     sp24 = (o->oBehParams >> 24) & 0xFF;
     if (bit_shift_left(sp24) & save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1))
-        obj_set_model(MODEL_TRANSPARENT_STAR);
+        cur_obj_set_model(MODEL_TRANSPARENT_STAR);
     PlaySound2(SOUND_GENERAL2_STAR_APPEARS);
 }
 
 void func_802AA788(void) {
-    set_object_hitbox(o, &sSparkleSpawnStarHitbox);
+    obj_set_hitbox(o, &sSparkleSpawnStarHitbox);
     if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         mark_obj_for_deletion(o);
         o->oInteractStatus = 0;
@@ -64,7 +64,7 @@ void bhv_spawned_star_loop(void) {
                 func_802AA7EC();
             else
                 func_802AA8E4();
-            o->oMoveAngleYaw = obj_angle_to_home();
+            o->oMoveAngleYaw = cur_obj_angle_to_home();
             o->oVelY = 50.0f;
             o->oGravity = -4.0f;
             spawn_mist_particles();
@@ -105,7 +105,7 @@ void bhv_spawned_star_loop(void) {
         func_802AA788();
         func_802AA918();
     }
-    obj_move_using_fvel_and_gravity();
+    cur_obj_move_using_fvel_and_gravity();
     o->oFaceAngleYaw += o->oAngleVelYaw;
     o->oInteractStatus = 0;
 }
@@ -114,5 +114,5 @@ void bhv_spawn_star_no_level_exit(u32 sp20) {
     struct Object *sp1C = spawn_object(o, MODEL_STAR, bhvSpawnedStarNoLevelExit);
     sp1C->oBehParams = sp20 << 24;
     sp1C->oInteractionSubtype = INT_SUBTYPE_NO_EXIT;
-    set_object_angle(sp1C, 0, 0, 0);
+    obj_set_angle(sp1C, 0, 0, 0);
 }

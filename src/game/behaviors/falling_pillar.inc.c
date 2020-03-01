@@ -136,7 +136,7 @@ void bhv_falling_pillar_hitbox_loop(void) {
     o->oPosZ = sins(pitch) * coss(yaw) * yOffset + z;
 
     // Give these a hitbox so they can collide with Mario.
-    set_object_hitbox(o, &sFallingPillarHitbox);
+    obj_set_hitbox(o, &sFallingPillarHitbox);
 
     // When the pillar goes inactive, the hitboxes also go inactive.
     if (o->parentObj->activeFlags == 0)

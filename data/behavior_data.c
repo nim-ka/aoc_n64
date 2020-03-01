@@ -288,8 +288,8 @@
 #define DISABLE_RENDERING() \
     BC_B(0x35)
 
-// Spawns a water splash with the given parameters.
-#define SPAWN_WATER_SPLASH(params) \
+// Spawns a water droplet with the given parameters.
+#define SPAWN_WATER_DROPLET(params) \
     BC_B(0x37), \
     BC_PTR(params)
 
@@ -1209,8 +1209,8 @@ const BehaviorScript bhvBreakBoxTriangle[] = {
     BEGIN(OBJ_LIST_UNIMPORTANT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     BEGIN_REPEAT(18),
-        CALL_NATIVE(obj_rotate_face_angle_using_vel),
-        CALL_NATIVE(obj_move_using_fvel_and_gravity),
+        CALL_NATIVE(cur_obj_rotate_face_angle_using_vel),
+        CALL_NATIVE(cur_obj_move_using_fvel_and_gravity),
     END_REPEAT(),
     DEACTIVATE(),
 };
@@ -1971,7 +1971,7 @@ const BehaviorScript bhvTiltingBowserLavaPlatform[] = {
     SET_INT(oFaceAngleYaw, 0),
     SET_HOME(),
     BEGIN_LOOP(),
-        CALL_NATIVE(obj_rotate_face_angle_using_vel),
+        CALL_NATIVE(cur_obj_rotate_face_angle_using_vel),
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
@@ -2771,7 +2771,7 @@ const BehaviorScript bhvWhitePuffSmoke2[] = {
     SET_INT(oAnimState, -1),
     BEGIN_REPEAT(7),
         CALL_NATIVE(bhv_white_puff_2_loop),
-        CALL_NATIVE(obj_move_using_fvel_and_gravity),
+        CALL_NATIVE(cur_obj_move_using_fvel_and_gravity),
         ADD_INT(oAnimState, 1),
     END_REPEAT(),
     DEACTIVATE(),
@@ -3237,6 +3237,7 @@ const BehaviorScript bhvSmallWhomp[] = {
     END_LOOP(),
 };
 
+// The large splash Mario makes when he jumps into a pool of water.
 const BehaviorScript bhvWaterSplash[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
@@ -3244,9 +3245,9 @@ const BehaviorScript bhvWaterSplash[] = {
     SET_INT(oAnimState, -1),
     BEGIN_REPEAT(3),
         ADD_INT(oAnimState, 1),
-        CALL_NATIVE(bhv_water_splash_loop),
+        CALL_NATIVE(bhv_water_splash_spawn_droplets),
         DELAY(1),
-        CALL_NATIVE(bhv_water_splash_loop),
+        CALL_NATIVE(bhv_water_splash_spawn_droplets),
     END_REPEAT(),
     BEGIN_REPEAT(5),
         ADD_INT(oAnimState, 1),
@@ -3256,16 +3257,18 @@ const BehaviorScript bhvWaterSplash[] = {
     DEACTIVATE(),
 };
 
-const BehaviorScript bhvWaterDrops[] = {
+// Droplets of water that spawn as a result of various water splashes.
+const BehaviorScript bhvWaterDroplet[] = {
     BEGIN(OBJ_LIST_UNIMPORTANT),
     OR_INT(oFlags, (OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_MOVE_XZ_USING_FVEL | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     BILLBOARD(),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhv_water_drops_loop),
+        CALL_NATIVE(bhv_water_droplet_loop),
     END_LOOP(),
 };
 
-const BehaviorScript bhvWaterSurfaceWhiteWave[] = {
+// Small splashes that are seen when a water droplet lands back into the water.
+const BehaviorScript bhvWaterDropletSplash[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
 #ifndef VERSION_JP
@@ -3273,7 +3276,7 @@ const BehaviorScript bhvWaterSurfaceWhiteWave[] = {
     SET_INT(oFaceAngleYaw, 0),
     SET_INT(oFaceAngleRoll, 0),
 #endif
-    CALL_NATIVE(bhv_water_surface_white_wave_init),
+    CALL_NATIVE(bhv_water_droplet_splash_init),
     ADD_FLOAT(oPosY, 5),
     SET_INT(oAnimState, -1),
     BEGIN_REPEAT(6),
@@ -3282,7 +3285,8 @@ const BehaviorScript bhvWaterSurfaceWhiteWave[] = {
     DEACTIVATE(),
 };
 
-const BehaviorScript bhvObjectBubbleRipples[] = {
+// The splash created when an air bubble hits the surface of the water.
+const BehaviorScript bhvBubbleSplash[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
 #ifdef VERSION_JP
@@ -3296,14 +3300,15 @@ const BehaviorScript bhvObjectBubbleRipples[] = {
     SET_INT(oFaceAngleRoll, 0),
 #endif
     SET_INT(oAnimState, -1),
-    CALL_NATIVE(bhv_object_bubble_ripples_init),
+    CALL_NATIVE(bhv_bubble_splash_init),
     BEGIN_REPEAT(6),
         ADD_INT(oAnimState, 1),
     END_REPEAT(),
     DEACTIVATE(),
 };
 
-const BehaviorScript bhvSurfaceWaves[] = {
+// The water wave surrounding Mario when he is idle in a pool of water.
+const BehaviorScript bhvIdleWaterWave[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
 #ifdef VERSION_JP
@@ -3319,16 +3324,18 @@ const BehaviorScript bhvSurfaceWaves[] = {
     SET_INT(oAnimState, -1),
     ADD_INT(oAnimState, 1),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhv_surface_waves_loop),
+        CALL_NATIVE(bhv_idle_water_wave_loop),
         ADD_INT(oAnimState, 1),
         BEGIN_REPEAT(6),
-            CALL_NATIVE(bhv_surface_waves_loop),
+            CALL_NATIVE(bhv_idle_water_wave_loop),
         END_REPEAT(),
-        CALL_NATIVE(bhv_surface_waves_loop),
+        CALL_NATIVE(bhv_idle_water_wave_loop),
     END_LOOP(),
 };
 
-const BehaviorScript bhvWaterSurfaceWhiteWave2[] = {
+// Water splashes similar to the splashes created by water droplets, but are created by other objects.
+// Unlike water droplet splashes, they are unimportant objects.
+const BehaviorScript bhvObjectWaterSplash[] = {
     BEGIN(OBJ_LIST_UNIMPORTANT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
 #ifdef VERSION_JP
@@ -3348,41 +3355,48 @@ const BehaviorScript bhvWaterSurfaceWhiteWave2[] = {
     DEACTIVATE(),
 };
 
-const BehaviorScript bhvWavesGenerator[] = {
+// Waves that are generated when running in shallow water.
+const BehaviorScript bhvShallowWaterWave[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     DISABLE_RENDERING(),
     BEGIN_REPEAT(5),
-        SPAWN_WATER_SPLASH(&D_8032FE18),
+        SPAWN_WATER_DROPLET(&sShallowWaterWaveDropletParams),
     END_REPEAT_CONTINUE(),
     DELAY(1),
-    BIT_CLEAR_INT32(oActiveParticleFlags, ACTIVE_PARTICLE_8),
+    BIT_CLEAR_INT32(oActiveParticleFlags, ACTIVE_PARTICLE_SHALLOW_WATER_WAVE),
     DEACTIVATE(),
 };
 
-const BehaviorScript bhvSurfaceWaveShrinking[] = {
+// A small water splash that occurs when jumping in and out of shallow water.
+// Unlike the larger water splash it has no visible model of its own.
+// It has a 1 in 256 chance of spawning the fish particle easter egg.
+const BehaviorScript bhvShallowWaterSplash[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     DISABLE_RENDERING(),
     BEGIN_REPEAT(18),
-        SPAWN_WATER_SPLASH(&D_8032FDD0),
+        SPAWN_WATER_DROPLET(&sShallowWaterSplashDropletParams),
     END_REPEAT_CONTINUE(),
-    CALL_NATIVE(bhv_surface_wave_shrinking_init),
+    CALL_NATIVE(bhv_shallow_water_splash_init),
     DELAY(1),
-    BIT_CLEAR_INT32(oActiveParticleFlags, ACTIVE_PARTICLE_12),
+    BIT_CLEAR_INT32(oActiveParticleFlags, ACTIVE_PARTICLE_SHALLOW_WATER_SPLASH),
     DEACTIVATE(),
 };
 
-const BehaviorScript bhvWaterType[] = {
+// Waves created by other objects along the water's surface, specifically the koopa shell and Sushi.
+// Unlike Mario's waves, they are unimportant objects.
+const BehaviorScript bhvObjectWaveTrail[] = {
     BEGIN(OBJ_LIST_UNIMPORTANT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
-    GOTO(bhvWaveTrailOnSurface + 1 + 1 + 2),
+    GOTO(bhvWaveTrail + 1 + 1 + 2), // Wave trail - common
 };
 
-const BehaviorScript bhvWaveTrailOnSurface[] = {
+// The waves created by Mario while he is swimming.
+const BehaviorScript bhvWaveTrail[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
-    BIT_CLEAR_INT32(oActiveParticleFlags, ACTIVE_PARTICLE_10),
+    BIT_CLEAR_INT32(oActiveParticleFlags, ACTIVE_PARTICLE_WAVE_TRAIL),
     // Wave trail - common:
     SET_FLOAT(oFaceAnglePitch, 0),
     SET_FLOAT(oFaceAngleYaw, 0),
@@ -3390,41 +3404,47 @@ const BehaviorScript bhvWaveTrailOnSurface[] = {
     SET_INT(oAnimState, -1),
     BEGIN_REPEAT(8),
         ADD_INT(oAnimState, 1),
-        CALL_NATIVE(bhv_wave_trail_loop),
+        CALL_NATIVE(bhv_wave_trail_shrink),
         DELAY(1),
-        CALL_NATIVE(bhv_wave_trail_loop),
+        CALL_NATIVE(bhv_wave_trail_shrink),
     END_REPEAT(),
     DEACTIVATE(),
 };
 
-const BehaviorScript bhvTinyWhiteWindParticle[] = {
+// Tiny wind particles that provide aesthetics to the strong winds generated by the Snowman and Fwoosh.
+// As they are unimportant objects, they don't have collision with Mario.
+const BehaviorScript bhvTinyStrongWindParticle[] = {
     BEGIN(OBJ_LIST_UNIMPORTANT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     BILLBOARD(),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhv_white_wind_particle_loop),
+        CALL_NATIVE(bhv_strong_wind_particle_loop),
     END_LOOP(),
 };
 
-const BehaviorScript bhvWindParticle[] = {
+// Strong wind particles generated by the Snowman and Fwoosh that blow Mario back and knock his cap off.
+const BehaviorScript bhvStrongWindParticle[] = {
     BEGIN(OBJ_LIST_POLELIKE),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     BILLBOARD(),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhv_white_wind_particle_loop),
+        CALL_NATIVE(bhv_strong_wind_particle_loop),
     END_LOOP(),
 };
 
-const BehaviorScript bhvSnowmanWindBlowing[] = {
+// The handler for the strong wind blown by the Snowman in SL. Triggers dialog and then aims towards Mario.
+const BehaviorScript bhvSLSnowmanWind[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     SET_HOME(),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhv_snowman_wind_blowing_loop),
+        CALL_NATIVE(bhv_sl_snowman_wind_loop),
     END_LOOP(),
 };
 
-const BehaviorScript bhvWalkingPenguin[] = {
+// The penguin that walks erratically along the ice bridge in front of the Snowman in SL.
+// Blocks strong wind particles, allowing Mario to walk behind it.
+const BehaviorScript bhvSLWalkingPenguin[] = {
     BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     LOAD_COLLISION_DATA(penguin_seg5_collision_05008B88),
@@ -3434,7 +3454,7 @@ const BehaviorScript bhvWalkingPenguin[] = {
     SCALE(600),
     SET_HOME(),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhv_walking_penguin_loop),
+        CALL_NATIVE(bhv_sl_walking_penguin_loop),
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
@@ -5422,7 +5442,7 @@ const BehaviorScript bhvTTCTreadmill[] = {
     DELAY(1),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_ttc_treadmill_update),
-        CALL_NATIVE(obj_compute_vel_xz),
+        CALL_NATIVE(cur_obj_compute_vel_xz),
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
@@ -5787,7 +5807,7 @@ const BehaviorScript bhvHorizontalGrindel[] = {
     SCALE(90),
     CALL_NATIVE(bhv_horizontal_grindel_init),
     BEGIN_LOOP(),
-        CALL_NATIVE(obj_update_floor_and_walls),
+        CALL_NATIVE(cur_obj_update_floor_and_walls),
         CALL_NATIVE(bhv_horizontal_grindel_update),
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),

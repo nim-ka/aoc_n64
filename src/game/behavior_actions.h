@@ -10,11 +10,11 @@ extern void func_802ADBBC(u32);
 extern void func_802ADC20(s16,s16);
 extern s32 func_802B0C54(f32,f32);
 extern s32 func_802B2894(f32*,f32*,f32,f32);
-void func_802B8F7C(Vec3f dest,Vec3f src);
+void vec3f_copy_2(Vec3f,Vec3f);
 extern void func_802BCFC4(f32,f32,s16,s16);
 extern void play_penguin_walking_sound(s32);
 extern s32 func_802C5A64(s32*);
-extern void func_802C76E0(s32, f32, f32, f32, f32);
+extern void cur_obj_spawn_strong_wind_particles(s32, f32, f32, f32, f32);
 
 void bhv_cap_switch_loop(void);
 void bhv_tiny_star_particles_init(void);
@@ -241,16 +241,16 @@ void bhv_sparkle_spawn_loop(void);
 void bhv_scuttlebug_loop(void);
 void bhv_scuttlebug_spawn_loop(void);
 void bhv_whomp_loop(void);
-void bhv_water_splash_loop(void);
-void bhv_water_drops_loop(void);
-void bhv_water_surface_white_wave_init(void);
-void bhv_object_bubble_ripples_init(void);
-void bhv_surface_waves_loop(void);
-void bhv_surface_wave_shrinking_init(void);
-void bhv_wave_trail_loop(void);
-void bhv_white_wind_particle_loop(void);
-void bhv_snowman_wind_blowing_loop(void);
-void bhv_walking_penguin_loop(void);
+void bhv_water_splash_spawn_droplets(void);
+void bhv_water_droplet_loop(void);
+void bhv_water_droplet_splash_init(void);
+void bhv_bubble_splash_init(void);
+void bhv_idle_water_wave_loop(void);
+void bhv_shallow_water_splash_init(void);
+void bhv_wave_trail_shrink(void);
+void bhv_strong_wind_particle_loop(void);
+void bhv_sl_snowman_wind_loop(void);
+void bhv_sl_walking_penguin_loop(void);
 void bhv_menu_button_init(void);
 void bhv_menu_button_loop(void);
 void bhv_menu_button_manager_init(void);
@@ -569,7 +569,7 @@ extern Gfx *geo_snufit_scale_body(s32 callContext, struct GraphNode *node, UNUSE
 extern Gfx *Geo18_802BA2B0(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4]);
 
 // Water splash
-extern struct WaterSplashParams D_8032FDD0;
-extern struct WaterSplashParams D_8032FE18;
+extern struct WaterDropletParams sShallowWaterSplashDropletParams;
+extern struct WaterDropletParams sShallowWaterWaveDropletParams;
 
 #endif // _BEHAVIOR_ACTIONS_H

@@ -13,11 +13,11 @@ void bhv_hidden_blue_coin_loop(void) {
     switch (o->oAction) {
         case HIDDEN_BLUE_COIN_ACT_INACTIVE:
             // Become invisible and intangible
-            obj_disable_rendering();
-            obj_become_intangible();
+            cur_obj_disable_rendering();
+            cur_obj_become_intangible();
 
             // Set action to HIDDEN_BLUE_COIN_ACT_WAITING after the blue coin switch is found.
-            o->oHiddenBlueCoinSwitch = obj_nearest_object_with_behavior(bhvBlueCoinSwitch);
+            o->oHiddenBlueCoinSwitch = cur_obj_nearest_object_with_behavior(bhvBlueCoinSwitch);
 
             if (o->oHiddenBlueCoinSwitch != NULL) {
                 o->oAction++;
@@ -35,19 +35,19 @@ void bhv_hidden_blue_coin_loop(void) {
             break;
         case HIDDEN_BLUE_COIN_ACT_ACTIVE:
             // Become tangible
-            obj_enable_rendering();
-            obj_become_tangible();
+            cur_obj_enable_rendering();
+            cur_obj_become_tangible();
 
             // Delete the coin once collected
             if (o->oInteractStatus & INT_STATUS_INTERACTED) {
                 spawn_object(o, MODEL_SPARKLES, bhvGoldenCoinSparkles);
-                mark_object_for_deletion(o);
+                obj_mark_for_deletion(o);
             }
 
             // After 200 frames of waiting and 20 2-frame blinks (for 240 frames total),
             // delete the object.
-            if (obj_wait_then_blink(200, 20)) {
-                mark_object_for_deletion(o);
+            if (cur_obj_wait_then_blink(200, 20)) {
+                obj_mark_for_deletion(o);
             }
 
             break;
@@ -61,7 +61,7 @@ void bhv_hidden_blue_coin_loop(void) {
  */
 void bhv_blue_coin_switch_loop(void) {
     // The switch's model is 1/3 size.
-    obj_scale(3.0f);
+    cur_obj_scale(3.0f);
 
     switch (o->oAction) {
         case BLUE_COIN_SWITCH_ACT_IDLE:
@@ -90,7 +90,7 @@ void bhv_blue_coin_switch_loop(void) {
             // This is probably an off-by-one error, since the switch is 100 units tall
             // and recedes at 20 units/frame, which means it will fully recede after 5 frames.
             if (o->oTimer > 5) {
-                obj_hide();
+                cur_obj_hide();
 
                 // Set to BLUE_COIN_SWITCH_ACT_TICKING
                 o->oAction++;
@@ -104,7 +104,7 @@ void bhv_blue_coin_switch_loop(void) {
                 // Have collision while receding
                 load_object_collision_model();
                 // Recede
-                obj_move_using_fvel_and_gravity();
+                cur_obj_move_using_fvel_and_gravity();
             }
 
             break;
@@ -118,8 +118,8 @@ void bhv_blue_coin_switch_loop(void) {
 
             // Delete the switch (which stops the sound) after the last coin is collected,
             // or after the coins unload after the 240-frame timer expires.
-            if (obj_nearest_object_with_behavior(bhvHiddenBlueCoin) == NULL || o->oTimer > 240) {
-                mark_object_for_deletion(o);
+            if (cur_obj_nearest_object_with_behavior(bhvHiddenBlueCoin) == NULL || o->oTimer > 240) {
+                obj_mark_for_deletion(o);
             }
 
             break;

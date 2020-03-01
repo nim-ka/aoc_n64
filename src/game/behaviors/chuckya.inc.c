@@ -23,7 +23,7 @@ void func_802A8D18(f32 sp28, f32 sp2C, s32 sp30) {
     }
     o->oMoveAngleYaw = o->parentObj->oMoveAngleYaw;
     if (!o->parentObj->activeFlags)
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
 }
 
 void bhv_chuckya_anchor_mario_loop(void) {
@@ -33,16 +33,16 @@ void bhv_chuckya_anchor_mario_loop(void) {
 s32 Unknown802A8EC8(s32 sp20, f32 sp24, f32 sp28, s32 sp2C) {
     s32 sp1C = 0;
     if (o->oChuckyaUnkF8 != 4) {
-        if (sp24 < obj_lateral_dist_from_mario_to_home()) {
-            if (obj_lateral_dist_to_home() < 200.0f)
+        if (sp24 < cur_obj_lateral_dist_from_mario_to_home()) {
+            if (cur_obj_lateral_dist_to_home() < 200.0f)
                 sp1C = 0;
             else {
                 sp1C = 1;
-                o->oAngleToMario = obj_angle_to_home();
+                o->oAngleToMario = cur_obj_angle_to_home();
             }
         } else if (o->oDistanceToMario > sp28) {
             if (gGlobalTimer % (s16) sp2C == 0)
-                o->oAngleToMario = angle_to_object(o, gMarioObject);
+                o->oAngleToMario = obj_angle_to_object(o, gMarioObject);
             sp1C = 2;
         } else
             sp1C = 3;
@@ -76,12 +76,12 @@ void ActionChuckya0(void) {
     s32 sp28;
     if (o->oTimer == 0)
         o->oChuckyaUnkFC = 0;
-    o->oAngleToMario = angle_to_object(o, gMarioObject);
+    o->oAngleToMario = obj_angle_to_object(o, gMarioObject);
     switch (sp28 = o->oSubAction) {
         case 0:
             o->oForwardVel = 0;
-            if (obj_lateral_dist_from_mario_to_home() < 2000.0f) {
-                obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+            if (cur_obj_lateral_dist_from_mario_to_home() < 2000.0f) {
+                cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
                 if (o->oChuckyaUnkFC > 40
                     || abs_angle_diff(o->oMoveAngleYaw, o->oAngleToMario) < 0x1000)
                     o->oSubAction = 1;
@@ -92,7 +92,7 @@ void ActionChuckya0(void) {
             func_802A9050(&o->oForwardVel, 30.0f, 4.0f);
             if (abs_angle_diff(o->oMoveAngleYaw, o->oAngleToMario) > 0x4000)
                 o->oSubAction = 2;
-            if (obj_lateral_dist_from_mario_to_home() > 2000.0f)
+            if (cur_obj_lateral_dist_from_mario_to_home() > 2000.0f)
                 o->oSubAction = 3;
             break;
         case 2:
@@ -101,14 +101,14 @@ void ActionChuckya0(void) {
                 o->oSubAction = 0;
             break;
         case 3:
-            if (obj_lateral_dist_to_home() < 500.0f)
+            if (cur_obj_lateral_dist_to_home() < 500.0f)
                 o->oForwardVel = 0;
             else {
                 func_802A9050(&o->oForwardVel, 10.0f, 4.0f);
-                o->oAngleToMario = obj_angle_to_home();
-                obj_rotate_yaw_toward(o->oAngleToMario, 0x800);
+                o->oAngleToMario = cur_obj_angle_to_home();
+                cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x800);
             }
-            if (obj_lateral_dist_from_mario_to_home() < 1900.0f)
+            if (cur_obj_lateral_dist_from_mario_to_home() < 1900.0f)
                 o->oSubAction = 0;
             break;
     }
@@ -116,7 +116,7 @@ void ActionChuckya0(void) {
         o->oChuckyaUnkFC = 0;
     else
         o->oChuckyaUnkFC++;
-    set_obj_animation_and_sound_state(4);
+    cur_obj_init_animation_with_sound(4);
     if (o->oForwardVel > 1.0f)
         PlaySound(SOUND_AIR_CHUCKYA_MOVE);
     print_debug_bottom_up("fg %d", sp3C);
@@ -125,7 +125,7 @@ void ActionChuckya0(void) {
 
 void ActionChuckya1(void) {
     if (o->oSubAction == 0) {
-        if (set_obj_anim_and_check_if_near_end(0))
+        if (cur_obj_init_animation_and_check_if_near_end(0))
             o->oSubAction++;
         o->oChuckyaUnkFC = RandomFloat() * 30.0f + 10.0f;
         o->oChuckyaUnk100 = 0;
@@ -139,7 +139,7 @@ void ActionChuckya1(void) {
                 o->oAction = 3;
                 o->oInteractStatus &= ~(INT_STATUS_GRABBED_MARIO);
             } else {
-                set_obj_animation_and_sound_state(1);
+                cur_obj_init_animation_with_sound(1);
                 o->oMoveAngleYaw += INT_STATUS_GRABBED_MARIO;
                 if (o->oChuckyaUnkFC-- < 0)
                     if (func_802B0C54(50.0f, 150.0f) || o->oChuckyaUnkFC < -16) {
@@ -148,8 +148,8 @@ void ActionChuckya1(void) {
                     }
             }
         } else {
-            set_obj_animation_and_sound_state(3);
-            if (obj_check_anim_frame(18)) {
+            cur_obj_init_animation_with_sound(3);
+            if (cur_obj_check_anim_frame(18)) {
                 PlaySound2(SOUND_OBJ_UNKNOWN4);
                 o->oChuckyaUnk88 = 2;
                 o->oAction = 3;
@@ -162,15 +162,15 @@ void ActionChuckya1(void) {
 void ActionChuckya3(void) {
     o->oForwardVel = 0;
     o->oVelY = 0;
-    set_obj_animation_and_sound_state(4);
+    cur_obj_init_animation_with_sound(4);
     if (o->oTimer > 100)
         o->oAction = 0;
 }
 
 void ActionChuckya2(void) {
     if (o->oMoveFlags & (0x200 | 0x40 | 0x20 | 0x10 | 0x8 | 0x1)) {
-        mark_object_for_deletion(o);
-        spawn_object_loot_yellow_coins(o, 5, 20.0f);
+        obj_mark_for_deletion(o);
+        obj_spawn_loot_yellow_coins(o, 5, 20.0f);
         spawn_mist_particles_with_sound(SOUND_OBJ_CHUCKYA_DEATH);
     }
 }
@@ -178,9 +178,9 @@ void ActionChuckya2(void) {
 void (*sChuckyaActions[])(void) = { ActionChuckya0, ActionChuckya1, ActionChuckya2, ActionChuckya3 };
 
 void func_802A97B8(void) {
-    obj_update_floor_and_walls();
-    obj_call_action_function(sChuckyaActions);
-    obj_move_standard(-30);
+    cur_obj_update_floor_and_walls();
+    cur_obj_call_action_function(sChuckyaActions);
+    cur_obj_move_standard(-30);
     if (o->oInteractStatus & INT_STATUS_GRABBED_MARIO) {
         o->oAction = 1;
         o->oChuckyaUnk88 = 1;
@@ -191,18 +191,18 @@ void func_802A97B8(void) {
 void bhv_chuckya_loop(void) {
     f32 sp2C = 20.0f;
     f32 sp28 = 50.0f;
-    obj_scale(2.0f);
+    cur_obj_scale(2.0f);
     o->oInteractionSubtype |= INT_SUBTYPE_GRABS_MARIO;
     switch (o->oHeldState) {
         case HELD_FREE:
             func_802A97B8();
             break;
         case HELD_HELD:
-            unrender_and_reset_obj_state(2, 0);
+            cur_obj_unrender_and_reset_state(2, 0);
             break;
         case HELD_THROWN:
         case HELD_DROPPED:
-            obj_get_thrown_or_placed(sp2C, sp28, 2);
+            cur_obj_get_thrown_or_placed(sp2C, sp28, 2);
             break;
     }
     o->oInteractStatus = 0;

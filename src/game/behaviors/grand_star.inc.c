@@ -25,7 +25,7 @@ void bhv_grand_star_loop(void) {
     sp28[0] = sp28[1] = sp28[2] = 0.0f;
     if (o->oAction == 0) {
         if (o->oTimer == 0) {
-            set_object_angle(o, 0, 0, 0);
+            obj_set_angle(o, 0, 0, 0);
             o->oAngleVelYaw = 0x400;
             PlaySound2(SOUND_GENERAL2_STAR_APPEARS);
         }
@@ -38,7 +38,7 @@ void bhv_grand_star_loop(void) {
             cutscene_object(CUTSCENE_STAR_SPAWN, o);
             o->oGrandStarUnk108 = func_802B2894(sp28, &o->oPosX, 80.0f, -2.0f);
         }
-        obj_move_using_fvel_and_gravity();
+        cur_obj_move_using_fvel_and_gravity();
         if (o->oSubAction == 0) {
             if (o->oPosY < o->oHomeY) {
                 o->oPosY = o->oHomeY;
@@ -58,15 +58,15 @@ void bhv_grand_star_loop(void) {
         }
         func_802B2328(3, 200, 80, -60);
     } else {
-        obj_become_tangible();
+        cur_obj_become_tangible();
         if (o->oInteractStatus & INT_STATUS_INTERACTED) {
-            mark_object_for_deletion(o);
+            obj_mark_for_deletion(o);
             o->oInteractStatus = 0;
         }
     }
     if (o->oAngleVelYaw > 0x400)
         o->oAngleVelYaw -= 0x100;
     o->oFaceAngleYaw += o->oAngleVelYaw;
-    obj_scale(2.0f);
+    cur_obj_scale(2.0f);
     o->oGraphYOffset = 110.0f;
 }

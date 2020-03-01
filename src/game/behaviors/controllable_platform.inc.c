@@ -132,7 +132,7 @@ void func_802F43EC(void) {
     s16 sp1C = gMarioObject->header.gfx.pos[2] - o->oPosZ;
 
     if (gMarioObject->platform == o
-        || gMarioObject->platform == obj_nearest_object_with_behavior(bhvControllablePlatformSub)) {
+        || gMarioObject->platform == cur_obj_nearest_object_with_behavior(bhvControllablePlatformSub)) {
         o->oFaceAnglePitch = sp1C * 4;
         o->oFaceAngleRoll = -sp1E * 4;
         if (D_80331694 == 6) {

@@ -124,7 +124,7 @@ void bhv_pyramid_top_fragment_init(void) {
     o->oFriction = 0.999f;
     o->oBuoyancy = 2.0f;
     o->oAnimState = 3;
-    obj_scale(o->oPyramidTopFragmentsScale);
+    cur_obj_scale(o->oPyramidTopFragmentsScale);
 }
 
 /**
@@ -146,8 +146,8 @@ void bhv_pyramid_top_fragment_loop(void) {
  * top's total count of touched detectors, and deactivate the detector.
  */
 void bhv_pyramid_pillar_touch_detector_loop(void) {
-    obj_become_tangible();
-    if (are_objects_collided(o, gMarioObject) == 1) {
+    cur_obj_become_tangible();
+    if (obj_check_if_collided_with_object(o, gMarioObject) == 1) {
         // Increase the pyramid top's count of pillars touched.
         o->parentObj->oPyramidTopPillarsTouched++;
         o->activeFlags = 0;

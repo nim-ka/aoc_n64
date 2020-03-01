@@ -2,11 +2,11 @@
 
 void ActionBowserTailAnchor0(void) {
     struct Object *bowser = o->parentObj;
-    obj_become_tangible();
-    obj_scale(1.0f);
+    cur_obj_become_tangible();
+    cur_obj_scale(1.0f);
     if (bowser->oAction == 19)
         bowser->oIntangibleTimer = -1;
-    else if (are_objects_collided(o, gMarioObject)) {
+    else if (obj_check_if_collided_with_object(o, gMarioObject)) {
         bowser->oIntangibleTimer = 0;
         o->oAction = 2;
     } else
@@ -23,7 +23,7 @@ void ActionBowserTailAnchor2(void) {
         o->parentObj->oIntangibleTimer = -1;
         o->oAction = 0;
     }
-    obj_become_intangible();
+    cur_obj_become_intangible();
 }
 
 void (*sBowserTailAnchorActions[])(void) = { ActionBowserTailAnchor0, ActionBowserTailAnchor1,
@@ -38,7 +38,7 @@ s16 D_8032F520[][3] = { { 1, 10, 40 },   { 0, 0, 74 },    { -1, -10, 114 },  { 1
                         { -1, 80, 184 }, { 1, 160, 186 }, { -1, -160, 186 }, { 1, 0, 0 }, };
 
 void bhv_bowser_tail_anchor_loop(void) {
-    obj_call_action_function(sBowserTailAnchorActions);
+    cur_obj_call_action_function(sBowserTailAnchorActions);
     o->oParentRelativePosX = 90.0f;
     if (o->parentObj->oAction == 4)
         o->parentObj->oIntangibleTimer = -1;
@@ -73,7 +73,7 @@ void bhv_bowser_flame_spawn_loop(void) {
 }
 
 void bhv_bowser_body_anchor_loop(void) {
-    copy_object_pos_and_angle(o, o->parentObj);
+    obj_copy_pos_and_angle(o, o->parentObj);
     if (o->parentObj->oAction == 4) {
 #ifndef VERSION_JP
         if (o->parentObj->oSubAction == 11)
@@ -86,12 +86,12 @@ void bhv_bowser_body_anchor_loop(void) {
     } else {
         o->oInteractType = 8;
         if (o->parentObj->oOpacity < 100)
-            obj_become_intangible();
+            cur_obj_become_intangible();
         else
-            obj_become_tangible();
+            cur_obj_become_tangible();
     }
     if (o->parentObj->oHeldState != HELD_FREE)
-        obj_become_intangible();
+        cur_obj_become_intangible();
     o->oInteractStatus = 0;
 }
 
@@ -109,7 +109,7 @@ void func_802B392C(s32 *a) {
     if (o->oMoveFlags & 1) {
         a[0]++;
         if (a[0] < 4) {
-            obj_start_cam_event(o, CAM_EVENT_BOWSER_THROW_BOUNCE);
+            cur_obj_start_cam_event(o, CAM_EVENT_BOWSER_THROW_BOUNCE);
             func_802AA618(0, 0, 60.0f);
             PlaySound2(SOUND_OBJ_BOWSER_WALK);
         }
@@ -121,10 +121,10 @@ void func_802B392C(s32 *a) {
 #define BITS (o->oBehParams2ndByte == 2)
 
 s32 func_802B39B8(void) {
-    set_obj_animation_and_sound_state(15);
-    if (obj_check_anim_frame(21))
+    cur_obj_init_animation_with_sound(15);
+    if (cur_obj_check_anim_frame(21))
         o->oForwardVel = 3.0f;
-    if (obj_check_if_near_anim_end())
+    if (cur_obj_check_if_near_animation_end())
         return 1;
     else
         return 0;
@@ -132,18 +132,18 @@ s32 func_802B39B8(void) {
 
 s32 func_802B3A30(void) {
     o->oForwardVel = 3.0f;
-    set_obj_animation_and_sound_state(13);
-    if (obj_check_if_near_anim_end())
+    cur_obj_init_animation_with_sound(13);
+    if (cur_obj_check_if_near_animation_end())
         return 1;
     else
         return 0;
 }
 
 s32 func_802B3A98(void) {
-    set_obj_animation_and_sound_state(14);
-    if (obj_check_anim_frame(20))
+    cur_obj_init_animation_with_sound(14);
+    if (cur_obj_check_anim_frame(20))
         o->oForwardVel = 0.0f;
-    if (obj_check_if_near_anim_end())
+    if (cur_obj_check_if_near_animation_end())
         return 1;
     else
         return 0;
@@ -163,7 +163,7 @@ void func_802B3B0C(void) {
 void ActionBowser5() // not much
 {
     o->oForwardVel = 0.0f;
-    set_obj_animation_and_sound_state(12);
+    cur_obj_init_animation_with_sound(12);
     func_802B3B0C();
 }
 
@@ -297,14 +297,14 @@ void func_u_802B4AF4(void) {
 
 void ActionBowser18() // unused?
 {
-    if (set_obj_anim_and_check_if_near_end(12))
+    if (cur_obj_init_animation_and_check_if_near_end(12))
         o->oAction = 0;
 }
 
 void ActionBowser0() // only lasts one frame
 {
     o->oBowserEyesShut = 0;
-    set_obj_animation_and_sound_state(12);
+    cur_obj_init_animation_with_sound(12);
     // stop him still
     o->oAngleVelYaw = 0;
     o->oForwardVel = 0.0f;
@@ -322,7 +322,7 @@ void ActionBowser15(void) {
     o->oForwardVel = 0.0f;
     if (o->oTimer == 0)
         PlaySound2(SOUND_OBJ_BOWSER_INHALING);
-    if (set_obj_anim_and_check_if_near_end(6))
+    if (cur_obj_init_animation_and_check_if_near_end(6))
         o->oAction = 0;
 }
 
@@ -339,7 +339,7 @@ void ActionBowser14() // turn towards Mario
         turnSpeed = 0x300;
     else
         turnSpeed = 0x200;
-    facing = obj_rotate_yaw_toward(o->oAngleToMario, turnSpeed);
+    facing = cur_obj_rotate_yaw_toward(o->oAngleToMario, turnSpeed);
     if (o->oSubAction == 0) {
         o->oBowserUnkF8 = 0;
         if (func_802B39B8())
@@ -360,7 +360,7 @@ void ActionBowser14() // turn towards Mario
 void ActionBowser16(void) {
     switch (o->oSubAction) {
         case 0:
-            obj_become_intangible();
+            cur_obj_become_intangible();
             o->oBowserUnk1AC = 0;
             o->oBowserUnkF8 = 30;
             if (o->oTimer == 0)
@@ -389,7 +389,7 @@ void ActionBowser16(void) {
             o->oBowserUnk1AC = 0xFF;
             if (o->oOpacity == 0xFF)
                 o->oAction = 0;
-            obj_become_tangible();
+            cur_obj_become_tangible();
             break;
     }
 }
@@ -397,7 +397,7 @@ void ActionBowser16(void) {
 void ActionBowser8(void) // only in sky
 {
     s32 frame;
-    set_obj_animation_and_sound_state(11);
+    cur_obj_init_animation_with_sound(11);
     frame = o->header.gfx.unk38.animFrame;
     if (frame > 24 && frame < 36) {
         PlaySound(SOUND_AIR_BOWSER_SPIT_FIRE);
@@ -406,7 +406,7 @@ void ActionBowser8(void) // only in sky
         else
             spawn_object_relative(0, 0, 0x190, 0x64, o, MODEL_RED_FLAME, bhvBlueBowserFlame);
     }
-    if (obj_check_if_near_anim_end())
+    if (cur_obj_check_if_near_animation_end())
         o->oAction = 0;
     o->oBowserUnkF4 |= 0x20000;
 }
@@ -419,21 +419,21 @@ void ActionBowser12(void) {
         o->oBowserEyesShut = 1;
     }
     if (o->oSubAction == 0) {
-        set_obj_animation_and_sound_state(25);
+        cur_obj_init_animation_with_sound(25);
         o->oSubAction++;
         o->oBowserUnkF8 = 0;
     } else if (o->oSubAction == 1) {
-        set_obj_animation_and_sound_state(25);
-        obj_extend_anim_if_at_end();
+        cur_obj_init_animation_with_sound(25);
+        cur_obj_extend_animation_if_at_end();
         func_802B392C(&o->oBowserUnkF8);
         if ((o->oBowserUnkF8 > 2)) {
-            set_obj_animation_and_sound_state(26);
+            cur_obj_init_animation_with_sound(26);
             o->oVelY = 0.0f;
             o->oForwardVel = 0.0f;
             o->oSubAction++;
         }
     } else if (o->oSubAction == 2) {
-        if (obj_check_if_near_anim_end()) {
+        if (cur_obj_check_if_near_animation_end()) {
             if (o->oHealth == 1)
                 o->oAction = 3;
             else
@@ -445,8 +445,8 @@ void ActionBowser12(void) {
 }
 
 s32 func_802B4A44(void) {
-    set_obj_animation_and_sound_state(9);
-    if (obj_check_anim_frame(11))
+    cur_obj_init_animation_with_sound(9);
+    if (cur_obj_check_anim_frame(11))
         return 1;
     else
         return 0;
@@ -457,9 +457,9 @@ s32 func_802B4A94(void) {
         o->oForwardVel = 0;
         o->oVelY = 0;
         func_802AA618(0, 0, 60.0f);
-        set_obj_animation_and_sound_state(8);
+        cur_obj_init_animation_with_sound(8);
         o->header.gfx.unk38.animFrame = 0;
-        obj_start_cam_event(o, CAM_EVENT_BOWSER_JUMP);
+        cur_obj_start_cam_event(o, CAM_EVENT_BOWSER_JUMP);
         if (BITDW) {
             if (o->oDistanceToMario < 850.0f)
                 gMarioObject->oInteractStatus |= INTERACT_GRABBABLE;
@@ -513,7 +513,7 @@ void ActionBowser13(void) {
         } else {
         }
 #endif
-    } else if (obj_check_if_near_anim_end())
+    } else if (cur_obj_check_if_near_animation_end())
         o->oAction = 0;
 }
 
@@ -530,7 +530,7 @@ void ActionBowser17(void) {
     } else if (o->oSubAction == 1) {
         if (func_802B4A94())
             o->oSubAction++;
-    } else if (obj_check_if_near_anim_end())
+    } else if (cur_obj_check_if_near_animation_end())
         o->oAction = 0;
 }
 
@@ -540,15 +540,15 @@ void ActionBowser10(void) {
         o->oBowserUnkF8 = 0;
     switch (o->oSubAction) {
         case 0:
-            set_obj_animation_and_sound_state(23);
-            if (obj_check_if_near_anim_end())
+            cur_obj_init_animation_with_sound(23);
+            if (cur_obj_check_if_near_animation_end())
                 o->oBowserUnkF8++;
             if (o->oBowserUnkF8 > 0)
                 o->oSubAction++;
             break;
         case 1:
-            set_obj_animation_and_sound_state(24);
-            if (obj_check_if_near_anim_end())
+            cur_obj_init_animation_with_sound(24);
+            if (cur_obj_check_if_near_animation_end())
                 o->oAction = 11;
             break;
     }
@@ -559,10 +559,10 @@ void ActionBowser9(void) {
         o->oBowserUnk108 = 3;
     else
         o->oBowserUnk108 = RandomFloat() * 3.0f + 1.0f;
-    set_obj_animation_and_sound_state(22);
-    if (obj_check_anim_frame(5))
+    cur_obj_init_animation_with_sound(22);
+    if (cur_obj_check_anim_frame(5))
         obj_spit_fire(0, 200, 180, 7.0f, MODEL_RED_FLAME, 30.0f, 10.0f, 0x1000);
-    if (obj_check_if_near_anim_end())
+    if (cur_obj_check_if_near_animation_end())
         o->oSubAction++;
     if (o->oSubAction >= o->oBowserUnk108)
         o->oAction = 0;
@@ -570,13 +570,13 @@ void ActionBowser9(void) {
 
 s32 func_802B5108(s32 a0, s16 a1) {
     if (o->oSubAction == 0) {
-        if (set_obj_anim_and_check_if_near_end(15))
+        if (cur_obj_init_animation_and_check_if_near_end(15))
             o->oSubAction++;
     } else if (o->oSubAction == 1) {
-        if (set_obj_anim_and_check_if_near_end(14))
+        if (cur_obj_init_animation_and_check_if_near_end(14))
             o->oSubAction++;
     } else
-        set_obj_animation_and_sound_state(12);
+        cur_obj_init_animation_with_sound(12);
     o->oForwardVel = 0.0f;
     o->oMoveAngleYaw += a1;
     if (o->oTimer >= a0)
@@ -597,12 +597,12 @@ void ActionBowser7(void) {
     switch (o->oSubAction) {
         case 0:
             o->oBowserUnkF8 = 0;
-            if (set_obj_anim_and_check_if_near_end(18))
+            if (cur_obj_init_animation_and_check_if_near_end(18))
                 o->oSubAction = 1;
             break;
         case 1:
             o->oForwardVel = 50.0f;
-            if (set_obj_anim_and_check_if_near_end(0x13) != 0) {
+            if (cur_obj_init_animation_and_check_if_near_end(0x13) != 0) {
                 o->oBowserUnkF8++;
                 if (o->oBowserUnkF8 >= 6)
                     o->oSubAction = 3;
@@ -610,22 +610,22 @@ void ActionBowser7(void) {
                     if (abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw) > 0x2000)
                         o->oSubAction = 3;
             }
-            obj_rotate_yaw_toward(o->oAngleToMario, 0x200);
+            cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x200);
             break;
         case 3:
             o->oBowserUnkF8 = 0;
-            set_obj_animation_and_sound_state(21);
+            cur_obj_init_animation_with_sound(21);
             spawn_object_relative_with_scale(0, 100, -50, 0, 3.0f, o, MODEL_SMOKE, bhvWhitePuffSmoke2);
             spawn_object_relative_with_scale(0, -100, -50, 0, 3.0f, o, MODEL_SMOKE,
                                              bhvWhitePuffSmoke2);
             if (approach_f32_signed(&o->oForwardVel, 0, -1.0f))
                 o->oSubAction = 2;
-            obj_extend_anim_if_at_end();
+            cur_obj_extend_animation_if_at_end();
             break;
         case 2:
             o->oForwardVel = 0.0f;
-            set_obj_animation_and_sound_state(20);
-            if (obj_check_if_near_anim_end()) {
+            cur_obj_init_animation_with_sound(20);
+            if (cur_obj_check_if_near_animation_end()) {
                 if (BITS)
                     sp34 = 10;
                 else
@@ -634,7 +634,7 @@ void ActionBowser7(void) {
                     o->oAction = 0;
                 o->oBowserUnkF8++;
             }
-            obj_extend_anim_if_at_end();
+            cur_obj_extend_animation_if_at_end();
             break;
     }
     if (o->oMoveFlags & 0x400)
@@ -644,7 +644,7 @@ void ActionBowser7(void) {
 s32 func_802B5588(void) {
     struct Object *mine;
     f32 sp18;
-    mine = obj_find_nearest_object_with_behavior(bhvBowserBomb, &sp18);
+    mine = cur_obj_find_nearest_object_with_behavior(bhvBowserBomb, &sp18);
     if (mine != NULL && sp18 < 800.0f) {
         mine->oInteractStatus |= INTERACT_MR_BLIZZARD;
         return 1;
@@ -658,13 +658,13 @@ void ActionBowser1(void) // unused?
     if (o->oTimer < 2)
         o->oBowserUnkF8 = 0;
     if (o->oSubAction == 0) {
-        set_obj_animation_and_sound_state(2);
+        cur_obj_init_animation_with_sound(2);
         func_802B392C(&o->oBowserUnkF8);
         if (o->oMoveFlags & 2) {
             o->oForwardVel = 0.0f;
             o->oSubAction++;
         }
-    } else if (set_obj_anim_and_check_if_near_end(0))
+    } else if (cur_obj_init_animation_and_check_if_near_end(0))
         o->oAction = 0;
     if (func_802B5588()) {
         o->oHealth--;
@@ -706,8 +706,8 @@ void ActionBowser2(void) {
             func_802B5738();
             break;
         case 1:
-            set_obj_animation_and_sound_state(9);
-            if (obj_check_anim_frame(11)) {
+            cur_obj_init_animation_with_sound(9);
+            if (cur_obj_check_anim_frame(11)) {
                 o->oMoveAngleYaw = o->oBowserAngleToCentre;
                 o->oVelY = 150.0f;
                 o->oBowserUnk1AC = 0xFF;
@@ -723,9 +723,9 @@ void ActionBowser2(void) {
                     if (absf(o->oFloorHeight - o->oHomeY) < 100.0f)
                         approach_f32_signed(&o->oForwardVel, 0, -5.0f);
                     else
-                        obj_forward_vel_approach_upward(150.0f, 2.0f);
+                        cur_obj_forward_vel_approach_upward(150.0f, 2.0f);
                 } else
-                    obj_forward_vel_approach_upward(150.0f, 2.0f);
+                    cur_obj_forward_vel_approach_upward(150.0f, 2.0f);
             }
             if (func_802B4A94()) {
                 o->oDragStrength = 10.0f;
@@ -748,10 +748,10 @@ void ActionBowser2(void) {
 #endif
             break;
         case 3:
-            if (obj_check_if_near_anim_end()) {
+            if (cur_obj_check_if_near_animation_end()) {
                 o->oAction = 0;
                 o->oBowserUnkF4 &= ~0x10000;
-                obj_extend_anim_if_at_end();
+                cur_obj_extend_animation_if_at_end();
             }
             break;
     }
@@ -759,9 +759,9 @@ void ActionBowser2(void) {
 }
 
 void ActionBowser3(void) {
-    if (item_in_array(o->oTimer, D_8032F514))
+    if (is_item_in_array(o->oTimer, D_8032F514))
         PlaySound2(SOUND_OBJ_BOWSER_WALK);
-    if (set_obj_anim_and_check_if_near_end(10))
+    if (cur_obj_init_animation_and_check_if_near_end(10))
         o->oAction = 0;
 }
 
@@ -776,7 +776,7 @@ void func_802B5C78(void) {
 }
 
 void func_802B5D18(void) {
-    set_obj_animation_and_sound_state(16);
+    cur_obj_init_animation_with_sound(16);
     if (BITS)
         o->oForwardVel = -400.0f;
     else
@@ -800,11 +800,11 @@ void func_802B5DD8(void) {
 
 s32 func_802B5E7C(void) {
     s32 ret = 0;
-    obj_become_intangible();
-    if (set_obj_anim_and_check_if_near_end(17) && o->oDistanceToMario < 700.0f
+    cur_obj_become_intangible();
+    if (cur_obj_init_animation_and_check_if_near_end(17) && o->oDistanceToMario < 700.0f
         && abs_angle_diff(gMarioObject->oMoveAngleYaw, o->oAngleToMario) > 0x6000)
         ret = 1;
-    obj_extend_anim_if_at_end();
+    cur_obj_extend_animation_if_at_end();
     o->oBowserUnkF8 = 0;
     return ret;
 }
@@ -830,7 +830,7 @@ s32 func_802B5F20(void) {
 }
 
 void func_802B60B8(void) {
-    obj_scale(0);
+    cur_obj_scale(0);
     o->oForwardVel = 0;
     o->oVelY = 0;
     o->oGravity = 0;
@@ -843,7 +843,7 @@ s32 func_802B6120(void) {
             func_8031FFB4(0, 60, 40);
             o->oBowserUnkF8++;
         }
-        if (obj_update_dialog(2, 18, sBowserDefeatedDialogText[o->oBehParams2ndByte], 0)) {
+        if (cur_obj_update_dialog(2, 18, sBowserDefeatedDialogText[o->oBehParams2ndByte], 0)) {
             o->oBowserUnkF8++;
             PlaySound2(SOUND_GENERAL2_BOWSER_EXPLODE);
             sequence_player_unlower(0, 60);
@@ -872,8 +872,8 @@ s32 func_802B6254(void) {
             func_8031FFB4(0, 60, 40);
             o->oBowserUnkF8++;
         }
-        if (obj_update_dialog(2, 18, dialogID, 0)) {
-            obj_set_model(MODEL_BOWSER2);
+        if (cur_obj_update_dialog(2, 18, dialogID, 0)) {
+            cur_obj_set_model(MODEL_BOWSER2);
             sequence_player_unlower(0, 60);
             sequence_player_fade_out(0, 1);
             func_802B5C78();
@@ -930,7 +930,7 @@ void func_802B64E8(struct Object *bowser, s16 a1) {
 }
 
 void ActionBowser19(void) {
-    struct Object *platform = obj_nearest_object_with_behavior(bhvTiltingBowserLavaPlatform);
+    struct Object *platform = cur_obj_nearest_object_with_behavior(bhvTiltingBowserLavaPlatform);
     UNUSED s16 sp2A = o->oBowserAngleToCentre + 0x8000;
     s16 sp28;
     UNUSED s32 unused;
@@ -964,7 +964,7 @@ void ActionBowser19(void) {
             platform->oFaceAngleRoll = 0;
         }
     }
-    obj_extend_anim_if_at_end();
+    cur_obj_extend_animation_if_at_end();
 }
 
 s32 func_802B67C4(void) // bowser off stage?
@@ -1045,9 +1045,9 @@ void func_802B688C(void) {
     if ((platform = o->platform) != NULL)
         apply_platform_displacement(0, platform);
     o->oBowserUnk10E = 0;
-    obj_update_floor_and_walls();
-    obj_call_action_function(sBowserActions);
-    obj_move_standard(-78);
+    cur_obj_update_floor_and_walls();
+    cur_obj_call_action_function(sBowserActions);
+    cur_obj_move_standard(-78);
     if (func_802B67C4())
         o->oAction = 2; // bowser go home?
     floorHeight = find_floor(o->oPosX, o->oPosY, o->oPosZ, &floor);
@@ -1060,16 +1060,16 @@ void func_802B688C(void) {
 
 void func_802B697C(void) {
     o->oBowserUnkF4 &= ~0x20000;
-    obj_become_intangible();
+    cur_obj_become_intangible();
     switch (o->oBowserUnk10E) {
         case 0:
             PlaySound2(SOUND_OBJ_BOWSER_TAIL_PICKUP);
-            unrender_and_reset_obj_state(3, 1);
+            cur_obj_unrender_and_reset_state(3, 1);
             o->oBowserUnk10E++;
             break;
         case 1:
-            if (obj_check_if_near_anim_end()) {
-                set_obj_animation_and_sound_state(2);
+            if (cur_obj_check_if_near_animation_end()) {
+                cur_obj_init_animation_with_sound(2);
                 o->oBowserUnk10E++;
             }
             break;
@@ -1085,7 +1085,7 @@ void func_802B697C(void) {
 void func_802B6AC0(void) {
     f32 sp1C;
     o->oBowserUnk10E = 0;
-    obj_get_thrown_or_placed(1.0f, 1.0f, 1);
+    cur_obj_get_thrown_or_placed(1.0f, 1.0f, 1);
     sp1C = o->oBowserHeldAngleVelYaw / 3000.0 * 70.0f;
     if (sp1C < 0.0f)
         sp1C = -sp1C;
@@ -1093,7 +1093,7 @@ void func_802B6AC0(void) {
         sp1C *= 2.5; // > 90 => get bigger?
     o->oForwardVel = coss(o->oBowserHeldAnglePitch) * sp1C;
     o->oVelY = -sins(o->oBowserHeldAnglePitch) * sp1C;
-    obj_become_intangible();
+    cur_obj_become_intangible();
     o->prevObj->oAction = 1; // not sure what prevObj is
     o->prevObj->oTimer = 0;
     o->prevObj->oSubAction = 0;
@@ -1132,7 +1132,7 @@ void bhv_bowser_loop(void) {
             func_802B6AC0();
             break;
     }
-    obj_align_gfx_with_floor();
+    cur_obj_align_gfx_with_floor();
     if (o->oAction != 4)
         if (o->oBowserUnk1AC != o->oOpacity) {
             if (o->oBowserUnk1AC > o->oOpacity) {
@@ -1161,7 +1161,7 @@ void bhv_bowser_init(void) {
     o->oBehParams2ndByte = level;
     o->oBowserUnk1B2 = D_8032F690[level];
     o->oHealth = D_8032F694[level];
-    obj_start_cam_event(o, CAM_EVENT_BOWSER_INIT);
+    cur_obj_start_cam_event(o, CAM_EVENT_BOWSER_INIT);
     o->oAction = 5;
     o->oBowserUnk1AE = 0;
     o->oBowserEyesShut = 0;
@@ -1179,8 +1179,8 @@ Gfx *Geo18_802B798C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx) {
         sp1C = (struct Object *) gCurGraphNodeObject;
         if (sp1C->prevObj != NULL) {
             create_transformation_from_matrices(sp20, mtx, gCurGraphNodeCamera->matrixPtr);
-            update_pos_from_parent_transformation(sp20, sp1C->prevObj);
-            set_gfx_pos_from_pos(sp1C->prevObj);
+            obj_update_pos_from_parent_transformation(sp20, sp1C->prevObj);
+            obj_set_gfx_pos_from_pos(sp1C->prevObj);
         }
     }
     return NULL;
@@ -1294,8 +1294,8 @@ Gfx *Geo18_802B7D44(s32 a0, struct GraphNode *node, UNUSED s32 a2) {
 }
 
 void ActionFallingBowserPlatform0(void) {
-    o->oPlatformUnkF8 = obj_nearest_object_with_behavior(bhvBowser);
-    set_object_collision_data(o, D_8032F698[o->oBehParams2ndByte].unk0);
+    o->oPlatformUnkF8 = cur_obj_nearest_object_with_behavior(bhvBowser);
+    obj_set_collision_data(o, D_8032F698[o->oBehParams2ndByte].unk0);
     if (o->oPlatformUnkF8 != 0)
         o->oAction = 1;
 }
@@ -1333,7 +1333,7 @@ void ActionFallingBowserPlatform2(void) {
     if ((o->oTimer & 1) == 0 && o->oTimer < 14) {
         sp22 = D_8032F698[o->oBehParams2ndByte].unk3 + (gDebugInfo[4][1] << 8);
         sp1C = -(o->oTimer / 2) * 290 + 1740;
-        func_802B8F7C(sp24, &o->oPosX);
+        vec3f_copy_2(sp24, &o->oPosX);
         o->oPosX = D_8032F698[o->oBehParams2ndByte].unk1 + sins(sp22 + 5296) * sp1C;
         o->oPosZ = D_8032F698[o->oBehParams2ndByte].unk2 + coss(sp22 + 5296) * sp1C;
         o->oPosY = 307.0f;
@@ -1341,11 +1341,11 @@ void ActionFallingBowserPlatform2(void) {
         o->oPosX = D_8032F698[o->oBehParams2ndByte].unk1 + sins(sp22 - 5296) * sp1C;
         o->oPosZ = D_8032F698[o->oBehParams2ndByte].unk2 + coss(sp22 - 5296) * sp1C;
         func_802AA618(4, 0, 100);
-        func_802B8F7C(&o->oPosX, sp24);
+        vec3f_copy_2(&o->oPosX, sp24);
     }
-    obj_move_using_fvel_and_gravity();
+    cur_obj_move_using_fvel_and_gravity();
     if (o->oTimer > 300)
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
 }
 
 void (*sFallingBowserPlatformActions[])(void) = { ActionFallingBowserPlatform0,
@@ -1379,11 +1379,11 @@ struct ObjectHitbox sBowserFlameHitbox = {
 f32 D_8032F748[] = { -8.0f, -6.0f, -3.0f };
 
 void bhv_falling_bowser_platform_loop(void) {
-    obj_call_action_function(sFallingBowserPlatformActions);
+    cur_obj_call_action_function(sFallingBowserPlatformActions);
 }
 
 void func_802B7A58(void) {
-    mark_object_for_deletion(o);
+    obj_mark_for_deletion(o);
     spawn_object_with_scale(o, MODEL_NONE, bhvBlackSmokeUpward, 1.0f);
     if (RandomFloat() < 0.1)
         spawn_object(o, MODEL_YELLOW_COIN, bhvTemporaryYellowCoin);
@@ -1427,16 +1427,16 @@ void func_802B7CFC(void) {
 }
 
 void bhv_flame_bowser_loop(void) {
-    obj_update_floor_and_walls();
-    obj_move_standard(78);
+    cur_obj_update_floor_and_walls();
+    cur_obj_move_standard(78);
     if (o->oVelY < -4.0f)
         o->oVelY = -4.0f;
     if (o->oAction == 0) {
-        obj_become_intangible();
+        cur_obj_become_intangible();
         func_802B7CFC();
         if (o->oMoveFlags & 1) {
             o->oAction++;
-            if (obj_has_behavior(bhvFlameLargeBurningOut))
+            if (cur_obj_has_behavior(bhvFlameLargeBurningOut))
                 o->oFlameUnkF4 = 8.0f;
             else
                 o->oFlameUnkF4 = RandomFloat() * 2 + 6.0f;
@@ -1445,21 +1445,21 @@ void bhv_flame_bowser_loop(void) {
             o->oGravity = 0;
         }
     } else {
-        obj_become_tangible();
+        cur_obj_become_tangible();
         if (o->oTimer > o->oFlameUnkF4 * 10 + 5.0f) {
             o->oFlameUnkF4 -= 0.15;
             if (o->oFlameUnkF4 <= 0)
                 func_802B7A58();
         }
     }
-    obj_scale(o->oFlameUnkF4);
+    cur_obj_scale(o->oFlameUnkF4);
     o->oGraphYOffset = o->header.gfx.scale[1] * 14.0f;
-    set_object_hitbox(o, &sBowserFlameHitbox);
+    obj_set_hitbox(o, &sBowserFlameHitbox);
 }
 
 void bhv_flame_moving_forward_growing_init(void) {
     o->oForwardVel = 30.0f;
-    translate_object_xz_random(o, 80.0f);
+    obj_translate_xz_random(o, 80.0f);
     o->oAnimState = (s32)(RandomFloat() * 10.0f);
     o->oFlameUnkF4 = 3.0f;
 }
@@ -1467,19 +1467,19 @@ void bhv_flame_moving_forward_growing_init(void) {
 void bhv_flame_moving_forward_growing_loop(void) {
     UNUSED s32 unused;
     UNUSED struct Object *sp18;
-    set_object_hitbox(o, &sGrowingBowserFlameHitbox);
+    obj_set_hitbox(o, &sGrowingBowserFlameHitbox);
     o->oFlameUnkF4 = o->oFlameUnkF4 + 0.5;
-    obj_scale(o->oFlameUnkF4);
+    cur_obj_scale(o->oFlameUnkF4);
     if (o->oMoveAnglePitch > 0x800)
         o->oMoveAnglePitch -= 0x200;
-    obj_set_pos_via_transform();
-    obj_update_floor_height();
+    cur_obj_set_pos_via_transform();
+    cur_obj_update_floor_height();
     if (o->oFlameUnkF4 > 30.0f)
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
     if (o->oPosY < o->oFloorHeight) {
         o->oPosY = o->oFloorHeight;
         sp18 = spawn_object(o, MODEL_RED_FLAME, bhvFlameBowser);
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
     }
 }
 
@@ -1497,11 +1497,11 @@ void bhv_flame_floating_landing_init(void) {
 
 void bhv_flame_floating_landing_loop(void) {
     UNUSED s32 unused;
-    obj_update_floor_and_walls();
-    obj_move_standard(0x4e);
+    cur_obj_update_floor_and_walls();
+    cur_obj_move_standard(0x4e);
     func_802B7CFC();
     if (func_802B7ADC(900))
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
     if (o->oVelY < D_8032F748[o->oBehParams2ndByte])
         o->oVelY = D_8032F748[o->oBehParams2ndByte];
     if (o->oMoveFlags & 1) {
@@ -1509,13 +1509,13 @@ void bhv_flame_floating_landing_loop(void) {
             spawn_object(o, MODEL_RED_FLAME, bhvFlameLargeBurningOut);
         else
             spawn_object(o, MODEL_NONE, bhvBlueFlamesGroup); //? wonder if they meant MODEL_BLUE_FLAME?
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
     }
     o->oGraphYOffset = o->header.gfx.scale[1] * 14.0f;
 }
 
 void bhv_blue_bowser_flame_init(void) {
-    translate_object_xz_random(o, 80.0f);
+    obj_translate_xz_random(o, 80.0f);
     o->oAnimState = (s32)(RandomFloat() * 10.0f);
     o->oVelY = 7.0f;
     o->oForwardVel = 35.0f;
@@ -1527,12 +1527,12 @@ void bhv_blue_bowser_flame_init(void) {
 
 void bhv_blue_bowser_flame_loop(void) {
     s32 i;
-    set_object_hitbox(o, &sGrowingBowserFlameHitbox);
+    obj_set_hitbox(o, &sGrowingBowserFlameHitbox);
     if (o->oFlameUnkF4 < 16.0f)
         o->oFlameUnkF4 = o->oFlameUnkF4 + 0.5;
-    obj_scale(o->oFlameUnkF4);
-    obj_update_floor_and_walls();
-    obj_move_standard(0x4e);
+    cur_obj_scale(o->oFlameUnkF4);
+    cur_obj_update_floor_and_walls();
+    cur_obj_move_standard(0x4e);
     if (o->oTimer > 0x14) {
         if (o->oBehParams2ndByte == 0)
             for (i = 0; i < 3; i++)
@@ -1544,7 +1544,7 @@ void bhv_blue_bowser_flame_loop(void) {
             spawn_object_relative_with_scale(2, 0, 0, 0, 8.0f, o, MODEL_BLUE_FLAME,
                                              bhvFlameFloatingLanding);
         }
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
     }
 }
 
@@ -1559,27 +1559,27 @@ void bhv_flame_bouncing_init(void) {
 void bhv_flame_bouncing_loop(void) {
     struct Object *sp1C;
     if (o->oTimer == 0)
-        o->oFlameUnk100 = obj_nearest_object_with_behavior(bhvBowser);
+        o->oFlameUnk100 = cur_obj_nearest_object_with_behavior(bhvBowser);
     sp1C = o->oFlameUnk100;
     o->oForwardVel = 15.0f;
     o->oBounce = -1.0f;
-    obj_scale(o->oFlameUnkF4);
-    set_object_hitbox(o, &sGrowingBowserFlameHitbox);
-    obj_update_floor_and_walls();
-    obj_move_standard(78);
+    cur_obj_scale(o->oFlameUnkF4);
+    obj_set_hitbox(o, &sGrowingBowserFlameHitbox);
+    cur_obj_update_floor_and_walls();
+    cur_obj_move_standard(78);
     if (func_802B7ADC(300))
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
     if (sp1C != NULL)
         if (sp1C->oHeldState == 0)
             if (lateral_dist_between_objects(o, sp1C) < 300.0f)
-                mark_object_for_deletion(o);
+                obj_mark_for_deletion(o);
 }
 
 void bhv_blue_flames_group_loop(void) {
     struct Object *flame;
     s32 i;
     if (o->oTimer == 0) {
-        o->oMoveAngleYaw = angle_to_object(o, gMarioObject);
+        o->oMoveAngleYaw = obj_angle_to_object(o, gMarioObject);
         o->oBlueFlameUnkF8 = 5.0f;
     }
     if (o->oTimer < 16) {
@@ -1592,5 +1592,5 @@ void bhv_blue_flames_group_loop(void) {
             o->oBlueFlameUnkF8 -= 0.5;
         }
     } else
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
 }

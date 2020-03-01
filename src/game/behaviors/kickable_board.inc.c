@@ -1,7 +1,7 @@
 // kickable_board.c.inc
 
 s32 func_802A9A0C(UNUSED s32 sp18) {
-    if (are_objects_collided(o, gMarioObject)) {
+    if (obj_check_if_collided_with_object(o, gMarioObject)) {
         if (abs_angle_diff(o->oMoveAngleYaw, gMarioObject->oMoveAngleYaw) > 0x6000) {
             if (gMarioStates->action == ACT_SLIDE_KICK)
                 return 1;
@@ -58,15 +58,15 @@ void bhv_kickable_board_loop(void) {
             o->oKickableBoardF4 += 0x400;
             break;
         case 2:
-            obj_become_intangible();
-            obj_set_model(MODEL_WF_KICKABLE_BOARD_FELLED);
+            cur_obj_become_intangible();
+            cur_obj_set_model(MODEL_WF_KICKABLE_BOARD_FELLED);
             o->oAngleVelPitch -= 0x80;
             o->oFaceAnglePitch += o->oAngleVelPitch;
             if (o->oFaceAnglePitch < -0x4000) {
                 o->oFaceAnglePitch = -0x4000;
                 o->oAngleVelPitch = 0;
                 o->oAction++;
-                shake_screen_from_object(SHAKE_POS_SMALL);
+                cur_obj_shake_screen(SHAKE_POS_SMALL);
                 PlaySound2(SOUND_GENERAL_UNKNOWN4);
             }
             load_object_collision_model();

@@ -26,14 +26,14 @@ void bhv_openable_grill_loop(void) {
             sp3C = spawn_object_relative(-1, D_8032FCE8[sp38].unk0, 0, 0, o, D_8032FCE8[sp38].unk1,
                                          bhvOpenableCageDoor);
             sp3C->oMoveAngleYaw += 0x8000;
-            set_object_collision_data(sp3C, D_8032FCE8[sp38].unk2);
+            obj_set_collision_data(sp3C, D_8032FCE8[sp38].unk2);
             sp3C = spawn_object_relative(1, -D_8032FCE8[sp38].unk0, 0, 0, o, D_8032FCE8[sp38].unk1,
                                          bhvOpenableCageDoor);
-            set_object_collision_data(sp3C, D_8032FCE8[sp38].unk2);
+            obj_set_collision_data(sp3C, D_8032FCE8[sp38].unk2);
             o->oAction++;
             break;
         case 1:
-            if ((o->oOpenableGrillUnkF4 = obj_nearest_object_with_behavior(bhvFloorSwitchGrills))
+            if ((o->oOpenableGrillUnkF4 = cur_obj_nearest_object_with_behavior(bhvFloorSwitchGrills))
                 != NULL)
                 o->oAction++;
             break;

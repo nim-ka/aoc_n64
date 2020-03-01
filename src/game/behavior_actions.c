@@ -74,13 +74,6 @@ struct Struct802C0DF0 {
     const BehaviorScript *behavior;
 };
 
-struct Struct8032FE4C {
-    s32 unk0;
-    s32 unk1;
-    f32 unk2;
-    f32 unk3;
-};
-
 struct Struct8032F754 {
     s32 unk0;
     Vec3f unk1;
@@ -152,7 +145,7 @@ void func_802AA618(s32 sp18, s32 sp1C, f32 sp20) {
     } else {
         D_8032F270.count = 4;
     }
-    obj_spawn_particles(&D_8032F270);
+    cur_obj_spawn_particles(&D_8032F270);
 }
 
 #include "behaviors/sparkle_spawn_star.inc.c"
@@ -195,8 +188,8 @@ Gfx *Geo18_802B1BB0(s32 run, UNUSED struct GraphNode *node, Mat4 mtx) {
         sp1C = (struct Object *) gCurGraphNodeObject;
         if (sp1C == gMarioObject && sp1C->prevObj != NULL) {
             create_transformation_from_matrices(sp20, mtx, gCurGraphNodeCamera->matrixPtr);
-            update_pos_from_parent_transformation(sp20, sp1C->prevObj);
-            set_gfx_pos_from_pos(sp1C->prevObj);
+            obj_update_pos_from_parent_transformation(sp20, sp1C->prevObj);
+            obj_set_gfx_pos_from_pos(sp1C->prevObj);
         }
     }
     return NULL;
@@ -232,6 +225,15 @@ void func_802B2328(s32 n, s32 a1, s32 a2, s32 r) {
 #include "behaviors/bullet_bill.inc.c"
 #include "behaviors/bowser.inc.c"
 #include "behaviors/blue_fish.inc.c"
+
+// Not in behavior file, duplicate of vec3f_copy except without bad return.
+// Used in a few behavior files.
+void vec3f_copy_2(Vec3f dest, Vec3f src) {
+    dest[0] = src[0];
+    dest[1] = src[1];
+    dest[2] = src[2];
+}
+
 #include "behaviors/checkerboard_platform.inc.c"
 #include "behaviors/ddd_warp.inc.c"
 #include "behaviors/water_pillar.inc.c"
@@ -280,7 +282,7 @@ void func_802B2328(s32 n, s32 a1, s32 a2, s32 r) {
 #include "behaviors/sparkle_spawn.inc.c"
 #include "behaviors/scuttlebug.inc.c" // :scuttleeyes:
 #include "behaviors/whomp.inc.c"
-#include "behaviors/water_splash.inc.c"
-#include "behaviors/wind_particle.inc.c"
-#include "behaviors/snowman_wind.inc.c"
-#include "behaviors/walking_penguin.inc.c"
+#include "behaviors/water_splashes_and_waves.inc.c"
+#include "behaviors/strong_wind_particle.inc.c"
+#include "behaviors/sl_snowman_wind.inc.c"
+#include "behaviors/sl_walking_penguin.inc.c"

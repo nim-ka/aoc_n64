@@ -4,7 +4,7 @@ void func_802B95A4(void) {
     struct Object *sp1C;
     switch (o->oAction) {
         case 0:
-            if (obj_is_mario_ground_pounding_platform()) {
+            if (cur_obj_is_mario_ground_pounding_platform()) {
                 o->oAction++;
                 spawn_mist_particles();
             }
@@ -16,14 +16,14 @@ void func_802B95A4(void) {
                 o->oAction++;
             break;
         case 2:
-            sp1C = obj_nearest_object_with_behavior(bhvWaterLevelPillar);
+            sp1C = cur_obj_nearest_object_with_behavior(bhvWaterLevelPillar);
             if (sp1C != NULL) {
                 if (sp1C->oAction < 2)
                     o->oAction++;
             }
             break;
         case 3:
-            sp1C = obj_nearest_object_with_behavior(bhvWaterLevelPillar);
+            sp1C = cur_obj_nearest_object_with_behavior(bhvWaterLevelPillar);
             if (sp1C != NULL) {
                 if (sp1C->oAction > 1) {
                     o->oAction++;

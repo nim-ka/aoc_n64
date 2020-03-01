@@ -24,7 +24,7 @@ void bhv_collect_star_init(void) {
         o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_STAR];
     }
 
-    set_object_hitbox(o, &sCollectStarHitbox);
+    obj_set_hitbox(o, &sCollectStarHitbox);
 }
 
 void bhv_collect_star_loop(void) {
@@ -49,7 +49,7 @@ void bhv_star_spawn_init(void) {
 
     set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
     o->activeFlags |= 0x20;
-    obj_become_intangible();
+    cur_obj_become_intangible();
 }
 
 void bhv_star_spawn_loop(void) {
@@ -87,7 +87,7 @@ void bhv_star_spawn_loop(void) {
 
             if (o->oPosY < o->oHomeY) {
                 PlaySound2(SOUND_GENERAL_STAR_APPEARS);
-                obj_become_tangible();
+                cur_obj_become_tangible();
                 o->oPosY = o->oHomeY;
                 o->oAction = 3;
             }

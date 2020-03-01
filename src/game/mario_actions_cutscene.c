@@ -181,8 +181,8 @@ void print_displaying_credits_entry(void) {
 }
 
 void bhv_end_peach_loop(void) {
-    set_obj_animation_and_sound_state(sEndPeachAnimation);
-    if (obj_check_if_near_anim_end()) {
+    cur_obj_init_animation_with_sound(sEndPeachAnimation);
+    if (cur_obj_check_if_near_animation_end()) {
         // anims: 0-3, 4, 5, 6-8, 9, 10, 11
         if (sEndPeachAnimation < 3 || sEndPeachAnimation == 6 || sEndPeachAnimation == 7) {
             sEndPeachAnimation++;
@@ -193,8 +193,8 @@ void bhv_end_peach_loop(void) {
 void bhv_end_toad_loop(void) {
     s32 toadAnimIndex = (gCurrentObject->oPosX >= 0.0f);
 
-    set_obj_animation_and_sound_state(sEndToadAnims[toadAnimIndex]);
-    if (obj_check_if_near_anim_end()) {
+    cur_obj_init_animation_with_sound(sEndToadAnims[toadAnimIndex]);
+    if (cur_obj_check_if_near_animation_end()) {
         // 0-1, 2-3, 4, 5, 6, 7
         if (sEndToadAnims[toadAnimIndex] == 0 || sEndToadAnims[toadAnimIndex] == 2) {
             sEndToadAnims[toadAnimIndex]++;
@@ -398,7 +398,7 @@ s32 act_reading_npc_dialog(struct MarioState *m) {
 
     if (m->actionState < 8) {
         // turn to NPC
-        angleToNPC = mario_angle_to_object(m, m->usedObj);
+        angleToNPC = mario_obj_angle_to_object(m, m->usedObj);
         m->faceAngle[1] =
             angleToNPC - approach_s32((angleToNPC - m->faceAngle[1]) << 16 >> 16, 0, 2048, 2048);
         // turn head to npc
@@ -677,7 +677,7 @@ s32 act_star_dance_water(struct MarioState *m) {
 s32 act_fall_after_star_grab(struct MarioState *m) {
     if (m->pos[1] < m->waterLevel - 130) {
         play_sound(SOUND_ACTION_UNKNOWN430, m->marioObj->header.gfx.cameraToObject);
-        m->particleFlags |= PARTICLE_6;
+        m->particleFlags |= PARTICLE_WATER_SPLASH;
         return set_mario_action(m, ACT_STAR_DANCE_WATER, m->actionArg);
     }
     if (perform_air_step(m, 1) == AIR_STEP_LANDED) {
@@ -1739,7 +1739,7 @@ static void intro_cutscene_lower_pipe(struct MarioState *m) {
 
     sIntroWarpPipeObj->oPosY -= 5.0f;
     if (sIntroWarpPipeObj->oPosY <= 50.0f) {
-        mark_object_for_deletion(sIntroWarpPipeObj);
+        obj_mark_for_deletion(sIntroWarpPipeObj);
         advance_cutscene_step(m);
     }
 
@@ -2018,7 +2018,7 @@ static void end_peach_cutscene_mario_landing(struct MarioState *m) {
 
         sEndJumboStarObj = spawn_object_abs_with_rot(gCurrentObject, 0, MODEL_STAR, bhvStaticObject, 0,
                                                      2528, -1800, 0, 0, 0);
-        scale_object(sEndJumboStarObj, 3.0);
+        obj_scale(sEndJumboStarObj, 3.0);
         advance_cutscene_step(m);
     }
 }
@@ -2063,7 +2063,7 @@ static void end_peach_cutscene_spawn_peach(struct MarioState *m) {
         play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 192, 255, 255, 255);
     }
     if (m->actionTimer == 40) {
-        mark_object_for_deletion(sEndJumboStarObj);
+        obj_mark_for_deletion(sEndJumboStarObj);
 
         sEndPeachObj = spawn_object_abs_with_rot(gCurrentObject, 0, MODEL_PEACH, bhvEndPeach, 0, 2428,
                                                  -1300, 0, 0, 0);
@@ -2678,7 +2678,7 @@ s32 mario_execute_cutscene_action(struct MarioState *m) {
 
     if (!cancel) {
         if (m->input & INPUT_IN_WATER) {
-            m->particleFlags |= PARTICLE_7;
+            m->particleFlags |= PARTICLE_IDLE_WATER_WAVE;
         }
     }
 

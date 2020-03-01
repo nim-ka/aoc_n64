@@ -57,7 +57,7 @@ void bhv_moving_yellow_coin_init(void) {
     o->oFriction = 1.0f;
     o->oBuoyancy = 1.5f;
 
-    set_object_hitbox(o, &sMovingYellowCoinHitbox);
+    obj_set_hitbox(o, &sMovingYellowCoinHitbox);
 }
 
 void bhv_moving_yellow_coin_loop(void) {
@@ -67,9 +67,9 @@ void bhv_moving_yellow_coin_loop(void) {
             CoinStep(&collisionFlags);
 
             if (o->oTimer < 10)
-                obj_become_intangible();
+                cur_obj_become_intangible();
             else
-                obj_become_tangible();
+                cur_obj_become_tangible();
 
             if (o->oTimer >= 301)
                 o->oAction = 1;
@@ -100,7 +100,7 @@ void bhv_moving_blue_coin_init(void) {
     o->oFriction = 1.0f;
     o->oBuoyancy = 1.5f;
 
-    set_object_hitbox(o, &sMovingBlueCoinHitbox);
+    obj_set_hitbox(o, &sMovingBlueCoinHitbox);
 }
 
 void bhv_moving_blue_coin_loop(void) {
@@ -145,7 +145,7 @@ void bhv_blue_coin_sliding_jumping_init(void) {
     o->oFriction = 0.98;
     o->oBuoyancy = 1.5;
 
-    set_object_hitbox(o, &sMovingBlueCoinHitbox);
+    obj_set_hitbox(o, &sMovingBlueCoinHitbox);
 }
 
 void func_802E540C(void) {
@@ -227,14 +227,14 @@ void bhv_blue_coin_jumping_loop(void) {
     switch (o->oAction) {
         case 0:
             if (o->oTimer == 0) {
-                obj_become_intangible();
+                cur_obj_become_intangible();
                 o->oVelY = 50.0;
             }
 
             object_step();
 
             if (o->oTimer == 15) {
-                obj_become_tangible();
+                cur_obj_become_tangible();
                 o->oAction = 1;
             }
             break;

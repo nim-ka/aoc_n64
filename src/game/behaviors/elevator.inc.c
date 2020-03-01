@@ -2,7 +2,7 @@
 
 void func_802AD01C(void) {
     PlaySound2(SOUND_GENERAL_QUIET_POUND1);
-    shake_screen_from_object(SHAKE_POS_SMALL);
+    cur_obj_shake_screen(SHAKE_POS_SMALL);
 }
 
 void ActionElevator0(void) {
@@ -27,7 +27,7 @@ void ActionElevator0(void) {
 
 void ActionElevator1(void) {
     PlaySound(SOUND_ENV_ELEVATOR1);
-    if (o->oTimer == 0 && obj_is_mario_on_platform())
+    if (o->oTimer == 0 && cur_obj_is_mario_on_platform())
         func_802AD01C();
     approach_f32_signed(&o->oVelY, 10.0f, 2.0f);
     o->oPosY += o->oVelY;
@@ -45,7 +45,7 @@ void ActionElevator1(void) {
 void ActionElevator2() // Pretty similar code to action 1
 {
     PlaySound(SOUND_ENV_ELEVATOR1);
-    if (o->oTimer == 0 && obj_is_mario_on_platform())
+    if (o->oTimer == 0 && cur_obj_is_mario_on_platform())
         func_802AD01C();
     approach_f32_signed(&o->oVelY, -10.0f, -2.0f);
     o->oPosY += o->oVelY;
@@ -65,10 +65,10 @@ void ActionElevator2() // Pretty similar code to action 1
 void ActionElevator4() {
     o->oVelY = 0;
     if (o->oTimer == 0) {
-        shake_screen_from_object(SHAKE_POS_SMALL);
+        cur_obj_shake_screen(SHAKE_POS_SMALL);
         PlaySound2(SOUND_GENERAL_METAL_POUND);
     }
-    if (!mario_is_in_air_action() && !obj_is_mario_on_platform())
+    if (!mario_is_in_air_action() && !cur_obj_is_mario_on_platform())
         o->oAction = 1;
 }
 
@@ -76,10 +76,10 @@ void ActionElevator3() // nearly identical to action 2
 {
     o->oVelY = 0;
     if (o->oTimer == 0) {
-        shake_screen_from_object(SHAKE_POS_SMALL);
+        cur_obj_shake_screen(SHAKE_POS_SMALL);
         PlaySound2(SOUND_GENERAL_METAL_POUND);
     }
-    if (!mario_is_in_air_action() && !obj_is_mario_on_platform())
+    if (!mario_is_in_air_action() && !cur_obj_is_mario_on_platform())
         o->oAction = 0;
 }
 
@@ -89,7 +89,7 @@ void bhv_elevator_init(void) {
         o->oElevatorUnkF4 = D_8032F38C[o->oBehParams2ndByte * 3];
         o->oElevatorUnkF8 = o->oHomeY;
         o->oElevatorUnkFC = (o->oElevatorUnkF4 + o->oElevatorUnkF8) / 2;
-        o->oElevatorUnk100 = obj_has_behavior(bhvRrElevatorPlatform);
+        o->oElevatorUnk100 = cur_obj_has_behavior(bhvRrElevatorPlatform);
     } else {
         o->oElevatorUnkF4 = D_8032F38C[o->oBehParams2ndByte * 3];
         o->oElevatorUnkF8 = D_8032F38C[o->oBehParams2ndByte * 3 + 1];
@@ -111,5 +111,5 @@ struct SpawnParticlesInfo D_8032F3FC = { 0,    5,   MODEL_WHITE_PARTICLE_DL, 0, 
                                          2.0f, 2.0f };
 
 void bhv_elevator_loop(void) {
-    obj_call_action_function(sElevatorActions);
+    cur_obj_call_action_function(sElevatorActions);
 }

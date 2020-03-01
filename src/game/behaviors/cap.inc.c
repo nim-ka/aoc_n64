@@ -13,7 +13,7 @@ static struct ObjectHitbox sCapHitbox = {
 };
 
 s32 func_802F0904(void) {
-    set_object_hitbox(o, &sCapHitbox);
+    obj_set_hitbox(o, &sCapHitbox);
     if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         o->activeFlags = 0;
         o->oInteractStatus = 0;
@@ -155,7 +155,7 @@ void bhv_wing_vanish_cap_loop(void) {
     }
 
     if (o->oTimer > 20)
-        obj_become_tangible();
+        cur_obj_become_tangible();
 
     func_802F0978();
     func_802F0904();
@@ -190,7 +190,7 @@ void bhv_metal_cap_loop(void) {
     }
 
     if (o->oTimer > 20)
-        obj_become_tangible();
+        cur_obj_become_tangible();
 
     func_802F0904();
     func_802F0978();

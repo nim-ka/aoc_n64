@@ -1,7 +1,7 @@
 // butterfly.c.inc
 
 void bhv_butterfly_init(void) {
-    set_object_animation(1);
+    cur_obj_init_animation(1);
 
     o->oButterflyYPhase = RandomFloat() * 100.0f;
     o->header.gfx.unk38.animFrame = RandomFloat() * 7.0f;
@@ -55,7 +55,7 @@ void CalculateButterflyAngle(void) {
 
 void ButterflyRestingLoop(void) {
     if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 1000)) {
-        set_object_animation(0);
+        cur_obj_init_animation(0);
 
         o->oAction = BUTTERFLY_ACT_FOLLOW_MARIO;
         o->oMoveAngleYaw = gMarioObject->header.gfx.angle[1];
@@ -84,7 +84,7 @@ void ButterflyReturnHomeLoop(void) {
     ButterflyStep(7);
 
     if (homeDistX * homeDistX + homeDistY * homeDistY + homeDistZ * homeDistZ < 144.0f) {
-        set_object_animation(1);
+        cur_obj_init_animation(1);
 
         o->oAction = BUTTERFLY_ACT_RESTING;
         o->oPosX = o->oHomeX;

@@ -28,12 +28,12 @@ void bhv_moneybag_init(void) {
     o->oGravity = 3.0f;
     o->oFriction = 1.0f;
     o->oBuoyancy = 2.0f;
-    set_object_animation(0);
+    cur_obj_init_animation(0);
     o->oOpacity = 0;
 }
 
 void MoneybagCheckMarioCollision(void) {
-    set_object_hitbox(o, &sMoneybagHitbox);
+    obj_set_hitbox(o, &sMoneybagHitbox);
 
     if (o->oInteractStatus & INT_STATUS_INTERACTED) /* bit 15 */
     {
@@ -59,20 +59,20 @@ void MoneybagJump(s8 collisionFlags) {
 
     switch (o->oMoneybagJumpState) {
         case MONEYBAG_JUMP_PREPARE:
-            set_object_animation(1);
+            cur_obj_init_animation(1);
             if (animFrame == 5) {
                 o->oForwardVel = 20.0f;
                 o->oVelY = 40.0f;
             }
 
-            if (obj_check_if_near_anim_end() == 1) {
+            if (cur_obj_check_if_near_animation_end() == 1) {
                 o->oMoneybagJumpState = MONEYBAG_JUMP_JUMP;
                 PlaySound2(SOUND_GENERAL_BOING2_LOWPRIO);
             }
             break;
 
         case MONEYBAG_JUMP_JUMP:
-            set_object_animation(2);
+            cur_obj_init_animation(2);
 
             if ((collisionFlags & 1) == 1) /* bit 0 */
             {
@@ -83,14 +83,14 @@ void MoneybagJump(s8 collisionFlags) {
             break;
 
         case MONEYBAG_JUMP_JUMP_AND_BOUNCE:
-            set_object_animation(3);
+            cur_obj_init_animation(3);
 
-            if (obj_check_if_near_anim_end() == 1)
+            if (cur_obj_check_if_near_animation_end() == 1)
                 o->oMoneybagJumpState = MONEYBAG_JUMP_LANDING;
             break;
 
         case MONEYBAG_JUMP_WALK_AROUND:
-            set_object_animation(4);
+            cur_obj_init_animation(4);
             o->oForwardVel = 10.0f;
 
             if (o->oTimer >= 61) {
@@ -101,7 +101,7 @@ void MoneybagJump(s8 collisionFlags) {
             break;
 
         case MONEYBAG_JUMP_WALK_HOME:
-            set_object_animation(4);
+            cur_obj_init_animation(4);
             o->oForwardVel = 5.0f;
             break;
     }
@@ -151,7 +151,7 @@ void MoneybagReturnHomeLoop(void) {
 #ifndef VERSION_JP
         PlaySound2(SOUND_GENERAL_VANISH_SFX);
 #endif
-        set_object_animation(0);
+        cur_obj_init_animation(0);
         o->oAction = MONEYBAG_ACT_DISAPPEAR;
         o->oMoneybagJumpState = MONEYBAG_JUMP_LANDING;
     }
@@ -194,7 +194,7 @@ void bhv_moneybag_loop(void) {
         case MONEYBAG_ACT_MOVE_AROUND:
             MoneybagMoveAroundLoop();
             if (o->oTimer >= 31)
-                obj_become_tangible();
+                cur_obj_become_tangible();
             break;
 
         case MONEYBAG_ACT_RETURN_HOME:
@@ -212,7 +212,7 @@ void bhv_moneybag_loop(void) {
 }
 
 void bhv_moneybag_hidden_loop(void) {
-    set_object_hitbox(o, &sMoneybagHiddenHitbox);
+    obj_set_hitbox(o, &sMoneybagHiddenHitbox);
 
     switch (o->oAction) {
         case FAKE_MONEYBAG_COIN_ACT_IDLE:

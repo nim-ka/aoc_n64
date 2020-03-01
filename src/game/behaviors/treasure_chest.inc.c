@@ -59,7 +59,7 @@ void bhv_treasure_chest_top_loop(void) {
 
 void bhv_treasure_chest_bottom_init(void) {
     spawn_object_relative(0, 0, 102, -77, o, MODEL_TREASURE_CHEST_LID, bhvTreasureChestTop);
-    set_object_hitbox(o, &sTreasureChestBottomHitbox);
+    obj_set_hitbox(o, &sTreasureChestBottomHitbox);
 }
 
 void bhv_treasure_chest_bottom_loop(void) {
@@ -76,7 +76,7 @@ void bhv_treasure_chest_bottom_loop(void) {
                             o->parentObj->oTreasureChestUnkF4 = 1;
                             o->parentObj->oTreasureChestUnkF8 = 1;
                             o->oAction = 2;
-                            obj_become_tangible();
+                            cur_obj_become_tangible();
                             play_sound(SOUND_MENU_CAMERA_BUZZ, gDefaultSoundArgs);
                         }
                     }
@@ -90,14 +90,14 @@ void bhv_treasure_chest_bottom_loop(void) {
             break;
 
         case 2:
-            obj_become_intangible();
+            cur_obj_become_intangible();
             if (!is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 500)) {
                 o->parentObj->oTreasureChestUnkF8 = 0;
                 o->oAction = 0;
             }
     }
 
-    obj_push_mario_away_from_cylinder(150.0f, 150.0f);
+    cur_obj_push_mario_away_from_cylinder(150.0f, 150.0f);
     o->oInteractStatus = 0;
 }
 

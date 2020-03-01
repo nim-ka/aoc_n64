@@ -63,7 +63,7 @@ void bhv_intro_lakitu_loop(void) {
 
     switch (gCurrentObject->oAction) {
         case 0:
-            obj_disable_rendering();
+            cur_obj_disable_rendering();
             gCurrentObject->oIntroLakituSplineSegment = 0.f;
             gCurrentObject->oIntroLakituSplineSegmentProgress = 0.f;
             gCurrentObject->oIntroLakituCloud =
@@ -75,7 +75,7 @@ void bhv_intro_lakitu_loop(void) {
             break;
 
         case 1:
-            obj_enable_rendering();
+            cur_obj_enable_rendering();
             if ((gCutsceneTimer > 350) && (gCutsceneTimer < 458)) {
                 gCurrentObject->oPosX = gCamera->pos[0];
                 gCurrentObject->oPosY = gCamera->pos[1] + 500.f;
@@ -168,8 +168,8 @@ void bhv_intro_lakitu_loop(void) {
 #endif
 
             if (gCurrentObject->oTimer == TIMER) {
-                mark_object_for_deletion(gCurrentObject);
-                mark_object_for_deletion(gCurrentObject->oIntroLakituCloud);
+                obj_mark_for_deletion(gCurrentObject);
+                obj_mark_for_deletion(gCurrentObject->oIntroLakituCloud);
             }
 #ifndef VERSION_JP
             if (gCurrentObject->oTimer == 14)
@@ -177,7 +177,7 @@ void bhv_intro_lakitu_loop(void) {
 #endif
             break;
         case 100:
-            obj_enable_rendering();
+            cur_obj_enable_rendering();
             vec3f_set(sp64, -100.f, 100.f, 300.f);
             offset_rotated(sp4C, gCamera->pos, sp64, sMarioCamState->faceAngle);
             vec3f_to_object_pos(gCurrentObject, sp4C);
@@ -204,7 +204,7 @@ void bhv_intro_lakitu_loop(void) {
                 gCurrentObject->oMoveAnglePitch = 0xE00;
             }
             gCurrentObject->oFaceAnglePitch = 0;
-            obj_set_pos_via_transform();
+            cur_obj_set_pos_via_transform();
             break;
 
         case 102:
@@ -219,7 +219,7 @@ void bhv_intro_lakitu_loop(void) {
             gCurrentObject->oMoveAnglePitch =
                 camera_approach_s16_symmetric(gCurrentObject->oMoveAnglePitch, -0x2000, 0x5A);
             gCurrentObject->oFaceAnglePitch = 0;
-            obj_set_pos_via_transform();
+            cur_obj_set_pos_via_transform();
             break;
     }
 }

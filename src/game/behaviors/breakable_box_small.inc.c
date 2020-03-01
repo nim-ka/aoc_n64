@@ -16,8 +16,8 @@ void bhv_breakable_box_small_init(void) {
     o->oGravity = 2.5f;
     o->oFriction = 0.99f;
     o->oBuoyancy = 1.4f;
-    obj_scale(0.4f);
-    set_object_hitbox(o, &sBreakableBoxSmallHitbox);
+    cur_obj_scale(0.4f);
+    obj_set_hitbox(o, &sBreakableBoxSmallHitbox);
     o->oAnimState = 1;
     o->activeFlags |= 0x200;
 }
@@ -31,7 +31,7 @@ void func_802F4CE8(void) {
 void func_802F4DB4(void) {
     s16 sp1E = object_step();
 
-    attack_collided_non_mario_object(o);
+    obj_attack_collided_from_other_object(o);
     if (sp1E == 1)
         PlaySound2(SOUND_GENERAL_BOX_LANDING_2);
     if (sp1E & 1) {
@@ -91,9 +91,9 @@ void breakable_box_small_idle_loop(void) {
 }
 
 void breakable_box_small_get_dropped(void) {
-    obj_become_tangible();
-    obj_enable_rendering();
-    obj_get_dropped();
+    cur_obj_become_tangible();
+    cur_obj_enable_rendering();
+    cur_obj_get_dropped();
     o->header.gfx.node.flags &= ~0x10;
     o->oHeldState = 0;
     o->oBreakableBoxSmallReleased = 1;
@@ -101,9 +101,9 @@ void breakable_box_small_get_dropped(void) {
 }
 
 void breakable_box_small_get_thrown(void) {
-    obj_become_tangible();
-    obj_enable_rendering_2();
-    obj_enable_rendering();
+    cur_obj_become_tangible();
+    cur_obj_enable_rendering_2();
+    cur_obj_enable_rendering();
     o->header.gfx.node.flags &= ~0x10;
     o->oHeldState = 0;
     o->oFlags &= ~0x08;
@@ -121,8 +121,8 @@ void bhv_breakable_box_small_loop(void) {
             break;
 
         case 1:
-            obj_disable_rendering();
-            obj_become_intangible();
+            cur_obj_disable_rendering();
+            cur_obj_become_intangible();
             break;
 
         case 2:

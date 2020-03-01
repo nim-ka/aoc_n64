@@ -32,7 +32,7 @@ struct Struct802C0DF0 sExclamationBoxContents[] = { { 0, 0, 0, MODEL_MARIOS_WING
 
 void bhv_rotatin_exclamation_box_loop(void) {
     if (o->parentObj->oAction != 1)
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
 }
 
 void ActionExclamationBox0(void) {
@@ -50,29 +50,29 @@ void ActionExclamationBox0(void) {
 }
 
 void ActionExclamationBox1(void) {
-    obj_become_intangible();
+    cur_obj_become_intangible();
     if (o->oTimer == 0) {
         spawn_object(o, MODEL_EXCLAMATION_POINT, bhvRotatingExclamationMark);
-        obj_set_model(MODEL_EXCLAMATION_BOX_OUTLINE);
+        cur_obj_set_model(MODEL_EXCLAMATION_BOX_OUTLINE);
     }
     if ((save_file_get_flags() & D_8032F0C0[o->oBehParams2ndByte])
         || ((o->oBehParams >> 24) & 0xFF) != 0) {
         o->oAction = 2;
-        obj_set_model(MODEL_EXCLAMATION_BOX);
+        cur_obj_set_model(MODEL_EXCLAMATION_BOX);
     }
 }
 
 void ActionExclamationBox2(void) {
-    set_object_hitbox(o, &sExclamationBoxHitbox);
+    obj_set_hitbox(o, &sExclamationBoxHitbox);
     if (o->oTimer == 0) {
-        obj_unhide();
-        obj_become_tangible();
+        cur_obj_unhide();
+        cur_obj_become_tangible();
         o->oInteractStatus = 0;
         o->oPosY = o->oHomeY;
         o->oGraphYOffset = 0.0f;
     }
-    if (obj_was_attacked_or_ground_pounded()) {
-        obj_become_intangible();
+    if (cur_obj_was_attacked_or_ground_pounded()) {
+        cur_obj_become_intangible();
         o->oExclamationBoxUnkFC = 0x4000;
         o->oVelY = 30.0f;
         o->oGravity = -8.0f;
@@ -84,7 +84,7 @@ void ActionExclamationBox2(void) {
 
 void ActionExclamationBox3(void) {
     UNUSED s32 unused;
-    obj_move_using_fvel_and_gravity();
+    cur_obj_move_using_fvel_and_gravity();
     if (o->oVelY < 0.0f) {
         o->oVelY = 0.0f;
         o->oGravity = 0.0f;
@@ -125,9 +125,9 @@ void ActionExclamationBox4(void) {
     create_sound_spawner(SOUND_GENERAL_BREAK_BOX);
     if (o->oBehParams2ndByte < 3) {
         o->oAction = 5;
-        obj_hide();
+        cur_obj_hide();
     } else
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
 }
 
 void ActionExclamationBox5(void) {
@@ -140,6 +140,6 @@ void (*sExclamationBoxActions[])(void) = { ActionExclamationBox0, ActionExclamat
                                            ActionExclamationBox4, ActionExclamationBox5 };
 
 void bhv_exclamation_box_loop(void) {
-    obj_scale(2.0f);
-    obj_call_action_function(sExclamationBoxActions);
+    cur_obj_scale(2.0f);
+    cur_obj_call_action_function(sExclamationBoxActions);
 }

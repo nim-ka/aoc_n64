@@ -278,9 +278,9 @@ void adjust_sound_for_speed(struct MarioState *m) {
 void play_sound_and_spawn_particles(struct MarioState *m, u32 soundBits, u32 waveParticleType) {
     if (m->terrainSoundAddend == (SOUND_TERRAIN_WATER << 16)) {
         if (waveParticleType != 0) {
-            m->particleFlags |= PARTICLE_12;
+            m->particleFlags |= PARTICLE_SHALLOW_WATER_SPLASH;
         } else {
-            m->particleFlags |= PARTICLE_8;
+            m->particleFlags |= PARTICLE_SHALLOW_WATER_WAVE;
         }
     } else {
         if (m->terrainSoundAddend == (SOUND_TERRAIN_SAND << 16)) {

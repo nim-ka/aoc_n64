@@ -11,7 +11,7 @@ void bhv_end_birds_2_loop(void) {
 
     switch (gCurrentObject->oAction) {
         case 0:
-            obj_scale(0.7f);
+            cur_obj_scale(0.7f);
             gCurrentObject->oAction += 1;
             break;
         case 1:
@@ -27,5 +27,5 @@ void bhv_end_birds_2_loop(void) {
             break;
     }
 
-    obj_set_pos_via_transform();
+    cur_obj_set_pos_via_transform();
 }

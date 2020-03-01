@@ -40,7 +40,7 @@ static void platform_on_track_reset(void) {
 static void platform_on_track_mario_not_on_platform(void) {
     if (!((u16)(o->oBehParams >> 16) & PLATFORM_ON_TRACK_BP_DONT_DISAPPEAR)) {
         // Once oTimer reaches 150, blink 40 times
-        if (obj_wait_then_blink(150, 40)) {
+        if (cur_obj_wait_then_blink(150, 40)) {
             platform_on_track_reset();
             o->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
         }
@@ -228,7 +228,7 @@ static void platform_on_track_act_pause_briefly(void) {
  * and eventually blinking and disappearing.
  */
 static void platform_on_track_act_fall(void) {
-    obj_move_using_vel_and_gravity();
+    cur_obj_move_using_vel_and_gravity();
 
     if (gMarioObject->platform != o) {
         platform_on_track_mario_not_on_platform();
@@ -306,6 +306,6 @@ void bhv_track_ball_update(void) {
     s16 relativeIndex =
         (s16) o->oBehParams2ndByte - (s16) o->parentObj->oPlatformOnTrackBaseBallIndex - 1;
     if (relativeIndex < 1 || relativeIndex > 5) {
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
     }
 }

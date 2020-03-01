@@ -30,7 +30,7 @@ void func_802E5B7C(void) {
 void BobombExplodeLoop(void) {
     struct Object *explosion;
     if (o->oTimer < 5)
-        obj_scale(1.0 + (f32) o->oTimer / 5.0);
+        cur_obj_scale(1.0 + (f32) o->oTimer / 5.0);
     else {
         explosion = spawn_object(o, MODEL_EXPLOSION, bhvExplosion);
         explosion->oGraphYOffset += 100.0f;
@@ -42,7 +42,7 @@ void BobombExplodeLoop(void) {
 }
 
 void CheckBobombInteractions(void) {
-    set_object_hitbox(o, &sBobombHitbox);
+    obj_set_hitbox(o, &sBobombHitbox);
     if ((o->oInteractStatus & INT_STATUS_INTERACTED) != 0) /* bit 15 */
     {
         if ((o->oInteractStatus & INTERACT_GRABBABLE) != 0) /* bit 1 */
@@ -59,7 +59,7 @@ void CheckBobombInteractions(void) {
         o->oInteractStatus = 0;
     }
 
-    if (attack_collided_non_mario_object(o) == 1)
+    if (obj_attack_collided_from_other_object(o) == 1)
         o->oAction = BOBOMB_ACT_EXPLODE;
 }
 
@@ -174,8 +174,8 @@ void BobombFreeLoop(void) {
 
 void BobombHeldLoop(void) {
     o->header.gfx.node.flags |= 0x10; /* bit 4 */
-    set_object_animation(1);
-    obj_set_pos_relative(gMarioObject, 0, 60.0f, 100.0);
+    cur_obj_init_animation(1);
+    cur_obj_set_pos_relative(gMarioObject, 0, 60.0f, 100.0);
 
     o->oBobombFuseLit = 1;
     if (o->oBobombFuseTimer >= 151) {
@@ -189,17 +189,17 @@ void BobombHeldLoop(void) {
 }
 
 void BobombDroppedLoop(void) {
-    obj_get_dropped();
+    cur_obj_get_dropped();
 
     o->header.gfx.node.flags &= ~0x10; /* bit 4 = 0 */
-    set_object_animation(0);
+    cur_obj_init_animation(0);
 
     o->oHeldState = 0;
     o->oAction = BOBOMB_ACT_PATROL;
 }
 
 void BobombThrownLoop(void) {
-    obj_enable_rendering_2();
+    cur_obj_enable_rendering_2();
 
     o->header.gfx.node.flags &= ~0x10; /* bit 4 = 0 */
     o->oHeldState = 0;
@@ -274,7 +274,7 @@ void bhv_bobomb_fuse_smoke_init(void) {
     o->oPosX += (s32)(RandomFloat() * 80.0f) - 40;
     o->oPosY += (s32)(RandomFloat() * 80.0f) + 60;
     o->oPosZ += (s32)(RandomFloat() * 80.0f) - 40;
-    obj_scale(1.2f);
+    cur_obj_scale(1.2f);
 }
 
 void bhv_bobomb_buddy_init(void) {
@@ -322,7 +322,7 @@ void BobombBuddyCannonLoop(s16 dialogFirstText, s16 dialogSecondText) {
             buddyText = cutscene_object_with_dialog(CUTSCENE_DIALOG, o, dialogFirstText);
             if (buddyText != 0) {
                 save_file_set_cannon_unlocked();
-                cannonClosed = obj_nearest_object_with_behavior(bhvCannonClosed);
+                cannonClosed = cur_obj_nearest_object_with_behavior(bhvCannonClosed);
                 if (cannonClosed != 0)
                     o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_OPENING;
                 else
@@ -331,7 +331,7 @@ void BobombBuddyCannonLoop(s16 dialogFirstText, s16 dialogSecondText) {
             break;
 
         case BOBOMB_BUDDY_CANNON_OPENING:
-            cannonClosed = obj_nearest_object_with_behavior(bhvCannonClosed);
+            cannonClosed = cur_obj_nearest_object_with_behavior(bhvCannonClosed);
             cutscene = cutscene_object(CUTSCENE_PREPARE_CANNON, cannonClosed);
             if (cutscene == -1)
                 o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_OPENED;

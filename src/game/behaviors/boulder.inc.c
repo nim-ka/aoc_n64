@@ -27,7 +27,7 @@ void func_802F05DC(void) {
 }
 
 void bhv_big_boulder_loop(void) {
-    obj_scale(1.5f);
+    cur_obj_scale(1.5f);
     o->oGraphYOffset = 270.0f;
     switch (o->oAction) {
         case 0:

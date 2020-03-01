@@ -395,7 +395,7 @@ void obj_splash(s32 waterY, s32 objY) {
 
     // Spawns waves if near surface of water and plays a noise if entering.
     if ((f32)(waterY + 30) > o->oPosY && o->oPosY > (f32)(waterY - 30)) {
-        spawn_object(o, MODEL_WATER_WAVES_SURF, bhvObjectWaterWave);
+        spawn_object(o, MODEL_IDLE_WATER_WAVE, bhvObjectWaterWave);
 
         if (o->oVelY < -20.0f) {
             PlaySound2(SOUND_OBJ_DIVING_INTO_WATER);

@@ -16,7 +16,7 @@ void bhv_haunted_chair_init(void) {
     struct Object *val04;
     f32 val00;
 
-    val04 = obj_find_nearest_object_with_behavior(bhvMadPiano, &val00);
+    val04 = cur_obj_find_nearest_object_with_behavior(bhvMadPiano, &val00);
     if (val04 != NULL && val00 < 300.0f) {
         o->parentObj = val04;
     } else {
@@ -31,7 +31,7 @@ void haunted_chair_act_0(void) {
     if (o->parentObj != o) {
         if (o->oHauntedChairUnk104 == 0) {
             if (lateral_dist_between_objects(o, o->parentObj) < 250.0f) {
-                val0E = angle_to_object(o, o->parentObj) - o->oFaceAngleYaw + 0x2000;
+                val0E = obj_angle_to_object(o, o->parentObj) - o->oFaceAngleYaw + 0x2000;
                 if (val0E & 0x4000) {
                     o->oHauntedChairUnk100 = &o->oFaceAngleRoll;
                     if (val0E > 0) {
@@ -89,11 +89,11 @@ void haunted_chair_act_0(void) {
         }
     }
 
-    obj_push_mario_away_from_cylinder(80.0f, 120.0f);
+    cur_obj_push_mario_away_from_cylinder(80.0f, 120.0f);
 }
 
 void haunted_chair_act_1(void) {
-    obj_update_floor_and_walls();
+    cur_obj_update_floor_and_walls();
 
     if (o->oTimer < 70) {
         if (o->oTimer < 50) {
@@ -124,7 +124,7 @@ void haunted_chair_act_1(void) {
     }
 
     obj_check_attacks(&sHauntedChairHitbox, o->oAction);
-    obj_move_standard(78);
+    cur_obj_move_standard(78);
 }
 
 void bhv_haunted_chair_loop(void) {

@@ -3,7 +3,7 @@
 void bhv_1up_interact(void) {
     UNUSED s32 sp1C;
 
-    if (are_objects_collided(o, gMarioObject) == 1) {
+    if (obj_check_if_collided_with_object(o, gMarioObject) == 1) {
         play_sound(SOUND_GENERAL_COLLECT_1UP, gDefaultSoundArgs);
         gMarioState->numLives++;
         o->activeFlags = 0;
@@ -77,7 +77,7 @@ void bhv_1up_walking_loop(void) {
             func_802F2D40();
 
             if (o->oTimer == 37) {
-                obj_become_tangible();
+                cur_obj_become_tangible();
                 o->oAction = 1;
                 o->oForwardVel = 2.0f;
             }
@@ -114,7 +114,7 @@ void bhv_1up_running_away_loop(void) {
             func_802F2D40();
 
             if (o->oTimer == 37) {
-                obj_become_tangible();
+                cur_obj_become_tangible();
                 o->oAction = 1;
                 o->oForwardVel = 8.0f;
             }
@@ -239,7 +239,7 @@ void bhv_1up_hidden_loop(void) {
             func_802F2D40();
 
             if (o->oTimer == 37) {
-                obj_become_tangible();
+                cur_obj_become_tangible();
                 o->oAction = 1;
                 o->oForwardVel = 8.0f;
             }
@@ -249,8 +249,8 @@ void bhv_1up_hidden_loop(void) {
 
 void bhv_1up_hidden_trigger_loop(void) {
     struct Object *sp1C;
-    if (are_objects_collided(o, gMarioObject) == 1) {
-        sp1C = obj_nearest_object_with_behavior(bhvHidden1up);
+    if (obj_check_if_collided_with_object(o, gMarioObject) == 1) {
+        sp1C = cur_obj_nearest_object_with_behavior(bhvHidden1up);
         if (sp1C != NULL)
             sp1C->o1UpHiddenUnkF4++;
 
@@ -284,7 +284,7 @@ void bhv_1up_hidden_in_pole_loop(void) {
             func_802F2D40();
 
             if (o->oTimer == 37) {
-                obj_become_tangible();
+                cur_obj_become_tangible();
                 o->oAction = 1;
                 o->oForwardVel = 10.0f;
             }
@@ -295,8 +295,8 @@ void bhv_1up_hidden_in_pole_loop(void) {
 void bhv_1up_hidden_in_pole_trigger_loop(void) {
     struct Object *sp1C;
 
-    if (are_objects_collided(o, gMarioObject) == 1) {
-        sp1C = obj_nearest_object_with_behavior(bhvHidden1upInPole);
+    if (obj_check_if_collided_with_object(o, gMarioObject) == 1) {
+        sp1C = cur_obj_nearest_object_with_behavior(bhvHidden1upInPole);
         if (sp1C != NULL) {
             sp1C->o1UpHiddenUnkF4++;
             ;

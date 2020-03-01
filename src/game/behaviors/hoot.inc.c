@@ -1,14 +1,14 @@
 // hoot.c.inc
 
 void bhv_hoot_init(void) {
-    set_object_animation(0);
+    cur_obj_init_animation(0);
 
     o->oHomeX = o->oPosX + 800.0f;
     o->oHomeY = o->oPosY - 150.0f;
     o->oHomeZ = o->oPosZ + 300.0f;
     o->header.gfx.node.flags |= 0x10; /* bit 4 */
 
-    obj_become_intangible();
+    cur_obj_become_intangible();
 }
 
 // sp28 = arg0
@@ -227,10 +227,9 @@ void HootTurnToHome(void) {
 void HootAwakeLoop(void) {
     if (o->oInteractStatus == INTERACT_HOOT) {
         HootActionLoop();
-
-        set_object_animation(1);
+        cur_obj_init_animation(1);
     } else {
-        set_object_animation(0);
+        cur_obj_init_animation(0);
 
         HootTurnToHome();
         HootFloorBounce();
@@ -258,7 +257,7 @@ void bhv_hoot_loop(void) {
             if (set_mario_npc_dialog(2) == 2 && cutscene_object_with_dialog(CUTSCENE_DIALOG, o, DIALOG_044)) {
                 set_mario_npc_dialog(0);
 
-                obj_become_tangible();
+                cur_obj_become_tangible();
 
                 o->oHootAvailability = HOOT_AVAIL_READY_TO_FLY;
             }

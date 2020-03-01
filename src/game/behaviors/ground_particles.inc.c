@@ -6,12 +6,12 @@ void bhv_pound_white_puffs_init(void) {
 }
 
 void func_802ADA94(void) {
-    obj_spawn_particles(&D_8032F3CC);
+    cur_obj_spawn_particles(&D_8032F3CC);
 }
 
 void bhv_unused_0e40_init(void) {
     func_802ADBBC(0x4000);
-    obj_spawn_particles(&D_8032F3E0);
+    cur_obj_spawn_particles(&D_8032F3E0);
 }
 
 void Unknown802ADAF4(void) {
@@ -19,7 +19,7 @@ void Unknown802ADAF4(void) {
     smoke->oForwardVel = D_8032F3F4[0];
     smoke->oVelY = D_8032F3F4[1];
     smoke->oGravity = D_8032F3F4[2];
-    translate_object_xyz_random(smoke, D_8032F3F4[3]);
+    obj_translate_xyz_random(smoke, D_8032F3F4[3]);
 }
 
 // TODO Fix name
@@ -29,5 +29,5 @@ void func_802ADBBC(u32 flags) {
 
 void bhv_ground_snow_init(void) {
     func_802ADBBC(1 << 16);
-    obj_spawn_particles(&D_8032F3FC);
+    cur_obj_spawn_particles(&D_8032F3FC);
 }

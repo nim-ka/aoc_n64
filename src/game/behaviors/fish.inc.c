@@ -46,8 +46,8 @@ void fish_act_spawn(void) {
         for (i = 0; i < schoolQuantity; i++) {
             fishObject = spawn_object(o, model, bhvFish);
             fishObject->oBehParams2ndByte = o->oBehParams2ndByte;
-            obj_init_anim_and_sound(fishObject, fishAnimation, 0);
-            translate_object_xyz_random(fishObject, 700.0f);
+            obj_init_animation_with_sound(fishObject, fishAnimation, 0);
+            obj_translate_xyz_random(fishObject, 700.0f);
         }
         o->oAction = FISH_ACT_ACTIVE;
     }
@@ -80,7 +80,7 @@ void (*sFishActions[])(void) = {
 };
 
 void bhv_large_fish_group_loop(void) {
-    obj_call_action_function(sFishActions);
+    cur_obj_call_action_function(sFishActions);
 }
 
 /**
@@ -114,9 +114,9 @@ void fish_group_act_rotation(void) {
     
     // Alters speed of animation for natural movement.
     if (o->oTimer < 10) {
-        obj_init_anim_accel_and_sound(0, 2.0f);
+        cur_obj_init_animation_with_accel_and_sound(0, 2.0f);
     } else {
-        obj_init_anim_accel_and_sound(0, 1.0f);
+        cur_obj_init_animation_with_accel_and_sound(0, 1.0f);
     }
     
     /**
@@ -135,7 +135,7 @@ void fish_group_act_rotation(void) {
     
     // Interact with Mario through rotating towards him.
     o->oFishPosY = gMarioObject->oPosY + o->oFishRandomOffset;
-    obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+    cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
     
     // If fish groups are too close, call fish_regroup()
     if (o->oPosY < o->oFishWaterLevel - 50.0f) {
@@ -189,9 +189,9 @@ void fish_group_act_move(void) {
     }
     // Enable fish animation in a natural manner.
     if (o->oTimer < 20) {
-        obj_init_anim_accel_and_sound(0, 4.0f);
+        cur_obj_init_animation_with_accel_and_sound(0, 4.0f);
     } else {
-        obj_init_anim_accel_and_sound(0, 1.0f);
+        cur_obj_init_animation_with_accel_and_sound(0, 1.0f);
     }
     // Set randomized forward velocity so fish have differing velocities
     if (o->oForwardVel < o->oFishRandomVel) {
@@ -199,7 +199,7 @@ void fish_group_act_move(void) {
     }
     o->oFishPosY = gMarioObject->oPosY + o->oFishRandomOffset;
     // Rotate fish away from Mario.
-    obj_rotate_yaw_toward(o->oAngleToMario + 0x8000, o->oFishRandomSpeed);
+    cur_obj_rotate_yaw_toward(o->oAngleToMario + 0x8000, o->oFishRandomSpeed);
     // If fish groups are too close, call fish_regroup()
     if (o->oPosY < o->oFishWaterLevel - 50.0f) {
         if (fishY < 0.0f) {
@@ -225,10 +225,10 @@ void fish_group_act_move(void) {
  * Animate fish and alter scaling at random for a magnifying effect from the water.
  */
 void fish_group_act_animate(void) {
-    obj_init_anim_accel_and_sound(0, 1.0f);
+    cur_obj_init_animation_with_accel_and_sound(0, 1.0f);
     o->header.gfx.unk38.animFrame = (s16)(RandomFloat() * 28.0f);
     o->oFishDepthDistance = RandomFloat() * 300.0f;
-    obj_scale(RandomFloat() * 0.4 + 0.8);
+    cur_obj_scale(RandomFloat() * 0.4 + 0.8);
     o->oAction = FISH_ACT_ACTIVE;
 }
 
@@ -242,7 +242,7 @@ void (*sFishGroupActions[])(void) = {
 void bhv_fish_loop(void)
 {
     UNUSED s32 unused[4];
-    obj_scale(1.0f);
+    cur_obj_scale(1.0f);
     /**
      * Tracks water level to delete fish outside of bounds.
      * In SA oFishWaterLevel is set to zero because fish cannot exit the water.
@@ -254,12 +254,12 @@ void bhv_fish_loop(void)
     }
     // Apply hitbox and resolve wall collisions 
     o->oWallHitboxRadius = 30.0f;
-    obj_resolve_wall_collisions();
+    cur_obj_resolve_wall_collisions();
     
     // Delete fish below the water depth bounds of -10000.0f.
     if (gCurrLevelNum != LEVEL_UNKNOWN_32) {
         if (o->oFishWaterLevel < -10000.0f) {
-            mark_object_for_deletion(o);
+            obj_mark_for_deletion(o);
             return;
         }
         
@@ -269,11 +269,11 @@ void bhv_fish_loop(void)
     }
     
     // Call fish action methods and apply physics engine.
-    obj_call_action_function(sFishGroupActions);
-    obj_move_using_fvel_and_gravity();
+    cur_obj_call_action_function(sFishGroupActions);
+    cur_obj_move_using_fvel_and_gravity();
     
     // If the parent object has action set to two, then delete the fish object.
     if (o->parentObj->oAction == FISH_ACT_RESPAWN) {
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
     }
 }

@@ -32,7 +32,7 @@ void (*sBirdChirpChirpActions[])(void) = { ActionBirdChirpChirp0, ActionBirdChir
                                            ActionBirdChirpChirp2, ActionBirdChirpChirp3 };
 
 void bhv_bird_chirp_chirp_loop(void) {
-    obj_call_action_function(sBirdChirpChirpActions);
+    cur_obj_call_action_function(sBirdChirpChirpActions);
 }
 
 void func_802C0240(s32 a0) {
@@ -69,9 +69,9 @@ void ActionCheepCheep1(void) {
         if (dy > 300.0f)
             o->oPosY = o->oPosY - 1.0f;
     }
-    if (800.0f < obj_lateral_dist_from_mario_to_home())
-        o->oAngleToMario = obj_angle_to_home();
-    obj_rotate_yaw_toward(o->oAngleToMario, 0x100);
+    if (800.0f < cur_obj_lateral_dist_from_mario_to_home())
+        o->oAngleToMario = cur_obj_angle_to_home();
+    cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x100);
     if (o->oDistanceToMario < 200.0f)
         if (o->oCheepCheepUnk108 < 0.5)
             o->oAction = 2;
@@ -103,9 +103,9 @@ void ActionCheepCheep2(void) {
         if (dy > 300.0f)
             o->oPosY -= 1.0f;
     }
-    if (obj_lateral_dist_from_mario_to_home() > 800.0f)
-        o->oAngleToMario = obj_angle_to_home();
-    obj_rotate_yaw_toward(o->oAngleToMario + 0x8000, 0x400);
+    if (cur_obj_lateral_dist_from_mario_to_home() > 800.0f)
+        o->oAngleToMario = cur_obj_angle_to_home();
+    cur_obj_rotate_yaw_toward(o->oAngleToMario + 0x8000, 0x400);
     if (o->oTimer > 200 && o->oDistanceToMario > 600.0f)
         o->oAction = 1;
 }
@@ -116,9 +116,9 @@ void bhv_cheep_cheep_loop(void) {
     o->oCheepCheepUnkF4 = find_water_level(o->oPosX, o->oPosZ);
     o->oCheepCheepUnkF8 = gMarioObject->oPosY + o->oCheepCheepUnkFC;
     o->oWallHitboxRadius = 30.0f;
-    obj_update_floor_and_walls();
-    obj_call_action_function(sCheepCheepActions);
-    obj_move_using_fvel_and_gravity();
+    cur_obj_update_floor_and_walls();
+    cur_obj_call_action_function(sCheepCheepActions);
+    cur_obj_move_using_fvel_and_gravity();
     if (o->parentObj->oAction == 2)
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
 }

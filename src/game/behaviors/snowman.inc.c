@@ -27,7 +27,7 @@ void bhv_snowmans_bottom_init(void) {
     o->oForwardVel = 0;
     o->oSnowmansBottomUnkF4 = 0.4f;
 
-    sp34 = obj_nearest_object_with_behavior(bhvSnowmansHead);
+    sp34 = cur_obj_nearest_object_with_behavior(bhvSnowmansHead);
     if (sp34 != NULL) {
         o->parentObj = sp34;
     }
@@ -35,7 +35,7 @@ void bhv_snowmans_bottom_init(void) {
 }
 
 void func_802EFB2C(void) {
-    set_object_hitbox(o, &sRollingSphereHitbox);
+    obj_set_hitbox(o, &sRollingSphereHitbox);
 
     if ((o->oInteractStatus & INT_STATUS_INTERACTED) != 0) {
         o->oInteractStatus = 0;
@@ -57,7 +57,7 @@ void func_802EFC44(void) {
 
     o->oPathedStartWaypoint = segmented_to_virtual(&ccm_seg7_trajectory_snowman);
     sp26 = object_step_without_floor_orient();
-    sp20 = obj_follow_path(sp20);
+    sp20 = cur_obj_follow_path(sp20);
     o->oSnowmansBottomUnkF8 = o->oPathedTargetYaw;
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oSnowmansBottomUnkF8, 0x400);
 
@@ -107,7 +107,7 @@ void func_802EFF58(void) {
     sp1E = object_step_without_floor_orient();
     if ((sp1E & 0x09) == 0x09) {
         o->oAction = 4;
-        obj_become_intangible();
+        cur_obj_become_intangible();
     }
 
     if ((sp1E & 0x01) != 0) {
@@ -151,13 +151,13 @@ void bhv_snowmans_bottom_loop(void) {
             break;
 
         case 4:
-            obj_push_mario_away_from_cylinder(210.0f, 550);
+            cur_obj_push_mario_away_from_cylinder(210.0f, 550);
             break;
     }
 
     func_802EFB2C();
     set_object_visibility(o, 8000);
-    obj_scale(o->oSnowmansBottomUnkF4);
+    cur_obj_scale(o->oSnowmansBottomUnkF4);
     o->oGraphYOffset = o->oSnowmansBottomUnkF4 * 180.0f;
 }
 
@@ -168,7 +168,7 @@ void bhv_snowmans_head_init(void) {
     sp37 = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
     sp36 = (o->oBehParams >> 24) & 0xFF;
 
-    obj_scale(0.7f);
+    cur_obj_scale(0.7f);
 
     o->oGravity = 5.0f;
     o->oFriction = 0.999f;
@@ -222,7 +222,7 @@ void bhv_snowmans_head_loop(void) {
             break;
     }
 
-    obj_push_mario_away_from_cylinder(180.0f, 150.0f);
+    cur_obj_push_mario_away_from_cylinder(180.0f, 150.0f);
 }
 
 void bhv_snowmans_body_checkpoint_loop(void) {

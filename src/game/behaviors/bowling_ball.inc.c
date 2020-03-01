@@ -33,7 +33,7 @@ void bhv_bowling_ball_init(void) {
 }
 
 void func_802EDA14(void) {
-    set_object_hitbox(o, &sBowlingBallHitbox);
+    obj_set_hitbox(o, &sBowlingBallHitbox);
 
     if (o->oInteractStatus & INT_STATUS_INTERACTED)
         o->oInteractStatus = 0;
@@ -71,7 +71,7 @@ void bhv_bowling_ball_roll_loop(void) {
     collisionFlags = object_step();
 
     //! Uninitialzed parameter, but the parameter is unused in the called function
-    sp18 = obj_follow_path(sp18);
+    sp18 = cur_obj_follow_path(sp18);
 
     o->oBowlingBallTargetYaw = o->oPathedTargetYaw;
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oBowlingBallTargetYaw, 0x400);
@@ -100,7 +100,7 @@ void bhv_bowling_ball_initializeLoop(void) {
     func_802EDA6C();
 
     //! Uninitialzed parameter, but the parameter is unused in the called function
-    sp1c = obj_follow_path(sp1c);
+    sp1c = cur_obj_follow_path(sp1c);
 
     o->oMoveAngleYaw = o->oPathedTargetYaw;
 
@@ -123,7 +123,7 @@ void bhv_bowling_ball_initializeLoop(void) {
 
         case BBALL_BP_STYPE_THI_SMALL:
             o->oForwardVel = 10.0f;
-            obj_scale(0.3f);
+            cur_obj_scale(0.3f);
             o->oGraphYOffset = 39.0f;
             break;
     }
@@ -252,7 +252,7 @@ void bhv_free_bowling_ball_roll_loop(void) {
 
     if (!is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 6000)) {
         o->header.gfx.node.flags |= 0x10; /* bit 4 */
-        obj_become_intangible();
+        cur_obj_become_intangible();
 
         o->oPosX = o->oHomeX;
         o->oPosY = o->oHomeY;
@@ -270,7 +270,7 @@ void bhv_free_bowling_ball_loop(void) {
             if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 3000)) {
                 o->oAction = FREE_BBALL_ACT_ROLL;
                 o->header.gfx.node.flags &= ~0x10; /* bit 4 */
-                obj_become_tangible();
+                cur_obj_become_tangible();
             }
             break;
 

@@ -16,7 +16,7 @@ void clam_act_0(void) {
     if (func_802F92EC(0, 25)) {
         PlaySound2(SOUND_GENERAL_CLAM_SHELL3);
         func_802ADA94();
-        obj_become_tangible();
+        cur_obj_become_tangible();
 
         o->oClamUnkF4 = 10;
         o->oTimer = 0;
@@ -25,7 +25,7 @@ void clam_act_0(void) {
         o->oAction = 1;
     } else if (o->oClamUnkF4 != 0) {
         o->oClamUnkF4 -= 1;
-        obj_shake_y(3.0f);
+        cur_obj_shake_y(3.0f);
     }
 }
 
@@ -43,8 +43,8 @@ void clam_act_1(void) {
 
             spawn_object_relative(0, val04, 30, val02, o, MODEL_BUBBLE, bhvBubbleMaybe);
         }
-    } else if (obj_check_anim_frame(30)) {
-        obj_become_intangible();
+    } else if (cur_obj_check_anim_frame(30)) {
+        cur_obj_become_intangible();
     }
 }
 

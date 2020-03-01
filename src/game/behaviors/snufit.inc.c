@@ -132,7 +132,7 @@ void bhv_snufit_loop(void) {
                 o->oMoveAnglePitch = -0x2000;
             }
 
-            obj_rotate_yaw_toward(o->oAngleToMario, 2000);
+            cur_obj_rotate_yaw_toward(o->oAngleToMario, 2000);
         } else {
             obj_move_pitch_approach(0, 0x200);
             o->oMoveAngleYaw += 200;
@@ -169,7 +169,7 @@ void bhv_snufit_loop(void) {
             o->oSnufitScale = 1.0f;
         }
 
-        obj_scale(o->oSnufitScale);
+        cur_obj_scale(o->oSnufitScale);
         obj_check_attacks(&sSnufitHitbox, o->oAction);
     }
 }
@@ -181,12 +181,12 @@ void bhv_snufit_balls_loop(void) {
     // If far from Mario or in a different room, despawn.
     if ((o->activeFlags & ACTIVE_FLAG_IN_DIFFERENT_ROOM)
         || (o->oTimer != 0 && o->oDistanceToMario > 1500.0f)) {
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
     }
 
     // Gravity =/= 0 after it has hit Mario while metal.
     if (o->oGravity == 0.0f) {
-        obj_update_floor_and_walls();
+        cur_obj_update_floor_and_walls();
 
         obj_compute_vel_from_move_pitch(40.0f);
         if (obj_check_attacks(&sSnufitBulletHitbox, 1)) {
@@ -197,7 +197,7 @@ void bhv_snufit_balls_loop(void) {
             o->oVelY = 30.0f;
             o->oGravity = -4.0f;
 
-            obj_become_intangible();
+            cur_obj_become_intangible();
         } else if (o->oAction == 1 
                || (o->oMoveFlags & (OBJ_MOVE_MASK_ON_GROUND | OBJ_MOVE_HIT_WALL))) {
             // The Snufit shot Mario and has fulfilled its lonely existance.
@@ -208,8 +208,8 @@ void bhv_snufit_balls_loop(void) {
             obj_die_if_health_non_positive();
         }
 
-        obj_move_standard(78);
+        cur_obj_move_standard(78);
     } else {
-        obj_move_using_fvel_and_gravity();
+        cur_obj_move_using_fvel_and_gravity();
     }
 }

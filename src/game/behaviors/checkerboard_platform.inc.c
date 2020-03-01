@@ -3,12 +3,6 @@
 struct Struct8032F754 D_8032F754[] = { { 145, { 0.7f, 1.5f, 0.7f }, 7.0f },
                                        { 235, { 1.2f, 2.0f, 1.2f }, 11.6f } };
 
-void func_802B8F7C(Vec3f dest, Vec3f src) {
-    dest[0] = src[0];
-    dest[1] = src[1];
-    dest[2] = src[2];
-}
-
 void bhv_checkerboard_elevator_group_init(void) {
     s32 sp3C;
     s32 sp38;
@@ -28,7 +22,7 @@ void bhv_checkerboard_elevator_group_init(void) {
         sp2C = spawn_object_relative(i, 0, i * sp3C, sp38, o, MODEL_CHECKERBOARD_PLATFORM,
                                      bhvCheckerboardPlatformSub);
         sp2C->oCheckerBoardPlatformUnk1AC = D_8032F754[sp34].unk2;
-        func_802B8F7C(sp2C->header.gfx.scale, D_8032F754[sp34].unk1);
+        vec3f_copy_2(sp2C->header.gfx.scale, D_8032F754[sp34].unk1);
     }
 }
 
@@ -88,8 +82,8 @@ void bhv_checkerboard_platform_loop(void) {
     if (o->oCheckerBoardPlatformUnkF8 == 1) {
         o->oAngleVelPitch = 0;
         o->oFaceAnglePitch &= ~0x7FFF;
-        obj_move_using_fvel_and_gravity();
+        cur_obj_move_using_fvel_and_gravity();
     } else
-        obj_move_using_fvel_and_gravity();
+        cur_obj_move_using_fvel_and_gravity();
     load_object_collision_model();
 }

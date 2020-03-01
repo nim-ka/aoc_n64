@@ -2,7 +2,7 @@
 
 void bhv_wf_solid_tower_platform_loop(void) {
     if (o->parentObj->oAction == 3)
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
 }
 
 void bhv_wf_elevator_tower_platform_loop(void) {
@@ -31,7 +31,7 @@ void bhv_wf_elevator_tower_platform_loop(void) {
             break;
     }
     if (o->parentObj->oAction == 3)
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
 }
 
 void bhv_wf_sliding_tower_platform_loop(void) {
@@ -48,11 +48,11 @@ void bhv_wf_sliding_tower_platform_loop(void) {
             o->oForwardVel = o->oPlatformUnk10C;
             break;
     }
-    obj_compute_vel_xz();
+    cur_obj_compute_vel_xz();
     o->oPosX += o->oVelX;
     o->oPosZ += o->oVelZ;
     if (o->parentObj->oAction == 3)
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
 }
 
 void func_802AF9A4(s16 a, const BehaviorScript *beh) {

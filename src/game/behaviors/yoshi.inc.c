@@ -26,7 +26,7 @@ void yoshi_walk_loop(void) {
     if (is_point_close_to_object(o, o->oHomeX, 3174.0f, o->oHomeZ, 200))
         o->oAction = YOSHI_ACT_IDLE;
 
-    set_object_animation(1);
+    cur_obj_init_animation(1);
     if (sp24 == 0 || sp24 == 15)
         PlaySound2(SOUND_GENERAL_YOSHI_WALK);
 
@@ -58,7 +58,7 @@ void yoshi_idle_loop(void) {
         o->oAction = YOSHI_ACT_WALK;
     }
 
-    set_object_animation(0);
+    cur_obj_init_animation(0);
     if (o->oInteractStatus == INT_STATUS_INTERACTED)
         o->oAction = YOSHI_ACT_TALK;
 
@@ -74,7 +74,7 @@ void yoshi_idle_loop(void) {
 
 void yoshi_talk_loop(void) {
     if ((s16) o->oMoveAngleYaw == (s16) o->oAngleToMario) {
-        set_object_animation(0);
+        cur_obj_init_animation(0);
         if (set_mario_npc_dialog(1) == 2) {
             o->activeFlags |= 0x20;
             if (cutscene_object_with_dialog(CUTSCENE_DIALOG, o, DIALOG_161)) {
@@ -87,7 +87,7 @@ void yoshi_talk_loop(void) {
             }
         }
     } else {
-        set_object_animation(1);
+        cur_obj_init_animation(1);
         play_puzzle_jingle();
         o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x500);
     }
@@ -98,13 +98,13 @@ void yoshi_walk_and_jump_off_roof_loop(void) {
 
     o->oForwardVel = 10.0f;
     object_step();
-    set_object_animation(1);
+    cur_obj_init_animation(1);
     if (o->oTimer == 0)
         cutscene_object(CUTSCENE_STAR_SPAWN, o);
 
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oYoshiTargetYaw, 0x500);
     if (is_point_close_to_object(o, o->oHomeX, 3174.0f, o->oHomeZ, 200)) {
-        set_object_animation(2);
+        cur_obj_init_animation(2);
         PlaySound2(SOUND_GENERAL_ENEMY_ALERT1);
         o->oForwardVel = 50.0f;
         o->oVelY = 40.0f;
@@ -118,7 +118,7 @@ void yoshi_walk_and_jump_off_roof_loop(void) {
 }
 
 void yoshi_finish_jumping_and_despawn_loop(void) {
-    obj_extend_anim_if_at_end();
+    cur_obj_extend_animation_if_at_end();
     obj_move_xyz_using_fvel_and_yaw(o);
     o->oVelY -= 2.0;
     if (o->oPosY < 2100.0f) {
@@ -172,7 +172,7 @@ void BehYoshiLoop(void) {
             break;
 
         case YOSHI_ACT_CREDITS:
-            set_object_animation(0);
+            cur_obj_init_animation(0);
             break;
     }
 

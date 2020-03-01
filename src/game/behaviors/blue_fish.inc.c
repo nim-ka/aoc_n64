@@ -9,10 +9,9 @@
 void bhv_blue_fish_movement_loop(void) {
     f32 randomSwitch;
     switch (o->oAction) {
-        
         // Initial dive phase after spawning
         case BLUE_FISH_ACT_DIVE:
-            obj_init_anim_accel_and_sound(0, 1.0f);
+            cur_obj_init_animation_with_accel_and_sound(0, 1.0f);
             
             // Assigns random values to variables that help determine natural motion.
             if (o->oTimer == 0) {
@@ -45,19 +44,17 @@ void bhv_blue_fish_movement_loop(void) {
             // Calculate new Y velocity
             o->oVelY = -sins(o->oFaceAnglePitch) * o->oForwardVel;
             break;
-        
         // Animates and adjusts fish yaw angle.
         case BLUE_FISH_ACT_TURN:
-            obj_init_anim_accel_and_sound(0, 2.0f);
+            cur_obj_init_animation_with_accel_and_sound(0, 2.0f);
             o->oMoveAngleYaw = (s32)(o->oBlueFishRandomAngle + o->oMoveAngleYaw);
             if (o->oTimer == 15) {
                 o->oAction++;
             }
-            break;
-            
+            break;  
         // Animates and adjusts pitch to an upward direction.
         case BLUE_FISH_ACT_ASCEND:
-            obj_init_anim_accel_and_sound(0, 1.0f);
+            cur_obj_init_animation_with_accel_and_sound(0, 1.0f);
             
             // Progresses oAction to BLUE_FISH_ACT_TURN_BACK after elapsed time. 
             if (o->oTimer >= o->oBlueFishRandomTime + 60) {
@@ -70,11 +67,10 @@ void bhv_blue_fish_movement_loop(void) {
             } else {
                 o->oFaceAnglePitch += o->oAngleVelPitch;
             }
-            break;
-            
+            break; 
         // Animates and turns fish around
         case BLUE_FISH_ACT_TURN_BACK:
-            obj_init_anim_accel_and_sound(0, 2.0f);
+            cur_obj_init_animation_with_accel_and_sound(0, 2.0f);
             o->oMoveAngleYaw = (s32)(o->oBlueFishRandomAngle + o->oMoveAngleYaw);
             
             // Sets the fish back to the BLUE_FISH_ACT_DIVE phase.
@@ -86,11 +82,11 @@ void bhv_blue_fish_movement_loop(void) {
     
     // Calculates Y velocity and calls physics engine.
     o->oVelY = -sins(o->oFaceAnglePitch) * o->oForwardVel;
-    obj_move_using_fvel_and_gravity();
+    cur_obj_move_using_fvel_and_gravity();
     
     // Deletes object if the parent has oAction set to BLUE_FISH_ACT_DUPLICATE.
     if (o->parentObj->oAction == BLUE_FISH_ACT_DUPLICATE) {
-        mark_object_for_deletion(o);
+        obj_mark_for_deletion(o);
     }
 }
 
@@ -108,7 +104,7 @@ void bhv_tank_fish_group_loop(void) {
                 // spawns fifteen fish and moves them within 200.0f
                 for (i = 0; i < 15; i++) {
                     fish = spawn_object_relative(0, 300, 0, -200, o, MODEL_FISH, bhvBlueFish);
-                    translate_object_xyz_random(fish, 200.0f);
+                    obj_translate_xyz_random(fish, 200.0f);
                 }
                 
                 // Proceed to BLUE_FISH_ACT_ROOM phase.

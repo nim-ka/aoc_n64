@@ -27,7 +27,7 @@ static void enemy_lakitu_act_uninitialized(void) {
     if (o->oDistanceToMario < 2000.0f) {
         spawn_object_relative_with_scale(CLOUD_BP_LAKITU_CLOUD, 0, 0, 0, 2.0f, o, MODEL_MIST, bhvCloud);
 
-        obj_unhide();
+        cur_obj_unhide();
         o->oAction = ENEMY_LAKITU_ACT_MAIN;
     }
 }
@@ -85,7 +85,7 @@ static void enemy_lakitu_update_speed_and_angle(void) {
     // Change move angle toward mario faster when farther from mario
     turnSpeed = (s16)(distToMario * 2);
     clamp_s16(&turnSpeed, 0xC8, 0xFA0);
-    obj_rotate_yaw_toward(o->oAngleToMario, turnSpeed);
+    cur_obj_rotate_yaw_toward(o->oAngleToMario, turnSpeed);
 }
 
 /**
@@ -93,7 +93,7 @@ static void enemy_lakitu_update_speed_and_angle(void) {
  * hold it, then enter the hold spiny sub-action.
  */
 static void enemy_lakitu_sub_act_no_spiny(void) {
-    set_obj_animation_and_sound_state(1);
+    cur_obj_init_animation_with_sound(1);
 
     if (o->oEnemyLakituSpinyCooldown != 0) {
         o->oEnemyLakituSpinyCooldown -= 1;
@@ -103,8 +103,7 @@ static void enemy_lakitu_sub_act_no_spiny(void) {
         if (spiny != NULL) {
             o->prevObj = spiny;
             spiny->oAction = SPINY_ACT_HELD_BY_LAKITU;
-
-            obj_init_anim_and_sound(spiny, spiny_egg_seg5_anims_050157E4, 0);
+            obj_init_animation_with_sound(spiny, spiny_egg_seg5_anims_050157E4, 0);
 
             o->oEnemyLakituNumSpinies += 1;
             o->oSubAction = ENEMY_LAKITU_SUB_ACT_HOLD_SPINY;
@@ -141,7 +140,7 @@ static void enemy_lakitu_sub_act_throw_spiny(void) {
         o->prevObj = NULL;
     }
 
-    if (obj_check_if_near_anim_end()) {
+    if (cur_obj_check_if_near_animation_end()) {
         o->oSubAction = ENEMY_LAKITU_SUB_ACT_NO_SPINY;
         o->oEnemyLakituSpinyCooldown = random_linear_offset(100, 100);
     }
@@ -153,11 +152,11 @@ static void enemy_lakitu_sub_act_throw_spiny(void) {
 static void enemy_lakitu_act_main(void) {
     PlaySound(SOUND_AIR_LAKITU_FLY);
 
-    obj_update_floor_and_walls();
+    cur_obj_update_floor_and_walls();
 
     enemy_lakitu_update_speed_and_angle();
     if (o->oMoveFlags & OBJ_MOVE_HIT_WALL) {
-        o->oMoveAngleYaw = obj_reflect_move_angle_off_wall();
+        o->oMoveAngleYaw = cur_obj_reflect_move_angle_off_wall();
     }
 
     obj_update_blinking(&o->oEnemyLakituBlinkTimer, 20, 40, 4);
@@ -174,7 +173,7 @@ static void enemy_lakitu_act_main(void) {
             break;
     }
 
-    obj_move_standard(78);
+    cur_obj_move_standard(78);
 
     // Die and drop held spiny when attacked by mario
     if (obj_check_attacks(&sEnemyLakituHitbox, o->oAction)) {

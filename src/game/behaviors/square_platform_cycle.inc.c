@@ -33,6 +33,6 @@ void bhv_squarish_path_moving_loop(void) {
         default:
             break;
     }
-    obj_move_using_fvel_and_gravity();
+    cur_obj_move_using_fvel_and_gravity();
     load_object_collision_model();
 }

@@ -26,14 +26,14 @@ void bhv_heave_ho_throw_mario_loop(void) {
 void ActionHeaveHo1(void) {
     s32 sp1C = 0;
     o->oForwardVel = 0.0f;
-    obj_reverse_anim();
+    cur_obj_reverse_animation();
     while (1) {
         if (D_8032F460[sp1C][0] == -1) {
             o->oAction = 2;
             break;
         }
         if (o->oTimer < D_8032F460[sp1C][0]) {
-            obj_init_anim_accel_and_sound(2, D_8032F460[sp1C][1]);
+            cur_obj_init_animation_with_accel_and_sound(2, D_8032F460[sp1C][1]);
             break;
         }
         sp1C++;
@@ -43,8 +43,8 @@ void ActionHeaveHo1(void) {
 void ActionHeaveHo2(void) {
     UNUSED s32 unused;
     s16 angleVel;
-    if (1000.0f < obj_lateral_dist_from_mario_to_home())
-        o->oAngleToMario = obj_angle_to_home();
+    if (1000.0f < cur_obj_lateral_dist_from_mario_to_home())
+        o->oAngleToMario = cur_obj_angle_to_home();
     if (o->oTimer > 150) {
         o->oHeaveHoUnkF4 = (302 - o->oTimer) / 152.0f;
         if (o->oHeaveHoUnkF4 < 0.1) {
@@ -53,7 +53,7 @@ void ActionHeaveHo2(void) {
         }
     } else
         o->oHeaveHoUnkF4 = 1.0f;
-    obj_init_anim_accel_and_sound(0, o->oHeaveHoUnkF4);
+    cur_obj_init_animation_with_accel_and_sound(0, o->oHeaveHoUnkF4);
     o->oForwardVel = o->oHeaveHoUnkF4 * 10.0f;
     angleVel = o->oHeaveHoUnkF4 * 0x400;
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, angleVel);
@@ -64,31 +64,31 @@ void ActionHeaveHo3(void) {
     if (o->oTimer == 0)
         o->oHeaveHoUnk88 = 2;
     if (o->oTimer == 1) {
-        obj_init_anim_accel_and_sound(1, 1.0f);
+        cur_obj_init_animation_with_accel_and_sound(1, 1.0f);
         o->numCollidedObjs = 20;
     }
-    if (obj_check_if_near_anim_end())
+    if (cur_obj_check_if_near_animation_end())
         o->oAction = 1;
 }
 
 void ActionHeaveHo0(void) {
-    obj_set_pos_to_home();
+    cur_obj_set_pos_to_home();
     if (find_water_level(o->oPosX, o->oPosZ) < o->oPosY && o->oDistanceToMario < 4000.0f) {
-        obj_become_tangible();
-        obj_unhide();
+        cur_obj_become_tangible();
+        cur_obj_unhide();
         o->oAction = 1;
     } else {
-        obj_become_intangible();
-        obj_hide();
+        cur_obj_become_intangible();
+        cur_obj_hide();
     }
 }
 
 void (*sHeaveHoActions[])(void) = { ActionHeaveHo0, ActionHeaveHo1, ActionHeaveHo2, ActionHeaveHo3 };
 
 void func_802B18B4(void) {
-    obj_update_floor_and_walls();
-    obj_call_action_function(sHeaveHoActions);
-    obj_move_standard(-78);
+    cur_obj_update_floor_and_walls();
+    cur_obj_call_action_function(sHeaveHoActions);
+    cur_obj_move_standard(-78);
     if (o->oMoveFlags & (0x40 | 0x20 | 0x10 | 0x8))
         o->oGraphYOffset = -15.0f;
     else
@@ -105,19 +105,19 @@ void func_802B18B4(void) {
 }
 
 void bhv_heave_ho_loop(void) {
-    obj_scale(2.0f);
+    cur_obj_scale(2.0f);
     switch (o->oHeldState) {
         case HELD_FREE:
             func_802B18B4();
             break;
         case HELD_HELD:
-            unrender_and_reset_obj_state(0, 0);
+            cur_obj_unrender_and_reset_state(0, 0);
             break;
         case HELD_THROWN:
-            obj_get_dropped();
+            cur_obj_get_dropped();
             break;
         case HELD_DROPPED:
-            obj_get_dropped();
+            cur_obj_get_dropped();
             break;
     }
     o->oInteractStatus = 0;

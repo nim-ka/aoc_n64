@@ -322,7 +322,7 @@ static void common_idle_step(struct MarioState *m, s32 animation, s32 arg) {
         set_mario_anim_with_accel(m, animation, arg);
     }
 
-    set_swimming_at_surface_particles(m, PARTICLE_7);
+    set_swimming_at_surface_particles(m, PARTICLE_IDLE_WATER_WAVE);
 }
 
 static s32 act_water_idle(struct MarioState *m) {
@@ -475,7 +475,7 @@ static void common_swimming_step(struct MarioState *m, s16 swimStrength) {
     m->marioBodyState->headAngle[0] = approach_s32(m->marioBodyState->headAngle[0], 0, 0x200, 0x200);
 
     float_surface_gfx(m);
-    set_swimming_at_surface_particles(m, PARTICLE_10);
+    set_swimming_at_surface_particles(m, PARTICLE_WAVE_TRAIL);
 }
 
 static void play_swimming_noise(struct MarioState *m) {
@@ -966,7 +966,7 @@ static s32 act_water_plunge(struct MarioState *m) {
             play_sound(SOUND_MARIO_HAHA_2, m->marioObj->header.gfx.cameraToObject);
         }
 
-        m->particleFlags |= PARTICLE_6;
+        m->particleFlags |= PARTICLE_WATER_SPLASH;
         m->actionState = 1;
     }
 
@@ -1178,7 +1178,7 @@ static s32 act_metal_water_standing(struct MarioState *m) {
 
     stop_and_set_height_to_floor(m);
     if (m->pos[1] >= m->waterLevel - 150) {
-        m->particleFlags |= PARTICLE_7;
+        m->particleFlags |= PARTICLE_IDLE_WATER_WAVE;
     }
 
     return FALSE;

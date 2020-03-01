@@ -5,5 +5,5 @@ void BehClimbDetectLoop(void) {
         && gMarioObject->oPosY < o->oPosY + o->hitboxHeight + 30.0f)
         if (o->oTimer > 10)
             if (!(gMarioStates->action & MARIO_PUNCHING))
-                obj_push_mario_away(70.0f);
+                cur_obj_push_mario_away(70.0f);
 }

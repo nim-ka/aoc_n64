@@ -318,7 +318,7 @@ void beh_yellow_background_menu_init(void) {
  * Properly scales the background in the main menu.
  */
 void beh_yellow_background_menu_loop(void) {
-    obj_scale(9.0f);
+    cur_obj_scale(9.0f);
 }
 
 /**
@@ -555,7 +555,7 @@ void bhv_menu_button_loop(void) {
             sCursorClickingTimer = 4;
             break;
     }
-    obj_scale(gCurrentObject->oMenuButtonScale);
+    cur_obj_scale(gCurrentObject->oMenuButtonScale);
 }
 
 /**

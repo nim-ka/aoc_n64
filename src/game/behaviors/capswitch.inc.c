@@ -2,7 +2,7 @@
 
 void ActionActivateCapSwitch0(void) {
     o->oAnimState = o->oBehParams2ndByte;
-    obj_scale(0.5f);
+    cur_obj_scale(0.5f);
     o->oPosY += 71.0f;
     spawn_object_relative_with_scale(0, 0, -71, 0, 0.5f, o, MODEL_CAP_SWITCH_BASE, bhvCapSwitchBase);
     if (gCurrLevelNum != LEVEL_UNKNOWN_32) {
@@ -16,7 +16,7 @@ void ActionActivateCapSwitch0(void) {
 }
 
 void ActionActivateCapSwitch1(void) {
-    if (obj_is_mario_on_platform()) {
+    if (cur_obj_is_mario_on_platform()) {
         save_file_set_flags(D_8032F0C0[o->oBehParams2ndByte]);
         o->oAction = 2;
         PlaySound2(SOUND_GENERAL_ACTIVATE_CAP_SWITCH);
@@ -26,14 +26,14 @@ void ActionActivateCapSwitch1(void) {
 void ActionActivateCapSwitch2(void) {
     s32 sp1C;
     if (o->oTimer < 5) {
-        obj_scale_over_time(2, 4, 0.5f, 0.1f);
+        cur_obj_scale_over_time(2, 4, 0.5f, 0.1f);
         if (o->oTimer == 4) {
-            shake_screen_from_object(SHAKE_POS_SMALL);
+            cur_obj_shake_screen(SHAKE_POS_SMALL);
             spawn_mist_particles();
             spawn_triangle_break_particles(60, 139, 0.3f, o->oBehParams2ndByte);
         }
     } else {
-        sp1C = obj_update_dialog_with_cutscene(1, 0x0C, CUTSCENE_CAP_SWITCH_PRESS, 0);
+        sp1C = cur_obj_update_dialog_with_cutscene(1, 0x0C, CUTSCENE_CAP_SWITCH_PRESS, 0);
         if (sp1C)
             o->oAction = 3;
     }
@@ -46,7 +46,7 @@ void (*sCapSwitchActions[])(void) = { ActionActivateCapSwitch0, ActionActivateCa
                                       ActionActivateCapSwitch2, ActionActivateCapSwitch3 };
 
 void bhv_cap_switch_loop(void) {
-    obj_call_action_function(sCapSwitchActions);
+    cur_obj_call_action_function(sCapSwitchActions);
 }
 
 Gfx *Geo18_802A719C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx) {
@@ -57,8 +57,8 @@ Gfx *Geo18_802A719C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx) {
         sp1C = (struct Object *) gCurGraphNodeObject;
         if (sp1C->prevObj != NULL) {
             create_transformation_from_matrices(sp20, mtx, gCurGraphNodeCamera->matrixPtr);
-            update_pos_from_parent_transformation(sp20, sp1C->prevObj);
-            set_gfx_pos_from_pos(sp1C->prevObj);
+            obj_update_pos_from_parent_transformation(sp20, sp1C->prevObj);
+            obj_set_gfx_pos_from_pos(sp1C->prevObj);
         }
     }
     return NULL;
