@@ -57,7 +57,7 @@ void tweester_act_idle(void) {
 
         o->oTimer = 0;
     } else {
-        PlaySound(SOUND_ENV_WIND1);
+        cur_obj_play_sound_1(SOUND_ENV_WIND1);
         tweester_scale_and_move(o->oTimer / 60.0f);
         if (o->oTimer > 59)
             o->oAction = TWEESTER_ACT_CHASE;
@@ -72,7 +72,7 @@ void tweester_act_chase(void) {
     f32 activationRadius = o->oBehParams2ndByte * 100;
 
     o->oAngleToHome = cur_obj_angle_to_home();
-    PlaySound(SOUND_ENV_WIND1);
+    cur_obj_play_sound_1(SOUND_ENV_WIND1);
 
     if (cur_obj_lateral_dist_from_mario_to_home() < activationRadius
         && o->oSubAction == TWEESTER_SUB_ACT_CHASE) {

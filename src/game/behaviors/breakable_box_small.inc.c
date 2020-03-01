@@ -22,22 +22,22 @@ void bhv_breakable_box_small_init(void) {
     o->activeFlags |= 0x200;
 }
 
-void func_802F4CE8(void) {
+void small_breakable_box_spawn_dust(void) {
     struct Object *sp24 = spawn_object(o, MODEL_SMOKE, bhvSmoke);
     sp24->oPosX += (s32)(RandomFloat() * 80.0f) - 40;
     sp24->oPosZ += (s32)(RandomFloat() * 80.0f) - 40;
 }
 
-void func_802F4DB4(void) {
+void small_breakable_box_act_move(void) {
     s16 sp1E = object_step();
 
     obj_attack_collided_from_other_object(o);
     if (sp1E == 1)
-        PlaySound2(SOUND_GENERAL_BOX_LANDING_2);
+        cur_obj_play_sound_2(SOUND_GENERAL_BOX_LANDING_2);
     if (sp1E & 1) {
         if (o->oForwardVel > 20.0f) {
-            PlaySound2(SOUND_ENV_SLIDING);
-            func_802F4CE8();
+            cur_obj_play_sound_2(SOUND_ENV_SLIDING);
+            small_breakable_box_spawn_dust();
         }
     }
 
@@ -73,7 +73,7 @@ void breakable_box_small_released_loop(void) {
 void breakable_box_small_idle_loop(void) {
     switch (o->oAction) {
         case 0:
-            func_802F4DB4();
+            small_breakable_box_act_move();
             break;
 
         case 100:

@@ -58,7 +58,7 @@ void bhv_bowser_flame_spawn_loop(void) {
         if (bowser->header.gfx.unk38.curAnim->unk08 == sp30)
             sp30 = 0;
         if (sp30 > 45 && sp30 < 85) {
-            PlaySound(SOUND_AIR_BOWSER_SPIT_FIRE);
+            cur_obj_play_sound_1(SOUND_AIR_BOWSER_SPIT_FIRE);
             sp2C = sp1C[5 * sp30];
             sp28 = sp1C[5 * sp30 + 2];
             o->oPosX = bowser->oPosX + (sp28 * sp20 + sp2C * sp24);
@@ -111,7 +111,7 @@ void bowser_bounce(s32 *a) {
         if (a[0] < 4) {
             cur_obj_start_cam_event(o, CAM_EVENT_BOWSER_THROW_BOUNCE);
             spawn_mist_particles_variable(0, 0, 60.0f);
-            PlaySound2(SOUND_OBJ_BOWSER_WALK);
+            cur_obj_play_sound_2(SOUND_OBJ_BOWSER_WALK);
         }
     }
 }
@@ -321,7 +321,7 @@ void bowser_act_default() // only lasts one frame
 void bowser_act_breath_fire(void) {
     o->oForwardVel = 0.0f;
     if (o->oTimer == 0)
-        PlaySound2(SOUND_OBJ_BOWSER_INHALING);
+        cur_obj_play_sound_2(SOUND_OBJ_BOWSER_INHALING);
     if (cur_obj_init_animation_and_check_if_near_end(6))
         o->oAction = 0;
 }
@@ -364,7 +364,7 @@ void bowser_act_teleport(void) {
             o->oBowserUnk1AC = 0;
             o->oBowserUnkF8 = 30;
             if (o->oTimer == 0)
-                PlaySound2(SOUND_OBJ2_BOWSER_TELEPORT);
+                cur_obj_play_sound_2(SOUND_OBJ2_BOWSER_TELEPORT);
             if (o->oOpacity == 0) {
                 o->oSubAction++;
                 o->oMoveAngleYaw = o->oAngleToMario;
@@ -381,7 +381,7 @@ void bowser_act_teleport(void) {
                 if (o->oDistanceToMario > 500.0f) {
                     o->oSubAction = 2;
                     o->oMoveAngleYaw = o->oAngleToMario; // large change in angle?
-                    PlaySound2(SOUND_OBJ2_BOWSER_TELEPORT);
+                    cur_obj_play_sound_2(SOUND_OBJ2_BOWSER_TELEPORT);
                 }
             break;
         case 2:
@@ -400,7 +400,7 @@ void bowser_act_spit_fire_into_sky(void) // only in sky
     cur_obj_init_animation_with_sound(11);
     frame = o->header.gfx.unk38.animFrame;
     if (frame > 24 && frame < 36) {
-        PlaySound(SOUND_AIR_BOWSER_SPIT_FIRE);
+        cur_obj_play_sound_1(SOUND_AIR_BOWSER_SPIT_FIRE);
         if (frame == 35)
             spawn_object_relative(1, 0, 0x190, 0x64, o, MODEL_RED_FLAME, bhvBlueBowserFlame);
         else
@@ -750,7 +750,7 @@ void bowser_act_jump_onto_stage(void) {
 
 void bowser_act_dance(void) {
     if (is_item_in_array(o->oTimer, D_8032F514))
-        PlaySound2(SOUND_OBJ_BOWSER_WALK);
+        cur_obj_play_sound_2(SOUND_OBJ_BOWSER_WALK);
     if (cur_obj_init_animation_and_check_if_near_end(10))
         o->oAction = 0;
 }
@@ -760,7 +760,7 @@ void bowser_spawn_grand_star_key(void) {
         gSecondCameraFocus = spawn_object(o, MODEL_STAR, bhvGrandStar);
     else {
         gSecondCameraFocus = spawn_object(o, MODEL_BOWSER_KEY, bhvBowserKey);
-        PlaySound2(SOUND_GENERAL2_BOWSER_KEY);
+        cur_obj_play_sound_2(SOUND_GENERAL2_BOWSER_KEY);
     }
     gSecondCameraFocus->oAngleVelYaw = o->oAngleVelYaw;
 }
@@ -781,7 +781,7 @@ void bowser_dead_bounce(void) {
     o->oBowserEyesShut = 1;
     bowser_bounce(&o->oBowserUnkF8);
     if (o->oMoveFlags & 1)
-        PlaySound2(SOUND_OBJ_BOWSER_WALK);
+        cur_obj_play_sound_2(SOUND_OBJ_BOWSER_WALK);
     if (o->oMoveFlags & 2) {
         o->oForwardVel = 0.0f;
         o->oSubAction++;
@@ -835,7 +835,7 @@ s32 bowser_dead_not_bits_end(void) {
         }
         if (cur_obj_update_dialog(2, 18, sBowserDefeatedDialogText[o->oBehParams2ndByte], 0)) {
             o->oBowserUnkF8++;
-            PlaySound2(SOUND_GENERAL2_BOWSER_EXPLODE);
+            cur_obj_play_sound_2(SOUND_GENERAL2_BOWSER_EXPLODE);
             sequence_player_unlower(0, 60);
             sequence_player_fade_out(0, 1);
         }
@@ -1053,7 +1053,7 @@ void bowser_held_update(void) {
     cur_obj_become_intangible();
     switch (o->oBowserUnk10E) {
         case 0:
-            PlaySound2(SOUND_OBJ_BOWSER_TAIL_PICKUP);
+            cur_obj_play_sound_2(SOUND_OBJ_BOWSER_TAIL_PICKUP);
             cur_obj_unrender_and_reset_state(3, 1);
             o->oBowserUnk10E++;
             break;
@@ -1313,7 +1313,7 @@ void falling_bowser_plat_act_2(void) {
     f32 sp1C;
     UNUSED struct Object *sp18 = o->oPlatformUnkF8;
     if (o->oTimer == 0 || o->oTimer == 22)
-        PlaySound2(SOUND_GENERAL_BOWSER_PLATFORM_2);
+        cur_obj_play_sound_2(SOUND_GENERAL_BOWSER_PLATFORM_2);
     if (o->oTimer < 22) {
         set_environmental_camera_shake(SHAKE_ENV_FALLING_BITS_PLAT);
         o->oVelY = 8.0f;

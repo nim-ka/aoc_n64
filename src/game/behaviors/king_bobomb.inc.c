@@ -87,7 +87,7 @@ void king_bobomb_act_3(void) {
         o->oKingBobombUnk104 = 0;
         o->oKingBobombUnkFC = 0;
         if (o->oTimer == 0)
-            PlaySound2(SOUND_OBJ_UNKNOWN3);
+            cur_obj_play_sound_2(SOUND_OBJ_UNKNOWN3);
         if (cur_obj_init_animation_and_check_if_near_end(0)) {
             o->oSubAction++;
             cur_obj_init_animation_and_anim_frame(1, 0);
@@ -114,7 +114,7 @@ void king_bobomb_act_3(void) {
             cur_obj_init_animation_with_sound(9);
             if (cur_obj_check_anim_frame(31)) {
                 o->oKingBobombUnk88 = 2;
-                PlaySound2(SOUND_OBJ_UNKNOWN4);
+                cur_obj_play_sound_2(SOUND_OBJ_UNKNOWN4);
             } else if (cur_obj_check_if_near_animation_end()) {
                 o->oAction = 1;
                 o->oInteractStatus &= ~(INT_STATUS_GRABBED_MARIO);
@@ -140,8 +140,8 @@ void king_bobomb_act_6(void) {
     if (o->oSubAction == 0) {
         if (o->oTimer == 0) {
             o->oKingBobombUnk104 = 0;
-            PlaySound2(SOUND_OBJ_KING_BOBOMB);
-            PlaySound2(SOUND_OBJ2_KING_BOBOMB_DAMAGE);
+            cur_obj_play_sound_2(SOUND_OBJ_KING_BOBOMB);
+            cur_obj_play_sound_2(SOUND_OBJ2_KING_BOBOMB_DAMAGE);
             cur_obj_shake_screen(SHAKE_POS_SMALL);
             spawn_mist_particles_variable(0, 0, 100.0f);
             o->oInteractType = 8;
@@ -181,7 +181,7 @@ void king_bobomb_act_7(void) {
         cur_obj_spawn_star_at_y_offset(2000.0f, 4500.0f, -4500.0f, 200.0f);
 #else
         o->oPosY += 100.0f;
-        create_star(2000.0f, 4500.0f, -4500.0f);
+        spawn_default_star(2000.0f, 4500.0f, -4500.0f);
 #endif
         o->oAction = 8;
     }
@@ -198,7 +198,7 @@ void king_bobomb_act_4() { // bobomb been thrown
             o->oHealth--;
             o->oForwardVel = 0;
             o->oVelY = 0;
-            PlaySound2(SOUND_OBJ_KING_BOBOMB);
+            cur_obj_play_sound_2(SOUND_OBJ_KING_BOBOMB);
             if (o->oHealth)
                 o->oAction = 6;
             else
@@ -211,7 +211,7 @@ void king_bobomb_act_4() { // bobomb been thrown
                 o->oVelY = 0;
                 o->oSubAction++;
             } else if (o->oMoveFlags & 1)
-                PlaySound2(SOUND_OBJ_KING_BOBOMB);
+                cur_obj_play_sound_2(SOUND_OBJ_KING_BOBOMB);
         } else {
             if (cur_obj_init_animation_and_check_if_near_end(10))
                 o->oAction = 5; // Go back to top of hill
@@ -224,7 +224,7 @@ void king_bobomb_act_5() { // bobomb returns home
     switch (o->oSubAction) {
         case 0:
             if (o->oTimer == 0)
-                PlaySound2(SOUND_OBJ_KING_BOBOMB_JUMP);
+                cur_obj_play_sound_2(SOUND_OBJ_KING_BOBOMB_JUMP);
             o->oKingBobombUnkF8 = 1;
             cur_obj_init_animation_and_extend_if_at_end(8);
             o->oMoveAngleYaw =  cur_obj_angle_to_home();
@@ -244,7 +244,7 @@ void king_bobomb_act_5() { // bobomb returns home
                 o->oGravity = -4.0f;
                 o->oKingBobombUnkF8 = 0;
                 cur_obj_init_animation_with_sound(7);
-                PlaySound2(SOUND_OBJ_KING_BOBOMB);
+                cur_obj_play_sound_2(SOUND_OBJ_KING_BOBOMB);
                 cur_obj_shake_screen(SHAKE_POS_SMALL);
                 o->oSubAction++;
             }

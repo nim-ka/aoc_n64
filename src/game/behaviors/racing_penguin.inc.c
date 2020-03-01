@@ -69,7 +69,7 @@ static void racing_penguin_act_race(void) {
         targetSpeed = o->oPosY - gMarioObject->oPosY;
         minSpeed = 70.0f;
 
-        PlaySound(SOUND_AIR_ROUGH_SLIDE);
+        cur_obj_play_sound_1(SOUND_AIR_ROUGH_SLIDE);
 
         if (targetSpeed < 100.0f || (o->oPathedPrevWaypointFlags & WAYPOINT_MASK_00FF) >= 35) {
             if ((o->oPathedPrevWaypointFlags & WAYPOINT_MASK_00FF) >= 35) {
@@ -105,7 +105,7 @@ static void racing_penguin_act_race(void) {
 static void racing_penguin_act_finish_race(void) {
     if (o->oForwardVel != 0.0f) {
         if (o->oTimer > 5 && (o->oMoveFlags & 0x00000200)) {
-            PlaySound2(SOUND_OBJ_POUNDING_LOUD);
+            cur_obj_play_sound_2(SOUND_OBJ_POUNDING_LOUD);
             set_camera_shake_from_point(SHAKE_POS_SMALL, o->oPosX, o->oPosY, o->oPosZ);
             o->oForwardVel = 0.0f;
         }
@@ -150,7 +150,7 @@ static void racing_penguin_act_show_final_text(void) {
         }
     } else if (o->oRacingPenguinMarioWon) {
 #ifdef VERSION_JP
-        create_star(-7339.0f, -5700.0f, -6774.0f);
+        spawn_default_star(-7339.0f, -5700.0f, -6774.0f);
 #else
         cur_obj_spawn_star_at_y_offset(-7339.0f, -5700.0f, -6774.0f, 200.0f);
 #endif

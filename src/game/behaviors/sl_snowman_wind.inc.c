@@ -40,6 +40,6 @@ void bhv_sl_snowman_wind_loop(void) {
         }
         // Spawn wind and play wind sound
         cur_obj_spawn_strong_wind_particles(12, 3.0f, 0, 0, 0);
-        PlaySound(SOUND_AIR_BLOW_WIND);
+        cur_obj_play_sound_1(SOUND_AIR_BLOW_WIND);
     }
 }

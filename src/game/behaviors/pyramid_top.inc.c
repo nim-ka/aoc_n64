@@ -101,7 +101,7 @@ void bhv_pyramid_top_loop(void) {
 
         case PYRAMID_TOP_ACT_SPINNING:
             if (o->oTimer == 0) {
-                PlaySound2(SOUND_GENERAL2_PYRAMID_TOP_SPIN);
+                cur_obj_play_sound_2(SOUND_GENERAL2_PYRAMID_TOP_SPIN);
             }
 
             bhv_pyramid_top_spinning();

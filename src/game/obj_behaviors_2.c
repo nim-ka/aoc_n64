@@ -416,7 +416,7 @@ static s32 func_802F9378(s8 arg0, s8 arg1, u32 sound) {
     }
 
     if (cur_obj_check_anim_frame_in_range(arg0, val04) || cur_obj_check_anim_frame_in_range(arg1, val04)) {
-        PlaySound2(sound);
+        cur_obj_play_sound_2(sound);
         return TRUE;
     }
 
@@ -725,7 +725,7 @@ static void obj_set_knockback_action(s32 attackType) {
 }
 
 static void obj_set_squished_action(void) {
-    PlaySound2(SOUND_OBJ_STOMPED);
+    cur_obj_play_sound_2(SOUND_OBJ_STOMPED);
     o->oAction = OBJ_ACT_SQUISHED;
 }
 
@@ -738,9 +738,9 @@ static s32 obj_die_if_above_lava_and_health_non_positive(void) {
     } else if (!(o->oMoveFlags & OBJ_MOVE_ABOVE_LAVA)) {
         if (o->oMoveFlags & OBJ_MOVE_ENTERED_WATER) {
             if (o->oWallHitboxRadius < 200.0f) {
-                PlaySound2(SOUND_OBJ_DIVING_INTO_WATER);
+                cur_obj_play_sound_2(SOUND_OBJ_DIVING_INTO_WATER);
             } else {
-                PlaySound2(SOUND_OBJ_DIVING_IN_WATER);
+                cur_obj_play_sound_2(SOUND_OBJ_DIVING_IN_WATER);
             }
         }
         return FALSE;

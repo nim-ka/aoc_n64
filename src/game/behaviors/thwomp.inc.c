@@ -21,7 +21,7 @@ void grindel_thwomp_act_3(void) {
     if (o->oTimer == 0)
         if (o->oDistanceToMario < 1500.0f) {
             cur_obj_shake_screen(SHAKE_POS_SMALL);
-            PlaySound2(SOUND_OBJ_THWOMP);
+            cur_obj_play_sound_2(SOUND_OBJ_THWOMP);
         }
     if (o->oTimer > 9)
         o->oAction = 4;

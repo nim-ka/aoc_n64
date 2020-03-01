@@ -34,7 +34,7 @@ void bhv_snowmans_bottom_init(void) {
     spawn_object_abs_with_rot(o, 0, MODEL_NONE, bhvSnowmansBodyCheckpoint, -402, 461, -2898, 0, 0, 0);
 }
 
-void func_802EFB2C(void) {
+void set_rolling_sphere_hitbox(void) {
     obj_set_hitbox(o, &sRollingSphereHitbox);
 
     if ((o->oInteractStatus & INT_STATUS_INTERACTED) != 0) {
@@ -42,7 +42,7 @@ void func_802EFB2C(void) {
     }
 }
 
-void func_802EFB84(f32 f12) {
+void adjust_rolling_face_pitch(f32 f12) {
     o->oFaceAnglePitch += (s16)(o->oForwardVel * (100.0f / f12));
     o->oSnowmansBottomUnkF4 += o->oForwardVel * 1e-4;
 
@@ -50,7 +50,7 @@ void func_802EFB84(f32 f12) {
         o->oSnowmansBottomUnkF4 = 1.0f;
 }
 
-void func_802EFC44(void) {
+void snowmans_bottom_act_1(void) {
     UNUSED s16 sp26;
     s32 sp20;
     UNUSED s16 sp1E;
@@ -75,7 +75,7 @@ void func_802EFC44(void) {
     }
 }
 
-void func_802EFDA0(void) {
+void snowmans_bottom_act_2(void) {
     UNUSED s16 sp26;
 
     sp26 = object_step_without_floor_orient();
@@ -92,7 +92,7 @@ void func_802EFDA0(void) {
 
         o->parentObj->oAction = 2;
         o->parentObj->oVelY = 100.0f;
-        PlaySound2(SOUND_OBJ_SNOWMAN_BOUNCE);
+        cur_obj_play_sound_2(SOUND_OBJ_SNOWMAN_BOUNCE);
     }
 
     if (o->oTimer == 200) {
@@ -101,7 +101,7 @@ void func_802EFDA0(void) {
     }
 }
 
-void func_802EFF58(void) {
+void snowmans_bottom_act_3(void) {
     UNUSED s16 sp1E;
 
     sp1E = object_step_without_floor_orient();
@@ -135,19 +135,19 @@ void bhv_snowmans_bottom_loop(void) {
             break;
 
         case 1:
-            func_802EFC44();
-            func_802EFB84(o->oSnowmansBottomUnkF4);
-            PlaySound(SOUND_ENV_UNKNOWN2);
+            snowmans_bottom_act_1();
+            adjust_rolling_face_pitch(o->oSnowmansBottomUnkF4);
+            cur_obj_play_sound_1(SOUND_ENV_UNKNOWN2);
             break;
 
         case 2:
-            func_802EFDA0();
-            func_802EFB84(o->oSnowmansBottomUnkF4);
-            PlaySound(SOUND_ENV_UNKNOWN2);
+            snowmans_bottom_act_2();
+            adjust_rolling_face_pitch(o->oSnowmansBottomUnkF4);
+            cur_obj_play_sound_1(SOUND_ENV_UNKNOWN2);
             break;
 
         case 3:
-            func_802EFF58();
+            snowmans_bottom_act_3();
             break;
 
         case 4:
@@ -155,7 +155,7 @@ void bhv_snowmans_bottom_loop(void) {
             break;
     }
 
-    func_802EFB2C();
+    set_rolling_sphere_hitbox();
     set_object_visibility(o, 8000);
     cur_obj_scale(o->oSnowmansBottomUnkF4);
     o->oGraphYOffset = o->oSnowmansBottomUnkF4 * 180.0f;
@@ -208,7 +208,7 @@ void bhv_snowmans_head_loop(void) {
             if (o->oPosY < -994.0f) {
                 o->oPosY = -994.0f;
                 o->oAction = 4;
-                PlaySound2(SOUND_OBJ_SNOWMAN_EXPLODE);
+                cur_obj_play_sound_2(SOUND_OBJ_SNOWMAN_EXPLODE);
                 play_puzzle_jingle();
             }
             break;
@@ -216,7 +216,7 @@ void bhv_snowmans_head_loop(void) {
         case 4:
             if (trigger_obj_dialog_when_facing(&o->oSnowmansHeadUnkF4, DIALOG_111, 700.0f, 2)) {
                 spawn_mist_particles();
-                create_star(-4700.0f, -1024.0f, 1890.0f);
+                spawn_default_star(-4700.0f, -1024.0f, 1890.0f);
                 o->oAction = 1;
             }
             break;

@@ -41,7 +41,7 @@ s32 piranha_plant_check_interactions(void) {
     if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         func_80321080(50);
         if (o->oInteractStatus & INT_STATUS_WAS_ATTACKED) {
-            PlaySound2(SOUND_OBJ2_PIRANHA_PLANT_DYING);
+            cur_obj_play_sound_2(SOUND_OBJ2_PIRANHA_PLANT_DYING);
 
             // Spawn 20 intangible purple particles that quickly dissipate.
             for (i = 0; i < 20; i++) {
@@ -166,7 +166,7 @@ void piranha_plant_attacked(void) {
  */
 void piranha_plant_act_shrink_and_die(void) {
     if (o->oTimer == 0) {
-        PlaySound2(SOUND_OBJ_ENEMY_DEFEAT_SHRINK);
+        cur_obj_play_sound_2(SOUND_OBJ_ENEMY_DEFEAT_SHRINK);
         o->oPiranhaPlantScale = 1.0f;
     }
 
@@ -253,7 +253,7 @@ void piranha_plant_act_biting(void) {
 
     // Play a bite sound effect on certain frames.
     if (is_item_in_array(frame, sPiranhaPlantBiteSoundFrames)) {
-        PlaySound2(SOUND_OBJ2_PIRANHA_PLANT_BITE);
+        cur_obj_play_sound_2(SOUND_OBJ2_PIRANHA_PLANT_BITE);
     }
 
     // Move to face the player.

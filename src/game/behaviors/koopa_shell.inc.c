@@ -12,7 +12,7 @@ struct ObjectHitbox sKoopaShellHitbox = {
     /* hurtboxHeight: */ 50,
 };
 
-void func_802BCA8C(void) {
+void koopa_shell_spawn_water_drop(void) {
     UNUSED s32 unused;
     struct Object *drop;
     spawn_object(o, MODEL_WAVE_TRAIL, bhvObjectWaveTrail);
@@ -46,7 +46,7 @@ void bhv_koopa_shell_flame_spawn(void) {
         spawn_object(o, MODEL_RED_FLAME, bhvKoopaShellFlame);
 }
 
-void func_802BCCD4(f32 a) {
+void koopa_shell_spawn_sparkles(f32 a) {
     struct Object *sp1C = spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
     sp1C->oPosY += a;
 }
@@ -63,20 +63,20 @@ void bhv_koopa_shell_loop(void) {
                 o->oAction++;
             o->oFaceAngleYaw += 0x1000;
             cur_obj_move_standard(-20);
-            func_802BCCD4(10.0f);
+            koopa_shell_spawn_sparkles(10.0f);
             break;
         case 1:
             obj_copy_pos(o, gMarioObject);
             sp34 = cur_obj_update_floor_height_and_get_floor();
             if (absf(find_water_level(o->oPosX, o->oPosZ) - o->oPosY) < 10.0f)
-                func_802BCA8C();
+                koopa_shell_spawn_water_drop();
             else if (5.0f > absf(o->oPosY - o->oFloorHeight)) {
                 if (sp34 != NULL && sp34->type == 1)
                     bhv_koopa_shell_flame_spawn();
                 else
-                    func_802BCCD4(10.0f);
+                    koopa_shell_spawn_sparkles(10.0f);
             } else
-                func_802BCCD4(10.0f);
+                koopa_shell_spawn_sparkles(10.0f);
             o->oFaceAngleYaw = gMarioObject->oMoveAngleYaw;
             if (o->oInteractStatus & INT_STATUS_STOP_RIDING) {
                 obj_mark_for_deletion(o);

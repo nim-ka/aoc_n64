@@ -26,7 +26,7 @@ void bhv_manta_ray_init(void) {
     cur_obj_scale(2.5f);
 }
 
-void func_802F5E20(void) {
+void manta_ray_move(void) {
     s16 sp1E;
     s32 sp18;
 
@@ -50,10 +50,10 @@ void func_802F5E20(void) {
 
     cur_obj_set_pos_via_transform();
     if (sp1E == 0)
-        PlaySound2(SOUND_GENERAL_MOVING_WATER);
+        cur_obj_play_sound_2(SOUND_GENERAL_MOVING_WATER);
 }
 
-void func_802F5FD8(void) {
+void manta_ray_act_spawn_ring(void) {
     struct Object *sp1C = o->parentObj;
     struct Object *sp18;
 
@@ -78,17 +78,17 @@ void func_802F5FD8(void) {
 void bhv_manta_ray_loop(void) {
     switch (o->oAction) {
         case 0:
-            func_802F5E20();
-            func_802F5FD8();
+            manta_ray_move();
+            manta_ray_act_spawn_ring();
             if (o->oMantaUnk1AC == 5) {
                 spawn_mist_particles();
-                create_star(-3180.0f, -3600.0f, 120.0f);
+                spawn_default_star(-3180.0f, -3600.0f, 120.0f);
                 o->oAction = 1;
             }
             break;
 
         case 1:
-            func_802F5E20();
+            manta_ray_move();
             break;
     }
 

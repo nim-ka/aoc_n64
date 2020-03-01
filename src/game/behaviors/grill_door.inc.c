@@ -41,7 +41,7 @@ void bhv_openable_grill_loop(void) {
             sp3C = o->oOpenableGrillUnkF4;
             if (sp3C->oAction == 2) {
                 o->oOpenableGrillUnk88 = 2;
-                PlaySound2(SOUND_GENERAL_CAGE_OPEN);
+                cur_obj_play_sound_2(SOUND_GENERAL_CAGE_OPEN);
                 o->oAction++;
                 if (o->oBehParams2ndByte != 0)
                     play_puzzle_jingle();

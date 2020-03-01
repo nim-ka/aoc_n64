@@ -56,7 +56,7 @@ void hidden_breakable_box_actions(void) {
             spawn_mist_particles();
             spawn_triangle_break_particles(30, 138, 3.0f, 4);
             o->oAction++;
-            PlaySound2(SOUND_GENERAL_BREAK_BOX);
+            cur_obj_play_sound_2(SOUND_GENERAL_BREAK_BOX);
         }
         load_object_collision_model();
     } else {

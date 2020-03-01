@@ -311,7 +311,7 @@ extern void cur_obj_move_standard(s16);
 void cur_obj_move_using_vel_and_gravity(void);
 void cur_obj_move_using_fvel_and_gravity(void);
 // extern ? set_object_pos_relative(?);
-s16  cur_obj_angle_to_home(void);
+s16 cur_obj_angle_to_home(void);
 void obj_set_gfx_pos_at_obj_pos(struct Object*,struct Object*);
 extern void obj_translate_local(struct Object*,s16,s16);
 extern void obj_build_transform_from_pos_and_angle(struct Object *, s16, s16);

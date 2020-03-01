@@ -82,7 +82,7 @@ void bhv_intro_lakitu_loop(void) {
                 gCurrentObject->oPosZ = gCamera->pos[2];
             }
             if (gCutsceneTimer > 52)
-                PlaySound(SOUND_AIR_LAKITU_FLY_HIGHPRIO);
+                cur_obj_play_sound_1(SOUND_AIR_LAKITU_FLY_HIGHPRIO);
 
             if (intro_lakitu_set_pos_and_focus(gCurrentObject, gIntroLakituStartToPipeOffsetFromCamera,
                                                gIntroLakituStartToPipeFocus) == 1)
@@ -91,10 +91,10 @@ void bhv_intro_lakitu_loop(void) {
             switch (gCurrentObject->oTimer) {
 #ifdef VERSION_US
                 case 534:
-                    PlaySound2(SOUND_ACTION_FLYING_FAST);
+                    cur_obj_play_sound_2(SOUND_ACTION_FLYING_FAST);
                     break;
                 case 581:
-                    PlaySound2(SOUND_ACTION_INTRO_UNK45E);
+                    cur_obj_play_sound_2(SOUND_ACTION_INTRO_UNK45E);
                     break;
 #endif
                 case 73:
@@ -112,9 +112,9 @@ void bhv_intro_lakitu_loop(void) {
             }
 #ifdef VERSION_EU
             if (gCurrentObject->oTimer == 446)
-                PlaySound2(SOUND_ACTION_FLYING_FAST);
+                cur_obj_play_sound_2(SOUND_ACTION_FLYING_FAST);
             if (gCurrentObject->oTimer == 485)
-                PlaySound2(SOUND_ACTION_INTRO_UNK45E);
+                cur_obj_play_sound_2(SOUND_ACTION_INTRO_UNK45E);
 #endif
             break;
         case 2:
@@ -132,11 +132,11 @@ void bhv_intro_lakitu_loop(void) {
                 gCurrentObject->oFaceAngleYaw = gCurrentObject->oMoveAngleYaw + 0x4000;
                 gCurrentObject->oMoveAnglePitch = 0x800;
             }
-            PlaySound(SOUND_AIR_LAKITU_FLY_HIGHPRIO);
+            cur_obj_play_sound_1(SOUND_AIR_LAKITU_FLY_HIGHPRIO);
             break;
 
         case 3:
-            PlaySound(SOUND_AIR_LAKITU_FLY_HIGHPRIO);
+            cur_obj_play_sound_1(SOUND_AIR_LAKITU_FLY_HIGHPRIO);
             vec3f_set(sp58, -1128.f, 560.f, 4664.f);
             gCurrentObject->oMoveAngleYaw += 0x200;
             gCurrentObject->oIntroLakituUnk100 =
@@ -173,7 +173,7 @@ void bhv_intro_lakitu_loop(void) {
             }
 #ifndef VERSION_JP
             if (gCurrentObject->oTimer == 14)
-                PlaySound2(SOUND_ACTION_INTRO_UNK45F);
+                cur_obj_play_sound_2(SOUND_ACTION_INTRO_UNK45F);
 #endif
             break;
         case 100:

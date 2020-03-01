@@ -737,6 +737,7 @@ void cur_obj_init_animation(s32 animIndex) {
     geo_obj_init_animation(&o->header.gfx, &anims[animIndex]);
 }
 
+
 void cur_obj_init_animation_with_sound(s32 animIndex) {
     struct Animation **anims = o->oAnimations;
     geo_obj_init_animation(&o->header.gfx, &anims[animIndex]);
@@ -2965,7 +2966,7 @@ s32 player_performed_grab_escape_action(void) {
 
 void cur_obj_unused_play_footstep_sound(s32 animFrame1, s32 animFrame2, s32 sound) {
     if (cur_obj_check_anim_frame(animFrame1) || cur_obj_check_anim_frame(animFrame2)) {
-        PlaySound2(sound);
+        cur_obj_play_sound_2(sound);
     }
 }
 
@@ -2999,7 +3000,7 @@ void cur_obj_spawn_loot_blue_coin(void) {
 void cur_obj_spawn_star_at_y_offset(f32 targetX, f32 targetY, f32 targetZ, f32 offsetY) {
     f32 objectPosY = o->oPosY;
     o->oPosY += offsetY + gDebugInfo[5][0];
-    create_star(targetX, targetY, targetZ);
+    spawn_default_star(targetX, targetY, targetZ);
     o->oPosY = objectPosY;
 }
 #endif

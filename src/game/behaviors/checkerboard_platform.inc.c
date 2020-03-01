@@ -26,7 +26,7 @@ void bhv_checkerboard_elevator_group_init(void) {
     }
 }
 
-void func_802B9120(UNUSED s32 unused, f32 vel, s32 a2) {
+void checkerboard_plat_act_move_y(UNUSED s32 unused, f32 vel, s32 a2) {
     o->oMoveAnglePitch = 0;
     o->oAngleVelPitch = 0;
     o->oForwardVel = 0.0f;
@@ -35,7 +35,7 @@ void func_802B9120(UNUSED s32 unused, f32 vel, s32 a2) {
         o->oAction++;
 }
 
-void func_802B91A0(s32 a0, s16 a1) {
+void checkerboard_plat_act_rotate(s32 a0, s16 a1) {
     o->oVelY = 0.0f;
     o->oAngleVelPitch = a1;
     if (o->oTimer + 1 == 0x8000 / absi(a1))
@@ -51,7 +51,7 @@ void bhv_checkerboard_platform_loop(void) {
     f32 sp24 = o->oCheckerBoardPlatformUnk1AC;
     o->oCheckerBoardPlatformUnkF8 = 0;
     if (o->oDistanceToMario < 1000.0f)
-        PlaySound(SOUND_ENV_ELEVATOR4);
+        cur_obj_play_sound_1(SOUND_ENV_ELEVATOR4);
     switch (o->oAction) {
         case 0:
             if (o->oBehParams2ndByte == 0)
@@ -60,16 +60,16 @@ void bhv_checkerboard_platform_loop(void) {
                 o->oAction = 3;
             break;
         case 1:
-            func_802B9120(2, 10.0f, o->oCheckerBoardPlatformUnkFC);
+            checkerboard_plat_act_move_y(2, 10.0f, o->oCheckerBoardPlatformUnkFC);
             break;
         case 2:
-            func_802B91A0(3, 512);
+            checkerboard_plat_act_rotate(3, 512);
             break;
         case 3:
-            func_802B9120(4, -10.0f, o->oCheckerBoardPlatformUnkFC);
+            checkerboard_plat_act_move_y(4, -10.0f, o->oCheckerBoardPlatformUnkFC);
             break;
         case 4:
-            func_802B91A0(1, -512);
+            checkerboard_plat_act_rotate(1, -512);
             break;
     }
     o->oMoveAnglePitch += absi(o->oAngleVelPitch);

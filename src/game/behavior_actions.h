@@ -5,15 +5,16 @@ extern void spawn_mist_particles_variable(s32,s32,f32);
 extern void bhv_spawn_star_no_level_exit(u32);
 extern void bhv_star_door_loop_2();
 extern void spawn_triangle_break_particles(s16,s16,f32,s16);
+
 extern void spawn_mist_from_global(void);
 extern void clear_particle_flags(u32);
 extern void spawn_wind_particles(s16,s16);
 extern s32 check_if_moving_over_floor(f32,f32);
 extern s32 arc_to_goal_pos(f32*,f32*,f32,f32);
 void vec3f_copy_2(Vec3f dest,Vec3f src);
-extern void func_802BCFC4(f32,f32,s16,s16);
+extern void tox_box_move(f32,f32,s16,s16);
 extern void play_penguin_walking_sound(s32);
-extern s32 func_802C5A64(s32*);
+extern s32 update_angle_from_move_flags(s32*);
 extern void cur_obj_spawn_strong_wind_particles(s32, f32, f32, f32, f32);
 
 void bhv_cap_switch_loop(void);
@@ -29,7 +30,7 @@ void bhv_mr_i_particle_loop(void);
 void bhv_piranha_particle_loop(void);
 void bhv_giant_pole_loop(void);
 void bhv_pole_init(void);
-void BehClimbDetectLoop(void);
+void bhv_pole_base_loop(void);
 void bhv_thi_huge_island_top_loop(void);
 void bhv_thi_tiny_island_top_loop(void);
 void bhv_king_bobomb_loop(void);
@@ -197,10 +198,10 @@ void bhv_small_penguin_loop(void);
 void bhv_large_fish_group_loop(void);
 void bhv_fish_loop(void);
 void bhv_wdw_express_elevator_loop(void);
-void bhv_bird_chirp_chirp_loop(void);
-void bhv_cheep_cheep_loop(void);
+void bhv_bub_spawner_loop(void);
+void bhv_bub_loop(void);
 void bhv_exclamation_box_loop(void);
-void bhv_rotatin_exclamation_box_loop(void);
+void bhv_rotating_exclamation_box_loop(void);
 void bhv_sound_spawner_init(void);
 void bhv_bowsers_sub_loop(void);
 void bhv_sushi_shark_loop(void);
@@ -545,8 +546,8 @@ void bhv_end_birds_1_loop(void);
 void bhv_end_birds_2_loop(void);
 void bhv_intro_scene_loop(void);
 void bhv_dust_smoke_loop(void);
-void BehYoshiLoop(void);
-void bhvLllVolcanoFallingTrap_loop(void);
+void bhv_yoshi_loop(void);
+void bhv_volcano_trap_loop(void);
 
 extern Gfx *geo_move_mario_part_from_parent(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);
 
@@ -566,7 +567,7 @@ extern Gfx *geo_snufit_move_mask(s32 callContext, struct GraphNode *node, UNUSED
 extern Gfx *geo_snufit_scale_body(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c);
 
 // Bowser key cutscene
-extern Gfx *Geo18_802BA2B0(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4]);
+extern Gfx *geo_scale_bowser_key(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4]);
 
 // Water splash
 extern struct WaterDropletParams sShallowWaterSplashDropletParams;

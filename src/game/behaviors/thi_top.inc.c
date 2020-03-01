@@ -23,13 +23,13 @@ void bhv_thi_tiny_island_top_loop(void) {
                     o->oAction++;
                     cur_obj_spawn_particles(&D_8032F134);
                     spawn_triangle_break_particles(20, 138, 0.3f, 3);
-                    PlaySound2(SOUND_GENERAL_ACTIVATE_CAP_SWITCH);
+                    cur_obj_play_sound_2(SOUND_GENERAL_ACTIVATE_CAP_SWITCH);
                     cur_obj_hide();
                 }
         } else {
             if (o->oTimer < 50) {
                 gEnvironmentRegions[18]--;
-                PlaySound(SOUND_ENV_WATER_DRAIN);
+                cur_obj_play_sound_1(SOUND_ENV_WATER_DRAIN);
             } else {
                 gTHIWaterDrained |= 1;
                 play_puzzle_jingle();

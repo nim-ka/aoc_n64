@@ -54,7 +54,7 @@ static void fire_piranha_plant_act_hide(void) {
 
         if (cur_obj_check_if_near_animation_end()) {
             if (--o->oFirePiranhaPlantDeathSpinTimer == 0) {
-                PlaySound2(SOUND_OBJ_ENEMY_DEFEAT_SHRINK);
+                cur_obj_play_sound_2(SOUND_OBJ_ENEMY_DEFEAT_SHRINK);
             }
         }
     } else if (approach_f32_ptr(&o->oFirePiranhaPlantScale, 0.0f,
@@ -66,7 +66,7 @@ static void fire_piranha_plant_act_hide(void) {
 
             if ((u16)(o->oBehParams >> 16) != 0 && o->oHealth == 0) {
                 if (++sNumKilledFirePiranhaPlants == 5) {
-                    create_star(-6300.0f, -1850.0f, -6300.0f);
+                    spawn_default_star(-6300.0f, -1850.0f, -6300.0f);
                 }
 
                 obj_die_if_health_non_positive();
@@ -74,7 +74,7 @@ static void fire_piranha_plant_act_hide(void) {
             }
         } else if (sNumActiveFirePiranhaPlants < 2 && o->oTimer > 100 && o->oDistanceToMario > 100.0f
                    && o->oDistanceToMario < 800.0f) {
-            PlaySound2(SOUND_OBJ_PIRANHA_PLANT_APPEAR);
+            cur_obj_play_sound_2(SOUND_OBJ_PIRANHA_PLANT_APPEAR);
 
             o->oFirePiranhaPlantActive = TRUE;
             sNumActiveFirePiranhaPlants += 1;
@@ -96,7 +96,7 @@ static void fire_piranha_plant_act_grow(void) {
     if (approach_f32_ptr(&o->oFirePiranhaPlantScale, o->oFirePiranhaPlantNeutralScale,
                          0.04f * o->oFirePiranhaPlantNeutralScale)) {
         if (o->oTimer > 80) {
-            PlaySound2(SOUND_OBJ_PIRANHA_PLANT_SHRINK);
+            cur_obj_play_sound_2(SOUND_OBJ_PIRANHA_PLANT_SHRINK);
             o->oAction = FIRE_PIRANHA_PLANT_ACT_HIDE;
             cur_obj_init_animation_with_sound(0);
         } else if (o->oTimer < 50) {
@@ -104,7 +104,7 @@ static void fire_piranha_plant_act_grow(void) {
         } else { // TODO: Check if we can put these conditionals on same line
             if (obj_is_rendering_enabled()) {
                 if (cur_obj_check_anim_frame(56)) {
-                    PlaySound2(SOUND_OBJ_FLAME_BLOWN);
+                    cur_obj_play_sound_2(SOUND_OBJ_FLAME_BLOWN);
                     obj_spit_fire(0, (s32)(30.0f * o->oFirePiranhaPlantNeutralScale),
                                   (s32)(140.0f * o->oFirePiranhaPlantNeutralScale),
                                   2.5f * o->oFirePiranhaPlantNeutralScale, MODEL_RED_FLAME_SHADOW,

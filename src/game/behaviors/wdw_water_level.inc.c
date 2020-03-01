@@ -41,12 +41,12 @@ void bhv_water_level_diamond_loop(void) {
                         o->oAngleVelYaw = 0x800;
                 } else {
                     if (o->oTimer == 0)
-                        PlaySound2(SOUND_GENERAL_WATER_LEVEL_TRIG);
+                        cur_obj_play_sound_2(SOUND_GENERAL_WATER_LEVEL_TRIG);
                     else {
                         if (*gEnvironmentLevels > o->oWaterLevelTriggerTargetWaterLevel)
-                            PlaySound(SOUND_ENV_WATER_DRAIN);
+                            cur_obj_play_sound_1(SOUND_ENV_WATER_DRAIN);
                         else
-                            PlaySound(SOUND_ENV_WATER_DRAIN); // same as above
+                            cur_obj_play_sound_1(SOUND_ENV_WATER_DRAIN); // same as above
                     }
                     o->oAngleVelYaw = 0x800;
                 }

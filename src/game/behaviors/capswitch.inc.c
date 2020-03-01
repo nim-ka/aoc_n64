@@ -19,7 +19,7 @@ void cap_switch_act_1(void) {
     if (cur_obj_is_mario_on_platform()) {
         save_file_set_flags(D_8032F0C0[o->oBehParams2ndByte]);
         o->oAction = 2;
-        PlaySound2(SOUND_GENERAL_ACTIVATE_CAP_SWITCH);
+        cur_obj_play_sound_2(SOUND_GENERAL_ACTIVATE_CAP_SWITCH);
     }
 }
 

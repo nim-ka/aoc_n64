@@ -26,7 +26,7 @@ void dorrie_act_move(void) {
     cur_obj_init_animation_with_sound(1);
 
     if (o->oDorrieForwardDistToMario < 320.0f && o->oDorrieGroundPounded) {
-        PlaySound2(SOUND_OBJ_DORRIE);
+        cur_obj_play_sound_2(SOUND_OBJ_DORRIE);
         o->collisionData = segmented_to_virtual(dorrie_seg6_collision_0600FBB8);
         o->oAction = DORRIE_ACT_LOWER_HEAD;
         o->oForwardVel = 0.0f;

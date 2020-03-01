@@ -28,7 +28,7 @@ void yoshi_walk_loop(void) {
 
     cur_obj_init_animation(1);
     if (sp24 == 0 || sp24 == 15)
-        PlaySound2(SOUND_GENERAL_YOSHI_WALK);
+        cur_obj_play_sound_2(SOUND_GENERAL_YOSHI_WALK);
 
     if (o->oInteractStatus == INT_STATUS_INTERACTED)
         o->oAction = YOSHI_ACT_TALK;
@@ -105,7 +105,7 @@ void yoshi_walk_and_jump_off_roof_loop(void) {
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oYoshiTargetYaw, 0x500);
     if (is_point_close_to_object(o, o->oHomeX, 3174.0f, o->oHomeZ, 200)) {
         cur_obj_init_animation(2);
-        PlaySound2(SOUND_GENERAL_ENEMY_ALERT1);
+        cur_obj_play_sound_2(SOUND_GENERAL_ENEMY_ALERT1);
         o->oForwardVel = 50.0f;
         o->oVelY = 40.0f;
         o->oMoveAngleYaw = -0x3FFF;
@@ -113,7 +113,7 @@ void yoshi_walk_and_jump_off_roof_loop(void) {
     }
 
     if (sp26 == 0 || sp26 == 15) {
-        PlaySound2(SOUND_GENERAL_YOSHI_WALK);
+        cur_obj_play_sound_2(SOUND_GENERAL_YOSHI_WALK);
     }
 }
 
@@ -145,7 +145,7 @@ void yoshi_give_present_loop(void) {
     }
 }
 
-void BehYoshiLoop(void) {
+void bhv_yoshi_loop(void) {
     switch (o->oAction) {
         case YOSHI_ACT_IDLE:
             yoshi_idle_loop();
@@ -176,5 +176,5 @@ void BehYoshiLoop(void) {
             break;
     }
 
-    ObjRandomBlink(&o->oYoshiUnkF4);
+    curr_obj_random_blink(&o->oYoshiUnkF4);
 }

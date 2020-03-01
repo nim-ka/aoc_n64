@@ -185,7 +185,7 @@ void fish_group_act_move(void) {
             distance = (s32)(1.0 / (o->oDistanceToMario / 600.0));
         }
         distance *= 127;
-        PlaySound2(SOUND_GENERAL_MOVING_WATER);
+        cur_obj_play_sound_2(SOUND_GENERAL_MOVING_WATER);
     }
     // Enable fish animation in a natural manner.
     if (o->oTimer < 20) {
@@ -243,6 +243,7 @@ void bhv_fish_loop(void)
 {
     UNUSED s32 unused[4];
     cur_obj_scale(1.0f);
+
     /**
      * Tracks water level to delete fish outside of bounds.
      * In SA oFishWaterLevel is set to zero because fish cannot exit the water.

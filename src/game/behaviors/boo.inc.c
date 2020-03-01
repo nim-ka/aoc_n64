@@ -156,7 +156,7 @@ static s32 boo_vanish_or_appear(void) {
     ) {
         if (o->oOpacity == 40) {
             o->oBooTargetOpacity = 255;
-            PlaySound2(SOUND_OBJ_BOO_LAUGH_LONG);
+            cur_obj_play_sound_2(SOUND_OBJ_BOO_LAUGH_LONG);
         }
 
         if (o->oOpacity > 180) {
@@ -317,11 +317,11 @@ static s32 boo_get_attack_status(void) {
             
             o->oInteractStatus = 0;
             
-            PlaySound2(SOUND_OBJ_BOO_LAUGH_SHORT);
+            cur_obj_play_sound_2(SOUND_OBJ_BOO_LAUGH_SHORT);
             
             attackStatus = BOO_ATTACKED;
         } else {
-            PlaySound2(SOUND_OBJ_BOO_BOUNCE_TOP);
+            cur_obj_play_sound_2(SOUND_OBJ_BOO_BOUNCE_TOP);
             
             o->oInteractStatus = 0;
             
@@ -370,7 +370,7 @@ static void boo_chase_mario(f32 a0, s16 a1, f32 a2) {
     }
 }
 
-static void ActionBoo0(void) {
+static void boo_act_0(void) {
     o->activeFlags |= ACTIVE_FLAG_MOVE_THROUGH_GRATE;
     
     if (o->oBehParams2ndByte == 2) {
@@ -396,7 +396,7 @@ static void ActionBoo0(void) {
     }
 }
 
-static void ActionBoo5(void) {
+static void boo_act_5(void) {
     if (o->oTimer < 30) {
         o->oVelY = 0.0f;
         o->oForwardVel = 13.0f;
@@ -408,7 +408,7 @@ static void ActionBoo5(void) {
     }
 }
 
-static void ActionBoo1(void) {
+static void boo_act_1(void) {
     s32 attackStatus;
     
     if (o->oTimer == 0) {
@@ -436,13 +436,13 @@ static void ActionBoo1(void) {
     }
 }
 
-static void ActionBoo2(void) {
+static void boo_act_2(void) {
     if (boo_update_after_bounced_on(20.0f)) {
         o->oAction = 1;
     }
 }
 
-static void ActionBoo3(void) {
+static void boo_act_3(void) {
     if (boo_update_during_death()) {
         if (o->oBehParams2ndByte != 0) {
             obj_mark_for_deletion(o);
@@ -454,7 +454,7 @@ static void ActionBoo3(void) {
 }
 
 // Called when a Go on a Ghost Hunt boo dies
-static void ActionBoo4(void) {
+static void boo_act_4(void) {
     s32 dialogID;
 
     // If there are no remaining "minion" boos, show the dialog of the Big Boo
@@ -475,12 +475,12 @@ static void ActionBoo4(void) {
 }
 
 static void (*sBooActions[])(void) = {
-    ActionBoo0,
-    ActionBoo1,
-    ActionBoo2,
-    ActionBoo3,
-    ActionBoo4,
-    ActionBoo5
+    boo_act_0,
+    boo_act_1,
+    boo_act_2,
+    boo_act_3,
+    boo_act_4,
+    boo_act_5
 };
 
 void bhv_boo_loop(void) {
@@ -500,7 +500,7 @@ void bhv_boo_loop(void) {
     o->oInteractStatus = 0;
 }
 
-static void ActionBooGivingStar0(void) {
+static void big_boo_act_0(void) {
     if (cur_obj_has_behavior(bhvBalconyBigBoo)) {
         obj_set_secondary_camera_focus();
         // number of killed boos set > 5 so that boo always loads
@@ -535,7 +535,7 @@ static void ActionBooGivingStar0(void) {
     }
 }
 
-static void ActionBooGivingStar1(void) {
+static void big_boo_act_1(void) {
     s32 attackStatus;
     s16 sp22;
     f32 sp1C;
@@ -574,24 +574,24 @@ static void ActionBooGivingStar1(void) {
     }
 }
 
-static void ActionBooGivingStar2(void) {
+static void big_boo_act_2(void) {
     if (boo_update_after_bounced_on(20.0f)) {
         o->oAction = 1;
     }
 }
 
 static void big_boo_spawn_ghost_hunt_star(void) {
-    create_star(980.0f, 1100.0f, 250.0f);
+    spawn_default_star(980.0f, 1100.0f, 250.0f);
 }
 
 static void big_boo_spawn_balcony_star(void) {
-    create_star(700.0f, 3200.0f, 1900.0f);
+    spawn_default_star(700.0f, 3200.0f, 1900.0f);
 }
 
 static void big_boo_spawn_merry_go_round_star(void) {
     struct Object *merryGoRound;
 
-    create_star(-1600.0f, -2100.0f, 205.0f);
+    spawn_default_star(-1600.0f, -2100.0f, 205.0f);
 
     merryGoRound = cur_obj_nearest_object_with_behavior(bhvMerryGoRound);
 
@@ -600,7 +600,7 @@ static void big_boo_spawn_merry_go_round_star(void) {
     }
 }
 
-static void ActionBooGivingStar3(void) {
+static void big_boo_act_3(void) {
     if (o->oTimer == 0) {
         o->oHealth--;
     }
@@ -633,7 +633,7 @@ static void ActionBooGivingStar3(void) {
     }
 }
 
-static void ActionBooGivingStar4(void) {
+static void big_boo_act_4(void) {
 #ifndef VERSION_JP
     boo_stop();
 #endif
@@ -656,11 +656,11 @@ static void ActionBooGivingStar4(void) {
 }
 
 static void (*sBooGivingStarActions[])(void) = {
-    ActionBooGivingStar0,
-    ActionBooGivingStar1,
-    ActionBooGivingStar2,
-    ActionBooGivingStar3,
-    ActionBooGivingStar4
+    big_boo_act_0,
+    big_boo_act_1,
+    big_boo_act_2,
+    big_boo_act_3,
+    big_boo_act_4
 };
 
 void bhv_big_boo_loop(void) {
@@ -678,7 +678,7 @@ void bhv_big_boo_loop(void) {
     o->oInteractStatus = 0;
 }
 
-static void ActionBooWithCage0(void) {
+static void boo_with_cage_act_0(void) {
     o->oBooParentBigBoo = NULL;
     o->oBooTargetOpacity = 0xFF;
     o->oBooBaseScale = 2.0f;
@@ -691,7 +691,7 @@ static void ActionBooWithCage0(void) {
     }
 }
 
-static void ActionBooWithCage1(void) {
+static void boo_with_cage_act_1(void) {
     s32 attackStatus;
 
     boo_chase_mario(100.0f, 512, 0.5f);
@@ -711,13 +711,13 @@ static void ActionBooWithCage1(void) {
     }
 }
 
-static void ActionBooWithCage2(void) {
+static void boo_with_cage_act_2(void) {
     if (boo_update_after_bounced_on(20.0f)) {
         o->oAction = 1;
     }
 }
 
-static void ActionBooWithCage3(void) {
+static void boo_with_cage_act_3(void) {
     if (boo_update_during_death()) {
         obj_mark_for_deletion(o);
     }
@@ -735,10 +735,10 @@ void bhv_boo_with_cage_init(void) {
 }
 
 static void (*sBooWithCageActions[])(void) = {
-    ActionBooWithCage0,
-    ActionBooWithCage1,
-    ActionBooWithCage2,
-    ActionBooWithCage3
+    boo_with_cage_act_0,
+    boo_with_cage_act_1,
+    boo_with_cage_act_2,
+    boo_with_cage_act_3
 };
 
 void bhv_boo_with_cage_loop(void)
@@ -748,7 +748,7 @@ void bhv_boo_with_cage_loop(void)
     cur_obj_update_floor_and_walls();
     cur_obj_call_action_function(sBooWithCageActions);
     cur_obj_move_standard(78);
-    
+
     boo_approach_target_opacity_and_update_scale();
     o->oInteractStatus = 0;
 }
@@ -828,7 +828,7 @@ void bhv_boo_in_castle_loop(void) {
         
         if (o->oDistanceToMario < 1000.0f) {
             o->oAction++;
-            PlaySound2(SOUND_OBJ_BOO_LAUGH_LONG);
+            cur_obj_play_sound_2(SOUND_OBJ_BOO_LAUGH_LONG);
         }
         
         o->oForwardVel = 0.0f;
@@ -885,7 +885,7 @@ void bhv_boo_boss_spawned_bridge_loop(void) {
             // fallthrough
         case 1:
             o->oPosY += 8.0f;
-            PlaySound(SOUND_ENV_ELEVATOR2);
+            cur_obj_play_sound_1(SOUND_ENV_ELEVATOR2);
             
             if (o->oPosY > targetY) {
                 o->oPosY = targetY;
@@ -895,7 +895,7 @@ void bhv_boo_boss_spawned_bridge_loop(void) {
             break;
         case 2:
             if (o->oTimer == 0) {
-                PlaySound2(SOUND_GENERAL_UNKNOWN4_LOWPRIO);
+                cur_obj_play_sound_2(SOUND_GENERAL_UNKNOWN4_LOWPRIO);
             }
             
             if (cur_obj_move_up_and_down(o->oTimer)) {

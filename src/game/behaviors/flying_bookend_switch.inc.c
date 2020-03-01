@@ -37,7 +37,7 @@ struct ObjectHitbox sBookSwitchHitbox = {
 
 void flying_bookend_act_0(void) {
     if (obj_is_near_to_and_facing_mario(400.0f, 0x3000)) {
-        PlaySound2(SOUND_OBJ_DEFAULT_DEATH);
+        cur_obj_play_sound_2(SOUND_OBJ_DEFAULT_DEATH);
         o->oAction = 1;
         o->oBookendUnkF4 = o->oFaceAnglePitch + 0x7FFF;
         o->oBookendUnkF8 = o->oFaceAngleRoll - 0x7FFF;
@@ -135,7 +135,7 @@ void bhv_bookend_spawn_loop(void) {
             sp1C = spawn_object(o, MODEL_BOOKEND, bhvFlyingBookend);
             if (sp1C != NULL) {
                 sp1C->oAction = 3;
-                PlaySound2(SOUND_OBJ_DEFAULT_DEATH);
+                cur_obj_play_sound_2(SOUND_OBJ_DEFAULT_DEATH);
             }
             o->oTimer = 0;
         }
@@ -252,7 +252,7 @@ void bhv_book_switch_loop(void) {
 
             o->oAction = 1;
             if (o->oBookSwitchUnkF4 == 0.0f) {
-                PlaySound2(SOUND_OBJ_DEFAULT_DEATH);
+                cur_obj_play_sound_2(SOUND_OBJ_DEFAULT_DEATH);
             }
 
             if (approach_f32_ptr(&o->oBookSwitchUnkF4, 50.0f, 20.0f)) {

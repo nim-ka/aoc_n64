@@ -636,7 +636,7 @@ void update_objects(UNUSED s32 unused) {
     gCheckingSurfaceCollisionsForCamera = FALSE;
 
     reset_debug_objectinfo();
-    stub_802CA5D0();
+    stub_debug_5();
 
     gObjectLists = gObjectListArray;
 

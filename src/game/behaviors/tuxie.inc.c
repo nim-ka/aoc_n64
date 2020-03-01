@@ -1,16 +1,5 @@
 // tuxie.c.inc
 
-s32 func_802BE2E8(s16 a0, s16 a1, s32 a2) {
-    f32 sp1C;
-    if ((sp1C = o->header.gfx.unk38.animAccel / (f32) 0x10000) == 0)
-        sp1C = 1.0f;
-    if (cur_obj_check_anim_frame_in_range(a0, sp1C) || cur_obj_check_anim_frame_in_range(a1, sp1C)) {
-        PlaySound2(a2);
-        return 1;
-    }
-    return 0;
-}
-
 void play_penguin_walking_sound(s32 walk) {
     s32 sound;
     if (o->oSoundStateID == 0) {
@@ -18,11 +7,11 @@ void play_penguin_walking_sound(s32 walk) {
             sound = SOUND_OBJ_BABY_PENGUIN_WALK;
         else // PENGUIN_WALK_BIG
             sound = SOUND_OBJ_BIG_PENGUIN_WALK;
-        func_802BE2E8(1, 11, sound);
+        set_obj_anim_with_accel_and_sound(1, 11, sound);
     }
 }
 
-void ActionTuxiesMother2(void) {
+void tuxies_mother_act_2(void) {
     f32 sp24;
     UNUSED s32 unused;
     struct Object *sp1C = cur_obj_find_nearest_object_with_behavior(bhvSmallPenguin, &sp24);
@@ -51,7 +40,7 @@ void ActionTuxiesMother2(void) {
     }
 }
 
-void ActionTuxiesMother1(void) {
+void tuxies_mother_act_1(void) {
     s32 sp2C;
     s32 sp28;
     s32 dialogID;
@@ -90,7 +79,7 @@ void ActionTuxiesMother1(void) {
 #ifndef VERSION_JP
                 cur_obj_spawn_star_at_y_offset(3167.0f, -4300.0f, 5108.0f, 200.0f);
 #else
-                create_star(3500.0f, -4300.0f, 4650.0f);
+                spawn_default_star(3500.0f, -4300.0f, 4650.0f);
 #endif
                 o->oAction = 2;
             }
@@ -106,7 +95,7 @@ void ActionTuxiesMother1(void) {
     }
 }
 
-void ActionTuxiesMother0(void) {
+void tuxies_mother_act_0(void) {
     s32 sp2C;
     f32 sp28;
     struct Object *sp24;
@@ -138,11 +127,11 @@ void ActionTuxiesMother0(void) {
         }
     }
     if (cur_obj_check_anim_frame(1))
-        PlaySound2(SOUND_OBJ_BIG_PENGUIN_YELL);
+        cur_obj_play_sound_2(SOUND_OBJ_BIG_PENGUIN_YELL);
 }
 
-void (*sTuxiesMotherActions[])(void) = { ActionTuxiesMother0, ActionTuxiesMother1,
-                                         ActionTuxiesMother2 };
+void (*sTuxiesMotherActions[])(void) = { tuxies_mother_act_0, tuxies_mother_act_1,
+                                         tuxies_mother_act_2 };
 
 void bhv_tuxies_mother_loop(void) {
     o->activeFlags |= 0x400;
@@ -153,14 +142,14 @@ void bhv_tuxies_mother_loop(void) {
     o->oInteractStatus = 0;
 }
 
-void func_802BEA58(void) {
+void small_penguin_dive_with_mario(void) {
     if (mario_is_dive_sliding()) {
         o->oSmallPenguinUnk100 = o->oAction;
         o->oAction = 3;
     }
 }
 
-void ActionSmallPenguin2(void) {
+void small_penguin_act_2(void) {
     s32 sp1C = 0;
     if (o->oTimer == 0)
         if (cur_obj_dist_to_nearest_object_with_behavior(bhvTuxiesMother) < 1000.0f)
@@ -170,12 +159,12 @@ void ActionSmallPenguin2(void) {
     cur_obj_rotate_yaw_toward(o->oAngleToMario + 0x8000, o->oSmallPenguinUnk110 + 0x600);
     if (o->oDistanceToMario > o->oSmallPenguinUnk108 + 500.0f)
         o->oAction = 0;
-    func_802BEA58();
+    small_penguin_dive_with_mario();
     if (sp1C)
         o->oAction = 5;
 }
 
-void ActionSmallPenguin1(void) {
+void small_penguin_act_1(void) {
     cur_obj_init_animation_with_sound(0);
     o->oForwardVel = o->oSmallPenguinUnk104 + 3.0f;
     cur_obj_rotate_yaw_toward(o->oAngleToMario, o->oSmallPenguinUnk110 + 0x600);
@@ -183,13 +172,13 @@ void ActionSmallPenguin1(void) {
         o->oAction = 0;
     if (o->oDistanceToMario > 1100.0f)
         o->oAction = 0;
-    func_802BEA58();
+    small_penguin_dive_with_mario();
 }
 
-void ActionSmallPenguin3(void) {
+void small_penguin_act_3(void) {
     if (o->oTimer > 5) {
         if (o->oTimer == 6)
-            PlaySound2(SOUND_OBJ_BABY_PENGUIN_DIVE);
+            cur_obj_play_sound_2(SOUND_OBJ_BABY_PENGUIN_DIVE);
         cur_obj_init_animation_with_sound(1);
         if (o->oTimer > 25)
             if (!mario_is_dive_sliding())
@@ -197,7 +186,7 @@ void ActionSmallPenguin3(void) {
     }
 }
 
-void ActionSmallPenguin4(void) {
+void small_penguin_act_4(void) {
     if (o->oTimer > 20) {
         o->oForwardVel = 0.0f;
         cur_obj_init_animation_with_sound(2);
@@ -206,7 +195,7 @@ void ActionSmallPenguin4(void) {
     }
 }
 
-void ActionSmallPenguin0(void) {
+void small_penguin_act_0(void) {
     s32 sp1C;
 
     sp1C = 0;
@@ -229,7 +218,7 @@ void ActionSmallPenguin0(void) {
         cur_obj_set_pos_to_home();
 }
 
-void ActionSmallPenguin5(void) {
+void small_penguin_act_5(void) {
     f32 sp24;
     s16 sp22;
     struct Object *sp1C = cur_obj_nearest_object_with_behavior(bhvTuxiesMother);
@@ -246,15 +235,15 @@ void ActionSmallPenguin5(void) {
             cur_obj_rotate_yaw_toward(sp22 + 0x8000, 0x400);
         cur_obj_init_animation_with_sound(0);
     }
-    func_802BEA58();
+    small_penguin_dive_with_mario();
 }
 
 void (*sSmallPenguinActions[])(void) = {
-    ActionSmallPenguin0, ActionSmallPenguin1, ActionSmallPenguin2,
-    ActionSmallPenguin3, ActionSmallPenguin4, ActionSmallPenguin5
+    small_penguin_act_0, small_penguin_act_1, small_penguin_act_2,
+    small_penguin_act_3, small_penguin_act_4, small_penguin_act_5
 };
 
-void func_802BF048(void) {
+void small_penguin_free_actions(void) {
     if (o->oSmallPenguinUnk88 != 0) {
         o->oAction = 5;
         o->oSmallPenguinUnk88 = 0;
@@ -268,7 +257,7 @@ void func_802BF048(void) {
 void bhv_small_penguin_loop(void) {
     switch (o->oHeldState) {
         case HELD_FREE:
-            func_802BF048();
+            small_penguin_free_actions();
             break;
         case HELD_HELD:
             cur_obj_unrender_and_reset_state(0, 0);

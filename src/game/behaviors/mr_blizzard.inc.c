@@ -101,7 +101,7 @@ static void func_8030702C(void) {
 
 static void func_80307144(void) {
     if (o->oDistanceToMario < 1000.0f) {
-        PlaySound2(SOUND_OBJ_SNOW_SAND2);
+        cur_obj_play_sound_2(SOUND_OBJ_SNOW_SAND2);
         o->oAction = 2;
         o->oMoveAngleYaw = o->oAngleToMario;
         o->oMrBlizzardUnkFC = 42.0f;
@@ -182,7 +182,7 @@ static void func_80307650(void) {
 
     if (clamp_f32(&o->oMrBlizzardUnk104, -0x4000, 0x4000)) {
         if (o->oMrBlizzardUnk108 != 0.0f) {
-            PlaySound2(SOUND_OBJ_SNOW_SAND1);
+            cur_obj_play_sound_2(SOUND_OBJ_SNOW_SAND1);
             if (o->oAnimState) {
                 save_file_clear_flags(SAVE_FLAG_CAP_ON_MR_BLIZZARD);
 
@@ -210,7 +210,7 @@ static void func_80307650(void) {
 
     if (o->oTimer >= 30) {
         if (o->oTimer == 30) {
-            PlaySound2(SOUND_OBJ_ENEMY_DEFEAT_SHRINK);
+            cur_obj_play_sound_2(SOUND_OBJ_ENEMY_DEFEAT_SHRINK);
         }
 
         if (o->oMrBlizzardUnkF4 != 0.0f) {
@@ -235,7 +235,7 @@ static void func_80307650(void) {
 
 static void func_80307990(void) {
     if (func_802F92EC(1, 7)) {
-        PlaySound2(SOUND_OBJ2_SCUTTLEBUG_ALERT);
+        cur_obj_play_sound_2(SOUND_OBJ2_SCUTTLEBUG_ALERT);
         o->prevObj = o->oMrBlizzardUnkF8 = NULL;
     } else if (cur_obj_check_if_near_animation_end()) {
         o->oAction = 0;
@@ -262,7 +262,7 @@ static void func_80307AD4(void) {
         cur_obj_rotate_yaw_toward(o->oMrBlizzardUnk1AC, 3400);
 
         if (--o->oMrBlizzardUnk100 == 0) {
-            PlaySound2(SOUND_OBJ_MR_BLIZZARD_ALERT);
+            cur_obj_play_sound_2(SOUND_OBJ_MR_BLIZZARD_ALERT);
 
             if (o->oMrBlizzardUnk110 > 700) {
                 o->oMrBlizzardUnk1AC += 0x8000;
@@ -276,7 +276,7 @@ static void func_80307AD4(void) {
             }
         }
     } else if (o->oMoveFlags & 0x00000003) {
-        PlaySound2(SOUND_OBJ_SNOW_SAND1);
+        cur_obj_play_sound_2(SOUND_OBJ_SNOW_SAND1);
         if (o->oMrBlizzardUnk110 != 0) {
             o->oMrBlizzardUnk110 = (s32) cur_obj_lateral_dist_to_home();
         } else {

@@ -379,7 +379,7 @@ const BehaviorScript bhvPoleGrabbing[] = {
     CALL_NATIVE(bhv_pole_init),
     SET_INT(oIntangibleTimer, 0),
     BEGIN_LOOP(),
-        CALL_NATIVE(BehClimbDetectLoop),
+        CALL_NATIVE(bhv_pole_base_loop),
     END_LOOP(),
 };
 
@@ -1371,7 +1371,7 @@ const BehaviorScript bhvDddMovingPole[] = {
     SET_INT(oIntangibleTimer, 0),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_ddd_moving_pole_loop),
-        CALL_NATIVE(BehClimbDetectLoop),
+        CALL_NATIVE(bhv_pole_base_loop),
     END_LOOP(),
 };
 
@@ -2547,7 +2547,7 @@ const BehaviorScript bhvChirpChirpUnused[] = {
     DISABLE_RENDERING(),
     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhv_bird_chirp_chirp_loop),
+        CALL_NATIVE(bhv_bub_spawner_loop),
     END_LOOP(),
 };
 
@@ -2562,7 +2562,7 @@ const BehaviorScript bhvBub[] = {
     SET_HOME(),
     SET_INT(oIntangibleTimer, 0),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhv_cheep_cheep_loop),
+        CALL_NATIVE(bhv_bub_loop),
     END_LOOP(),
 };
 
@@ -2583,7 +2583,7 @@ const BehaviorScript bhvRotatingExclamationMark[] = {
     OR_INT(oFlags, (OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     SCALE(200),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhv_rotatin_exclamation_box_loop),
+        CALL_NATIVE(bhv_rotating_exclamation_box_loop),
         ADD_INT(oMoveAngleYaw, 0x800),
     END_LOOP(),
 };
@@ -3151,7 +3151,7 @@ const BehaviorScript bhvTree[] = {
     SET_HITBOX(/*Radius*/ 80, /*Height*/ 500),
     SET_INT(oIntangibleTimer, 0),
     BEGIN_LOOP(),
-        CALL_NATIVE(BehClimbDetectLoop),
+        CALL_NATIVE(bhv_pole_base_loop),
     END_LOOP(),
 };
 
@@ -4654,7 +4654,7 @@ const BehaviorScript bhvLllVolcanoFallingTrap[] = {
     LOAD_COLLISION_DATA(lll_seg7_collision_falling_wall),
     SET_HOME(),
     BEGIN_LOOP(),
-        CALL_NATIVE(bhvLllVolcanoFallingTrap_loop),
+        CALL_NATIVE(bhv_volcano_trap_loop),
         CALL_NATIVE(load_object_collision_model),
     END_LOOP(),
 };
@@ -5036,7 +5036,7 @@ const BehaviorScript bhvYoshi[] = {
     CALL_NATIVE(bhv_yoshi_init),
     BEGIN_LOOP(),
         SET_INT(oIntangibleTimer, 0),
-        CALL_NATIVE(BehYoshiLoop),
+        CALL_NATIVE(bhv_yoshi_loop),
     END_LOOP(),
 };
 
@@ -5076,7 +5076,7 @@ const BehaviorScript bhvKoopaFlag[] = {
     LOAD_ANIMATIONS(oAnimations, koopa_flag_seg6_anims_06001028),
     ANIMATE(0),
     BEGIN_LOOP(),
-        CALL_NATIVE(BehClimbDetectLoop),
+        CALL_NATIVE(bhv_pole_base_loop),
     END_LOOP(),
 };
 
@@ -5980,7 +5980,7 @@ const BehaviorScript bhvDDDPole[] = {
     SET_FLOAT(oDDDPoleVel, 10),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_ddd_pole_update),
-        CALL_NATIVE(BehClimbDetectLoop),
+        CALL_NATIVE(bhv_pole_base_loop),
     END_LOOP(),
 };
 

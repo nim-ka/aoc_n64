@@ -315,7 +315,7 @@ static void wiggler_act_jumped_on(void) {
                     o->oMoveAngleYaw = o->oFaceAngleYaw;
 
                     if (o->oHealth == 2) {
-                        PlaySound2(SOUND_OBJ_WIGGLER_JUMP);
+                        cur_obj_play_sound_2(SOUND_OBJ_WIGGLER_JUMP);
                         o->oForwardVel = 10.0f;
                         o->oVelY = 70.0f;
                     }
@@ -353,12 +353,12 @@ static void wiggler_act_knockback(void) {
 static void wiggler_act_shrink(void) {
     if (o->oTimer >= 20) {
         if (o->oTimer == 20) {
-            PlaySound2(SOUND_OBJ_ENEMY_DEFEAT_SHRINK);
+            cur_obj_play_sound_2(SOUND_OBJ_ENEMY_DEFEAT_SHRINK);
         }
 
         // 4 is the default scale, so shrink to 1/4 of regular size
         if (approach_f32_ptr(&o->header.gfx.scale[0], 1.0f, 0.1f)) {
-            create_star(0.0f, 2048.0f, 0.0f);
+            spawn_default_star(0.0f, 2048.0f, 0.0f);
             o->oAction = WIGGLER_ACT_FALL_THROUGH_FLOOR;
         }
 
@@ -389,7 +389,7 @@ static void wiggler_act_fall_through_floor(void) {
  * Stop and enter the jumped on action.
  */
 void wiggler_jumped_on_attack_handler(void) {
-    PlaySound2(SOUND_OBJ_WIGGLER_ATTACKED);
+    cur_obj_play_sound_2(SOUND_OBJ_WIGGLER_ATTACKED);
     o->oAction = WIGGLER_ACT_JUMPED_ON;
     o->oForwardVel = o->oVelY = 0.0f;
     o->oWigglerSquishSpeed = 0.4f;

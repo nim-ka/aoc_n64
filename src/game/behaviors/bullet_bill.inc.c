@@ -42,7 +42,7 @@ void bullet_bill_act_2(void) {
         if (o->oDistanceToMario > 300.0f)
             cur_obj_rotate_yaw_toward(o->oAngleToMario, 0x100);
         if (o->oTimer == 50) {
-            PlaySound2(SOUND_OBJ_POUNDING_CANNON);
+            cur_obj_play_sound_2(SOUND_OBJ_POUNDING_CANNON);
             cur_obj_shake_screen(SHAKE_POS_SMALL);
         }
         if (o->oTimer > 150 || o->oMoveFlags & 0x200) {

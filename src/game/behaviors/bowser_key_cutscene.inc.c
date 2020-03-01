@@ -1,6 +1,6 @@
 // bowser_key_cutscene.inc.c
 
-Gfx *Geo18_802BA2B0(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4]) {
+Gfx *geo_scale_bowser_key(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4]) {
     struct Object *sp4;
     if (run == TRUE) {
         sp4 = (struct Object *) gCurGraphNodeObject;

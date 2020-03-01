@@ -1766,7 +1766,7 @@ void pss_end_slide(struct MarioState *m) {
         u16 slideTime = level_control_timer(TIMER_CONTROL_STOP);
         if (slideTime < 630) {
             m->marioObj->oBehParams = (1 << 24);
-            create_star(-6358.0f, -4300.0f, 4700.0f);
+            spawn_default_star(-6358.0f, -4300.0f, 4700.0f);
         }
         sPssSlideStarted = FALSE;
     }

@@ -57,7 +57,7 @@ static void handle_merry_go_round_music(void) {
             func_80321080(300); // Switch to BBH music? FIXME: Audio needs labelling
             o->oMerryGoRoundMusicShouldPlay = FALSE;
         } else {
-            PlaySound(SOUND_ENV_MERRY_GO_ROUND_CREAKING);
+            cur_obj_play_sound_1(SOUND_ENV_MERRY_GO_ROUND_CREAKING);
         }
     }
 }

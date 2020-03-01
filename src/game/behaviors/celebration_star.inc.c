@@ -28,7 +28,7 @@ void bhv_celebration_star_init(void) {
 #endif
 }
 
-void CelebrationStarSpinAroundMarioLoop(void) {
+void celeb_star_act_spin_around_mario(void) {
     o->oPosX = o->oHomeX + sins(o->oMoveAngleYaw) * (f32)(o->oCelebStarDiameterOfRotation / 2);
     o->oPosZ = o->oHomeZ + coss(o->oMoveAngleYaw) * (f32)(o->oCelebStarDiameterOfRotation / 2);
     o->oPosY += 5.0f;
@@ -44,7 +44,7 @@ void CelebrationStarSpinAroundMarioLoop(void) {
         o->oCelebStarDiameterOfRotation -= 20;
 }
 
-void CelebrationStarFaceCameraLoop(void) {
+void celeb_star_act_face_camera(void) {
 
     if (o->oTimer < 10) {
 #if BUGFIX_STAR_BOWSER_KEY
@@ -68,11 +68,11 @@ void CelebrationStarFaceCameraLoop(void) {
 void bhv_celebration_star_loop(void) {
     switch (o->oAction) {
         case CELEB_STAR_ACT_SPIN_AROUND_MARIO:
-            CelebrationStarSpinAroundMarioLoop();
+            celeb_star_act_spin_around_mario();
             break;
 
         case CELEB_STAR_ACT_FACE_CAMERA:
-            CelebrationStarFaceCameraLoop();
+            celeb_star_act_face_camera();
             break;
     }
 }

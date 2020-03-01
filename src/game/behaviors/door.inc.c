@@ -29,18 +29,18 @@ void set_door_camera_event(void) {
 void play_door_open_noise(void) {
     s32 sp1C = cur_obj_has_model(MODEL_HMC_METAL_DOOR);
     if (o->oTimer == 0) {
-        PlaySound2(D_8032F328[sp1C]);
+        cur_obj_play_sound_2(D_8032F328[sp1C]);
         gTimeStopState |= TIME_STOP_MARIO_OPENED_DOOR;
     }
     if (o->oTimer == 70) {
-        PlaySound2(D_8032F330[sp1C]);
+        cur_obj_play_sound_2(D_8032F330[sp1C]);
     }
 }
 
 void play_warp_door_open_noise(void) {
     s32 sp1C = cur_obj_has_model(MODEL_HMC_METAL_DOOR);
     if (o->oTimer == 30)
-        PlaySound2(D_8032F330[sp1C]);
+        cur_obj_play_sound_2(D_8032F330[sp1C]);
 }
 
 void bhv_door_loop(void) {

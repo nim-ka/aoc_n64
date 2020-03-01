@@ -76,11 +76,11 @@ void bhv_coin_loop(void) {
     }
     if (o->oTimer == 0)
 #ifdef VERSION_US
-        PlaySound2(SOUND_GENERAL_COIN_SPURT_2);
+        cur_obj_play_sound_2(SOUND_GENERAL_COIN_SPURT_2);
 #elif VERSION_EU
-        PlaySound2(SOUND_GENERAL_COIN_SPURT_EU);
+        cur_obj_play_sound_2(SOUND_GENERAL_COIN_SPURT_EU);
 #else
-        PlaySound2(SOUND_GENERAL_COIN_SPURT);
+        cur_obj_play_sound_2(SOUND_GENERAL_COIN_SPURT);
 #endif
     if (o->oVelY < 0)
         cur_obj_become_tangible();
@@ -95,12 +95,12 @@ void bhv_coin_loop(void) {
 #ifndef VERSION_JP
     if (o->oMoveFlags & OBJ_MOVE_13) {
         if (o->oCoinUnk1B0 < 5)
-            PlaySound2(0x30364081);
+            cur_obj_play_sound_2(0x30364081);
         o->oCoinUnk1B0++;
     }
 #else
     if (o->oMoveFlags & OBJ_MOVE_13)
-        PlaySound2(SOUND_GENERAL_COIN_DROP);
+        cur_obj_play_sound_2(SOUND_GENERAL_COIN_DROP);
 #endif
     if (cur_obj_wait_then_blink(400, 20))
         obj_mark_for_deletion(o);
@@ -209,7 +209,7 @@ void coin_inside_boo_act_1(void) {
     cur_obj_update_floor_and_walls();
     cur_obj_if_hit_wall_bounce_away();
     if (o->oMoveFlags & OBJ_MOVE_13)
-        PlaySound2(SOUND_GENERAL_COIN_DROP);
+        cur_obj_play_sound_2(SOUND_GENERAL_COIN_DROP);
     if (o->oTimer > 90 || (o->oMoveFlags & OBJ_MOVE_LANDED)) {
         obj_set_hitbox(o, &sYellowCoinHitbox);
         cur_obj_become_tangible();

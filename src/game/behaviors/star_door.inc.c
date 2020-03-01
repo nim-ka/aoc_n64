@@ -21,7 +21,7 @@ void bhv_star_door_loop(void) {
             break;
         case 1:
             if (o->oTimer == 0 && (s16)(o->oMoveAngleYaw) >= 0)
-                PlaySound2(SOUND_GENERAL_STAR_DOOR_OPEN);
+                cur_obj_play_sound_2(SOUND_GENERAL_STAR_DOOR_OPEN);
             cur_obj_become_intangible();
             o->oUnkBC = -8.0f;
             star_door_update_pos();
@@ -34,7 +34,7 @@ void bhv_star_door_loop(void) {
             break;
         case 3:
             if (o->oTimer == 0 && (s16)(o->oMoveAngleYaw) >= 0)
-                PlaySound2(SOUND_GENERAL_STAR_DOOR_CLOSE);
+                cur_obj_play_sound_2(SOUND_GENERAL_STAR_DOOR_CLOSE);
             o->oUnkBC = 8.0f;
             star_door_update_pos();
             if (o->oTimer >= 16)

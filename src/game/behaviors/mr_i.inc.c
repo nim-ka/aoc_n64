@@ -43,7 +43,7 @@ void spawn_mr_i_particle(void) {
     particle->oPosY += 50.0f * sp18;
     particle->oPosX += sins(o->oMoveAngleYaw) * 90.0f * sp18;
     particle->oPosZ += coss(o->oMoveAngleYaw) * 90.0f * sp18;
-    PlaySound2(SOUND_OBJ_MRI_SHOOT);
+    cur_obj_play_sound_2(SOUND_OBJ_MRI_SHOOT);
 }
 
 void bhv_mr_i_body_loop(void) {
@@ -88,12 +88,12 @@ void mr_i_act_3(void) {
         sp36 = o->oMoveAngleYaw;
         o->oMoveAngleYaw += sp34 * coss(0x4000 * sp2C);
         if (sp36 < 0 && o->oMoveAngleYaw >= 0)
-            PlaySound2(SOUND_OBJ2_MRI_SPINNING);
+            cur_obj_play_sound_2(SOUND_OBJ2_MRI_SPINNING);
         o->oMoveAnglePitch = (1.0 - coss(0x4000 * sp2C)) * -0x4000;
         cur_obj_shake_y(4.0f);
     } else if (o->oTimer < 96) {
         if (o->oTimer == 64)
-            PlaySound2(SOUND_OBJ_MRI_DEATH);
+            cur_obj_play_sound_2(SOUND_OBJ_MRI_DEATH);
         sp30 = (f32)(o->oTimer - 63) / 32;
         o->oMoveAngleYaw += sp34 * coss(0x4000 * sp2C);
         o->oMoveAnglePitch = (1.0 - coss(0x4000 * sp2C)) * -0x4000;
@@ -109,7 +109,7 @@ void mr_i_act_3(void) {
             o->oMrISize = sp1C * 0.6;
             if (o->oBehParams2ndByte) {
                 o->oPosY += 100.0f;
-                create_star(1370, 2000.0f, -320.0f);
+                spawn_default_star(1370, 2000.0f, -320.0f);
                 obj_mark_for_deletion(o);
             } else
                 cur_obj_spawn_loot_blue_coin();

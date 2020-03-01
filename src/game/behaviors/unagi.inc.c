@@ -58,7 +58,7 @@ void unagi_act_1_4(s32 arg0) {
     }
 
     if (cur_obj_check_anim_frame(6)) {
-        PlaySound2(SOUND_GENERAL_MOVING_WATER);
+        cur_obj_play_sound_2(SOUND_GENERAL_MOVING_WATER);
     }
 
     if (cur_obj_follow_path(0) == -1) {
@@ -104,7 +104,7 @@ void unagi_act_3(void) {
             cur_obj_init_animation_with_sound(6);
 
             if (o->oTimer > 60 && o->oUnagiUnk1AC < 1000.0f) {
-                PlaySound2(SOUND_OBJ_EEL_2);
+                cur_obj_play_sound_2(SOUND_OBJ_EEL_2);
                 o->oUnagiUnkF8 = o->oUnagiUnk110 = 30.0f;
             } else {
                 o->oUnagiUnk110 = 0.0f;
@@ -190,7 +190,7 @@ void bhv_unagi_subobject_loop(void) {
         if (o->oBehParams2ndByte == -4) {
             if (o->parentObj->oAnimState != 0 && o->oDistanceToMario < 150.0f) {
                 o->oBehParams = o->parentObj->oBehParams;
-                create_star(6833.0f, -3654.0f, 2230.0f);
+                spawn_default_star(6833.0f, -3654.0f, 2230.0f);
                 o->parentObj->oAnimState = 0;
             }
         } else {

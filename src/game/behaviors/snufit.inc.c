@@ -106,7 +106,7 @@ void snufit_act_shoot(void) {
         o->oAction = SNUFIT_ACT_IDLE;
     } else if (o->oSnufitBullets < 3 && o->oTimer >= 3) {
         o->oSnufitBullets += 1;
-        PlaySound2(SOUND_OBJ_SNUFIT_SHOOT);
+        cur_obj_play_sound_2(SOUND_OBJ_SNUFIT_SHOOT);
         spawn_object_relative(0, 0, -20, 40, o, MODEL_BOWLING_BALL, bhvSnufitBalls);
         o->oSnufitRecoil = -30;
         o->oTimer = 0;

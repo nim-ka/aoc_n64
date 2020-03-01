@@ -10,7 +10,7 @@ void bhv_lll_rotating_hex_flame_loop(void) {
         obj_mark_for_deletion(o);
 }
 
-void func_802BB9F0(s16 a0) {
+void fire_bar_spawn_flames(s16 a0) {
     struct Object *sp2C;
     UNUSED s32 unused;
     s32 i;
@@ -29,32 +29,32 @@ void func_802BB9F0(s16 a0) {
     }
 }
 
-void ActionRotatingCwFireBars0(void) {
+void fire_bar_act_0(void) {
     if (o->oDistanceToMario < 3000.0f)
         o->oAction = 1;
 }
 
-void ActionRotatingCwFireBars1(void) {
-    func_802BB9F0(0);
-    func_802BB9F0(-0x8000);
+void fire_bar_act_1(void) {
+    fire_bar_spawn_flames(0);
+    fire_bar_spawn_flames(-0x8000);
     o->oAngleVelYaw = 0;
     o->oMoveAngleYaw = 0;
     o->oAction = 2;
 }
 
-void ActionRotatingCwFireBars2(void) {
+void fire_bar_act_2(void) {
     o->oAngleVelYaw = -0x100;
     o->oMoveAngleYaw += o->oAngleVelYaw;
     if (o->oDistanceToMario > 3200.0f)
         o->oAction = 3;
 }
 
-void ActionRotatingCwFireBars3(void) {
+void fire_bar_act_3(void) {
     o->oAction = 0;
 }
 
-void (*sRotatingCwFireBarsActions[])(void) = { ActionRotatingCwFireBars0, ActionRotatingCwFireBars1,
-                                               ActionRotatingCwFireBars2, ActionRotatingCwFireBars3 };
+void (*sRotatingCwFireBarsActions[])(void) = { fire_bar_act_0, fire_bar_act_1,
+                                               fire_bar_act_2, fire_bar_act_3 };
 
 void bhv_lll_rotating_block_fire_bars_loop(void) {
     cur_obj_call_action_function(sRotatingCwFireBarsActions);

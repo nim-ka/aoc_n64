@@ -86,7 +86,7 @@ struct Struct8032FCE8 {
     void *unk2;
 };
 
-extern void BehClimbDetectLoop();
+extern void bhv_pole_base_loop();
 extern s16 gDebugInfo[][8];
 extern s8 gDoorAdjacentRooms[][2];
 extern u8 inside_castle_seg7_collision_ddd_warp_2[];
@@ -254,6 +254,18 @@ void vec3f_copy_2(Vec3f dest, Vec3f src) {
 #include "behaviors/tox_box.inc.c"
 #include "behaviors/piranha_plant.inc.c"
 #include "behaviors/bowser_puzzle_piece.inc.c"
+
+s32 set_obj_anim_with_accel_and_sound(s16 a0, s16 a1, s32 a2) {
+    f32 sp1C;
+    if ((sp1C = o->header.gfx.unk38.animAccel / (f32) 0x10000) == 0)
+        sp1C = 1.0f;
+    if (cur_obj_check_anim_frame_in_range(a0, sp1C) || cur_obj_check_anim_frame_in_range(a1, sp1C)) {
+        cur_obj_play_sound_2(a2);
+        return 1;
+    }
+    return 0;
+}
+
 #include "behaviors/tuxie.inc.c"
 #include "behaviors/fish.inc.c"
 #include "behaviors/express_elevator.inc.c"

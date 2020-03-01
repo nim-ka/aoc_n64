@@ -77,7 +77,7 @@ void bhv_blue_coin_switch_loop(void) {
                     // Set gravity to 0 so it doesn't accelerate when receding.
                     o->oGravity = 0.0f;
 
-                    PlaySound2(SOUND_GENERAL_SWITCH_DOOR_OPEN);
+                    cur_obj_play_sound_2(SOUND_GENERAL_SWITCH_DOOR_OPEN);
                 }
             }
 
