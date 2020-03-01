@@ -176,7 +176,7 @@ static s32 eyerok_hand_check_attacked(void) {
 static void func_8030DBA8(void) {
     PlaySound2(SOUND_OBJ_POUNDING_LOUD);
     set_camera_shake_from_point(SHAKE_POS_SMALL, o->oPosX, o->oPosY, o->oPosZ);
-    func_802ADA94();
+    spawn_mist_from_global();
 }
 
 static void eyerok_hand_act_sleep(void) {

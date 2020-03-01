@@ -15,7 +15,7 @@ struct ObjectHitbox sClamShellHitbox = {
 void clam_act_0(void) {
     if (func_802F92EC(0, 25)) {
         PlaySound2(SOUND_GENERAL_CLAM_SHELL3);
-        func_802ADA94();
+        spawn_mist_from_global();
         cur_obj_become_tangible();
 
         o->oClamUnkF4 = 10;

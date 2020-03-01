@@ -106,7 +106,7 @@ void bhv_falling_pillar_loop(void) {
 
                 // Make the camera shake and spawn dust clouds.
                 set_camera_shake_from_point(SHAKE_POS_MEDIUM, o->oPosX, o->oPosY, o->oPosZ);
-                func_802AA618(0, 0, 92.0f);
+                spawn_mist_particles_variable(0, 0, 92.0f);
 
                 // Go invisible.
                 o->activeFlags = 0;

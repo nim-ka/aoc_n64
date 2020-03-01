@@ -1,11 +1,11 @@
 // elevator.c.inc
 
-void func_802AD01C(void) {
+void elevator_starting_shake(void) {
     PlaySound2(SOUND_GENERAL_QUIET_POUND1);
     cur_obj_shake_screen(SHAKE_POS_SMALL);
 }
 
-void ActionElevator0(void) {
+void elevator_act_0(void) {
     o->oVelY = 0;
     if (o->oElevatorUnk100 == 2) {
         if (gMarioObject->platform == o) {
@@ -25,10 +25,10 @@ void ActionElevator0(void) {
     }
 }
 
-void ActionElevator1(void) {
+void elevator_act_1(void) {
     PlaySound(SOUND_ENV_ELEVATOR1);
     if (o->oTimer == 0 && cur_obj_is_mario_on_platform())
-        func_802AD01C();
+        elevator_starting_shake();
     approach_f32_signed(&o->oVelY, 10.0f, 2.0f);
     o->oPosY += o->oVelY;
     if (o->oPosY > o->oElevatorUnkF8) {
@@ -42,11 +42,11 @@ void ActionElevator1(void) {
     }
 }
 
-void ActionElevator2() // Pretty similar code to action 1
+void elevator_act_2() // Pretty similar code to action 1
 {
     PlaySound(SOUND_ENV_ELEVATOR1);
     if (o->oTimer == 0 && cur_obj_is_mario_on_platform())
-        func_802AD01C();
+        elevator_starting_shake();
     approach_f32_signed(&o->oVelY, -10.0f, -2.0f);
     o->oPosY += o->oVelY;
     if (o->oPosY < o->oElevatorUnkF4) {
@@ -62,7 +62,7 @@ void ActionElevator2() // Pretty similar code to action 1
     }
 }
 
-void ActionElevator4() {
+void elevator_act_4() {
     o->oVelY = 0;
     if (o->oTimer == 0) {
         cur_obj_shake_screen(SHAKE_POS_SMALL);
@@ -72,7 +72,7 @@ void ActionElevator4() {
         o->oAction = 1;
 }
 
-void ActionElevator3() // nearly identical to action 2
+void elevator_act_3() // nearly identical to action 2
 {
     o->oVelY = 0;
     if (o->oTimer == 0) {
@@ -98,8 +98,8 @@ void bhv_elevator_init(void) {
     }
 }
 
-void (*sElevatorActions[])(void) = { ActionElevator0, ActionElevator1, ActionElevator2, ActionElevator3,
-                                     ActionElevator4 };
+void (*sElevatorActions[])(void) = { elevator_act_0, elevator_act_1, elevator_act_2, elevator_act_3,
+                                     elevator_act_4 };
 
 struct SpawnParticlesInfo D_8032F3CC = { 3, 20, MODEL_MIST, 20, 10, 5, 0, 0, 0, 30, 30.0f, 1.5f };
 

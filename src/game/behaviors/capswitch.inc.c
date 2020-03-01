@@ -1,6 +1,6 @@
 // capswitch.c.inc
 
-void ActionActivateCapSwitch0(void) {
+void cap_switch_act_0(void) {
     o->oAnimState = o->oBehParams2ndByte;
     cur_obj_scale(0.5f);
     o->oPosY += 71.0f;
@@ -15,7 +15,7 @@ void ActionActivateCapSwitch0(void) {
         o->oAction = 1;
 }
 
-void ActionActivateCapSwitch1(void) {
+void cap_switch_act_1(void) {
     if (cur_obj_is_mario_on_platform()) {
         save_file_set_flags(D_8032F0C0[o->oBehParams2ndByte]);
         o->oAction = 2;
@@ -23,7 +23,7 @@ void ActionActivateCapSwitch1(void) {
     }
 }
 
-void ActionActivateCapSwitch2(void) {
+void cap_switch_act_2(void) {
     s32 sp1C;
     if (o->oTimer < 5) {
         cur_obj_scale_over_time(2, 4, 0.5f, 0.1f);
@@ -39,27 +39,12 @@ void ActionActivateCapSwitch2(void) {
     }
 }
 
-void ActionActivateCapSwitch3() {
+void cap_switch_act_3() {
 } // dead function
 
-void (*sCapSwitchActions[])(void) = { ActionActivateCapSwitch0, ActionActivateCapSwitch1,
-                                      ActionActivateCapSwitch2, ActionActivateCapSwitch3 };
+void (*sCapSwitchActions[])(void) = { cap_switch_act_0, cap_switch_act_1,
+                                      cap_switch_act_2, cap_switch_act_3 };
 
 void bhv_cap_switch_loop(void) {
     cur_obj_call_action_function(sCapSwitchActions);
-}
-
-Gfx *Geo18_802A719C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx) {
-    Mat4 sp20;
-    struct Object *sp1C;
-
-    if (run == TRUE) {
-        sp1C = (struct Object *) gCurGraphNodeObject;
-        if (sp1C->prevObj != NULL) {
-            create_transformation_from_matrices(sp20, mtx, gCurGraphNodeCamera->matrixPtr);
-            obj_update_pos_from_parent_transformation(sp20, sp1C->prevObj);
-            obj_set_gfx_pos_from_pos(sp1C->prevObj);
-        }
-    }
-    return NULL;
 }

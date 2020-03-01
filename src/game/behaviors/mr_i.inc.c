@@ -11,7 +11,7 @@ void bhv_piranha_particle_loop(void) {
     cur_obj_move_using_fvel_and_gravity();
 }
 
-void ActionMrIParticle0(void) {
+void mr_i_piranha_particle_act_0(void) {
     cur_obj_scale(3.0f);
     o->oForwardVel = 20.0f;
     cur_obj_update_floor_and_walls();
@@ -23,20 +23,20 @@ void ActionMrIParticle0(void) {
     }
 }
 
-void ActionMrIParticle1(void) {
+void mr_i_piranha_particle_act_1(void) {
     s32 i;
     obj_mark_for_deletion(o);
     for (i = 0; i < 10; i++)
         spawn_object(o, MODEL_PURPLE_MARBLE, bhvPurpleParticle);
 }
 
-void (*sMrIParticleActions[])(void) = { ActionMrIParticle0, ActionMrIParticle1 };
+void (*sMrIParticleActions[])(void) = { mr_i_piranha_particle_act_0, mr_i_piranha_particle_act_1 };
 
 void bhv_mr_i_particle_loop(void) {
     cur_obj_call_action_function(sMrIParticleActions);
 }
 
-void func_802A525C(void) {
+void spawn_mr_i_particle(void) {
     struct Object *particle;
     f32 sp18 = o->header.gfx.scale[1];
     particle = spawn_object(o, MODEL_PURPLE_MARBLE, bhvMrIParticle);
@@ -67,7 +67,7 @@ void bhv_mr_i_body_loop(void) {
         obj_mark_for_deletion(o);
 }
 
-void ActionMrI3(void) {
+void mr_i_act_3(void) {
     s16 sp36;
     s16 sp34;
     f32 sp30;
@@ -122,7 +122,7 @@ void ActionMrI3(void) {
         obj_mark_for_deletion(o);
 }
 
-void ActionMrI2() {
+void mr_i_act_2() {
     s16 sp1E;
     s16 sp1C;
     sp1E = o->oMoveAngleYaw;
@@ -167,7 +167,7 @@ void ActionMrI2() {
         if (o->oMrIUnk104 == o->oMrIUnk108)
             o->oMrIUnk110 = 1;
         if (o->oMrIUnk104 == o->oMrIUnk108 + 20) {
-            func_802A525C();
+            spawn_mr_i_particle();
             o->oMrIUnk104 = 0;
             o->oMrIUnk108 = (s32)(RandomFloat() * 50.0f + 50.0f);
         }
@@ -180,7 +180,7 @@ void ActionMrI2() {
         o->oAction = 1;
 }
 
-void ActionMrI1(void) {
+void mr_i_act_1(void) {
     s16 sp1E;
     s16 sp1C;
     s16 sp1A;
@@ -211,11 +211,11 @@ void ActionMrI1(void) {
     if (o->oMrIUnk108 + 80 < o->oMrIUnk104) {
         o->oMrIUnk104 = 0;
         o->oMrIUnk108 = RandomFloat() * 80.0f;
-        func_802A525C();
+        spawn_mr_i_particle();
     }
 }
 
-void ActionMrI0(void) {
+void mr_i_act_0(void) {
 #ifndef VERSION_JP
     obj_set_angle(o, 0, 0, 0);
 #else
@@ -230,7 +230,7 @@ void ActionMrI0(void) {
         o->oAction = 1;
 }
 
-void (*sMrIActions[])(void) = { ActionMrI0, ActionMrI1, ActionMrI2, ActionMrI3 };
+void (*sMrIActions[])(void) = { mr_i_act_0, mr_i_act_1, mr_i_act_2, mr_i_act_3 };
 
 struct ObjectHitbox sMrIHitbox = {
     /* interactType: */ INTERACT_DAMAGE,

@@ -100,7 +100,7 @@ extern struct Animation *blue_fish_seg3_anims_0301C2B0[];
 extern struct Animation *cyan_fish_seg6_anims_0600E264[];
 extern struct Animation *blue_fish_seg3_anims_0301C2B0[];
 
-void func_802A8D18(f32, f32, s32);
+void common_anchor_mario_behavior(f32, f32, s32);
 
 s32 mario_moving_fast_enough_to_make_piranha_plant_bite(void);
 void obj_set_secondary_camera_focus(void);
@@ -134,7 +134,7 @@ s16 D_8032F0CC[] = { 6047, 5664, 5292, 4934, 4587, 4254, 3933, 3624, 3329, 3046,
 struct SpawnParticlesInfo D_8032F270 = { 2, 20, MODEL_MIST, 0, 40, 5, 30, 20, 252, 30, 330.0f, 10.0f };
 
 // generate_wind_puffs/dust (something like that)
-void func_802AA618(s32 sp18, s32 sp1C, f32 sp20) {
+void spawn_mist_particles_variable(s32 sp18, s32 sp1C, f32 sp20) {
     D_8032F270.sizeBase = sp20;
     D_8032F270.sizeRange = sp20 / 20.0;
     D_8032F270.offsetY = sp1C;
@@ -180,7 +180,7 @@ void func_802AA618(s32 sp18, s32 sp1C, f32 sp20) {
 #include "behaviors/breakable_box.inc.c"
 
 // not sure what this is doing here. not in a behavior file.
-Gfx *Geo18_802B1BB0(s32 run, UNUSED struct GraphNode *node, Mat4 mtx) {
+Gfx *geo_move_mario_part_from_parent(s32 run, UNUSED struct GraphNode *node, Mat4 mtx) {
     Mat4 sp20;
     struct Object *sp1C;
 
@@ -204,7 +204,7 @@ Gfx *Geo18_802B1BB0(s32 run, UNUSED struct GraphNode *node, Mat4 mtx) {
 
 // not in behavior file
 // n is the number of objects to spawn, r if the rate of change of phase (frequency?)
-void func_802B2328(s32 n, s32 a1, s32 a2, s32 r) {
+void spawn_sparkle_particles(s32 n, s32 a1, s32 a2, s32 r) {
     s32 i;
     s16 separation = 0x10000 / n; // Evenly spread around a circle
     for (i = 0; i < n; i++) {

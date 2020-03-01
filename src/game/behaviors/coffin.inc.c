@@ -83,7 +83,7 @@ void coffin_act_idle(void) {
                 obj_perform_position_op(POS_OP_SAVE_POSITION);
                 o->oMoveAngleYaw = o->oFaceAngleYaw - 0x4000;
                 obj_set_dist_from_home(200.0f);
-                func_802ADA94();
+                spawn_mist_from_global();
                 obj_perform_position_op(POS_OP_RESTORE_POSITION);
             }
 

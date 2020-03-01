@@ -12,7 +12,7 @@ struct ObjectHitbox sMetalBoxHitbox = {
     /* hurtboxHeight: */ 300,
 };
 
-s32 func_802B0C54(f32 a0, f32 a1) {
+s32 check_if_moving_over_floor(f32 a0, f32 a1) {
     struct Surface *sp24;
     f32 sp20 = o->oPosX + sins(o->oMoveAngleYaw) * a1;
     f32 floorHeight;
@@ -33,7 +33,7 @@ void bhv_pushable_loop(void) {
         sp1C = obj_angle_to_object(o, gMarioObject);
         if (abs_angle_diff(sp1C, gMarioObject->oMoveAngleYaw) > 0x4000) {
             o->oMoveAngleYaw = (s16)((gMarioObject->oMoveAngleYaw + 0x2000) & 0xc000);
-            if (func_802B0C54(8.0f, 150.0f)) {
+            if (check_if_moving_over_floor(8.0f, 150.0f)) {
                 o->oForwardVel = 4.0f;
                 PlaySound(SOUND_ENV_METAL_BOX_PUSH);
             }

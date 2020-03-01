@@ -133,7 +133,7 @@ void bhv_coin_formation_spawn_loop(void) {
         obj_mark_for_deletion(o);
 }
 
-void func_802AB364(s32 sp50, s32 sp54) {
+void spawn_coin_in_formation(s32 sp50, s32 sp54) {
     struct Object *sp4C;
     Vec3i sp40;
     s32 sp3C = 1;
@@ -187,7 +187,7 @@ void bhv_coin_formation_loop(void) {
             if (o->oDistanceToMario < 2000.0f) {
                 for (bitIndex = 0; bitIndex < 8; bitIndex++) {
                     if (!(o->oCoinUnkF4 & (1 << bitIndex)))
-                        func_802AB364(bitIndex, o->oBehParams2ndByte);
+                        spawn_coin_in_formation(bitIndex, o->oBehParams2ndByte);
                 }
                 o->oAction++;
             }
@@ -205,7 +205,7 @@ void bhv_coin_formation_loop(void) {
     set_object_respawn_info_bits(o, o->oCoinUnkF4 & 0xFF);
 }
 
-void ActionCoinInsideBoo1(void) {
+void coin_inside_boo_act_1(void) {
     cur_obj_update_floor_and_walls();
     cur_obj_if_hit_wall_bounce_away();
     if (o->oMoveFlags & OBJ_MOVE_13)
@@ -223,7 +223,7 @@ void ActionCoinInsideBoo1(void) {
         obj_mark_for_deletion(o);
 }
 
-void ActionCoinInsideBoo0(void) {
+void coin_inside_boo_act_0(void) {
     s16 sp26;
     f32 sp20;
     struct Object *parent = o->parentObj;
@@ -243,7 +243,7 @@ void ActionCoinInsideBoo0(void) {
     }
 }
 
-void (*sCoinInsideBooActions[])(void) = { ActionCoinInsideBoo0, ActionCoinInsideBoo1 };
+void (*sCoinInsideBooActions[])(void) = { coin_inside_boo_act_0, coin_inside_boo_act_1 };
 
 void bhv_coin_inside_boo_loop(void) {
     cur_obj_call_action_function(sCoinInsideBooActions);

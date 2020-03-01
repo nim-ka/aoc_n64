@@ -22,7 +22,7 @@ void bhv_bowser_key_loop(void) {
     if (o->oAction == 0) {
         if (o->oTimer == 0)
             o->oVelY = 70.0f;
-        func_802B2328(3, 200, 80, -60);
+        spawn_sparkle_particles(3, 200, 80, -60);
         spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
         cur_obj_update_floor_and_walls();
         cur_obj_move_standard(78);

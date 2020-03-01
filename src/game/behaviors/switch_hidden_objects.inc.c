@@ -12,7 +12,7 @@ struct ObjectHitbox sBreakableBoxHitbox = {
     /* hurtboxHeight: */ 200,
 };
 
-void func_802B0E74(void) {
+void breakable_box_init(void) {
     o->oHiddenObjectUnkF4 = NULL;
     o->oAnimState = 1;
     switch (o->oBehParams2ndByte) {
@@ -31,7 +31,7 @@ void func_802B0E74(void) {
     }
 }
 
-void func_802B0F54(void) {
+void hidden_breakable_box_actions(void) {
     struct Object *sp1C;
     obj_set_hitbox(o, &sBreakableBoxHitbox);
     cur_obj_set_model(MODEL_BREAKABLE_BOX_SMALL);
@@ -39,7 +39,7 @@ void func_802B0F54(void) {
         cur_obj_disable_rendering();
         cur_obj_become_intangible();
         if (o->oTimer == 0)
-            func_802B0E74();
+            breakable_box_init();
         if (o->oHiddenObjectUnkF4 == NULL)
             o->oHiddenObjectUnkF4 = cur_obj_nearest_object_with_behavior(bhvFloorSwitchHiddenObjects);
         if ((sp1C = o->oHiddenObjectUnkF4) != NULL)
@@ -69,7 +69,7 @@ void func_802B0F54(void) {
     }
 }
 
-void func_802B1138(void) {
+void hidden_unbreakable_box_actions(void) {
     struct Object *sp1C;
     obj_set_collision_data(o, wdw_seg7_collision_07018528);
     if (o->oAction == 0) {
@@ -93,7 +93,7 @@ void func_802B1138(void) {
 
 void bhv_hidden_object_loop(void) {
     if (o->oBehParams2ndByte == 0)
-        func_802B0F54(); // Confused, that function has code depending on the action
+        hidden_breakable_box_actions(); // Confused, that function has code depending on the action
     else
-        func_802B1138();
+        hidden_unbreakable_box_actions();
 }

@@ -1,16 +1,16 @@
 #ifndef _BEHAVIOR_ACTIONS_H
 #define _BEHAVIOR_ACTIONS_H
 
-extern void func_802AA618(s32,s32,f32);
+extern void spawn_mist_particles_variable(s32,s32,f32);
 extern void bhv_spawn_star_no_level_exit(u32);
 extern void bhv_star_door_loop_2();
 extern void spawn_triangle_break_particles(s16,s16,f32,s16);
-extern void func_802ADA94(void);
-extern void func_802ADBBC(u32);
-extern void func_802ADC20(s16,s16);
-extern s32 func_802B0C54(f32,f32);
-extern s32 func_802B2894(f32*,f32*,f32,f32);
-void vec3f_copy_2(Vec3f,Vec3f);
+extern void spawn_mist_from_global(void);
+extern void clear_particle_flags(u32);
+extern void spawn_wind_particles(s16,s16);
+extern s32 check_if_moving_over_floor(f32,f32);
+extern s32 arc_to_goal_pos(f32*,f32*,f32,f32);
+void vec3f_copy_2(Vec3f dest,Vec3f src);
 extern void func_802BCFC4(f32,f32,s16,s16);
 extern void play_penguin_walking_sound(s32);
 extern s32 func_802C5A64(s32*);
@@ -58,7 +58,7 @@ void bhv_kickable_board_loop(void);
 void bhv_tower_door_loop(void);
 void bhv_wf_rotating_wooden_platform_loop(void);
 void bhv_koopa_shell_underwater_loop(void);
-void BehFadingWarpLoop(void);
+void bhv_fading_warp_loop(void);
 void bhv_warp_loop(void);
 void bhv_white_puff_exploding_loop(void);
 void bhv_spawned_star_init(void);
@@ -85,7 +85,7 @@ void bhv_water_mist_loop(void);
 void bhv_water_mist_spawn_loop(void);
 void bhv_water_mist_2_loop(void);
 void bhv_pound_white_puffs_init(void);
-void bhv_unused_0e40_init(void);
+void bhv_ground_sand_init(void);
 void bhv_ground_snow_init(void);
 void bhv_wind_loop(void);
 void bhv_unused_particle_spawn_loop(void);
@@ -548,18 +548,18 @@ void bhv_dust_smoke_loop(void);
 void BehYoshiLoop(void);
 void bhvLllVolcanoFallingTrap_loop(void);
 
-extern Gfx *Geo18_802B1BB0(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);
+extern Gfx *geo_move_mario_part_from_parent(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);
 
 // Bowser
-extern Gfx *Geo18_802B7D44(s32 a0, struct GraphNode *node, UNUSED s32 a2);
-extern Gfx *Geo18_802B798C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);
+extern Gfx *geo_bits_bowser_coloring(s32 a0, struct GraphNode *node, UNUSED s32 a2);
+extern Gfx *geo_update_body_rot_from_parent(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);
 extern Gfx *geo_switch_bowser_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx);
 
 // Tuxie
 extern Gfx *geo_switch_tuxie_mother_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx);
 
 // Cap switch
-extern Gfx *Geo18_802A719C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);
+extern Gfx *geo_update_held_mario_pos(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);
 
 // Snufit
 extern Gfx *geo_snufit_move_mask(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c);

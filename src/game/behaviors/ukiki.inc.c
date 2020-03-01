@@ -144,16 +144,16 @@ void ukiki_act_idle(void) {
     if (o->oUkikiTextState == UKIKI_TEXT_STOLE_HAT) {
         o->oMoveAngleYaw = gMarioObject->oMoveAngleYaw + 0x8000;
 
-        if (func_802B0C54(50.0f, 150.0f)) {
+        if (check_if_moving_over_floor(50.0f, 150.0f)) {
             o->oAction = UKIKI_ACT_JUMP;
         } else {
             o->oMoveAngleYaw = gMarioObject->oMoveAngleYaw + 0x4000;
 
-            if (func_802B0C54(50.0f, 150.0f)) {
+            if (check_if_moving_over_floor(50.0f, 150.0f)) {
                 o->oAction = UKIKI_ACT_JUMP;
             } else {
                 o->oMoveAngleYaw = gMarioObject->oMoveAngleYaw - 0x4000;
-                if (func_802B0C54(50.0f, 150.0f)) {
+                if (check_if_moving_over_floor(50.0f, 150.0f)) {
                     o->oAction = UKIKI_ACT_JUMP;
                 }
             }

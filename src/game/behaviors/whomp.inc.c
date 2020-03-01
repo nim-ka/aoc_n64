@@ -93,7 +93,7 @@ void ActionWhomp2(void) {
         }
     }
     func_802C61CC();
-    if (func_802A6AF8(1000.0f)) {
+    if (mario_is_far_below_object(1000.0f)) {
         o->oAction = 0;
         stop_background_music(SEQUENCE_ARGS(4, SEQ_EVENT_BOSS));
     }
@@ -144,7 +144,7 @@ void func_802C6954(void) {
             else {
                 vec3f_copy_2(pos, &o->oPosX);
                 vec3f_copy_2(&o->oPosX, &gMarioObject->oPosX);
-                func_802AA618(0, 0, 100.0f);
+                spawn_mist_particles_variable(0, 0, 100.0f);
                 spawn_triangle_break_particles(20, 138, 3.0f, 4);
                 cur_obj_shake_screen(SHAKE_POS_SMALL);
                 vec3f_copy_2(&o->oPosX, pos);
@@ -213,7 +213,7 @@ void ActionWhomp8(void) {
             obj_set_angle(o, 0, 0, 0);
             cur_obj_hide();
             cur_obj_become_intangible();
-            func_802AA618(0, 0, 200.0f);
+            spawn_mist_particles_variable(0, 0, 200.0f);
             spawn_triangle_break_particles(20, 138, 3.0f, 4);
             cur_obj_shake_screen(SHAKE_POS_SMALL);
             o->oPosY += 100.0f;
@@ -222,7 +222,7 @@ void ActionWhomp8(void) {
             o->oAction = 9;
         }
     } else {
-        func_802AA618(0, 0, 100.0f);
+        spawn_mist_particles_variable(0, 0, 100.0f);
         spawn_triangle_break_particles(20, 138, 3.0f, 4);
         cur_obj_shake_screen(SHAKE_POS_SMALL);
         create_sound_spawner(SOUND_OBJ_THWOMP);

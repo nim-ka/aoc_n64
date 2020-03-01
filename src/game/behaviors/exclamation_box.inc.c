@@ -120,7 +120,7 @@ void func_802C0DF0(struct Struct802C0DF0 *a0, u8 a1) {
 
 void ActionExclamationBox4(void) {
     func_802C0DF0(sExclamationBoxContents, o->oBehParams2ndByte);
-    func_802AA618(0, 0, 46.0f);
+    spawn_mist_particles_variable(0, 0, 46.0f);
     spawn_triangle_break_particles(20, 139, 0.3f, o->oAnimState);
     create_sound_spawner(SOUND_GENERAL_BREAK_BOX);
     if (o->oBehParams2ndByte < 3) {

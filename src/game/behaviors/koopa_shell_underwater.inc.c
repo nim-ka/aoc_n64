@@ -12,14 +12,14 @@ struct ObjectHitbox sKoopaShellUnderwaterHitbox = {
     /* hurtboxHeight: */ 0,
 };
 
-void func_802AA0D4(void) {
+void set_koopa_shell_underwater_hitbox(void) {
     obj_set_hitbox(o, &sKoopaShellUnderwaterHitbox);
 }
 
 void bhv_koopa_shell_underwater_loop(void) {
     switch (o->oHeldState) {
         case HELD_FREE:
-            func_802AA0D4();
+            set_koopa_shell_underwater_hitbox();
             break;
         case HELD_HELD:
             cur_obj_unrender_and_reset_state(-1, 0);

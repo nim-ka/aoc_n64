@@ -12,7 +12,7 @@ struct ObjectHitbox sJumpingBoxHitbox = {
     /* hurtboxHeight: */ 250,
 };
 
-void ActionJumpingBox0(void) {
+void jumping_box_act_0(void) {
     if (o->oSubAction == 0) {
         if (o->oJumpingBoxUnkF8-- < 0)
             o->oSubAction++;
@@ -26,16 +26,16 @@ void ActionJumpingBox0(void) {
     }
 }
 
-void ActionJumpingBox1(void) {
+void jumping_box_act_1(void) {
     if (o->oMoveFlags & (0x200 | 0x40 | 0x20 | 0x10 | 0x8 | 0x1)) {
         obj_mark_for_deletion(o);
         spawn_mist_particles();
     }
 }
 
-void (*sJumpingBoxActions[])(void) = { ActionJumpingBox0, ActionJumpingBox1 };
+void (*sJumpingBoxActions[])(void) = { jumping_box_act_0, jumping_box_act_1 };
 
-void func_802B1F84(void) {
+void jumping_box_free_update(void) {
     cur_obj_set_model(MODEL_BREAKABLE_BOX);
     cur_obj_scale(0.5f);
     obj_set_hitbox(o, &sJumpingBoxHitbox);
@@ -47,7 +47,7 @@ void func_802B1F84(void) {
 void bhv_jumping_box_loop(void) {
     switch (o->oHeldState) {
         case HELD_FREE:
-            func_802B1F84();
+            jumping_box_free_update();
             break;
         case HELD_HELD:
             obj_copy_pos(o, gMarioObject);

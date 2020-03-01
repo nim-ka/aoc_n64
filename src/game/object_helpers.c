@@ -44,7 +44,7 @@ extern void obj_copy_angle(struct Object *, struct Object *);
 extern struct Object *cur_obj_find_nearest_object_with_behavior(const BehaviorScript *, f32 *);
 extern void cur_obj_move_y(f32, f32, f32);
 static s32 clear_move_flag(u32 *, s32);
-extern void func_802AA618(s32, s32, f32);
+extern void spawn_mist_particles_variable(s32, s32, f32);
 extern void spawn_triangle_break_particles(s32, s32, f32, s32);
 
 #define o gCurrentObject
@@ -2273,11 +2273,11 @@ s32 cur_obj_is_mario_ground_pounding_platform(void) {
 }
 
 void spawn_mist_particles(void) {
-    func_802AA618(0, 0, 46.0f);
+    spawn_mist_particles_variable(0, 0, 46.0f);
 }
 
 void spawn_mist_particles_with_sound(s32 sp18) {
-    func_802AA618(0, 0, 46.0f);
+    spawn_mist_particles_variable(0, 0, 46.0f);
     create_sound_spawner(sp18);
 }
 
@@ -2545,8 +2545,9 @@ s32 cur_obj_set_hitbox_and_die_if_attacked(struct ObjectHitbox *hitbox, s32 deat
     return interacted;
 }
 
+
 void obj_explode_and_spawn_coins(f32 sp18, s32 sp1C) {
-    func_802AA618(0, 0, sp18);
+    spawn_mist_particles_variable(0, 0, sp18);
     spawn_triangle_break_particles(30, 138, 3.0f, 4);
     obj_mark_for_deletion(o);
 

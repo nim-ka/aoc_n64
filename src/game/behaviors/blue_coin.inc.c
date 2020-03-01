@@ -99,7 +99,7 @@ void bhv_blue_coin_switch_loop(void) {
 
                 // Spawn particles. There's a function that calls this same function
                 // with the same arguments, spawn_mist_particles, why didn't they just call that?
-                func_802AA618(0, 0, 46.0f);
+                spawn_mist_particles_variable(0, 0, 46.0f);
             } else {
                 // Have collision while receding
                 load_object_collision_model();

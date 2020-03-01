@@ -84,7 +84,7 @@ void func_802EFDA0(void) {
 
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oSnowmansBottomUnkF8, 0x400);
     if (is_point_close_to_object(o, -4230.0f, -1344.0f, 1813.0f, 300)) {
-        func_802AA618(0, 0, 70.0f);
+        spawn_mist_particles_variable(0, 0, 70.0f);
         o->oMoveAngleYaw = atan2s(1813.0f - o->oPosZ, -4230.0f - o->oPosX);
         o->oVelY = 80.0f;
         o->oForwardVel = 15.0f;
@@ -111,7 +111,7 @@ void func_802EFF58(void) {
     }
 
     if ((sp1E & 0x01) != 0) {
-        func_802AA618(0, 0, 70.0f);
+        spawn_mist_particles_variable(0, 0, 70.0f);
         o->oPosX = -4230.0f;
         o->oPosZ = 1813.0f;
         o->oForwardVel = 0.0f;

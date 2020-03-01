@@ -78,7 +78,7 @@ void set_yoshi_as_not_dead(void) {
 }
 
 /**
- * An unused geo function. Bears strong similarity to Geo18_802B7D44, and relates something
+ * An unused geo function. Bears strong similarity to geo_bits_bowser_coloring, and relates something
  * of the opacity of an object to something else. Perhaps like, giving a parent object the same
  * opacity?
  */

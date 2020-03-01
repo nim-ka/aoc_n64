@@ -22,7 +22,7 @@ void bhv_spawned_star_init(void) {
     PlaySound2(SOUND_GENERAL2_STAR_APPEARS);
 }
 
-void func_802AA788(void) {
+void set_sparkle_spawn_star_hitbox(void) {
     obj_set_hitbox(o, &sSparkleSpawnStarHitbox);
     if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         mark_obj_for_deletion(o);
@@ -30,7 +30,7 @@ void func_802AA788(void) {
     }
 }
 
-void func_802AA7EC(void) {
+void set_home_to_mario(void) {
     f32 sp1C;
     f32 sp18;
     o->oHomeX = gMarioObject->oPosX;
@@ -43,12 +43,12 @@ void func_802AA7EC(void) {
     o->oForwardVel = sqrtf(sp1C * sp1C + sp18 * sp18) / 23.0f;
 }
 
-void func_802AA8E4(void) {
+void set_y_home_to_pos(void) {
     o->oForwardVel = 0;
     o->oHomeY = o->oPosY;
 }
 
-void func_802AA918(void) {
+void slow_star_rotation(void) {
     if (o->oAngleVelYaw > 0x400)
         o->oAngleVelYaw -= 0x40;
 }
@@ -61,9 +61,9 @@ void bhv_spawned_star_loop(void) {
             o->activeFlags |= 0x20;
             o->oAngleVelYaw = 0x800;
             if (o->oBehParams2ndByte == 0)
-                func_802AA7EC();
+                set_home_to_mario();
             else
-                func_802AA8E4();
+                set_y_home_to_pos();
             o->oMoveAngleYaw = cur_obj_angle_to_home();
             o->oVelY = 50.0f;
             o->oGravity = -4.0f;
@@ -102,8 +102,8 @@ void bhv_spawned_star_loop(void) {
             o->oAction++;
         }
     } else {
-        func_802AA788();
-        func_802AA918();
+        set_sparkle_spawn_star_hitbox();
+        slow_star_rotation();
     }
     cur_obj_move_using_fvel_and_gravity();
     o->oFaceAngleYaw += o->oAngleVelYaw;

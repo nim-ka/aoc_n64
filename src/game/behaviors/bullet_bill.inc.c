@@ -9,7 +9,7 @@ void bhv_bullet_bill_init(void) {
     o->oBulletBillUnkF8 = o->oMoveAngleYaw;
 }
 
-void ActionBulletBill0(void) {
+void bullet_bill_act_0(void) {
     cur_obj_become_tangible();
     o->oForwardVel = 0.0f;
     o->oMoveAngleYaw = o->oBulletBillUnkF8;
@@ -20,13 +20,13 @@ void ActionBulletBill0(void) {
     o->oAction = 1;
 }
 
-void ActionBulletBill1(void) {
+void bullet_bill_act_1(void) {
     s16 sp1E = abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw);
     if (sp1E < 0x2000 && 400.0f < o->oDistanceToMario && o->oDistanceToMario < 1500.0f)
         o->oAction = 2;
 }
 
-void ActionBulletBill2(void) {
+void bullet_bill_act_2(void) {
     if (o->oTimer < 40)
         o->oForwardVel = 3.0f;
     else if (o->oTimer < 50) {
@@ -52,11 +52,11 @@ void ActionBulletBill2(void) {
     }
 }
 
-void ActionBulletBill3(void) {
+void bullet_bill_act_3(void) {
     o->oAction = 0;
 }
 
-void ActionBulletBill4(void) {
+void bullet_bill_act_4(void) {
     if (o->oTimer == 0) {
         o->oForwardVel = -30.0f;
         cur_obj_become_intangible();
@@ -68,8 +68,8 @@ void ActionBulletBill4(void) {
         o->oAction = 0;
 }
 
-void (*sBulletBillActions[])(void) = { ActionBulletBill0, ActionBulletBill1, ActionBulletBill2,
-                                       ActionBulletBill3, ActionBulletBill4 };
+void (*sBulletBillActions[])(void) = { bullet_bill_act_0, bullet_bill_act_1, bullet_bill_act_2,
+                                       bullet_bill_act_3, bullet_bill_act_4 };
 
 void bhv_bullet_bill_loop(void) {
     cur_obj_call_action_function(sBulletBillActions);

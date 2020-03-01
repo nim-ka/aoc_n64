@@ -23,7 +23,7 @@ void bhv_heave_ho_throw_mario_loop(void) {
     }
 }
 
-void ActionHeaveHo1(void) {
+void heave_ho_act_1(void) {
     s32 sp1C = 0;
     o->oForwardVel = 0.0f;
     cur_obj_reverse_animation();
@@ -40,7 +40,7 @@ void ActionHeaveHo1(void) {
     }
 }
 
-void ActionHeaveHo2(void) {
+void heave_ho_act_2(void) {
     UNUSED s32 unused;
     s16 angleVel;
     if (1000.0f < cur_obj_lateral_dist_from_mario_to_home())
@@ -59,7 +59,7 @@ void ActionHeaveHo2(void) {
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, angleVel);
 }
 
-void ActionHeaveHo3(void) {
+void heave_ho_act_3(void) {
     o->oForwardVel = 0.0f;
     if (o->oTimer == 0)
         o->oHeaveHoUnk88 = 2;
@@ -71,7 +71,7 @@ void ActionHeaveHo3(void) {
         o->oAction = 1;
 }
 
-void ActionHeaveHo0(void) {
+void heave_ho_act_0(void) {
     cur_obj_set_pos_to_home();
     if (find_water_level(o->oPosX, o->oPosZ) < o->oPosY && o->oDistanceToMario < 4000.0f) {
         cur_obj_become_tangible();
@@ -83,9 +83,9 @@ void ActionHeaveHo0(void) {
     }
 }
 
-void (*sHeaveHoActions[])(void) = { ActionHeaveHo0, ActionHeaveHo1, ActionHeaveHo2, ActionHeaveHo3 };
+void (*sHeaveHoActions[])(void) = { heave_ho_act_0, heave_ho_act_1, heave_ho_act_2, heave_ho_act_3 };
 
-void func_802B18B4(void) {
+void heave_ho_move(void) {
     cur_obj_update_floor_and_walls();
     cur_obj_call_action_function(sHeaveHoActions);
     cur_obj_move_standard(-78);
@@ -108,7 +108,7 @@ void bhv_heave_ho_loop(void) {
     cur_obj_scale(2.0f);
     switch (o->oHeldState) {
         case HELD_FREE:
-            func_802B18B4();
+            heave_ho_move();
             break;
         case HELD_HELD:
             cur_obj_unrender_and_reset_state(0, 0);

@@ -1,6 +1,6 @@
 // star_door.c.inc
 
-void func_802A4DB0(void) {
+void star_door_update_pos(void) {
     o->oVelX = (o->oUnkBC) * coss(o->oMoveAngleYaw);
     o->oVelZ = (o->oUnkBC) * -sins(o->oMoveAngleYaw);
     o->oPosX += o->oVelX;
@@ -24,7 +24,7 @@ void bhv_star_door_loop(void) {
                 PlaySound2(SOUND_GENERAL_STAR_DOOR_OPEN);
             cur_obj_become_intangible();
             o->oUnkBC = -8.0f;
-            func_802A4DB0();
+            star_door_update_pos();
             if (o->oTimer >= 16)
                 o->oAction++;
             break;
@@ -36,7 +36,7 @@ void bhv_star_door_loop(void) {
             if (o->oTimer == 0 && (s16)(o->oMoveAngleYaw) >= 0)
                 PlaySound2(SOUND_GENERAL_STAR_DOOR_CLOSE);
             o->oUnkBC = 8.0f;
-            func_802A4DB0();
+            star_door_update_pos();
             if (o->oTimer >= 16)
                 o->oAction++;
             break;

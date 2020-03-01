@@ -40,7 +40,7 @@ void bhv_bubble_wave_init(void) {
     PlaySound2(SOUND_GENERAL_QUIET_BUBBLE);
 }
 
-void Unknown802A7E48(void) {
+void scale_bubble_random(void) {
     cur_obj_scale(RandomFloat() + 1.0);
 }
 
@@ -70,7 +70,7 @@ void bhv_small_water_wave_loop(void) {
         obj_mark_for_deletion(o);
 }
 
-void func_802A81C4(void) {
+void scale_bubble_sin(void) {
     o->header.gfx.scale[0] = sins(o->oWaterObjUnkF4) * 0.5 + 2.0;
     o->oWaterObjUnkF4 += o->oWaterObjUnkFC;
     o->header.gfx.scale[1] = sins(o->oWaterObjUnkF8) * 0.5 + 2.0;
@@ -88,7 +88,7 @@ void bhv_particle_loop() {
     f32 sp24 = find_water_level(o->oPosX, o->oPosZ);
     o->oPosY += 5.0f;
     obj_translate_xz_random(o, 4.0f);
-    func_802A81C4();
+    scale_bubble_sin();
     if (o->oPosY > sp24 && o->oTimer) {
         obj_mark_for_deletion(o);
         try_to_spawn_object(5, 0, o, MODEL_SMALL_WATER_SPLASH, bhvObjectWaterSplash);
@@ -98,7 +98,7 @@ void bhv_particle_loop() {
 void bhv_small_bubbles_loop(void) {
     o->oPosY += 5.0f;
     obj_translate_xz_random(o, 4.0f);
-    func_802A81C4();
+    scale_bubble_sin();
 }
 
 void bhv_fish_group_loop(void) {

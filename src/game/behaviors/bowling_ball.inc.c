@@ -84,7 +84,7 @@ void bhv_bowling_ball_roll_loop(void) {
     if (sp18 == -1) {
         if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 7000)) {
             spawn_mist_particles();
-            func_802AA618(0, 0, 92.0f);
+            spawn_mist_particles_variable(0, 0, 92.0f);
         }
 
         o->activeFlags = 0;

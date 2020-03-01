@@ -158,7 +158,7 @@ void bhv_intro_lakitu_loop(void) {
             if (gCurrentObject->oTimer == 31) {
                 gCurrentObject->oPosY -= 158.f;
                 // Spawn white ground particles
-                func_802ADA94();
+                spawn_mist_from_global();
                 gCurrentObject->oPosY += 158.f;
             }
 #ifdef VERSION_EU

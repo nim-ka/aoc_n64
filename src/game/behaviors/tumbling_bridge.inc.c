@@ -45,7 +45,7 @@ void bhv_tumbling_bridge_platform_loop(void) {
         obj_mark_for_deletion(o);
 }
 
-void ActionTumblingBridge1(void) {
+void tumbling_bridge_act_1(void) {
     struct Object *platformObj;
     s32 i;
     s32 bridgeID = o->oBehParams2ndByte;
@@ -81,7 +81,7 @@ void ActionTumblingBridge1(void) {
     o->oAction = 2;
 }
 
-void ActionTumblingBridge2(void) {
+void tumbling_bridge_act_2(void) {
     cur_obj_hide();
     if (cur_obj_has_behavior(bhvLllTumblingBridge))
         cur_obj_unhide();
@@ -91,18 +91,18 @@ void ActionTumblingBridge2(void) {
     }
 }
 
-void ActionTumblingBridge3(void) {
+void tumbling_bridge_act_3(void) {
     cur_obj_unhide();
     o->oAction = 0;
 }
 
-void ActionTumblingBridge0(void) {
+void tumbling_bridge_act_0(void) {
     if (cur_obj_has_behavior(bhvLllTumblingBridge) || o->oDistanceToMario < 1000.0f)
         o->oAction = 1;
 }
 
-void (*sTumblingBridgeActions[])(void) = { ActionTumblingBridge0, ActionTumblingBridge1,
-                                           ActionTumblingBridge2, ActionTumblingBridge3 };
+void (*sTumblingBridgeActions[])(void) = { tumbling_bridge_act_0, tumbling_bridge_act_1,
+                                           tumbling_bridge_act_2, tumbling_bridge_act_3 };
 
 s16 D_8032F38C[] = { -51, 0,     0, -461, 0,   0, -512, 0,   0,    -2611, 0,
                      0,   -2360, 0, 0,    214, 0, 0,    -50, 1945, 1,     0 };

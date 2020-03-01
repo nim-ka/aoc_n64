@@ -778,7 +778,7 @@ const BehaviorScript bhvFadingWarp[] = {
     SET_INT(oInteractType, INTERACT_WARP),
     SET_INT(oIntangibleTimer, 0),
     BEGIN_LOOP(),
-        CALL_NATIVE(BehFadingWarpLoop),
+        CALL_NATIVE(bhv_fading_warp_loop),
     END_LOOP(),
 };
 
@@ -1251,7 +1251,7 @@ const BehaviorScript bhvGroundSand[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
-    CALL_NATIVE(bhv_unused_0e40_init),
+    CALL_NATIVE(bhv_ground_sand_init),
     DELAY(1),
     DEACTIVATE(),
 };
