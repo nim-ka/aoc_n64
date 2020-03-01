@@ -141,7 +141,7 @@ SECTIONS
       BUILD_DIR/src/game/obj_behaviors.o(.text);
       BUILD_DIR/src/game/obj_behaviors_2.o(.text);
       BUILD_DIR/src/audio/synthesis.o(.text);
-      BUILD_DIR/src/audio/memory.o(.text);
+      BUILD_DIR/src/audio/heap.o(.text);
       BUILD_DIR/src/audio/load.o(.text);
       BUILD_DIR/src/audio/playback.o(.text);
       BUILD_DIR/src/audio/effects.o(.text);
@@ -521,7 +521,7 @@ SECTIONS
       BUILD_DIR/src/game*.o(.rodata*);
 #endif
       BUILD_DIR/src/audio/synthesis.o(.rodata*);
-      BUILD_DIR/src/audio/memory.o(.rodata*);
+      BUILD_DIR/src/audio/heap.o(.rodata*);
       BUILD_DIR/src/audio/load.o(.rodata*);
       BUILD_DIR/src/audio/playback.o(.rodata*);
       BUILD_DIR/src/audio/effects.o(.rodata*);
@@ -874,7 +874,7 @@ SECTIONS
       BUILD_DIR/src/audio/globals_start.o(.bss*);
 
       BUILD_DIR/src/audio/synthesis.o(.bss*);
-      BUILD_DIR/src/audio/memory.o(.bss*);
+      BUILD_DIR/src/audio/heap.o(.bss*);
       BUILD_DIR/src/audio/load.o(.bss*);
       BUILD_DIR/src/audio/data.o(.bss*);
       BUILD_DIR/src/audio/globals_end.o(.bss*);

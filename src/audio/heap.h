@@ -1,5 +1,5 @@
-#ifndef AUDIO_MEMORY_H
-#define AUDIO_MEMORY_H
+#ifndef AUDIO_HEAP_H
+#define AUDIO_HEAP_H
 
 #include "internal.h"
 
@@ -69,4 +69,4 @@ void audio_reset_session(void);
 void audio_reset_session(struct AudioSessionSettings *preset);
 #endif
 
-#endif /* AUDIO_MEMORY_H */
+#endif /* AUDIO_HEAP_H */

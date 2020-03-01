@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include <macros.h>
 
-#include "memory.h"
+#include "heap.h"
 #include "data.h"
 #include "load.h"
 #include "synthesis.h"
@@ -31,7 +31,7 @@ u8 sReverbDownsampleRateLog; // never read
 struct SoundAllocPool gAudioSessionPool;
 struct SoundAllocPool gAudioInitPool;
 struct SoundAllocPool gNotesAndBuffersPool;
-u8 sAudioMemoryPad[0x20]; // probably two unused pools
+u8 sAudioHeapPad[0x20]; // probably two unused pools
 struct SoundAllocPool gSeqAndBankPool;
 struct SoundAllocPool gPersistentCommonPool;
 struct SoundAllocPool gTemporaryCommonPool;

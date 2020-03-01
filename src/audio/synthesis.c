@@ -2,7 +2,7 @@
 #include <macros.h>
 
 #include "synthesis.h"
-#include "memory.h"
+#include "heap.h"
 #include "data.h"
 #include "load.h"
 #include "seqplayer.h"

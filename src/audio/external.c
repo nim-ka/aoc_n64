@@ -1,6 +1,6 @@
 #include <ultra64.h>
 #include "sm64.h"
-#include "memory.h"
+#include "heap.h"
 #include "load.h"
 #include "data.h"
 #include "seqplayer.h"
