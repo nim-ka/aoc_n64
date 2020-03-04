@@ -1,4 +1,4 @@
-// bullet_bill.c.inc
+// bullet_bill.inc.c
 
 // bullet bill smoke
 void bhv_white_puff_smoke_init(void) {
