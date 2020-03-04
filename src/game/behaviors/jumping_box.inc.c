@@ -62,7 +62,7 @@ void bhv_jumping_box_loop(void) {
             o->oAction = 1;
             break;
     }
-    if (o->oInteractStatus & INTERACT_HIT_FROM_BELOW) {
+    if (o->oInteractStatus & INT_STATUS_STOP_RIDING) {
         create_sound_spawner(SOUND_GENERAL_BREAK_BOX);
         obj_explode_and_spawn_coins(46.0f, 1);
     }

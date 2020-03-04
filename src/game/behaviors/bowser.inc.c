@@ -462,9 +462,9 @@ s32 bowser_land(void) {
         cur_obj_start_cam_event(o, CAM_EVENT_BOWSER_JUMP);
         if (BITDW) {
             if (o->oDistanceToMario < 850.0f)
-                gMarioObject->oInteractStatus |= INTERACT_GRABBABLE;
+                gMarioObject->oInteractStatus |= INT_STATUS_MARIO_UNK1;
             else
-                gMarioObject->oInteractStatus |= INTERACT_HOOT; // hmm...
+                gMarioObject->oInteractStatus |= INT_STATUS_HOOT_GRABBED_BY_MARIO; // hmm...
         }
         return 1;
     } else
@@ -636,7 +636,7 @@ s32 bowser_check_hit_mine(void) {
     f32 sp18;
     mine = cur_obj_find_nearest_object_with_behavior(bhvBowserBomb, &sp18);
     if (mine != NULL && sp18 < 800.0f) {
-        mine->oInteractStatus |= INTERACT_MR_BLIZZARD;
+        mine->oInteractStatus |= INT_STATUS_HIT_MINE;
         return 1;
     }
     return 0;

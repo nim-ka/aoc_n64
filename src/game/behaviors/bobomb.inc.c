@@ -44,9 +44,9 @@ void bobomb_act_explode(void) {
 
 void bobomb_check_interactions(void) {
     obj_set_hitbox(o, &sBobombHitbox);
-    if ((o->oInteractStatus & INT_STATUS_INTERACTED) != 0) /* bit 15 */
+    if ((o->oInteractStatus & INT_STATUS_INTERACTED) != 0)
     {
-        if ((o->oInteractStatus & INTERACT_GRABBABLE) != 0) /* bit 1 */
+        if ((o->oInteractStatus & INT_STATUS_MARIO_UNK1) != 0)
         {
             o->oMoveAngleYaw = gMarioObject->header.gfx.angle[1];
             o->oForwardVel = 25.0;
@@ -54,7 +54,7 @@ void bobomb_check_interactions(void) {
             o->oAction = BOBOMB_ACT_LAUNCHED;
         }
 
-        if ((o->oInteractStatus & INTERACT_TEXT) != 0) /* bit 23 */
+        if ((o->oInteractStatus & INT_STATUS_TOUCHED_BOB_OMB) != 0)
             o->oAction = BOBOMB_ACT_EXPLODE;
 
         o->oInteractStatus = 0;
@@ -183,8 +183,7 @@ void bobomb_held_loop(void) {
         //! Although the Bob-omb's action is set to explode when the fuse timer expires,
         //  bobomb_act_explode() will not execute until the bob-omb's held state changes.
         //  This allows the Bob-omb to be regrabbed indefinitely.
-
-        gMarioObject->oInteractStatus |= INTERACT_DAMAGE; /* bit 3 */
+        gMarioObject->oInteractStatus |= INT_STATUS_MARIO_DROP_OBJECT;
         o->oAction = BOBOMB_ACT_EXPLODE;
     }
 }

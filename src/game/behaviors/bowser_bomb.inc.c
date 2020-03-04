@@ -2,12 +2,12 @@
 
 void bhv_bowser_bomb_loop(void) {
     if (obj_check_if_collided_with_object(o, gMarioObject) == 1) {
-        o->oInteractStatus &= ~INT_STATUS_INTERACTED; /* bit 15 */
+        o->oInteractStatus &= ~INT_STATUS_INTERACTED;
         spawn_object(o, MODEL_EXPLOSION, bhvExplosion);
         o->activeFlags = 0;
     }
 
-    if (o->oInteractStatus & INTERACT_MR_BLIZZARD) /* bit 21 */
+    if (o->oInteractStatus & INT_STATUS_HIT_MINE)
     {
         spawn_object(o, MODEL_BOWSER_FLAMES, bhvBowserBombExplosion);
         create_sound_spawner(SOUND_GENERAL_BOWSER_BOMB_EXPLOSION);

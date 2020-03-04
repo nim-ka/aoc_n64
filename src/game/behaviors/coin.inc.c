@@ -16,7 +16,7 @@ s16 D_8032F2A4[][2] = { { 0, -150 },  { 0, -50 },   { 0, 50 },   { 0, 150 },
                         { -50, 100 }, { -100, 50 }, { 50, 100 }, { 100, 50 } };
 
 s32 bhv_coin_sparkles_init(void) {
-    if (o->oInteractStatus & INT_STATUS_INTERACTED && !(o->oInteractStatus & INTERACT_TEXT)) {
+    if (o->oInteractStatus & INT_STATUS_INTERACTED && !(o->oInteractStatus & INT_STATUS_TOUCHED_BOB_OMB)) {
         spawn_object(o, MODEL_SPARKLES, bhvGoldenCoinSparkles);
         obj_mark_for_deletion(o);
         return 1;
