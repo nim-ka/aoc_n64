@@ -11,6 +11,8 @@
 #include "menu/debug_level_select.h"
 #include "menu/intro_geo.h"
 
+#include "make_const_nonconst.h"
+
 #include "levels/intro/header.h"
 
 // 0x0E0002D0
