@@ -1713,16 +1713,17 @@ void func_8031F96C(u8 player) {
 
 void process_level_music_dynamics(void) {
     s32 conditionBits;      // s0
+    u32 tempBits;           // v1
     u8 musicDynIndex;       // sp57 87
+    u8 condIndex;           // a0, v1
+    u8 i;                   // s1
     u8 j;                   // v0
     s16 conditionValues[8]; // sp44 68
     u8 conditionTypes[8];   // sp3C 60
     s16 dur1;               // sp3A 58
     s16 dur2;               // sp38 56
     u16 bit;                // a1 (in first loop), s0, v1
-    u8 i;                   // s1
-    u8 condIndex;           // a0, v1
-    u32 tempBits;           // v1
+    // room for 16 bits without affecting stack
 
     func_8031F96C(0);
     func_8031F96C(2);
@@ -1737,65 +1738,65 @@ void process_level_music_dynamics(void) {
         return;
     }
 
-    conditionBits = sLevelDynamics[gCurrLevelNum][1] & 0xff00;
-    musicDynIndex = sLevelDynamics[gCurrLevelNum][1] & 0xff;
+    // conditionBits uses a3 instead of s0
+    // s16 cast is unnecessary, u16 cast fixes regalloc in the switch
+    conditionBits = ((s16) sLevelDynamics[gCurrLevelNum][1]) & 0xff00;
+    musicDynIndex = ((u16) sLevelDynamics[gCurrLevelNum][1]) & 0xff;
     i = 2;
     while (conditionBits & 0xff00) {
-        for (j = 0, condIndex = 0, bit = 0x8000; j<8; j++, bit = bit>> 1) {
+        j = 0;
+        condIndex = 0;
+        bit = 0x8000;
+        while (j < 8) {
             if (conditionBits & bit) {
                 conditionValues[condIndex] = sLevelDynamics[gCurrLevelNum][i++];
                 conditionTypes[condIndex] = j;
                 condIndex++;
             }
+
+            j++;
+            bit = bit >> 1;
         }
 
+        // condIndex uses a0 (the same register as 'bit') instead of v1
         for (j = 0; j < condIndex; j++) {
-            // (having all 'temp' share a single variable affects regalloc)
             switch (conditionTypes[j]) {
                 case MARIO_X_GE: {
-                    s16 temp = gMarioStates[0].pos[0];
-                    if (temp < conditionValues[j])
+                    if (((s16) gMarioStates[0].pos[0]) < conditionValues[j])
                         j = condIndex + 1;
                     break;
                 }
                 case MARIO_Y_GE: {
-                    s16 temp = gMarioStates[0].pos[1];
-                    if (temp < conditionValues[j])
+                    if (((s16) gMarioStates[0].pos[1]) < conditionValues[j])
                         j = condIndex + 1;
                     break;
                 }
                 case MARIO_Z_GE: {
-                    s16 temp = gMarioStates[0].pos[2];
-                    if (temp < conditionValues[j])
+                    if (((s16) gMarioStates[0].pos[2]) < conditionValues[j])
                         j = condIndex + 1;
                     break;
                 }
                 case MARIO_X_LT: {
-                    s16 temp = gMarioStates[0].pos[0];
-                    if (temp >= conditionValues[j])
+                    if (((s16) gMarioStates[0].pos[0]) >= conditionValues[j])
                         j = condIndex + 1;
                     break;
                 }
                 case MARIO_Y_LT: {
-                    s16 temp = gMarioStates[0].pos[1];
-                    if (temp >= conditionValues[j])
+                    if (((s16) gMarioStates[0].pos[1]) >= conditionValues[j])
                         j = condIndex + 1;
                     break;
                 }
                 case MARIO_Z_LT: {
-                    s16 temp = gMarioStates[0].pos[2];
-                    if (temp >= conditionValues[j])
+                    if (((s16) gMarioStates[0].pos[2]) >= conditionValues[j])
                         j = condIndex + 1;
                     break;
                 }
                 case MARIO_IS_IN_AREA: {
-                    // s16 temp = gCurrAreaIndex;
                     if (gCurrAreaIndex != conditionValues[j])
                         j = condIndex + 1;
                     break;
                 }
                 case MARIO_IS_IN_ROOM: {
-                    // s16 temp = gMarioCurrentRoom;
                     if (gMarioCurrentRoom != conditionValues[j])
                         j = condIndex + 1;
                     break;
@@ -1807,15 +1808,18 @@ void process_level_music_dynamics(void) {
             // The area matches. Break out of the loop.
             tempBits = 0;
         } else {
-            tempBits = sLevelDynamics[gCurrLevelNum][i];
+            // s16 cast is unnecessary, u16 cast fixes regalloc
+            // While conditionBits didn't need a cast above, the opposite is the case here
+            tempBits      = ((u16) sLevelDynamics[gCurrLevelNum][i]) & 0xff00;
+            musicDynIndex = ((s16) sLevelDynamics[gCurrLevelNum][i]) & 0xff;
             i++;
-            musicDynIndex = tempBits & 0xff, tempBits &= 0xff00;
         }
 
         conditionBits = tempBits;
     }
 
-    if (musicDynIndex != sCurrentMusicDynamic) {
+    if (sCurrentMusicDynamic != musicDynIndex) {
+        // bit keeps using a0, should use v1
         bit = 1;
         if (sCurrentMusicDynamic == 0xff) {
             dur1 = 1;
@@ -1827,6 +1831,8 @@ void process_level_music_dynamics(void) {
 
         for (i = 0; i < CHANNELS_MAX; i++) {
             if (sMusicDynamics[musicDynIndex].bits1 & bit) {
+                // The instructions setting a0 and a1 are swapped, but get fixed pretty easily by a
+                // branch or anything that changes regalloc
                 fade_channel_volume_scale(0, i, sMusicDynamics[musicDynIndex].volScale1, dur1);
             }
             if (sMusicDynamics[musicDynIndex].bits2 & bit) {
