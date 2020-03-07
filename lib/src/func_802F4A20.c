@@ -1,6 +1,5 @@
 #include "new_func.h"
 
-extern OSThread *D_80334898;
 void func_802F4A20() {
     __OSTranxInfo *sp1c;
     volatile u32 sp18;
