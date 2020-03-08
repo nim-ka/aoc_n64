@@ -930,8 +930,8 @@ SECTIONS
       BUILD_DIR/libgoddard.a:anim_mario_eyebrows_1.o(.data);
       BUILD_DIR/libgoddard.a:anim_group_1.o(.data);
       BUILD_DIR/libgoddard.a:anim_group_2.o(.data);
-      BUILD_DIR/libgoddard.a:dynlist_test_cube.o(.rodata);
-      BUILD_DIR/libgoddard.a:dynlist_unused.o(.rodata);
+      BUILD_DIR/libgoddard.a:dynlist_test_cube.o(.rodata*);
+      BUILD_DIR/libgoddard.a:dynlist_unused.o(.rodata*);
       BUILD_DIR/libgoddard.a:*.o(.data);
       BUILD_DIR/libgoddard.a:*.o(.rodata);
    }
@@ -996,6 +996,7 @@ SECTIONS
    BEGIN_SEG(assets, __romPos)
    {
       BUILD_DIR/assets/mario_anim_data.o(.data);
+      BUILD_DIR/assets/mario_anim_data.o(.rodata);
       BUILD_DIR/assets/demo_data.o(.data);
       gSoundDataADSR = .;
       BUILD_DIR/sound/sound_data.ctl.o(.data);
