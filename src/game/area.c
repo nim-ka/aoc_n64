@@ -19,6 +19,7 @@
 #include "level_update.h"
 #include "engine/geo_layout.h"
 #include "save_file.h"
+#include "level_table.h"
 
 struct SpawnInfo gPlayerSpawnInfos[1];
 struct GraphNode *D_8033A160[0x100];
@@ -47,7 +48,7 @@ u8 gWarpTransRed = 0;
 u8 gWarpTransGreen = 0;
 u8 gWarpTransBlue = 0;
 s16 gCurrSaveFileNum = 1;
-s16 gCurrLevelNum = 1;
+s16 gCurrLevelNum = LEVEL_MIN;
 
 const BehaviorScript *D_8032CE9C[] = {
     bhvDoorWarp, bhvStar,    bhvExitPodiumWarp, bhvWarp,    bhvWarpPipe, bhvFadingWarp, bhvWarps60,

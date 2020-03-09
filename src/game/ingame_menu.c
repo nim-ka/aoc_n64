@@ -17,6 +17,7 @@
 #include "ingame_menu.h"
 #include "print.h"
 #include "engine/math_util.h"
+#include "course_table.h"
 
 extern Gfx *gDisplayListHead;
 extern s32 gGlobalTimer;
@@ -2417,7 +2418,7 @@ void render_pause_castle_menu_box(s16 x, s16 y) {
 void highlight_last_course_complete_stars(void) {
     u8 courseDone;
 
-    if (gLastCompletedCourseNum == 0) {
+    if (gLastCompletedCourseNum == COURSE_NONE) {
         courseDone = 0;
     } else {
         courseDone = gLastCompletedCourseNum - 1;

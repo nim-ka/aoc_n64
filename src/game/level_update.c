@@ -26,6 +26,7 @@
 #include "eu_translation.h"
 #endif
 #include "level_table.h"
+#include "course_table.h"
 
 #define PLAY_MODE_NORMAL 0
 #define PLAY_MODE_PAUSED 2
@@ -144,7 +145,7 @@ struct CreditsEntry sCreditsSequence[] = {
     { LEVEL_DDD, 2, -111, -64, { 3948, 1185, -104 }, credits19 },
     { LEVEL_CCM, 1, 33, 31, { 3169, -4607, 5240 }, credits20 },
     { LEVEL_CASTLE_GROUNDS, 1, 1, -128, { 0, 906, -1200 }, NULL },
-    { 0, 0, 1, 0, { 0, 0, 0 }, NULL },
+    { LEVEL_NONE, 0, 1, 0, { 0, 0, 0 }, NULL },
 };
 
 struct MarioState gMarioStates[1];
@@ -448,7 +449,7 @@ void init_mario_after_warp(void) {
         )
             play_sound(SOUND_MENU_MARIO_CASTLE_WARP, gDefaultSoundArgs);
 #ifndef VERSION_JP
-        if (sWarpDest.levelNum == 16 && sWarpDest.areaIdx == 1
+        if (sWarpDest.levelNum == LEVEL_CASTLE_GROUNDS && sWarpDest.areaIdx == 1
             && (sWarpDest.nodeId == 7 || sWarpDest.nodeId == 10 || sWarpDest.nodeId == 20
                 || sWarpDest.nodeId == 30)) {
             play_sound(SOUND_MENU_MARIO_CASTLE_WARP, gDefaultSoundArgs);
@@ -703,7 +704,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
             case WARP_OP_DEMO_END:
                 do {sDelayedWarpTimer = 20;} while (0);
                 sSourceWarpNodeId = WARP_NODE_F0;
-                gSavedCourseNum = 0;
+                gSavedCourseNum = COURSE_NONE;
                 val04 = FALSE;
                 play_transition(WARP_TRANSITION_FADE_INTO_STAR, 0x14, 0x00, 0x00, 0x00);
                 break;
@@ -712,14 +713,14 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
                 sDelayedWarpTimer = 60;
                 sSourceWarpNodeId = WARP_NODE_F0;
                 val04 = FALSE;
-                gSavedCourseNum = 0;
+                gSavedCourseNum = COURSE_NONE;
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 0x3C, 0x00, 0x00, 0x00);
                 break;
 
             case WARP_OP_STAR_EXIT:
                 sDelayedWarpTimer = 32;
                 sSourceWarpNodeId = WARP_NODE_F0;
-                gSavedCourseNum = 0;
+                gSavedCourseNum = COURSE_NONE;
                 play_transition(WARP_TRANSITION_FADE_INTO_MARIO, 0x20, 0x00, 0x00, 0x00);
                 break;
 
@@ -853,7 +854,7 @@ void initiate_delayed_warp(void) {
 
                     gCurrCreditsEntry += 1;
                     gCurrActNum = gCurrCreditsEntry->unk02 & 0x07;
-                    if ((gCurrCreditsEntry + 1)->levelNum == 0) {
+                    if ((gCurrCreditsEntry + 1)->levelNum == LEVEL_NONE) {
                         destWarpNode = WARP_NODE_CREDITS_END;
                     } else {
                         destWarpNode = WARP_NODE_CREDITS_NEXT;
@@ -1014,7 +1015,7 @@ s32 play_mode_paused(void) {
         } else {
             initiate_warp(LEVEL_CASTLE, 1, 0x1F, 0);
             fade_into_special_warp(0, 0);
-            gSavedCourseNum = 0;
+            gSavedCourseNum = COURSE_NONE;
         }
 
         gCameraMovementFlags &= ~CAM_MOVE_PAUSE_SCREEN;
@@ -1255,7 +1256,7 @@ s32 lvl_init_from_save_file(UNUSED s16 arg0, s32 levelNum) {
 
     gCurrLevelNum = levelNum;
     gCurrCourseNum = COURSE_NONE;
-    gSavedCourseNum = 0;
+    gSavedCourseNum = COURSE_NONE;
     gCurrCreditsEntry = NULL;
     gSpecialTripleJump = 0;
 
