@@ -677,7 +677,7 @@ void initiate_painting_warp(void) {
 
                 set_mario_action(gMarioState, ACT_DISAPPEARED, 0);
 
-                gMarioState->marioObj->header.gfx.node.flags &= ~0x0001;
+                gMarioState->marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
 
                 play_sound(SOUND_MENU_STAR_SOUND, gDefaultSoundArgs);
                 fadeout_music(398);

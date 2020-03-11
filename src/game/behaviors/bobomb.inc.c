@@ -174,7 +174,7 @@ void bobomb_free_loop(void) {
 }
 
 void bobomb_held_loop(void) {
-    o->header.gfx.node.flags |= 0x10; /* bit 4 */
+    o->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
     cur_obj_init_animation(1);
     cur_obj_set_pos_relative(gMarioObject, 0, 60.0f, 100.0);
 
@@ -191,7 +191,7 @@ void bobomb_held_loop(void) {
 void bobomb_dropped_loop(void) {
     cur_obj_get_dropped();
 
-    o->header.gfx.node.flags &= ~0x10; /* bit 4 = 0 */
+    o->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
     cur_obj_init_animation(0);
 
     o->oHeldState = 0;
@@ -201,7 +201,7 @@ void bobomb_dropped_loop(void) {
 void bobomb_thrown_loop(void) {
     cur_obj_enable_rendering_2();
 
-    o->header.gfx.node.flags &= ~0x10; /* bit 4 = 0 */
+    o->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
     o->oHeldState = 0;
     o->oFlags &= ~0x8; /* bit 3 */
     o->oForwardVel = 25.0;

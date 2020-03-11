@@ -58,9 +58,9 @@ void breakable_box_small_released_loop(void) {
     // Begin flashing
     if (o->oBreakableBoxSmallFramesSinceReleased > 810) {
         if (o->oBreakableBoxSmallFramesSinceReleased & 1)
-            o->header.gfx.node.flags |= 0x10;
+            o->header.gfx.node.flags |= GRAPH_RENDER_INVISIBLE;
         else
-            o->header.gfx.node.flags &= ~0x10;
+            o->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
     }
 
     // Despawn, and create a corkbox respawner
@@ -94,7 +94,7 @@ void breakable_box_small_get_dropped(void) {
     cur_obj_become_tangible();
     cur_obj_enable_rendering();
     cur_obj_get_dropped();
-    o->header.gfx.node.flags &= ~0x10;
+    o->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
     o->oHeldState = 0;
     o->oBreakableBoxSmallReleased = 1;
     o->oBreakableBoxSmallFramesSinceReleased = 0;
@@ -104,7 +104,7 @@ void breakable_box_small_get_thrown(void) {
     cur_obj_become_tangible();
     cur_obj_enable_rendering_2();
     cur_obj_enable_rendering();
-    o->header.gfx.node.flags &= ~0x10;
+    o->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
     o->oHeldState = 0;
     o->oFlags &= ~0x08;
     o->oForwardVel = 40.0f;

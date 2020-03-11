@@ -665,7 +665,7 @@ s32 act_in_cannon(struct MarioState *m) {
 
     switch (m->actionState) {
         case 0:
-            m->marioObj->header.gfx.node.flags &= ~0x0001;
+            m->marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE;
             m->usedObj->oInteractStatus = INT_STATUS_INTERACTED;
 
             m->statusForCamera->cameraEvent = CAM_EVENT_CANNON;
@@ -725,7 +725,7 @@ s32 act_in_cannon(struct MarioState *m) {
                 play_sound(SOUND_ACTION_FLYING_FAST, m->marioObj->header.gfx.cameraToObject);
                 play_sound(SOUND_OBJ_POUNDING_CANNON, m->marioObj->header.gfx.cameraToObject);
 
-                m->marioObj->header.gfx.node.flags |= 0x0001;
+                m->marioObj->header.gfx.node.flags |= GRAPH_RENDER_ACTIVE;
 
                 set_mario_action(m, ACT_SHOT_FROM_CANNON, 0);
                 m->usedObj->oAction = 2;

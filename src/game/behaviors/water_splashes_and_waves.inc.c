@@ -62,9 +62,9 @@ void bhv_water_droplet_loop(void) {
     
     if (o->oTimer == 0) {
         if (cur_obj_has_model(MODEL_FISH))
-            o->header.gfx.node.flags &= ~4;
+            o->header.gfx.node.flags &= ~GRAPH_RENDER_BILLBOARD;
         else
-            o->header.gfx.node.flags |= 4;
+            o->header.gfx.node.flags |= GRAPH_RENDER_BILLBOARD;
         o->oFaceAngleYaw = RandomU16();
     }
     // Apply gravity
