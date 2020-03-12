@@ -17,12 +17,12 @@ void jumping_box_act_0(void) {
         if (o->oJumpingBoxUnkF8-- < 0)
             o->oSubAction++;
         if (o->oTimer > o->oJumpingBoxUnkF4) {
-            o->oVelY = RandomFloat() * 5.0f + 15.0f;
+            o->oVelY = random_float() * 5.0f + 15.0f;
             o->oSubAction++;
         }
     } else if (o->oMoveFlags & 2) {
         o->oSubAction = 0;
-        o->oJumpingBoxUnkF8 = RandomFloat() * 60.0f + 30.0f;
+        o->oJumpingBoxUnkF8 = random_float() * 60.0f + 30.0f;
     }
 }
 

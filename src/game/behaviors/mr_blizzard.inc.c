@@ -39,9 +39,9 @@ struct ObjectHitbox sMrBlizzardSnowballHitbox = {
 
 /**
  * TODO: (Scrub C) monty_mole_spawn_dirt_particles, water_bomb_spawn_explode_particles, and
- * func_80306ED4 all have similar issues with their functions, none of which match legitimately.
+ * mr_blizzard_spawn_white_particles all have similar issues with their functions, none of which match legitimately.
  */
-void func_80306ED4(s8 count, s8 offsetY, s8 forwardVelBase, s8 velYBase, s8 sizeBase) {
+void mr_blizzard_spawn_white_particles(s8 count, s8 offsetY, s8 forwardVelBase, s8 velYBase, s8 sizeBase) {
 #if defined(VERSION_JP) || defined(VERSION_US)
     D_80331A00.count = count;
     D_80331A00.offsetY = offsetY;
@@ -84,8 +84,8 @@ void bhv_mr_blizzard_init(void) {
     }
 }
 
-static void func_8030702C(void) {
-    if (o->oMrBlizzardUnkF8 == NULL && func_802F92EC(0, 5)) {
+static void mr_blizzard_act_0(void) {
+    if (o->oMrBlizzardUnkF8 == NULL && cur_obj_init_anim_check_frame(0, 5)) {
         o->oMrBlizzardUnkF8 = spawn_object_relative(0, -70, (s32)(o->oMrBlizzardUnk10C + 153.0f), 0, o,
                                                     MODEL_WHITE_PARTICLE, bhvMrBlizzardSnowball);
     } else if (cur_obj_check_anim_frame(10)) {
@@ -99,14 +99,14 @@ static void func_8030702C(void) {
     }
 }
 
-static void func_80307144(void) {
+static void mr_blizzard_act_1(void) {
     if (o->oDistanceToMario < 1000.0f) {
         cur_obj_play_sound_2(SOUND_OBJ_SNOW_SAND2);
         o->oAction = 2;
         o->oMoveAngleYaw = o->oAngleToMario;
         o->oMrBlizzardUnkFC = 42.0f;
 
-        func_80306ED4(8, -10, 15, 20, 10);
+        mr_blizzard_spawn_white_particles(8, -10, 15, 20, 10);
         cur_obj_unhide();
         cur_obj_become_tangible();
     } else {
@@ -114,14 +114,14 @@ static void func_80307144(void) {
     }
 }
 
-static void func_80307208(void) {
+static void mr_blizzard_act_2(void) {
     if (o->oMrBlizzardUnk100 != 0) {
         o->oMrBlizzardUnk100 -= 1;
     } else if ((o->oMrBlizzardUnk10C += o->oMrBlizzardUnkFC) > 24.0f) {
         o->oPosY += o->oMrBlizzardUnk10C - 24.0f;
         o->oMrBlizzardUnk10C = 24.0f;
 
-        func_80306ED4(8, -20, 20, 15, 10);
+        mr_blizzard_spawn_white_particles(8, -20, 20, 15, 10);
 
         o->oAction = 3;
         o->oVelY = o->oMrBlizzardUnkFC;
@@ -131,7 +131,7 @@ static void func_80307208(void) {
     }
 }
 
-static void func_80307370(void) {
+static void mr_blizzard_act_3(void) {
     s16 val06;
     f32 val00;
 
@@ -177,7 +177,7 @@ static void func_80307370(void) {
     }
 }
 
-static void func_80307650(void) {
+static void mr_blizzard_act_6(void) {
     struct Object *val04;
 
     if (clamp_f32(&o->oMrBlizzardUnk104, -0x4000, 0x4000)) {
@@ -233,8 +233,8 @@ static void func_80307650(void) {
     }
 }
 
-static void func_80307990(void) {
-    if (func_802F92EC(1, 7)) {
+static void mr_blizzard_act_4(void) {
+    if (cur_obj_init_anim_check_frame(1, 7)) {
         cur_obj_play_sound_2(SOUND_OBJ2_SCUTTLEBUG_ALERT);
         o->prevObj = o->oMrBlizzardUnkF8 = NULL;
     } else if (cur_obj_check_if_near_animation_end()) {
@@ -242,7 +242,7 @@ static void func_80307990(void) {
     }
 }
 
-static void func_80307A0C(void) {
+static void mr_blizzard_act_5(void) {
     o->oMrBlizzardUnk104 += o->oMrBlizzardUnk108;
 
     if (o->oMrBlizzardUnk104 < 0.0f) {
@@ -257,7 +257,7 @@ static void func_80307A0C(void) {
     }
 }
 
-static void func_80307AD4(void) {
+static void mr_blizzard_act_7(void) {
     if (o->oMrBlizzardUnk100 != 0) {
         cur_obj_rotate_yaw_toward(o->oMrBlizzardUnk1AC, 3400);
 
@@ -293,28 +293,28 @@ void bhv_mr_blizzard_update(void) {
 
     switch (o->oAction) {
         case 0:
-            func_8030702C();
+            mr_blizzard_act_0();
             break;
         case 1:
-            func_80307144();
+            mr_blizzard_act_1();
             break;
         case 2:
-            func_80307208();
+            mr_blizzard_act_2();
             break;
         case 3:
-            func_80307370();
+            mr_blizzard_act_3();
             break;
         case 4:
-            func_80307990();
+            mr_blizzard_act_4();
             break;
         case 5:
-            func_80307A0C();
+            mr_blizzard_act_5();
             break;
         case 6:
-            func_80307650();
+            mr_blizzard_act_6();
             break;
         case 7:
-            func_80307AD4();
+            mr_blizzard_act_7();
             break;
     }
 
@@ -327,7 +327,7 @@ void bhv_mr_blizzard_update(void) {
     obj_check_attacks(&sMrBlizzardHitbox, o->oAction);
 }
 
-static void func_80307E24(void) {
+static void mr_blizzard_snowball_act_0(void) {
     cur_obj_move_using_fvel_and_gravity();
     if (o->parentObj->prevObj == o) {
         o->oAction = 1;
@@ -336,7 +336,7 @@ static void func_80307E24(void) {
     }
 }
 
-static void func_80307EB0(void) {
+static void mr_blizzard_snowball_act_1(void) {
     f32 val04;
 
     if (o->parentObj->prevObj == NULL) {
@@ -356,12 +356,12 @@ static void func_80307EB0(void) {
     }
 }
 
-static void func_80307FD4(void) {
+static void mr_blizzard_snowball_act_2(void) {
     cur_obj_update_floor_and_walls();
     obj_check_attacks(&sMrBlizzardSnowballHitbox, -1);
 
     if (o->oAction == -1 || o->oMoveFlags & 0x0000000B) {
-        func_80306ED4(6, 0, 5, 10, 3);
+        mr_blizzard_spawn_white_particles(6, 0, 5, 10, 3);
         create_sound_spawner(SOUND_GENERAL_MOVING_IN_SAND);
         obj_mark_for_deletion(o);
     }
@@ -372,13 +372,13 @@ static void func_80307FD4(void) {
 void bhv_mr_blizzard_snowball(void) {
     switch (o->oAction) {
         case 0:
-            func_80307E24();
+            mr_blizzard_snowball_act_0();
             break;
         case 1:
-            func_80307EB0();
+            mr_blizzard_snowball_act_1();
             break;
         case 2:
-            func_80307FD4();
+            mr_blizzard_snowball_act_2();
             break;
     }
 }

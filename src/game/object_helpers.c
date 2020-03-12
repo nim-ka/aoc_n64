@@ -499,7 +499,7 @@ struct Object *spawn_water_droplet(struct Object *parent, struct WaterDropletPar
     struct Object *newObj = spawn_object(parent, params->model, params->behavior);
 
     if (params->flags & WATER_DROPLET_FLAG_RAND_ANGLE) {
-        newObj->oMoveAngleYaw = RandomU16();
+        newObj->oMoveAngleYaw = random_u16();
     }
 
     if (params->flags & WATER_DROPLET_FLAG_RAND_ANGLE_INCR_PLUS_8000) {
@@ -524,10 +524,10 @@ struct Object *spawn_water_droplet(struct Object *parent, struct WaterDropletPar
         obj_translate_xyz_random(newObj, params->moveRange);
     }
 
-    newObj->oForwardVel = RandomFloat() * params->randForwardVelScale + params->randForwardVelOffset;
-    newObj->oVelY = RandomFloat() * params->randYVelScale + params->randYVelOffset;
+    newObj->oForwardVel = random_float() * params->randForwardVelScale + params->randForwardVelOffset;
+    newObj->oVelY = random_float() * params->randYVelScale + params->randYVelOffset;
 
-    randomScale = RandomFloat() * params->randSizeScale + params->randSizeOffset;
+    randomScale = random_float() * params->randSizeScale + params->randSizeOffset;
     obj_scale(newObj, randomScale);
 
     return newObj;
@@ -2060,23 +2060,23 @@ void chain_segment_init(struct ChainSegment *segment) {
 }
 
 f32 random_f32_around_zero(f32 diameter) {
-    return RandomFloat() * diameter - diameter / 2;
+    return random_float() * diameter - diameter / 2;
 }
 
 void obj_scale_random(struct Object *obj, f32 rangeLength, f32 minScale) {
-    f32 scale = RandomFloat() * rangeLength + minScale;
+    f32 scale = random_float() * rangeLength + minScale;
     obj_scale_xyz(obj, scale, scale, scale);
 }
 
 void obj_translate_xyz_random(struct Object *obj, f32 rangeLength) {
-    obj->oPosX += RandomFloat() * rangeLength - rangeLength * 0.5f;
-    obj->oPosY += RandomFloat() * rangeLength - rangeLength * 0.5f;
-    obj->oPosZ += RandomFloat() * rangeLength - rangeLength * 0.5f;
+    obj->oPosX += random_float() * rangeLength - rangeLength * 0.5f;
+    obj->oPosY += random_float() * rangeLength - rangeLength * 0.5f;
+    obj->oPosZ += random_float() * rangeLength - rangeLength * 0.5f;
 }
 
 void obj_translate_xz_random(struct Object *obj, f32 rangeLength) {
-    obj->oPosX += RandomFloat() * rangeLength - rangeLength * 0.5f;
-    obj->oPosZ += RandomFloat() * rangeLength - rangeLength * 0.5f;
+    obj->oPosX += random_float() * rangeLength - rangeLength * 0.5f;
+    obj->oPosZ += random_float() * rangeLength - rangeLength * 0.5f;
 }
 
 static void obj_build_vel_from_transform(struct Object *a0) {
@@ -2185,18 +2185,18 @@ void cur_obj_spawn_particles(struct SpawnParticlesInfo *info) {
     }
 
     for (i = 0; i < numParticles; i++) {
-        scale = RandomFloat() * (info->sizeRange * 0.1f) + info->sizeBase * 0.1f;
+        scale = random_float() * (info->sizeRange * 0.1f) + info->sizeBase * 0.1f;
 
         particle = spawn_object(o, info->model, bhvWhitePuffExplosion);
 
         particle->oBehParams2ndByte = info->behParam;
-        particle->oMoveAngleYaw = RandomU16();
+        particle->oMoveAngleYaw = random_u16();
         particle->oGravity = info->gravity;
         particle->oDragStrength = info->dragStrength;
 
         particle->oPosY += info->offsetY;
-        particle->oForwardVel = RandomFloat() * info->forwardVelRange + info->forwardVelBase;
-        particle->oVelY = RandomFloat() * info->velYRange + info->velYBase;
+        particle->oForwardVel = random_float() * info->forwardVelRange + info->forwardVelBase;
+        particle->oVelY = random_float() * info->velYRange + info->velYBase;
 
         obj_scale_xyz(particle, scale, scale, scale);
     }

@@ -98,7 +98,7 @@ void bhv_water_bomb_spawner_update(void) {
  * Spawn particles when the water bomb explodes.
  *
  * TODO: (Scrub C) monty_mole_spawn_dirt_particles, water_bomb_spawn_explode_particles, and
- * func_80306ED4 all have similar issues with their functions, none of which match legitimately.
+ * mr_blizzard_spawn_white_particles all have similar issues with their functions, none of which match legitimately.
  */
 void water_bomb_spawn_explode_particles(s8 offsetY, s8 forwardVelRange, s8 velYBase) {
 #if defined(VERSION_JP) || defined(VERSION_US)

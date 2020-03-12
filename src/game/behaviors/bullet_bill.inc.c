@@ -2,7 +2,7 @@
 
 // bullet bill smoke
 void bhv_white_puff_smoke_init(void) {
-    cur_obj_scale(RandomFloat() * 2 + 2.0);
+    cur_obj_scale(random_float() * 2 + 2.0);
 }
 
 void bhv_bullet_bill_init(void) {

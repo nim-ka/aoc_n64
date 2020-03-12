@@ -17,13 +17,13 @@
 
 #define object_and_int(object, offset, value) object->OBJECT_FIELD_S32(offset) &= (s32)(value)
 
-u16 RandomU16(void);
-float RandomFloat(void);
-s32 RandomSign(void);
+u16 random_u16(void);
+float random_float(void);
+s32 random_sign(void);
 
-void func_80383D68(struct Object *object);
+void obj_update_gfx_pos_and_angle(struct Object *object);
 
-void stub_80385BF0(void);
+void stub_behavior_script_2(void);
 
 void cur_object_exec_behavior(void);
 

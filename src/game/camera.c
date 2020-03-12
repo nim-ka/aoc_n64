@@ -556,8 +556,8 @@ void set_camera_shake_from_hit(s16 shake) {
             break;
 
         case SHAKE_SHOCK:
-            set_camera_pitch_shake(RandomFloat() * 64.f, 0x8, 0x8000);
-            set_camera_yaw_shake(RandomFloat() * 64.f, 0x8, 0x8000);
+            set_camera_pitch_shake(random_float() * 64.f, 0x8, 0x8000);
+            set_camera_yaw_shake(random_float() * 64.f, 0x8, 0x8000);
             break;
     }
 }
@@ -3819,7 +3819,7 @@ void shake_camera_handheld(Vec3f pos, Vec3f focus) {
             sHandheldShakeTimer -= 1.f;
 
             // Code dead, this is set to be 0 before it is used.
-            sHandheldShakeInc = RandomFloat() * 0.5f;
+            sHandheldShakeInc = random_float() * 0.5f;
             if (sHandheldShakeInc < 0.02f) {
                 sHandheldShakeInc = 0.02f;
             }
@@ -4239,15 +4239,15 @@ void random_vec3s(Vec3s dst, s16 xRange, s16 yRange, s16 zRange) {
     f32 tempYRange;
     f32 tempZRange;
 
-    randomFloat = RandomFloat();
+    randomFloat = random_float();
     tempXRange = xRange;
     dst[0] = randomFloat * tempXRange - tempXRange / 2;
 
-    randomFloat = RandomFloat();
+    randomFloat = random_float();
     tempYRange = yRange;
     dst[1] = randomFloat * tempYRange - tempYRange / 2;
 
-    randomFloat = RandomFloat();
+    randomFloat = random_float();
     tempZRange = zRange;
     dst[2] = randomFloat * tempZRange - tempZRange / 2;
 }
@@ -11505,7 +11505,7 @@ void set_fov_shake_from_point_preset(u8 preset, f32 posX, f32 posY, f32 posZ) {
  * Offset an object's position in a random direction within the given bounds.
  */
 static UNUSED void unused_displace_obj_randomly(struct Object *o, f32 xRange, f32 yRange, f32 zRange) {
-    f32 rnd = RandomFloat();
+    f32 rnd = random_float();
 
     o->oPosX += (rnd * xRange - xRange / 2.f);
     o->oPosY += (rnd * yRange - yRange / 2.f);
@@ -11516,7 +11516,7 @@ static UNUSED void unused_displace_obj_randomly(struct Object *o, f32 xRange, f3
  * Rotate an object in a random direction within the given bounds.
  */
 static UNUSED void unused_rotate_obj_randomly(struct Object *o, f32 pitchRange, f32 yawRange) {
-    f32 rnd = RandomFloat();
+    f32 rnd = random_float();
 
     o->oMoveAnglePitch += (s16)(rnd * pitchRange - pitchRange / 2.f);
     o->oMoveAngleYaw += (s16)(rnd * yawRange - yawRange / 2.f);

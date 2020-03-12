@@ -135,7 +135,7 @@ s16 level_select_input_loop(void) {
     return 0;
 }
 
-int func_8016F3CC(void) {
+int intro_default(void) {
     s32 sp1C = 0;
 
 #ifndef VERSION_JP
@@ -163,7 +163,7 @@ int func_8016F3CC(void) {
     return run_press_start_demo_timer(sp1C);
 }
 
-int func_8016F444(void) {
+int intro_game_over(void) {
     s32 sp1C = 0;
 
 #ifndef VERSION_JP
@@ -185,24 +185,24 @@ int func_8016F444(void) {
     return run_press_start_demo_timer(sp1C);
 }
 
-int func_8016F4BC(void) {
+int intro_play_its_a_me_mario(void) {
     set_background_music(0, SEQ_SOUND_PLAYER, 0);
     play_sound(SOUND_MENU_COIN_ITS_A_ME_MARIO, gDefaultSoundArgs);
     return 1;
 }
 
-s32 LevelProc_8016F508(s16 arg1, UNUSED s32 arg2) {
+s32 lvl_intro_update(s16 arg1, UNUSED s32 arg2) {
     s32 retVar;
 
     switch (arg1) {
         case 0:
-            retVar = func_8016F4BC();
+            retVar = intro_play_its_a_me_mario();
             break;
         case 1:
-            retVar = func_8016F3CC();
+            retVar = intro_default();
             break;
         case 2:
-            retVar = func_8016F444();
+            retVar = intro_game_over();
             break;
         case 3:
             retVar = level_select_input_loop();
