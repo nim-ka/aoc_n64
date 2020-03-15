@@ -10,8 +10,8 @@
     mtc0  $zero, $13
     mtc0  $zero, $9
     mtc0  $zero, $11
-    lui   $t0, %hi(D_A4700000)
-    addiu $t0, %lo(D_A4700000)
+    lui   $t0, %hi(RI_MODE_REG)
+    addiu $t0, %lo(RI_MODE_REG)
     lw    $t1, 0xc($t0)
     bnez  $t1, .L000003D0
      nop
@@ -21,12 +21,12 @@
     sw    $s5, 8($sp)
     sw    $s6, 0xc($sp)
     sw    $s7, 0x10($sp)
-    lui   $t0, %hi(D_A4700000)
-    addiu $t0, %lo(D_A4700000)
+    lui   $t0, %hi(RI_MODE_REG)
+    addiu $t0, %lo(RI_MODE_REG)
     lui   $t2, (0xa3f80000 >> 16) # $t2, 0xa3f8
     lui   $t3, (0xa3f00000 >> 16) # $t3, 0xa3f0
-    lui   $t4, %hi(D_A4300000)
-    addiu $t4, %lo(D_A4300000)
+    lui   $t4, %hi(MI_MODE_REG)
+    addiu $t4, %lo(MI_MODE_REG)
     ori   $t1, $zero, 64
     sw    $t1, 4($t0)
     li   $s1, 8000
@@ -72,8 +72,8 @@
     lui   $s4, (0xA0000000 >> 16)
     addiu $sp, $sp, -0x48
     move  $fp, $sp
-    lui   $s0, %hi(D_A4300004) # $s0, 0xa430
-    lw    $s0, %lo(D_A4300004)($s0)
+    lui   $s0, %hi(MI_VERSION_REG) # $s0, 0xa430
+    lw    $s0, %lo(MI_VERSION_REG)($s0)
     lui   $s1, 0x0101 # $s1, 0x101
     addiu $s1, 0x0101 # addiu $s1, $s1, 0x101
     bne   $s0, $s1, .L00000120
@@ -223,13 +223,13 @@
     slt   $t0, $v1, $t5
     bnez  $t0, .L00000234
      nop
-    lui   $t2, %hi(D_A4700010) # $t2, 0xa470
+    lui   $t2, %hi(RI_REFRESH_REG) # $t2, 0xa470
     sll   $s2, $s2, 0x13
     lui   $t1, (0x00063634 >> 16) # lui $t1, 6
     ori   $t1, (0x00063634 & 0xFFFF) # ori $t1, $t1, 0x3634
     or    $t1, $t1, $s2
-    sw    $t1, %lo(D_A4700010)($t2)
-    lw    $t1, %lo(D_A4700010)($t2)
+    sw    $t1, %lo(RI_REFRESH_REG)($t2)
+    lw    $t1, %lo(RI_REFRESH_REG)($t2)
     lui   $t0, (0xA0000300 >> 16) # $t0, 0xa000
     ori   $t0, (0xA0000300 & 0xFFFF) # ori $t0, $t0, 0x300
     lui   $t1, (0x0FFFFFFF >> 16) # lui $t1, 0xfff
@@ -244,8 +244,8 @@
     lw    $s6, 0xc($sp)
     lw    $s7, 0x10($sp)
     addiu $sp, $sp, 0x18
-    lui   $t0, %hi(D_80000000)
-    addiu $t0, $t0, %lo(D_80000000)
+    lui   $t0, %hi(EXCEPTION_TLB_MISS)
+    addiu $t0, $t0, %lo(EXCEPTION_TLB_MISS)
     addiu $t1, $t0, 0x4000
     addiu $t1, $t1, -0x20
     mtc0  $zero, $28
@@ -255,8 +255,8 @@
     sltu  $at, $t0, $t1
     bnez  $at, .L00000398
      addiu $t0, $t0, 0x20
-    lui   $t0, %hi(D_80000000)
-    addiu $t0, %lo(D_80000000)
+    lui   $t0, %hi(EXCEPTION_TLB_MISS)
+    addiu $t0, %lo(EXCEPTION_TLB_MISS)
     addiu $t1, $t0, 0x2000
     addiu $t1, $t1, -0x10
 .L000003B8:
@@ -267,8 +267,8 @@
     b     .L00000418
      nop
 .L000003D0:
-    lui   $t0, %hi(D_80000000)
-    addiu $t0, %lo(D_80000000)
+    lui   $t0, %hi(EXCEPTION_TLB_MISS)
+    addiu $t0, %lo(EXCEPTION_TLB_MISS)
     addiu $t1, $t0, 0x4000
     addiu $t1, $t1, -0x20
     mtc0  $zero, $28
@@ -278,8 +278,8 @@
     sltu  $at, $t0, $t1
     bnez  $at, .L000003E8
      addiu $t0, $t0, 0x20
-    lui   $t0, %hi(D_80000000)
-    addiu $t0, %lo(D_80000000)
+    lui   $t0, %hi(EXCEPTION_TLB_MISS)
+    addiu $t0, %lo(EXCEPTION_TLB_MISS)
     addiu $t1, $t0, 0x2000
     addiu $t1, $t1, -0x10
 .L00000408:
@@ -288,16 +288,16 @@
     bnez  $at, .L00000408
      addiu $t0, $t0, 0x10
 .L00000418:
-    lui   $t2, %hi(D_A4000000)
-    addiu $t2, $t2, %lo(D_A4000000)
+    lui   $t2, %hi(SP_DMEM)
+    addiu $t2, $t2, %lo(SP_DMEM)
     lui   $t3, 0xfff0
     lui   $t1, 0x0010 # $t1, 0x10
     and   $t2, $t2, $t3
-    lui   $t0, %hi(D_A40004C0) # $t0, 0xa400
+    lui   $t0, %hi(SP_DMEM_UNK0) # $t0, 0xa400
     addiu $t1, -1 # addiu $t1, $t1, -1
-    lui   $t3, %hi(D_A4000774) # $t3, 0xa400
-    addiu $t0, %lo(D_A40004C0) # addiu $t0, $t0, 0x4c0
-    addiu $t3, %lo(D_A4000774) # addiu $t3, $t3, 0x774
+    lui   $t3, %hi(SP_DMEM_UNK1) # $t3, 0xa400
+    addiu $t0, %lo(SP_DMEM_UNK0) # addiu $t0, $t0, 0x4c0
+    addiu $t3, %lo(SP_DMEM_UNK1) # addiu $t3, $t3, 0x774
     and   $t0, $t0, $t1
     and   $t3, $t3, $t1
     lui   $t1, 0xa000
@@ -311,32 +311,32 @@
     addiu $t1, $t1, 4
     bnez  $at, .L00000458
      sw    $t5, -4($t1)
-    lui   $t4, %hi(D_80000000)
-    addiu $t4, %lo(D_80000000)
+    lui   $t4, %hi(EXCEPTION_TLB_MISS)
+    addiu $t4, %lo(EXCEPTION_TLB_MISS)
     jr    $t4
      nop
     lui   $t3, %hi(D_B0000008) # $t3, 0xb000
     lw    $t1, %lo(D_B0000008)($t3)
     lui   $t2, (0x1FFFFFFF >> 16) # lui $t2, 0x1fff
     ori   $t2, (0x1FFFFFFF & 0xFFFF) # ori $t2, $t2, 0xffff
-    lui   $at, %hi(D_A4600000)
+    lui   $at, %hi(PI_DRAM_ADDR_REG)
     and   $t1, $t1, $t2
-    sw    $t1, %lo(D_A4600000)($at)
-    lui   $t0, %hi(D_A4600010) # $t0, 0xa460
+    sw    $t1, %lo(PI_DRAM_ADDR_REG)($at)
+    lui   $t0, %hi(PI_STATUS_REG) # $t0, 0xa460
 .L000004A0:
-    lw    $t0, %lo(D_A4600010)($t0)
+    lw    $t0, %lo(PI_STATUS_REG)($t0)
     andi  $t0, $t0, 2
     bnezl $t0, .L000004A0
-     lui   $t0, %hi(D_A4600010)
+     lui   $t0, %hi(PI_STATUS_REG)
     li    $t0, 0x1000
     add   $t0, $t0, $t3
     and   $t0, $t0, $t2
-    lui   $at, %hi(D_A4600004) # $at, 0xa460
-    sw    $t0, %lo(D_A4600004)($at)
+    lui   $at, %hi(PI_CART_ADDR_REG) # $at, 0xa460
+    sw    $t0, %lo(PI_CART_ADDR_REG)($at)
     lui   $t2, 0x0010 # $t2, 0x10
     addiu $t2, 0xFFFF # addiu $t2, $t2, -1
-    lui   $at, %hi(D_A460000C) # $at, 0xa460
-    sw    $t2, %lo(D_A460000C)($at)
+    lui   $at, %hi(PI_WR_LEN_REG) # $at, 0xa460
+    sw    $t2, %lo(PI_WR_LEN_REG)($at)
 
 .L000004D4:
     nop
@@ -367,8 +367,8 @@
     nop
     nop
     nop
-    lui   $t3, %hi(D_A4600010) # $t3, 0xa460
-    lw    $t3, %lo(D_A4600010)($t3)
+    lui   $t3, %hi(PI_STATUS_REG) # $t3, 0xa460
+    lw    $t3, %lo(PI_STATUS_REG)($t3)
     andi  $t3, $t3, 1
     bnez  $t3, .L000004D4
      nop
@@ -443,37 +443,37 @@ func_00000648:
      nop
 
 func_00000650:
-    lui   $t1, %hi(D_A4080000)
-    lw    $t1, %lo(D_A4080000)($t1)
+    lui   $t1, %hi(SP_PC)
+    lw    $t1, %lo(SP_PC)($t1)
     lw    $s0, 0x14($sp)
     lw    $ra, 0x1c($sp)
     beqz  $t1, .L0000067C
      addiu $sp, $sp, 0x20
     li    $t2, 65
-    lui   $at, %hi(D_A4040010) # $at, 0xa404
-    sw    $t2, %lo(D_A4040010)($at)
-    lui   $at, %hi(D_A4080000)
-    sw    $zero, %lo(D_A4080000)($at)
+    lui   $at, %hi(SP_STATUS_REG) # $at, 0xa404
+    sw    $t2, %lo(SP_STATUS_REG)($at)
+    lui   $at, %hi(SP_PC)
+    sw    $zero, %lo(SP_PC)($at)
 .L0000067C:
     lui   $t3, (0x00AAAAAE >> 16) # lui $t3, 0xaa
     ori   $t3, (0x00AAAAAE & 0xFFFF) # ori $t3, $t3, 0xaaae
-    lui   $at, %hi(D_A4040010) # $at, 0xa404
-    sw    $t3, %lo(D_A4040010)($at)
-    lui   $at, %hi(D_A430000C) # $at, 0xa430
+    lui   $at, %hi(SP_STATUS_REG) # $at, 0xa404
+    sw    $t3, %lo(SP_STATUS_REG)($at)
+    lui   $at, %hi(MI_INTR_MASK_REG) # $at, 0xa430
     li    $t0, 1365
-    sw    $t0, %lo(D_A430000C)($at)
-    lui   $at, %hi(D_A4800018) # $at, 0xa480
-    sw    $zero, %lo(D_A4800018)($at)
-    lui   $at, %hi(D_A450000C) # $at, 0xa450
-    sw    $zero, %lo(D_A450000C)($at)
-    lui   $at, %hi(D_A4300000)
+    sw    $t0, %lo(MI_INTR_MASK_REG)($at)
+    lui   $at, %hi(SI_STATUS_REG) # $at, 0xa480
+    sw    $zero, %lo(SI_STATUS_REG)($at)
+    lui   $at, %hi(AI_STATUS_REG) # $at, 0xa450
+    sw    $zero, %lo(AI_STATUS_REG)($at)
+    lui   $at, %hi(MI_MODE_REG)
     li    $t1, 2048
-    sw    $t1, %lo(D_A4300000)($at)
+    sw    $t1, %lo(MI_MODE_REG)($at)
     li    $t1, 2
-    lui   $at, %hi(D_A4600010) # $at, 0xa460
+    lui   $at, %hi(PI_STATUS_REG) # $at, 0xa460
     lui   $t0, (0xA0000300 >> 16) # $t0, 0xa000
     ori   $t0, (0xA0000300 & 0xFFFF) # ori $t0, $t0, 0x300
-    sw    $t1, %lo(D_A4600010)($at)
+    sw    $t1, %lo(PI_STATUS_REG)($at)
     sw    $s7, 0x14($t0)
     sw    $s5, 0xc($t0)
     sw    $s3, 0x4($t0)
@@ -487,15 +487,15 @@ func_00000650:
     addiu $t1, $t1, 0
 .L000006F0:
     sw    $t1, 0x8($t0)
-    lui   $t0, %hi(D_A4000000)
-    addiu $t0, %lo(D_A4000000)
+    lui   $t0, %hi(SP_DMEM)
+    addiu $t0, %lo(SP_DMEM)
     addi  $t1, $t0, 0x1000
 .L00000700:
     addiu $t0, $t0, 4
     bne   $t0, $t1, .L00000700
      sw    $zero, -4($t0)
-    lui   $t0, %hi(D_A4001000) # $t0, 0xa400
-    addiu $t0, %lo(D_A4001000) # addiu $t0, $t0, 0x1000
+    lui   $t0, %hi(SP_IMEM) # $t0, 0xa400
+    addiu $t0, %lo(SP_IMEM) # addiu $t0, $t0, 0x1000
     addi  $t1, $t0, 0x1000
 .L00000718:
     addiu $t0, $t0, 4
@@ -739,8 +739,8 @@ func_04000A40:
     li    $k1, 1
     bne   $a1, $k1, .L00000A80
      sw    $t7, ($s5)
-    lui   $k0, %hi(D_A4300000)
-    sw    $zero, %lo(D_A4300000)($k0)
+    lui   $k0, %hi(MI_MODE_REG)
+    sw    $zero, %lo(MI_MODE_REG)($k0)
 .L00000A80:
     lw    $ra, 0x1c($sp)
     addiu $sp, $sp, 0x28
@@ -751,12 +751,12 @@ func_04000AD0:
     addiu $sp, $sp, -0x28
     sw    $ra, 0x1c($sp)
     li    $k0, 0x2000
-    lui   $k1, %hi(D_A4300000)
-    sw    $k0, %lo(D_A4300000)($k1)
+    lui   $k1, %hi(MI_MODE_REG)
+    sw    $k0, %lo(MI_MODE_REG)($k1)
     move  $fp, $zero
     lw    $fp, ($s5)
     li    $k0, 0x1000
-    sw    $k0, %lo(D_A4300000)($k1)
+    sw    $k0, %lo(MI_MODE_REG)($k1)
     li    $k1, 0x40
     and   $k1, $k1, $fp
     srl   $k1, $k1, 6
