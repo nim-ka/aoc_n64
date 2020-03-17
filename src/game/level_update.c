@@ -436,7 +436,7 @@ void init_mario_after_warp(void) {
         if (gCurrLevelNum == LEVEL_BOB
             && get_current_background_music() != SEQUENCE_ARGS(4, SEQ_LEVEL_SLIDE)
             && sTimerRunning != 0) {
-            play_music(0, SEQUENCE_ARGS(4, SEQ_LEVEL_SLIDE), 0);
+            play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_LEVEL_SLIDE), 0);
         }
 #endif
 

@@ -84,7 +84,7 @@ void lower_background_noise(s32 a) // Soften volume
             set_sound_disabled(TRUE);
             break;
         case 2:
-            func_8031FFB4(0, 60, 40); // soften music
+            func_8031FFB4(SEQ_PLAYER_LEVEL, 60, 40); // soften music
             break;
     }
     D_8032C6C0 |= a;
@@ -97,7 +97,7 @@ void raise_background_noise(s32 a) // harden volume
             set_sound_disabled(FALSE);
             break;
         case 2:
-            sequence_player_unlower(0, 60);
+            sequence_player_unlower(SEQ_PLAYER_LEVEL, 60);
             break;
     }
     D_8032C6C0 &= ~a;
@@ -200,7 +200,7 @@ void set_background_music(u16 a, u16 seqArgs, s16 fadeTimer) {
         }
 
         if (!(gShouldNotPlayCastleMusic && seqArgs == SEQ_LEVEL_INSIDE_CASTLE)) {
-            play_music(0, seqArgs, fadeTimer);
+            play_music(SEQ_PLAYER_LEVEL, seqArgs, fadeTimer);
             sCurrentMusic = seqArgs;
         }
     }
@@ -221,12 +221,12 @@ void fadeout_level_music(s16 fadeTimer) {
 }
 
 void play_cutscene_music(u16 seqArgs) {
-    play_music(0, seqArgs, 0);
+    play_music(SEQ_PLAYER_LEVEL, seqArgs, 0);
     sCurrentMusic = seqArgs;
 }
 
 void play_shell_music(void) {
-    play_music(0, SEQUENCE_ARGS(4, SEQ_EVENT_POWERUP | SEQ_VARIATION), 0);
+    play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_EVENT_POWERUP | SEQ_VARIATION), 0);
     sCurrentShellMusic = SEQUENCE_ARGS(4, SEQ_EVENT_POWERUP | SEQ_VARIATION);
 }
 
@@ -238,7 +238,7 @@ void stop_shell_music(void) {
 }
 
 void play_cap_music(u16 seqArgs) {
-    play_music(0, seqArgs, 0);
+    play_music(SEQ_PLAYER_LEVEL, seqArgs, 0);
     if (sCurrentCapMusic != MUSIC_NONE && sCurrentCapMusic != seqArgs) {
         stop_background_music(sCurrentCapMusic);
     }

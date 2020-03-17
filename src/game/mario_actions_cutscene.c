@@ -610,9 +610,9 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
                     play_course_clear();
                 } else {
                     if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_BOWSER_2) {
-                        play_music(1, SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_COLLECT_KEY), 0);
+                        play_music(SEQ_PLAYER_ENV, SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_COLLECT_KEY), 0);
                     } else {
-                        play_music(1, SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_COLLECT_STAR), 0);
+                        play_music(SEQ_PLAYER_ENV, SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_COLLECT_STAR), 0);
                     }
                 }
                 break;
@@ -2196,7 +2196,7 @@ static void end_peach_cutscene_dialog_1(struct MarioState *m) {
         case 230:
             set_cutscene_message(160, 227, 0, 30);
 #ifndef VERSION_JP
-            func_8031FFB4(0, 60, 40);
+            func_8031FFB4(SEQ_PLAYER_LEVEL, 60, 40);
             play_sound(SOUND_PEACH_MARIO, sEndPeachObj->header.gfx.cameraToObject);
 #endif
             break;
@@ -2348,7 +2348,7 @@ static void end_peach_cutscene_star_dance(struct MarioState *m) {
 
         case 140:
 #ifndef VERSION_JP
-            sequence_player_unlower(0, 60);
+            sequence_player_unlower(SEQ_PLAYER_LEVEL, 60);
 #endif
             play_cutscene_music(SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_CREDITS));
             break;

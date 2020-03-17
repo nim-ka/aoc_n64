@@ -4786,14 +4786,14 @@ s32 offset_yaw_outward_radial(struct Camera *c, s16 areaYaw) {
  * Plays the background music that starts while peach reads the intro message.
  */
 void cutscene_intro_peach_play_message_music(void) {
-    play_music(0, SEQUENCE_ARGS(4, SEQ_EVENT_PEACH_MESSAGE), 0);
+    play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_EVENT_PEACH_MESSAGE), 0);
 }
 
 /**
  * Plays the music that starts after peach fades and lakitu appears.
  */
 void cutscene_intro_peach_play_lakitu_flying_music(void) {
-    play_music(0, SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_INTRO), 0);
+    play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_INTRO), 0);
 }
 
 void play_camera_buzz_if_cdown(void) {
@@ -7020,7 +7020,7 @@ static UNUSED void unused_cutscene_mario_dialog_looking_up(UNUSED struct Camera 
  */
 BAD_RETURN(s32) cutscene_intro_peach_start_letter_music(UNUSED struct Camera *c) {
 #ifdef VERSION_US
-    func_8031FFB4(0, 60, 40);
+    func_8031FFB4(SEQ_PLAYER_LEVEL, 60, 40);
 #endif
     cutscene_intro_peach_play_message_music();
 }
@@ -7030,7 +7030,7 @@ BAD_RETURN(s32) cutscene_intro_peach_start_letter_music(UNUSED struct Camera *c)
  */
 BAD_RETURN(s32) cutscene_intro_peach_start_flying_music(UNUSED struct Camera *c) {
 #ifndef VERSION_JP
-    sequence_player_unlower(0, 60);
+    sequence_player_unlower(SEQ_PLAYER_LEVEL, 60);
 #endif
     cutscene_intro_peach_play_lakitu_flying_music();
 }
@@ -7041,7 +7041,7 @@ BAD_RETURN(s32) cutscene_intro_peach_start_flying_music(UNUSED struct Camera *c)
  * starts.
  */
 BAD_RETURN(s32) cutscene_intro_peach_eu_lower_volume(UNUSED struct Camera *c) {
-    func_8031FFB4(0, 60, 40);
+    func_8031FFB4(SEQ_PLAYER_LEVEL, 60, 40);
 }
 #endif
 
@@ -7199,11 +7199,11 @@ void set_flag_post_door(struct Camera *c) {
 }
 
 void cutscene_soften_music(UNUSED struct Camera *c) {
-    func_8031FFB4(0, 60, 40);
+    func_8031FFB4(SEQ_PLAYER_LEVEL, 60, 40);
 }
 
 void cutscene_unsoften_music(UNUSED struct Camera *c) {
-    sequence_player_unlower(0, 60);
+    sequence_player_unlower(SEQ_PLAYER_LEVEL, 60);
 }
 
 static void stub_camera_5(UNUSED struct Camera *c) {

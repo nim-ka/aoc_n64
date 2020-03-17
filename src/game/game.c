@@ -303,7 +303,7 @@ void thread5_game_loop(UNUSED void *arg) {
     // point addr to the entry point into the level script data.
     addr = segmented_to_virtual(level_script_entry);
 
-    play_music(2, SEQUENCE_ARGS(0, SEQ_SOUND_PLAYER), 0);
+    play_music(SEQ_PLAYER_SFX, SEQUENCE_ARGS(0, SEQ_SOUND_PLAYER), 0);
     set_sound_mode(save_file_get_sound_mode());
     rendering_init();
 
