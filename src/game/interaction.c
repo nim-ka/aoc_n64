@@ -18,6 +18,7 @@
 #include "audio/external.h"
 #include "behavior_data.h"
 #include "dialog_ids.h"
+#include "seq_ids.h"
 #include "course_table.h"
 
 #define INT_GROUND_POUND_OR_TWIRL (1 << 0) // 0x01
@@ -1513,17 +1514,17 @@ u32 interact_cap(struct MarioState *m, UNUSED u32 interactType, struct Object *o
         switch (capFlag) {
             case MARIO_VANISH_CAP:
                 capTime = 600;
-                capMusic = 0x040E;
+                capMusic = SEQUENCE_ARGS(4, SEQ_EVENT_POWERUP);
                 break;
 
             case MARIO_METAL_CAP:
                 capTime = 600;
-                capMusic = 0x040F;
+                capMusic = SEQUENCE_ARGS(4, SEQ_EVENT_METAL_CAP);
                 break;
 
             case MARIO_WING_CAP:
                 capTime = 1800;
-                capMusic = 0x040E;
+                capMusic = SEQUENCE_ARGS(4, SEQ_EVENT_POWERUP);
                 break;
         }
 
