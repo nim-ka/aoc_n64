@@ -521,6 +521,7 @@ else
 # The source-to-source optimizer copt is enabled for audio. This makes it use
 # acpp, which needs -Wp,-+ to handle C++-style comments.
 $(BUILD_DIR)/src/audio/effects.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0 -sopt,-inline=sequence_channel_process_sound,-scalaroptimize=1 -Wp,-+
+$(BUILD_DIR)/src/audio/synthesis.o: OPT_FLAGS := -O2 -sopt,-scalaroptimize=1 -Wp,-+
 
 # Add a target for build/eu/src/audio/*.copt to make it easier to see debug
 $(BUILD_DIR)/src/audio/%.acpp: src/audio/%.c
