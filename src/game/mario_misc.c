@@ -8,7 +8,7 @@
 #include "behavior_actions.h"
 #include "behavior_data.h"
 #include "engine/behavior_script.h"
-#include "game.h"
+#include "game_init.h"
 #include "engine/graph_node.h"
 #include "envfx_snow.h"
 #include "level_update.h"

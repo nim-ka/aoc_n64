@@ -7,7 +7,7 @@
 #include "print.h"
 #include "engine/surface_collision.h"
 #include "mario.h"
-#include "game.h"
+#include "game_init.h"
 #include "main.h"
 #include "debug.h"
 #include "object_list_processor.h"

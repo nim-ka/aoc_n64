@@ -19,7 +19,7 @@
 #include "area.h"
 #include "engine/geo_layout.h"
 #include "ingame_menu.h"
-#include "game.h"
+#include "game_init.h"
 #include "obj_behaviors.h"
 #include "interaction.h"
 #include "object_list_processor.h"

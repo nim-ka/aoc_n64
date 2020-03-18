@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "prevent_bss_reordering.h"
 #include "sm64.h"
-#include "game.h"
+#include "game_init.h"
 #include "sound_init.h"
 #include "level_update.h"
 #include "interaction.h"

@@ -8,7 +8,7 @@
 #include "dialog_ids.h"
 #include "audio/external.h"
 #include "mario_misc.h"
-#include "game.h"
+#include "game_init.h"
 #include "hud.h"
 #include "engine/math_util.h"
 #include "area.h"

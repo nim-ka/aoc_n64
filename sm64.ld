@@ -90,8 +90,7 @@ SECTIONS
       BUILD_DIR/asm/entry.o(.text);
       BUILD_DIR/src/game/crash_screen.o(.text);
       BUILD_DIR/src/game/main.o(.text);
-      BUILD_DIR/src/game/display.o(.text);
-      BUILD_DIR/src/game/game.o(.text);
+      BUILD_DIR/src/game/game_init.o(.text);
       BUILD_DIR/src/game/sound_init.o(.text);
       BUILD_DIR/src/game/level_update.o(.text);
       BUILD_DIR/src/game/interaction.o(.text);
@@ -375,8 +374,7 @@ SECTIONS
       /* data */
       BUILD_DIR/src/game/crash_screen.o(.data*);
       BUILD_DIR/src/game/main.o(.data*);
-      BUILD_DIR/src/game/display.o(.data*);
-      BUILD_DIR/src/game/game.o(.data*);
+      BUILD_DIR/src/game/game_init.o(.data*);
       BUILD_DIR/src/game/sound_init.o(.data*);
       BUILD_DIR/src/game/level_update.o(.data*);
       BUILD_DIR/src/game/interaction.o(.data*);
@@ -475,7 +473,7 @@ SECTIONS
       /* rodata */
       BUILD_DIR/src/game/crash_screen.o(.rodata*);
       BUILD_DIR/src/game/main.o(.rodata*);
-      BUILD_DIR/src/game/game.o(.rodata*);
+      BUILD_DIR/src/game/game_init.o(.rodata*);
       BUILD_DIR/src/game/sound_init.o(.rodata*);
       BUILD_DIR/src/game/level_update.o(.rodata*);
       BUILD_DIR/src/game/interaction.o(.rodata*);
@@ -570,7 +568,7 @@ SECTIONS
    {
       BUILD_DIR/src/game/crash_screen.o(.bss*);
       BUILD_DIR/src/game/main.o(.bss*);
-      BUILD_DIR/src/game/game.o(.bss*);
+      BUILD_DIR/src/game/game_init.o(.bss*);
       BUILD_DIR/src/game/sound_init.o(.bss*);
       BUILD_DIR/src/game/level_update.o(.bss*);
       BUILD_DIR/src/game/interaction.o(.bss*);

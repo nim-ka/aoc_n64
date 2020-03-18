@@ -2,7 +2,7 @@
 
 #include "sm64.h"
 #include "audio/external.h"
-#include "game/game.h"
+#include "game/game_init.h"
 #include "game/main.h"
 #include "game/memory.h"
 #include "game/area.h"
@@ -10,7 +10,6 @@
 #include "game/level_update.h"
 #include "game/sound_init.h"
 #include "game/print.h"
-#include "game/display.h"
 #include "seq_ids.h"
 #include "engine/math_util.h"
 #include "level_table.h"

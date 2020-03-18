@@ -5,7 +5,7 @@
 #include "dialog_ids.h"
 #include "audio/external.h"
 #include "level_update.h"
-#include "game.h"
+#include "game_init.h"
 #include "level_update.h"
 #include "main.h"
 #include "engine/math_util.h"
@@ -18,7 +18,6 @@
 #include "object_list_processor.h"
 #include "ingame_menu.h"
 #include "obj_behaviors.h"
-#include "display.h"
 #include "save_file.h"
 #include "debug_course.h"
 #ifdef VERSION_EU

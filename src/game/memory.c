@@ -5,7 +5,7 @@
 #define INCLUDED_FROM_MEMORY_C
 
 #include "decompress.h"
-#include "game.h"
+#include "game_init.h"
 #include "main.h"
 #include "segments.h"
 #include "memory.h"

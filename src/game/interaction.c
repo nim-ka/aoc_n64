@@ -10,7 +10,7 @@
 #include "save_file.h"
 #include "engine/surface_collision.h"
 #include "sound_init.h"
-#include "display.h"
+#include "game_init.h"
 #include "mario.h"
 #include "obj_behaviors.h"
 #include "object_helpers.h"

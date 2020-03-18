@@ -2,13 +2,12 @@
 
 #include "sm64.h"
 #include "main.h"
-#include "display.h"
 #include "print.h"
 #include "engine/math_util.h"
 #include "area.h"
 #include "shadow.h"
 #include "memory.h"
-#include "game.h"
+#include "game_init.h"
 #include "rendering_graph_node.h"
 
 /**

@@ -8,7 +8,7 @@
 #include "game/object_helpers.h"
 #include "game/object_helpers2.h"
 #include "game/mario.h"
-#include "game/display.h"
+#include "game/game_init.h"
 #include "game/obj_behaviors_2.h"
 #include "behavior_data.h"
 #include "game/object_list_processor.h"

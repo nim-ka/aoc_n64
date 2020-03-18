@@ -1,11 +1,10 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "prevent_bss_reordering.h"
 #include "behavior_actions.h"
 #include "engine/behavior_script.h"
 #include "camera.h"
-#include "display.h"
+#include "game_init.h"
 #include "engine/math_util.h"
 #include "object_helpers.h"
 #include "mario_actions_cutscene.h"

@@ -1,7 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "display.h"
+#include "game_init.h"
 #include "memory.h"
 #include "ingame_menu.h"
 #include "envfx_snow.h"

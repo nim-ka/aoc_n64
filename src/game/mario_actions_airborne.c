@@ -7,7 +7,7 @@
 #include "interaction.h"
 #include "mario.h"
 #include "mario_step.h"
-#include "display.h"
+#include "game_init.h"
 #include "camera.h"
 #include "save_file.h"
 #include "audio/external.h"

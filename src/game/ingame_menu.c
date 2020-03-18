@@ -6,7 +6,7 @@
 #include "audio/external.h"
 #include "seq_ids.h"
 #include "dialog_ids.h"
-#include "game.h"
+#include "game_init.h"
 #include "save_file.h"
 #include "level_update.h"
 #include "camera.h"
@@ -20,7 +20,6 @@
 #include "course_table.h"
 
 extern Gfx *gDisplayListHead;
-extern s32 gGlobalTimer;
 extern s16 gCurrCourseNum;
 extern s16 gCurrSaveFileNum;
 

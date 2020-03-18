@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "game/save_file.h"
-#include "game/display.h"
+#include "game/game_init.h"
 
 extern u8 gDecompressionHeap[];
 
