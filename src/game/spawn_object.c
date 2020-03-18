@@ -258,8 +258,8 @@ struct Object *allocate_object(struct ObjectNode *objList) {
 #endif
 
     obj->unused1 = 0;
-    obj->stackIndex = 0;
-    obj->unk1F4 = 0;
+    obj->bhvStackIndex = 0;
+    obj->bhvDelayTimer = 0;
 
     obj->hitboxRadius = 50.0f;
     obj->hitboxHeight = 100.0f;
@@ -315,18 +315,18 @@ static void snap_object_to_floor(struct Object *obj) {
 
 /**
  * Spawn an object at the origin with the behavior script at virtual address
- * behScript.
+ * bhvScript.
  */
-struct Object *create_object(const BehaviorScript *behScript) {
+struct Object *create_object(const BehaviorScript *bhvScript) {
     s32 objListIndex;
     struct Object *obj;
     struct ObjectNode *objList;
-    const BehaviorScript *behavior = behScript;
+    const BehaviorScript *behavior = bhvScript;
 
     // If the first behavior script command is "begin <object list>", then
     // extract the object list from it
-    if ((behScript[0] >> 24) == 0) {
-        objListIndex = (behScript[0] >> 16) & 0xFFFF;
+    if ((bhvScript[0] >> 24) == 0) {
+        objListIndex = (bhvScript[0] >> 16) & 0xFFFF;
     } else {
         objListIndex = OBJ_LIST_DEFAULT;
     }
@@ -334,7 +334,7 @@ struct Object *create_object(const BehaviorScript *behScript) {
     objList = &gObjectLists[objListIndex];
     obj = allocate_object(objList);
 
-    obj->behScript = behScript;
+    obj->curBhvCommand = bhvScript;
     obj->behavior = behavior;
 
     if (objListIndex == OBJ_LIST_UNIMPORTANT) {

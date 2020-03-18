@@ -1552,7 +1552,7 @@ void bhv_flame_bouncing_loop(void) {
         o->oFlameUnk100 = cur_obj_nearest_object_with_behavior(bhvBowser);
     sp1C = o->oFlameUnk100;
     o->oForwardVel = 15.0f;
-    o->oBounce = -1.0f;
+    o->oBounciness = -1.0f;
     cur_obj_scale(o->oFlameUnkF4);
     obj_set_hitbox(o, &sGrowingBowserFlameHitbox);
     cur_obj_update_floor_and_walls();

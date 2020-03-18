@@ -290,8 +290,8 @@ void obj_set_held_state(struct Object *obj, const BehaviorScript *heldBehavior) 
             obj->oHeldState = HELD_DROPPED;
         }
     } else {
-        obj->behScript = segmented_to_virtual(heldBehavior);
-        obj->stackIndex = 0;
+        obj->curBhvCommand = segmented_to_virtual(heldBehavior);
+        obj->bhvStackIndex = 0;
     }
 }
 
@@ -490,7 +490,7 @@ struct Object *spawn_object_rel_with_rot(struct Object *parent, u32 model,
 
 struct Object *spawn_obj_with_transform_flags(struct Object *sp20, s32 model, const BehaviorScript *sp28) {
     struct Object *sp1C = spawn_object(sp20, model, sp28);
-    sp1C->oFlags |= OBJ_FLAG_0020 | OBJ_FLAG_0800;
+    sp1C->oFlags |= OBJ_FLAG_0020 | OBJ_FLAG_SET_THROW_MATRIX_FROM_TRANSFORM;
     return sp1C;
 }
 
@@ -1103,7 +1103,7 @@ static void cur_obj_move_after_thrown_or_dropped(f32 forwardVel, f32 velY) {
     o->oVelY = velY;
 
     if (o->oForwardVel != 0) {
-        cur_obj_move_y(/*gravity*/ -4.0f, /*bounce*/ -0.1f, /*buoyancy*/ 2.0f);
+        cur_obj_move_y(/*gravity*/ -4.0f, /*bounciness*/ -0.1f, /*buoyancy*/ 2.0f);
     }
 }
 
@@ -1296,7 +1296,7 @@ static void cur_obj_move_update_underwater_flags(void) {
     }
 }
 
-static void cur_obj_move_update_ground_air_flags(UNUSED f32 gravity, f32 bounce) {
+static void cur_obj_move_update_ground_air_flags(UNUSED f32 gravity, f32 bounciness) {
     o->oMoveFlags &= ~OBJ_MOVE_13;
 
     if (o->oPosY < o->oFloorHeight) {
@@ -1313,7 +1313,7 @@ static void cur_obj_move_update_ground_air_flags(UNUSED f32 gravity, f32 bounce)
         o->oPosY = o->oFloorHeight;
 
         if (o->oVelY < 0.0f) {
-            o->oVelY *= bounce;
+            o->oVelY *= bounciness;
         }
 
         if (o->oVelY > 5.0f) {
@@ -1349,7 +1349,7 @@ static f32 cur_obj_move_y_and_get_water_level(f32 gravity, f32 buoyancy) {
     return waterLevel;
 }
 
-void cur_obj_move_y(f32 gravity, f32 bounce, f32 buoyancy) {
+void cur_obj_move_y(f32 gravity, f32 bounciness, f32 buoyancy) {
     f32 waterLevel;
 
     o->oMoveFlags &= ~OBJ_MOVE_LEFT_GROUND;
@@ -1367,7 +1367,7 @@ void cur_obj_move_y(f32 gravity, f32 bounce, f32 buoyancy) {
             //! We only handle floor collision if the object does not enter
             //  water. This allows e.g. coins to clip through floors if they
             //  enter water on the same frame.
-            cur_obj_move_update_ground_air_flags(gravity, bounce);
+            cur_obj_move_update_ground_air_flags(gravity, bounciness);
         } else {
             o->oMoveFlags |= OBJ_MOVE_ENTERED_WATER;
             o->oMoveFlags &= ~OBJ_MOVE_MASK_ON_GROUND;
@@ -1807,7 +1807,7 @@ void cur_obj_update_floor_and_walls(void) {
 
 void cur_obj_move_standard(s16 steepSlopeAngleDegrees) {
     f32 gravity = o->oGravity;
-    f32 bounce = o->oBounce;
+    f32 bounciness = o->oBounciness;
     f32 buoyancy = o->oBuoyancy;
     f32 dragStrength = o->oDragStrength;
     f32 steepSlopeNormalY;
@@ -1833,7 +1833,7 @@ void cur_obj_move_standard(s16 steepSlopeAngleDegrees) {
         cur_obj_apply_drag_xz(dragStrength);
 
         cur_obj_move_xz(steepSlopeNormalY, careAboutEdgesAndSteepSlopes);
-        cur_obj_move_y(gravity, bounce, buoyancy);
+        cur_obj_move_y(gravity, bounciness, buoyancy);
 
         if (o->oForwardVel < 0) {
             negativeSpeed = TRUE;
@@ -1974,7 +1974,7 @@ void obj_build_transform_relative_to_parent(struct Object *obj) {
 
 void obj_create_transform_from_self(struct Object *a0) {
     a0->oFlags &= ~OBJ_FLAG_TRANSFORM_RELATIVE_TO_PARENT;
-    a0->oFlags |= OBJ_FLAG_0800;
+    a0->oFlags |= OBJ_FLAG_SET_THROW_MATRIX_FROM_TRANSFORM;
 
     a0->transform[3][0] = a0->oPosX;
     a0->transform[3][1] = a0->oPosY;
@@ -2138,10 +2138,10 @@ struct Object_test
         const void *asConstVoidPtr[0x50];
     } rawData;
     /*0x1C8*/ u32 unused1;
-    /*0x1CC*/ const BehaviorScript *behScript;
-    /*0x1D0*/ u32 stackIndex;
-    /*0x1D4*/ uintptr_t stack[8];
-    /*0x1F4*/ s16 unk1F4;
+    /*0x1CC*/ const BehaviorScript *curBhvCommand;
+    /*0x1D0*/ u32 bhvStackIndex;
+    /*0x1D4*/ uintptr_t bhvStack[8];
+    /*0x1F4*/ s16 bhvDelayTimer;
     /*0x1F6*/ s16 respawnInfoType;
     /*0x1F8*/ f32 hitboxRadius;
     /*0x1FC*/ f32 hitboxHeight;

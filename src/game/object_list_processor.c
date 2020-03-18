@@ -107,7 +107,7 @@ struct Object *gCurrentObject;
 /**
  * The next object behavior command to be executed.
  */
-const BehaviorScript *gBehCommand;
+const BehaviorScript *gCurBhvCommand;
 
 /**
  * The number of objects that were processed last frame, which may miss some
@@ -297,7 +297,7 @@ s32 update_objects_starting_at(struct ObjectNode *objList, struct ObjectNode *fi
         gCurrentObject = (struct Object *) firstObj;
 
         gCurrentObject->header.gfx.node.flags |= GRAPH_RENDER_HAS_ANIMATION;
-        cur_object_exec_behavior();
+        cur_obj_update();
 
         firstObj = firstObj->next;
         count += 1;
@@ -344,7 +344,7 @@ s32 update_objects_during_time_stop(struct ObjectNode *objList, struct ObjectNod
         // Only update if unfrozen
         if (unfrozen) {
             gCurrentObject->header.gfx.node.flags |= GRAPH_RENDER_HAS_ANIMATION;
-            cur_object_exec_behavior();
+            cur_obj_update();
         } else {
             gCurrentObject->header.gfx.node.flags &= ~GRAPH_RENDER_HAS_ANIMATION;
         }
