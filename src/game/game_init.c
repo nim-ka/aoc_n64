@@ -17,6 +17,7 @@
 #include "print.h"
 #include "segment2.h"
 #include "main_entry.h"
+#include "thread6.h"
 #include <prevent_bss_reordering.h>
 
 // FIXME: I'm not sure all of these variables belong in this file, but I don't
@@ -478,6 +479,9 @@ void read_controller_inputs(void) {
     if (gControllerBits) {
         osRecvMesg(&gSIEventMesgQueue, &D_80339BEC, OS_MESG_BLOCK);
         osContGetReadData(&gControllerPads[0]);
+#ifdef VERSION_SH
+        func_sh_8024C510();
+#endif
     }
     run_demo_inputs();
 
@@ -544,6 +548,9 @@ void init_controllers(void) {
             // into any port in order to play the game. this was probably
             // so if any of the ports didnt work, you can have controllers
             // plugged into any of them and it will work.
+#ifdef VERSION_SH
+            gControllers[cont].port = port;
+#endif
             gControllers[cont].statusData = &gControllerStatuses[port];
             gControllers[cont++].controllerData = &gControllerPads[port];
         }
@@ -576,7 +583,13 @@ void thread5_game_loop(UNUSED void *arg) {
     struct LevelCommand *addr;
 
     setup_game_memory();
+#ifdef VERSION_SH
+    func_sh_8024C4A0();
+#endif
     init_controllers();
+#ifdef VERSION_SH
+    create_thread_6();
+#endif
     save_file_load_all();
 
     set_vblank_handler(2, &gGameVblankHandler, &gGameVblankQueue, (OSMesg) 1);

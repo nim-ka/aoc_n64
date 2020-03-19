@@ -14,6 +14,7 @@
 #include "engine/graph_node.h"
 #include "paintings.h"
 #include "level_table.h"
+#include "thread6.h"
 
 #define MUSIC_NONE 0xFFFF
 
@@ -71,7 +72,7 @@ static u32 menuSoundsExtra[] = {
 };
 static s8 paintingEjectSoundPlayed = FALSE;
 
-static void play_menu_sounds_extra(int a, void *b);
+void play_menu_sounds_extra(int a, void *b);
 
 void reset_volume(void) {
     D_8032C6C0 = 0;
@@ -126,10 +127,15 @@ void set_sound_mode(u16 soundMode) {
     }
 }
 
+#ifdef VERSION_SH
+extern void func_sh_8024C834(int a0, int a1);
+#endif
+
 /**
  * Wrapper method by menu used to set the sound via flags.
  */
 void play_menu_sounds(s16 soundMenuFlags) {
+
     if (soundMenuFlags & SOUND_MENU_FLAG_HANDAPPEAR) {
         play_sound(SOUND_MENU_HAND_APPEAR, gDefaultSoundArgs);
     } else if (soundMenuFlags & SOUND_MENU_FLAG_HANDISAPPEAR) {
@@ -151,6 +157,11 @@ void play_menu_sounds(s16 soundMenuFlags) {
     if (soundMenuFlags & 0x100) {
         play_menu_sounds_extra(20, NULL);
     }
+#ifdef VERSION_SH
+    if ((soundMenuFlags & 0x20) != 0) {
+        func_sh_8024C834(10, 60);
+    }
+#endif
 }
 
 /**

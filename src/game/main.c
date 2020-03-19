@@ -11,6 +11,7 @@
 #include "buffers/buffers.h"
 #include "segments.h"
 #include "main.h"
+#include "thread6.h"
 
 // Message IDs
 #define MESG_SP_COMPLETE 100
@@ -209,10 +210,6 @@ void pretend_audio_sptask_done(void) {
     gActiveSPTask->state = SPTASK_STATE_RUNNING;
     osSendMesg(&gIntrMesgQueue, (OSMesg) MESG_SP_COMPLETE, OS_MESG_NOBLOCK);
 }
-
-#ifdef VERSION_SH
-extern void func_sh_8024CC7C(void);
-#endif
 
 void handle_vblank(void) {
     UNUSED s32 pad; // needed to pad the stack

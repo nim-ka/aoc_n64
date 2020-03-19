@@ -1,5 +1,5 @@
 diff --git a/Makefile b/Makefile
-index 3fb5d1d2..f96d00cd 100644
+index 88c8dbbe..f60df04f 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -382,6 +382,7 @@ $(BUILD_DIR)/include/text_strings.h: $(BUILD_DIR)/include/text_menu_strings.h
@@ -10,21 +10,6 @@ index 3fb5d1d2..f96d00cd 100644
  
  ################################################################
  # TEXTURE GENERATION                                           #
-diff --git a/enhancements/mem_error_screen.patch b/enhancements/mem_error_screen.patch
-index d2ff05fe..6429a674 100644
---- a/enhancements/mem_error_screen.patch
-+++ b/enhancements/mem_error_screen.patch
-@@ -189,8 +189,9 @@ index 00000000..20eeef8f
- +#include <types.h>
- +#include "segments.h"
- +#include "text_strings.h"
--+#include "game_init.h"
-++#include "game.h"
- +#include "main.h"
-++#include "display.h"
- +#include "print.h"
- +#include "ingame_menu.h"
- +#include "segment2.h"
 diff --git a/include/segments.h b/include/segments.h
 index c98040a8..eeecb4f6 100644
 --- a/include/segments.h
@@ -152,18 +137,18 @@ index 89bfb4ed..0ea607c5 100644
  
  #endif /* _LEVEL_SCRIPT_H */
 diff --git a/src/game/main.c b/src/game/main.c
-index 12c59bfc..1fda0ec9 100644
+index a3afffee..8b05fcf1 100644
 --- a/src/game/main.c
 +++ b/src/game/main.c
-@@ -11,6 +11,7 @@
- #include "buffers/buffers.h"
+@@ -12,6 +12,7 @@
  #include "segments.h"
  #include "main.h"
+ #include "thread6.h"
 +#include "mem_error_screen.h"
  
  // Message IDs
  #define MESG_SP_COMPLETE 100
-@@ -124,6 +125,10 @@ void alloc_pool(void) {
+@@ -125,6 +126,10 @@ void alloc_pool(void) {
      void *start = (void *) SEG_POOL_START;
      void *end = (void *) SEG_POOL_END;
  
@@ -174,7 +159,7 @@ index 12c59bfc..1fda0ec9 100644
      main_pool_init(start, end);
      gEffectsMemoryPool = mem_pool_init(0x4000, MEMORY_POOL_LEFT);
  }
-@@ -333,7 +338,10 @@ void thread3_main(UNUSED void *arg) {
+@@ -330,7 +335,10 @@ void thread3_main(UNUSED void *arg) {
      create_thread(&gSoundThread, 4, thread4_sound, NULL, gThread4Stack + 0x2000, 20);
      osStartThread(&gSoundThread);
  
