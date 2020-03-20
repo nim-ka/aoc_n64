@@ -1755,8 +1755,8 @@ void func_8019F258(f32 x, f32 y, f32 z) {
     vec.x = x;
     vec.y = y;
     vec.z = z;
-    set_identity_mat4(&mtx);
-    func_8019415C(&mtx, &vec);
+    gd_set_identity_mat4(&mtx);
+    gd_scale_mat4f_by_vec3f(&mtx, &vec);
     add_mat4_to_dl(&mtx);
 }
 
@@ -1764,8 +1764,8 @@ void func_8019F258(f32 x, f32 y, f32 z) {
 void func_8019F2C4(f32 arg0, s8 arg1) {
     Mat4f mtx; // 18
 
-    set_identity_mat4(&mtx);
-    absrot_mat4(&mtx, arg1 - 120, -arg0);
+    gd_set_identity_mat4(&mtx);
+    gd_absrot_mat4(&mtx, arg1 - 120, -arg0);
     add_mat4_to_dl(&mtx);
 }
 
@@ -1776,7 +1776,7 @@ void func_8019F318(struct ObjCamera *cam, f32 arg1, f32 arg2, f32 arg3, f32 arg4
 
     arg7 *= RAD_PER_DEG;
 
-    func_80193B68(&cam->unkE8, arg1, arg2, arg3, arg4, arg5, arg6, gd_sin_d(arg7), gd_cos_d(arg7),
+    gd_mat4f_lookat(&cam->unkE8, arg1, arg2, arg3, arg4, arg5, arg6, gd_sin_d(arg7), gd_cos_d(arg7),
                   0.0f);
     // 8019F3C8
     mat4_to_mtx(&cam->unkE8, &DL_CURRENT_MTX(sCurrentGdDl));
@@ -3137,7 +3137,7 @@ void gd_init(void) {
     }
 
     sNumLights = NUMLIGHTS_2;
-    set_identity_mat4(&sInitIdnMat4);
+    gd_set_identity_mat4(&sInitIdnMat4);
     mat4_to_mtx(&sInitIdnMat4, &sIdnMtx);
     remove_all_memtrackers();
     null_obj_lists();
