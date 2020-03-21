@@ -1015,7 +1015,7 @@ static s32 act_water_plunge(struct MarioState *m) {
             break;
     }
 
-    m->particleFlags |= PARTICLE_9;
+    m->particleFlags |= PARTICLE_PLUNGE_BUBBLE;
     return FALSE;
 }
 
@@ -1078,7 +1078,7 @@ static s32 act_caught_in_whirlpool(struct MarioState *m) {
 
 static void play_metal_water_jumping_sound(struct MarioState *m, u32 landing) {
     if (!(m->flags & MARIO_ACTION_SOUND_PLAYED)) {
-        m->particleFlags |= PARTICLE_16;
+        m->particleFlags |= PARTICLE_MIST_CIRCLE;
     }
 
     play_sound_if_no_flag(m, landing ? SOUND_ACTION_METAL_LAND_WATER : SOUND_ACTION_METAL_JUMP_WATER,

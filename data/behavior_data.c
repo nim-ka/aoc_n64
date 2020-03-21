@@ -503,13 +503,13 @@ const BehaviorScript bhvBetaChestLid[] = {
     END_LOOP(),
 };
 
-const BehaviorScript bhvBubbleMario[] = {
+const BehaviorScript bhvBubbleParticleSpawner[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     DISABLE_RENDERING(),
     SET_RANDOM_INT(oWaterObjUnkF4, /*Minimum*/ 2, /*Range*/ 9),
     DELAY_VAR(oWaterObjUnkF4),
     SPAWN_CHILD(/*Model*/ MODEL_BUBBLE, /*Behavior*/ bhvSmallWaterWave),
-    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_5),
+    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_BUBBLE),
     DEACTIVATE(),
 };
 
@@ -588,9 +588,9 @@ const BehaviorScript bhvSmallParticle[] = {
     DEACTIVATE(),
 };
 
-const BehaviorScript bhvWaterWaves[] = {
+const BehaviorScript bhvPlungeBubble[] = {
     BEGIN(OBJ_LIST_DEFAULT),
-    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_9),
+    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_PLUNGE_BUBBLE),
     DISABLE_RENDERING(),
     CALL_NATIVE(bhv_water_waves_init),
     DEACTIVATE(),
@@ -1011,11 +1011,11 @@ const BehaviorScript bhvWallTinyStarParticle[] = {
     DEACTIVATE(),
 };
 
-const BehaviorScript bhvWallTinyStarParticleSpawn[] = {
+const BehaviorScript bhvVertStarParticleSpawner[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     DISABLE_RENDERING(),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
-    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_18),
+    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_V_STAR),
     CALL_NATIVE(bhv_tiny_star_particles_init),
     DELAY(1),
     DEACTIVATE(),
@@ -1031,11 +1031,11 @@ const BehaviorScript bhvPoundTinyStarParticle[] = {
     DEACTIVATE(),
 };
 
-const BehaviorScript bhvPoundTinyStarParticleSpawn[] = {
+const BehaviorScript bhvHorStarParticleSpawner[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     DISABLE_RENDERING(),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
-    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_4),
+    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_H_STAR),
     CALL_NATIVE(bhv_pound_tiny_star_particle_init),
     DELAY(1),
     DEACTIVATE(),
@@ -1050,11 +1050,11 @@ const BehaviorScript bhvPunchTinyTriangle[] = {
     END_LOOP(),
 };
 
-const BehaviorScript bhvPunchTinyTriangleSpawn[] = {
+const BehaviorScript bhvTriangleParticleSpawner[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     DISABLE_RENDERING(),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
-    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_19),
+    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_TRIANGLE),
     CALL_NATIVE(bhv_punch_tiny_triangle_init),
     DELAY(1),
     DEACTIVATE(),
@@ -1232,7 +1232,7 @@ const BehaviorScript bhvWaterMist[] = {
     END_LOOP(),
 };
 
-const BehaviorScript bhvWaterMistSpawn[] = {
+const BehaviorScript bhvBreathParticleSpawner[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     BEGIN_REPEAT(8),
@@ -1275,7 +1275,7 @@ const BehaviorScript bhvUnused0DFC[] = {
     DEACTIVATE(),
 };
 
-const BehaviorScript bhvPoundWhitePuffs[] = {
+const BehaviorScript bhvMistCircParticleSpawner[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     CALL_NATIVE(bhv_pound_white_puffs_init),
@@ -1283,7 +1283,7 @@ const BehaviorScript bhvPoundWhitePuffs[] = {
     DEACTIVATE(),
 };
 
-const BehaviorScript bhvGroundSand[] = {
+const BehaviorScript bhvDirtParticleSpawner[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
@@ -1292,7 +1292,7 @@ const BehaviorScript bhvGroundSand[] = {
     DEACTIVATE(),
 };
 
-const BehaviorScript bhvGroundSnow[] = {
+const BehaviorScript bhvSnowParticleSpawner[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     CALL_NATIVE(bhv_ground_snow_init),
@@ -1526,7 +1526,7 @@ const BehaviorScript bhvBowserShockWave[] = {
     END_LOOP(),
 };
 
-const BehaviorScript bhvFlameMario[] = {
+const BehaviorScript bhvFireParticleSpawner[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     BILLBOARD(),
@@ -1638,7 +1638,7 @@ const BehaviorScript bhvWfSolidTowerPlatform[] = {
     END_LOOP(),
 };
 
-const BehaviorScript bhvSnowLeafParticleSpawn[] = {
+const BehaviorScript bhvLeafParticleSpawner[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     CALL_NATIVE(bhv_snow_leaf_particle_spawn_init),
@@ -2768,9 +2768,9 @@ const BehaviorScript bhvInSunkenShip2[] = {
     END_LOOP(),
 };
 
-const BehaviorScript bhvMarioDustGenerator[] = {
+const BehaviorScript bhvMistParticleSpawner[] = {
     BEGIN(OBJ_LIST_DEFAULT),
-    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_0),
+    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_DUST),
     DISABLE_RENDERING(),
     SPAWN_CHILD(/*Model*/ MODEL_MIST, /*Behavior*/ bhvWhitePuff1),
     SPAWN_CHILD(/*Model*/ MODEL_SMOKE, /*Behavior*/ bhvWhitePuff2),
@@ -2780,7 +2780,7 @@ const BehaviorScript bhvMarioDustGenerator[] = {
 
 const BehaviorScript bhvWhitePuff1[] = {
     BEGIN(OBJ_LIST_DEFAULT),
-    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_0),
+    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_DUST),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     BILLBOARD(),
     BEGIN_LOOP(),
@@ -3210,9 +3210,9 @@ const BehaviorScript bhvSparkleSpawn[] = {
     END_LOOP(),
 };
 
-const BehaviorScript bhvSpecialTripleJumpSparkles[] = {
+const BehaviorScript bhvSparkleParticleSpawner[] = {
     BEGIN(OBJ_LIST_DEFAULT),
-    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_3),
+    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_SPARKLES),
     BEGIN(OBJ_LIST_UNIMPORTANT),
     BILLBOARD(),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
@@ -3289,7 +3289,7 @@ const BehaviorScript bhvWaterSplash[] = {
         ADD_INT(oAnimState, 1),
         DELAY(1),
     END_REPEAT(),
-    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_6),
+    PARENT_BIT_CLEAR(oActiveParticleFlags, ACTIVE_PARTICLE_WATER_SPLASH),
     DEACTIVATE(),
 };
 

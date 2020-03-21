@@ -1229,7 +1229,7 @@ s32 act_riding_shell_ground(struct MarioState *m) {
             mario_stop_riding_object(m);
             play_sound(m->flags & MARIO_METAL_CAP ? SOUND_ACTION_METAL_BONK : SOUND_ACTION_BONK,
                        m->marioObj->header.gfx.cameraToObject);
-            m->particleFlags |= PARTICLE_1;
+            m->particleFlags |= PARTICLE_VERTICAL_STAR;
             set_mario_action(m, ACT_BACKWARD_GROUND_KB, 0);
             break;
     }
@@ -1337,7 +1337,7 @@ s32 act_burning_ground(struct MarioState *m) {
     set_mario_anim_with_accel(m, MARIO_ANIM_RUNNING, (s32)(m->forwardVel / 2.0f * 0x10000));
     play_step_sound(m, 9, 45);
 
-    m->particleFlags |= PARTICLE_11;
+    m->particleFlags |= PARTICLE_FIRE;
     play_sound(SOUND_MOVING_LAVA_BURN, m->marioObj->header.gfx.cameraToObject);
 
     m->health -= 10;
@@ -1380,10 +1380,10 @@ void common_slide_action(struct MarioState *m, u32 endAction, u32 airAction, s32
         case GROUND_STEP_HIT_WALL:
             if (!mario_floor_is_slippery(m)) {
 #ifdef VERSION_JP
-                m->particleFlags |= PARTICLE_1;
+                m->particleFlags |= PARTICLE_VERTICAL_STAR;
 #else
                 if (m->forwardVel > 16.0f) {
-                    m->particleFlags |= PARTICLE_1;
+                    m->particleFlags |= PARTICLE_VERTICAL_STAR;
                 }
 #endif
                 slide_bonk(m, ACT_GROUND_BONK, endAction);
@@ -1499,7 +1499,7 @@ s32 act_slide_kick_slide(struct MarioState *m) {
 
         case GROUND_STEP_HIT_WALL:
             mario_bonk_reflection(m, TRUE);
-            m->particleFlags |= PARTICLE_1;
+            m->particleFlags |= PARTICLE_VERTICAL_STAR;
             set_mario_action(m, ACT_BACKWARD_GROUND_KB, 0);
             break;
     }

@@ -388,7 +388,7 @@ s32 act_shivering(struct MarioState *m) {
         case 0: {
             sp24 = set_mario_animation(m, MARIO_ANIM_SHIVERING_WARMING_HAND);
             if (sp24 == 0x31) {
-                m->particleFlags |= PARTICLE_17;
+                m->particleFlags |= PARTICLE_BREATH;
                 play_sound(SOUND_MARIO_PANTING_COLD, m->marioObj->header.gfx.cameraToObject);
             }
             if (sp24 == 7 || sp24 == 0x51) {
