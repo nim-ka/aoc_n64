@@ -6,74 +6,6 @@
  */
 
 /**
- * The particles that pop out of the ground when a monty mole rises from a hole.
- */
-static struct SpawnParticlesInfo sMontyMoleRiseFromGroundParticles = {
-    /* behParam:        */ 0,
-    /* count:           */ 3,
-    /* model:           */ MODEL_SAND_DUST,
-    /* offsetY:         */ 0,
-    /* forwardVelBase:  */ 4,
-    /* forwardVelRange: */ 4,
-    /* velYBase:        */ 10,
-    /* velYRange:       */ 15,
-    /* gravity:         */ -4,
-    /* dragStrength:    */ 0,
-    /* sizeBase:        */ 10.0f,
-    /* sizeRange:       */ 7.0f,
-};
-
-/**
- * Hitbox for monty mole.
- */
-static struct ObjectHitbox sMontyMoleHitbox = {
-    /* interactType:      */ INTERACT_BOUNCE_TOP,
-    /* downOffset:        */ 0,
-    /* damageOrCoinValue: */ 2,
-    /* health:            */ -1,
-    /* numLootCoins:      */ 0,
-    /* radius:            */ 70,
-    /* height:            */ 50,
-    /* hurtboxRadius:     */ 30,
-    /* hurtboxHeight:     */ 40,
-};
-
-/**
- * Hitbox for monty mole rock.
- */
-static struct ObjectHitbox sMontyMoleRockHitbox = {
-    /* interactType:      */ INTERACT_MR_BLIZZARD,
-    /* downOffset:        */ 15,
-    /* damageOrCoinValue: */ 1,
-    /* health:            */ 99,
-    /* numLootCoins:      */ 0,
-    /* radius:            */ 30,
-    /* height:            */ 15,
-    /* hurtboxRadius:     */ 30,
-    /* hurtboxHeight:     */ 15,
-};
-
-/**
- * The particles that spawn when a monty mole rock breaks.
- */
-static struct SpawnParticlesInfo sMontyMoleRockBreakParticles = {
-    /* behParam:        */ 0,
-    /* count:           */ 2,
-    /* model:           */ MODEL_PEBBLE,
-    /* offsetY:         */ 10,
-    /* forwardVelBase:  */ 4,
-    /* forwardVelRange: */ 4,
-    /* velYBase:        */ 10,
-    /* velYRange:       */ 15,
-    /* gravity:         */ -4,
-    /* dragStrength:    */ 0,
-    /* sizeBase:        */ 8.0f,
-    /* sizeRange:       */ 4.0f,
-};
-
-// TODO: bss
-
-/**
  * The first hole in the list of monty mole holes. The list is a singly linked
  * list using the parentObj field.
  */
@@ -178,25 +110,26 @@ void bhv_monty_mole_hole_update(void) {
 
 /**
  * Spawn dirt particles when rising out of the ground.
- *
- * TODO: (Scrub C) monty_mole_spawn_dirt_particles, water_bomb_spawn_explode_particles, and
- * mr_blizzard_spawn_white_particles all have similar issues with their functions, none of which match legitimately.
  */
 void monty_mole_spawn_dirt_particles(s8 offsetY, s8 velYBase) {
-#if defined(VERSION_JP) || defined(VERSION_US)
+    static struct SpawnParticlesInfo sMontyMoleRiseFromGroundParticles = {
+        /* behParam:        */ 0,
+        /* count:           */ 3,
+        /* model:           */ MODEL_SAND_DUST,
+        /* offsetY:         */ 0,
+        /* forwardVelBase:  */ 4,
+        /* forwardVelRange: */ 4,
+        /* velYBase:        */ 10,
+        /* velYRange:       */ 15,
+        /* gravity:         */ -4,
+        /* dragStrength:    */ 0,
+        /* sizeBase:        */ 10.0f,
+        /* sizeRange:       */ 7.0f,
+    };
+    
     sMontyMoleRiseFromGroundParticles.offsetY = offsetY;
     sMontyMoleRiseFromGroundParticles.velYBase = velYBase;
     cur_obj_spawn_particles(&sMontyMoleRiseFromGroundParticles);
-#else
-    s8 tempVelYBase = velYBase;
-    s8 tempOffsetY = offsetY;
-
-    do {
-        sMontyMoleRiseFromGroundParticles.offsetY = tempOffsetY;
-        sMontyMoleRiseFromGroundParticles.velYBase = tempVelYBase;
-        cur_obj_spawn_particles(&sMontyMoleRiseFromGroundParticles);
-    } while (0);
-#endif
 }
 
 /**
@@ -380,6 +313,21 @@ static void monty_mole_act_jump_out_of_hole(void) {
 }
 
 /**
+ * Hitbox for monty mole.
+ */
+static struct ObjectHitbox sMontyMoleHitbox = {
+    /* interactType:      */ INTERACT_BOUNCE_TOP,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ -1,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 70,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 30,
+    /* hurtboxHeight:     */ 40,
+};
+
+/**
  * Update function for bhvMontyMole.
  */
 void bhv_monty_mole_update(void) {
@@ -481,6 +429,39 @@ static void monty_mole_rock_act_held(void) {
         o->oMoveFlags = 0;
     }
 }
+
+/**
+ * Hitbox for monty mole rock.
+ */
+static struct ObjectHitbox sMontyMoleRockHitbox = {
+    /* interactType:      */ INTERACT_MR_BLIZZARD,
+    /* downOffset:        */ 15,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 99,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 30,
+    /* height:            */ 15,
+    /* hurtboxRadius:     */ 30,
+    /* hurtboxHeight:     */ 15,
+};
+
+/**
+ * The particles that spawn when a monty mole rock breaks.
+ */
+static struct SpawnParticlesInfo sMontyMoleRockBreakParticles = {
+    /* behParam:        */ 0,
+    /* count:           */ 2,
+    /* model:           */ MODEL_PEBBLE,
+    /* offsetY:         */ 10,
+    /* forwardVelBase:  */ 4,
+    /* forwardVelRange: */ 4,
+    /* velYBase:        */ 10,
+    /* velYRange:       */ 15,
+    /* gravity:         */ -4,
+    /* dragStrength:    */ 0,
+    /* sizeBase:        */ 8.0f,
+    /* sizeRange:       */ 4.0f,
+};
 
 /**
  * Move, then despawn after hitting the ground or water.

@@ -70,18 +70,6 @@ static Vec4s sJumboStarKeyframes[27] = {
     { 0, -3500, 2100, -2000 },  { 0, -2000, 2200, -3500 },  { 0, 0, 2300, -4000 },
 };
 
-static s32 sSparkleGenTheta = 0;
-static s32 sSparkleGenPhi = 0;
-
-// blink twice then have half-shut eyes (see end_peach_cutscene_kiss_from_peach)
-static u8 sMarioBlinkOverride[20] = {
-    MARIO_EYES_HALF_CLOSED, MARIO_EYES_HALF_CLOSED, MARIO_EYES_CLOSED, MARIO_EYES_CLOSED,
-    MARIO_EYES_HALF_CLOSED, MARIO_EYES_HALF_CLOSED, MARIO_EYES_OPEN,   MARIO_EYES_OPEN,
-    MARIO_EYES_HALF_CLOSED, MARIO_EYES_HALF_CLOSED, MARIO_EYES_CLOSED, MARIO_EYES_CLOSED,
-    MARIO_EYES_HALF_CLOSED, MARIO_EYES_HALF_CLOSED, MARIO_EYES_OPEN,   MARIO_EYES_OPEN,
-    MARIO_EYES_HALF_CLOSED, MARIO_EYES_HALF_CLOSED, MARIO_EYES_CLOSED, MARIO_EYES_CLOSED,
-};
-
 /**
  * get_credits_str_width: Calculate width of a Credits String
  * Loop over each character in a credits string and increment the length. If the
@@ -1940,15 +1928,13 @@ static s32 act_jumbo_star_cutscene(struct MarioState *m) {
     return FALSE;
 }
 
-// TODO: (Scrub C) This function almost certainly has a version that matches for both -g and -O2
-static void generate_yellow_sparkles(s16 x, s16 y, s16 z, f32 radius) {
+void generate_yellow_sparkles(s16 x, s16 y, s16 z, f32 radius) {
+    static s32 sSparkleGenTheta = 0;
+    static s32 sSparkleGenPhi = 0;
+
     s16 offsetX = radius * coss(sSparkleGenTheta) * sins(sSparkleGenPhi);
     s16 offsetY = radius * sins(sSparkleGenTheta);
     s16 offsetZ = radius * coss(sSparkleGenTheta) * coss(sSparkleGenPhi);
-#ifdef VERSION_EU
-    s16 dTheta = 0x3800;
-    s16 dPhi = 0x6000;
-#endif
 
     spawn_object_abs_with_rot(gCurrentObject, 0, MODEL_NONE, bhvSparkleSpawn, x + offsetX, y + offsetY,
                               z + offsetZ, 0, 0, 0);
@@ -1961,15 +1947,9 @@ static void generate_yellow_sparkles(s16 x, s16 y, s16 z, f32 radius) {
     spawn_object_abs_with_rot(gCurrentObject, 0, MODEL_NONE, bhvSparkleSpawn, x - offsetX, y - offsetY,
                               z - offsetZ, 0, 0, 0);
 
-#ifdef VERSION_EU
-    sSparkleGenTheta += dTheta;
-    sSparkleGenPhi += dPhi;
-#else
     sSparkleGenTheta += 0x3800;
     sSparkleGenPhi += 0x6000;
-#endif        
 }
-
 
 // not sure what this does, returns the height of the floor, but idk about the
 // other stuff (animation related?)
@@ -2268,6 +2248,15 @@ static void end_peach_cutscene_dialog_2(struct MarioState *m) {
 
 #undef TIMER_SOMETHING_SPECIAL
 #undef TIMER_PEACH_KISS
+
+// blink twice then have half-shut eyes (see end_peach_cutscene_kiss_from_peach)
+static u8 sMarioBlinkOverride[20] = {
+    MARIO_EYES_HALF_CLOSED, MARIO_EYES_HALF_CLOSED, MARIO_EYES_CLOSED, MARIO_EYES_CLOSED,
+    MARIO_EYES_HALF_CLOSED, MARIO_EYES_HALF_CLOSED, MARIO_EYES_OPEN,   MARIO_EYES_OPEN,
+    MARIO_EYES_HALF_CLOSED, MARIO_EYES_HALF_CLOSED, MARIO_EYES_CLOSED, MARIO_EYES_CLOSED,
+    MARIO_EYES_HALF_CLOSED, MARIO_EYES_HALF_CLOSED, MARIO_EYES_OPEN,   MARIO_EYES_OPEN,
+    MARIO_EYES_HALF_CLOSED, MARIO_EYES_HALF_CLOSED, MARIO_EYES_CLOSED, MARIO_EYES_CLOSED,
+};
 
 static void end_peach_cutscene_kiss_from_peach(struct MarioState *m) {
     sEndPeachAnimation = 10;

@@ -10,61 +10,28 @@ struct ObjectHitbox sMrBlizzardHitbox = {
     /* hurtboxHeight:     */ 170,
 };
 
-struct SpawnParticlesInfo D_80331A00 = {
-    /* behParam:        */ 0,
-    /* count:           */ 6,
-    /* model:           */ MODEL_WHITE_PARTICLE,
-    /* offsetY:         */ 0,
-    /* forwardVelBase:  */ 5,
-    /* forwardVelRange: */ 5,
-    /* velYBase:        */ 10,
-    /* velYRange:       */ 10,
-    /* gravity:         */ -3,
-    /* dragStrength:    */ 0,
-    /* sizeBase:        */ 3.0f,
-    /* sizeRange:       */ 5.0f,
-};
-
-struct ObjectHitbox sMrBlizzardSnowballHitbox = {
-    /* interactType:      */ INTERACT_MR_BLIZZARD,
-    /* downOffset:        */ 12,
-    /* damageOrCoinValue: */ 1,
-    /* health:            */ 99,
-    /* numLootCoins:      */ 0,
-    /* radius:            */ 30,
-    /* height:            */ 30,
-    /* hurtboxRadius:     */ 25,
-    /* hurtboxHeight:     */ 25,
-};
-
-/**
- * TODO: (Scrub C) monty_mole_spawn_dirt_particles, water_bomb_spawn_explode_particles, and
- * mr_blizzard_spawn_white_particles all have similar issues with their functions, none of which match legitimately.
- */
 void mr_blizzard_spawn_white_particles(s8 count, s8 offsetY, s8 forwardVelBase, s8 velYBase, s8 sizeBase) {
-#if defined(VERSION_JP) || defined(VERSION_US)
+    static struct SpawnParticlesInfo D_80331A00 = {
+        /* behParam:        */ 0,
+        /* count:           */ 6,
+        /* model:           */ MODEL_WHITE_PARTICLE,
+        /* offsetY:         */ 0,
+        /* forwardVelBase:  */ 5,
+        /* forwardVelRange: */ 5,
+        /* velYBase:        */ 10,
+        /* velYRange:       */ 10,
+        /* gravity:         */ -3,
+        /* dragStrength:    */ 0,
+        /* sizeBase:        */ 3.0f,
+        /* sizeRange:       */ 5.0f,
+    };
+
     D_80331A00.count = count;
     D_80331A00.offsetY = offsetY;
     D_80331A00.forwardVelBase = forwardVelBase;
     D_80331A00.velYBase = velYBase;
     D_80331A00.sizeBase = sizeBase;
     cur_obj_spawn_particles(&D_80331A00);
-#else
-    s8 tempSizeBase = sizeBase;
-    s8 tempVelYBase = velYBase;
-    s8 tempForwardVelBase = forwardVelBase;
-    s8 tempOffsetY = offsetY;
-    s8 tempCount = count;
-
-    do {
-    D_80331A00.count = tempCount;
-    D_80331A00.offsetY = tempOffsetY;
-    D_80331A00.forwardVelBase = tempForwardVelBase;
-    D_80331A00.velYBase = tempVelYBase;
-    D_80331A00.sizeBase = tempSizeBase;
-    cur_obj_spawn_particles(&D_80331A00);
-    } while (0);
-#endif
 }
 
 void bhv_mr_blizzard_init(void) {
@@ -355,6 +322,18 @@ static void mr_blizzard_snowball_act_1(void) {
         o->oMoveFlags = 0;
     }
 }
+
+struct ObjectHitbox sMrBlizzardSnowballHitbox = {
+    /* interactType:      */ INTERACT_MR_BLIZZARD,
+    /* downOffset:        */ 12,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 99,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 30,
+    /* height:            */ 30,
+    /* hurtboxRadius:     */ 25,
+    /* hurtboxHeight:     */ 25,
+};
 
 static void mr_blizzard_snowball_act_2(void) {
     cur_obj_update_floor_and_walls();

@@ -7061,12 +7061,7 @@ void player2_rotate_cam(struct Camera *c, s16 minPitch, s16 maxPitch, s16 minYaw
     approach_s16_asymptotic_bool(&sCreditsPlayer2Pitch, -(s16)(gPlayer2Controller->stickY * 265.f), 4);
     vec3f_get_dist_and_angle(c->pos, c->focus, &distCamToFocus, &pitch, &yaw);
 
-#ifdef VERSION_EU
-    if ((pitchCap = 0x3800 - pitch) < 0) {
-#else
-    pitchCap = 0x3800 - pitch;
-    if (pitchCap < 0) {
-#endif
+    pitchCap = 0x3800 - pitch; if (pitchCap < 0) {
         pitchCap = 0;
     }
     if (maxPitch > pitchCap) {

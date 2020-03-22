@@ -602,14 +602,8 @@ static void unused_80383604(void) {
  */
 void transform_object_vertices(s16 **data, s16 *vertexData) {
     register s16 *vertices;
-    
-#ifdef VERSION_EU
     register f32 vx, vy, vz;
     register s32 numVertices;
-#else
-    register s32 numVertices;
-    register f32 vx, vy, vz;
-#endif
 
     Mat4 *objectTransform;
     Mat4 m;
