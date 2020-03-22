@@ -655,6 +655,8 @@ SECTIONS
       BUILD_DIR/libultra.a:kdebugserver.o(.bss*);
       BUILD_DIR/libultra.a:*.o(.bss*);
 #endif
+
+      . = ALIGN(0x8);
    }
    END_NOLOAD(main)
    _mainSegmentNoloadSizeLo = SIZEOF (.main.noload) & 0xffff;
