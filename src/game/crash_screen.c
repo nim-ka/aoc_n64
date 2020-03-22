@@ -177,22 +177,39 @@ static char *write_to_buf(char *buffer, const char *data, size_t size) {
 
 void crash_screen_print(s32 x, s32 y, const char *fmt, ...) {
     char *ptr;
-    char buf[0x108];
     u32 glyph;
-    va_list args;
+    s32 size;
+    char buf[0x100];
 
+    va_list args;
     va_start(args, fmt);
-    if (_Printf(write_to_buf, buf, fmt, args) > 0) {
+
+    size = _Printf(write_to_buf, buf, fmt, args);
+
+    if (size > 0) {
         ptr = buf;
+
+#ifdef VERSION_SH
+        while (size > 0) {
+#else
         while (*ptr) {
+#endif
+
             glyph = gCrashScreenCharToGlyph[*ptr & 0x7f];
+
             if (glyph != 0xff) {
                 crash_screen_draw_glyph(x, y, glyph);
             }
+
+#ifdef VERSION_SH
+            size--;
+#endif
+
             ptr++;
             x += 6;
         }
     }
+
     va_end(args);
 }
 
