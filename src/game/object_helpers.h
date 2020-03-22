@@ -67,7 +67,6 @@ struct SpawnParticlesInfo
 // extern ? D_80336610;
 extern struct GraphNode **gLoadedGraphNodes;
 // extern ? sLevelsWithRooms;
-// extern ? sGrabReleaseState;
 // extern ? sMrIParticleActions;
 // extern ? D_8032F124;
 // extern ? sMrIActions;

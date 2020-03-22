@@ -33,8 +33,6 @@ s8 D_8032F0A0[] = { 0xF8, 0x08, 0xFC, 0x04 };
 s16 D_8032F0A4[] = { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 };
 static s8 sLevelsWithRooms[] = { LEVEL_BBH, LEVEL_CASTLE, LEVEL_HMC, -1 };
 
-s32 sGrabReleaseState;
-
 // These can be static:
 extern void create_transformation_from_matrices(Mat4, Mat4, Mat4);
 extern void obj_set_gfx_pos_from_pos(struct Object *);
@@ -2922,37 +2920,16 @@ s32 cur_obj_check_grabbed_mario(void) {
     return FALSE;
 }
 
-#if defined(VERSION_EU) // Fake match
 s32 player_performed_grab_escape_action(void) {
-    s32 result = FALSE;
-    s32 grabEscape = TRUE;
-    // using register here causes less differences with non-EU versions
-    register f32 stickMag = gPlayer1Controller->stickMag;
-    if (stickMag < 30.0f) {
-        sGrabReleaseState = 0;
-    }
-
-    if (sGrabReleaseState == 0 && stickMag > 40.0f) {
-        sGrabReleaseState = grabEscape;
-        result = TRUE;
-    }
-
-    if (gPlayer1Controller->buttonPressed & A_BUTTON) {
-        result = TRUE;
-    }
-
-    return result;
-}
-#else
-s32 player_performed_grab_escape_action(void) {
+    static s32 grabReleaseState;
     s32 result = FALSE;
 
     if (gPlayer1Controller->stickMag < 30.0f) {
-        sGrabReleaseState = 0;
+        grabReleaseState = 0;
     }
 
-    if (sGrabReleaseState == 0 && gPlayer1Controller->stickMag > 40.0f) {
-        sGrabReleaseState = 1;
+    if (grabReleaseState == 0 && gPlayer1Controller->stickMag > 40.0f) {
+        grabReleaseState = 1;
         result = TRUE;
     }
 
@@ -2962,7 +2939,6 @@ s32 player_performed_grab_escape_action(void) {
 
     return result;
 }
-#endif
 
 void cur_obj_unused_play_footstep_sound(s32 animFrame1, s32 animFrame2, s32 sound) {
     if (cur_obj_check_anim_frame(animFrame1) || cur_obj_check_anim_frame(animFrame2)) {
