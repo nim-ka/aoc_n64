@@ -15,7 +15,6 @@
 #include "engine/math_util.h"
 #include "memory.h"
 #include "object_helpers.h"
-#include "object_helpers2.h"
 #include "goddard/renderer.h"
 #include "rendering_graph_node.h"
 #include "save_file.h"

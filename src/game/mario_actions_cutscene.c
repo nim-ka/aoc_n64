@@ -12,7 +12,6 @@
 #include "area.h"
 #include "camera.h"
 #include "object_helpers.h"
-#include "object_helpers2.h"
 #include "moving_texture.h"
 #include "ingame_menu.h"
 #include "audio/external.h"

@@ -9,7 +9,6 @@
 #include "game/mario_actions_cutscene.h"
 #include "game/mario_misc.h"
 #include "game/object_helpers.h"
-#include "game/object_helpers2.h"
 #include "game/debug.h"
 #include "menu/file_select.h"
 #include "engine/surface_load.h"

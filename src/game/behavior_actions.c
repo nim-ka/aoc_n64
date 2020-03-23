@@ -9,7 +9,6 @@
 #include "engine/behavior_script.h"
 #include "engine/math_util.h"
 #include "object_helpers.h"
-#include "object_helpers2.h"
 #include "behavior_data.h"
 #include "obj_behaviors.h"
 #include "engine/surface_collision.h"

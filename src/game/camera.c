@@ -19,7 +19,6 @@
 #include "mario_actions_cutscene.h"
 #include "save_file.h"
 #include "object_helpers.h"
-#include "object_helpers2.h"
 #include "print.h"
 #include "spawn_sound.h"
 #include "behavior_actions.h"
