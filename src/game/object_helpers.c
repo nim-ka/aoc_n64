@@ -2095,75 +2095,10 @@ void cur_obj_set_pos_via_transform(void) {
     o->oPosZ += o->oVelZ;
 }
 
-#if defined(VERSION_EU)
-//this is a test to see if object is possibly built wrong
-//it matches
-struct Object_test
-{
-    /*0x000*/ struct ObjectNode header;
-    /*0x068*/ struct Object *parentObj;
-    /*0x06C*/ struct Object *prevObj;
-    /*0x070*/ u32 collidedObjInteractTypes;
-    /*0x074*/ s16 activeFlags;
-    /*0x076*/ s16 numCollidedObjs;
-    /*0x078*/ struct Object *collidedObjs[4];
-    /*0x088*/
-    union
-    {
-        struct  {
-            u8 pad[0xF*4];
-            s32 MoveAnglePitch;
-            s32 MoveAngleYaw;
-            s32 MoveAngleRoll;
-            u8 pad2[0x4B*4-0xF*4-3*4];
-            struct {
-                u32 WallAngle;
-            } special;
-        } moving;
-        // Object fields. See object_fields.h.
-        u32 asU32[0x50];
-        s32 asS32[0x50];
-        s16 asS16[0x50][2];
-        f32 asF32[0x50];
-        s16 *asS16P[0x50];
-        s32 *asS32P[0x50];
-        struct Animation **asAnims[0x50];
-        struct Waypoint *asWaypoint[0x50];
-        struct ChainSegment *asChainSegment[0x50];
-        struct Object *asObject[0x50];
-        struct Surface *asSurface[0x50];
-        void *asVoidPtr[0x50];
-        const void *asConstVoidPtr[0x50];
-    } rawData;
-    /*0x1C8*/ u32 unused1;
-    /*0x1CC*/ const BehaviorScript *curBhvCommand;
-    /*0x1D0*/ u32 bhvStackIndex;
-    /*0x1D4*/ uintptr_t bhvStack[8];
-    /*0x1F4*/ s16 bhvDelayTimer;
-    /*0x1F6*/ s16 respawnInfoType;
-    /*0x1F8*/ f32 hitboxRadius;
-    /*0x1FC*/ f32 hitboxHeight;
-    /*0x200*/ f32 hurtboxRadius;
-    /*0x204*/ f32 hurtboxHeight;
-    /*0x208*/ f32 hitboxDownOffset;
-    /*0x20C*/ const BehaviorScript *behavior;
-    /*0x210*/ u32 unused2;
-    /*0x214*/ struct Object *platform;
-    /*0x218*/ void *collisionData;
-    /*0x21C*/ Mat4 transform;
-    /*0x25C*/ void *respawnInfo;
-};
-
-s16 cur_obj_reflect_move_angle_off_wall(void) {
-    s16 angle = ((struct Object_test*)o)->rawData.moving.special.WallAngle - (s16) ((struct Object_test*)o)->rawData.moving.MoveAngleYaw + (s16) ((struct Object_test*)o)->rawData.moving.special.WallAngle  +0x8000;
-    return angle;
-}
-#else
 s16 cur_obj_reflect_move_angle_off_wall(void) {
     s16 angle = o->oWallAngle - ((s16) o->oMoveAngleYaw - (s16) o->oWallAngle) + 0x8000;
     return angle;
 }
-#endif
 
 void cur_obj_spawn_particles(struct SpawnParticlesInfo *info) {
     struct Object *particle;
@@ -2275,7 +2210,7 @@ void spawn_mist_particles(void) {
     spawn_mist_particles_variable(0, 0, 46.0f);
 }
 
-void spawn_mist_particles_with_sound(s32 sp18) {
+void spawn_mist_particles_with_sound(u32 sp18) {
     spawn_mist_particles_variable(0, 0, 46.0f);
     create_sound_spawner(sp18);
 }

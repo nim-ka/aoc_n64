@@ -31,7 +31,7 @@ extern s32 absi(s32 a0);
 s32 cur_obj_wait_then_blink(s32 a0, s32 a1);
 s32 cur_obj_is_mario_ground_pounding_platform(void);
 extern void spawn_mist_particles(void);
-extern void spawn_mist_particles_with_sound(s32 sp18);
+extern void spawn_mist_particles_with_sound(u32 sp18);
 void cur_obj_push_mario_away(f32);
 void cur_obj_push_mario_away_from_cylinder(f32 sp20, f32 sp24);
 // extern ? bhv_dust_smoke_loop(?);
