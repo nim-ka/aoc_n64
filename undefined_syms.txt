@@ -79,7 +79,6 @@ D_SH_8030CD14 = 0x8030CD14;
 D_SH_8031D978 = 0x8031D978;
 
 /* Shindou functions */
-func_sh_8024C834 = 0x8024C834;
 func_sh_802F69CC = 0x802F69CC;
 func_sh_80302EF0 = 0x80302EF0;
 func_sh_80303090 = 0x80303090;

@@ -12,6 +12,7 @@
 #include "save_file.h"
 #include "audio/external.h"
 #include "engine/graph_node.h"
+#include "thread6.h"
 
 void play_flip_sounds(struct MarioState *m, s16 frame1, s16 frame2, s16 frame3) {
     s32 animFrame = m->marioObj->header.gfx.unk38.animFrame;
@@ -79,12 +80,18 @@ s32 check_fall_damage(struct MarioState *m, u32 hardFallAction) {
         if (m->vel[1] < -55.0f) {
             if (fallHeight > 3000.0f) {
                 m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 16 : 24;
+#ifdef VERSION_SH
+                func_sh_8024C834(5, 80);
+#endif
                 set_camera_shake_from_hit(SHAKE_FALL_DAMAGE);
                 play_sound(SOUND_MARIO_ATTACKED, m->marioObj->header.gfx.cameraToObject);
                 return drop_and_set_mario_action(m, hardFallAction, 4);
             } else if (fallHeight > damageHeight && !mario_floor_is_slippery(m)) {
                 m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 8 : 12;
                 m->squishTimer = 30;
+#ifdef VERSION_SH
+                func_sh_8024C834(5, 80);
+#endif
                 set_camera_shake_from_hit(SHAKE_FALL_DAMAGE);
                 play_sound(SOUND_MARIO_ATTACKED, m->marioObj->header.gfx.cameraToObject);
             }
@@ -126,6 +133,9 @@ s32 check_fall_damage_or_get_stuck(struct MarioState *m, u32 hardFallAction) {
 #endif
         m->particleFlags |= PARTICLE_MIST_CIRCLE;
         drop_and_set_mario_action(m, ACT_FEET_STUCK_IN_GROUND, 0);
+#ifdef VERSION_SH
+        func_sh_8024C834(5, 80);
+#endif
         return TRUE;
     }
 
@@ -375,6 +385,9 @@ u32 common_air_action_step(struct MarioState *m, u32 landAction, s32 animation, 
             set_mario_animation(m, animation);
 
             if (m->forwardVel > 16.0f) {
+#ifdef VERSION_SH
+                func_sh_8024C834(5, 40);
+#endif
                 mario_bonk_reflection(m, FALSE);
                 m->faceAngle[1] += 0x8000;
 
@@ -480,6 +493,11 @@ s32 act_triple_jump(struct MarioState *m) {
 #endif
 
     common_air_action_step(m, ACT_TRIPLE_JUMP_LAND, MARIO_ANIM_TRIPLE_JUMP, 0);
+#ifdef VERSION_SH
+    if (m->action == ACT_TRIPLE_JUMP_LAND) {
+        func_sh_8024C834(5, 40);
+    }
+#endif
     play_flip_sounds(m, 2, 8, 20);
     return FALSE;
 }
@@ -491,6 +509,11 @@ s32 act_backflip(struct MarioState *m) {
 
     play_mario_sound(m, SOUND_ACTION_TERRAIN_JUMP, SOUND_MARIO_YAH_WAH_HOO);
     common_air_action_step(m, ACT_BACKFLIP_LAND, MARIO_ANIM_BACKFLIP, 0);
+#ifdef VERSION_SH
+    if (m->action == ACT_BACKFLIP_LAND) {
+        func_sh_8024C834(5, 40);
+    }
+#endif
     play_flip_sounds(m, 2, 3, 17);
     return FALSE;
 }
@@ -618,6 +641,11 @@ s32 act_long_jump(struct MarioState *m) {
     }
 
     common_air_action_step(m, ACT_LONG_JUMP_LAND, animation, AIR_STEP_CHECK_LEDGE_GRAB);
+#ifdef VERSION_SH
+    if (m->action == ACT_LONG_JUMP_LAND) {
+        func_sh_8024C834(5, 40);
+    }
+#endif
     return FALSE;
 }
 
@@ -718,6 +746,9 @@ s32 act_dive(struct MarioState *m) {
 
         case AIR_STEP_LANDED:
             if (should_get_stuck_in_ground(m) && m->faceAngle[0] == -0x2AAA) {
+#ifdef VERSION_SH
+                func_sh_8024C834(5, 80);
+#endif
 #ifdef VERSION_JP
                 play_sound(SOUND_MARIO_OOOF, m->marioObj->header.gfx.cameraToObject);
 #else
@@ -913,6 +944,9 @@ s32 act_ground_pound(struct MarioState *m) {
         stepResult = perform_air_step(m, 0);
         if (stepResult == AIR_STEP_LANDED) {
             if (should_get_stuck_in_ground(m)) {
+#ifdef VERSION_SH
+                func_sh_8024C834(5, 80);
+#endif
 #ifdef VERSION_JP
                 play_sound(SOUND_MARIO_OOOF, m->marioObj->header.gfx.cameraToObject);
 #else
@@ -961,6 +995,9 @@ s32 act_burning_jump(struct MarioState *m) {
     if (m->health < 0x100) {
         m->health = 0xFF;
     }
+#ifdef VERSION_SH
+    func_sh_8024C924();
+#endif
     return FALSE;
 }
 
@@ -980,6 +1017,9 @@ s32 act_burning_fall(struct MarioState *m) {
     if (m->health < 0x100) {
         m->health = 0xFF;
     }
+#ifdef VERSION_SH
+    func_sh_8024C924();
+#endif
     return FALSE;
 }
 
@@ -1028,6 +1068,9 @@ s32 act_crazy_box_bounce(struct MarioState *m) {
                 m->heldObj = NULL;
                 set_mario_action(m, ACT_STOMACH_SLIDE, 0);
             }
+#ifdef VERSION_SH
+            func_sh_8024C834(5, 80);
+#endif
             m->particleFlags |= PARTICLE_MIST_CIRCLE;
             break;
 
@@ -1057,6 +1100,11 @@ u32 common_air_knockback_step(struct MarioState *m, u32 landAction, u32 hardFall
             break;
 
         case AIR_STEP_LANDED:
+#ifdef VERSION_SH
+            if (m->action == ACT_SOFT_BONK) {
+                func_sh_8024C834(5, 80);
+            }
+#endif
             if (!check_fall_damage_or_get_stuck(m, hardFallAction)) {
 #ifndef VERSION_JP
                 if (m->action == ACT_THROWN_FORWARD || m->action == ACT_THROWN_BACKWARD) {
@@ -1455,7 +1503,14 @@ s32 act_hold_butt_slide_air(struct MarioState *m) {
 }
 
 s32 act_lava_boost(struct MarioState *m) {
+#ifdef VERSION_SH
+    if (!(m->flags & MARIO_MARIO_SOUND_PLAYED)) {
+        play_sound_if_no_flag(m, SOUND_MARIO_ON_FIRE, MARIO_MARIO_SOUND_PLAYED);
+        func_sh_8024C834(5, 80);
+    }
+#else
     play_sound_if_no_flag(m, SOUND_MARIO_ON_FIRE, MARIO_MARIO_SOUND_PLAYED);
+#endif
 
     if (!(m->input & INPUT_NONZERO_ANALOG)) {
         m->forwardVel = approach_f32(m->forwardVel, 0.0f, 0.35f, 0.35f);
@@ -1472,6 +1527,9 @@ s32 act_lava_boost(struct MarioState *m) {
                 }
                 m->vel[1] = 84.0f;
                 play_sound(SOUND_MARIO_ON_FIRE, m->marioObj->header.gfx.cameraToObject);
+#ifdef VERSION_SH
+                func_sh_8024C834(5, 80);
+#endif
             } else {
                 play_mario_heavy_landing_sound(m, SOUND_ACTION_TERRAIN_BODY_HIT_GROUND);
                 if (m->actionState < 2 && m->vel[1] < 0.0f) {
@@ -1507,6 +1565,9 @@ s32 act_lava_boost(struct MarioState *m) {
     }
 
     m->marioBodyState->eyeState = MARIO_EYES_DEAD;
+#ifdef VERSION_SH
+    func_sh_8024C924();
+#endif
     return FALSE;
 }
 
@@ -1616,6 +1677,9 @@ s32 act_shot_from_cannon(struct MarioState *m) {
             set_mario_action(m, ACT_DIVE_SLIDE, 0);
             m->faceAngle[0] = 0;
             set_camera_mode(m->area->camera, m->area->camera->defMode, 1);
+#ifdef VERSION_SH
+            func_sh_8024C834(5, 80);
+#endif
             break;
 
         case AIR_STEP_HIT_WALL:
@@ -1647,6 +1711,9 @@ s32 act_shot_from_cannon(struct MarioState *m) {
     if (m->vel[1] > 0.0f) {
         m->particleFlags |= PARTICLE_DUST;
     }
+#ifdef VERSION_SH
+    func_sh_8024C924();
+#endif
     return FALSE;
 }
 
@@ -1709,6 +1776,9 @@ s32 act_flying(struct MarioState *m) {
 
             m->faceAngle[0] = 0;
             set_camera_mode(m->area->camera, m->area->camera->defMode, 1);
+#ifdef VERSION_SH
+            func_sh_8024C834(5, 80);
+#endif
             break;
 
         case AIR_STEP_HIT_WALL:
@@ -1761,6 +1831,9 @@ s32 act_flying(struct MarioState *m) {
         play_sound(SOUND_MARIO_YAHOO_WAHA_YIPPEE + ((gAudioRandom % 5) << 16),
                    m->marioObj->header.gfx.cameraToObject);
 #endif
+#ifdef VERSION_SH
+        func_sh_8024C834(50, 40);
+#endif
     }
 
     play_sound(SOUND_MOVING_FLYING, m->marioObj->header.gfx.cameraToObject);
@@ -1774,6 +1847,9 @@ s32 act_riding_hoot(struct MarioState *m) {
         m->usedObj->oHootMarioReleaseTime = gGlobalTimer;
 
         play_sound_if_no_flag(m, SOUND_MARIO_UH, MARIO_MARIO_SOUND_PLAYED);
+#ifdef VERSION_SH
+        func_sh_8024C834(4, 40);
+#endif
         return set_mario_action(m, ACT_FREEFALL, 0);
     }
 
@@ -1829,6 +1905,9 @@ s32 act_flying_triple_jump(struct MarioState *m) {
 
         if (is_anim_past_end(m)) {
             set_mario_animation(m, MARIO_ANIM_FORWARD_SPINNING);
+#ifdef VERSION_SH
+            func_sh_8024C834(8, 80);
+#endif
             m->actionState = 1;
         }
     }
@@ -1889,6 +1968,9 @@ s32 act_vertical_wind(struct MarioState *m) {
         set_mario_animation(m, MARIO_ANIM_FORWARD_SPINNING_FLIP);
         if (m->marioObj->header.gfx.unk38.animFrame == 1) {
             play_sound(SOUND_ACTION_SPIN, m->marioObj->header.gfx.cameraToObject);
+#ifdef VERSION_SH
+            func_sh_8024C834(8, 80);
+#endif
         }
 
         if (is_anim_past_end(m)) {

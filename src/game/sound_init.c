@@ -127,10 +127,6 @@ void set_sound_mode(u16 soundMode) {
     }
 }
 
-#ifdef VERSION_SH
-extern void func_sh_8024C834(int a0, int a1);
-#endif
-
 /**
  * Wrapper method by menu used to set the sound via flags.
  */

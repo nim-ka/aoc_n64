@@ -78,6 +78,9 @@ void exclamation_box_act_2(void) {
         o->oGravity = -8.0f;
         o->oFloorHeight = o->oPosY;
         o->oAction = 3;
+#ifdef VERSION_SH
+        func_sh_8024C834(5, 80);
+#endif
     }
     load_object_collision_model();
 }

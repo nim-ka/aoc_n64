@@ -14,6 +14,7 @@
 #include "level_update.h"
 #include "save_file.h"
 #include "camera.h"
+#include "thread6.h"
 
 s32 check_common_idle_cancels(struct MarioState *m) {
     mario_drop_held_object(m);
@@ -797,10 +798,16 @@ s32 act_shockwave_bounce(struct MarioState *m) {
     f32 sp18;
 
     if (m->marioObj->oInteractStatus & 0x10) {
+#ifdef VERSION_SH
+        func_sh_8024C834(70, 40);
+#endif
         return hurt_and_set_mario_action(m, ACT_SHOCKED, 0, 4);
     }
 
     if (m->actionTimer == 0) {
+#ifdef VERSION_SH
+        func_sh_8024C834(70, 40);
+#endif
         if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_UNK1) {
             return hurt_and_set_mario_action(m, ACT_BACKWARD_GROUND_KB, 0, 0xc);
         }

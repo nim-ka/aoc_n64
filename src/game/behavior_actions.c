@@ -36,6 +36,7 @@
 #include "ingame_menu.h"
 #include "rendering_graph_node.h"
 #include "level_table.h"
+#include "thread6.h"
 
 #define o gCurrentObject
 

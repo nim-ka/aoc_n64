@@ -26,6 +26,7 @@
 #endif
 #include "level_table.h"
 #include "course_table.h"
+#include "thread6.h"
 
 #define PLAY_MODE_NORMAL 0
 #define PLAY_MODE_PAUSED 2
@@ -680,6 +681,10 @@ void initiate_painting_warp(void) {
 
                 play_sound(SOUND_MENU_STAR_SOUND, gDefaultSoundArgs);
                 fadeout_music(398);
+#ifdef VERSION_SH
+                func_sh_8024C834(80, 70);
+                func_sh_8024C89C(1);
+#endif
             }
         }
     }
@@ -991,6 +996,9 @@ s32 play_mode_normal(void) {
             set_play_mode(PLAY_MODE_CHANGE_AREA);
         } else if (pressed_pause()) {
             lower_background_noise(1);
+#ifdef VERSION_SH
+            func_sh_8024CB90();
+#endif
             gCameraMovementFlags |= CAM_MOVE_PAUSE_SCREEN;
             set_play_mode(PLAY_MODE_PAUSED);
         }
@@ -1204,6 +1212,11 @@ s32 init_level(void) {
             set_background_music(gCurrentArea->musicParam, gCurrentArea->musicParam2, 0);
         }
     }
+#ifdef VERSION_SH
+    if (gCurrDemoInput == NULL) {
+        func_sh_8024CB90();
+    }
+#endif
 
     if (gMarioState->action == ACT_INTRO_CUTSCENE) {
         sound_banks_disable(2, 0x0330);

@@ -8,6 +8,7 @@
 #include "object_list_processor.h"
 #include "behavior_data.h"
 #include "engine/graph_node.h"
+#include "thread6.h"
 
 /*
  * execute an object's current sound state with a provided array
@@ -67,6 +68,17 @@ void cur_obj_play_sound_1(s32 soundMagic) {
 void cur_obj_play_sound_2(s32 soundMagic) {
     if (gCurrentObject->header.gfx.node.flags & GRAPH_RENDER_ACTIVE) {
         play_sound(soundMagic, gCurrentObject->header.gfx.cameraToObject);
+#ifdef VERSION_SH
+        if (soundMagic == SOUND_OBJ_BOWSER_WALK) {
+            func_sh_8024C834(3, 60);
+        }
+        if (soundMagic == SOUND_OBJ_POUNDING_LOUD) {
+            func_sh_8024C834(3, 60);
+        }
+        if (soundMagic == SOUND_OBJ_WHOMP_LOWPRIO) {
+            func_sh_8024C834(5, 80);
+        }
+#endif
     }
 }
 

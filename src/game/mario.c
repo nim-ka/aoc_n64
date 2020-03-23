@@ -30,6 +30,7 @@
 #include "sound_init.h"
 #include "engine/surface_collision.h"
 #include "level_table.h"
+#include "thread6.h"
 
 u32 unused80339F10;
 s8 filler80339F1C[20];
@@ -1499,6 +1500,16 @@ void update_mario_health(struct MarioState *m) {
         // Play a noise to alert the player when Mario is close to drowning.
         if (((m->action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED) && (m->health < 0x300)) {
             play_sound(SOUND_MOVING_ALMOST_DROWNING, gDefaultSoundArgs);
+#ifdef VERSION_SH
+            if(!D_SH_8030CE0C) {
+                D_SH_8030CE0C = 36;
+                if(func_sh_8024C8AC()) {
+                    func_sh_8024C834(3, 30);
+                }
+            }
+        } else {
+            D_SH_8030CE0C = 0;
+#endif
         }
     }
 }
@@ -1676,6 +1687,21 @@ static void debug_update_mario_cap(u16 button, s32 flags, u16 capTimer, u16 capM
     }
 }
 
+#ifdef VERSION_SH
+void func_sh_8025574C(void) {
+    if (gMarioState->particleFlags & PARTICLE_HORIZONTAL_STAR) {
+        func_sh_8024C834(5, 80);
+    } else if (gMarioState->particleFlags & PARTICLE_VERTICAL_STAR) {
+        func_sh_8024C834(5, 80);
+    } else if (gMarioState->particleFlags & PARTICLE_TRIANGLE) {
+        func_sh_8024C834(5, 80);
+    }
+    if(gMarioState->heldObj && gMarioState->heldObj->behavior == segmented_to_virtual(bhvBobomb)) {
+        func_sh_8024C924();
+    }
+}
+#endif
+
 /**
  * Main function for executing Mario's behavior.
  */
@@ -1754,6 +1780,9 @@ s32 execute_mario_action(UNUSED struct Object *o) {
 
         play_infinite_stairs_music();
         gMarioState->marioObj->oInteractStatus = 0;
+#ifdef VERSION_SH
+        func_sh_8025574C();
+#endif
 
         return gMarioState->particleFlags;
     }
