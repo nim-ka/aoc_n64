@@ -612,6 +612,9 @@ void thread5_game_loop(UNUSED void *arg) {
         // if any controllers are plugged in, start read the data for when
         // read_controller_inputs is called later.
         if (gControllerBits) {
+#ifdef VERSION_SH
+            func_sh_8024C4E4();
+#endif
             osContStartReadData(&gSIEventMesgQueue);
         }
 

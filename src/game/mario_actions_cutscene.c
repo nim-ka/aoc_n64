@@ -1403,7 +1403,7 @@ s32 act_teleport_fade_out(struct MarioState *m) {
                                                           : MARIO_ANIM_FIRST_PERSON);
                                                           
 #ifdef VERSION_SH
-    if (m->actionTimer > 0) {
+    if (m->actionTimer == 0) {
         func_sh_8024C834(30, 70);
         func_sh_8024C89C(2);
     }
@@ -1429,7 +1429,7 @@ s32 act_teleport_fade_in(struct MarioState *m) {
     set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
 
 #ifdef VERSION_SH
-    if (m->actionTimer > 0) {
+    if (m->actionTimer == 0) {
         func_sh_8024C834(30, 70);
         func_sh_8024C89C(2);
     }
