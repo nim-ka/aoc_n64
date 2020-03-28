@@ -50,7 +50,7 @@ void bhv_water_level_diamond_loop(void) {
                     }
                     o->oAngleVelYaw = 0x800;
 #ifdef VERSION_SH
-                    func_sh_8024C974(2);
+                    reset_rumble_timers_2(2);
 #endif
                 }
                 break;

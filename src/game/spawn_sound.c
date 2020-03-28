@@ -70,13 +70,13 @@ void cur_obj_play_sound_2(s32 soundMagic) {
         play_sound(soundMagic, gCurrentObject->header.gfx.cameraToObject);
 #ifdef VERSION_SH
         if (soundMagic == SOUND_OBJ_BOWSER_WALK) {
-            func_sh_8024C834(3, 60);
+            queue_rumble_data(3, 60);
         }
         if (soundMagic == SOUND_OBJ_POUNDING_LOUD) {
-            func_sh_8024C834(3, 60);
+            queue_rumble_data(3, 60);
         }
         if (soundMagic == SOUND_OBJ_WHOMP_LOWPRIO) {
-            func_sh_8024C834(5, 80);
+            queue_rumble_data(5, 80);
         }
 #endif
     }

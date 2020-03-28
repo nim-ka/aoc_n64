@@ -46,6 +46,7 @@ UNUSED u8 filler80339D30[0x90];
 
 int unused8032C690 = 0;
 u32 gGlobalTimer = 0;
+
 static u16 sCurrFBNum = 0;
 u16 frameBufferIndex = 0;
 void (*D_8032C6A0)(void) = NULL;
@@ -480,7 +481,7 @@ void read_controller_inputs(void) {
         osRecvMesg(&gSIEventMesgQueue, &D_80339BEC, OS_MESG_BLOCK);
         osContGetReadData(&gControllerPads[0]);
 #ifdef VERSION_SH
-        func_sh_8024C510();
+        release_rumble_pak_control();
 #endif
     }
     run_demo_inputs();
@@ -584,7 +585,7 @@ void thread5_game_loop(UNUSED void *arg) {
 
     setup_game_memory();
 #ifdef VERSION_SH
-    func_sh_8024C4A0();
+    init_rumble_pak_scheduler_queue();
 #endif
     init_controllers();
 #ifdef VERSION_SH
@@ -613,7 +614,7 @@ void thread5_game_loop(UNUSED void *arg) {
         // read_controller_inputs is called later.
         if (gControllerBits) {
 #ifdef VERSION_SH
-            func_sh_8024C4E4();
+            block_until_rumble_pak_free();
 #endif
             osContStartReadData(&gSIEventMesgQueue);
         }

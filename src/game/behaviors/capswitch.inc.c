@@ -32,7 +32,7 @@ void cap_switch_act_2(void) {
             spawn_mist_particles();
             spawn_triangle_break_particles(60, 139, 0.3f, o->oBehParams2ndByte);
 #ifdef VERSION_SH
-            func_sh_8024C834(5, 80);
+            queue_rumble_data(5, 80);
 #endif
         }
     } else {

@@ -25,6 +25,12 @@ OSThread gIdleThread;
 OSThread gMainThread;
 OSThread gGameLoopThread;
 OSThread gSoundThread;
+#ifdef VERSION_SH
+OSThread gRumblePakThread;
+
+s32 gRumblePakPfs; // Actually an OSPfs but we don't have that header yet
+#endif
+
 OSIoMesg gDmaIoMesg;
 OSMesg D_80339BEC;
 OSMesgQueue gDmaMesgQueue;
@@ -32,11 +38,22 @@ OSMesgQueue gSIEventMesgQueue;
 OSMesgQueue gPIMesgQueue;
 OSMesgQueue gIntrMesgQueue;
 OSMesgQueue gSPTaskMesgQueue;
+#ifdef VERSION_SH
+OSMesgQueue gRumblePakSchedulerMesgQueue;
+OSMesgQueue gRumbleThreadVIMesgQueue;
+#endif
 OSMesg gDmaMesgBuf[1];
 OSMesg gPIMesgBuf[32];
 OSMesg gSIEventMesgBuf[1];
 OSMesg gIntrMesgBuf[16];
 OSMesg gUnknownMesgBuf[16];
+#ifdef VERSION_SH
+OSMesg gRumblePakSchedulerMesgBuf[1];
+OSMesg gRumbleThreadVIMesgBuf[1];
+
+struct RumbleData gRumbleDataQueue[3];
+struct StructSH8031D9B0 gCurrRumbleSettings;
+#endif
 
 struct VblankHandler *gVblankHandler1 = NULL;
 struct VblankHandler *gVblankHandler2 = NULL;
@@ -252,7 +269,7 @@ void handle_vblank(void) {
         }
     }
 #ifdef VERSION_SH
-    func_sh_8024CC7C();
+    rumble_thread_update_vi();
 #endif
 
     // Notify the game loop about the vblank.

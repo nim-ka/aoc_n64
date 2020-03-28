@@ -803,7 +803,7 @@ static s32 act_water_throw(struct MarioState *m) {
     if (m->actionTimer++ == 5) {
         mario_throw_held_object(m);
 #ifdef VERSION_SH
-        func_sh_8024C834(3, 50);
+        queue_rumble_data(3, 50);
 #endif
     }
 
@@ -980,7 +980,7 @@ static s32 act_water_plunge(struct MarioState *m) {
         m->actionState = 1;
 #ifdef VERSION_SH
         if (m->prevAction & ACT_FLAG_AIR) {
-            func_sh_8024C834(5, 80);
+            queue_rumble_data(5, 80);
         }
 #endif
     }
@@ -1088,7 +1088,7 @@ static s32 act_caught_in_whirlpool(struct MarioState *m) {
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
 #ifdef VERSION_SH
-    func_sh_8024C924();
+    reset_rumble_timers();
 #endif
 
     return FALSE;

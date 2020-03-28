@@ -22,10 +22,6 @@
 #define EU_FLOAT(x) x
 #endif
 
-#ifndef __sgi
-#define GLOBAL_ASM(...)
-#endif
-
 #ifdef VERSION_EU
 u8 audioString1[] = "pitch %x: delaybytes %d : olddelay %d\n";
 u8 audioString2[] = "cont %x: delaybytes %d : olddelay %d\n";

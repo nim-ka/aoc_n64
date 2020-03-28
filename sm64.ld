@@ -93,7 +93,7 @@ SECTIONS
       BUILD_DIR/src/game/game_init.o(.text);
       BUILD_DIR/src/game/sound_init.o(.text);
 #ifdef VERSION_SH
-      BUILD_DIR/asm/thread6.o(.text);
+      BUILD_DIR/src/game/thread6.o(.text);
 #endif
       BUILD_DIR/src/game/level_update.o(.text);
       BUILD_DIR/src/game/interaction.o(.text);

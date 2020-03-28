@@ -23,7 +23,7 @@ void bhv_star_door_loop(void) {
             if (o->oTimer == 0 && (s16)(o->oMoveAngleYaw) >= 0) {
                 cur_obj_play_sound_2(SOUND_GENERAL_STAR_DOOR_OPEN);
 #ifdef VERSION_SH
-                func_sh_8024C834(35, 30);
+                queue_rumble_data(35, 30);
 #endif
             }
             cur_obj_become_intangible();
@@ -40,7 +40,7 @@ void bhv_star_door_loop(void) {
             if (o->oTimer == 0 && (s16)(o->oMoveAngleYaw) >= 0) {
                 cur_obj_play_sound_2(SOUND_GENERAL_STAR_DOOR_CLOSE);
 #ifdef VERSION_SH
-                func_sh_8024C834(35, 30);
+                queue_rumble_data(35, 30);
 #endif
             }
             o->oUnkBC = 8.0f;

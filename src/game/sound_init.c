@@ -155,7 +155,7 @@ void play_menu_sounds(s16 soundMenuFlags) {
     }
 #ifdef VERSION_SH
     if ((soundMenuFlags & 0x20) != 0) {
-        func_sh_8024C834(10, 60);
+        queue_rumble_data(10, 60);
     }
 #endif
 }

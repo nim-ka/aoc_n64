@@ -33,7 +33,7 @@ void bhv_purple_switch_loop(void) {
                 o->oAction = PURPLE_SWITCH_TICKING;
                 cur_obj_shake_screen(SHAKE_POS_SMALL);
 #ifdef VERSION_SH
-                func_sh_8024C834(5, 80);
+                queue_rumble_data(5, 80);
 #endif
             }
             break;
