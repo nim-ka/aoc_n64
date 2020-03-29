@@ -19,6 +19,12 @@ COMPARE ?= 1
 NON_MATCHING ?= 0
 # Build for the N64 (turn this off for ports)
 TARGET_N64 ?= 1
+# Compiler to use (ido or gcc)
+COMPILER ?= ido
+
+ifeq ($(COMPILER),gcc)
+  NON_MATCHING := 1
+endif
 
 # Release
 
@@ -154,8 +160,12 @@ ULTRA_BIN_DIRS := lib/bin
 
 GODDARD_SRC_DIRS := src/goddard src/goddard/dynlists
 
+MIPSISET := -mips2
+MIPSBIT := -32
 
-MIPSISET := -mips2 -32
+ifeq ($(COMPILER),gcc)
+  MIPSISET := -mips3
+endif
 
 ifeq ($(VERSION),eu)
   OPT_FLAGS := -O2
@@ -165,6 +175,11 @@ ifeq ($(VERSION),sh)
 else
   OPT_FLAGS := -g
 endif
+endif
+
+# Use a default opt flag for gcc
+ifeq ($(COMPILER),gcc)
+  OPT_FLAGS := -O2
 endif
 
 # File dependencies and variables for specific files
@@ -252,6 +267,11 @@ OBJDUMP   := $(CROSS)objdump
 OBJCOPY   := $(CROSS)objcopy
 PYTHON    := python3
 
+# change the compiler to gcc, to use the default, install the gcc-mips-linux-gnu package
+ifeq ($(COMPILER),gcc)
+  CC        := $(CROSS)gcc
+endif
+
 ifeq ($(TARGET_N64),1)
   TARGET_CFLAGS := -nostdinc -I include/libc -DTARGET_N64
   CC_CFLAGS := -fno-builtin
@@ -262,12 +282,18 @@ INCLUDE_CFLAGS := -I include -I $(BUILD_DIR) -I $(BUILD_DIR)/include -I src -I .
 # Check code syntax with host compiler
 CC_CHECK := gcc -fsyntax-only -fsigned-char $(CC_CFLAGS) $(TARGET_CFLAGS) $(INCLUDE_CFLAGS) -std=gnu90 -Wall -Wextra -Wno-format-security -Wno-main -DNON_MATCHING -DAVOID_UB $(VERSION_CFLAGS) $(GRUCODE_CFLAGS)
 
+COMMON_CFLAGS = $(OPT_FLAGS) $(TARGET_CFLAGS) $(INCLUDE_CFLAGS) $(VERSION_CFLAGS) $(MIPSISET) $(GRUCODE_CFLAGS)
+
 ASFLAGS := -march=vr4300 -mabi=32 -I include -I $(BUILD_DIR) $(VERSION_ASFLAGS) $(GRUCODE_ASFLAGS)
-CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -signed $(OPT_FLAGS) $(TARGET_CFLAGS) $(INCLUDE_CFLAGS) $(VERSION_CFLAGS) $(MIPSISET) $(GRUCODE_CFLAGS)
+CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -signed $(COMMON_CFLAGS) $(MIPSBIT)
 OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
 SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
 LDFLAGS := -T undefined_syms.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.$(VERSION).map --no-check-sections $(SYMBOL_LINKING_FLAGS)
 ENDIAN_BITWIDTH := $(BUILD_DIR)/endian-and-bitwidth
+
+ifeq ($(COMPILER),gcc)
+  CFLAGS := -march=vr4300 -mfix4300 -mno-shared -G 0 -mhard-float -fno-stack-protector -fno-common -I include -I src/ -I $(BUILD_DIR)/include -fno-PIC -mno-abicalls -fno-strict-aliasing -fno-inline-functions -ffreestanding -fwrapv -Wall -Wextra $(COMMON_CFLAGS)
+endif
 
 ifeq ($(shell getconf LONG_BIT), 32)
   # Work around memory allocation bug in QEMU
@@ -299,6 +325,11 @@ EMU_FLAGS = --noosd
 LOADER = loader64
 LOADER_FLAGS = -vwf
 SHA1SUM = sha1sum
+
+# Use Objcopy instead of extract_data_for_mio
+ifeq ($(COMPILER),gcc)
+EXTRACT_DATA_FOR_MIO := $(OBJCOPY) -O binary --only-section=.data
+endif
 
 ###################### Dependency Check #####################
 
@@ -341,6 +372,10 @@ $(BUILD_DIR)/include/text_strings.h: include/text_strings.h.in
 
 $(BUILD_DIR)/include/text_menu_strings.h: include/text_menu_strings.h.in
 	$(TEXTCONV) charmap_menu.txt $< $@
+
+ifeq ($(COMPILER),gcc)
+$(BUILD_DIR)/lib/src/math/%.o: CFLAGS += -fno-builtin
+endif
 
 ifeq ($(VERSION),eu)
 TEXT_DIRS := text/de text/us text/fr
@@ -489,7 +524,7 @@ $(BUILD_DIR)/assets/mario_anim_data.c: $(wildcard assets/anims/*.inc.c)
 $(BUILD_DIR)/assets/demo_data.c: assets/demo_data.json $(wildcard assets/demos/*.bin)
 	$(PYTHON) tools/demo_data_converter.py assets/demo_data.json $(VERSION_CFLAGS) > $@
 
-
+ifeq ($(COMPILER),ido)
 # Source code
 $(BUILD_DIR)/levels/%/leveldata.o: OPT_FLAGS := -g
 $(BUILD_DIR)/actors/%.o: OPT_FLAGS := -g
@@ -530,6 +565,7 @@ $(BUILD_DIR)/src/audio/%.acpp: src/audio/%.c
 	$(QEMU_IRIX) -silent -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/lib/acpp $(TARGET_CFLAGS) $(INCLUDE_CFLAGS) $(VERSION_CFLAGS) $(GRUCODE_CFLAGS) -D__sgi -+ $< > $@ 
 $(BUILD_DIR)/src/audio/%.copt: $(BUILD_DIR)/src/audio/%.acpp
 	$(QEMU_IRIX) -silent -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/lib/copt -signed -I=$< -CMP=$@ -cp=i -scalaroptimize=1
+endif
 endif
 
 ifeq ($(NON_MATCHING),0)

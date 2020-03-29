@@ -293,6 +293,7 @@ SECTIONS
       BUILD_DIR/libultra.a:osContInit.o(.text);
       BUILD_DIR/libultra.a:osEepromProbe.o(.text);
       BUILD_DIR/libultra.a:llmuldiv.o(.text);
+      BUILD_DIR/libultra.a:llmuldiv_gcc.o(.text);
       BUILD_DIR/libultra.a:osInvalDCache.o(.text);
       BUILD_DIR/libultra.a:osPiStartDma.o(.text);
       BUILD_DIR/libultra.a:bzero.o(.text);
