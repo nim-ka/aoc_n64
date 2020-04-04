@@ -1,6 +1,7 @@
 #ifndef GD_DEBUGGING_UTILS_H
 #define GD_DEBUGGING_UTILS_H
 
+#include <macros.h>
 #include <ultra64.h>
 #include "gd_types.h"
 
@@ -68,7 +69,7 @@ extern void split_timer(const char *);
 extern void stop_timer(const char *);
 extern f32 get_scaled_timer_total(const char *);
 extern void fatal_print(const char *);
-extern void fatal_printf(const char *, ...);
+extern void fatal_printf(const char *, ...) NORETURN;
 extern void add_to_stacktrace(const char *);
 extern void imout(void);
 extern f32 func_8018D560(void);

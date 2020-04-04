@@ -25,6 +25,13 @@
 #define UNUSED
 #endif
 
+// Avoid undefined behaviour for non-returning functions
+#ifdef __GNUC__
+#define NORETURN __attribute__((noreturn))
+#else
+#define NORETURN
+#endif
+
 // Static assertions
 #ifdef __GNUC__
 #define STATIC_ASSERT(cond, msg) _Static_assert(cond, msg)

@@ -1,6 +1,7 @@
 #ifndef GD_RENDERER_H
 #define GD_RENDERER_H
 
+#include <macros.h>
 #include <ultra64.h>
 #include "gd_types.h"
 
@@ -32,7 +33,7 @@ extern f64 gd_sin_d(f64);
 extern f64 gd_cos_d(f64);
 extern f64 gd_sqrt_d(f64);
 extern void gd_printf(const char *, ...);
-extern void gd_exit(s32);
+extern void gd_exit(s32) NORETURN;
 extern void gd_free(void *);
 extern void *gd_allocblock(u32);
 extern void *gd_malloc(u32, u8);
