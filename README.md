@@ -51,6 +51,15 @@ Install the following AUR packages:
 * [mips64-elf-binutils](https://aur.archlinux.org/packages/mips64-elf-binutils) (AUR)
 * [qemu-irix-git](https://aur.archlinux.org/packages/qemu-irix-git) (AUR)
 
+__Binutils and Other Linux Distributions__
+
+Most modern Linux distributions should have equivalent packages to the other two listed above. You may have to use a different version of
+GNU binutils. Listed below are fully compatible binutils distributions with support in the makefile, and examples of distros that offer them:
+
+* `mips64-elf-` (Arch AUR)
+* `mips-linux-gnu-` (Ubuntu and other Debian-based distros)
+* `mips64-linux-gnu-` (RHEL/CentOS/Fedora)
+
 #### 3. Build ROM
 
 Run `make` to build the ROM (defaults to `VERSION=us`). Make sure your path to the repo 
@@ -59,8 +68,17 @@ handle paths longer than 255 characters.
 Examples:
 ```
 make VERSION=jp -j4       # build (J) version instead with 4 jobs
-make VERSION=eu COMPARE=0 # non-matching EU version still WIP
+make VERSION=eu COMPARE=0 # build (EU) version but do not compare ROM hashes
 ```
+
+The full list of configurable variables are listed below, with the default being the first listed:
+
+* ``VERSION``: ``us``, ``jp``, ``eu``, ``sh`` (WIP)
+* ``GRUCODE``: ``f3d_old``, ``f3d_new``, ``f3dex``, ``f3dex2``, ``f3dzex``
+* ``COMPARE``: ``1`` (compare ROM hash), ``0`` (do not compare ROM hash)
+* ``NON_MATCHING``: Use functionally equivalent C implementations for non-matchings. Also will avoid instances of undefined behavior.
+* ``CROSS``: Cross-compiler tool prefix (Example: ``mips64-elf-``).
+* ``QEMU_IRIX``: Path to a ``qemu-irix`` binary.
 
 ## Windows
 
