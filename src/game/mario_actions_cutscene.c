@@ -222,7 +222,8 @@ static void stub_is_textbox_active(u16 *a0) {
  * get_star_collection_dialog: Determine what dialog should show when Mario
  * collects a star.
  * Determines if Mario has collected enough stars to get a dialog for it, and
- * if so, return the dialog ID. Otherwise, return 0
+ * if so, return the dialog ID. Otherwise, return 0. A dialog is returned if
+ * numStars has reached a milestone and prevNumStarsForDialog has not reached it.
  */
 s32 get_star_collection_dialog(struct MarioState *m) {
     s32 i;
@@ -231,13 +232,13 @@ s32 get_star_collection_dialog(struct MarioState *m) {
 
     for (i = 0; i < 6; i++) {
         numStarsRequired = sStarsNeededForDialog[i];
-        if (m->unkB8 < numStarsRequired && m->numStars >= numStarsRequired) {
+        if (m->prevNumStarsForDialog < numStarsRequired && m->numStars >= numStarsRequired) {
             dialogID = i + DIALOG_141;
             break;
         }
     }
 
-    m->unkB8 = m->numStars;
+    m->prevNumStarsForDialog = m->numStars;
     return dialogID;
 }
 

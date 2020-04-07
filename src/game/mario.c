@@ -1895,7 +1895,7 @@ void init_mario_from_save_file(void) {
     gMarioState->numLives = 4;
     gMarioState->health = 0x880;
 
-    gMarioState->unkB8 = gMarioState->numStars;
+    gMarioState->prevNumStarsForDialog = gMarioState->numStars;
     gMarioState->unkB0 = 0xBD;
 
     gHudDisplay.coins = 0;
