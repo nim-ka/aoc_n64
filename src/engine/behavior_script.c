@@ -63,7 +63,7 @@ u16 random_u16(void) {
     return gRandomSeed16;
 }
 
-// Generate a pseudorandom float from 0 to 1.
+// Generate a pseudorandom float in the range [0, 1).
 f32 random_float(void) {
     f32 rnd = random_u16();
     return rnd / (double) 0x10000;
