@@ -305,7 +305,7 @@ void set_mario_initial_cap_powerup(struct MarioState *m) {
 
 void set_mario_initial_action(struct MarioState *m, u32 spawnType, u32 actionArg) {
     switch (spawnType) {
-        case MARIO_SPAWN_UNKNOWN_01:
+        case MARIO_SPAWN_DOOR_WARP:
             set_mario_action(m, ACT_WARP_DOOR_SPAWN, actionArg);
             break;
         case MARIO_SPAWN_UNKNOWN_02:
@@ -314,49 +314,49 @@ void set_mario_initial_action(struct MarioState *m, u32 spawnType, u32 actionArg
         case MARIO_SPAWN_UNKNOWN_03:
             set_mario_action(m, ACT_EMERGE_FROM_PIPE, 0);
             break;
-        case MARIO_SPAWN_UNKNOWN_04:
+        case MARIO_SPAWN_TELEPORT:
             set_mario_action(m, ACT_TELEPORT_FADE_IN, 0);
             break;
-        case MARIO_SPAWN_UNKNOWN_10:
+        case MARIO_SPAWN_INSTANT_ACTIVE:
             set_mario_action(m, ACT_IDLE, 0);
             break;
-        case MARIO_SPAWN_UNKNOWN_12:
+        case MARIO_SPAWN_AIRBORNE:
             set_mario_action(m, ACT_SPAWN_NO_SPIN_AIRBORNE, 0);
             break;
-        case MARIO_SPAWN_UNKNOWN_13:
+        case MARIO_SPAWN_HARD_AIR_KNOCKBACK:
             set_mario_action(m, ACT_HARD_BACKWARD_AIR_KB, 0);
             break;
-        case MARIO_SPAWN_UNKNOWN_14:
+        case MARIO_SPAWN_SPIN_AIRBORNE_CIRCLE:
             set_mario_action(m, ACT_SPAWN_SPIN_AIRBORNE, 0);
             break;
         case MARIO_SPAWN_DEATH:
             set_mario_action(m, ACT_FALLING_DEATH_EXIT, 0);
             break;
-        case MARIO_SPAWN_UNKNOWN_16:
+        case MARIO_SPAWN_SPIN_AIRBORNE:
             set_mario_action(m, ACT_SPAWN_SPIN_AIRBORNE, 0);
             break;
-        case MARIO_SPAWN_UNKNOWN_17:
+        case MARIO_SPAWN_FLYING:
             set_mario_action(m, ACT_FLYING, 2);
             break;
-        case MARIO_SPAWN_UNKNOWN_11:
+        case MARIO_SPAWN_SWIMMING:
             set_mario_action(m, ACT_WATER_IDLE, 1);
             break;
-        case MARIO_SPAWN_UNKNOWN_20:
+        case MARIO_SPAWN_PAINTING_STAR_COLLECT:
             set_mario_action(m, ACT_EXIT_AIRBORNE, 0);
             break;
         case MARIO_SPAWN_PAINTING_DEATH:
             set_mario_action(m, ACT_DEATH_EXIT, 0);
             break;
-        case MARIO_SPAWN_UNKNOWN_22:
+        case MARIO_SPAWN_AIRBORNE_STAR_COLLECT:
             set_mario_action(m, ACT_FALLING_EXIT_AIRBORNE, 0);
             break;
-        case MARIO_SPAWN_UNKNOWN_23:
+        case MARIO_SPAWN_AIRBORNE_DEATH:
             set_mario_action(m, ACT_UNUSED_DEATH_EXIT, 0);
             break;
-        case MARIO_SPAWN_UNKNOWN_24:
+        case MARIO_SPAWN_LAUNCH_STAR_COLLECT:
             set_mario_action(m, ACT_SPECIAL_EXIT_AIRBORNE, 0);
             break;
-        case MARIO_SPAWN_UNKNOWN_25:
+        case MARIO_SPAWN_LAUNCH_DEATH:
             set_mario_action(m, ACT_SPECIAL_DEATH_EXIT, 0);
             break;
     }
@@ -377,7 +377,7 @@ void init_mario_after_warp(void) {
         gPlayerSpawnInfos[0].startAngle[1] = spawnNode->object->oMoveAngleYaw;
         gPlayerSpawnInfos[0].startAngle[2] = 0;
 
-        if (marioSpawnType == MARIO_SPAWN_UNKNOWN_01) {
+        if (marioSpawnType == MARIO_SPAWN_DOOR_WARP) {
             init_door_warp(&gPlayerSpawnInfos[0], sWarpDest.arg);
         }
 
@@ -401,16 +401,16 @@ void init_mario_after_warp(void) {
         case MARIO_SPAWN_UNKNOWN_03:
             play_transition(WARP_TRANSITION_FADE_FROM_STAR, 0x10, 0x00, 0x00, 0x00);
             break;
-        case MARIO_SPAWN_UNKNOWN_01:
+        case MARIO_SPAWN_DOOR_WARP:
             play_transition(WARP_TRANSITION_FADE_FROM_CIRCLE, 0x10, 0x00, 0x00, 0x00);
             break;
-        case MARIO_SPAWN_UNKNOWN_04:
+        case MARIO_SPAWN_TELEPORT:
             play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x14, 0xFF, 0xFF, 0xFF);
             break;
-        case MARIO_SPAWN_UNKNOWN_16:
+        case MARIO_SPAWN_SPIN_AIRBORNE:
             play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x1A, 0xFF, 0xFF, 0xFF);
             break;
-        case MARIO_SPAWN_UNKNOWN_14:
+        case MARIO_SPAWN_SPIN_AIRBORNE_CIRCLE:
             play_transition(WARP_TRANSITION_FADE_FROM_CIRCLE, 0x10, 0x00, 0x00, 0x00);
             break;
         case MARIO_SPAWN_UNKNOWN_27:

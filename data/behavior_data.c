@@ -3539,19 +3539,19 @@ const BehaviorScript bhvUnlockDoorStar[] = {
     END_LOOP(),
 };
 
-const BehaviorScript bhvWarps60[] = {
+const BehaviorScript bhvInstantActiveWarp[] = {
     BREAK(),
 };
 
-const BehaviorScript bhvWarps64[] = {
+const BehaviorScript bhvAirborneWarp[] = {
     BREAK(),
 };
 
-const BehaviorScript bhvWarps68[] = {
+const BehaviorScript bhvHardAirKnockBackWarp[] = {
     BREAK(),
 };
 
-const BehaviorScript bhvWarps6C[] = {
+const BehaviorScript bhvSpinAirborneCircleWarp[] = {
     BREAK(),
 };
 
@@ -3559,15 +3559,15 @@ const BehaviorScript bhvDeathWarp[] = {
     BREAK(),
 };
 
-const BehaviorScript bhvWarps74[] = {
+const BehaviorScript bhvSpinAirborneWarp[] = {
     BREAK(),
 };
 
-const BehaviorScript bhvWarps78[] = {
+const BehaviorScript bhvFlyingWarp[] = {
     BREAK(),
 };
 
-const BehaviorScript bhvWarps7C[] = {
+const BehaviorScript bhvPaintingStarCollectWarp[] = {
     BREAK(),
 };
 
@@ -3575,23 +3575,23 @@ const BehaviorScript bhvPaintingDeathWarp[] = {
     BREAK(),
 };
 
-const BehaviorScript bhvWarps84[] = {
+const BehaviorScript bhvAirborneDeathWarp[] = {
     BREAK(),
 };
 
-const BehaviorScript bhvWarps88[] = {
+const BehaviorScript bhvAirborneStarCollectWarp[] = {
     BREAK(),
 };
 
-const BehaviorScript bhvWarps8C[] = {
+const BehaviorScript bhvLaunchStarCollectWarp[] = {
     BREAK(),
 };
 
-const BehaviorScript bhvWarps90[] = {
+const BehaviorScript bhvLaunchDeathWarp[] = {
     BREAK(),
 };
 
-const BehaviorScript bhvWarps94[] = {
+const BehaviorScript bhvSwimmingWarp[] = {
     BREAK(),
 };
 
