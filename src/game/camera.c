@@ -105,7 +105,6 @@ s16 sCreditsPlayer2Yaw;
  */
 u8 sFramesPaused;
 
-#ifndef VERSION_EU
 extern struct CameraFOVStatus sFOVState;
 extern struct TransitionInfo sModeTransition;
 extern struct PlayerGeometry sMarioGeometry;
@@ -167,7 +166,6 @@ extern struct CutsceneVariable sCutsceneVars[10];
 extern s32 gObjCutsceneDone;
 extern u32 gCutsceneObjSpawn;
 extern struct Camera *gCamera;
-#endif
 
 /**
  * Lakitu's position and focus.

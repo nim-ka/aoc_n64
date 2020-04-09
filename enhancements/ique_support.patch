@@ -298,9 +298,9 @@ index 59a5a2a6..c8976649 100755
        BUILD_DIR/libultra.a:func_802F71F0.o(.text)
 +      BUILD_DIR/libultra.a:consoleType.o(.text)
 +      BUILD_DIR/libultra.a:skGetId.o(.text)
- 
        BUILD_DIR/lib/rsp.o(.text);
- 
+ #else
+       BUILD_DIR/src/game*.o(.text);
 @@ -369,6 +371,8 @@ SECTIONS
        BUILD_DIR/libultra.a:__osGetCause.o(.text);
        BUILD_DIR/libultra.a:__osAtomicDec.o(.text);
