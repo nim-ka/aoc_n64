@@ -327,7 +327,7 @@
 #define /*0x1B2*/ oBubbaUnk1B2 OBJECT_FIELD_S16(0x4A, + 1)
 
 /* Bullet Bill */
-#define /*0x0F8*/ oBulletBillUnkF8 OBJECT_FIELD_S32(0x1C)
+#define /*0x0F8*/ oBulletBillInitialMoveYaw OBJECT_FIELD_S32(0x1C)
 
 /* Bully (all variants) */
 #define /*0x0F4*/ oBullySubtype                   OBJECT_FIELD_S32(0x1B)
