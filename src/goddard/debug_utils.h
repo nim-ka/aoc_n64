@@ -68,7 +68,7 @@ extern void restart_timer(const char *);
 extern void split_timer(const char *);
 extern void stop_timer(const char *);
 extern f32 get_scaled_timer_total(const char *);
-extern void fatal_print(const char *);
+extern void fatal_print(const char *) NORETURN;
 extern void fatal_printf(const char *, ...) NORETURN;
 extern void add_to_stacktrace(const char *);
 extern void imout(void);
