@@ -362,7 +362,7 @@ load: $(ROM)
 
 libultra: $(BUILD_DIR)/libultra.a
 
-asm/boot.s: $(BUILD_DIR)/lib/bin/ipl3_font.bin
+$(BUILD_DIR)/asm/boot.o: $(BUILD_DIR)/lib/bin/ipl3_font.bin
 
 $(BUILD_DIR)/lib/bin/ipl3_font.bin: lib/ipl3_font.png
 	$(IPLFONTUTIL) e $< $@
@@ -613,8 +613,8 @@ $(BUILD_DIR)/$(TARGET).objdump: $(ELF)
 
 
 .PHONY: all clean distclean default diff test load libultra
-.PRECIOUS: $(BUILD_DIR)/bin/%.elf $(SOUND_BIN_DIR)/%.ctl $(SOUND_BIN_DIR)/%.tbl $(SOUND_SAMPLE_TABLES) $(SOUND_BIN_DIR)/%.s $(BUILD_DIR)/%
-.DELETE_ON_ERROR:
+# with no prerequisites, .SECONDARY causes no intermediate target to be removed
+.SECONDARY:
 
 # Remove built-in rules, to improve performance
 MAKEFLAGS += --no-builtin-rules
