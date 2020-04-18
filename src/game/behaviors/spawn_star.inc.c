@@ -13,12 +13,12 @@ static struct ObjectHitbox sCollectStarHitbox = {
 };
 
 void bhv_collect_star_init(void) {
-    s8 sp1F;
-    u8 sp1E;
+    s8 starId;
+    u8 currentLevelStarFlags;
 
-    sp1F = (o->oBehParams >> 24) & 0xFF;
-    sp1E = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
-    if (sp1E & (1 << sp1F)) {
+    starId = (o->oBehParams >> 24) & 0xFF;
+    currentLevelStarFlags = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
+    if (currentLevelStarFlags & (1 << starId)) {
         o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_TRANSPARENT_STAR];
     } else {
         o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_STAR];
