@@ -765,8 +765,7 @@ struct Note *pop_node_with_value_less_equal(struct AudioListItem *list, s32 limi
         return NULL;
     }
 
-    best = cur;
-    for (; cur != list; cur = cur->next) {
+    for (best = cur; cur != list; cur = cur->next) {
         if (((struct Note *) best->u.value)->priority >= ((struct Note *) cur->u.value)->priority) {
             best = cur;
         }
