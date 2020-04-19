@@ -479,6 +479,7 @@ static void usage() {
 
 // Modified from n64split
 static int parse_arguments(int argc, char *argv[]) {
+    programName = argv[0];
     for (int i = 1; i < argc; ++i) {
         if (strcmp(argv[i], "--combine") == 0) {
             if (++i >= argc || mode != InvalidMode) {
