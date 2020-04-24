@@ -136,8 +136,8 @@ def main():
         try:
             with open(fname, "rb") as f:
                 roms[lang] = f.read()
-        except:
-            print("Failed to open " + fname + ". Please ensure it exists!")
+        except Exception as e:
+            print("Failed to open " + fname + "! " + str(e))
             sys.exit(1)
         sha1 = hashlib.sha1(roms[lang]).hexdigest()
         with open("sm64." + lang + ".sha1", "r") as f:
