@@ -2,6 +2,7 @@
 
 #include "area.h"
 #include "sm64.h"
+#include "gfx_dimensions.h"
 #include "behavior_data.h"
 #include "game_init.h"
 #include "object_list_processor.h"
@@ -111,9 +112,9 @@ void print_intro_text(void) {
     if ((gGlobalTimer & 0x1F) < 20) {
         if (gControllerBits == 0) {
 #ifdef VERSION_EU
-            print_text_centered(160, 20, gNoControllerMsg[language]);
+            print_text_centered(SCREEN_WIDTH / 2, 20, gNoControllerMsg[language]);
 #else
-            print_text_centered(160, 20, "NO CONTROLLER");
+            print_text_centered(SCREEN_WIDTH / 2, 20, "NO CONTROLLER");
 #endif
         } else {
 #ifdef VERSION_EU
@@ -331,7 +332,7 @@ void play_transition(s16 transType, s16 time, u8 red, u8 green, u8 blue) {
 
         if (transType & 1) // Is the image fading in?
         {
-            gWarpTransition.data.startTexRadius = SCREEN_WIDTH;
+            gWarpTransition.data.startTexRadius = GFX_DIMENSIONS_FULL_RADIUS;
             if (transType >= 0x0F) {
                 gWarpTransition.data.endTexRadius = 16;
             } else {
@@ -344,7 +345,7 @@ void play_transition(s16 transType, s16 time, u8 red, u8 green, u8 blue) {
             } else {
                 gWarpTransition.data.startTexRadius = 0;
             }
-            gWarpTransition.data.endTexRadius = SCREEN_WIDTH;
+            gWarpTransition.data.endTexRadius = GFX_DIMENSIONS_FULL_RADIUS;
         }
     }
 }

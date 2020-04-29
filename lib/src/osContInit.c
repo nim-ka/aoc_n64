@@ -61,8 +61,8 @@ void __osContGetInitData(u8 *bitpattern, OSContStatus *status) {
     cmdBufPtr = &(_osContCmdBuf[0].request);
     for (i = 0; i < _osContNumControllers; i++, cmdBufPtr++, status++) {
         response = *(OSContPackedRequest *) cmdBufPtr;
-        status->errno = (response.rxLen & 0xc0) >> 4;
-        if (status->errno == 0) {
+        status->errnum = (response.rxLen & 0xc0) >> 4;
+        if (status->errnum == 0) {
             status->type = response.data2 << 8 | response.data1;
             status->status = response.data3;
 

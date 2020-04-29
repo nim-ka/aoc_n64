@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "gfx_dimensions.h"
 #include "audio/external.h"
 #include "buffers/buffers.h"
 #include "buffers/gfx_output_buffer.h"
@@ -147,8 +148,9 @@ void clear_frame_buffer(s32 a) {
     gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
     gDPSetFillColor(gDisplayListHead++, a);
-    gDPFillRectangle(gDisplayListHead++, 0, BORDER_HEIGHT, SCREEN_WIDTH - 1,
-                     SCREEN_HEIGHT - 1 - BORDER_HEIGHT);
+    gDPFillRectangle(gDisplayListHead++,
+                     GFX_DIMENSIONS_RECT_FROM_LEFT_EDGE(0), BORDER_HEIGHT,
+                     GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(0) - 1, SCREEN_HEIGHT - BORDER_HEIGHT - 1);
 
     gDPPipeSync(gDisplayListHead++);
 
@@ -159,8 +161,13 @@ void clear_frame_buffer(s32 a) {
 void clear_viewport(Vp *viewport, s32 b) {
     s16 vpUlx = (viewport->vp.vtrans[0] - viewport->vp.vscale[0]) / 4 + 1;
     s16 vpUly = (viewport->vp.vtrans[1] - viewport->vp.vscale[1]) / 4 + 1;
-    s16 VpLrx = (viewport->vp.vtrans[0] + viewport->vp.vscale[0]) / 4 - 2;
+    s16 vpLrx = (viewport->vp.vtrans[0] + viewport->vp.vscale[0]) / 4 - 2;
     s16 vpLry = (viewport->vp.vtrans[1] + viewport->vp.vscale[1]) / 4 - 2;
+
+#ifdef WIDESCREEN
+    vpUlx = GFX_DIMENSIONS_RECT_FROM_LEFT_EDGE(vpUlx);
+    vpLrx = GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(SCREEN_WIDTH - vpLrx);
+#endif
 
     gDPPipeSync(gDisplayListHead++);
 
@@ -168,7 +175,7 @@ void clear_viewport(Vp *viewport, s32 b) {
     gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
     gDPSetFillColor(gDisplayListHead++, b);
-    gDPFillRectangle(gDisplayListHead++, vpUlx, vpUly, VpLrx, vpLry);
+    gDPFillRectangle(gDisplayListHead++, vpUlx, vpUly, vpLrx, vpLry);
 
     gDPPipeSync(gDisplayListHead++);
 
@@ -186,9 +193,11 @@ void draw_screen_borders(void) {
     gDPSetFillColor(gDisplayListHead++, GPACK_RGBA5551(0, 0, 0, 0) << 16 | GPACK_RGBA5551(0, 0, 0, 0));
 
 #if BORDER_HEIGHT != 0
-    gDPFillRectangle(gDisplayListHead++, 0, 0, SCREEN_WIDTH - 1, BORDER_HEIGHT - 1);
-    gDPFillRectangle(gDisplayListHead++, 0, SCREEN_HEIGHT - BORDER_HEIGHT, SCREEN_WIDTH - 1,
-                     SCREEN_HEIGHT - 1);
+    gDPFillRectangle(gDisplayListHead++, GFX_DIMENSIONS_RECT_FROM_LEFT_EDGE(0), 0,
+                     GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(0) - 1, BORDER_HEIGHT - 1);
+    gDPFillRectangle(gDisplayListHead++,
+                     GFX_DIMENSIONS_RECT_FROM_LEFT_EDGE(0), SCREEN_HEIGHT - BORDER_HEIGHT,
+                     GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(0) - 1, SCREEN_HEIGHT - 1);
 #endif
 }
 

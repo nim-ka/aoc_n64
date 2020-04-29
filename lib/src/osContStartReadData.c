@@ -41,8 +41,8 @@ void osContGetReadData(OSContPad *pad) {
     cmdBufPtr = &_osContCmdBuf[0].read;
     for (i = 0; i < _osContNumControllers; i++, cmdBufPtr++, pad++) {
         response = *cmdBufPtr;
-        pad->errno = (response.rxLen & 0xc0) >> 4;
-        if (pad->errno == 0) {
+        pad->errnum = (response.rxLen & 0xc0) >> 4;
+        if (pad->errnum == 0) {
             pad->button = response.button;
             pad->stick_x = response.rawStickX;
             pad->stick_y = response.rawStickY;

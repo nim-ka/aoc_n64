@@ -973,14 +973,7 @@ SECTIONS
       BUILD_DIR/assets/mario_anim_data.o(.data);
       BUILD_DIR/assets/mario_anim_data.o(.rodata);
       BUILD_DIR/assets/demo_data.o(.data);
-      gSoundDataADSR = .;
-      BUILD_DIR/sound/sound_data.ctl.o(.data);
-      gSoundDataRaw = .;
-      BUILD_DIR/sound/sound_data.tbl.o(.data);
-      gMusicData = .;
-      BUILD_DIR/sound/sequences.bin.o(.data);
-      gBankSetsData = .;
-      BUILD_DIR/sound/bank_sets.o(.data);
+      BUILD_DIR/sound/sound_data.o(.data);
    }
    END_SEG(assets)
 
