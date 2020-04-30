@@ -165,29 +165,25 @@ index 00000000..870b7e2c
 +    jr    $k0 # run the original handler
 +    nop
 diff --git a/lib/asm/__osExceptionPreamble.s b/lib/asm/__osExceptionPreamble.s
-index fdc36c8b..ccbf4ecc 100644
+index 865273d9..f9ce7596 100644
 --- a/lib/asm/__osExceptionPreamble.s
 +++ b/lib/asm/__osExceptionPreamble.s
-@@ -8,12 +8,11 @@
- .section .text, "ax"
+@@ -15,8 +15,8 @@
+ .endif
  
  glabel __osExceptionPreamble
--    lui   $k0, %hi(__osException) # $k0, 0x8032
--    addiu $k0, %lo(__osException) # addiu $k0, $k0, 0x66d0
-+    lui   $k0, %hi(__crash_handler_entry) # $k0, 0x8032
-+    addiu $k0, %lo(__crash_handler_entry) # addiu $k0, $k0, 0x66d0
+-    lui   $k0, %hi(__osException)
+-    addiu $k0, %lo(__osException)
++    lui   $k0, %hi(__crash_handler_entry)
++    addiu $k0, %lo(__crash_handler_entry)
      jr    $k0
       nop
  
--
- glabel __osException
-     lui   $k0, %hi(gInterruptedThread) # $k0, 0x8036
-     addiu $k0, %lo(gInterruptedThread) # addiu $k0, $k0, 0x5f40
 diff --git a/sm64.ld b/sm64.ld
-index dea5c8bd..22fff2d8 100755
+index e6f5c942..13549d32 100755
 --- a/sm64.ld
 +++ b/sm64.ld
-@@ -112,6 +112,7 @@ SECTIONS
+@@ -116,6 +116,7 @@ SECTIONS
        BUILD_DIR/src/game/rendering_graph_node.o(.text);
        BUILD_DIR/src/game/profiler.o(.text);
        BUILD_DIR/asm/decompress.o(.text);
