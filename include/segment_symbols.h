@@ -1,6 +1,7 @@
 #ifndef SEGMENT_SYMBOLS_H
 #define SEGMENT_SYMBOLS_H
 
+#ifndef NO_SEGMENTED_MEMORY
 #define DECLARE_SEGMENT(name) \
     extern u8 _##name##SegmentRomStart[]; \
     extern u8 _##name##SegmentRomEnd[];
@@ -78,5 +79,6 @@ DECLARE_SEGMENT(effect_mio0)
 DECLARE_SEGMENT(title_screen_bg_mio0)
 
 DECLARE_SEGMENT(debug_level_select_mio0)
+#endif
 
 #endif

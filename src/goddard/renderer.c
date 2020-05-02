@@ -25,9 +25,15 @@
 #define MAX_GD_DLS 1000
 #define OS_MESG_SI_COMPLETE 0x33333333
 
+#ifndef NO_SEGMENTED_MEMORY
 #define GD_VIRTUAL_TO_PHYSICAL(addr) ((uintptr_t)(addr) &0x0FFFFFFF)
 #define GD_LOWER_24(addr) ((uintptr_t)(addr) &0x00FFFFFF)
 #define GD_LOWER_29(addr) (((uintptr_t)(addr)) & 0x1FFFFFFF)
+#else
+#define GD_VIRTUAL_TO_PHYSICAL(addr) (addr)
+#define GD_LOWER_24(addr) ((uintptr_t)(addr))
+#define GD_LOWER_29(addr) (((uintptr_t)(addr)))
+#endif
 
 #define MTX_INTPART_PACK(w1, w2) (((w1) &0xFFFF0000) | (((w2) >> 16) & 0xFFFF))
 #define MTX_FRACPART_PACK(w1, w2) ((((w1) << 16) & 0xFFFF0000) | ((w2) &0xFFFF))
@@ -3615,6 +3621,7 @@ void Unknown801A6E30(UNUSED u32 a0) {
 void Unknown801A6E44(UNUSED u32 a0) {
 }
 
+#ifndef NO_SEGMENTED_MEMORY
 /* 255628 -> 255704; orig name: func_801A6E58 */
 void gd_block_dma(u32 devAddr, void *vAddr, s32 size) {
     s32 transfer; // 2c
@@ -3692,6 +3699,11 @@ struct GdObj *load_dynlist(struct DynList *dynlist) {
 
     return loadedList;
 }
+#else
+struct GdObj *load_dynlist(struct DynList *dynlist) {
+    return proc_dynlist(dynlist);
+}
+#endif
 
 /* 255988 -> 25599C */
 void stub_801A71B8(UNUSED u32 a0) {

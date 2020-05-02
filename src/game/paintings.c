@@ -1055,6 +1055,25 @@ void reset_painting(struct Painting *painting) {
     painting->marioWentUnder = 0;
 
     gRipplingPainting = NULL;
+
+#ifdef NO_SEGMENTED_MEMORY
+    // Make sure all variables are reset correctly.
+    // With segmented memory the segments that contain the relevant
+    // Painting structs are reloaded from ROM upon level load.
+    painting->state = PAINTING_IDLE;
+    painting->currRippleMag = 0.0f;
+    painting->rippleDecay = 1.0f;
+    painting->currRippleRate = 0.0f;
+    painting->dispersionFactor = 0.0f;
+    painting->rippleTimer = 0.0f;
+    painting->rippleX = 0.0f;
+    painting->rippleY = 0.0f;
+    if (painting == &ddd_painting) {
+        // Move DDD painting to initial position, in case the animation
+        // that moves the painting stops during level unload.
+        painting->posX = 3456.0f;
+    }
+#endif
 }
 
 /**
