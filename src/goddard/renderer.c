@@ -1688,7 +1688,8 @@ u32 Unknown8019EC88(Gfx *dl, UNUSED s32 arg1) {
 }
 
 /* 24D4C4 -> 24D63C; orig name: func_8019ECF4 */
-void mat4_to_mtx(const Mat4f *src, Mtx *dst) {
+void mat4_to_mtx(Mat4f *src, Mtx *dst) {
+#ifndef GBI_FLOATS
     s32 i; // 14
     s32 j; // 10
     s32 w1;
@@ -1706,6 +1707,9 @@ void mat4_to_mtx(const Mat4f *src, Mtx *dst) {
             mtxFrc++;
         }
     }
+#else
+    guMtxF2L(*src, dst);
+#endif
 }
 
 /* 24D63C -> 24D6E4; orig name: func_8019EE6C */
