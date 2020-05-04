@@ -176,5 +176,5 @@ void bhv_yoshi_loop(void) {
             break;
     }
 
-    curr_obj_random_blink(&o->oYoshiUnkF4);
+    curr_obj_random_blink(&o->oYoshiBlinkTimer);
 }
