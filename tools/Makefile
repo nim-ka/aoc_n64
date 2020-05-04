@@ -1,7 +1,18 @@
 CC := gcc
+CXX := g++
 CFLAGS := -I . -Wall -Wextra -Wno-unused-parameter -pedantic -std=c99 -O2 -s
 LDFLAGS := -lm
 PROGRAMS := n64graphics n64graphics_ci mio0 n64cksum textconv patch_libultra_math iplfontutil aifc_decode aiff_extract_codebook vadpcm_enc tabledesign extract_data_for_mio skyconv
+
+# if armips is not found on the system, build it in tools
+ifeq (, $(shell which armips 2> /dev/null))
+CXX_PROGRAMS += armips
+endif
+
+default: all
+
+armips: armips.cpp
+	$(CXX) $(CXXFLAGS) -fno-exceptions -fno-rtti -pipe $^ -o $@ -lpthread
 
 n64graphics_SOURCES := n64graphics.c utils.c
 n64graphics_CFLAGS  := -DN64GRAPHICS_STANDALONE
@@ -34,10 +45,10 @@ extract_data_for_mio_SOURCES := extract_data_for_mio.c
 
 skyconv_SOURCES := skyconv.c n64graphics.c utils.c
 
-all: $(PROGRAMS)
+all: $(PROGRAMS) $(CXX_PROGRAMS)
 
 clean:
-	$(RM) $(PROGRAMS)
+	$(RM) $(PROGRAMS) $(CXX_PROGRAMS)
 
 define COMPILE
 $(1): $($1_SOURCES)
@@ -45,3 +56,5 @@ $(1): $($1_SOURCES)
 endef
 
 $(foreach p,$(PROGRAMS),$(eval $(call COMPILE,$(p))))
+
+.PHONY: all clean default

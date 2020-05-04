@@ -138,6 +138,7 @@ sm64
 ├── include: header files
 ├── levels: level scripts, geo layout, and display lists
 ├── lib: SDK library code
+├── rsp: audio and Fast3D RSP assembly code
 ├── sound: sequences, sound samples, and sound banks
 ├── src: C source code for game
 │   ├── audio: audio code

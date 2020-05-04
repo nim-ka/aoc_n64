@@ -29,33 +29,21 @@ endif
 # Release
 
 ifeq ($(VERSION),jp)
-  VERSION_CFLAGS := -DVERSION_JP
-  VERSION_ASFLAGS := --defsym VERSION_JP=1
-  GRUCODE_CFLAGS := -DF3D_OLD
-  GRUCODE_ASFLAGS := --defsym F3D_OLD=1
-  TARGET := sm64.jp
+  VERSION_DEF := VERSION_JP
+  GRUCODE_DEF := F3D_OLD
 else
 ifeq ($(VERSION),us)
-  VERSION_CFLAGS := -DVERSION_US
-  VERSION_ASFLAGS := --defsym VERSION_US=1
-  GRUCODE_CFLAGS := -DF3D_OLD
-  GRUCODE_ASFLAGS := --defsym F3D_OLD=1
-  TARGET := sm64.us
+  VERSION_DEF := VERSION_US
+  GRUCODE_DEF := F3D_OLD
 else
 ifeq ($(VERSION),eu)
-  VERSION_CFLAGS := -DVERSION_EU
-  VERSION_ASFLAGS := --defsym VERSION_EU=1
-  GRUCODE_CFLAGS := -DF3D_NEW
-  GRUCODE_ASFLAGS := --defsym F3D_NEW=1
-  TARGET := sm64.eu
+  VERSION_DEF := VERSION_EU
+  GRUCODE_DEF := F3D_NEW
 else
 ifeq ($(VERSION),sh)
   $(warning Building SH is experimental and is prone to breaking. Try at your own risk.)
-  VERSION_CFLAGS := -DVERSION_SH
-  VERSION_ASFLAGS := --defsym VERSION_SH=1
-  GRUCODE_CFLAGS := -DF3D_NEW
-  GRUCODE_ASFLAGS := --defsym F3D_NEW=1
-  TARGET := sm64.sh
+  VERSION_DEF := VERSION_SH
+  GRUCODE_DEF := F3D_NEW
 # TODO: GET RID OF THIS!!! We should mandate assets for Shindou like EU but we dont have the addresses extracted yet so we'll just pretend you have everything extracted for now.
   NOEXTRACT := 1 
 else
@@ -65,36 +53,42 @@ endif
 endif
 endif
 
+TARGET := sm64.$(VERSION)
+VERSION_CFLAGS := -D$(VERSION_DEF)
+VERSION_ASFLAGS := --defsym $(VERSION_DEF)=1
+
 # Microcode
 
 ifeq ($(GRUCODE),f3dex) # Fast3DEX
-  GRUCODE_CFLAGS := -DF3DEX_GBI
-  GRUCODE_ASFLAGS := --defsym F3DEX_GBI_SHARED=1 --defsym F3DEX_GBI=1
+  GRUCODE_DEF := F3DEX_GBI
+  GRUCODE_ASFLAGS := --defsym F3DEX_GBI_SHARED=1
   TARGET := $(TARGET).f3dex
   COMPARE := 0
 else
 ifeq ($(GRUCODE), f3dex2) # Fast3DEX2
-  GRUCODE_CFLAGS := -DF3DEX_GBI_2
-  GRUCODE_ASFLAGS := --defsym F3DEX_GBI_SHARED=1 --defsym F3DEX_GBI_2=1
+  GRUCODE_DEF := F3DEX_GBI_2
+  GRUCODE_ASFLAGS := --defsym F3DEX_GBI_SHARED=1
   TARGET := $(TARGET).f3dex2
   COMPARE := 0
 else
 ifeq ($(GRUCODE),f3d_new) # Fast3D 2.0H (Shindou)
-  GRUCODE_CFLAGS := -DF3D_NEW
-  GRUCODE_ASFLAGS := --defsym F3D_NEW=1
+  GRUCODE_DEF := F3D_NEW
   TARGET := $(TARGET).f3d_new
   COMPARE := 0
 else
 ifeq ($(GRUCODE),f3dzex) # Fast3DZEX (2.0J / Animal Forest - Dōbutsu no Mori)
   $(warning Fast3DZEX is experimental. Try at your own risk.)
-  GRUCODE_CFLAGS := -DF3DEX_GBI_2
-  GRUCODE_ASFLAGS := --defsym F3DEX_GBI_SHARED=1 --defsym F3DZEX_GBI=1
+  GRUCODE_DEF := F3DEX_GBI_2
+  GRUCODE_ASFLAGS := --defsym F3DEX_GBI_SHARED=1
   TARGET := $(TARGET).f3dzex
   COMPARE := 0
 endif
 endif
 endif
 endif
+
+GRUCODE_CFLAGS := -D$(GRUCODE_DEF)
+GRUCODE_ASFLAGS := $(GRUCODE_ASFLAGS) --defsym $(GRUCODE_DEF)=1
 
 ifeq ($(TARGET_N64),0)
   NON_MATCHING := 1
@@ -251,7 +245,7 @@ endif
 
 # check that either QEMU_IRIX is set or qemu-irix package installed
 ifndef QEMU_IRIX
-  QEMU_IRIX := $(shell which qemu-irix)
+  QEMU_IRIX := $(shell which qemu-irix 2>/dev/null)
   ifeq (, $(QEMU_IRIX))
     $(error Please install qemu-irix package or set QEMU_IRIX env var to the full qemu-irix binary path)
   endif
@@ -325,6 +319,12 @@ LOADER = loader64
 LOADER_FLAGS = -vwf
 SHA1SUM = sha1sum
 
+ifeq (, $(shell which armips 2>/dev/null))
+  RSPASM := $(TOOLS_DIR)/armips
+else
+  RSPASM = armips
+endif
+
 # Use Objcopy instead of extract_data_for_mio
 ifeq ($(COMPILER),gcc)
 EXTRACT_DATA_FOR_MIO := $(OBJCOPY) -O binary --only-section=.data
@@ -362,6 +362,8 @@ load: $(ROM)
 libultra: $(BUILD_DIR)/libultra.a
 
 $(BUILD_DIR)/asm/boot.o: $(BUILD_DIR)/lib/bin/ipl3_font.bin
+
+$(BUILD_DIR)/lib/rsp.o: $(BUILD_DIR)/rsp/rspboot.bin $(BUILD_DIR)/rsp/fast3d.bin $(BUILD_DIR)/rsp/audio.bin
 
 $(BUILD_DIR)/lib/bin/ipl3_font.bin: lib/ipl3_font.png
 	$(IPLFONTUTIL) e $< $@
@@ -409,7 +411,8 @@ $(BUILD_DIR)/text/%/define_text.inc.c: text/define_text.inc.c text/%/courses.h t
 	$(CPP) $(VERSION_CFLAGS) $< -o $@ -I text/$*/
 	$(TEXTCONV) charmap.txt $@ $@
 
-ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(GODDARD_SRC_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(TEXT_DIRS) $(SOUND_SAMPLE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) include) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(VERSION)) $(SOUND_BIN_DIR) $(SOUND_BIN_DIR)/sequences/$(VERSION)
+RSP_DIRS := $(BUILD_DIR)/rsp
+ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(GODDARD_SRC_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(TEXT_DIRS) $(SOUND_SAMPLE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) include) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(VERSION)) $(SOUND_BIN_DIR) $(SOUND_BIN_DIR)/sequences/$(VERSION) $(RSP_DIRS)
 
 # Make sure build directory exists before compiling anything
 DUMMY != mkdir -p $(ALL_DIRS)
@@ -478,6 +481,9 @@ $(BUILD_DIR)/%.table: %.aiff
 
 $(BUILD_DIR)/%.aifc: $(BUILD_DIR)/%.table %.aiff
 	$(VADPCM_ENC) -c $^ $@
+
+$(BUILD_DIR)/rsp/%.bin $(BUILD_DIR)/rsp/%_data.bin: rsp/%.s
+	$(RSPASM) -sym $@.sym -definelabel $(VERSION_DEF) 1 -definelabel $(GRUCODE_DEF) 1 -strequ CODE_FILE $(BUILD_DIR)/rsp/$*.bin -strequ DATA_FILE $(BUILD_DIR)/rsp/$*_data.bin $<
 
 $(ENDIAN_BITWIDTH): tools/determine-endian-bitwidth.c
 	$(CC) -c $(CFLAGS) -o $@.dummy2 $< 2>$@.dummy1; true
