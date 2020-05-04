@@ -621,7 +621,7 @@ f32 D_EU_802298D0;
 s32 gRefreshRate;
 #endif
 
-u16 *gAiBuffers[NUMAIBUFFERS];
+s16 *gAiBuffers[NUMAIBUFFERS];
 s16 gAiBufferLengths[NUMAIBUFFERS];
 
 #ifndef VERSION_EU

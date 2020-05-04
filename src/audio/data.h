@@ -87,7 +87,7 @@ extern f32 D_EU_802298D0;
 extern s32 gRefreshRate;
 #endif
 
-extern u16 *gAiBuffers[NUMAIBUFFERS];
+extern s16 *gAiBuffers[NUMAIBUFFERS];
 extern s16 gAiBufferLengths[NUMAIBUFFERS];
 #ifdef VERSION_EU
 #define AIBUFFER_LEN (0xa0 * 17)

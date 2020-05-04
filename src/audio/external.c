@@ -490,7 +490,7 @@ u8 sUnused8033323C = 0; // never read, set to 0
 
 // bss
 #ifndef VERSION_EU
-u16 *gCurrAiBuffer;
+s16 *gCurrAiBuffer;
 #endif
 struct Sound sSoundRequests[0x100];
 // Curiously, this has size 3, despite SEQUENCE_PLAYERS == 4 on EU
