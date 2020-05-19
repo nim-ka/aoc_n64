@@ -107,7 +107,7 @@
 #define CAMERA_MODE_BOSS_FIGHT        0x0B
 #define CAMERA_MODE_PARALLEL_TRACKING 0x0C
 #define CAMERA_MODE_FIXED             0x0D
-#define CAMERA_MODE_8_DIRECTIONS      0x0E // AKA Parallel Camera, Bowser Courses & Rainbow Road
+#define CAMERA_MODE_8_DIRECTIONS      0x0E // AKA Parallel Camera, Bowser Courses & Rainbow Ride
 #define CAMERA_MODE_FREE_ROAM         0x10
 #define CAMERA_MODE_SPIRAL_STAIRS     0x11
 
