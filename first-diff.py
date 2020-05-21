@@ -54,6 +54,9 @@ parser.add_argument(
 parser.add_argument(
     "-n", "--by-name", type=str, default="", help="perform a symbol or address lookup"
 )
+parser.add_argument(
+    "-d", "--diff", action="store_true", help="run ./diff.py on the result"
+)
 args = parser.parse_args()
 diff_count = args.count
 
@@ -297,3 +300,19 @@ if diffs > 100:
 
         if not map_diff():
             print(f"No ROM shift{' (!?)' if definite_shift else ''}")
+if args.diff:
+    diff_args = input("Call ./diff.py with which arguments? ") or "--"
+    if diff_args[0] != "-":
+        diff_args = "-" + diff_args
+    if "w" in diff_args and args.make:
+        diff_args += "m"  # To avoid warnings when passing -w, also pass -m as long as -m was passed to first-diff itself
+
+    check_call(
+        [
+            "python3",
+            "diff.py",
+            f"-{version[0]}",
+            diff_args,
+            search_map(found_instr_diff[0]).split()[1],
+        ]
+    )
