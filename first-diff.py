@@ -36,7 +36,7 @@ versionGroup.add_argument(
 versionGroup.add_argument(
     "-s",
     "--sh",
-    help="use Shindou (Rumble)version",
+    help="use Shindou (Rumble) version",
     action="store_const",
     const="sh",
     dest="version",
