@@ -53,7 +53,7 @@ For each version (jp/us/eu) that you want to build a ROM for, put an existing RO
 #### 2. Install build dependencies
 
 The build system has the following package requirements:
- * binutils-mips >= 2.27
+ * binutils-mips
  * python3 >= 3.6
  * libaudiofile
  * qemu-irix
