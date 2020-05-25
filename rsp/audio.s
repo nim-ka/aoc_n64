@@ -4,6 +4,10 @@
 
 // This file assumes DATA_FILE and CODE_FILE are set on the command line
 
+.if version() < 110
+    .error "armips 0.11 or newer is required"
+.endif
+
 .macro jumpTableEntry, addr
   .dh addr & 0xFFFF
 .endmacro

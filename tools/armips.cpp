@@ -25,9 +25,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
 */
 
 // file: stdafx.h
+
+
 #define _CRT_SECURE_NO_WARNINGS
 #undef __STRICT_ANSI__
 
@@ -57,6 +60,15 @@ SOFTWARE.
 #include <sstream>
 #include <iomanip>
 #include <memory>
+
+#define formatString tfm::format
+
+// Custom make_unique so that C++14 support will not be necessary for compilation
+template<typename T, typename... Args>
+std::unique_ptr<T> make_unique(Args&&... args)
+{
+    return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+}
 
 // file: ext/tinyformat/tinyformat.h
 // tinyformat.h
@@ -1118,14 +1130,6 @@ TINYFORMAT_FOREACH_ARGNUM(TINYFORMAT_MAKE_FORMAT_FUNCS)
 } // namespace tinyformat
 
 #endif // TINYFORMAT_H_INCLUDED
-#define formatString tfm::format
-
-// Custom make_unique so that C++14 support will not be necessary for compilation
-template<typename T, typename... Args>
-std::unique_ptr<T> make_unique(Args&&... args)
-{
-    return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
-}
 
 // file: Commands/CAssemblerCommand.h
 
@@ -1170,6 +1174,8 @@ public:
 };
 
 // file: Core/Expression.h
+#include <memory>
+
 inline std::wstring to_wstring(int64_t value)
 {
 	return formatString(L"%d", value);
@@ -1558,6 +1564,7 @@ private:
 #include <string>
 #include <stdio.h>
 
+
 typedef std::vector<std::wstring> StringList;
 
 std::wstring convertUtf8ToWString(const char* source);
@@ -1568,6 +1575,7 @@ std::wstring intToHexString(unsigned int value, int digits, bool prefix = false)
 std::wstring intToString(unsigned int value, int digits);
 bool stringToInt(const std::wstring& line, size_t start, size_t end, int64_t& result);
 int32_t getFloatBits(float value);
+float bitsToFloat(int32_t value);
 int64_t getDoubleBits(double value);
 
 StringList getStringListFromArray(wchar_t** source, int count);
@@ -1595,6 +1603,7 @@ bool isAbsolutePath(const std::wstring& path);
 
 // file: Util/FileClasses.h
 #include <list>
+
 class BinaryFile
 {
 public:
@@ -1725,6 +1734,7 @@ wchar_t sjisToUnicode(unsigned short);
 TextFile::Encoding getEncodingFromString(const std::wstring& str);
 
 // file: Util/ByteArray.h
+
 #include <sys/types.h>
 
 #if defined(_MSC_VER) && !defined(ssize_t)
@@ -1842,6 +1852,8 @@ private:
 };
 
 // file: Core/FileManager.h
+#include <vector>
+
 class AssemblerFile
 {
 public:
@@ -1930,7 +1942,8 @@ private:
 	Endianness ownEndianness;
 };
 
-// file: Core/ELF/ElfType.h
+// file: Core/ELF/ElfTypes.h
+
 ///////////////////////
 // ELF Header Constants
 
@@ -2204,6 +2217,7 @@ struct Elf32_Rela
 #define ELF32_R_INFO(s,t) (((s)<<8 )+(unsigned char)(t))
 
 // file: Core/ELF/ElfFile.h
+
 #include <vector>
 
 enum ElfPart { ELFPART_SEGMENTTABLE, ELFPART_SECTIONTABLE, ELFPART_SEGMENTS, ELFPART_SEGMENTLESSSECTIONS };
@@ -2452,6 +2466,7 @@ public:
 extern CInvalidArchitecture InvalidArchitecture;
 
 // file: Archs/MIPS/Mips.h
+
 enum MipsArchType { MARCH_PSX = 0, MARCH_N64, MARCH_PS2, MARCH_PSP, MARCH_RSP, MARCH_INVALID };
 
 class CMipsArchitecture: public CArchitecture
@@ -2520,7 +2535,9 @@ bool MipsGetPs2VectorRegister(const char* source, int& RetLen, MipsRegisterInfo&
 int MipsGetFloatRegister(const char* source, int& RetLen);
 bool MipsCheckImmediate(const char* Source, Expression& Dest, int& RetLen);
 
+
 // file: Archs/MIPS/MipsOpcodes.h
+
 #define MA_MIPS1		0x00000001
 #define MA_MIPS2		0x00000002
 #define MA_MIPS3		0x00000004
@@ -2936,7 +2953,7 @@ private:
 // file: Core/Assembler.h
 
 #define ARMIPS_VERSION_MAJOR    0
-#define ARMIPS_VERSION_MINOR    10
+#define ARMIPS_VERSION_MINOR    11
 #define ARMIPS_VERSION_REVISION 0
 
 enum class ArmipsMode { FILE, MEMORY };
@@ -2989,6 +3006,7 @@ struct ArmipsArguments
 bool runArmips(ArmipsArguments& settings);
 
 // file: Core/SymbolTable.h
+
 #include <map>
 
 struct SymbolKey
@@ -3114,6 +3132,7 @@ bool checkValidLabelName(const std::wstring& labelName);
 bool isPowerOfTwo(int64_t n);
 
 // file: Parser/DirectivesParser.h
+
 #include <unordered_map>
 
 class CAssemblerCommand;
@@ -3184,7 +3203,6 @@ using DirectiveMap = std::unordered_multimap<std::wstring, const DirectiveEntry>
 extern const DirectiveMap directives;
 
 // file: Parser/Tokenizer.h
-#include <list>
 
 enum class TokenType
 {
@@ -3486,6 +3504,7 @@ public:
 };
 
 // file: Archs/MIPS/MipsMacros.h
+
 #define MIPSM_B						0x00000001
 #define MIPSM_BU					0x00000002
 #define MIPSM_HW					0x00000003
@@ -3617,7 +3636,7 @@ private:
 	std::wstring buffer;
 };
 
-// file: Arch/MIPS/CMipsInstruction.cpp
+// file: Archs/MIPS/CMipsInstruction.cpp
 
 CMipsInstruction::CMipsInstruction(MipsOpcodeData& opcode, MipsImmediateData& immediate, MipsRegisterData& registers)
 {
@@ -4089,7 +4108,7 @@ std::unique_ptr<IElfRelocator> CMipsArchitecture::getElfRelocator()
 	case MARCH_PS2:
 	case MARCH_PSP:
 	case MARCH_N64:
-		return make_unique<MipsElfRelocator>();
+		return ::make_unique<MipsElfRelocator>();
 	case MARCH_PSX:
 	case MARCH_RSP:
 	default:
@@ -4155,6 +4174,7 @@ private:
 };
 
 // file: Util/CRC.h
+
 unsigned short getCrc16(unsigned char* Source, size_t len);
 unsigned int getCrc32(unsigned char* Source, size_t len);
 unsigned int getChecksum(unsigned char* Source, size_t len);
@@ -4477,6 +4497,7 @@ void DirectiveLoadMipsElf::writeSymData(SymbolData& symData) const
 }
 
 // file: Commands/CommandSequence.h
+
 class Label;
 
 class CommandSequence: public CAssemblerCommand
@@ -4805,8 +4826,6 @@ const ExpressionFunctionMap mipsExpressionFunctions = {
 	{ L"hi",			{ &expFuncHi,				1,	1,	ExpFuncSafety::Safe } },
 };
 
-#undef GET_PARAM
-
 // file: Archs/MIPS/MipsMacros.cpp
 
 MipsMacroCommand::MipsMacroCommand(std::unique_ptr<CAssemblerCommand> content, int macroFlags)
@@ -5059,7 +5078,7 @@ std::unique_ptr<CAssemblerCommand> generateMipsMacroLoadUnaligned(Parser& parser
 		if (registers.grs.num == registers.grd.num)
 		{
 			Logger::printError(Logger::Error,L"Cannot use same register as source and destination");
-			return make_unique<DummyCommand>();
+			return ::make_unique<DummyCommand>();
 		}
 
 		op = type == MIPSM_W ? L"lw" : L"ld";
@@ -5112,7 +5131,7 @@ std::unique_ptr<CAssemblerCommand> generateMipsMacroStoreUnaligned(Parser& parse
 		if (registers.grs.num == registers.grd.num)
 		{
 			Logger::printError(Logger::Error,L"Cannot use same register as source and destination");
-			return make_unique<DummyCommand>();
+			return ::make_unique<DummyCommand>();
 		}
 
 		op = type == MIPSM_W ? L"sw" : L"sd";
@@ -5643,32 +5662,32 @@ const tMipsOpcode MipsOpcodes[] = {
 	{ "lb",		"t,(s)",			MIPS_OP(0x20),			MA_MIPS1,	MO_DELAYRT|MO_IGNORERTD },
 	{ "lh",		"t,i16(s)",			MIPS_OP(0x21),			MA_MIPS1,	MO_DELAYRT|MO_IGNORERTD },
 	{ "lh",		"t,(s)",			MIPS_OP(0x21),			MA_MIPS1,	MO_DELAYRT|MO_IGNORERTD },
-	{ "lwl",	"t,i16(s)",			MIPS_OP(0x22),			MA_MIPS1,	MO_DELAYRT|MO_IGNORERTD },
-	{ "lwl",	"t,(s)",			MIPS_OP(0x22),			MA_MIPS1,	MO_DELAYRT|MO_IGNORERTD },
+	{ "lwl",	"t,i16(s)",			MIPS_OP(0x22),			MA_MIPS1|MA_EXRSP,	MO_DELAYRT|MO_IGNORERTD },
+	{ "lwl",	"t,(s)",			MIPS_OP(0x22),			MA_MIPS1|MA_EXRSP,	MO_DELAYRT|MO_IGNORERTD },
 	{ "lw",		"t,i16(s)",			MIPS_OP(0x23),			MA_MIPS1,	MO_DELAYRT|MO_IGNORERTD },
 	{ "lw",		"t,(s)",			MIPS_OP(0x23),			MA_MIPS1,	MO_DELAYRT|MO_IGNORERTD },
 	{ "lbu",	"t,i16(s)",			MIPS_OP(0x24),			MA_MIPS1,	MO_DELAYRT|MO_IGNORERTD },
 	{ "lbu",	"t,(s)",			MIPS_OP(0x24),			MA_MIPS1,	MO_DELAYRT|MO_IGNORERTD },
 	{ "lhu",	"t,i16(s)",			MIPS_OP(0x25),			MA_MIPS1,	MO_DELAYRT|MO_IGNORERTD },
 	{ "lhu",	"t,(s)",			MIPS_OP(0x25),			MA_MIPS1,	MO_DELAYRT|MO_IGNORERTD },
-	{ "lwr",	"t,i16(s)",			MIPS_OP(0x26),			MA_MIPS1,	MO_DELAYRT|MO_IGNORERTD },
-	{ "lwr",	"t,(s)",			MIPS_OP(0x26),			MA_MIPS1,	MO_DELAYRT|MO_IGNORERTD },
+	{ "lwr",	"t,i16(s)",			MIPS_OP(0x26),			MA_MIPS1|MA_EXRSP,	MO_DELAYRT|MO_IGNORERTD },
+	{ "lwr",	"t,(s)",			MIPS_OP(0x26),			MA_MIPS1|MA_EXRSP,	MO_DELAYRT|MO_IGNORERTD },
 	{ "lwu",	"t,i16(s)",			MIPS_OP(0x27),			MA_MIPS3,	MO_64BIT|MO_DELAYRT },
 	{ "lwu",	"t,(s)",			MIPS_OP(0x27),			MA_MIPS3,	MO_64BIT|MO_DELAYRT },
 	{ "sb",		"t,i16(s)",			MIPS_OP(0x28),			MA_MIPS1,	0 },
 	{ "sb",		"t,(s)",			MIPS_OP(0x28),			MA_MIPS1,	0 },
 	{ "sh",		"t,i16(s)",			MIPS_OP(0x29),			MA_MIPS1,	0 },
 	{ "sh",		"t,(s)",			MIPS_OP(0x29),			MA_MIPS1,	0 },
-	{ "swl",	"t,i16(s)",			MIPS_OP(0x2A),			MA_MIPS1,	0 },
-	{ "swl",	"t,(s)",			MIPS_OP(0x2A),			MA_MIPS1,	0 },
+	{ "swl",	"t,i16(s)",			MIPS_OP(0x2A),			MA_MIPS1|MA_EXRSP,	0 },
+	{ "swl",	"t,(s)",			MIPS_OP(0x2A),			MA_MIPS1|MA_EXRSP,	0 },
 	{ "sw",		"t,i16(s)",			MIPS_OP(0x2B),			MA_MIPS1,	0 },
 	{ "sw",		"t,(s)",			MIPS_OP(0x2B),			MA_MIPS1,	0 },
 	{ "sdl",	"t,i16(s)",			MIPS_OP(0x2C),			MA_MIPS3,	MO_64BIT },
 	{ "sdl",	"t,(s)",			MIPS_OP(0x2C),			MA_MIPS3,	MO_64BIT },
 	{ "sdr",	"t,i16(s)",			MIPS_OP(0x2D),			MA_MIPS3,	MO_64BIT|MO_IGNORERTD },
 	{ "sdr",	"t,(s)",			MIPS_OP(0x2D),			MA_MIPS3,	MO_64BIT|MO_IGNORERTD },
-	{ "swr",	"t,i16(s)",			MIPS_OP(0x2E),			MA_MIPS1,	0 },
-	{ "swr",	"t,(s)",			MIPS_OP(0x2E),			MA_MIPS1,	0 },
+	{ "swr",	"t,i16(s)",			MIPS_OP(0x2E),			MA_MIPS1|MA_EXRSP,	0 },
+	{ "swr",	"t,(s)",			MIPS_OP(0x2E),			MA_MIPS1|MA_EXRSP,	0 },
 	{ "cache",	"jc,i16(s)",		MIPS_OP(0x2F),			MA_MIPS2,	0 },
 	{ "cache",	"jc,(s)",			MIPS_OP(0x2F),			MA_MIPS2,	0 },
 	{ "ll",		"t,i16(s)",			MIPS_OP(0x30),			MA_MIPS2,	MO_DELAYRT|MO_IGNORERTD },
@@ -6134,19 +6153,19 @@ const tMipsOpcode MipsOpcodes[] = {
 //  11 |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |
 //  hi |-------|-------|-------|-------|-------|-------|-------|-------|
 
-	{ "mfc2",	"t,gs",			MIPS_COP2(0x00),			MA_PSX, 0 },
-	{ "mfc2",	"t,RsRo",		MIPS_COP2(0x00),			MA_RSP, 0 },
-	{ "cfc2",	"t,gc",			MIPS_COP2(0x02),			MA_PSX, 0 },
-	{ "cfc2",	"t,Rc",			MIPS_COP2(0x02),			MA_RSP, 0 },
-	{ "mtc2",	"t,gs",			MIPS_COP2(0x04),			MA_PSX, 0 },
-	{ "mtc2",	"t,RsRo",		MIPS_COP2(0x04),			MA_RSP, 0 },
-	{ "ctc2",	"t,gc",			MIPS_COP2(0x06),			MA_PSX, 0 },
-	{ "ctc2",	"t,Rc",			MIPS_COP2(0x06),			MA_RSP, 0 },
+	{ "mfc2",	"t,gs",			MIPS_COP2(0x00),			MA_PSX,		0 },
+	{ "mfc2",	"t,RsRo",		MIPS_COP2(0x00),			MA_RSP,		0 },
+	{ "cfc2",	"t,gc",			MIPS_COP2(0x02),			MA_PSX,		0 },
+	{ "cfc2",	"t,Rc",			MIPS_COP2(0x02),			MA_RSP,		0 },
+	{ "mtc2",	"t,gs",			MIPS_COP2(0x04),			MA_PSX,		0 },
+	{ "mtc2",	"t,RsRo",		MIPS_COP2(0x04),			MA_RSP,		0 },
+	{ "ctc2",	"t,gc",			MIPS_COP2(0x06),			MA_PSX,		0 },
+	{ "ctc2",	"t,Rc",			MIPS_COP2(0x06),			MA_RSP,		0 },
 	// VVVVVV VVVVV ttttt -------- C DDDDDDD
-	{ "mfv",	"t,vd",			MIPS_COP2(0x03),			MA_PSP,	MO_VFPU|MO_VFPU_SINGLE },
-	{ "mfvc",	"t,vc",			MIPS_COP2(0x03)|0x80,		MA_PSP,	MO_VFPU },
-	{ "mtv",	"t,vd",			MIPS_COP2(0x07),			MA_PSP,	MO_VFPU|MO_VFPU_SINGLE },
-	{ "mtvc",	"t,vc",			MIPS_COP2(0x07)|0x80,		MA_PSP,	MO_VFPU },
+	{ "mfv",	"t,vd",			MIPS_COP2(0x03),			MA_PSP,		MO_VFPU|MO_VFPU_SINGLE },
+	{ "mfvc",	"t,vc",			MIPS_COP2(0x03)|0x80,		MA_PSP,		MO_VFPU },
+	{ "mtv",	"t,vd",			MIPS_COP2(0x07),			MA_PSP,		MO_VFPU|MO_VFPU_SINGLE },
+	{ "mtvc",	"t,vc",			MIPS_COP2(0x07)|0x80,		MA_PSP,		MO_VFPU },
 
 
 //     COP2BC: ? indicates any, * indicates all
@@ -6159,14 +6178,14 @@ const tMipsOpcode MipsOpcodes[] = {
 //  10 |  BVF? |  BVT? | BVFL? | BVTL? |  BVF* |  BVT* | BVFL* | BVTL* |
 //  11 |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |
 //  hi |-------|-------|-------|-------|-------|-------|-------|-------|
-	{ "bvf",		"jb,i16",	MIPS_COP2BC(0x00),			MA_PSP,	MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
-	{ "bvf.B",		"i16",		MIPS_COP2BC(0x00),			MA_PSP,	MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
-	{ "bvt",		"jb,i16",	MIPS_COP2BC(0x01),			MA_PSP,	MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
-	{ "bvt.B",		"i16",		MIPS_COP2BC(0x01),			MA_PSP,	MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
-	{ "bvfl",		"jb,i16",	MIPS_COP2BC(0x02),			MA_PSP,	MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
-	{ "bvfl.B",		"i16",		MIPS_COP2BC(0x02),			MA_PSP,	MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
-	{ "bvtl",		"jb,i16",	MIPS_COP2BC(0x03),			MA_PSP,	MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
-	{ "bvtl.B",		"i16",		MIPS_COP2BC(0x03),			MA_PSP,	MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
+	{ "bvf",		"jb,i16",	MIPS_COP2BC(0x00),			MA_PSP,		MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
+	{ "bvf.B",		"i16",		MIPS_COP2BC(0x00),			MA_PSP,		MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
+	{ "bvt",		"jb,i16",	MIPS_COP2BC(0x01),			MA_PSP,		MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
+	{ "bvt.B",		"i16",		MIPS_COP2BC(0x01),			MA_PSP,		MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
+	{ "bvfl",		"jb,i16",	MIPS_COP2BC(0x02),			MA_PSP,		MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
+	{ "bvfl.B",		"i16",		MIPS_COP2BC(0x02),			MA_PSP,		MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
+	{ "bvtl",		"jb,i16",	MIPS_COP2BC(0x03),			MA_PSP,		MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
+	{ "bvtl.B",		"i16",		MIPS_COP2BC(0x03),			MA_PSP,		MO_IPCR|MO_DELAY|MO_NODELAYSLOT },
 
 //     31---------26-----23--------------------------------------------0
 //     |= VFPU0| VOP | |
@@ -6174,10 +6193,10 @@ const tMipsOpcode MipsOpcodes[] = {
 //     |--000--|--001--|--010--|--011--|--100--|--101--|--110--|--111--|
 // 000 | VADD  | VSUB  | VSBN  | ---   | ---   | ---   | ---   | VDIV  | 00..07
 //  hi |-------|-------|-------|-------|-------|-------|-------|-------|
-	{ "vadd.S",		"vd,vs,vt",	MIPS_VFPU0(0x00),			MA_PSP,	MO_VFPU },
-	{ "vsub.S",		"vd,vs,vt",	MIPS_VFPU0(0x01),			MA_PSP,	MO_VFPU },
-	{ "vsbn.S",		"vd,vs,vt",	MIPS_VFPU0(0x02),			MA_PSP,	MO_VFPU },
-	{ "vdiv.S",		"vd,vs,vt",	MIPS_VFPU0(0x07),			MA_PSP,	MO_VFPU },
+	{ "vadd.S",		"vd,vs,vt",	MIPS_VFPU0(0x00),			MA_PSP,		MO_VFPU },
+	{ "vsub.S",		"vd,vs,vt",	MIPS_VFPU0(0x01),			MA_PSP,		MO_VFPU },
+	{ "vsbn.S",		"vd,vs,vt",	MIPS_VFPU0(0x02),			MA_PSP,		MO_VFPU },
+	{ "vdiv.S",		"vd,vs,vt",	MIPS_VFPU0(0x07),			MA_PSP,		MO_VFPU },
 
 //     31-------26-----23----------------------------------------------0
 //     |=   VFPU1|  f  |                                               |
@@ -6185,12 +6204,12 @@ const tMipsOpcode MipsOpcodes[] = {
 //     |--000--|--001--|--010--|--011--|--100--|--101--|--110--|--111--|
 //     |  VMUL |  VDOT |  VSCL |  ---  |  VHDP |  VDET |  VCRS |  ---  |
 //     |-------|-------|-------|-------|-------|-------|-------|-------|
-	{ "vmul.S",		"vd,vs,vt",	MIPS_VFPU1(0),				MA_PSP,	MO_VFPU },
-	{ "vdot.S",		"vd,vs,vt",	MIPS_VFPU1(1),				MA_PSP,	MO_VFPU },
-	{ "vscl.S",		"vd,vs,vt",	MIPS_VFPU1(2),				MA_PSP,	MO_VFPU },
-	{ "vhdp.S",		"vd,vs,vt",	MIPS_VFPU1(4),				MA_PSP,	MO_VFPU },
-	{ "vdet.S",		"vd,vs,vt",	MIPS_VFPU1(5),				MA_PSP,	MO_VFPU },
-	{ "vcrs.S",		"vd,vs,vt",	MIPS_VFPU1(6),				MA_PSP,	MO_VFPU },
+	{ "vmul.S",		"vd,vs,vt",	MIPS_VFPU1(0),				MA_PSP,		MO_VFPU },
+	{ "vdot.S",		"vd,vs,vt",	MIPS_VFPU1(1),				MA_PSP,		MO_VFPU },
+	{ "vscl.S",		"vd,vs,vt",	MIPS_VFPU1(2),				MA_PSP,		MO_VFPU },
+	{ "vhdp.S",		"vd,vs,vt",	MIPS_VFPU1(4),				MA_PSP,		MO_VFPU },
+	{ "vdet.S",		"vd,vs,vt",	MIPS_VFPU1(5),				MA_PSP,		MO_VFPU },
+	{ "vcrs.S",		"vd,vs,vt",	MIPS_VFPU1(6),				MA_PSP,		MO_VFPU },
 
 //     31-------26-----23----------------------------------------------0
 //     |=   VFPU3|  f  |                                               |
@@ -6199,12 +6218,12 @@ const tMipsOpcode MipsOpcodes[] = {
 //     |  VCMP |  ---  |  VMIN |  VMAX |  ---  | VSCMP |  VSGE |  VSLT |
 //     |-------|-------|-------|-------|-------|-------|-------|-------|
 	// VVVVVV VVV TTTTTTT z SSSSSSS z --- CCCC
-	{ "vcmp.S",		"C,vs,vt",	MIPS_VFPU3(0),				MA_PSP,	MO_VFPU },
-	{ "vmin.S",		"vd,vs,vt",	MIPS_VFPU3(2),				MA_PSP,	MO_VFPU },
-	{ "vmax.S",		"vd,vs,vt",	MIPS_VFPU3(3),				MA_PSP,	MO_VFPU },
-	{ "vscmp.S",	"vd,vs,vt",	MIPS_VFPU3(5),				MA_PSP,	MO_VFPU },
-	{ "vsge.S",		"vd,vs,vt",	MIPS_VFPU3(6),				MA_PSP,	MO_VFPU },
-	{ "vslt.S",		"vd,vs,vt",	MIPS_VFPU3(7),				MA_PSP,	MO_VFPU },
+	{ "vcmp.S",		"C,vs,vt",	MIPS_VFPU3(0),				MA_PSP,		MO_VFPU },
+	{ "vmin.S",		"vd,vs,vt",	MIPS_VFPU3(2),				MA_PSP,		MO_VFPU },
+	{ "vmax.S",		"vd,vs,vt",	MIPS_VFPU3(3),				MA_PSP,		MO_VFPU },
+	{ "vscmp.S",	"vd,vs,vt",	MIPS_VFPU3(5),				MA_PSP,		MO_VFPU },
+	{ "vsge.S",		"vd,vs,vt",	MIPS_VFPU3(6),				MA_PSP,		MO_VFPU },
+	{ "vslt.S",		"vd,vs,vt",	MIPS_VFPU3(7),				MA_PSP,		MO_VFPU },
 
 //     31-------26--------------------------------------------5--------0
 //     |=SPECIAL3|                                           | function|
@@ -6220,8 +6239,8 @@ const tMipsOpcode MipsOpcodes[] = {
 // 110 |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |
 // 110 |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |
 //  hi |-------|-------|-------|-------|-------|-------|-------|-------|
-	{ "ext",	"t,s,i5,je",	MIPS_SPECIAL3(0),			MA_PSP },
-	{ "ins",	"t,s,i5,ji",	MIPS_SPECIAL3(4),			MA_PSP },
+	{ "ext",	"t,s,i5,je",	MIPS_SPECIAL3(0),			MA_PSP,		0 },
+	{ "ins",	"t,s,i5,ji",	MIPS_SPECIAL3(4),			MA_PSP,		0 },
 
 //     31-------26----------------------------------10--------5--------0
 //     |=SPECIAL3|                                 | secfunc |ALLEGREX0|
@@ -6233,16 +6252,16 @@ const tMipsOpcode MipsOpcodes[] = {
 //  11 |  SEH  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |
 //  hi |-------|-------|-------|-------|-------|-------|-------|-------|
 	// VVVVVV ----- ttttt ddddd VVVVV VVVVVV
-	{ "wsbh",	"d,t",			MIPS_ALLEGREX0(0x02),		MA_PSP },
-	{ "wsbh",	"d",			MIPS_ALLEGREX0(0x02),		MA_PSP },
-	{ "wsbw",	"d,t",			MIPS_ALLEGREX0(0x03),		MA_PSP },
-	{ "wsbw",	"d",			MIPS_ALLEGREX0(0x03),		MA_PSP },
-	{ "seb",	"d,t",			MIPS_ALLEGREX0(0x10),		MA_PSP },
-	{ "seb",	"d",			MIPS_ALLEGREX0(0x10),		MA_PSP },
-	{ "bitrev",	"d,t",			MIPS_ALLEGREX0(0x14),		MA_PSP },
-	{ "bitrev",	"d",			MIPS_ALLEGREX0(0x14),		MA_PSP },
-	{ "seh",	"d,t",			MIPS_ALLEGREX0(0x18),		MA_PSP },
-	{ "seh",	"d",			MIPS_ALLEGREX0(0x18),		MA_PSP },
+	{ "wsbh",	"d,t",			MIPS_ALLEGREX0(0x02),		MA_PSP,		0 },
+	{ "wsbh",	"d",			MIPS_ALLEGREX0(0x02),		MA_PSP,		0 },
+	{ "wsbw",	"d,t",			MIPS_ALLEGREX0(0x03),		MA_PSP,		0 },
+	{ "wsbw",	"d",			MIPS_ALLEGREX0(0x03),		MA_PSP,		0 },
+	{ "seb",	"d,t",			MIPS_ALLEGREX0(0x10),		MA_PSP,		0 },
+	{ "seb",	"d",			MIPS_ALLEGREX0(0x10),		MA_PSP,		0 },
+	{ "bitrev",	"d,t",			MIPS_ALLEGREX0(0x14),		MA_PSP,		0 },
+	{ "bitrev",	"d",			MIPS_ALLEGREX0(0x14),		MA_PSP,		0 },
+	{ "seh",	"d,t",			MIPS_ALLEGREX0(0x18),		MA_PSP,		0 },
+	{ "seh",	"d",			MIPS_ALLEGREX0(0x18),		MA_PSP,		0 },
 
 
 //     VFPU4: This one is a bit messy.
@@ -6257,15 +6276,15 @@ const tMipsOpcode MipsOpcodes[] = {
 //     |-------|-------|-------|-------|-------|-------|-------|-------|
 	// VVVVVV VVVVV iiiii z ------- z DDDDDDD
 	// Technically these also have names (as the second arg.)
-	{ "vcst.S",		"vd,Wc",	MIPS_VFPU4(0x03),			MA_PSP, MO_VFPU },
-	{ "vf2in.S",	"vd,vs,i5",	MIPS_VFPU4(0x10),			MA_PSP, MO_VFPU },
-	{ "vf2iz.S",	"vd,vs,i5",	MIPS_VFPU4(0x11),			MA_PSP, MO_VFPU },
-	{ "vf2iu.S",	"vd,vs,i5",	MIPS_VFPU4(0x12),			MA_PSP, MO_VFPU },
-	{ "vf2id.S",	"vd,vs,i5",	MIPS_VFPU4(0x13),			MA_PSP, MO_VFPU },
-	{ "vi2f.S",		"vd,vs,i5",	MIPS_VFPU4(0x14),			MA_PSP, MO_VFPU },
-	{ "vcmovt.S",	"vd,vs,i5",	MIPS_VFPU4(0x15)|0,  		MA_PSP, MO_VFPU },
-	{ "vcmovf.S",	"vd,vs,i5",	MIPS_VFPU4(0x15)|(1<<19),	MA_PSP, MO_VFPU },
-	{ "vwbn.S",		"vd,vs,i5",	MIPS_VFPU4(0x18),			MA_PSP, MO_VFPU },
+	{ "vcst.S",		"vd,Wc",	MIPS_VFPU4(0x03),			MA_PSP,		MO_VFPU },
+	{ "vf2in.S",	"vd,vs,i5",	MIPS_VFPU4(0x10),			MA_PSP,		MO_VFPU },
+	{ "vf2iz.S",	"vd,vs,i5",	MIPS_VFPU4(0x11),			MA_PSP,		MO_VFPU },
+	{ "vf2iu.S",	"vd,vs,i5",	MIPS_VFPU4(0x12),			MA_PSP,		MO_VFPU },
+	{ "vf2id.S",	"vd,vs,i5",	MIPS_VFPU4(0x13),			MA_PSP,		MO_VFPU },
+	{ "vi2f.S",		"vd,vs,i5",	MIPS_VFPU4(0x14),			MA_PSP,		MO_VFPU },
+	{ "vcmovt.S",	"vd,vs,i5",	MIPS_VFPU4(0x15)|0,  		MA_PSP,		MO_VFPU },
+	{ "vcmovf.S",	"vd,vs,i5",	MIPS_VFPU4(0x15)|(1<<19),	MA_PSP,		MO_VFPU },
+	{ "vwbn.S",		"vd,vs,i5",	MIPS_VFPU4(0x18),			MA_PSP,		MO_VFPU },
 
 //     31-------------21-------16--------------------------------------0
 //     |= VF4-1.1      |   rt  |                                       |
@@ -6276,25 +6295,25 @@ const tMipsOpcode MipsOpcodes[] = {
 //  10 | VRCP  | VRSQ  | vsIN  | VCOS  | VEXP2 | VLOG2 | vsQRT | VASIN |
 //  11 | VNRCP |  ---  | VNSIN |  ---  |VREXP2 |  ---  |  ---  |  ---  |
 //     |-------|-------|-------|-------|-------|-------|-------|-------|
-	{ "vmov.S",		"vd,vs",	MIPS_VFPU4_11(0x00),		MA_PSP, MO_VFPU },
-	{ "vabs.S",		"vd,vs",	MIPS_VFPU4_11(0x01),		MA_PSP, MO_VFPU },
-	{ "vneg.S",		"vd,vs",	MIPS_VFPU4_11(0x02), 		MA_PSP, MO_VFPU },
-	{ "vidt.S",		"vd",		MIPS_VFPU4_11(0x03),		MA_PSP, MO_VFPU },
-	{ "vsat0.S",	"vd,vs",	MIPS_VFPU4_11(0x04),		MA_PSP, MO_VFPU },
-	{ "vsat1.S",	"vd,vs",	MIPS_VFPU4_11(0x05),		MA_PSP, MO_VFPU },
-	{ "vzero.S",	"vd",		MIPS_VFPU4_11(0x06),		MA_PSP, MO_VFPU },
-	{ "vone.S",		"vd",		MIPS_VFPU4_11(0x07),		MA_PSP, MO_VFPU },
-	{ "vrcp.S",		"vd,vs",	MIPS_VFPU4_11(0x10),		MA_PSP, MO_VFPU },
-	{ "vrsq.S",		"vd,vs",	MIPS_VFPU4_11(0x11),		MA_PSP, MO_VFPU },
-	{ "vsin.S",		"vd,vs",	MIPS_VFPU4_11(0x12),		MA_PSP, MO_VFPU },
-	{ "vcos.S",		"vd,vs",	MIPS_VFPU4_11(0x13),		MA_PSP, MO_VFPU },
-	{ "vexp2.S",	"vd,vs",	MIPS_VFPU4_11(0x14),		MA_PSP, MO_VFPU },
-	{ "vlog2.S",	"vd,vs",	MIPS_VFPU4_11(0x15),		MA_PSP, MO_VFPU },
-	{ "vsqrt.S",	"vd,vs",	MIPS_VFPU4_11(0x16),		MA_PSP, MO_VFPU },
-	{ "vasin.S",	"vd,vs",	MIPS_VFPU4_11(0x17),		MA_PSP, MO_VFPU },
-	{ "vnrcp.S",	"vd,vs",	MIPS_VFPU4_11(0x18),		MA_PSP, MO_VFPU },
-	{ "vnsin.S",	"vd,vs",	MIPS_VFPU4_11(0x1a),		MA_PSP, MO_VFPU },
-	{ "vrexp2.S",	"vd,vs",	MIPS_VFPU4_11(0x1c),		MA_PSP, MO_VFPU },
+	{ "vmov.S",		"vd,vs",	MIPS_VFPU4_11(0x00),		MA_PSP,		MO_VFPU },
+	{ "vabs.S",		"vd,vs",	MIPS_VFPU4_11(0x01),		MA_PSP,		MO_VFPU },
+	{ "vneg.S",		"vd,vs",	MIPS_VFPU4_11(0x02), 		MA_PSP,		MO_VFPU },
+	{ "vidt.S",		"vd",		MIPS_VFPU4_11(0x03),		MA_PSP,		MO_VFPU },
+	{ "vsat0.S",	"vd,vs",	MIPS_VFPU4_11(0x04),		MA_PSP,		MO_VFPU },
+	{ "vsat1.S",	"vd,vs",	MIPS_VFPU4_11(0x05),		MA_PSP,		MO_VFPU },
+	{ "vzero.S",	"vd",		MIPS_VFPU4_11(0x06),		MA_PSP,		MO_VFPU },
+	{ "vone.S",		"vd",		MIPS_VFPU4_11(0x07),		MA_PSP,		MO_VFPU },
+	{ "vrcp.S",		"vd,vs",	MIPS_VFPU4_11(0x10),		MA_PSP,		MO_VFPU },
+	{ "vrsq.S",		"vd,vs",	MIPS_VFPU4_11(0x11),		MA_PSP,		MO_VFPU },
+	{ "vsin.S",		"vd,vs",	MIPS_VFPU4_11(0x12),		MA_PSP,		MO_VFPU },
+	{ "vcos.S",		"vd,vs",	MIPS_VFPU4_11(0x13),		MA_PSP,		MO_VFPU },
+	{ "vexp2.S",	"vd,vs",	MIPS_VFPU4_11(0x14),		MA_PSP,		MO_VFPU },
+	{ "vlog2.S",	"vd,vs",	MIPS_VFPU4_11(0x15),		MA_PSP,		MO_VFPU },
+	{ "vsqrt.S",	"vd,vs",	MIPS_VFPU4_11(0x16),		MA_PSP,		MO_VFPU },
+	{ "vasin.S",	"vd,vs",	MIPS_VFPU4_11(0x17),		MA_PSP,		MO_VFPU },
+	{ "vnrcp.S",	"vd,vs",	MIPS_VFPU4_11(0x18),		MA_PSP,		MO_VFPU },
+	{ "vnsin.S",	"vd,vs",	MIPS_VFPU4_11(0x1a),		MA_PSP,		MO_VFPU },
+	{ "vrexp2.S",	"vd,vs",	MIPS_VFPU4_11(0x1c),		MA_PSP,		MO_VFPU },
 
 //     VFPU4 1.2: TODO: Unsure where vsBZ goes, no one uses it.
 //     31-------------21-------16--------------------------------------0
@@ -6306,23 +6325,23 @@ const tMipsOpcode MipsOpcodes[] = {
 //  10 |  ---  |  ---  | VF2H  | VH2F  |  ---  |  ---  | vsBZ? | VLGB  |
 //  11 | VUC2I | VC2I  | VUS2I | vs2I  | VI2UC | VI2C  | VI2US | VI2S  |
 //     |-------|-------|-------|-------|-------|-------|-------|-------|
-	{ "vrnds.S",	"vd",		MIPS_VFPU4_12(0x00),		MA_PSP,	MO_VFPU },
-	{ "vrndi.S",	"vd",		MIPS_VFPU4_12(0x01),		MA_PSP,	MO_VFPU },
-	{ "vrndf1.S",	"vd",		MIPS_VFPU4_12(0x02),		MA_PSP,	MO_VFPU },
-	{ "vrndf2.S",	"vd",		MIPS_VFPU4_12(0x03),		MA_PSP,	MO_VFPU },
+	{ "vrnds.S",	"vd",		MIPS_VFPU4_12(0x00),		MA_PSP,		MO_VFPU },
+	{ "vrndi.S",	"vd",		MIPS_VFPU4_12(0x01),		MA_PSP,		MO_VFPU },
+	{ "vrndf1.S",	"vd",		MIPS_VFPU4_12(0x02),		MA_PSP,		MO_VFPU },
+	{ "vrndf2.S",	"vd",		MIPS_VFPU4_12(0x03),		MA_PSP,		MO_VFPU },
 	// TODO: vsBZ?
-	{ "vf2h.S",		"vd,vs",	MIPS_VFPU4_12(0x12),		MA_PSP,	MO_VFPU },
-	{ "vh2f.S",		"vd,vs",	MIPS_VFPU4_12(0x13),		MA_PSP,	MO_VFPU },
+	{ "vf2h.S",		"vd,vs",	MIPS_VFPU4_12(0x12),		MA_PSP,		MO_VFPU },
+	{ "vh2f.S",		"vd,vs",	MIPS_VFPU4_12(0x13),		MA_PSP,		MO_VFPU },
 	// TODO: vsBZ?
-	{ "vlgb.S",		"vd,vs",	MIPS_VFPU4_12(0x17),		MA_PSP,	MO_VFPU },
-	{ "vuc2i.S",	"vd,vs",	MIPS_VFPU4_12(0x18),		MA_PSP,	MO_VFPU },
-	{ "vc2i.S",		"vd,vs",	MIPS_VFPU4_12(0x19),		MA_PSP,	MO_VFPU },
-	{ "vus2i.S",	"vd,vs",	MIPS_VFPU4_12(0x1a),		MA_PSP,	MO_VFPU },
-	{ "vs2i.S",		"vd,vs",	MIPS_VFPU4_12(0x1b),		MA_PSP,	MO_VFPU },
-	{ "vi2uc.S",	"vd,vs",	MIPS_VFPU4_12(0x1c),		MA_PSP,	MO_VFPU },
-	{ "vi2c.S",		"vd,vs",	MIPS_VFPU4_12(0x1d),		MA_PSP,	MO_VFPU },
-	{ "vi2us.S",	"vd,vs",	MIPS_VFPU4_12(0x1e),		MA_PSP,	MO_VFPU },
-	{ "vi2s.S",		"vd,vs",	MIPS_VFPU4_12(0x1f),		MA_PSP,	MO_VFPU },
+	{ "vlgb.S",		"vd,vs",	MIPS_VFPU4_12(0x17),		MA_PSP,		MO_VFPU },
+	{ "vuc2i.S",	"vd,vs",	MIPS_VFPU4_12(0x18),		MA_PSP,		MO_VFPU },
+	{ "vc2i.S",		"vd,vs",	MIPS_VFPU4_12(0x19),		MA_PSP,		MO_VFPU },
+	{ "vus2i.S",	"vd,vs",	MIPS_VFPU4_12(0x1a),		MA_PSP,		MO_VFPU },
+	{ "vs2i.S",		"vd,vs",	MIPS_VFPU4_12(0x1b),		MA_PSP,		MO_VFPU },
+	{ "vi2uc.S",	"vd,vs",	MIPS_VFPU4_12(0x1c),		MA_PSP,		MO_VFPU },
+	{ "vi2c.S",		"vd,vs",	MIPS_VFPU4_12(0x1d),		MA_PSP,		MO_VFPU },
+	{ "vi2us.S",	"vd,vs",	MIPS_VFPU4_12(0x1e),		MA_PSP,		MO_VFPU },
+	{ "vi2s.S",		"vd,vs",	MIPS_VFPU4_12(0x1f),		MA_PSP,		MO_VFPU },
 
 //     31--------------21------16--------------------------------------0
 //     |= VF4-1.3      |   rt  |                                       |
@@ -6333,24 +6352,24 @@ const tMipsOpcode MipsOpcodes[] = {
 //  10 | VMFVC | VMTVC |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |
 //  11 |  ---  |VT4444 |VT5551 |VT5650 |  ---  |  ---  |  ---  |  ---  |
 //     |-------|-------|-------|-------|-------|-------|-------|-------|
-	{ "vsrt1.S",	"vd,vs",	MIPS_VFPU4_13(0x00),		MA_PSP,	MO_VFPU },
-	{ "vsrt2.S",	"vd,vs",	MIPS_VFPU4_13(0x01),		MA_PSP,	MO_VFPU },
-	{ "vbfy1.S",	"vd,vs",	MIPS_VFPU4_13(0x02),		MA_PSP,	MO_VFPU },
-	{ "vbfy2.S",	"vd,vs",	MIPS_VFPU4_13(0x03),		MA_PSP,	MO_VFPU },
-	{ "vocp.S",		"vd,vs",	MIPS_VFPU4_13(0x04),		MA_PSP,	MO_VFPU },
-	{ "vsocp.S",	"vd,vs",	MIPS_VFPU4_13(0x05),		MA_PSP,	MO_VFPU },
-	{ "vfad.S",		"vd,vs",	MIPS_VFPU4_13(0x06),		MA_PSP,	MO_VFPU },
-	{ "vavg.S",		"vd,vs",	MIPS_VFPU4_13(0x07),		MA_PSP,	MO_VFPU },
-	{ "vsrt3.S",	"vd,vs",	MIPS_VFPU4_13(0x08),		MA_PSP,	MO_VFPU },
-	{ "vsrt4.S",	"vd,vs",	MIPS_VFPU4_13(0x09),		MA_PSP,	MO_VFPU },
-	{ "vsgn.S",		"vd,vs",	MIPS_VFPU4_13(0x0a),		MA_PSP,	MO_VFPU },
-	{ "vmfv.S",		"vs,i7",	MIPS_VFPU4_13(0x10)|0x00,	MA_PSP,	MO_VFPU },
-	{ "vmtv.S",		"vs,i7",	MIPS_VFPU4_13(0x11)|0x00,	MA_PSP,	MO_VFPU },
-	{ "vmfvc.S",	"vs,i7",	MIPS_VFPU4_13(0x10)|0x80,	MA_PSP,	MO_VFPU },
-	{ "vmtvc.S",	"vs,i7",	MIPS_VFPU4_13(0x11)|0x80,	MA_PSP,	MO_VFPU },
-	{ "vt4444.S",	"vd,vs",	MIPS_VFPU4_13(0x19),		MA_PSP,	MO_VFPU },
-	{ "vt5551.S",	"vd,vs",	MIPS_VFPU4_13(0x1a),		MA_PSP,	MO_VFPU },
-	{ "vt5650.S",	"vd,vs",	MIPS_VFPU4_13(0x1b),		MA_PSP,	MO_VFPU },
+	{ "vsrt1.S",	"vd,vs",	MIPS_VFPU4_13(0x00),		MA_PSP,		MO_VFPU },
+	{ "vsrt2.S",	"vd,vs",	MIPS_VFPU4_13(0x01),		MA_PSP,		MO_VFPU },
+	{ "vbfy1.S",	"vd,vs",	MIPS_VFPU4_13(0x02),		MA_PSP,		MO_VFPU },
+	{ "vbfy2.S",	"vd,vs",	MIPS_VFPU4_13(0x03),		MA_PSP,		MO_VFPU },
+	{ "vocp.S",		"vd,vs",	MIPS_VFPU4_13(0x04),		MA_PSP,		MO_VFPU },
+	{ "vsocp.S",	"vd,vs",	MIPS_VFPU4_13(0x05),		MA_PSP,		MO_VFPU },
+	{ "vfad.S",		"vd,vs",	MIPS_VFPU4_13(0x06),		MA_PSP,		MO_VFPU },
+	{ "vavg.S",		"vd,vs",	MIPS_VFPU4_13(0x07),		MA_PSP,		MO_VFPU },
+	{ "vsrt3.S",	"vd,vs",	MIPS_VFPU4_13(0x08),		MA_PSP,		MO_VFPU },
+	{ "vsrt4.S",	"vd,vs",	MIPS_VFPU4_13(0x09),		MA_PSP,		MO_VFPU },
+	{ "vsgn.S",		"vd,vs",	MIPS_VFPU4_13(0x0a),		MA_PSP,		MO_VFPU },
+	{ "vmfv.S",		"vs,i7",	MIPS_VFPU4_13(0x10)|0x00,	MA_PSP,		MO_VFPU },
+	{ "vmtv.S",		"vs,i7",	MIPS_VFPU4_13(0x11)|0x00,	MA_PSP,		MO_VFPU },
+	{ "vmfvc.S",	"vs,i7",	MIPS_VFPU4_13(0x10)|0x80,	MA_PSP,		MO_VFPU },
+	{ "vmtvc.S",	"vs,i7",	MIPS_VFPU4_13(0x11)|0x80,	MA_PSP,		MO_VFPU },
+	{ "vt4444.S",	"vd,vs",	MIPS_VFPU4_13(0x19),		MA_PSP,		MO_VFPU },
+	{ "vt5551.S",	"vd,vs",	MIPS_VFPU4_13(0x1a),		MA_PSP,		MO_VFPU },
+	{ "vt5650.S",	"vd,vs",	MIPS_VFPU4_13(0x1b),		MA_PSP,		MO_VFPU },
 
 //     31-------26-----23----------------------------------------------0
 //     |= VFPU5| f     |                                               |
@@ -6358,11 +6377,11 @@ const tMipsOpcode MipsOpcodes[] = {
 //     |--000--|--001--|--010--|--011--|--100--|--101--|--110--|--111--| lo
 //     | VPFXS | VPFXS | VPFXT | VPFXT | VPFXD | VPFXD | VIIM  | VFIM  |
 //     |-------|-------|-------|-------|-------|-------|-------|-------|
-	{ "vpfxs",		"Ws",		MIPS_VFPU5(0),				MA_PSP },
-	{ "vpfxt",		"Ws",		MIPS_VFPU5(2),				MA_PSP },
-	{ "vpfxd",		"Wd",		MIPS_VFPU5(4),				MA_PSP },
-	{ "viim.s",		"vt,i16",	MIPS_VFPU5(6),				MA_PSP,	MO_VFPU_SINGLE },
-	{ "vfim.s",		"vt,ih",	MIPS_VFPU5(7),				MA_PSP,	MO_VFPU_SINGLE },
+	{ "vpfxs",		"Ws",		MIPS_VFPU5(0),				MA_PSP,		0 },
+	{ "vpfxt",		"Ws",		MIPS_VFPU5(2),				MA_PSP,		0 },
+	{ "vpfxd",		"Wd",		MIPS_VFPU5(4),				MA_PSP,		0 },
+	{ "viim.s",		"vt,i16",	MIPS_VFPU5(6),				MA_PSP,		MO_VFPU_SINGLE },
+	{ "vfim.s",		"vt,ih",	MIPS_VFPU5(7),				MA_PSP,		MO_VFPU_SINGLE },
 
 //     31-------26-----23----------------------------------------------0
 //     |= VFPU6| f     |                                               |
@@ -6371,15 +6390,15 @@ const tMipsOpcode MipsOpcodes[] = {
 //     | VMMUL |     V(H)TFM2/3/4      | VMSCL |   *1  |  ---  |VF6-1.1|
 //     |-------|-------|-------|-------|-------|-------|-------|-------|
 //		*1: vcrsp.t/vqmul.q
-	{ "vmmul.S",	"md,ms,mt",		MIPS_VFPU6(0),					MA_PSP, MO_VFPU|MO_TRANSPOSE_VS },
-	{ "vtfm2.p",	"vd,ms,vt",		MIPS_VFPU6(1)|MIPS_VFPUSIZE(1),	MA_PSP, MO_VFPU|MO_VFPU_PAIR },
-	{ "vhtfm2.p",	"vd,ms,vt",		MIPS_VFPU6(2)|MIPS_VFPUSIZE(1),	MA_PSP, MO_VFPU|MO_VFPU_PAIR },
-	{ "vtfm3.t",	"vd,ms,vt",		MIPS_VFPU6(2)|MIPS_VFPUSIZE(2),	MA_PSP, MO_VFPU|MO_VFPU_TRIPLE },
-	{ "vhtfm3.t",	"vd,ms,vt",		MIPS_VFPU6(3)|MIPS_VFPUSIZE(2),	MA_PSP, MO_VFPU|MO_VFPU_TRIPLE },
-	{ "vtfm4.q",	"vd,ms,vt",		MIPS_VFPU6(3)|MIPS_VFPUSIZE(3),	MA_PSP, MO_VFPU|MO_VFPU_QUAD },
-	{ "vmscl.S",	"md,ms,vSt",	MIPS_VFPU6(4),					MA_PSP, MO_VFPU },
-	{ "vcrsp.t",	"vd,vs,vt",		MIPS_VFPU6(5)|MIPS_VFPUSIZE(2),	MA_PSP, MO_VFPU|MO_VFPU_TRIPLE },
-	{ "vqmul.q",	"vd,vs,vt",		MIPS_VFPU6(5)|MIPS_VFPUSIZE(3),	MA_PSP, MO_VFPU|MO_VFPU_QUAD },
+	{ "vmmul.S",	"md,ms,mt",		MIPS_VFPU6(0),					MA_PSP,	MO_VFPU|MO_TRANSPOSE_VS },
+	{ "vtfm2.p",	"vd,ms,vt",		MIPS_VFPU6(1)|MIPS_VFPUSIZE(1),	MA_PSP,	MO_VFPU|MO_VFPU_PAIR },
+	{ "vhtfm2.p",	"vd,ms,vt",		MIPS_VFPU6(2)|MIPS_VFPUSIZE(1),	MA_PSP,	MO_VFPU|MO_VFPU_PAIR },
+	{ "vtfm3.t",	"vd,ms,vt",		MIPS_VFPU6(2)|MIPS_VFPUSIZE(2),	MA_PSP,	MO_VFPU|MO_VFPU_TRIPLE },
+	{ "vhtfm3.t",	"vd,ms,vt",		MIPS_VFPU6(3)|MIPS_VFPUSIZE(2),	MA_PSP,	MO_VFPU|MO_VFPU_TRIPLE },
+	{ "vtfm4.q",	"vd,ms,vt",		MIPS_VFPU6(3)|MIPS_VFPUSIZE(3),	MA_PSP,	MO_VFPU|MO_VFPU_QUAD },
+	{ "vmscl.S",	"md,ms,vSt",	MIPS_VFPU6(4),					MA_PSP,	MO_VFPU },
+	{ "vcrsp.t",	"vd,vs,vt",		MIPS_VFPU6(5)|MIPS_VFPUSIZE(2),	MA_PSP,	MO_VFPU|MO_VFPU_TRIPLE },
+	{ "vqmul.q",	"vd,vs,vt",		MIPS_VFPU6(5)|MIPS_VFPUSIZE(3),	MA_PSP,	MO_VFPU|MO_VFPU_QUAD },
 
 //     31--------23----20----------------------------------------------0
 //     |= VF6-1.1 |  f |                                               |
@@ -6388,7 +6407,7 @@ const tMipsOpcode MipsOpcodes[] = {
 //     |VF6-1.2|  ---  |     VROT      |  ---  |  ---  |  ---  |  ---  |
 //     |-------|-------|-------|-------|-------|-------|-------|-------|
 	// VVVVVVVVVVV iiiii z SSSSSSS z DDDDDDD
-	{ "vrot.S",		"vd,vSs,Wr",	MIPS_VFPU6_1VROT(),		MA_PSP, MO_VFPU },
+	{ "vrot.S",		"vd,vSs,Wr",	MIPS_VFPU6_1VROT(),		MA_PSP,		MO_VFPU },
 
 //     31--------20----16----------------------------------------------0
 //     |= VF6-1.2 |  f |                                               |
@@ -6398,11 +6417,11 @@ const tMipsOpcode MipsOpcodes[] = {
 //   1 |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |
 //     |-------|-------|-------|-------|-------|-------|-------|-------|
 	// VVVVVVVVVVVVVVVV z SSSSSSS z DDDDDDD
-	{ "vmmov.S",	"md,ms",	MIPS_VFPU6_2(0),			MA_PSP, MO_VFPU },
+	{ "vmmov.S",	"md,ms",	MIPS_VFPU6_2(0),			MA_PSP,		MO_VFPU },
 	// VVVVVVVVVVVVVVVV z ------- z DDDDDDD
-	{ "vmidt.S",	"md",		MIPS_VFPU6_2(3),			MA_PSP, MO_VFPU },
-	{ "vmzero.S",	"md",		MIPS_VFPU6_2(6),			MA_PSP, MO_VFPU },
-	{ "vmone.S",	"md",		MIPS_VFPU6_2(7),			MA_PSP, MO_VFPU },
+	{ "vmidt.S",	"md",		MIPS_VFPU6_2(3),			MA_PSP,		MO_VFPU },
+	{ "vmzero.S",	"md",		MIPS_VFPU6_2(6),			MA_PSP,		MO_VFPU },
+	{ "vmone.S",	"md",		MIPS_VFPU6_2(7),			MA_PSP,		MO_VFPU },
 
 //     31---------26------------------------------------------5--------0
 //     |=       RSP|                                         | function|
@@ -6417,119 +6436,119 @@ const tMipsOpcode MipsOpcodes[] = {
 // 110 | VRCP  | VRCPL | VRCPH | VMOV  | VRSQ  | VRSQL | VRSQH | VNOP  | 30..37
 // 111 | VEXTT | VEXTQ | VEXTN |  ---  | VINST | VINSQ | VINSN | VNULL | 38..3F
 //  hi |-------|-------|-------|-------|-------|-------|-------|-------|
-	{ "vmulf",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x00),		MA_RSP, 0 },
-	{ "vmulf",	"Rs,RtRe",		MIPS_RSP_COP2(0x00),		MA_RSP, MO_RSPVRSD },
-	{ "vmulu",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x01),		MA_RSP, 0 },
-	{ "vmulu",	"Rs,RtRe",		MIPS_RSP_COP2(0x01),		MA_RSP, MO_RSPVRSD },
-	{ "vrndp",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x02),		MA_RSP, 0 },
-	{ "vrndp",	"Rs,RtRe",		MIPS_RSP_COP2(0x02),		MA_RSP, MO_RSPVRSD },
-	{ "vmulq",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x03),		MA_RSP, 0 },
-	{ "vmulq",	"Rs,RtRe",		MIPS_RSP_COP2(0x03),		MA_RSP, MO_RSPVRSD },
-	{ "vmudl",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x04),		MA_RSP, 0 },
-	{ "vmudl",	"Rs,RtRe",		MIPS_RSP_COP2(0x04),		MA_RSP, MO_RSPVRSD },
-	{ "vmudm",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x05),		MA_RSP, 0 },
-	{ "vmudm",	"Rs,RtRe",		MIPS_RSP_COP2(0x05),		MA_RSP, MO_RSPVRSD },
-	{ "vmudn",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x06),		MA_RSP, 0 },
-	{ "vmudn",	"Rs,RtRe",		MIPS_RSP_COP2(0x06),		MA_RSP, MO_RSPVRSD },
-	{ "vmudh",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x07),		MA_RSP, 0 },
-	{ "vmudh",	"Rs,RtRe",		MIPS_RSP_COP2(0x07),		MA_RSP, MO_RSPVRSD },
-	{ "vmacf",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x08),		MA_RSP, 0 },
-	{ "vmacf",	"Rs,RtRe",		MIPS_RSP_COP2(0x08),		MA_RSP, MO_RSPVRSD },
-	{ "vmacu",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x09),		MA_RSP, 0 },
-	{ "vmacu",	"Rs,RtRe",		MIPS_RSP_COP2(0x09),		MA_RSP, MO_RSPVRSD },
-	{ "vrndn",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x0a),		MA_RSP, 0 },
-	{ "vrndn",	"Rs,RtRe",		MIPS_RSP_COP2(0x0a),		MA_RSP, MO_RSPVRSD },
-	{ "vmacq",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x0b),		MA_RSP, 0 },
-	{ "vmacq",	"Rs,RtRe",		MIPS_RSP_COP2(0x0b),		MA_RSP, MO_RSPVRSD },
-	{ "vmadl",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x0c),		MA_RSP, 0 },
-	{ "vmadl",	"Rs,RtRe",		MIPS_RSP_COP2(0x0c),		MA_RSP, MO_RSPVRSD },
-	{ "vmadm",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x0d),		MA_RSP, 0 },
-	{ "vmadm",	"Rs,RtRe",		MIPS_RSP_COP2(0x0d),		MA_RSP, MO_RSPVRSD },
-	{ "vmadn",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x0e),		MA_RSP, 0 },
-	{ "vmadn",	"Rs,RtRe",		MIPS_RSP_COP2(0x0e),		MA_RSP, MO_RSPVRSD },
-	{ "vmadh",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x0f),		MA_RSP, 0 },
-	{ "vmadh",	"Rs,RtRe",		MIPS_RSP_COP2(0x0f),		MA_RSP, MO_RSPVRSD },
-	{ "vadd",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x10),		MA_RSP, 0 },
-	{ "vadd",	"Rs,RtRe",		MIPS_RSP_COP2(0x10),		MA_RSP, MO_RSPVRSD },
-	{ "vsub",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x11),		MA_RSP, 0 },
-	{ "vsub",	"Rs,RtRe",		MIPS_RSP_COP2(0x11),		MA_RSP, MO_RSPVRSD },
-	{ "vsut",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x12),		MA_RSP, 0 },
-	{ "vsut",	"Rs,RtRe",		MIPS_RSP_COP2(0x12),		MA_RSP, MO_RSPVRSD },
-	{ "vabs",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x13),		MA_RSP, 0 },
-	{ "vabs",	"Rs,RtRe",		MIPS_RSP_COP2(0x13),		MA_RSP, MO_RSPVRSD },
-	{ "vaddc",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x14),		MA_RSP, 0 },
-	{ "vaddc",	"Rs,RtRe",		MIPS_RSP_COP2(0x14),		MA_RSP, MO_RSPVRSD },
-	{ "vsubc",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x15),		MA_RSP, 0 },
-	{ "vsubc",	"Rs,RtRe",		MIPS_RSP_COP2(0x15),		MA_RSP, MO_RSPVRSD },
-	{ "vaddb",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x16),		MA_RSP, 0 },
-	{ "vaddb",	"Rs,RtRe",		MIPS_RSP_COP2(0x16),		MA_RSP, MO_RSPVRSD },
-	{ "vsubb",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x17),		MA_RSP, 0 },
-	{ "vsubb",	"Rs,RtRe",		MIPS_RSP_COP2(0x17),		MA_RSP, MO_RSPVRSD },
-	{ "vaccb",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x18),		MA_RSP, 0 },
-	{ "vaccb",	"Rs,RtRe",		MIPS_RSP_COP2(0x18),		MA_RSP, MO_RSPVRSD },
-	{ "vsucb",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x19),		MA_RSP, 0 },
-	{ "vsucb",	"Rs,RtRe",		MIPS_RSP_COP2(0x19),		MA_RSP, MO_RSPVRSD },
-	{ "vsad",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x1a),		MA_RSP, 0 },
-	{ "vsad",	"Rs,RtRe",		MIPS_RSP_COP2(0x1a),		MA_RSP, MO_RSPVRSD },
-	{ "vsac",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x1b),		MA_RSP, 0 },
-	{ "vsac",	"Rs,RtRe",		MIPS_RSP_COP2(0x1b),		MA_RSP, MO_RSPVRSD },
-	{ "vsum",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x1c),		MA_RSP, 0 },
-	{ "vsum",	"Rs,RtRe",		MIPS_RSP_COP2(0x1c),		MA_RSP, MO_RSPVRSD },
-	{ "vsar",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x1d),		MA_RSP, 0 },
-	{ "vsar",	"Rs,RtRe",		MIPS_RSP_COP2(0x1d),		MA_RSP, MO_RSPVRSD },
-	{ "vacc",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x1e),		MA_RSP, 0 },
-	{ "vacc",	"Rs,RtRe",		MIPS_RSP_COP2(0x1e),		MA_RSP, MO_RSPVRSD },
-	{ "vsuc",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x1f),		MA_RSP, 0 },
-	{ "vsuc",	"Rs,RtRe",		MIPS_RSP_COP2(0x1f),		MA_RSP, MO_RSPVRSD },
-	{ "vlt",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x20),		MA_RSP, 0 },
-	{ "vlt",	"Rs,RtRe",		MIPS_RSP_COP2(0x20),		MA_RSP, MO_RSPVRSD },
-	{ "veq",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x21),		MA_RSP, 0 },
-	{ "veq",	"Rs,RtRe",		MIPS_RSP_COP2(0x21),		MA_RSP, MO_RSPVRSD },
-	{ "vne",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x22),		MA_RSP, 0 },
-	{ "vne",	"Rs,RtRe",		MIPS_RSP_COP2(0x22),		MA_RSP, MO_RSPVRSD },
-	{ "vge",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x23),		MA_RSP, 0 },
-	{ "vge",	"Rs,RtRe",		MIPS_RSP_COP2(0x23),		MA_RSP, MO_RSPVRSD },
-	{ "vcl",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x24),		MA_RSP, 0 },
-	{ "vcl",	"Rs,RtRe",		MIPS_RSP_COP2(0x24),		MA_RSP, MO_RSPVRSD },
-	{ "vch",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x25),		MA_RSP, 0 },
-	{ "vch",	"Rs,RtRe",		MIPS_RSP_COP2(0x25),		MA_RSP, MO_RSPVRSD },
-	{ "vcr",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x26),		MA_RSP, 0 },
-	{ "vcr",	"Rs,RtRe",		MIPS_RSP_COP2(0x26),		MA_RSP, MO_RSPVRSD },
-	{ "vmrg",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x27),		MA_RSP, 0 },
-	{ "vmrg",	"Rs,RtRe",		MIPS_RSP_COP2(0x27),		MA_RSP, MO_RSPVRSD },
-	{ "vand",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x28),		MA_RSP, 0 },
-	{ "vand",	"Rs,RtRe",		MIPS_RSP_COP2(0x28),		MA_RSP, MO_RSPVRSD },
-	{ "vnand",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x29),		MA_RSP, 0 },
-	{ "vnand",	"Rs,RtRe",		MIPS_RSP_COP2(0x29),		MA_RSP, MO_RSPVRSD },
-	{ "vor",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x2a),		MA_RSP, 0 },
-	{ "vor",	"Rs,RtRe",		MIPS_RSP_COP2(0x2a),		MA_RSP, MO_RSPVRSD },
-	{ "vnor",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x2b),		MA_RSP, 0 },
-	{ "vnor",	"Rs,RtRe",		MIPS_RSP_COP2(0x2b),		MA_RSP, MO_RSPVRSD },
-	{ "vxor",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x2c),		MA_RSP, 0 },
-	{ "vxor",	"Rs,RtRe",		MIPS_RSP_COP2(0x2c),		MA_RSP, MO_RSPVRSD },
-	{ "vnxor",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x2d),		MA_RSP, 0 },
-	{ "vnxor",	"Rs,RtRe",		MIPS_RSP_COP2(0x2d),		MA_RSP, MO_RSPVRSD },
-	{ "vrcp",	"RdRm,RtRl",	MIPS_RSP_COP2(0x30),		MA_RSP, 0 },
-	{ "vrcpl",	"RdRm,RtRl",	MIPS_RSP_COP2(0x31),		MA_RSP, 0 },
-	{ "vrcph",	"RdRm,RtRl",	MIPS_RSP_COP2(0x32),		MA_RSP, 0 },
-	{ "vmov",	"RdRm,RtRl",	MIPS_RSP_COP2(0x33),		MA_RSP, 0 },
-	{ "vrsq",	"RdRm,RtRl",	MIPS_RSP_COP2(0x34),		MA_RSP, 0 },
-	{ "vrsql",	"RdRm,RtRl",	MIPS_RSP_COP2(0x35),		MA_RSP, 0 },
-	{ "vrsqh",	"RdRm,RtRl",	MIPS_RSP_COP2(0x36),		MA_RSP, 0 },
-	{ "vnop",	"",				MIPS_RSP_COP2(0x37),		MA_RSP, 0 },
-	{ "vextt",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x38),		MA_RSP, 0 },
-	{ "vextt",	"Rs,RtRe",		MIPS_RSP_COP2(0x38),		MA_RSP, MO_RSPVRSD },
-	{ "vextq",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x39),		MA_RSP, 0 },
-	{ "vextq",	"Rs,RtRe",		MIPS_RSP_COP2(0x39),		MA_RSP, MO_RSPVRSD },
-	{ "vextn",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x3a),		MA_RSP, 0 },
-	{ "vextn",	"Rs,RtRe",		MIPS_RSP_COP2(0x3a),		MA_RSP, MO_RSPVRSD },
-	{ "vinst",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x3c),		MA_RSP, 0 },
-	{ "vinst",	"Rs,RtRe",		MIPS_RSP_COP2(0x3c),		MA_RSP, MO_RSPVRSD },
-	{ "vinsq",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x3d),		MA_RSP, 0 },
-	{ "vinsq",	"Rs,RtRe",		MIPS_RSP_COP2(0x3d),		MA_RSP, MO_RSPVRSD },
-	{ "vinsn",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x3e),		MA_RSP, 0 },
-	{ "vinsn",	"Rs,RtRe",		MIPS_RSP_COP2(0x3e),		MA_RSP, MO_RSPVRSD },
-	{ "vnull",	"",				MIPS_RSP_COP2(0x3f),		MA_RSP, 0 },
+	{ "vmulf",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x00),		MA_RSP,		0 },
+	{ "vmulf",	"Rs,RtRe",		MIPS_RSP_COP2(0x00),		MA_RSP,		MO_RSPVRSD },
+	{ "vmulu",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x01),		MA_RSP,		0 },
+	{ "vmulu",	"Rs,RtRe",		MIPS_RSP_COP2(0x01),		MA_RSP,		MO_RSPVRSD },
+	{ "vrndp",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x02),		MA_RSP,		0 },
+	{ "vrndp",	"Rs,RtRe",		MIPS_RSP_COP2(0x02),		MA_RSP,		MO_RSPVRSD },
+	{ "vmulq",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x03),		MA_RSP,		0 },
+	{ "vmulq",	"Rs,RtRe",		MIPS_RSP_COP2(0x03),		MA_RSP,		MO_RSPVRSD },
+	{ "vmudl",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x04),		MA_RSP,		0 },
+	{ "vmudl",	"Rs,RtRe",		MIPS_RSP_COP2(0x04),		MA_RSP,		MO_RSPVRSD },
+	{ "vmudm",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x05),		MA_RSP,		0 },
+	{ "vmudm",	"Rs,RtRe",		MIPS_RSP_COP2(0x05),		MA_RSP,		MO_RSPVRSD },
+	{ "vmudn",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x06),		MA_RSP,		0 },
+	{ "vmudn",	"Rs,RtRe",		MIPS_RSP_COP2(0x06),		MA_RSP,		MO_RSPVRSD },
+	{ "vmudh",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x07),		MA_RSP,		0 },
+	{ "vmudh",	"Rs,RtRe",		MIPS_RSP_COP2(0x07),		MA_RSP,		MO_RSPVRSD },
+	{ "vmacf",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x08),		MA_RSP,		0 },
+	{ "vmacf",	"Rs,RtRe",		MIPS_RSP_COP2(0x08),		MA_RSP,		MO_RSPVRSD },
+	{ "vmacu",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x09),		MA_RSP,		0 },
+	{ "vmacu",	"Rs,RtRe",		MIPS_RSP_COP2(0x09),		MA_RSP,		MO_RSPVRSD },
+	{ "vrndn",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x0a),		MA_RSP,		0 },
+	{ "vrndn",	"Rs,RtRe",		MIPS_RSP_COP2(0x0a),		MA_RSP,		MO_RSPVRSD },
+	{ "vmacq",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x0b),		MA_RSP,		0 },
+	{ "vmacq",	"Rs,RtRe",		MIPS_RSP_COP2(0x0b),		MA_RSP,		MO_RSPVRSD },
+	{ "vmadl",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x0c),		MA_RSP,		0 },
+	{ "vmadl",	"Rs,RtRe",		MIPS_RSP_COP2(0x0c),		MA_RSP,		MO_RSPVRSD },
+	{ "vmadm",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x0d),		MA_RSP,		0 },
+	{ "vmadm",	"Rs,RtRe",		MIPS_RSP_COP2(0x0d),		MA_RSP,		MO_RSPVRSD },
+	{ "vmadn",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x0e),		MA_RSP,		0 },
+	{ "vmadn",	"Rs,RtRe",		MIPS_RSP_COP2(0x0e),		MA_RSP,		MO_RSPVRSD },
+	{ "vmadh",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x0f),		MA_RSP,		0 },
+	{ "vmadh",	"Rs,RtRe",		MIPS_RSP_COP2(0x0f),		MA_RSP,		MO_RSPVRSD },
+	{ "vadd",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x10),		MA_RSP,		0 },
+	{ "vadd",	"Rs,RtRe",		MIPS_RSP_COP2(0x10),		MA_RSP,		MO_RSPVRSD },
+	{ "vsub",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x11),		MA_RSP,		0 },
+	{ "vsub",	"Rs,RtRe",		MIPS_RSP_COP2(0x11),		MA_RSP,		MO_RSPVRSD },
+	{ "vsut",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x12),		MA_RSP,		0 },
+	{ "vsut",	"Rs,RtRe",		MIPS_RSP_COP2(0x12),		MA_RSP,		MO_RSPVRSD },
+	{ "vabs",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x13),		MA_RSP,		0 },
+	{ "vabs",	"Rs,RtRe",		MIPS_RSP_COP2(0x13),		MA_RSP,		MO_RSPVRSD },
+	{ "vaddc",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x14),		MA_RSP,		0 },
+	{ "vaddc",	"Rs,RtRe",		MIPS_RSP_COP2(0x14),		MA_RSP,		MO_RSPVRSD },
+	{ "vsubc",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x15),		MA_RSP,		0 },
+	{ "vsubc",	"Rs,RtRe",		MIPS_RSP_COP2(0x15),		MA_RSP,		MO_RSPVRSD },
+	{ "vaddb",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x16),		MA_RSP,		0 },
+	{ "vaddb",	"Rs,RtRe",		MIPS_RSP_COP2(0x16),		MA_RSP,		MO_RSPVRSD },
+	{ "vsubb",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x17),		MA_RSP,		0 },
+	{ "vsubb",	"Rs,RtRe",		MIPS_RSP_COP2(0x17),		MA_RSP,		MO_RSPVRSD },
+	{ "vaccb",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x18),		MA_RSP,		0 },
+	{ "vaccb",	"Rs,RtRe",		MIPS_RSP_COP2(0x18),		MA_RSP,		MO_RSPVRSD },
+	{ "vsucb",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x19),		MA_RSP,		0 },
+	{ "vsucb",	"Rs,RtRe",		MIPS_RSP_COP2(0x19),		MA_RSP,		MO_RSPVRSD },
+	{ "vsad",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x1a),		MA_RSP,		0 },
+	{ "vsad",	"Rs,RtRe",		MIPS_RSP_COP2(0x1a),		MA_RSP,		MO_RSPVRSD },
+	{ "vsac",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x1b),		MA_RSP,		0 },
+	{ "vsac",	"Rs,RtRe",		MIPS_RSP_COP2(0x1b),		MA_RSP,		MO_RSPVRSD },
+	{ "vsum",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x1c),		MA_RSP,		0 },
+	{ "vsum",	"Rs,RtRe",		MIPS_RSP_COP2(0x1c),		MA_RSP,		MO_RSPVRSD },
+	{ "vsar",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x1d),		MA_RSP,		0 },
+	{ "vsar",	"Rs,RtRe",		MIPS_RSP_COP2(0x1d),		MA_RSP,		MO_RSPVRSD },
+	{ "vacc",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x1e),		MA_RSP,		0 },
+	{ "vacc",	"Rs,RtRe",		MIPS_RSP_COP2(0x1e),		MA_RSP,		MO_RSPVRSD },
+	{ "vsuc",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x1f),		MA_RSP,		0 },
+	{ "vsuc",	"Rs,RtRe",		MIPS_RSP_COP2(0x1f),		MA_RSP,		MO_RSPVRSD },
+	{ "vlt",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x20),		MA_RSP,		0 },
+	{ "vlt",	"Rs,RtRe",		MIPS_RSP_COP2(0x20),		MA_RSP,		MO_RSPVRSD },
+	{ "veq",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x21),		MA_RSP,		0 },
+	{ "veq",	"Rs,RtRe",		MIPS_RSP_COP2(0x21),		MA_RSP,		MO_RSPVRSD },
+	{ "vne",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x22),		MA_RSP,		0 },
+	{ "vne",	"Rs,RtRe",		MIPS_RSP_COP2(0x22),		MA_RSP,		MO_RSPVRSD },
+	{ "vge",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x23),		MA_RSP,		0 },
+	{ "vge",	"Rs,RtRe",		MIPS_RSP_COP2(0x23),		MA_RSP,		MO_RSPVRSD },
+	{ "vcl",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x24),		MA_RSP,		0 },
+	{ "vcl",	"Rs,RtRe",		MIPS_RSP_COP2(0x24),		MA_RSP,		MO_RSPVRSD },
+	{ "vch",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x25),		MA_RSP,		0 },
+	{ "vch",	"Rs,RtRe",		MIPS_RSP_COP2(0x25),		MA_RSP,		MO_RSPVRSD },
+	{ "vcr",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x26),		MA_RSP,		0 },
+	{ "vcr",	"Rs,RtRe",		MIPS_RSP_COP2(0x26),		MA_RSP,		MO_RSPVRSD },
+	{ "vmrg",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x27),		MA_RSP,		0 },
+	{ "vmrg",	"Rs,RtRe",		MIPS_RSP_COP2(0x27),		MA_RSP,		MO_RSPVRSD },
+	{ "vand",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x28),		MA_RSP,		0 },
+	{ "vand",	"Rs,RtRe",		MIPS_RSP_COP2(0x28),		MA_RSP,		MO_RSPVRSD },
+	{ "vnand",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x29),		MA_RSP,		0 },
+	{ "vnand",	"Rs,RtRe",		MIPS_RSP_COP2(0x29),		MA_RSP,		MO_RSPVRSD },
+	{ "vor",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x2a),		MA_RSP,		0 },
+	{ "vor",	"Rs,RtRe",		MIPS_RSP_COP2(0x2a),		MA_RSP,		MO_RSPVRSD },
+	{ "vnor",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x2b),		MA_RSP,		0 },
+	{ "vnor",	"Rs,RtRe",		MIPS_RSP_COP2(0x2b),		MA_RSP,		MO_RSPVRSD },
+	{ "vxor",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x2c),		MA_RSP,		0 },
+	{ "vxor",	"Rs,RtRe",		MIPS_RSP_COP2(0x2c),		MA_RSP,		MO_RSPVRSD },
+	{ "vnxor",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x2d),		MA_RSP,		0 },
+	{ "vnxor",	"Rs,RtRe",		MIPS_RSP_COP2(0x2d),		MA_RSP,		MO_RSPVRSD },
+	{ "vrcp",	"RdRm,RtRl",	MIPS_RSP_COP2(0x30),		MA_RSP,		0 },
+	{ "vrcpl",	"RdRm,RtRl",	MIPS_RSP_COP2(0x31),		MA_RSP,		0 },
+	{ "vrcph",	"RdRm,RtRl",	MIPS_RSP_COP2(0x32),		MA_RSP,		0 },
+	{ "vmov",	"RdRm,RtRl",	MIPS_RSP_COP2(0x33),		MA_RSP,		0 },
+	{ "vrsq",	"RdRm,RtRl",	MIPS_RSP_COP2(0x34),		MA_RSP,		0 },
+	{ "vrsql",	"RdRm,RtRl",	MIPS_RSP_COP2(0x35),		MA_RSP,		0 },
+	{ "vrsqh",	"RdRm,RtRl",	MIPS_RSP_COP2(0x36),		MA_RSP,		0 },
+	{ "vnop",	"",				MIPS_RSP_COP2(0x37),		MA_RSP,		0 },
+	{ "vextt",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x38),		MA_RSP,		0 },
+	{ "vextt",	"Rs,RtRe",		MIPS_RSP_COP2(0x38),		MA_RSP,		MO_RSPVRSD },
+	{ "vextq",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x39),		MA_RSP,		0 },
+	{ "vextq",	"Rs,RtRe",		MIPS_RSP_COP2(0x39),		MA_RSP,		MO_RSPVRSD },
+	{ "vextn",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x3a),		MA_RSP,		0 },
+	{ "vextn",	"Rs,RtRe",		MIPS_RSP_COP2(0x3a),		MA_RSP,		MO_RSPVRSD },
+	{ "vinst",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x3c),		MA_RSP,		0 },
+	{ "vinst",	"Rs,RtRe",		MIPS_RSP_COP2(0x3c),		MA_RSP,		MO_RSPVRSD },
+	{ "vinsq",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x3d),		MA_RSP,		0 },
+	{ "vinsq",	"Rs,RtRe",		MIPS_RSP_COP2(0x3d),		MA_RSP,		MO_RSPVRSD },
+	{ "vinsn",	"Rd,Rs,RtRe",	MIPS_RSP_COP2(0x3e),		MA_RSP,		0 },
+	{ "vinsn",	"Rs,RtRe",		MIPS_RSP_COP2(0x3e),		MA_RSP,		MO_RSPVRSD },
+	{ "vnull",	"",				MIPS_RSP_COP2(0x3f),		MA_RSP,		0 },
 
 //     31---------26--------------------15-------11--------------------0
 //     |=      LWC2|                    |   rd    |                    |
@@ -6540,30 +6559,30 @@ const tMipsOpcode MipsOpcodes[] = {
 //  10 |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  | 10..17
 //  11 |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  | 18..1F
 //  hi |-------|-------|-------|-------|-------|-------|-------|-------|
-	{"lbv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x00),		MA_RSP, 0 },
-	{"lbv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x00),		MA_RSP, 0 },
-	{"lsv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x01),		MA_RSP, MO_RSP_HWOFFSET },
-	{"lsv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x01),		MA_RSP, MO_RSP_HWOFFSET },
-	{"llv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x02),		MA_RSP, MO_RSP_WOFFSET  },
-	{"llv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x02),		MA_RSP, MO_RSP_WOFFSET  },
-	{"ldv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x03),		MA_RSP, MO_RSP_DWOFFSET },
-	{"ldv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x03),		MA_RSP, MO_RSP_DWOFFSET },
-	{"lqv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x04),		MA_RSP, MO_RSP_QWOFFSET },
-	{"lqv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x04),		MA_RSP, MO_RSP_QWOFFSET },
-	{"lrv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x05),		MA_RSP, MO_RSP_QWOFFSET },
-	{"lrv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x05),		MA_RSP, MO_RSP_QWOFFSET },
-	{"lpv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x06),		MA_RSP, MO_RSP_DWOFFSET },
-	{"lpv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x06),		MA_RSP, MO_RSP_DWOFFSET },
-	{"luv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x07),		MA_RSP, MO_RSP_DWOFFSET },
-	{"luv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x07),		MA_RSP, MO_RSP_DWOFFSET },
-	{"lhv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x08),		MA_RSP, MO_RSP_QWOFFSET },
-	{"lhv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x08),		MA_RSP, MO_RSP_QWOFFSET },
-	{"lfv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x09),		MA_RSP, MO_RSP_QWOFFSET },
-	{"lfv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x09),		MA_RSP, MO_RSP_QWOFFSET },
-	{"lwv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x0a),		MA_RSP, MO_RSP_QWOFFSET },
-	{"lwv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x0a),		MA_RSP, MO_RSP_QWOFFSET },
-	{"ltv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x0b),		MA_RSP, MO_RSP_QWOFFSET },
-	{"ltv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x0b),		MA_RSP, MO_RSP_QWOFFSET },
+	{"lbv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x00),		MA_RSP,		0 },
+	{"lbv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x00),		MA_RSP,		0 },
+	{"lsv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x01),		MA_RSP,		MO_RSP_HWOFFSET },
+	{"lsv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x01),		MA_RSP,		MO_RSP_HWOFFSET },
+	{"llv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x02),		MA_RSP,		MO_RSP_WOFFSET  },
+	{"llv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x02),		MA_RSP,		MO_RSP_WOFFSET  },
+	{"ldv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x03),		MA_RSP,		MO_RSP_DWOFFSET },
+	{"ldv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x03),		MA_RSP,		MO_RSP_DWOFFSET },
+	{"lqv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x04),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"lqv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x04),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"lrv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x05),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"lrv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x05),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"lpv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x06),		MA_RSP,		MO_RSP_DWOFFSET },
+	{"lpv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x06),		MA_RSP,		MO_RSP_DWOFFSET },
+	{"luv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x07),		MA_RSP,		MO_RSP_DWOFFSET },
+	{"luv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x07),		MA_RSP,		MO_RSP_DWOFFSET },
+	{"lhv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x08),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"lhv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x08),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"lfv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x09),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"lfv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x09),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"lwv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x0a),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"lwv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x0a),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"ltv",		"RtRo,i7(s)",	MIPS_RSP_LWC2(0x0b),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"ltv",		"RtRo,(s)",		MIPS_RSP_LWC2(0x0b),		MA_RSP,		MO_RSP_QWOFFSET },
 
 //     31---------26--------------------15-------11--------------------0
 //     |=      SWC2|                    |   rd    |                    |
@@ -6574,32 +6593,32 @@ const tMipsOpcode MipsOpcodes[] = {
 //  10 |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  | 10..17
 //  11 |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  |  ---  | 18..1F
 //  hi |-------|-------|-------|-------|-------|-------|-------|-------|
-	{"sbv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x00),		MA_RSP, 0 },
-	{"sbv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x00),		MA_RSP, 0 },
-	{"ssv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x01),		MA_RSP, MO_RSP_HWOFFSET },
-	{"ssv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x01),		MA_RSP, MO_RSP_HWOFFSET },
-	{"slv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x02),		MA_RSP, MO_RSP_WOFFSET },
-	{"slv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x02),		MA_RSP, MO_RSP_WOFFSET },
-	{"sdv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x03),		MA_RSP, MO_RSP_DWOFFSET },
-	{"sdv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x03),		MA_RSP, MO_RSP_DWOFFSET },
-	{"sqv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x04),		MA_RSP, MO_RSP_QWOFFSET },
-	{"sqv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x04),		MA_RSP, MO_RSP_QWOFFSET },
-	{"srv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x05),		MA_RSP, MO_RSP_QWOFFSET },
-	{"srv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x05),		MA_RSP, MO_RSP_QWOFFSET },
-	{"spv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x06),		MA_RSP, MO_RSP_DWOFFSET },
-	{"spv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x06),		MA_RSP, MO_RSP_DWOFFSET },
-	{"suv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x07),		MA_RSP, MO_RSP_DWOFFSET },
-	{"suv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x07),		MA_RSP, MO_RSP_DWOFFSET },
-	{"shv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x08),		MA_RSP, MO_RSP_QWOFFSET },
-	{"shv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x08),		MA_RSP, MO_RSP_QWOFFSET },
-	{"sfv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x09),		MA_RSP, MO_RSP_QWOFFSET },
-	{"sfv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x09),		MA_RSP, MO_RSP_QWOFFSET },
-	{"swv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x0a),		MA_RSP, MO_RSP_QWOFFSET },
-	{"swv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x0a),		MA_RSP, MO_RSP_QWOFFSET },
-	{"stv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x0b),		MA_RSP, MO_RSP_QWOFFSET },
-	{"stv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x0b),		MA_RSP, MO_RSP_QWOFFSET },
+	{"sbv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x00),		MA_RSP,		0 },
+	{"sbv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x00),		MA_RSP,		0 },
+	{"ssv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x01),		MA_RSP,		MO_RSP_HWOFFSET },
+	{"ssv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x01),		MA_RSP,		MO_RSP_HWOFFSET },
+	{"slv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x02),		MA_RSP,		MO_RSP_WOFFSET },
+	{"slv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x02),		MA_RSP,		MO_RSP_WOFFSET },
+	{"sdv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x03),		MA_RSP,		MO_RSP_DWOFFSET },
+	{"sdv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x03),		MA_RSP,		MO_RSP_DWOFFSET },
+	{"sqv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x04),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"sqv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x04),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"srv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x05),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"srv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x05),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"spv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x06),		MA_RSP,		MO_RSP_DWOFFSET },
+	{"spv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x06),		MA_RSP,		MO_RSP_DWOFFSET },
+	{"suv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x07),		MA_RSP,		MO_RSP_DWOFFSET },
+	{"suv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x07),		MA_RSP,		MO_RSP_DWOFFSET },
+	{"shv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x08),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"shv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x08),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"sfv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x09),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"sfv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x09),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"swv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x0a),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"swv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x0a),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"stv",		"RtRo,i7(s)",	MIPS_RSP_SWC2(0x0b),		MA_RSP,		MO_RSP_QWOFFSET },
+	{"stv",		"RtRo,(s)",		MIPS_RSP_SWC2(0x0b),		MA_RSP,		MO_RSP_QWOFFSET },
 	// END
-	{ nullptr,	nullptr,		0,							0 }
+	{ nullptr,	nullptr,		0,							0,			0 },
 };
 
 const MipsArchDefinition mipsArchs[] = {
@@ -6951,13 +6970,13 @@ const MipsRegisterDescriptor mipsRspVectorRegisters[] = {
 std::unique_ptr<CAssemblerCommand> parseDirectiveResetDelay(Parser& parser, int flags)
 {
 	Mips.SetIgnoreDelay(true);
-	return make_unique<DummyCommand>();
+	return ::make_unique<DummyCommand>();
 }
 
 std::unique_ptr<CAssemblerCommand> parseDirectiveFixLoadDelay(Parser& parser, int flags)
 {
 	Mips.SetFixLoadDelay(true);
-	return make_unique<DummyCommand>();
+	return ::make_unique<DummyCommand>();
 }
 
 std::unique_ptr<CAssemblerCommand> parseDirectiveLoadElf(Parser& parser, int flags)
@@ -7001,7 +7020,7 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveImportObj(Parser& parser, int f
 		if (Mips.GetVersion() == MARCH_PSX)
 		{
 			parser.printError(start,L"Constructor not supported for PSX libraries");
-			return make_unique<InvalidCommand>();
+			return ::make_unique<InvalidCommand>();
 		}
 
 		return ::make_unique<DirectiveObjImport>(inputName,ctorName);
@@ -8314,7 +8333,7 @@ std::unique_ptr<CMipsInstruction> MipsParser::parseOpcode(Parser& parser)
 			if (parseParameters(parser,MipsOpcodes[z]) == true)
 			{
 				// success, return opcode
-				return make_unique<CMipsInstruction>(opcodeData,immediate,registers);
+				return ::make_unique<CMipsInstruction>(opcodeData,immediate,registers);
 			}
 
 			parser.getTokenizer()->setPosition(tokenPos);
@@ -8432,7 +8451,7 @@ void MipsOpcodeFormatter::handleImmediate(MipsImmediateType type, unsigned int o
 	switch (type)
 	{
 	case MipsImmediateType::ImmediateHalfFloat:
-		buffer += formatString(L"%f",*((float*)&originalValue));
+		buffer += formatString(L"%f", bitsToFloat(originalValue));
 		break;
 	case MipsImmediateType::Immediate16:
 		if (!(opcodeFlags & MO_IPCR) && originalValue & 0x8000)
@@ -8542,9 +8561,8 @@ const std::wstring& MipsOpcodeFormatter::formatOpcode(const MipsOpcodeData& opDa
 	return buffer;
 }
 
-#undef CHECK
-
 // file: Archs/MIPS/PsxRelocator.cpp
+#include <map>
 
 struct PsxLibEntry
 {
@@ -9185,6 +9203,7 @@ std::unique_ptr<IElfRelocator> CInvalidArchitecture::getElfRelocator()
 	return nullptr;
 }
 
+
 // file: Commands/CAssemblerCommand.cpp
 
 CAssemblerCommand::CAssemblerCommand()
@@ -9410,7 +9429,6 @@ private:
 };
 
 // file: Commands/CDirectiveArea.cpp
-
 #include <algorithm>
 
 CDirectiveArea::CDirectiveArea(Expression& size)
@@ -10740,7 +10758,7 @@ void DirectiveObjImport::writeSymData(SymbolData& symData) const
 class CDirectiveMessage: public CAssemblerCommand
 {
 public:
-	enum class Type { Invalid, Warning, Error, Notice };
+	enum class Type { Warning, Error, Notice };
 	CDirectiveMessage(Type type, Expression exp);
 	virtual bool Validate();
 	virtual void Encode() const {};
@@ -10842,7 +10860,6 @@ void CommandSequence::writeSymData(SymbolData& symData) const
 }
 
 // file: Core/ELF/ElfFile.cpp
-
 #include <vector>
 #include <algorithm>
 
@@ -11635,7 +11652,7 @@ std::unique_ptr<CAssemblerCommand> ElfRelocator::generateCtor(const std::wstring
 
 	auto func = ::make_unique<CDirectiveFunction>(ctorName,ctorName);
 	func->setContent(std::move(content));
-	return std::move(func);
+	return func;
 }
 
 void ElfRelocator::loadRelocation(Elf32_Rel& rel, ByteArray& data, int offset, Endianness endianness)
@@ -11866,7 +11883,6 @@ void ElfRelocator::writeSymbols(SymbolData& symData) const
 }
 
 // file: Core/Assembler.cpp
-
 #include <thread>
 
 void AddFileName(const std::wstring& FileName)
@@ -12078,6 +12094,7 @@ bool runArmips(ArmipsArguments& settings)
 }
 
 // file: Core/Common.cpp
+#include <sys/stat.h>
 
 FileManager fileManager;
 FileManager* g_fileManager = &fileManager;
@@ -13106,7 +13123,6 @@ Expression createConstExpression(int64_t value)
 }
 
 // file: Core/ExpressionFunctions.cpp
-
 #if ARMIPS_REGEXP
 #include <regex>
 #endif
@@ -14139,7 +14155,6 @@ bool FileManager::advanceMemory(size_t bytes)
 }
 
 // file: Core/Misc.cpp
-
 #include <iostream>
 
 #ifdef _WIN32
@@ -14361,7 +14376,6 @@ void TempData::writeLine(int64_t memoryAddress, const std::wstring& text)
 }
 
 // file: Core/SymbolData.cpp
-
 #include <algorithm>
 
 SymbolData::SymbolData()
@@ -14823,17 +14837,17 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveOpen(Parser& parser, int flags)
 	if (list.back().evaluateInteger(memoryAddress) == false)
 		return nullptr;
 
-	auto file = make_unique<CDirectiveFile>();
+	auto file = ::make_unique<CDirectiveFile>();
 	if (list.size() == 3)
 	{
 		if (list[1].evaluateString(outputName,false) == false)
 			return nullptr;
 
 		file->initCopy(inputName,outputName,memoryAddress);
-		return std::move(file);
+		return file;
 	} else {
 		file->initOpen(inputName,memoryAddress);
-		return std::move(file);
+		return file;
 	}
 }
 
@@ -14852,16 +14866,16 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveCreate(Parser& parser, int flag
 	if (list.back().evaluateInteger(memoryAddress) == false)
 		return nullptr;
 
-	auto file = make_unique<CDirectiveFile>();
+	auto file = ::make_unique<CDirectiveFile>();
 	file->initCreate(inputName,memoryAddress);
-	return std::move(file);
+	return file;
 }
 
 std::unique_ptr<CAssemblerCommand> parseDirectiveClose(Parser& parser, int flags)
 {
-	auto file = make_unique<CDirectiveFile>();
+	auto file = ::make_unique<CDirectiveFile>();
 	file->initClose();
-	return std::move(file);
+	return file;
 }
 
 std::unique_ptr<CAssemblerCommand> parseDirectiveIncbin(Parser& parser, int flags)
@@ -14881,7 +14895,7 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveIncbin(Parser& parser, int flag
 	if (list.size() == 3)
 		incbin->setSize(list[2]);
 
-	return std::move(incbin);
+	return incbin;
 }
 
 std::unique_ptr<CAssemblerCommand> parseDirectivePosition(Parser& parser, int flags)
@@ -14903,7 +14917,7 @@ std::unique_ptr<CAssemblerCommand> parseDirectivePosition(Parser& parser, int fl
 		return nullptr;
 	}
 
-	return make_unique<CDirectivePosition>(exp,type);
+	return ::make_unique<CDirectivePosition>(exp,type);
 }
 
 std::unique_ptr<CAssemblerCommand> parseDirectiveAlignFill(Parser& parser, int flags)
@@ -14925,16 +14939,16 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveAlignFill(Parser& parser, int f
 	}
 
 	if (mode != CDirectiveAlignFill::Fill && parser.peekToken().type == TokenType::Separator)
-		return make_unique<CDirectiveAlignFill>(UINT64_C(4),mode);
+		return ::make_unique<CDirectiveAlignFill>(UINT64_C(4),mode);
 
 	std::vector<Expression> list;
 	if (parser.parseExpressionList(list,1,2) == false)
 		return nullptr;
 
 	if (list.size() == 2)
-		return make_unique<CDirectiveAlignFill>(list[0],list[1],mode);
+		return ::make_unique<CDirectiveAlignFill>(list[0],list[1],mode);
 	else
-		return make_unique<CDirectiveAlignFill>(list[0],mode);
+		return ::make_unique<CDirectiveAlignFill>(list[0],mode);
 }
 
 std::unique_ptr<CAssemblerCommand> parseDirectiveSkip(Parser& parser, int flags)
@@ -14943,7 +14957,7 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveSkip(Parser& parser, int flags)
 	if (parser.parseExpressionList(list,1,1) == false)
 		return nullptr;
 
-	return make_unique<CDirectiveSkip>(list[0]);
+	return ::make_unique<CDirectiveSkip>(list[0]);
 }
 
 std::unique_ptr<CAssemblerCommand> parseDirectiveHeaderSize(Parser& parser, int flags)
@@ -14952,7 +14966,7 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveHeaderSize(Parser& parser, int 
 	if (exp.isLoaded() == false)
 		return nullptr;
 
-	return make_unique<CDirectiveHeaderSize>(exp);
+	return ::make_unique<CDirectiveHeaderSize>(exp);
 }
 
 std::unique_ptr<CAssemblerCommand> parseDirectiveObjImport(Parser& parser, int flags)
@@ -14993,7 +15007,7 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveConditional(Parser& parser, int
 		if (exp.isLoaded() == false)
 		{
 			parser.printError(start,L"Invalid condition");
-			return make_unique<DummyCommand>();
+			return ::make_unique<DummyCommand>();
 		}
 
 		if (exp.isConstExpression())
@@ -15080,19 +15094,19 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveConditional(Parser& parser, int
 		if (elseBlock != nullptr)
 			return elseBlock;
 		else
-			return make_unique<DummyCommand>();
+			return ::make_unique<DummyCommand>();
 	}
 
 	std::unique_ptr<CDirectiveConditional> cond;
 	if (exp.isLoaded())
-		cond = make_unique<CDirectiveConditional>(type,exp);
+		cond = ::make_unique<CDirectiveConditional>(type,exp);
 	else if (name.size() != 0)
 		cond = ::make_unique<CDirectiveConditional>(type,name);
 	else
-		cond = make_unique<CDirectiveConditional>(type);
+		cond = ::make_unique<CDirectiveConditional>(type);
 
 	cond->setContent(std::move(ifBlock),std::move(elseBlock));
-	return std::move(cond);
+	return cond;
 }
 
 std::unique_ptr<CAssemblerCommand> parseDirectiveTable(Parser& parser, int flags)
@@ -15139,7 +15153,7 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveData(Parser& parser, int flags)
 	if (parser.parseExpressionList(list,1,-1) == false)
 		return nullptr;
 
-	auto data = make_unique<CDirectiveData>();
+	auto data = ::make_unique<CDirectiveData>();
 	switch (flags & DIRECTIVE_USERMASK)
 	{
 	case DIRECTIVE_DATA_8:
@@ -15171,7 +15185,7 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveData(Parser& parser, int flags)
 		break;
 	}
 
-	return std::move(data);
+	return data;
 }
 
 std::unique_ptr<CAssemblerCommand> parseDirectiveMipsArch(Parser& parser, int flags)
@@ -15183,19 +15197,19 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveMipsArch(Parser& parser, int fl
 	{
 	case DIRECTIVE_MIPS_PSX:
 		Mips.SetVersion(MARCH_PSX);
-		return make_unique<ArchitectureCommand>(L".psx", L"");
+		return ::make_unique<ArchitectureCommand>(L".psx", L"");
 	case DIRECTIVE_MIPS_PS2:
 		Mips.SetVersion(MARCH_PS2);
-		return make_unique<ArchitectureCommand>(L".ps2", L"");
+		return ::make_unique<ArchitectureCommand>(L".ps2", L"");
 	case DIRECTIVE_MIPS_PSP:
 		Mips.SetVersion(MARCH_PSP);
-		return make_unique<ArchitectureCommand>(L".psp", L"");
+		return ::make_unique<ArchitectureCommand>(L".psp", L"");
 	case DIRECTIVE_MIPS_N64:
 		Mips.SetVersion(MARCH_N64);
-		return make_unique<ArchitectureCommand>(L".n64", L"");
+		return ::make_unique<ArchitectureCommand>(L".n64", L"");
 	case DIRECTIVE_MIPS_RSP:
 		Mips.SetVersion(MARCH_RSP);
-		return make_unique<ArchitectureCommand>(L".rsp", L"");
+		return ::make_unique<ArchitectureCommand>(L".rsp", L"");
 	}
 
 	return nullptr;
@@ -15211,23 +15225,23 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveArmArch(Parser& parser, int fla
 	case DIRECTIVE_ARM_GBA:
 		Arm.SetThumbMode(true);
 		Arm.setVersion(AARCH_GBA);
-		return make_unique<ArchitectureCommand>(L".gba\n.thumb", L".thumb");
+		return ::make_unique<ArchitectureCommand>(L".gba\n.thumb", L".thumb");
 	case DIRECTIVE_ARM_NDS:
 		Arm.SetThumbMode(false);
 		Arm.setVersion(AARCH_NDS);
-		return make_unique<ArchitectureCommand>(L".nds\n.arm", L".arm");
+		return ::make_unique<ArchitectureCommand>(L".nds\n.arm", L".arm");
 	case DIRECTIVE_ARM_3DS:
 		Arm.SetThumbMode(false);
 		Arm.setVersion(AARCH_3DS);
-		return make_unique<ArchitectureCommand>(L".3ds\n.arm", L".arm");
+		return ::make_unique<ArchitectureCommand>(L".3ds\n.arm", L".arm");
 	case DIRECTIVE_ARM_BIG:
 		Arm.SetThumbMode(false);
 		Arm.setVersion(AARCH_BIG);
-		return make_unique<ArchitectureCommand>(L".arm.big\n.arm", L".arm");
+		return ::make_unique<ArchitectureCommand>(L".arm.big\n.arm", L".arm");
 	case DIRECTIVE_ARM_LITTLE:
 		Arm.SetThumbMode(false);
 		Arm.setVersion(AARCH_LITTLE);
-		return make_unique<ArchitectureCommand>(L".arm.little\n.arm", L".arm");
+		return ::make_unique<ArchitectureCommand>(L".arm.little\n.arm", L".arm");
 	}
 #endif
 
@@ -15240,7 +15254,7 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveArea(Parser& parser, int flags)
 	if (parser.parseExpressionList(parameters,1,2) == false)
 		return nullptr;
 
-	auto area = make_unique<CDirectiveArea>(parameters[0]);
+	auto area = ::make_unique<CDirectiveArea>(parameters[0]);
 	if (parameters.size() == 2)
 		area->setFillExpression(parameters[1]);
 
@@ -15248,7 +15262,7 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveArea(Parser& parser, int flags)
 	parser.eatToken();
 
 	area->setContent(std::move(content));
-	return std::move(area);
+	return area;
 }
 
 std::unique_ptr<CAssemblerCommand> parseDirectiveErrorWarning(Parser& parser, int flags)
@@ -15264,11 +15278,11 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveErrorWarning(Parser& parser, in
 	if (stringValue == L"on")
 	{
 		Logger::setErrorOnWarning(true);
-		return make_unique<DummyCommand>();
+		return ::make_unique<DummyCommand>();
 	} else if (stringValue == L"off")
 	{
 		Logger::setErrorOnWarning(false);
-		return make_unique<DummyCommand>();
+		return ::make_unique<DummyCommand>();
 	}
 
 	return nullptr;
@@ -15287,11 +15301,11 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveRelativeInclude(Parser& parser,
 	if (stringValue == L"on")
 	{
 		Global.relativeInclude = true;
-		return make_unique<DummyCommand>();
+		return ::make_unique<DummyCommand>();
 	} else if (stringValue == L"off")
 	{
 		Global.relativeInclude = false;
-		return make_unique<DummyCommand>();
+		return ::make_unique<DummyCommand>();
 	}
 
 	return nullptr;
@@ -15310,11 +15324,11 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveNocash(Parser& parser, int flag
 	if (stringValue == L"on")
 	{
 		Global.nocash = true;
-		return make_unique<DummyCommand>();
+		return ::make_unique<DummyCommand>();
 	} else if (stringValue == L"off")
 	{
 		Global.nocash = false;
-		return make_unique<DummyCommand>();
+		return ::make_unique<DummyCommand>();
 	}
 
 	return nullptr;
@@ -15331,9 +15345,9 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveSym(Parser& parser, int flags)
 	std::transform(stringValue.begin(),stringValue.end(),stringValue.begin(),::towlower);
 
 	if (stringValue == L"on")
-		return make_unique<CDirectiveSym>(true);
+		return ::make_unique<CDirectiveSym>(true);
 	else if (stringValue == L"off")
-		return make_unique<CDirectiveSym>(false);
+		return ::make_unique<CDirectiveSym>(false);
 	else
 		return nullptr;
 }
@@ -15389,7 +15403,7 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveFunction(Parser& parser, int fl
 	}
 
 	func->setContent(std::move(seq));
-	return std::move(func);
+	return func;
 }
 
 std::unique_ptr<CAssemblerCommand> parseDirectiveMessage(Parser& parser, int flags)
@@ -15399,11 +15413,11 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveMessage(Parser& parser, int fla
 	switch (flags)
 	{
 	case DIRECTIVE_MSG_WARNING:
-		return make_unique<CDirectiveMessage>(CDirectiveMessage::Type::Warning,exp);
+		return ::make_unique<CDirectiveMessage>(CDirectiveMessage::Type::Warning,exp);
 	case DIRECTIVE_MSG_ERROR:
-		return make_unique<CDirectiveMessage>(CDirectiveMessage::Type::Error,exp);
+		return ::make_unique<CDirectiveMessage>(CDirectiveMessage::Type::Error,exp);
 	case DIRECTIVE_MSG_NOTICE:
-		return make_unique<CDirectiveMessage>(CDirectiveMessage::Type::Notice,exp);
+		return ::make_unique<CDirectiveMessage>(CDirectiveMessage::Type::Notice,exp);
 	}
 
 	return nullptr;
@@ -15436,7 +15450,7 @@ std::unique_ptr<CAssemblerCommand> parseDirectiveInclude(Parser& parser, int fla
 
 	// don't include the file if it's inside a false block
 	if (parser.isInsideTrueBlock() == false)
-		return make_unique<DummyCommand>();
+		return ::make_unique<DummyCommand>();
 
 	if (fileExists(fileName) == false)
 	{
@@ -16131,7 +16145,7 @@ bool Parser::parseIdentifier(std::wstring& dest)
 
 std::unique_ptr<CAssemblerCommand> Parser::parseCommandSequence(wchar_t indicator, const std::initializer_list<const wchar_t*> terminators)
 {
-	auto sequence = make_unique<CommandSequence>();
+	auto sequence = ::make_unique<CommandSequence>();
 
 	bool foundTermination = false;
 	while (atEnd() == false)
@@ -16187,7 +16201,7 @@ std::unique_ptr<CAssemblerCommand> Parser::parseCommandSequence(wchar_t indicato
 		Logger::printError(Logger::Error, L"Unterminated command sequence, expected any of %s.", expected);
 	}
 
-	return std::move(sequence);
+	return sequence;
 }
 
 std::unique_ptr<CAssemblerCommand> Parser::parseFile(TextFile& file, bool virtualFile)
@@ -16222,7 +16236,7 @@ std::unique_ptr<CAssemblerCommand> Parser::parseTemplate(const std::wstring& tex
 	for (auto& arg: variables)
 	{
 		size_t count = replaceAll(fullText,arg.variableName,arg.value);
-
+		(void)count;
 #ifdef _DEBUG
 		if (count != 0 && arg.value.empty())
 			Logger::printError(Logger::Warning,L"Empty replacement for %s",arg.variableName);
@@ -16597,13 +16611,13 @@ std::unique_ptr<CAssemblerCommand> Parser::parseMacroCall()
 
 	// skip macro instantiation in known false blocks
 	if (!isInsideUnknownBlock() && !isInsideTrueBlock())
-		return make_unique<DummyCommand>();
+		return ::make_unique<DummyCommand>();
 
 	// a macro is fully parsed once when it's loaded
 	// to gather all labels. it's not necessary to
 	// instantiate other macros at that time
 	if (initializingMacro)
-		return make_unique<DummyCommand>();
+		return ::make_unique<DummyCommand>();
 
 	// the first time a macro is instantiated, it needs to be analyzed
 	// for labels
@@ -16683,7 +16697,7 @@ std::unique_ptr<CAssemblerCommand> Parser::handleError()
 	while (!atEnd() && nextToken().type != TokenType::Separator);
 
 	clearError();
-	return make_unique<InvalidCommand>();
+	return ::make_unique<InvalidCommand>();
 }
 
 
@@ -16725,7 +16739,7 @@ std::unique_ptr<CAssemblerCommand> Parser::parseCommand()
 	updateFileInfo();
 
 	if (atEnd())
-		return make_unique<DummyCommand>();
+		return ::make_unique<DummyCommand>();
 
 	if ((command = parseLabel()) != nullptr)
 		return command;
@@ -16816,6 +16830,8 @@ bool TokenSequenceParser::parse(Parser& parser, int& result)
 }
 
 // file: Parser/Tokenizer.cpp
+#include <algorithm>
+
 
 //
 // Tokenizer
@@ -17691,7 +17707,6 @@ bool ByteArray::toFile(const std::wstring& fileName)
 }
 
 // file: Util/CRC.cpp
-
 #include <stdio.h>
 
 const unsigned short Crc16Table[] = /* CRC lookup table */
@@ -17797,13 +17812,13 @@ unsigned int getChecksum(unsigned char* Source, size_t len)
 	return checksum;
 }
 
-// File: Util/EncodingTable.cpp
+// file: Util/EncodingTable.cpp
 
 #define MAXHEXLENGTH 32
 
 Trie::Trie()
 {
-	Node root { 0, false };
+	Node root { 0, false, 0 };
 	nodes.push_back(root);
 }
 
@@ -17826,7 +17841,7 @@ void Trie::insert(const wchar_t* text, size_t value)
 	// add new nodes as necessary
 	while (*text != 0)
 	{
-		Node newNode { nodes.size(), false };
+		Node newNode { nodes.size(), false, 0 };
 		nodes.push_back(newNode);
 
 		LookupEntry lookupEntry { node, *text };
@@ -18067,8 +18082,6 @@ ByteArray EncodingTable::encodeTermination()
 
 	return result;
 }
-
-#undef MAXHEXLENGTH
 
 // file: Util/FileClasses.cpp
 
@@ -18861,7 +18874,7 @@ bool TextFile::open(Mode mode, Encoding defaultEncoding)
 					encoding = UTF8;
 					contentPos += 3;
 					break;
-				}
+				} // fallthrough
 			default:
 				if (defaultEncoding == GUESS)
 				{
@@ -19195,7 +19208,6 @@ TextFile::Encoding getEncodingFromString(const std::wstring& str)
 }
 
 // file: Util/Util.cpp
-
 #include <sys/stat.h>
 #ifdef _WIN32
 #include <windows.h>
@@ -19397,6 +19409,13 @@ int32_t getFloatBits(float value)
 	union { float f; int32_t i; } u;
 	u.f = value;
 	return u.i;
+}
+
+float bitsToFloat(int32_t value)
+{
+	union { float f; int32_t i; } u;
+	u.i = value;
+	return u.f;
 }
 
 int64_t getDoubleBits(double value)
@@ -19884,3 +19903,4 @@ int main(int argc, char* argv[])
 }
 
 #endif
+

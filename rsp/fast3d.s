@@ -5,6 +5,10 @@
 
 // This file assumes DATA_FILE and CODE_FILE are set on the command line
 
+.if version() < 110
+    .error "armips 0.11 or newer is required"
+.endif
+
 // Overlay table data member offsets
 overlay_load equ 0x0000
 overlay_len  equ 0x0004
