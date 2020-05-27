@@ -31,11 +31,11 @@
 #define SOUND_NO_ECHO               0x20 // not in JP
 #define SOUND_LO_BITFLAG_UNK8       0x80 // restart playing on each play_sound call?
 
-/* Audio playback bitflags. TODO: Figure out what these mean and use them below. */
-#define SOUND_PL_BITFLAG_UNK1       0x1000000
-#define SOUND_PL_BITFLAG_UNK2       0x2000000
-#define SOUND_PL_BITFLAG_UNK4       0x4000000
-#define SOUND_PL_BITFLAG_UNK8       0x8000000
+/* Audio playback bitflags. */
+#define SOUND_NO_VOLUME_LOSS        0x1000000 // No volume loss with distance
+#define SOUND_VIBRATO               0x2000000 // Randomly alter frequency each audio frame
+#define SOUND_NO_PRIORITY_LOSS      0x4000000 // Do not prioritize closer sounds
+#define SOUND_NO_FREQUENCY_LOSS     0x8000000 // Frequency scale does not change with distance
 
 // silence
 #define NO_SOUND                    0
