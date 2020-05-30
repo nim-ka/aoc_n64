@@ -67,14 +67,14 @@ struct SpawnParticlesInfo
     /*0x10*/ f32 sizeRange;
 };
 
-Gfx *geo_update_projectile_pos_from_parent(s32 run, UNUSED struct GraphNode *node, Mat4 mtx);
-Gfx *geo_update_layer_transparency(s32 run, struct GraphNode *node, UNUSED void *context);
+Gfx *geo_update_projectile_pos_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
+Gfx *geo_update_layer_transparency(s32 callContext, struct GraphNode *node, UNUSED void *context);
 #ifdef AVOID_UB
-Gfx *geo_switch_anim_state(s32 run, struct GraphNode *node, UNUSED void *context);
-Gfx *geo_switch_area(s32 run, struct GraphNode *node, UNUSED void *context);
+Gfx *geo_switch_anim_state(s32 callContext, struct GraphNode *node, UNUSED void *context);
+Gfx *geo_switch_area(s32 callContext, struct GraphNode *node, UNUSED void *context);
 #else
-Gfx *geo_switch_anim_state(s32 run, struct GraphNode *node);
-Gfx *geo_switch_area(s32 run, struct GraphNode *node);
+Gfx *geo_switch_anim_state(s32 callContext, struct GraphNode *node);
+Gfx *geo_switch_area(s32 callContext, struct GraphNode *node);
 #endif
 void obj_update_pos_from_parent_transformation(Mat4 a0, struct Object *a1);
 void obj_apply_scale_to_matrix(struct Object *obj, Mat4 dst, Mat4 src);
@@ -265,7 +265,7 @@ void obj_explode_and_spawn_coins(f32 sp18, s32 sp1C);
 void obj_set_collision_data(struct Object *obj, const void *segAddr);
 void cur_obj_if_hit_wall_bounce_away(void);
 s32 cur_obj_hide_if_mario_far_away_y(f32 distY);
-Gfx *geo_offset_klepto_held_object(s32 run, struct GraphNode *node, UNUSED Mat4 mtx);
+Gfx *geo_offset_klepto_held_object(s32 callContext, struct GraphNode *node, UNUSED Mat4 mtx);
 s32 geo_offset_klepto_debug(s32 a0, struct GraphNode *a1, UNUSED s32 sp8);
 s32 obj_is_hidden(struct Object *obj);
 void enable_time_stop(void);

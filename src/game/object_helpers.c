@@ -35,11 +35,11 @@ static s32 clear_move_flag(u32 *, s32);
 
 #define o gCurrentObject
 
-Gfx *geo_update_projectile_pos_from_parent(s32 run, UNUSED struct GraphNode *node, Mat4 mtx) {
+Gfx *geo_update_projectile_pos_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx) {
     Mat4 sp20;
     struct Object *sp1C;
 
-    if (run == TRUE) {
+    if (callContext == GEO_CONTEXT_RENDER) {
         sp1C = (struct Object *) gCurGraphNodeObject; // TODO: change global type to Object pointer
         if (sp1C->prevObj) {
             create_transformation_from_matrices(sp20, mtx, gCurGraphNodeCamera->matrixPtr);
@@ -50,93 +50,98 @@ Gfx *geo_update_projectile_pos_from_parent(s32 run, UNUSED struct GraphNode *nod
     return NULL;
 }
 
-Gfx *geo_update_layer_transparency(s32 run, struct GraphNode *node, UNUSED void *context) {
-    Gfx *sp3C, *sp38;
-    struct Object *sp34;
-    struct GraphNodeGenerated *sp30;
+Gfx *geo_update_layer_transparency(s32 callContext, struct GraphNode *node, UNUSED void *context) {
+    Gfx *dlStart, *dlHead;
+    struct Object *objectGraphNode;
+    struct GraphNodeGenerated *currentGraphNode;
     UNUSED struct GraphNodeGenerated *sp2C;
-    s32 sp28;
+    s32 objectOpacity;
 
-    sp3C = NULL;
+    dlStart = NULL;
 
-    if (run == TRUE) {
-        sp34 = (struct Object *) gCurGraphNodeObject; // TODO: change this to object pointer?
-        sp30 = (struct GraphNodeGenerated *) node;
+    if (callContext == GEO_CONTEXT_RENDER) {
+        objectGraphNode = (struct Object *) gCurGraphNodeObject; // TODO: change this to object pointer?
+        currentGraphNode = (struct GraphNodeGenerated *) node;
         sp2C = (struct GraphNodeGenerated *) node;
 
         if (gCurGraphNodeHeldObject) {
-            sp34 = gCurGraphNodeHeldObject->objNode;
+            objectGraphNode = gCurGraphNodeHeldObject->objNode;
         }
 
-        sp28 = sp34->oOpacity;
-        sp3C = alloc_display_list(sizeof(Gfx) * 3);
+        objectOpacity = objectGraphNode->oOpacity;
+        dlStart = alloc_display_list(sizeof(Gfx) * 3);
 
-        sp38 = sp3C;
+        dlHead = dlStart;
 
-        if (sp28 == 0xFF) {
-            if (sp30->parameter == 20) {
-                sp30->fnNode.node.flags = 0x600 | (sp30->fnNode.node.flags & 0xFF);
+        if (objectOpacity == 0xFF) {
+            if (currentGraphNode->parameter == 20) {
+                currentGraphNode->fnNode.node.flags =
+                0x600 | (currentGraphNode->fnNode.node.flags & 0xFF);
             } else {
-                sp30->fnNode.node.flags = 0x100 | (sp30->fnNode.node.flags & 0xFF);
+                currentGraphNode->fnNode.node.flags =
+                0x100 | (currentGraphNode->fnNode.node.flags & 0xFF);
             }
 
-            sp34->oAnimState = 0;
+            objectGraphNode->oAnimState = 0;
         } else {
-            if (sp30->parameter == 20) {
-                sp30->fnNode.node.flags = 0x600 | (sp30->fnNode.node.flags & 0xFF);
+            if (currentGraphNode->parameter == 20) {
+                currentGraphNode->fnNode.node.flags =
+                0x600 | (currentGraphNode->fnNode.node.flags & 0xFF);
             } else {
-                sp30->fnNode.node.flags = 0x500 | (sp30->fnNode.node.flags & 0xFF);
+                currentGraphNode->fnNode.node.flags =
+                0x500 | (currentGraphNode->fnNode.node.flags & 0xFF);
             }
 
-            sp34->oAnimState = 1;
+            objectGraphNode->oAnimState = 1;
 
 #ifdef VERSION_JP
-            if (sp30->parameter == 10) {
+            if (currentGraphNode->parameter == 10) {
                 if (gDebugInfo[DEBUG_PAGE_ENEMYINFO][3]) {
-                    gDPSetAlphaCompare(sp38++, G_AC_DITHER);
+                    gDPSetAlphaCompare(dlHead++, G_AC_DITHER);
                 }
             } else {
-                if (sp34->activeFlags & ACTIVE_FLAG_UNK7) {
-                    gDPSetAlphaCompare(sp38++, G_AC_DITHER);
+                if (objectGraphNode->activeFlags & ACTIVE_FLAG_DITHERED_ALPHA) {
+                    gDPSetAlphaCompare(dlHead++, G_AC_DITHER);
                 }
             }
 #else // gDebugInfo accesses were removed in all non-JP versions.
-            if (sp28 == 0 && segmented_to_virtual(bhvBowser) == sp34->behavior) {
-                sp34->oAnimState = 2;
+            if (objectOpacity == 0 && segmented_to_virtual(bhvBowser) == objectGraphNode->behavior) {
+                objectGraphNode->oAnimState = 2;
             }
             // the debug info check was removed in US. so we need to
             // perform the only necessary check instead of the debuginfo
             // one.
-            if (sp30->parameter != 10) {
-                if (sp34->activeFlags & ACTIVE_FLAG_UNK7) {
-                    gDPSetAlphaCompare(sp38++, G_AC_DITHER);
+            if (currentGraphNode->parameter != 10) {
+                if (objectGraphNode->activeFlags & ACTIVE_FLAG_DITHERED_ALPHA) {
+                    gDPSetAlphaCompare(dlHead++, G_AC_DITHER);
                 }
             }
 #endif
         }
 
-        gDPSetEnvColor(sp38++, 255, 255, 255, sp28);
-        gSPEndDisplayList(sp38);
+        gDPSetEnvColor(dlHead++, 255, 255, 255, objectOpacity);
+        gSPEndDisplayList(dlHead);
     }
 
-    return sp3C;
+    return dlStart;
 }
 
 /**
- * @bug Every geo function declares the 3 parameters of run, node, and the matrix array.
- * This one (see also geo_switch_area) doesn't. When executed, the node function
- * executor passes the 3rd argument to a function that doesn't declare it. This is
- * undefined behavior, but harmless in practice due to the o32 calling convention.
+ * @bug Every geo function declares the 3 parameters of callContext, node, and
+ * the matrix array. This one (see also geo_switch_area) doesn't. When executed,
+ * the node function executor passes the 3rd argument to a function that doesn't
+ * declare it. This is undefined behavior, but harmless in practice due to the
+ * o32 calling convention.
  */
 #ifdef AVOID_UB
-Gfx *geo_switch_anim_state(s32 run, struct GraphNode *node, UNUSED void *context) {
+Gfx *geo_switch_anim_state(s32 callContext, struct GraphNode *node, UNUSED void *context) {
 #else
-Gfx *geo_switch_anim_state(s32 run, struct GraphNode *node) {
+Gfx *geo_switch_anim_state(s32 callContext, struct GraphNode *node) {
 #endif
     struct Object *obj;
     struct GraphNodeSwitchCase *switchCase;
 
-    if (run == TRUE) {
+    if (callContext == GEO_CONTEXT_RENDER) {
         obj = (struct Object *) gCurGraphNodeObject; // TODO: change global type to Object pointer
 
         // move to a local var because GraphNodes are passed in all geo functions.
@@ -162,9 +167,9 @@ Gfx *geo_switch_anim_state(s32 run, struct GraphNode *node) {
 
 //! @bug Same issue as geo_switch_anim_state.
 #ifdef AVOID_UB
-Gfx *geo_switch_area(s32 run, struct GraphNode *node, UNUSED void *context) {
+Gfx *geo_switch_area(s32 callContext, struct GraphNode *node, UNUSED void *context) {
 #else
-Gfx *geo_switch_area(s32 run, struct GraphNode *node) {
+Gfx *geo_switch_area(s32 callContext, struct GraphNode *node) {
 #endif
     s16 sp26;
     struct Surface *sp20;
@@ -172,7 +177,7 @@ Gfx *geo_switch_area(s32 run, struct GraphNode *node) {
         (struct Object *) gCurGraphNodeObject; // TODO: change global type to Object pointer
     struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *) node;
 
-    if (run == TRUE) {
+    if (callContext == GEO_CONTEXT_RENDER) {
         if (gMarioObject == NULL) {
             switchCase->selectedCase = 0;
         } else {
@@ -2496,8 +2501,8 @@ s32 cur_obj_hide_if_mario_far_away_y(f32 distY) {
     }
 }
 
-Gfx *geo_offset_klepto_held_object(s32 run, struct GraphNode *node, UNUSED Mat4 mtx) {
-    if (run == TRUE) {
+Gfx *geo_offset_klepto_held_object(s32 callContext, struct GraphNode *node, UNUSED Mat4 mtx) {
+    if (callContext == GEO_CONTEXT_RENDER) {
         ((struct GraphNodeTranslationRotation *) node->next)->translation[0] = 300;
         ((struct GraphNodeTranslationRotation *) node->next)->translation[1] = 300;
         ((struct GraphNodeTranslationRotation *) node->next)->translation[2] = 0;
@@ -2506,8 +2511,8 @@ Gfx *geo_offset_klepto_held_object(s32 run, struct GraphNode *node, UNUSED Mat4 
     return NULL;
 }
 
-s32 geo_offset_klepto_debug(s32 a0, struct GraphNode *a1, UNUSED s32 sp8) {
-    if (a0 == 1) {
+s32 geo_offset_klepto_debug(s32 callContext, struct GraphNode *a1, UNUSED s32 sp8) {
+    if (callContext == GEO_CONTEXT_RENDER) {
         ((struct GraphNode_802A45E4 *) a1->next)->unk18 = gDebugInfo[4][0];
         ((struct GraphNode_802A45E4 *) a1->next)->unk1A = gDebugInfo[4][1];
         ((struct GraphNode_802A45E4 *) a1->next)->unk1C = gDebugInfo[4][2];
