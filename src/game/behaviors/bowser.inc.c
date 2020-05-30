@@ -892,7 +892,7 @@ void bowser_act_dead(void) {
                 if (BITS)
                     o->oSubAction = 10;
                 else {
-                    o->activeFlags |= 0x80;
+                    o->activeFlags |= ACTIVE_FLAG_DITHERED_ALPHA;
                     o->oSubAction++;
                 }
             }

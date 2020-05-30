@@ -197,7 +197,7 @@ static s32 bhv_cmd_spawn_child_with_param(void) {
 // Command 0x1D: Exits the behavior script and despawns the object.
 // Usage: DEACTIVATE()
 static s32 bhv_cmd_deactivate(void) {
-    gCurrentObject->activeFlags = 0;
+    gCurrentObject->activeFlags = ACTIVE_FLAG_DEACTIVATED;
     return BHV_PROC_BREAK;
 }
 

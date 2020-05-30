@@ -48,7 +48,7 @@ void bhv_star_spawn_init(void) {
         cutscene_object(CUTSCENE_RED_COIN_STAR_SPAWN, o);
 
     set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
-    o->activeFlags |= 0x20;
+    o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
     cur_obj_become_intangible();
 }
 
@@ -98,7 +98,7 @@ void bhv_star_spawn_loop(void) {
             if (o->oTimer == 20) {
                 gObjCutsceneDone = TRUE;
                 clear_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
-                o->activeFlags &= ~0x20;
+                o->activeFlags &= ~ACTIVE_FLAG_INITIATED_TIME_STOP;
             }
 
             if (o->oInteractStatus & INT_STATUS_INTERACTED) {
@@ -152,7 +152,7 @@ void bhv_hidden_red_coin_star_init(void) {
         sp30 =
             spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
         sp30->oBehParams = o->oBehParams;
-        o->activeFlags = 0;
+        o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
     }
 
     o->oHiddenStarTriggerCounter = 8 - sp36;
@@ -170,7 +170,7 @@ void bhv_hidden_red_coin_star_loop(void) {
             if (o->oTimer > 2) {
                 spawn_red_coin_cutscene_star(o->oPosX, o->oPosY, o->oPosZ);
                 spawn_mist_particles();
-                o->activeFlags = 0;
+                o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
             }
             break;
     }

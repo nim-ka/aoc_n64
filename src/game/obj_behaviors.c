@@ -640,7 +640,7 @@ s32 obj_flicker_and_disappear(struct Object *obj, s16 lifeSpan) {
             obj->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
         }
     } else {
-        obj->activeFlags = 0;
+        obj->activeFlags = ACTIVE_FLAG_DEACTIVATED;
         return TRUE;
     }
 
@@ -732,7 +732,7 @@ s32 obj_lava_death(void) {
     struct Object *deathSmoke;
 
     if (o->oTimer >= 31) {
-        o->activeFlags = 0;
+        o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
         return TRUE;
     } else {
         // Sinking effect

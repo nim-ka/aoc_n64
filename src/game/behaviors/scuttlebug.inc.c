@@ -110,7 +110,7 @@ void bhv_scuttlebug_loop(void) {
     if (o->parentObj != o) {
         if (obj_is_hidden(o))
             obj_mark_for_deletion(o);
-        if (o->activeFlags == 0)
+        if (o->activeFlags == ACTIVE_FLAG_DEACTIVATED)
             o->parentObj->oScuttlebugSpawnerUnk88 = 1;
     }
     cur_obj_move_standard(-50);

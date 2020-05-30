@@ -164,7 +164,7 @@ void load_obj_warp_nodes(void) {
     do {
         struct Object *sp1C = sp20;
 
-        if (sp1C->activeFlags && get_mario_spawn_type(sp1C) != 0) {
+        if (sp1C->activeFlags != ACTIVE_FLAG_DEACTIVATED && get_mario_spawn_type(sp1C) != 0) {
             sp24 = area_get_warp_node_from_params(sp1C);
             if (sp24 != NULL) {
                 sp24->object = sp1C;

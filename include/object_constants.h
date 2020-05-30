@@ -5,6 +5,7 @@
 // field-specific and object-specific constants, e.g. actions.
 
 /* activeFlags */
+#define ACTIVE_FLAG_DEACTIVATED            0         // 0x0000
 #define ACTIVE_FLAG_ACTIVE                 (1 <<  0) // 0x0001
 #define ACTIVE_FLAG_FAR_AWAY               (1 <<  1) // 0x0002
 #define ACTIVE_FLAG_UNK2                   (1 <<  2) // 0x0004
@@ -17,7 +18,6 @@
 #define ACTIVE_FLAG_UNK9                   (1 <<  9) // 0x0200
 #define ACTIVE_FLAG_UNK10                  (1 << 10) // 0x0400
 
-#define ACTIVE_FLAGS_DEACTIVATED 0
 
 /* respawnInfoType */
 #define RESPAWN_INFO_TYPE_NULL 0

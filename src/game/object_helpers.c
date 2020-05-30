@@ -858,7 +858,7 @@ struct Object *cur_obj_find_nearest_object_with_behavior(const BehaviorScript *b
 
     while (obj != (struct Object *) listHead) {
         if (obj->behavior == behaviorAddr) {
-            if (obj->activeFlags != ACTIVE_FLAGS_DEACTIVATED && obj != o) {
+            if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED && obj != o) {
                 f32 objDist = dist_between_objects(o, obj);
                 if (objDist < minDist) {
                     closestObj = obj;
@@ -926,7 +926,7 @@ struct Object *cur_obj_find_nearby_held_actor(const BehaviorScript *behavior, f3
 
     while ((struct Object *) listHead != obj) {
         if (obj->behavior == behaviorAddr) {
-            if (obj->activeFlags != ACTIVE_FLAGS_DEACTIVATED) {
+            if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED) {
                 // This includes the dropped and thrown states. By combining instant
                 // release, this allows us to activate mama penguin remotely
                 if (obj->oHeldState != HELD_FREE) {
@@ -1148,7 +1148,7 @@ void obj_mark_for_deletion(struct Object *obj) {
     //  setting it to 0 could potentially enable unexpected behavior. After an
     //  object is marked for deletion, it still updates on that frame (I think),
     //  so this is worth looking into.
-    obj->activeFlags = ACTIVE_FLAGS_DEACTIVATED;
+    obj->activeFlags = ACTIVE_FLAG_DEACTIVATED;
 }
 
 void cur_obj_disable(void) {
