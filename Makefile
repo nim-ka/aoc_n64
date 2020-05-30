@@ -355,6 +355,7 @@ load: $(ROM)
 libultra: $(BUILD_DIR)/libultra.a
 
 $(BUILD_DIR)/asm/boot.o: $(IPL3_RAW_FILES)
+$(BUILD_DIR)/src/game/crash_screen.o: $(CRASH_TEXTURE_C_FILES)
 
 $(BUILD_DIR)/lib/rsp.o: $(BUILD_DIR)/rsp/rspboot.bin $(BUILD_DIR)/rsp/fast3d.bin $(BUILD_DIR)/rsp/audio.bin
 
