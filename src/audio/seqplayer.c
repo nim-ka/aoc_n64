@@ -1,12 +1,11 @@
-#include <ultra64.h>
-#include <macros.h>
+#include <PR/ultratypes.h>
 
-#include "heap.h"
 #include "data.h"
+#include "effects.h"
+#include "external.h"
+#include "heap.h"
 #include "load.h"
 #include "seqplayer.h"
-#include "external.h"
-#include "effects.h"
 
 #define PORTAMENTO_IS_SPECIAL(x) ((x).mode & 0x80)
 #define PORTAMENTO_MODE(x) ((x).mode & ~0x80)

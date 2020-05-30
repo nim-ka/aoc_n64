@@ -17,7 +17,7 @@
 #include "sound_init.h"
 #include "print.h"
 #include "segment2.h"
-#include "main_entry.h"
+#include "segment_symbols.h"
 #include "thread6.h"
 #include <prevent_bss_reordering.h>
 
@@ -141,13 +141,13 @@ void display_frame_buffer(void) {
 }
 
 /** Clears the framebuffer, allowing it to be overwritten. */
-void clear_frame_buffer(s32 a) {
+void clear_frame_buffer(s32 color) {
     gDPPipeSync(gDisplayListHead++);
 
     gDPSetRenderMode(gDisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
     gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
-    gDPSetFillColor(gDisplayListHead++, a);
+    gDPSetFillColor(gDisplayListHead++, color);
     gDPFillRectangle(gDisplayListHead++,
                      GFX_DIMENSIONS_RECT_FROM_LEFT_EDGE(0), BORDER_HEIGHT,
                      GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(0) - 1, SCREEN_HEIGHT - BORDER_HEIGHT - 1);
@@ -158,7 +158,7 @@ void clear_frame_buffer(s32 a) {
 }
 
 /** Clears and initializes the viewport. */
-void clear_viewport(Vp *viewport, s32 b) {
+void clear_viewport(Vp *viewport, s32 color) {
     s16 vpUlx = (viewport->vp.vtrans[0] - viewport->vp.vscale[0]) / 4 + 1;
     s16 vpUly = (viewport->vp.vtrans[1] - viewport->vp.vscale[1]) / 4 + 1;
     s16 vpLrx = (viewport->vp.vtrans[0] + viewport->vp.vscale[0]) / 4 - 2;
@@ -174,7 +174,7 @@ void clear_viewport(Vp *viewport, s32 b) {
     gDPSetRenderMode(gDisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
     gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
-    gDPSetFillColor(gDisplayListHead++, b);
+    gDPSetFillColor(gDisplayListHead++, color);
     gDPFillRectangle(gDisplayListHead++, vpUlx, vpUly, vpLrx, vpLry);
 
     gDPPipeSync(gDisplayListHead++);
@@ -548,7 +548,7 @@ void init_controllers(void) {
         if (gControllerBits & (1 << port)) {
             // the game allows you to have just 1 controller plugged
             // into any port in order to play the game. this was probably
-            // so if any of the ports didnt work, you can have controllers
+            // so if any of the ports didn't work, you can have controllers
             // plugged into any of them and it will work.
 #ifdef VERSION_SH
             gControllers[cont].port = port;

@@ -1,21 +1,22 @@
-#include <ultra64.h>
+#include <PR/ultratypes.h>
 
 #include "sm64.h"
-#include "engine/math_util.h"
-#include "mario.h"
-#include "interaction.h"
-#include "mario_step.h"
-#include "mario_actions_stationary.h"
 #include "area.h"
+#include "audio/data.h"
 #include "audio/external.h"
-#include "memory.h"
 #include "behavior_data.h"
-#include "sound_init.h"
-#include "level_update.h"
-#include "save_file.h"
 #include "camera.h"
-#include "thread6.h"
+#include "engine/math_util.h"
+#include "interaction.h"
+#include "level_update.h"
+#include "mario.h"
+#include "mario_actions_stationary.h"
+#include "mario_step.h"
+#include "memory.h"
+#include "save_file.h"
+#include "sound_init.h"
 #include "surface_terrains.h"
+#include "thread6.h"
 
 s32 check_common_idle_cancels(struct MarioState *m) {
     mario_drop_held_object(m);
@@ -157,8 +158,7 @@ s32 act_idle(struct MarioState *m) {
                 if (deltaYOfFloorBehindMario < -24.0f || 24.0f < deltaYOfFloorBehindMario || m->floor->flags & SURFACE_FLAG_DYNAMIC) {
                     m->actionState = 0;
                 } else {
-                    // If Mario hasn't turned his head 10 times yet, stay idle instead of going to
-                    // sleep.
+                    // If Mario hasn't turned his head 10 times yet, stay idle instead of going to sleep.
                     m->actionTimer++;
                     if (m->actionTimer < 10) {
                         m->actionState = 0;

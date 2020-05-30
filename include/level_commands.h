@@ -314,4 +314,4 @@
 #define GET_OR_SET(op, var) \
     CMD_BBBB(0x3C, 0x04, op, var)
 
-#endif
+#endif // LEVEL_COMMANDS_H

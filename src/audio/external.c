@@ -7,14 +7,11 @@
 #include "external.h"
 #include "playback.h"
 #include "synthesis.h"
-#include "game/mario.h"
 #include "game/level_update.h"
-#include "game/area.h"
 #include "game/object_list_processor.h"
 #include "game/camera.h"
 #include "seq_ids.h"
 #include "dialog_ids.h"
-#include "level_table.h"
 
 #ifdef VERSION_EU
 #define EU_FLOAT(x) x ## f

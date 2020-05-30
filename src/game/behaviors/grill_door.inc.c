@@ -1,7 +1,5 @@
 // grill_door.c.inc
 
-extern u8 bob_seg7_collision_gate[];
-extern u8 hmc_seg7_collision_0702B65C[];
 struct Struct8032FCE8 D_8032FCE8[] = { { 320, MODEL_BOB_BARS_GRILLS, bob_seg7_collision_gate },
                                        { 410, MODEL_HMC_RED_GRILLS, hmc_seg7_collision_0702B65C } };
 
@@ -26,10 +24,10 @@ void bhv_openable_grill_loop(void) {
             sp3C = spawn_object_relative(-1, D_8032FCE8[sp38].unk0, 0, 0, o, D_8032FCE8[sp38].unk1,
                                          bhvOpenableCageDoor);
             sp3C->oMoveAngleYaw += 0x8000;
-            obj_set_collision_data(sp3C, D_8032FCE8[sp38].unk2);
+            obj_set_collision_data(sp3C, D_8032FCE8[sp38].collision);
             sp3C = spawn_object_relative(1, -D_8032FCE8[sp38].unk0, 0, 0, o, D_8032FCE8[sp38].unk1,
                                          bhvOpenableCageDoor);
-            obj_set_collision_data(sp3C, D_8032FCE8[sp38].unk2);
+            obj_set_collision_data(sp3C, D_8032FCE8[sp38].collision);
             o->oAction++;
             break;
         case 1:

@@ -1,9 +1,9 @@
 #include <ultra64.h>
-#include <macros.h>
 
-#include "load.h"
-#include "heap.h"
 #include "data.h"
+#include "external.h"
+#include "heap.h"
+#include "load.h"
 #include "seqplayer.h"
 
 #define ALIGN16(val) (((val) + 0xF) & ~0xF)
@@ -868,6 +868,7 @@ void load_sequence_internal(u32 player, u32 seqId, s32 loadAsync) {
     seqPlayer->scriptState.pc = sequenceData;
 }
 
+// (void) must be omitted from parameters
 void audio_init() {
 #ifdef VERSION_EU
     UNUSED s8 pad[16];

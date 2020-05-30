@@ -23,6 +23,7 @@
 #ifdef VERSION_EU
 #include "memory.h"
 #include "eu_translation.h"
+#include "segment_symbols.h"
 #endif
 #include "level_table.h"
 #include "course_table.h"
@@ -79,7 +80,7 @@ const char *credits03[] = { "2SYSTEM PROGRAMMERS", "YASUNARI NISHIDA", "YOSHINOR
 const char *credits04[] = { "3PROGRAMMERS", "HAJIME YAJIMA", "DAIKI IWAMOTO", "TOSHIO IWAWAKI" };
 const char *credits05[] = {
     "4CAMERA PROGRAMMER", "MARIO FACE PROGRAMMER", "TAKUMI KAWAGOE", "GILES GODDARD"
-}; // US combines camera programmer and mario face programmer
+}; // US combines camera programmer and Mario face programmer
 const char *credits06[] = { "2COURSE DIRECTORS", "YOICHI YAMADA", "YASUHISA YAMAMURA" };
 const char *credits07[] = { "2COURSE DESIGNERS", "KENTA USUI", "NAOKI MORI" };
 const char *credits08[] = { "3COURSE DESIGNERS", "YOSHIKI HARUHANA", "MAKOTO MIYANAGA",
@@ -96,18 +97,18 @@ const char *credits15[] = { "2PROGRESS MANAGEMENT", "KIMIYOSHI FUKUI", "KEIZO KA
 const char *credits16[] = { "5SCREEN TEXT WRITER", "TRANSLATION", "LESLIE SWAN", "MINA AKINO",
                             "HIRO YAMADA" }; // ...in order to make room for these 2 new lines
 #else // VERSION_EU
-const char *credits09[] = { "7SOUND COMPOSER", "SOUND EFFECTS", "SOUND PROGRAMMER", "KOJI KONDO", 
-                            "YOJI INAGAKI", "HIDEAKI SHIMIZU" }; 
-const char *credits10[] = { "63-D ANIMATORS", "ADDITIONAL GRAPHICS", "YOSHIAKI KOIZUMI", "SATORU TAKIZAWA", 
+const char *credits09[] = { "7SOUND COMPOSER", "SOUND EFFECTS", "SOUND PROGRAMMER", "KOJI KONDO",
+                            "YOJI INAGAKI", "HIDEAKI SHIMIZU" };
+const char *credits10[] = { "63-D ANIMATORS", "ADDITIONAL GRAPHICS", "YOSHIAKI KOIZUMI", "SATORU TAKIZAWA",
                             "MASANAO ARIMOTO" };
 const char *credits11[] = { "3TECHNICAL SUPPORT", "TAKAO SAWANO", "HIROHITO YOSHIMOTO", "HIROTO YADA" };
 const char *credits12[] = { "1TECHNICAL SUPPORT", "SGI N64 PROJECT STAFF" };
 const char *credits13[] = { "2PROGRESS MANAGEMENT", "KIMIYOSHI FUKUI", "KEIZO KATO" };
 const char *credits14[] = { "5SCREEN TEXT WRITER", "ENGLISH TRANSLATION", "LESLIE SWAN", "MINA AKINO",
                             "HIRO YAMADA" };
-const char *credits15[] = { "4SCREEN TEXT WRITER", "FRENCH TRANSLATION", "JULIEN BARDAKOFF", 
+const char *credits15[] = { "4SCREEN TEXT WRITER", "FRENCH TRANSLATION", "JULIEN BARDAKOFF",
                             "KENJI HARAGUCHI" };
-const char *credits16[] = { "4SCREEN TEXT WRITER", "GERMAN TRANSLATION", "THOMAS GOERG", 
+const char *credits16[] = { "4SCREEN TEXT WRITER", "GERMAN TRANSLATION", "THOMAS GOERG",
                             "THOMAS SPINDLER" };
 #endif
 const char *credits17[] = { "4MARIO VOICE", "PEACH VOICE", "CHARLES MARTINET", "LESLIE SWAN" };
@@ -172,10 +173,6 @@ s8 D_8032C9E0 = 0;
 u8 unused3[4];
 u8 unused4[2];
 
-
-
-
-void basic_update(s16 *arg);
 
 u16 level_control_timer(s32 timerOp) {
     switch (timerOp) {
@@ -634,7 +631,7 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 arg3) {
 #define PAINTING_WARP_INDEX_END 0x2D   // Value less than Surface 0xFD
 
 /**
- * Check if mario is above and close to a painting warp floor, and return the
+ * Check if Mario is above and close to a painting warp floor, and return the
  * corresponding warp node.
  */
 struct WarpNode *get_painting_warp_node(void) {
@@ -652,7 +649,7 @@ struct WarpNode *get_painting_warp_node(void) {
 }
 
 /**
- * Check is mario has entered a painting, and if so, initiate a warp.
+ * Check is Mario has entered a painting, and if so, initiate a warp.
  */
 void initiate_painting_warp(void) {
     if (gCurrentArea->paintingWarpNodes != NULL && gMarioState->floor != NULL) {
@@ -692,7 +689,7 @@ void initiate_painting_warp(void) {
 
 /**
  * If there is not already a delayed warp, schedule one. The source node is
- * based on the warp operation and sometimes mario's used object.
+ * based on the warp operation and sometimes Mario's used object.
  * Return the time left until the delayed warp is initiated.
  */
 s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
@@ -944,7 +941,7 @@ void update_hud_values(void) {
 }
 
 /**
- * Update objects, hud, and camera. This update function excludes things like
+ * Update objects, HUD, and camera. This update function excludes things like
  * endless staircase, warps, pausing, etc. This is used when entering a painting,
  * presumably to allow painting and camera updating while avoiding triggering the
  * warp twice.
@@ -1110,8 +1107,7 @@ s32 play_mode_change_level(void) {
 }
 
 /**
- * Unused play mode. Doesn't call transition update and doesn't reset transition
- * at the end.
+ * Unused play mode. Doesn't call transition update and doesn't reset transition at the end.
  */
 static s32 play_mode_unused(void) {
     if (--sTransitionTimer == -1) {
@@ -1226,8 +1222,7 @@ s32 init_level(void) {
 }
 
 /**
- * Initialize the current level if initOrUpdate is 0, or update the level if it
- * is 1.
+ * Initialize the current level if initOrUpdate is 0, or update the level if it is 1.
  */
 s32 lvl_init_or_update(s16 initOrUpdate, UNUSED s32 unused) {
     s32 result = 0;

@@ -122,7 +122,7 @@ void mr_i_act_3(void) {
         obj_mark_for_deletion(o);
 }
 
-void mr_i_act_2() {
+void mr_i_act_2(void) {
     s16 sp1E;
     s16 sp1C;
     sp1E = o->oMoveAngleYaw;

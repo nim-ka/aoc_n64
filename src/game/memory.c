@@ -1,18 +1,16 @@
-#include <ultra64.h>
+#include <PR/ultratypes.h>
 
 #include "sm64.h"
 
 #define INCLUDED_FROM_MEMORY_C
 
+#include "buffers/buffers.h"
 #include "decompress.h"
 #include "game_init.h"
 #include "main.h"
-#include "segments.h"
 #include "memory.h"
-
-extern u8 _engineSegmentRomStart[];
-extern u8 _engineSegmentRomEnd[];
-extern u8 gDecompressionHeap[];
+#include "segment_symbols.h"
+#include "segments.h"
 
 // round up to the next multiple
 #define ALIGN4(val) (((val) + 0x3) & ~0x3)
@@ -290,9 +288,8 @@ void *load_segment(s32 segment, u8 *srcStart, u8 *srcEnd, u32 side) {
 }
 
 /*
- * Allocate a block of memory starting at destAddr and ending at the righthand
- * end of the memory pool. Then copy srcStart through srcEnd from ROM to this
- * block.
+ * Allocate a block of memory starting at destAddr and ending at the end of
+ * the memory pool. Then copy srcStart through srcEnd from ROM to this block.
  * If this block is not large enough to hold the ROM data, or that portion
  * of the pool is already allocated, return NULL.
  */
@@ -560,7 +557,7 @@ s32 load_patchable_table(struct MarioAnimation *a, u32 index) {
     u32 size;
 
     if (index < sp20->count) {
-        do { 
+        do {
             addr = sp20->srcAddr + sp20->anim[index].offset;
             size = sp20->anim[index].size;
         } while (0);

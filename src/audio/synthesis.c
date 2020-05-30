@@ -1,5 +1,4 @@
 #include <ultra64.h>
-#include <macros.h>
 
 #include "synthesis.h"
 #include "heap.h"

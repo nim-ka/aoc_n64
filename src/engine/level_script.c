@@ -25,9 +25,6 @@
 #include "surface_collision.h"
 #include "surface_load.h"
 
-#define CMD_SIZE_SHIFT (sizeof(void *) >> 3)
-#define CMD_PROCESS_OFFSET(offset) ((offset & 3) | ((offset & ~3) << CMD_SIZE_SHIFT))
-
 #define CMD_GET(type, offset) (*(type *) (CMD_PROCESS_OFFSET(offset) + (u8 *) sCurrentCmd))
 
 // These are equal
@@ -357,7 +354,7 @@ static void level_cmd_begin_area(void) {
 
         sCurrAreaIndex = areaIndex;
         screenArea->areaIndex = areaIndex;
-        gAreas[areaIndex].unk04 = (struct GraphNode *) screenArea;
+        gAreas[areaIndex].unk04 = screenArea;
 
         if (node != NULL) {
             gAreas[areaIndex].camera = (struct Camera *) node->config.camera;

@@ -1,5 +1,5 @@
-#ifndef _MACROS_H_
-#define _MACROS_H_
+#ifndef MACROS_H
+#define MACROS_H
 
 #include "platform_info.h"
 
@@ -69,4 +69,4 @@
 #define VIRTUAL_TO_PHYSICAL2(addr)  ((void *)(addr))
 #endif
 
-#endif
+#endif // MACROS_H

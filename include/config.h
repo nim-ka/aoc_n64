@@ -39,4 +39,4 @@
 #define BORDER_HEIGHT 0
 #endif
 
-#endif
+#endif // CONFIG_H

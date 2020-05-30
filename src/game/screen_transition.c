@@ -1,16 +1,17 @@
-#include <ultra64.h>
+#include <PR/ultratypes.h>
+#include <PR/gbi.h>
 
-#include "sm64.h"
-#include "gfx_dimensions.h"
 #include "area.h"
-#include "game/game_init.h"
-#include "engine/math_util.h"
-#include "engine/graph_node.h"
-#include "screen_transition.h"
-#include "memory.h"
-#include "geo_misc.h"
-#include "segment2.h"
 #include "camera.h"
+#include "engine/graph_node.h"
+#include "engine/math_util.h"
+#include "game/game_init.h"
+#include "geo_misc.h"
+#include "gfx_dimensions.h"
+#include "memory.h"
+#include "screen_transition.h"
+#include "segment2.h"
+#include "sm64.h"
 
 u8 sTransitionColorFadeCount[4] = { 0 };
 u16 sTransitionTextureFadeCount[2] = { 0 };
@@ -183,7 +184,7 @@ s32 render_textured_transition(s8 fadeTimer, s8 transTime, struct WarpTransition
         gDPPipeSync(gDisplayListHead++);
         gDPSetCombineMode(gDisplayListHead++, G_CC_MODULATEIDECALA, G_CC_MODULATEIDECALA);
         gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
-        gDPSetTextureFilter(gDisplayListHead++, G_TF_BILERP); 
+        gDPSetTextureFilter(gDisplayListHead++, G_TF_BILERP);
         switch (transTexType) {
         case TRANS_TYPE_MIRROR:
             gDPLoadTextureBlock(gDisplayListHead++, sTextureTransitionID[texID], G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
@@ -287,7 +288,7 @@ Gfx *render_cannon_circle_base(void) {
     return dlist;
 }
 
-Gfx *geo_cannon_circle_base(s32 callContext, struct GraphNode *node, UNUSED f32 mtx[4][4]) {
+Gfx *geo_cannon_circle_base(s32 callContext, struct GraphNode *node, UNUSED Mat4 mtx) {
     struct GraphNodeGenerated *graphNode = (struct GraphNodeGenerated *) node;
     Gfx *dlist = NULL;
 

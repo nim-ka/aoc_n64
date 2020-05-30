@@ -1,6 +1,5 @@
-#ifndef _OBJECT_FIELDS_H
-#define _OBJECT_FIELDS_H
-
+#ifndef OBJECT_FIELDS_H
+#define OBJECT_FIELDS_H
 
 /**
  * The array [0x88, 0x1C8) in struct Object consists of fields that can vary by
@@ -1161,4 +1160,4 @@
 #define /*0x0FC*/ oYoshiChosenHome OBJECT_FIELD_S32(0x1D)
 #define /*0x100*/ oYoshiTargetYaw  OBJECT_FIELD_S32(0x1E)
 
-#endif
+#endif // OBJECT_FIELDS_H

@@ -1,9 +1,10 @@
 #ifndef GD_DEBUGGING_UTILS_H
 #define GD_DEBUGGING_UTILS_H
 
-#include <macros.h>
-#include <ultra64.h>
+#include <PR/ultratypes.h>
+
 #include "gd_types.h"
+#include "macros.h"
 
 #define GD_NUM_MEM_TRACKERS 32
 #define GD_NUM_TIMERS 32
@@ -89,4 +90,4 @@ extern void gd_fclose(struct GdFile *);
 extern u32 gd_get_file_size(struct GdFile *);
 extern s32 gd_fread_line(char *, u32, struct GdFile *);
 
-#endif /* GD_DEBUGGING_UTILS_H */
+#endif // GD_DEBUGGING_UTILS_H

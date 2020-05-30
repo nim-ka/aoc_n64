@@ -558,4 +558,4 @@
 #define SOUND_OBJ2_BOSS_DIALOG_GRUNT            SOUND_ARG_LOAD(9, 0, 0x69, 0x40, 8)
 #define SOUND_OBJ2_MRI_SPINNING                 SOUND_ARG_LOAD(9, 0, 0x6B, 0x00, 8)
 
-#endif /* AUDIO_DEFINES_H */
+#endif // AUDIO_DEFINES_H

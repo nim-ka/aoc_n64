@@ -72,4 +72,4 @@ void note_enable(struct Note *note);
 void note_disable(struct Note *note);
 #endif
 
-#endif /* AUDIO_SYNTHESIS_H */
+#endif // AUDIO_SYNTHESIS_H
