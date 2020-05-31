@@ -85,9 +85,9 @@ struct Struct8032F754 {
     f32 unk2;
 };
 
-struct Struct8032FCE8 {
-    s16 unk0;
-    s16 unk1;
+struct OpenableGrill {
+    s16 halfWidth;
+    s16 modelID;
     const Collision *collision;
 };
 
