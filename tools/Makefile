@@ -9,10 +9,14 @@ ifeq (, $(shell which armips 2> /dev/null))
 CXX_PROGRAMS += armips
 endif
 
+ifeq ($(OS),Windows_NT)
+ARMIPS_FLAGS := -municode
+endif
+
 default: all
 
 armips: armips.cpp
-	$(CXX) $(CXXFLAGS) -fno-exceptions -fno-rtti -pipe $^ -o $@ -lpthread
+	$(CXX) $(CXXFLAGS) -fno-exceptions -fno-rtti -pipe $^ -o $@ -lpthread $(ARMIPS_FLAGS)
 
 n64graphics_SOURCES := n64graphics.c utils.c
 n64graphics_CFLAGS  := -DN64GRAPHICS_STANDALONE
