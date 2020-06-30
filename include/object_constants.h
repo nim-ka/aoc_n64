@@ -971,4 +971,18 @@
     #define BOWSER_PUZZLE_ACT_WAIT_FOR_COMPLETE 1
     #define BOWSER_PUZZLE_ACT_DONE 2
 
+/* Mr Blizzard */
+    /* oAction */
+    #define MR_BLIZZARD_ACT_SPAWN_SNOWBALL 0
+    #define MR_BLIZZARD_ACT_HIDE_UNHIDE 1
+    #define MR_BLIZZARD_ACT_RISE_FROM_GROUND 2
+    #define MR_BLIZZARD_ACT_ROTATE 3
+    #define MR_BLIZZARD_ACT_THROW_SNOWBALL 4
+    #define MR_BLIZZARD_ACT_BURROW 5
+    #define MR_BLIZZARD_ACT_DEATH 6
+    #define MR_BLIZZARD_ACT_JUMP 7
+    /* oBehParams2ndByte */
+    #define MR_BLIZZARD_STYPE_NO_CAP 0
+    #define MR_BLIZZARD_STYPE_JUMPING 1
+
 #endif // OBJECT_CONSTANTS_H

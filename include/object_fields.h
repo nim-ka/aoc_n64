@@ -966,8 +966,8 @@
 #define /*0x110*/ oToadMessageState          OBJECT_FIELD_S32(0x22)
 
 /* Tox Box */
-#define /*0x1AC*/ oToxBoxUnk1AC OBJECT_FIELD_VPTR(0x49)
-#define /*0x1B0*/ oToxBoxUnk1B0 OBJECT_FIELD_S32(0x4A)
+#define /*0x1AC*/ oToxBoxMovementPattern OBJECT_FIELD_VPTR(0x49)
+#define /*0x1B0*/ oToxBoxMovementStep    OBJECT_FIELD_S32(0x4A)
 
 /* TTC Rotating Solid */
 #define /*0x0F4*/ oTTCRotatingSolidNumTurns      OBJECT_FIELD_S32(0x1B)

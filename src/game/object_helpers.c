@@ -2246,23 +2246,23 @@ static void stub_obj_helpers_2(void) {
 }
 
 s32 cur_obj_set_direction_table(s8 *a0) {
-    o->oToxBoxUnk1AC = a0;
-    o->oToxBoxUnk1B0 = 0;
+    o->oToxBoxMovementPattern = a0;
+    o->oToxBoxMovementStep = 0;
 
-    return *(s8 *) o->oToxBoxUnk1AC;
+    return *(s8 *) o->oToxBoxMovementPattern;
 }
 
 s32 cur_obj_progress_direction_table(void) {
     s8 spF;
-    s8 *sp8 = o->oToxBoxUnk1AC;
-    s32 sp4 = o->oToxBoxUnk1B0 + 1;
+    s8 *sp8 = o->oToxBoxMovementPattern;
+    s32 sp4 = o->oToxBoxMovementStep + 1;
 
     if (sp8[sp4] != -1) {
         spF = sp8[sp4];
-        o->oToxBoxUnk1B0++;
+        o->oToxBoxMovementStep++;
     } else {
         spF = sp8[0];
-        o->oToxBoxUnk1B0 = 0;
+        o->oToxBoxMovementStep = 0;
     }
 
     return spF;
