@@ -136,8 +136,6 @@
 #define /*0x1C4*/ oDeathSound                 OBJECT_FIELD_S32(0x4F)
 
 /* Pathed (see obj_follow_path) */
-// TODO: These two 0x0FC fields need merged, one is data and one is a C struct.
-#define /*0x0FC*/ oPathedWaypointsS16      OBJECT_FIELD_VPTR(0x1D)
 #define /*0x0FC*/ oPathedStartWaypoint     OBJECT_FIELD_WAYPOINT(0x1D)
 #define /*0x100*/ oPathedPrevWaypoint      OBJECT_FIELD_WAYPOINT(0x1E)
 #define /*0x104*/ oPathedPrevWaypointFlags OBJECT_FIELD_S32(0x1F)

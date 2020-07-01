@@ -316,22 +316,20 @@ void ukiki_act_jump(void) {
 
 /**
  * Waypoints that lead from the top of the mountain to the cage.
- *
- * TODO: Convert to an array of waypoints, perhaps? -1 is tricky.
  */
-s16 sCageUkikiPath[] = {
-    0, 1011, 2306,  -285,
-    0, 1151, 2304,  -510,
-    0, 1723, 1861,  -964,
-    0, 2082, 1775, -1128,
-    0, 2489, 1717, -1141,
-    0, 2662, 1694, -1140,
-    0, 2902, 1536,  -947,
-    0, 2946, 1536,  -467,
-    0, 2924, 1536,    72,
-    0, 2908, 1536,   536,
-    0, 2886, 1536,   783,
-    -1,
+static Trajectory sCageUkikiPath[] = {
+    TRAJECTORY_POS(0, /*pos*/  1011, 2306,  -285),
+    TRAJECTORY_POS(0, /*pos*/  1151, 2304,  -510),
+    TRAJECTORY_POS(0, /*pos*/  1723, 1861,  -964),
+    TRAJECTORY_POS(0, /*pos*/  2082, 1775, -1128),
+    TRAJECTORY_POS(0, /*pos*/  2489, 1717, -1141),
+    TRAJECTORY_POS(0, /*pos*/  2662, 1694, -1140),
+    TRAJECTORY_POS(0, /*pos*/  2902, 1536,  -947),
+    TRAJECTORY_POS(0, /*pos*/  2946, 1536,  -467),
+    TRAJECTORY_POS(0, /*pos*/  2924, 1536,    72),
+    TRAJECTORY_POS(0, /*pos*/  2908, 1536,   536),
+    TRAJECTORY_POS(0, /*pos*/  2886, 1536,   783),
+    TRAJECTORY_END(),
 };
 
 /**
@@ -358,8 +356,8 @@ void ukiki_act_go_to_cage(void) {
     switch(o->oSubAction) {
         case UKIKI_SUB_ACT_CAGE_RUN_TO_CAGE:
             cur_obj_init_animation_with_sound(UKIKI_ANIM_RUN);
-            
-            o->oPathedWaypointsS16 = sCageUkikiPath;
+
+            o->oPathedStartWaypoint = (struct Waypoint *) sCageUkikiPath;
 
             if (cur_obj_follow_path(0) != PATH_REACHED_END) {
                 o->oForwardVel = 10.0f;
@@ -470,7 +468,7 @@ void (*sUkikiActions[])(void) = {
     ukiki_act_wait_to_respawn,
     ukiki_act_unused_turn,
     ukiki_act_return_home,
-    };
+};
 
 /**
  * Called via the main behavior function when Ukiki is either nothing
