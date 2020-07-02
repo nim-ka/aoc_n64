@@ -42,7 +42,7 @@ Gfx *geo_update_projectile_pos_from_parent(s32 callContext, UNUSED struct GraphN
     if (callContext == GEO_CONTEXT_RENDER) {
         sp1C = (struct Object *) gCurGraphNodeObject; // TODO: change global type to Object pointer
         if (sp1C->prevObj) {
-            create_transformation_from_matrices(sp20, mtx, gCurGraphNodeCamera->matrixPtr);
+            create_transformation_from_matrices(sp20, mtx, *gCurGraphNodeCamera->matrixPtr);
             obj_update_pos_from_parent_transformation(sp20, sp1C->prevObj);
             obj_set_gfx_pos_from_pos(sp1C->prevObj);
         }
@@ -1935,7 +1935,7 @@ void obj_set_throw_matrix_from_transform(struct Object *obj) {
         obj_apply_scale_to_transform(obj);
     }
 
-    obj->header.gfx.throwMatrix = obj->transform;
+    obj->header.gfx.throwMatrix = &obj->transform;
 
     //! Sets scale of gCurrentObject instead of obj. Not exploitable since this
     //  function is only called with obj = gCurrentObject
@@ -1953,7 +1953,7 @@ void obj_build_transform_relative_to_parent(struct Object *obj) {
     obj->oPosY = obj->transform[3][1];
     obj->oPosZ = obj->transform[3][2];
 
-    obj->header.gfx.throwMatrix = obj->transform;
+    obj->header.gfx.throwMatrix = &obj->transform;
 
     //! Sets scale of gCurrentObject instead of obj. Not exploitable since this
     //  function is only called with obj = gCurrentObject
@@ -2759,7 +2759,7 @@ void cur_obj_align_gfx_with_floor(void) {
         floorNormal[2] = floor->normal.z;
 
         mtxf_align_terrain_normal(o->transform, floorNormal, position, o->oFaceAngleYaw);
-        o->header.gfx.throwMatrix = o->transform;
+        o->header.gfx.throwMatrix = &o->transform;
     }
 }
 

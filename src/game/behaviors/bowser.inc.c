@@ -1168,7 +1168,7 @@ Gfx *geo_update_body_rot_from_parent(s32 run, UNUSED struct GraphNode *node, Mat
     if (run == TRUE) {
         sp1C = (struct Object *) gCurGraphNodeObject;
         if (sp1C->prevObj != NULL) {
-            create_transformation_from_matrices(sp20, mtx, gCurGraphNodeCamera->matrixPtr);
+            create_transformation_from_matrices(sp20, mtx, *gCurGraphNodeCamera->matrixPtr);
             obj_update_pos_from_parent_transformation(sp20, sp1C->prevObj);
             obj_set_gfx_pos_from_pos(sp1C->prevObj);
         }
