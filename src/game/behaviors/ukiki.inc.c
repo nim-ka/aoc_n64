@@ -299,7 +299,8 @@ void ukiki_act_jump(void) {
     if (o->oSubAction == 0) {
         if (o->oTimer == 0) {
             cur_obj_set_y_vel_and_animation(random_float() * 10.0f + 45.0f, UKIKI_ANIM_JUMP);
-        } else if (o->oMoveFlags & OBJ_MOVE_MASK_NOT_AIR) {
+        } else if (o->oMoveFlags & (OBJ_MOVE_MASK_ON_GROUND | OBJ_MOVE_AT_WATER_SURFACE
+                                   | OBJ_MOVE_UNDERWATER_ON_GROUND)) {
             o->oSubAction++;
             o->oVelY = 0.0f;
         }

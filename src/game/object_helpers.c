@@ -1285,7 +1285,7 @@ static void cur_obj_move_update_underwater_flags(void) {
 }
 
 static void cur_obj_move_update_ground_air_flags(UNUSED f32 gravity, f32 bounciness) {
-    o->oMoveFlags &= ~OBJ_MOVE_13;
+    o->oMoveFlags &= ~OBJ_MOVE_BOUNCE;
 
     if (o->oPosY < o->oFloorHeight) {
         // On the first frame that we touch the ground, set OBJ_MOVE_LANDED.
@@ -1305,9 +1305,9 @@ static void cur_obj_move_update_ground_air_flags(UNUSED f32 gravity, f32 bouncin
         }
 
         if (o->oVelY > 5.0f) {
-            //! If OBJ_MOVE_13 tracks bouncing, it overestimates, since velY
-            // could be > 5 here without bounce (e.g. jump into misa)
-            o->oMoveFlags |= OBJ_MOVE_13;
+            //! This overestimates since velY could be > 5 here
+            //! without bounce (e.g. jump into misa).
+            o->oMoveFlags |= OBJ_MOVE_BOUNCE;
         }
     } else {
         o->oMoveFlags &= ~OBJ_MOVE_LANDED;
@@ -1379,7 +1379,8 @@ void cur_obj_move_y(f32 gravity, f32 bounciness, f32 buoyancy) {
         }
     }
 
-    if (o->oMoveFlags & OBJ_MOVE_MASK_33) {
+    if (o->oMoveFlags & (OBJ_MOVE_MASK_ON_GROUND | OBJ_MOVE_AT_WATER_SURFACE
+        | OBJ_MOVE_UNDERWATER_OFF_GROUND)) {
         o->oMoveFlags &= ~OBJ_MOVE_IN_AIR;
     } else {
         o->oMoveFlags |= OBJ_MOVE_IN_AIR;
@@ -1766,7 +1767,7 @@ static void cur_obj_update_floor_and_resolve_wall_collisions(s16 steepSlopeDegre
 
     if (o->activeFlags & (ACTIVE_FLAG_FAR_AWAY | ACTIVE_FLAG_IN_DIFFERENT_ROOM)) {
         cur_obj_update_floor();
-        o->oMoveFlags &= ~OBJ_MOVE_MASK_HIT_WALL_OR_IN_WATER;
+        o->oMoveFlags &= ~(OBJ_MOVE_HIT_WALL | OBJ_MOVE_MASK_IN_WATER);
 
         if (o->oPosY > o->oFloorHeight) {
             o->oMoveFlags |= OBJ_MOVE_IN_AIR;
