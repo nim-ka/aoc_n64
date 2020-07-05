@@ -1400,7 +1400,7 @@ void update_mario_inputs(struct MarioState *m) {
     }
 
     if (m->marioObj->oInteractStatus
-        & (INT_STATUS_HOOT_GRABBED_BY_MARIO | INT_STATUS_MARIO_UNK1 | INT_STATUS_MARIO_UNK4)) {
+        & (INT_STATUS_HOOT_GRABBED_BY_MARIO | INT_STATUS_MARIO_UNK1 | INT_STATUS_HIT_BY_SHOCKWAVE)) {
         m->input |= INPUT_UNKNOWN_10;
     }
 

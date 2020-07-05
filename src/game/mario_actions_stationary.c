@@ -798,7 +798,7 @@ s32 act_shockwave_bounce(struct MarioState *m) {
     s16 sp1E;
     f32 sp18;
 
-    if (m->marioObj->oInteractStatus & 0x10) {
+    if (m->marioObj->oInteractStatus & INT_STATUS_HIT_BY_SHOCKWAVE) {
 #ifdef VERSION_SH
         queue_rumble_data(70, 40);
 #endif
