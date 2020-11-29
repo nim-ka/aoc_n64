@@ -299,7 +299,10 @@ extern void custom_entry(void);
 
 /** Handles vsync. */
 void display_and_vsync(void) {
-    //osRecvMesg(&D_80339CB8, &D_80339BEC, OS_MESG_BLOCK);
+    if (osRecvMesg(&D_80339CB8, &D_80339BEC, OS_MESG_NOBLOCK) == -1) {
+        return;
+    }
+
     if (D_8032C6A0 != NULL) {
         D_8032C6A0();
         D_8032C6A0 = NULL;
