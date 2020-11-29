@@ -2,23 +2,12 @@
 
 #include "sm64.h"
 #include "gfx_dimensions.h"
-#include "audio/external.h"
 #include "buffers/buffers.h"
 #include "buffers/gfx_output_buffer.h"
 #include "buffers/framebuffers.h"
 #include "buffers/zbuffer.h"
-#include "engine/level_script.h"
 #include "game_init.h"
 #include "main.h"
-#include "memory.h"
-#include "profiler.h"
-#include "save_file.h"
-#include "seq_ids.h"
-#include "sound_init.h"
-#include "print.h"
-#include "segment2.h"
-#include "segment_symbols.h"
-#include "thread6.h"
 #include <prevent_bss_reordering.h>
 
 // FIXME: I'm not sure all of these variables belong in this file, but I don't
@@ -241,7 +230,6 @@ void create_task_structure(void) {
 
 /** Starts rendering the scene. */
 void init_render_image(void) {
-    move_segment_table_to_dmem();
     my_rdp_init();
     my_rsp_init();
     clear_z_buffer();
@@ -251,9 +239,6 @@ void init_render_image(void) {
 /** Ends the master display list. */
 void end_master_display_list(void) {
     draw_screen_borders();
-    if (gShowProfiler) {
-        draw_profiler();
-    }
 
     gDPFullSync(gDisplayListHead++);
     gSPEndDisplayList(gDisplayListHead++);
@@ -291,7 +276,6 @@ void draw_reset_bars(void) {
 
 void rendering_init(void) {
     gGfxPool = &gGfxPools[0];
-    set_segment_base_addr(1, gGfxPool->buffer);
     gGfxSPTask = &gGfxPool->spTask;
     gDisplayListHead = gGfxPool->buffer;
     gGfxPoolEnd = (u8 *) (gGfxPool->buffer + GFX_POOL_SIZE);
@@ -306,25 +290,23 @@ void rendering_init(void) {
 
 void config_gfx_pool(void) {
     gGfxPool = &gGfxPools[gGlobalTimer % 2];
-    set_segment_base_addr(1, gGfxPool->buffer);
     gGfxSPTask = &gGfxPool->spTask;
     gDisplayListHead = gGfxPool->buffer;
     gGfxPoolEnd = (u8 *) (gGfxPool->buffer + GFX_POOL_SIZE);
 }
 
+extern void custom_entry(void);
+
 /** Handles vsync. */
 void display_and_vsync(void) {
-    profiler_log_thread5_time(BEFORE_DISPLAY_LISTS);
-    osRecvMesg(&D_80339CB8, &D_80339BEC, OS_MESG_BLOCK);
+    //osRecvMesg(&D_80339CB8, &D_80339BEC, OS_MESG_BLOCK);
     if (D_8032C6A0 != NULL) {
         D_8032C6A0();
         D_8032C6A0 = NULL;
     }
     send_display_list(&gGfxPool->spTask);
-    profiler_log_thread5_time(AFTER_DISPLAY_LISTS);
     osRecvMesg(&gGameVblankQueue, &D_80339BEC, OS_MESG_BLOCK);
     osViSwapBuffer((void *) PHYSICAL_TO_VIRTUAL(gPhysicalFrameBuffers[sCurrFBNum]));
-    profiler_log_thread5_time(THREAD5_END);
     osRecvMesg(&gGameVblankQueue, &D_80339BEC, OS_MESG_BLOCK);
     if (++sCurrFBNum == 3) {
         sCurrFBNum = 0;
@@ -562,28 +544,17 @@ void init_controllers(void) {
 void setup_game_memory(void) {
     UNUSED u8 pad[8];
 
-    set_segment_base_addr(0, (void *) 0x80000000);
     osCreateMesgQueue(&D_80339CB8, &D_80339CD4, 1);
     osCreateMesgQueue(&gGameVblankQueue, &D_80339CD0, 1);
     gPhysicalZBuffer = VIRTUAL_TO_PHYSICAL(gZBuffer);
     gPhysicalFrameBuffers[0] = VIRTUAL_TO_PHYSICAL(gFrameBuffer0);
     gPhysicalFrameBuffers[1] = VIRTUAL_TO_PHYSICAL(gFrameBuffer1);
     gPhysicalFrameBuffers[2] = VIRTUAL_TO_PHYSICAL(gFrameBuffer2);
-    D_80339CF0 = main_pool_alloc(0x4000, MEMORY_POOL_LEFT);
-    set_segment_base_addr(17, (void *) D_80339CF0);
-    func_80278A78(&D_80339D10, gMarioAnims, D_80339CF0);
-    D_80339CF4 = main_pool_alloc(2048, MEMORY_POOL_LEFT);
-    set_segment_base_addr(24, (void *) D_80339CF4);
-    func_80278A78(&gDemo, gDemoInputs, D_80339CF4);
-    load_segment(0x10, _entrySegmentRomStart, _entrySegmentRomEnd, MEMORY_POOL_LEFT);
-    load_segment_decompress(2, _segment2_mio0SegmentRomStart, _segment2_mio0SegmentRomEnd);
 }
 
 // main game loop thread. runs forever as long as the game
 // continues.
 void thread5_game_loop(UNUSED void *arg) {
-    struct LevelCommand *addr;
-
     setup_game_memory();
 #ifdef VERSION_SH
     init_rumble_pak_scheduler_queue();
@@ -592,15 +563,9 @@ void thread5_game_loop(UNUSED void *arg) {
 #ifdef VERSION_SH
     create_thread_6();
 #endif
-    save_file_load_all();
 
     set_vblank_handler(2, &gGameVblankHandler, &gGameVblankQueue, (OSMesg) 1);
 
-    // point addr to the entry point into the level script data.
-    addr = segmented_to_virtual(level_script_entry);
-
-    play_music(SEQ_PLAYER_SFX, SEQUENCE_ARGS(0, SEQ_SOUND_PLAYER), 0);
-    set_sound_mode(save_file_get_sound_mode());
     rendering_init();
 
     while (1) {
@@ -609,7 +574,6 @@ void thread5_game_loop(UNUSED void *arg) {
             draw_reset_bars();
             continue;
         }
-        profiler_log_thread5_time(THREAD5_START);
 
         // if any controllers are plugged in, start read the data for when
         // read_controller_inputs is called later.
@@ -620,17 +584,9 @@ void thread5_game_loop(UNUSED void *arg) {
             osContStartReadData(&gSIEventMesgQueue);
         }
 
-        audio_game_loop_tick();
         config_gfx_pool();
         read_controller_inputs();
-        addr = level_script_execute(addr);
+        custom_entry();
         display_and_vsync();
-
-        // when debug info is enabled, print the "BUF %d" information.
-        if (gShowDebugText) {
-            // subtract the end of the gfx pool with the display list to obtain the
-            // amount of free space remaining.
-            print_text_fmt_int(180, 20, "BUF %d", gGfxPoolEnd - (u8 *) gDisplayListHead);
-        }
     }
 }

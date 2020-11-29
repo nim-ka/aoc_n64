@@ -7,7 +7,6 @@
 #include <PR/os_message.h>
 
 #include "types.h"
-#include "memory.h"
 
 #define GFX_POOL_SIZE 6400
 

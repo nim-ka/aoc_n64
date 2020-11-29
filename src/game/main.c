@@ -2,15 +2,10 @@
 #include <stdio.h>
 
 #include "sm64.h"
-#include "audio/external.h"
 #include "game_init.h"
-#include "memory.h"
-#include "sound_init.h"
-#include "profiler.h"
 #include "buffers/buffers.h"
 #include "segments.h"
 #include "main.h"
-#include "thread6.h"
 
 // Message IDs
 #define MESG_SP_COMPLETE 100
@@ -68,37 +63,9 @@ s8 D_8032C648 = 0;
 s8 gDebugLevelSelect = 0;
 s8 D_8032C650 = 0;
 
-s8 gShowProfiler = FALSE;
 s8 gShowDebugText = FALSE;
 
 // unused
-void handle_debug_key_sequences(void) {
-    static u16 sProfilerKeySequence[] = {
-        U_JPAD, U_JPAD, D_JPAD, D_JPAD, L_JPAD, R_JPAD, L_JPAD, R_JPAD
-    };
-    static u16 sDebugTextKeySequence[] = { D_JPAD, D_JPAD, U_JPAD, U_JPAD,
-                                           L_JPAD, R_JPAD, L_JPAD, R_JPAD };
-    static s16 sProfilerKey = 0;
-    static s16 sDebugTextKey = 0;
-    if (gPlayer3Controller->buttonPressed != 0) {
-        if (sProfilerKeySequence[sProfilerKey++] == gPlayer3Controller->buttonPressed) {
-            if (sProfilerKey == ARRAY_COUNT(sProfilerKeySequence)) {
-                sProfilerKey = 0, gShowProfiler ^= 1;
-            }
-        } else {
-            sProfilerKey = 0;
-        }
-
-        if (sDebugTextKeySequence[sDebugTextKey++] == gPlayer3Controller->buttonPressed) {
-            if (sDebugTextKey == ARRAY_COUNT(sDebugTextKeySequence)) {
-                sDebugTextKey = 0, gShowDebugText ^= 1;
-            }
-        } else {
-            sDebugTextKey = 0;
-        }
-    }
-}
-
 void unknown_main_func(void) {
     // uninitialized
     OSTime time;
@@ -137,14 +104,6 @@ void setup_mesg_queues(void) {
     osSetEventMesg(OS_EVENT_PRENMI, &gIntrMesgQueue, (OSMesg) MESG_NMI_REQUEST);
 }
 
-void alloc_pool(void) {
-    void *start = (void *) SEG_POOL_START;
-    void *end = (void *) SEG_POOL_END;
-
-    main_pool_init(start, end);
-    gEffectsMemoryPool = mem_pool_init(0x4000, MEMORY_POOL_LEFT);
-}
-
 void create_thread(OSThread *thread, OSId id, void (*entry)(void *), void *arg, void *sp, OSPri pri) {
     thread->next = NULL;
     thread->queue = NULL;
@@ -158,12 +117,6 @@ extern void func_sh_802F69CC(void);
 void handle_nmi_request(void) {
     gResetTimer = 1;
     D_8032C648 = 0;
-    func_80320890();
-    sound_banks_disable(2, 0x037A);
-    fadeout_music(90);
-#ifdef VERSION_SH
-    func_sh_802F69CC();
-#endif
 }
 
 void receive_new_tasks(void) {
@@ -201,8 +154,13 @@ void start_sptask(s32 taskType) {
         gActiveSPTask = sCurrentDisplaySPTask;
     }
 
-    osSpTaskLoad(&gActiveSPTask->task);
-    osSpTaskStartGo(&gActiveSPTask->task);
+    if (gActiveSPTask->task.t.ucode_boot_size == 0) {
+        osSendMesg(&gIntrMesgQueue, (OSMesg) MESG_SP_COMPLETE, OS_MESG_NOBLOCK);
+    } else {
+        osSpTaskLoad(&gActiveSPTask->task);
+        osSpTaskStartGo(&gActiveSPTask->task);
+    }
+
     gActiveSPTask->state = SPTASK_STATE_RUNNING;
 }
 
@@ -216,7 +174,6 @@ void interrupt_gfx_sptask(void) {
 void start_gfx_sptask(void) {
     if (gActiveSPTask == NULL && sCurrentDisplaySPTask != NULL
         && sCurrentDisplaySPTask->state == SPTASK_STATE_NOT_STARTED) {
-        profiler_log_gfx_time(TASKS_QUEUED);
         start_sptask(M_GFXTASK);
     }
 }
@@ -253,7 +210,6 @@ void handle_vblank(void) {
         if (gActiveSPTask != NULL) {
             interrupt_gfx_sptask();
         } else {
-            profiler_log_vblank_time();
             if (sAudioEnabled != 0) {
                 start_sptask(M_AUDTASK);
             } else {
@@ -263,7 +219,6 @@ void handle_vblank(void) {
     } else {
         if (gActiveSPTask == NULL && sCurrentDisplaySPTask != NULL
             && sCurrentDisplaySPTask->state != SPTASK_STATE_FINISHED) {
-            profiler_log_gfx_time(TASKS_QUEUED);
             start_sptask(M_GFXTASK);
         }
     }
@@ -293,11 +248,9 @@ void handle_sp_complete(void) {
             // The gfx task completed before we had time to interrupt it.
             // Mark it finished, just like below.
             curSPTask->state = SPTASK_STATE_FINISHED;
-            profiler_log_gfx_time(RSP_COMPLETE);
         }
 
         // Start the audio task, as expected by handle_vblank.
-        profiler_log_vblank_time();
         if (sAudioEnabled != 0) {
             start_sptask(M_AUDTASK);
         } else {
@@ -307,11 +260,9 @@ void handle_sp_complete(void) {
         curSPTask->state = SPTASK_STATE_FINISHED;
         if (curSPTask->task.t.type == M_AUDTASK) {
             // After audio tasks come gfx tasks.
-            profiler_log_vblank_time();
             if (sCurrentDisplaySPTask != NULL
                 && sCurrentDisplaySPTask->state != SPTASK_STATE_FINISHED) {
                 if (sCurrentDisplaySPTask->state != SPTASK_STATE_INTERRUPTED) {
-                    profiler_log_gfx_time(TASKS_QUEUED);
                 }
                 start_sptask(M_GFXTASK);
             }
@@ -323,7 +274,6 @@ void handle_sp_complete(void) {
             // The SP process is done, but there is still a Display Processor notification
             // that needs to arrive before we can consider the task completely finished and
             // null out sCurrentDisplaySPTask. That happens in handle_dp_complete.
-            profiler_log_gfx_time(RSP_COMPLETE);
         }
     }
 }
@@ -333,18 +283,44 @@ void handle_dp_complete(void) {
     if (sCurrentDisplaySPTask->msgqueue != NULL) {
         osSendMesg(sCurrentDisplaySPTask->msgqueue, sCurrentDisplaySPTask->msg, OS_MESG_NOBLOCK);
     }
-    profiler_log_gfx_time(RDP_COMPLETE);
     sCurrentDisplaySPTask->state = SPTASK_STATE_FINISHED_DP;
     sCurrentDisplaySPTask = NULL;
 }
 
+void dma_read(u8 *dest, u8 *srcStart, u8 *srcEnd) {
+    u32 size = ((srcEnd - srcStart) + 0xF) & ~0xF;
+
+    osInvalDCache(dest, size);
+    while (size != 0) {
+        u32 copySize = (size >= 0x1000) ? 0x1000 : size;
+
+        osPiStartDma(&gDmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ, (uintptr_t) srcStart, dest, copySize,
+                     &gDmaMesgQueue);
+        osRecvMesg(&gDmaMesgQueue, &D_80339BEC, OS_MESG_BLOCK);
+
+        dest += copySize;
+        srcStart += copySize;
+        size -= copySize;
+    }
+}
+
+extern u8 _customSegmentRomStart[];
+extern u8 _customSegmentRomEnd[];
+
+void load_custom_code_segment(void) {
+    void *startAddr = (void *) SEG_CUSTOM;
+    u32 totalSize = _customSegmentRomEnd - _customSegmentRomStart;
+
+    bzero(startAddr, totalSize);
+    osWritebackDCacheAll();
+    dma_read(startAddr, _customSegmentRomStart, _customSegmentRomEnd);
+    osInvalICache(startAddr, totalSize);
+    osInvalDCache(startAddr, totalSize);
+}
+
 void thread3_main(UNUSED void *arg) {
     setup_mesg_queues();
-    alloc_pool();
-    load_engine_code_segment();
-
-    create_thread(&gSoundThread, 4, thread4_sound, NULL, gThread4Stack + 0x2000, 20);
-    osStartThread(&gSoundThread);
+    load_custom_code_segment();
 
     create_thread(&gGameLoopThread, 5, thread5_game_loop, NULL, gThread5Stack + 0x2000, 10);
     osStartThread(&gGameLoopThread);

@@ -3,7 +3,6 @@
 
 #include <PR/ultratypes.h>
 
-#include "game/save_file.h"
 #include "game/game_init.h"
 
 extern u8 gDecompressionHeap[];
@@ -23,8 +22,6 @@ extern u8 gThread6Stack[];
 #endif
 
 extern u8 gGfxSPTaskYieldBuffer[];
-
-extern struct SaveBuffer gSaveBuffer;
 
 extern u8 gGfxSPTaskStack[];
 
