@@ -75,29 +75,24 @@ SECTIONS
    }
    END_SEG(boot)
 
-   . = 0x80000400;
-   BEGIN_NOLOAD(zbuffer) {
-      BUILD_DIR/src/buffers/zbuffer.o(.bss*);
-   }
-
-   . = ALIGN(0x10);
-
-   BEGIN_NOLOAD(buffers)
-   {
-      BUILD_DIR/src/buffers/buffers.o(.bss*);
-
-      . = ALIGN(0x100000);
-      BUILD_DIR/src/buffers/gfx_output_buffer.o(.bss*);
-   }
-   END_NOLOAD(buffers)
-
-   . = ALIGN(0x10);
+   . = 0x80001000;
 
    BEGIN_NOLOAD(framebuffers)
    {
       BUILD_DIR/src/buffers/framebuffers.o(.bss*);
    }
    END_NOLOAD(framebuffers)
+
+   BEGIN_NOLOAD(buffers)
+   {
+      BUILD_DIR/src/buffers/buffers.o(.bss*);
+
+      . = ALIGN(0x1000);
+      BUILD_DIR/src/buffers/gfx_output_buffer.o(.bss*);
+   }
+   END_NOLOAD(buffers)
+
+   . = ALIGN(0x10);
 
    . = ALIGN(0x10);
 
@@ -264,6 +259,8 @@ SECTIONS
       BUILD_DIR/lib/rsp.o(.rodata*);
    }
    END_SEG(main)
+
+   . += 0x10000;
 
    BEGIN_NOLOAD(main)
    {

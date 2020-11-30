@@ -56,7 +56,7 @@ struct SPTask *sCurrentAudioSPTask = NULL;
 struct SPTask *sCurrentDisplaySPTask = NULL;
 struct SPTask *sNextAudioSPTask = NULL;
 struct SPTask *sNextDisplaySPTask = NULL;
-s8 sAudioEnabled = 1;
+s8 sAudioEnabled = 0;
 u32 sNumVblanks = 0;
 s8 gResetTimer = 0;
 s8 D_8032C648 = 0;
@@ -149,18 +149,13 @@ void start_sptask(s32 taskType) {
     UNUSED s32 pad; // needed to pad the stack
 
     if (taskType == M_AUDTASK) {
-        gActiveSPTask = sCurrentAudioSPTask;
+        gActiveSPTask = NULL;
     } else {
         gActiveSPTask = sCurrentDisplaySPTask;
     }
 
-    if (gActiveSPTask->task.t.ucode_boot_size == 0) {
-        osSendMesg(&gIntrMesgQueue, (OSMesg) MESG_SP_COMPLETE, OS_MESG_NOBLOCK);
-    } else {
-        osSpTaskLoad(&gActiveSPTask->task);
-        osSpTaskStartGo(&gActiveSPTask->task);
-    }
-
+    osSpTaskLoad(&gActiveSPTask->task);
+    osSpTaskStartGo(&gActiveSPTask->task);
     gActiveSPTask->state = SPTASK_STATE_RUNNING;
 }
 
