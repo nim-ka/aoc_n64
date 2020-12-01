@@ -1,12 +1,3 @@
-#include <ultra64.h>
-
-#include "lib/src/hardware.h"
-
-#include "config.h"
-#include "buffers/framebuffers.h"
-#include "game_init.h"
-
-u32 sGlyphs[][10] = {
 	{
 		0x00000000,
 		0x00000000,
@@ -450,91 +441,40 @@ u32 sGlyphs[][10] = {
 		0x00100000,
 		0x01111100,
 		0x00000000
+	},
+	{
+		0x00000000,
+		0x00000100,
+		0x00000100,
+		0x00001000,
+		0x00001000,
+		0x00010000,
+		0x00010000,
+		0x00100000,
+		0x00100000,
+		0x00000000
+	},
+	{
+		0x00000000,
+		0x00000000,
+		0x00000000,
+		0x00000000,
+		0x00000000,
+		0x00000000,
+		0x00000000,
+		0x01100000,
+		0x01100000,
+		0x00000000
+	},
+	{
+		0x00000000,
+		0x00000000,
+		0x00101000,
+		0x00101000,
+		0x00101000,
+		0x00000000,
+		0x01000100,
+		0x01000100,
+		0x00111000,
+		0x00000000
 	}
-};
-
-struct FBGlyph {
-	enum {
-		FBGS_VALID,
-		FBGS_INVALIDATED,
-		FBGS_CLEAR
-	} state;
-	u32 *glyph;
-};
-
-#define GLYPH_TABLE_WIDTH 45
-#define GLYPH_TABLE_HEIGHT 26
-
-struct FBGlyph sFBGlyphTable[GLYPH_TABLE_HEIGHT][GLYPH_TABLE_WIDTH];
-
-void fb_print_str(int x, int y, const char *str) {
-	int pos = 0;
-
-	for (; *str; str++, pos++) {
-		u32 *glyph = NULL;
-
-		if (*str >= '0' && *str <= '9') {
-			glyph = sGlyphs[*str - '0' + 1];
-		}
-
-		if (*str >= 'A' && *str <= 'Z') {
-			glyph = sGlyphs[*str - 'A' + 11];
-		}
-
-		if (glyph) {
-			sFBGlyphTable[y][x + pos].state = FBGS_VALID;
-			sFBGlyphTable[y][x + pos].glyph = glyph;
-		}
-	}
-}
-
-#define FB ((u16 *) ((u32) gFrameBuffer | 0xA0000000))
-
-void fb_render_glyph(int x, int y, u32 *glyph) {
-	int i, j;
-
-	for (i = 0; i < 7; i++) {
-		for (j = 0; j < 10; j++) {
-			u16 pixel = (glyph[j] & (0x1 << ((7 - i) * 4))) ? 0xFFFF : 0x0001;
-
-			FB[(x + i - 1) + (y + j - 1) * SCREEN_WIDTH] = pixel;
-		}
-	}
-}
-
-void fb_init(void) {
-	u32 x, y;
-
-	for (x = 0; x < GLYPH_TABLE_WIDTH; x++) {
-		for (y = 0; y < GLYPH_TABLE_HEIGHT; y++) {
-			sFBGlyphTable[y][x].state = FBGS_CLEAR;
-		}
-	}
-
-	for (x = 0; x < 320; x++) {
-		for (y = 0; y < 240; y++) {
-			gFrameBuffer[y * SCREEN_WIDTH + x] = 0x0001;
-		}
-	}
-}
-
-void fb_display(void) {
-	u32 x, y;
-
-	for (x = 0; x < GLYPH_TABLE_WIDTH; x++) {
-		for (y = 0; y < GLYPH_TABLE_HEIGHT; y++) {
-			struct FBGlyph *fbGlyph = &sFBGlyphTable[y][x];
-
-			if (fbGlyph->state == FBGS_VALID) {
-				fb_render_glyph(x * 7, y * 9, fbGlyph->glyph);
-				fbGlyph->state = FBGS_INVALIDATED;
-			} else if (fbGlyph->state == FBGS_INVALIDATED) {
-				fb_render_glyph(x * 7, y * 9, sGlyphs[0]);
-				fbGlyph->state = FBGS_CLEAR;
-			}
-		}
-	}
-}
-
-#undef FB
-

@@ -299,11 +299,12 @@ void dma_read(u8 *dest, u8 *srcStart, u8 *srcEnd) {
     }
 }
 
+extern u8 _customSegmentStart[];
 extern u8 _customSegmentRomStart[];
 extern u8 _customSegmentRomEnd[];
 
 void load_custom_code_segment(void) {
-    void *startAddr = (void *) SEG_CUSTOM;
+    void *startAddr = _customSegmentStart;
     u32 totalSize = _customSegmentRomEnd - _customSegmentRomStart;
 
     bzero(startAddr, totalSize);

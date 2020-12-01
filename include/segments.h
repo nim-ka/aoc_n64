@@ -11,6 +11,4 @@
  * linker script syntax.
 */
 
-#define SEG_CUSTOM       0x80200000
-
 #endif

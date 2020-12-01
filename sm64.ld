@@ -289,9 +289,10 @@ SECTIONS
    _mainSegmentNoloadSizeLo = SIZEOF (.main.noload) & 0xffff;
    _mainSegmentNoloadSizeHi = SIZEOF (.main.noload) >> 16;
 
-   BEGIN_SEG(custom, SEG_CUSTOM)
+   BEGIN_SEG(custom, )
    {
       BUILD_DIR/asm/custom.o(.text);
+      BUILD_DIR/asm/test*.o(.text);
    }
    END_SEG(custom)
 

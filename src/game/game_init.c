@@ -7,7 +7,7 @@
 #include "buffers/framebuffers.h"
 #include "game_init.h"
 #include "main.h"
-#include "custom.h"
+#include "fb.h"
 #include <prevent_bss_reordering.h>
 
 // FIXME: I'm not sure all of these variables belong in this file, but I don't
@@ -173,8 +173,126 @@ void display_and_vsync(void) {
     send_display_list(&gGfxPool->spTask);
     osRecvMesg(&gGameVblankQueue, &D_80339BEC, OS_MESG_BLOCK);
     osViSwapBuffer(gFrameBuffer);
-    osRecvMesg(&gGameVblankQueue, &D_80339BEC, OS_MESG_BLOCK);
+    //osRecvMesg(&gGameVblankQueue, &D_80339BEC, OS_MESG_BLOCK);
     gGlobalTimer++;
+}
+
+// take the updated controller struct and calculate
+// the new x, y, and distance floats.
+void adjust_analog_stick(struct Controller *controller) {
+    UNUSED u8 pad[8];
+
+    // reset the controller's x and y floats.
+    controller->stickX = 0;
+    controller->stickY = 0;
+
+    // modulate the rawStickX and rawStickY to be the new f32 values by adding/subtracting 6.
+    if (controller->rawStickX <= -8) {
+        controller->stickX = controller->rawStickX + 6;
+    }
+
+    if (controller->rawStickX >= 8) {
+        controller->stickX = controller->rawStickX - 6;
+    }
+
+    if (controller->rawStickY <= -8) {
+        controller->stickY = controller->rawStickY + 6;
+    }
+
+    if (controller->rawStickY >= 8) {
+        controller->stickY = controller->rawStickY - 6;
+    }
+
+    // calculate f32 magnitude from the center by vector length.
+    controller->stickMag =
+        sqrtf(controller->stickX * controller->stickX + controller->stickY * controller->stickY);
+
+    // magnitude cannot exceed 64.0f: if it does, modify the values appropriately to
+    // flatten the values down to the allowed maximum value.
+    if (controller->stickMag > 64) {
+        controller->stickX *= 64 / controller->stickMag;
+        controller->stickY *= 64 / controller->stickMag;
+        controller->stickMag = 64;
+    }
+}
+
+void read_controller_inputs(void) {
+    s32 i;
+
+    // if any controllers are plugged in, update the
+    // controller information.
+    if (gControllerBits) {
+        osRecvMesg(&gSIEventMesgQueue, &D_80339BEC, OS_MESG_BLOCK);
+        osContGetReadData(&gControllerPads[0]);
+    }
+
+    for (i = 0; i < 2; i++) {
+        struct Controller *controller = &gControllers[i];
+
+        // if we're receiving inputs, update the controller struct
+        // with the new button info.
+        if (controller->controllerData != NULL) {
+            controller->rawStickX = controller->controllerData->stick_x;
+            controller->rawStickY = controller->controllerData->stick_y;
+            controller->buttonPressed = controller->controllerData->button
+                                        & (controller->controllerData->button ^ controller->buttonDown);
+            // 0.5x A presses are a good meme
+            controller->buttonDown = controller->controllerData->button;
+            adjust_analog_stick(controller);
+        } else // otherwise, if the controllerData is NULL, 0 out all of the inputs.
+        {
+            controller->rawStickX = 0;
+            controller->rawStickY = 0;
+            controller->buttonPressed = 0;
+            controller->buttonDown = 0;
+            controller->stickX = 0;
+            controller->stickY = 0;
+            controller->stickMag = 0;
+        }
+    }
+
+    // For some reason, player 1's inputs are copied to player 3's port. This
+    // potentially may have been a way the developers "recorded" the inputs
+    // for demos, despite record_demo existing.
+    gPlayer3Controller->rawStickX = gPlayer1Controller->rawStickX;
+    gPlayer3Controller->rawStickY = gPlayer1Controller->rawStickY;
+    gPlayer3Controller->stickX = gPlayer1Controller->stickX;
+    gPlayer3Controller->stickY = gPlayer1Controller->stickY;
+    gPlayer3Controller->stickMag = gPlayer1Controller->stickMag;
+    gPlayer3Controller->buttonPressed = gPlayer1Controller->buttonPressed;
+    gPlayer3Controller->buttonDown = gPlayer1Controller->buttonDown;
+}
+
+// initialize the controller structs to point at the OSCont information.
+void init_controllers(void) {
+    s16 port, cont;
+
+    // set controller 1 to point to the set of status/pads for input 1 and
+    // init the controllers.
+    gControllers[0].statusData = &gControllerStatuses[0];
+    gControllers[0].controllerData = &gControllerPads[0];
+    osContInit(&gSIEventMesgQueue, &gControllerBits, &gControllerStatuses[0]);
+
+    // strangely enough, the EEPROM probe for save data is done in this function.
+    // save pak detection?
+    gEepromProbe = osEepromProbe(&gSIEventMesgQueue);
+
+    // loop over the 4 ports and link the controller structs to the appropriate
+    // status and pad. Interestingly, although there are pointers to 3 controllers,
+    // only 2 are connected here. The third seems to have been reserved for debug
+    // purposes and was never connected in the retail ROM, thus gPlayer3Controller
+    // cannot be used, despite being referenced in various code.
+    for (cont = 0, port = 0; port < 4 && cont < 2; port++) {
+        // is controller plugged in?
+        if (gControllerBits & (1 << port)) {
+            // the game allows you to have just 1 controller plugged
+            // into any port in order to play the game. this was probably
+            // so if any of the ports didn't work, you can have controllers
+            // plugged into any of them and it will work.
+            gControllers[cont].statusData = &gControllerStatuses[port];
+            gControllers[cont++].controllerData = &gControllerPads[port];
+        }
+    }
 }
 
 void setup_game_memory(void) {
@@ -188,6 +306,7 @@ void setup_game_memory(void) {
 // continues.
 void thread5_game_loop(UNUSED void *arg) {
     setup_game_memory();
+    init_controllers();
 
     set_vblank_handler(2, &gGameVblankHandler, &gGameVblankQueue, (OSMesg) 1);
 
@@ -195,7 +314,14 @@ void thread5_game_loop(UNUSED void *arg) {
     fb_init();
 
     while (1) {
+        // if any controllers are plugged in, start read the data for when
+        // read_controller_inputs is called later.
+        if (gControllerBits) {
+            osContStartReadData(&gSIEventMesgQueue);
+        }
+
         config_gfx_pool();
+        read_controller_inputs();
         init_render_image();
         end_master_display_list();
         custom_entry();
