@@ -55,7 +55,7 @@ void fb_print_char(int x, int y, char ch) {
 		glyph = sGlyphs[39];
 	}
 
-	if (glyph) {
+	if (glyph != NULL) {
 		sFBGlyphTable[y][x].state = FBGS_VALID;
 		sFBGlyphTable[y][x].glyph = glyph;
 	}

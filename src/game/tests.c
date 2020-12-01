@@ -22,6 +22,14 @@ extern u8 test_cache_u0(int *reg, u8 *msg, int *msglen);
 extern u8 test_cache_u1(int *reg, u8 *msg, int *msglen);
 extern u8 test_cache_uf(int *reg, u8 *msg, int *msglen);
 extern u8 test_cache_ug(int *reg, u8 *msg, int *msglen);
+extern u8 test_cache_m0(int *reg, u8 *msg, int *msglen);
+extern u8 test_cache_m1(int *reg, u8 *msg, int *msglen);
+extern u8 test_cache_mf(int *reg, u8 *msg, int *msglen);
+extern u8 test_cache_mg(int *reg, u8 *msg, int *msglen);
+extern u8 test_cache_v0(int *reg, u8 *msg, int *msglen);
+extern u8 test_cache_v1(int *reg, u8 *msg, int *msglen);
+extern u8 test_cache_vf(int *reg, u8 *msg, int *msglen);
+extern u8 test_cache_vg(int *reg, u8 *msg, int *msglen);
 
 #define MSG { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
@@ -34,6 +42,14 @@ struct Test sTestList1[] = {
 	{ "U1", test_cache_u1, FALSE, 0, MSG, 0 },
 	{ "UF", test_cache_uf, FALSE, 0, MSG, 0 },
 	{ "UG", test_cache_ug, FALSE, 0, MSG, 0 },
+	{ "M0", test_cache_m0, FALSE, 0, MSG, 0 },
+	{ "M1", test_cache_m1, FALSE, 0, MSG, 0 },
+	{ "MF", test_cache_mf, FALSE, 0, MSG, 0 },
+	{ "MG", test_cache_mg, FALSE, 0, MSG, 0 },
+	{ "V0", test_cache_v0, FALSE, 0, MSG, 0 },
+	{ "V1", test_cache_v1, FALSE, 0, MSG, 0 },
+	{ "VF", test_cache_vf, FALSE, 0, MSG, 0 },
+	{ "VG", test_cache_vg, FALSE, 0, MSG, 0 },
 };
 
 struct TestList {
@@ -49,11 +65,13 @@ struct TestList sTestGroups[] = {
 
 struct TestList *sCurTestGroup = &sTestGroups[0];
 
+u8 sTestsRunning = FALSE;
+
 void run_tests(void) {
 	u32 i;
 
 	fb_print_str(30, 1, "PAGE ");
-	fb_print_char(35, 1, sCurTestGroup - &sTestGroups[0] + '0');
+	fb_print_char(35, 1, sCurTestGroup - &sTestGroups[0] + 1 + '0');
 	fb_print_str(36, 1, "/");
 	fb_print_char(37, 1, ARRAY_LEN(sTestGroups) - 1 + '0');
 
@@ -67,16 +85,24 @@ void run_tests(void) {
 
 	fb_print_str(5, 25, "RUNNING...");
 
-	for (i = 0; i < sCurTestGroup->len; i++) {
-		struct Test *test = &sCurTestGroup->tests[i];
+	if (sTestsRunning) {
+		for (i = 0; i < sCurTestGroup->len; i++) {
+			struct Test *test = &sCurTestGroup->tests[i];
 
-		if (!test->completed) {
-			test->completed = test->exec(&test->reg, test->msg, &test->msglen);
-			return;
+			if (!test->completed) {
+				test->completed = test->exec(&test->reg, test->msg, &test->msglen);
+				return;
+			}
 		}
 	}
 
-	if ((sCurTestGroup + 1)->tests == NULL) {
+	if (!sTestsRunning) {
+		fb_print_str(5, 25, "PRESS A TO BEGIN");
+
+		if (gPlayer1Controller->buttonPressed & A_BUTTON) {
+			sTestsRunning = TRUE;
+		}
+	} else if ((sCurTestGroup + 1)->tests == NULL) {
 		fb_print_str(5, 25, "HAVE A NICE DAY u");
 	} else {
 		fb_print_str(5, 25, "PRESS A TO CONTINUE...");

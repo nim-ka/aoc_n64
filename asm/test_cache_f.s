@@ -3,16 +3,26 @@
 
 .include "macros.inc"
 
+glabel test_cache_lf
+	lui $t1, 0x8020
+	b test_cache_f
+	move $t2, $zero
+glabel test_cache_mf
+	lui $t1, 0x8030
+	b test_cache_f
+	move $t2, $zero
 glabel test_cache_uf
+	lui $t1, 0x8020
 	b test_cache_f
 	li $t2, 0x100
-glabel test_cache_lf
-	move $t2, $zero
+glabel test_cache_vf
+	lui $t1, 0x8030
+	b test_cache_f
+	li $t2, 0x100
 test_cache_f:
 	li $t0, 32
 	sw $t0, ($a2)
 	lw $t0, ($a0)
-	lui $t1, 0x8030
 	addu $t2, $t2, $t0
 	sll $t2, $t2, 4
 	or $t1, $t1, $t2
