@@ -27,22 +27,28 @@ test_cache_1:
 	sll $t2, $t2, 4
 	or $t1, $t1, $t2
 	li $t6, 0xFFFFFFFF
+	move $t2, $t6
 	sw $zero, 0x0($t1)
 	sw $zero, 0x4($t1)
 	sw $zero, 0x8($t1)
 	sw $zero, 0xC($t1)
 	cache 1, ($t1)
+	li $t9, CACHE_TEST_REPS - 1
+loop_start:
 	sw $t6, 0x0($t1)
 	sw $t6, 0x4($t1)
 	sw $t6, 0x8($t1)
 	sw $t6, 0xC($t1)
-	lw $t2, 0x0($t1)
-	lw $t3, 0x4($t1)
-	lw $t4, 0x8($t1)
-	lw $t5, 0xC($t1)
+	lw $t3, 0x0($t1)
+	lw $t4, 0x4($t1)
+	lw $t5, 0x8($t1)
+	lw $t7, 0xC($t1)
 	and $t2, $t2, $t3
 	and $t2, $t2, $t4
 	and $t2, $t2, $t5
+	and $t2, $t2, $t7
+	bnez $t9, loop_start
+	addiu $t9, $t9, -1
 	bne $t2, $t6, c1fail
 	nop
 	b c1ret

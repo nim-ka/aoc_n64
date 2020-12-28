@@ -13,3 +13,7 @@
 .macro .word32 x
     .word \x
 .endm
+
+.set CACHE_TEST_REPS, 200000
+.set DMA_TEST_REPS, 5
+.set CPU_TEST_REPS, 60000

@@ -1,4 +1,5 @@
 #include <ultra64.h>
+#include <string.h>
 
 #include "game_init.h"
 #include "fb.h"
@@ -31,6 +32,14 @@ extern u8 test_cache_v1(int *reg, u8 *msg, int *msglen);
 extern u8 test_cache_vf(int *reg, u8 *msg, int *msglen);
 extern u8 test_cache_vg(int *reg, u8 *msg, int *msglen);
 
+extern u8 test_dma_d0(int *reg, u8 *msg, int *msglen);
+extern u8 test_dma_d1(int *reg, u8 *msg, int *msglen);
+extern u8 test_dma_e0(int *reg, u8 *msg, int *msglen);
+extern u8 test_dma_e1(int *reg, u8 *msg, int *msglen);
+
+extern u8 test_cpu_mulmul(int *reg, u8 *msg, int *msglen);
+extern u8 test_cpu_mulnopmul(int *reg, u8 *msg, int *msglen);
+
 #define MSG { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 struct Test sTestList1[] = {
@@ -50,25 +59,61 @@ struct Test sTestList1[] = {
 	{ "V1", test_cache_v1, FALSE, 0, MSG, 0 },
 	{ "VF", test_cache_vf, FALSE, 0, MSG, 0 },
 	{ "VG", test_cache_vg, FALSE, 0, MSG, 0 },
+	{ "D0", test_dma_d0, FALSE, 0, MSG, 0 },
+	{ "D1", test_dma_d1, FALSE, 0, MSG, 0 },
+	{ "E0", test_dma_e0, FALSE, 0, MSG, 0 },
+	{ "E1", test_dma_e1, FALSE, 0, MSG, 0 },
+};
+
+struct Test sTestList2[] = {
+	{ "MM", test_cpu_mulmul, FALSE, 0, MSG, 0 },
+	{ "MN", test_cpu_mulnopmul, FALSE, 0, MSG, 0 }
 };
 
 struct TestList {
+	const char *name;
 	struct Test *tests;
 	u32 len;
 };
 
 struct TestList sTestGroups[] = {
-	{ sTestList1, ARRAY_LEN(sTestList1) },
-	{ sTestList1, ARRAY_LEN(sTestList1) },
-	{ NULL, 0 }
+	{ "CPU TESTING", sTestList2, ARRAY_LEN(sTestList2) },
+	{ "CACHE+DMA TESTING", sTestList1, ARRAY_LEN(sTestList1) },
+	{ "", NULL, 0 }
 };
 
 struct TestList *sCurTestGroup = &sTestGroups[0];
 
 u8 sTestsRunning = FALSE;
 
-void run_tests(void) {
+int sRunningTimer = 0;
+
+void print_run_str(void) {
+	char str[11];
+
+	memcpy(str, "RUNNING...", 11);
+
+	str[7 + ((sRunningTimer / 2) % 4)] = '\0';
+
+	fb_clear_row(25);
+	fb_print_str(5, 25, str);
+
+	sRunningTimer++;
+}
+
+void print_test(struct Test *test, int y) {
+	fb_clear_row(y);
+	fb_print_str(5, y, test->name);
+	fb_print_str(7, y, test->completed ? "1" : "0");
+	fb_print_byte_str(8, y, test->msg, test->msglen);
+}
+
+void print_tests(void) {
 	u32 i;
+
+	fb_clear();
+
+	fb_print_str(5, 1, sCurTestGroup->name);
 
 	fb_print_str(30, 1, "PAGE ");
 	fb_print_char(35, 1, sCurTestGroup - &sTestGroups[0] + 1 + '0');
@@ -76,39 +121,50 @@ void run_tests(void) {
 	fb_print_char(37, 1, ARRAY_LEN(sTestGroups) - 1 + '0');
 
 	for (i = 0; i < sCurTestGroup->len; i++) {
-		struct Test *test = &sCurTestGroup->tests[i];
-
-		fb_print_str(5, i + 3, test->name);
-		fb_print_str(7, i + 3, test->completed ? "1" : "0");
-		fb_print_byte_str(8, i + 3, test->msg, test->msglen);
+		print_test(&sCurTestGroup->tests[i], i + 3);
 	}
 
-	fb_print_str(5, 25, "RUNNING...");
+	print_run_str();
+}
 
-	if (sTestsRunning) {
-		for (i = 0; i < sCurTestGroup->len; i++) {
-			struct Test *test = &sCurTestGroup->tests[i];
+void run_tests(void) {
+	u32 i;
 
-			if (!test->completed) {
-				test->completed = test->exec(&test->reg, test->msg, &test->msglen);
-				return;
-			}
-		}
-	}
+	print_tests();
 
 	if (!sTestsRunning) {
 		fb_print_str(5, 25, "PRESS A TO BEGIN");
 
 		if (gPlayer1Controller->buttonPressed & A_BUTTON) {
 			sTestsRunning = TRUE;
+			sRunningTimer = 0;
+			print_run_str();
+		} else {
+			return;
 		}
-	} else if ((sCurTestGroup + 1)->tests == NULL) {
+	}
+
+	for (i = 0; i < sCurTestGroup->len; i++) {
+		struct Test *test = &sCurTestGroup->tests[i];
+
+		test->completed = test->completed || test->exec(&test->reg, test->msg, &test->msglen);
+
+		print_test(test, i + 3);
+
+		if (!test->completed) {
+			return;
+		}
+	}
+
+	if ((sCurTestGroup + 1)->tests == NULL) {
+		fb_clear_row(25);
 		fb_print_str(5, 25, "HAVE A NICE DAY u");
 	} else {
 		fb_print_str(5, 25, "PRESS A TO CONTINUE...");
 
 		if (gPlayer1Controller->buttonPressed & A_BUTTON) {
 			sCurTestGroup++;
+			sRunningTimer = 0;
 		}
 	}
 }

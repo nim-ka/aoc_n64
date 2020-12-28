@@ -5,6 +5,7 @@
 #include "config.h"
 #include "buffers/framebuffers.h"
 #include "game_init.h"
+#include "fb.h"
 
 u32 sGlyphs[][10] = {
 #include "glyphs/glyphs.inc.c"
@@ -51,8 +52,12 @@ void fb_print_char(int x, int y, char ch) {
 		glyph = sGlyphs[38];
 	}
 
-	if (ch == 'u') {
+	if (ch == '+') {
 		glyph = sGlyphs[39];
+	}
+
+	if (ch == 'u') {
+		glyph = sGlyphs[40];
 	}
 
 	if (glyph != NULL) {
@@ -85,9 +90,7 @@ void fb_render_glyph(int x, int y, u32 *glyph) {
 
 	for (i = 0; i < 7; i++) {
 		for (j = 0; j < 10; j++) {
-			u16 pixel = (glyph[j] & (0x1 << ((7 - i) * 4))) ? 0xFFFF : 0x0001;
-
-			FB[(x + i - 1) + (y + j - 1) * SCREEN_WIDTH] = pixel;
+			FB[(x + i - 1) + (y + j - 1) * SCREEN_WIDTH] = (glyph[j] & (0x1 << ((7 - i) * 4))) ? 0xFFFF : 0x0001;
 		}
 	}
 }
@@ -95,16 +98,28 @@ void fb_render_glyph(int x, int y, u32 *glyph) {
 void fb_init(void) {
 	u32 x, y;
 
-	for (x = 0; x < GLYPH_TABLE_WIDTH; x++) {
-		for (y = 0; y < GLYPH_TABLE_HEIGHT; y++) {
-			sFBGlyphTable[y][x].state = FBGS_CLEAR;
-		}
-	}
+	fb_clear();
 
 	for (x = 0; x < 320; x++) {
 		for (y = 0; y < 240; y++) {
 			gFrameBuffer[y * SCREEN_WIDTH + x] = 0x0001;
 		}
+	}
+}
+
+void fb_clear(void) {
+	u32 y;
+
+	for (y = 0; y < GLYPH_TABLE_HEIGHT; y++) {
+		fb_clear_row(y);
+	}
+}
+
+void fb_clear_row(u32 y) {
+	u32 x;
+
+	for (x = 0; x < GLYPH_TABLE_WIDTH; x++) {
+		sFBGlyphTable[y][x].state = FBGS_INVALIDATED;
 	}
 }
 

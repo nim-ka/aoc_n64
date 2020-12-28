@@ -296,6 +296,18 @@ SECTIONS
    }
    END_SEG(custom)
 
+   BEGIN_SEG(zeroes, )
+   {
+      BUILD_DIR/asm/zeroes.o(.text);
+   }
+   END_SEG(zeroes)
+
+   BEGIN_SEG(ones, )
+   {
+      BUILD_DIR/asm/ones.o(.text);
+   }
+   END_SEG(ones)
+
    __expansionRamStart = 0x80400000;
    ASSERT((. <= __expansionRamStart), "Error: RDRAM expanded into Expansion RAM, despite Expansion RAM not being defined.")
 }
