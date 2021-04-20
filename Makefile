@@ -145,7 +145,7 @@ LEVEL_DIRS := $(patsubst levels/%,%,$(dir $(wildcard levels/*/header.h)))
 
 # Directories containing source files
 SRC_DIRS := src src/engine src/game src/audio src/menu src/buffers actors levels bin data assets
-ASM_DIRS := asm lib
+ASM_DIRS := asm asm/tests lib
 BIN_DIRS := bin bin/$(VERSION)
 
 ULTRA_SRC_DIRS := lib/src lib/src/math
@@ -274,7 +274,7 @@ COMMON_CFLAGS = $(OPT_FLAGS) $(TARGET_CFLAGS) $(INCLUDE_CFLAGS) $(VERSION_CFLAGS
 
 ASFLAGS := -march=vr4300 -mabi=32 -I include -I $(BUILD_DIR) $(VERSION_ASFLAGS) $(MATCH_ASFLAGS) $(GRUCODE_ASFLAGS)
 CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -signed $(COMMON_CFLAGS) $(MIPSBIT)
-OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
+OBJCOPYFLAGS := --pad-to=0x101000 --gap-fill=0xFF
 SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
 LDFLAGS := -T undefined_syms.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.$(VERSION).map --no-check-sections $(SYMBOL_LINKING_FLAGS)
 ENDIAN_BITWIDTH := $(BUILD_DIR)/endian-and-bitwidth

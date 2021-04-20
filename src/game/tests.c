@@ -77,14 +77,15 @@ struct TestList {
 };
 
 struct TestList sTestGroups[] = {
-	{ "CPU TESTING", sTestList2, ARRAY_LEN(sTestList2) },
 	{ "CACHE+DMA TESTING", sTestList1, ARRAY_LEN(sTestList1) },
+	{ "CPU TESTING", sTestList2, ARRAY_LEN(sTestList2) },
 	{ "", NULL, 0 }
 };
 
 struct TestList *sCurTestGroup = &sTestGroups[0];
 
 u8 sTestsRunning = FALSE;
+u8 sTestsDone = FALSE;
 
 int sRunningTimer = 0;
 
@@ -95,8 +96,8 @@ void print_run_str(void) {
 
 	str[7 + ((sRunningTimer / 2) % 4)] = '\0';
 
-	fb_clear_row(25);
-	fb_print_str(5, 25, str);
+	fb_clear_row(24);
+	fb_print_str(5, 24, str);
 
 	sRunningTimer++;
 }
@@ -132,8 +133,22 @@ void run_tests(void) {
 
 	print_tests();
 
-	if (!sTestsRunning) {
-		fb_print_str(5, 25, "PRESS A TO BEGIN");
+	if (!sTestsRunning && !sTestsDone) {
+		fb_print_str(5, 24, "PRESS A TO BEGIN      L/R TO SKIP");
+
+		if (gPlayer1Controller->buttonPressed & L_TRIG) {
+			if (sCurTestGroup > &sTestGroups[0]) {
+				sCurTestGroup--;
+				sRunningTimer = 0;
+			}
+		}
+
+		if (gPlayer1Controller->buttonPressed & R_TRIG) {
+			if ((sCurTestGroup + 1)->tests != NULL) {
+				sCurTestGroup++;
+				sRunningTimer = 0;
+			}
+		}
 
 		if (gPlayer1Controller->buttonPressed & A_BUTTON) {
 			sTestsRunning = TRUE;
@@ -157,10 +172,12 @@ void run_tests(void) {
 	}
 
 	if ((sCurTestGroup + 1)->tests == NULL) {
-		fb_clear_row(25);
-		fb_print_str(5, 25, "HAVE A NICE DAY u");
+		sTestsDone = TRUE;
+
+		fb_clear_row(24);
+		fb_print_str(5, 24, "HAVE A NICE DAY u");
 	} else {
-		fb_print_str(5, 25, "PRESS A TO CONTINUE...");
+		fb_print_str(5, 24, "PRESS A TO CONTINUE...");
 
 		if (gPlayer1Controller->buttonPressed & A_BUTTON) {
 			sCurTestGroup++;

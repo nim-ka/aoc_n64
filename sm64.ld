@@ -292,7 +292,7 @@ SECTIONS
    BEGIN_SEG(custom, )
    {
       BUILD_DIR/asm/custom.o(.text);
-      BUILD_DIR/asm/test*.o(.text);
+      BUILD_DIR/asm/tests*.o(.text);
    }
    END_SEG(custom)
 

@@ -90,7 +90,7 @@ void fb_render_glyph(int x, int y, u32 *glyph) {
 
 	for (i = 0; i < 7; i++) {
 		for (j = 0; j < 10; j++) {
-			FB[(x + i - 1) + (y + j - 1) * SCREEN_WIDTH] = (glyph[j] & (0x1 << ((7 - i) * 4))) ? 0xFFFF : 0x0001;
+			FB[(x + i - 1) + (y + 4 + j - 1) * SCREEN_WIDTH] = (glyph[j] & (0x1 << ((7 - i) * 4))) ? 0xFFFF : 0x0001;
 		}
 	}
 }

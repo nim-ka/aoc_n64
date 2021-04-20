@@ -14,6 +14,6 @@
     .word \x
 .endm
 
-.set CACHE_TEST_REPS, 200000
-.set DMA_TEST_REPS, 5
+.set CACHE_TEST_REPS, 5000000
+.set DMA_TEST_REPS, 100
 .set CPU_TEST_REPS, 60000
