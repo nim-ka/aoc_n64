@@ -1,9 +1,5 @@
 OUTPUT_ARCH (mips)
 
-/* include/segments.h defines SEG_POOL_START, SEG_POOL_END, SEG_BUFFERS,
- * SEG_GODDARD, SEG_MAIN, SEG_ENGINE, SEG_FRAMEBUFFERS */
-#include "segments.h"
-
 #define BEGIN_SEG(name, addr) \
     _##name##SegmentStart = ADDR(.name); \
     _##name##SegmentRomStart = __romPos; \
@@ -288,25 +284,6 @@ SECTIONS
    END_NOLOAD(main)
    _mainSegmentNoloadSizeLo = SIZEOF (.main.noload) & 0xffff;
    _mainSegmentNoloadSizeHi = SIZEOF (.main.noload) >> 16;
-
-   BEGIN_SEG(custom, )
-   {
-      BUILD_DIR/asm/custom.o(.text);
-      BUILD_DIR/asm/tests*.o(.text);
-   }
-   END_SEG(custom)
-
-   BEGIN_SEG(zeroes, )
-   {
-      BUILD_DIR/asm/zeroes.o(.text);
-   }
-   END_SEG(zeroes)
-
-   BEGIN_SEG(ones, )
-   {
-      BUILD_DIR/asm/ones.o(.text);
-   }
-   END_SEG(ones)
 
    __expansionRamStart = 0x80400000;
    ASSERT((. <= __expansionRamStart), "Error: RDRAM expanded into Expansion RAM, despite Expansion RAM not being defined.")

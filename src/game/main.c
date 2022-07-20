@@ -1,10 +1,8 @@
 #include <ultra64.h>
 #include <stdio.h>
 
-#include "sm64.h"
 #include "game_init.h"
 #include "buffers/buffers.h"
-#include "segments.h"
 #include "main.h"
 
 // Message IDs
@@ -19,11 +17,6 @@ OSThread gIdleThread;
 OSThread gMainThread;
 OSThread gGameLoopThread;
 OSThread gSoundThread;
-#ifdef VERSION_SH
-OSThread gRumblePakThread;
-
-s32 gRumblePakPfs; // Actually an OSPfs but we don't have that header yet
-#endif
 
 OSIoMesg gDmaIoMesg;
 OSMesg D_80339BEC;
@@ -32,22 +25,11 @@ OSMesgQueue gSIEventMesgQueue;
 OSMesgQueue gPIMesgQueue;
 OSMesgQueue gIntrMesgQueue;
 OSMesgQueue gSPTaskMesgQueue;
-#ifdef VERSION_SH
-OSMesgQueue gRumblePakSchedulerMesgQueue;
-OSMesgQueue gRumbleThreadVIMesgQueue;
-#endif
 OSMesg gDmaMesgBuf[1];
 OSMesg gPIMesgBuf[32];
 OSMesg gSIEventMesgBuf[1];
 OSMesg gIntrMesgBuf[16];
 OSMesg gUnknownMesgBuf[16];
-#ifdef VERSION_SH
-OSMesg gRumblePakSchedulerMesgBuf[1];
-OSMesg gRumbleThreadVIMesgBuf[1];
-
-struct RumbleData gRumbleDataQueue[3];
-struct StructSH8031D9B0 gCurrRumbleSettings;
-#endif
 
 struct VblankHandler *gVblankHandler1 = NULL;
 struct VblankHandler *gVblankHandler2 = NULL;
@@ -64,22 +46,6 @@ s8 gDebugLevelSelect = 0;
 s8 D_8032C650 = 0;
 
 s8 gShowDebugText = FALSE;
-
-// unused
-void unknown_main_func(void) {
-    // uninitialized
-    OSTime time;
-    u32 b;
-
-    osSetTime(time);
-    osMapTLB(0, b, NULL, 0, 0, 0);
-    osUnmapTLBAll();
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wnonnull"
-    sprintf(NULL, NULL);
-#pragma GCC diagnostic pop
-}
 
 void stub_main_1(void) {
 }
@@ -109,10 +75,6 @@ void create_thread(OSThread *thread, OSId id, void (*entry)(void *), void *arg, 
     thread->queue = NULL;
     osCreateThread(thread, id, entry, arg, sp, pri);
 }
-
-#ifdef VERSION_SH
-extern void func_sh_802F69CC(void);
-#endif
 
 void handle_nmi_request(void) {
     gResetTimer = 1;
@@ -146,8 +108,6 @@ void receive_new_tasks(void) {
 }
 
 void start_sptask(s32 taskType) {
-    UNUSED s32 pad; // needed to pad the stack
-
     if (taskType == M_AUDTASK) {
         gActiveSPTask = NULL;
     } else {
@@ -180,19 +140,11 @@ void pretend_audio_sptask_done(void) {
 }
 
 void handle_vblank(void) {
-    UNUSED s32 pad; // needed to pad the stack
-
     stub_main_3();
     sNumVblanks++;
-#ifdef VERSION_SH
-    if (gResetTimer > 0 && gResetTimer < 100) {
-        gResetTimer++;
-    }
-#else
     if (gResetTimer > 0) {
         gResetTimer++;
     }
-#endif
 
     receive_new_tasks();
 
@@ -217,9 +169,6 @@ void handle_vblank(void) {
             start_sptask(M_GFXTASK);
         }
     }
-#ifdef VERSION_SH
-    rumble_thread_update_vi();
-#endif
 
     // Notify the game loop about the vblank.
     if (gVblankHandler1 != NULL) {
@@ -282,41 +231,8 @@ void handle_dp_complete(void) {
     sCurrentDisplaySPTask = NULL;
 }
 
-void dma_read(u8 *dest, u8 *srcStart, u8 *srcEnd) {
-    u32 size = ((srcEnd - srcStart) + 0xF) & ~0xF;
-
-    osInvalDCache(dest, size);
-    while (size != 0) {
-        u32 copySize = (size >= 0x1000) ? 0x1000 : size;
-
-        osPiStartDma(&gDmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ, (uintptr_t) srcStart, dest, copySize,
-                     &gDmaMesgQueue);
-        osRecvMesg(&gDmaMesgQueue, &D_80339BEC, OS_MESG_BLOCK);
-
-        dest += copySize;
-        srcStart += copySize;
-        size -= copySize;
-    }
-}
-
-extern u8 _customSegmentStart[];
-extern u8 _customSegmentRomStart[];
-extern u8 _customSegmentRomEnd[];
-
-void load_custom_code_segment(void) {
-    void *startAddr = _customSegmentStart;
-    u32 totalSize = _customSegmentRomEnd - _customSegmentRomStart;
-
-    bzero(startAddr, totalSize);
-    osWritebackDCacheAll();
-    dma_read(startAddr, _customSegmentRomStart, _customSegmentRomEnd);
-    osInvalICache(startAddr, totalSize);
-    osInvalDCache(startAddr, totalSize);
-}
-
 void thread3_main(UNUSED void *arg) {
     setup_mesg_queues();
-    load_custom_code_segment();
 
     create_thread(&gGameLoopThread, 5, thread5_game_loop, NULL, gThread5Stack + 0x2000, 10);
     osStartThread(&gGameLoopThread);
@@ -401,22 +317,16 @@ void turn_off_audio(void) {
  * Initialize hardware, start main thread, then idle.
  */
 void thread1_idle(UNUSED void *arg) {
-#if defined(VERSION_US) || defined(VERSION_SH)
     s32 sp24 = osTvType;
-#endif
 
     osCreateViManager(OS_PRIORITY_VIMGR);
-#if defined(VERSION_US) || defined(VERSION_SH)
+
     if (sp24 == TV_TYPE_NTSC) {
         osViSetMode(&osViModeTable[OS_VI_NTSC_LAN1]);
     } else {
         osViSetMode(&osViModeTable[OS_VI_PAL_LAN1]);
     }
-#elif defined(VERSION_JP)
-    osViSetMode(&osViModeTable[OS_VI_NTSC_LAN1]);
-#else // VERSION_EU
-    osViSetMode(&osViModeTable[OS_VI_PAL_LAN1]);
-#endif
+
     osViBlack(TRUE);
     osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);
     osViSetSpecialFeatures(OS_VI_GAMMA_OFF);
@@ -434,8 +344,6 @@ void thread1_idle(UNUSED void *arg) {
 }
 
 void main_func(void) {
-    UNUSED u8 pad[64]; // needed to pad the stack
-
     osInitialize();
     stub_main_1();
     create_thread(&gIdleThread, 1, thread1_idle, NULL, gIdleThreadStack + 0x800, 100);

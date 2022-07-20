@@ -1,14 +1,11 @@
 #include <ultra64.h>
 
-#include "sm64.h"
-#include "gfx_dimensions.h"
 #include "buffers/buffers.h"
 #include "buffers/gfx_output_buffer.h"
 #include "buffers/framebuffers.h"
 #include "game_init.h"
 #include "main.h"
 #include "fb.h"
-#include <prevent_bss_reordering.h>
 
 // FIXME: I'm not sure all of these variables belong in this file, but I don't
 // know of a good way to split them
@@ -28,11 +25,7 @@ OSMesg D_80339CD4;
 struct VblankHandler gGameVblankHandler;
 void *D_80339CF0;
 void *D_80339CF4;
-struct MarioAnimation D_80339D10;
-struct MarioAnimation gDemo;
-UNUSED u8 filler80339D30[0x90];
 
-int unused8032C690 = 0;
 u32 gGlobalTimer = 0;
 
 void (*D_8032C6A0)(void) = NULL;
@@ -40,9 +33,6 @@ struct Controller *gPlayer1Controller = &gControllers[0];
 struct Controller *gPlayer2Controller = &gControllers[1];
 // probably debug only, see note below
 struct Controller *gPlayer3Controller = &gControllers[2];
-struct DemoInput *gCurrDemoInput = NULL; // demo input sequence
-u16 gDemoInputListID = 0;
-struct DemoInput gRecordedDemoInput = { 0 }; // possibly removed in EU. TODO: Check
 
 /**
  * Initializes the Reality Display Processor (RDP).
@@ -70,9 +60,6 @@ void my_rdp_init(void) {
     gDPSetColorDither(gDisplayListHead++, G_CD_MAGICSQ);
     gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
-#ifdef VERSION_SH
-    gDPSetAlphaDither(gDisplayListHead++, G_AD_PATTERN);
-#endif
     gDPPipeSync(gDisplayListHead++);
 }
 
@@ -161,8 +148,6 @@ void config_gfx_pool(void) {
     gGfxPoolEnd = (u8 *) (gGfxPool->buffer + GFX_POOL_SIZE);
 }
 
-extern void custom_entry(void);
-
 /** Handles vsync. */
 void display_and_vsync(void) {
     osRecvMesg(&D_80339CB8, &D_80339BEC, OS_MESG_BLOCK);
@@ -180,8 +165,6 @@ void display_and_vsync(void) {
 // take the updated controller struct and calculate
 // the new x, y, and distance floats.
 void adjust_analog_stick(struct Controller *controller) {
-    UNUSED u8 pad[8];
-
     // reset the controller's x and y floats.
     controller->stickX = 0;
     controller->stickY = 0;
@@ -296,11 +279,11 @@ void init_controllers(void) {
 }
 
 void setup_game_memory(void) {
-    UNUSED u8 pad[8];
-
     osCreateMesgQueue(&D_80339CB8, &D_80339CD4, 1);
     osCreateMesgQueue(&gGameVblankQueue, &D_80339CD0, 1);
 }
+
+s32 x = 0;
 
 // main game loop thread. runs forever as long as the game
 // continues.
@@ -324,7 +307,10 @@ void thread5_game_loop(UNUSED void *arg) {
         read_controller_inputs();
         init_render_image();
         end_master_display_list();
-        custom_entry();
+
+fb_print_byte_str(10, 10, (u8 *) &x, 4);
+x++;
+
         fb_display();
         display_and_vsync();
         osViBlack(FALSE);

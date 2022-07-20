@@ -15,14 +15,6 @@ struct GfxPool {
     struct SPTask spTask;
 };
 
-struct DemoInput
-{
-    u8 timer; // time until next input. if this value is 0, it means the demo is over
-    s8 rawStickX;
-    s8 rawStickY;
-    u8 buttonMask;
-};
-
 extern struct Controller gControllers[3];
 extern OSContStatus gControllerStatuses[4];
 extern OSContPad gControllerPads[4];
@@ -46,17 +38,6 @@ extern void (*D_8032C6A0)(void);
 extern struct Controller *gPlayer1Controller;
 extern struct Controller *gPlayer2Controller;
 extern struct Controller *gPlayer3Controller;
-extern struct DemoInput *gCurrDemoInput;
-extern u16 gDemoInputListID;
-extern struct DemoInput gRecordedDemoInput;
-
-// this area is the demo input + the header. when the demo is loaded in, there is a header the size
-// of a single word next to the input list. this word is the current ID count.
-extern struct MarioAnimation D_80339D10;
-extern struct MarioAnimation gDemo;
-
-extern u8 gMarioAnims[];
-extern u8 gDemoInputs[];
 
 extern u16 frameBufferIndex;
 extern u32 gGlobalTimer;

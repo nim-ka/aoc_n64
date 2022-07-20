@@ -108,6 +108,7 @@ s32 __osPackEepWriteData(u8 address, u8 *buffer) {
     *(unkStruct2 *) sp14 = sp8;
     sp14 += 0xc;
     *sp14 = 254;
+    return 0;
 }
 
 s32 __osEepStatus(OSMesgQueue *a0, unkStruct *a1) {

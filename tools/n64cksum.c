@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "n64cksum.h"
 #include "utils.h"
@@ -124,6 +125,12 @@ int main(int argc, char *argv[])
    if (length < 0) {
       ERROR("Error reading input file \"%s\"\n", file_in);
       return EXIT_FAILURE;
+   }
+
+   if (length < 0x101000) {
+      rom_data = (unsigned char *) realloc(rom_data, 0x101000);
+      memset(rom_data + length, 0xFF, 0x101000 - length);
+      length = 0x101000;
    }
 
    n64cksum_update_checksums(rom_data);
