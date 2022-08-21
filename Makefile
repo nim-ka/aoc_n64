@@ -9,15 +9,6 @@ default: all
 # These options can either be changed by modifying the makefile, or
 # by building with 'make SETTING=value'. 'make clean' may be required.
 
-# Graphics microcode used
-GRUCODE ?= f3d_old
-# If NON_MATCHING is 1, define the NON_MATCHING and AVOID_UB macros when building (recommended)
-NON_MATCHING ?= 1
-# Build for the N64 (turn this off for ports)
-TARGET_N64 ?= 1
-# Compiler to use (ido or gcc)
-COMPILER ?= gcc
-
 TARGET := sm64_stripped
 VERSION_CFLAGS := -DVERSION_US
 VERSION_ASFLAGS := --defsym VERSION_US=1
