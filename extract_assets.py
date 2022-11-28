@@ -139,18 +139,6 @@ def main():
         except Exception as e:
             print("Failed to open " + fname + "! " + str(e))
             sys.exit(1)
-        sha1 = hashlib.sha1(roms[lang]).hexdigest()
-        with open("sm64." + lang + ".sha1", "r") as f:
-            expected_sha1 = f.read().split()[0]
-        if sha1 != expected_sha1:
-            print(
-                fname
-                + " has the wrong hash! Found "
-                + sha1
-                + ", expected "
-                + expected_sha1
-            )
-            sys.exit(1)
 
     # Make sure tools exist
     subprocess.check_call(
