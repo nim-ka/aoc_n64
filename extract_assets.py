@@ -142,7 +142,7 @@ def main():
 
     # Make sure tools exist
     subprocess.check_call(
-        ["make", "-s", "-C", "tools/", "n64graphics", "skyconv", "mio0", "aifc_decode"]
+        ["make", "-s", "-C", "tools/", "n64graphics"]
     )
 
     # Go through the assets in roughly alphabetical order (but assets in the same
