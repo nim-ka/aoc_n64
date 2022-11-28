@@ -283,8 +283,6 @@ void setup_game_memory(void) {
     osCreateMesgQueue(&gGameVblankQueue, &D_80339CD0, 1);
 }
 
-s32 x = 0;
-
 // main game loop thread. runs forever as long as the game
 // continues.
 void thread5_game_loop(UNUSED void *arg) {
@@ -307,9 +305,6 @@ void thread5_game_loop(UNUSED void *arg) {
         read_controller_inputs();
         init_render_image();
         end_master_display_list();
-
-fb_print_byte_str(10, 10, (u8 *) &x, 4);
-x++;
 
         fb_display();
         display_and_vsync();
