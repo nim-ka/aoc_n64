@@ -210,6 +210,8 @@ SECTIONS
       BUILD_DIR/libultra.a:guLookAtRef.o(.text); /* Fast3DEX2 only */
       BUILD_DIR/lib/rsp.o(.text);
 
+      BUILD_DIR/asm/aoc*.o(.text);
+
       /* data */
       BUILD_DIR/src/game*.o(.data*);
 
@@ -234,6 +236,8 @@ SECTIONS
       BUILD_DIR/libultra.a:guRotateF.o(.data*);
       BUILD_DIR/libultra.a:*.o(.data*);
 
+      BUILD_DIR/asm/aoc*.o(.data*);
+
       /* rodata */
       BUILD_DIR/src/game*.o(.rodata*);
 
@@ -253,6 +257,8 @@ SECTIONS
       BUILD_DIR/libultra.a:guLookAtRef.o(.rodata*); /* Fast3DEX2 only */
       BUILD_DIR/libultra.a:*.o(.rodata*);
       BUILD_DIR/lib/rsp.o(.rodata*);
+
+      BUILD_DIR/asm/aoc*.o(.rodata*);
    }
    END_SEG(main)
 

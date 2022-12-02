@@ -7,6 +7,8 @@
 #include "main.h"
 #include "fb.h"
 
+#include "aoc/aoc.h"
+
 // FIXME: I'm not sure all of these variables belong in this file, but I don't
 // know of a good way to split them
 struct Controller gControllers[3];
@@ -305,6 +307,8 @@ void thread5_game_loop(UNUSED void *arg) {
         read_controller_inputs();
         init_render_image();
         end_master_display_list();
+
+        aoc_main();
 
         fb_display();
         display_and_vsync();
