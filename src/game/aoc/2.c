@@ -3,8 +3,6 @@
 
 #include "aoc.h"
 
-// ourPlay = instruction + opponentPlay + 2, mod 3
-
 const char *aoc_day2(const char *input, s32 isPart2) {
 	s32 totalScore = 0;
 
