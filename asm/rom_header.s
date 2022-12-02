@@ -13,10 +13,10 @@
 .word  0x74757C24               /* Checksum 2 */
 .word  0x00000000               /* Unknown */
 .word  0x00000000               /* Unknown */
-.ascii "SUPER MARIO 64      "   /* Internal ROM name */
+.ascii "ADVENT OF CODE 64   "   /* Internal ROM name */
 .word  0x00000000               /* Unknown */
 .word  0x0000004E               /* Cartridge */
-.ascii "SM"                     /* Cartridge ID */
+.ascii "IM"                     /* Cartridge ID */
 
 .ascii "E"                  /* NTSC-U (North America) */
 
