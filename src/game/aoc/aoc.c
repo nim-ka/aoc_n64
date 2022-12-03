@@ -32,7 +32,11 @@
 
 #include "aoc.h"
 
+u8 gAocSharedMem[AOC_SHARED_MEM_SIZE];
+
 char gAocOutputBuf[256];
+
+s32 gAocDebug;
 
 static const char *(*sAocFuncs[])(const char *input, s32 isPart2) = {
 	NULL,
@@ -119,12 +123,24 @@ void aoc_main(void) {
 		sAocExecuted = FALSE;
 	}
 
+	if (gPlayer1Controller->buttonPressed & L_JPAD) {
+		gAocDebug--;
+		sAocExecuted = FALSE;
+	}
+
+	if (gPlayer1Controller->buttonPressed & R_JPAD) {
+		gAocDebug++;
+		sAocExecuted = FALSE;
+	}
+
 	if (!sAocExecuted) {
 		const char *(*func)(const char *input, s32 isPart2) = sAocFuncs[sAocDay];
 		const char *input = sAocInputs[sAocDay];
 
 		OSTime start;
 		OSTime end;
+
+		bzero(gAocSharedMem, AOC_SHARED_MEM_SIZE);
 
 		start = osGetTime();
 		sAocResult = func(input, sAocIsPart2);

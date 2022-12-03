@@ -1,7 +1,11 @@
 #ifndef AOC_H
 #define AOC_H
 
+#define AOC_SHARED_MEM_SIZE 0x100000
+
+extern u8 gAocSharedMem[AOC_SHARED_MEM_SIZE];
 extern char gAocOutputBuf[256];
+extern s32 gAocDebug;
 
 extern const char aoc_input_day1[];
 extern const char aoc_input_day2[];
