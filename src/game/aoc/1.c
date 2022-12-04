@@ -12,16 +12,7 @@ const char *aoc_day1(const char *input, s32 isPart2) {
 		s32 total = 0;
 
 		while (*input && *input != '\n') {
-			s32 curNum = 0;
-
-			while (*input && *input != '\n') {
-				curNum *= 10;
-				curNum += *input - '0';
-				input++;
-			}
-
-			total += curNum;
-			curNum = 0;
+			total += read_nonneg_decimal_int(&input);
 			input++;
 		}
 
