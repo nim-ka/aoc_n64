@@ -2,7 +2,7 @@
 
 #include "aoc.h"
 
-s32 read_nonneg_decimal_int(char **input) {
+s32 read_nonneg_decimal_int(const char **input) {
 	s32 num = 0;
 
 	while ('0' <= **input && **input <= '9') {
