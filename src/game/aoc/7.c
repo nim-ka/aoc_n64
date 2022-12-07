@@ -76,7 +76,7 @@ const char *aoc_day7(const char *input, s32 isPart2) {
 		res = 70000000;
 
 		for (i = 0; i < sNumSizes; i++) {
-			if (res > sSizes[i] && sSizes[i] > threshold) {
+			if (res > sSizes[i] && sSizes[i] >= threshold) {
 				res = sSizes[i];
 			}
 		}
