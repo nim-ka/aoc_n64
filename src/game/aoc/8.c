@@ -27,14 +27,13 @@ const char *aoc_day8(const char *input, s32 isPart2) {
 
 			for (i = 0; i < 4; i++) {
 				const char *testCell = cell;
-				s32 reachedEnd = FALSE;
 				s32 dist = 0;
 
 				do {
 					testCell += dirChanges[i];
 
 					if (testCell < input || !*testCell || *testCell == '\n') {
-						reachedEnd = TRUE;
+						visFromEdge = TRUE;
 						break;
 					}
 
@@ -46,7 +45,6 @@ const char *aoc_day8(const char *input, s32 isPart2) {
 				} while (TRUE);
 
 				cellScore *= dist;
-				visFromEdge = visFromEdge || reachedEnd;
 			}
 
 			if (!isPart2) {
