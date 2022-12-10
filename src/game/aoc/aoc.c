@@ -36,7 +36,7 @@ u8 gAocSharedMem[AOC_SHARED_MEM_SIZE];
 
 char gAocOutputBuf[256];
 
-s32 gAocDebug;
+s32 gAocDebug = 0;
 
 static const char *(*sAocFuncs[])(const char *input, s32 isPart2) = {
 	NULL,
@@ -107,17 +107,20 @@ static char sAocMemStr[256];
 
 void aoc_main(void) {
 	if (gPlayer1Controller->buttonPressed & Z_TRIG) {
+		gAocDebug = 0;
 		sAocIsPart2 ^= 1;
 		sAocExecuted = FALSE;
 	}
 
 	if (gPlayer1Controller->buttonPressed & L_TRIG) {
+		gAocDebug = 0;
 		sAocDay = (sAocDay + 23) % 25 + 1;
 		sAocIsPart2 = FALSE;
 		sAocExecuted = FALSE;
 	}
 
 	if (gPlayer1Controller->buttonPressed & R_TRIG) {
+		gAocDebug = 0;
 		sAocDay = (sAocDay % 25) + 1;
 		sAocIsPart2 = FALSE;
 		sAocExecuted = FALSE;
@@ -142,9 +145,11 @@ void aoc_main(void) {
 
 		bzero(gAocSharedMem, AOC_SHARED_MEM_SIZE);
 
+		__osDisableInt();
 		start = osGetTime();
 		sAocResult = func(input, sAocIsPart2);
 		end = osGetTime();
+		__osRestoreInt();
 
 		sAocExecuted = TRUE;
 
