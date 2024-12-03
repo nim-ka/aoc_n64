@@ -107,12 +107,28 @@ void fb_render_glyph(u32 x, u32 y, u32 *glyph) {
 void fb_init(void) {
 	u32 x, y;
 
-	fb_clear();
+	fb_invalidate();
 
 	for (x = 0; x < 320; x++) {
 		for (y = 0; y < 240; y++) {
 			FB[y * SCREEN_WIDTH + x] = 0x0001;
 		}
+	}
+}
+
+void fb_invalidate(void) {
+	u32 y;
+
+	for (y = 0; y < FB_GLYPH_TABLE_HEIGHT; y++) {
+		fb_invalidate_row(y);
+	}
+}
+
+void fb_invalidate_row(u32 y) {
+	u32 x;
+
+	for (x = 0; x < FB_GLYPH_TABLE_WIDTH; x++) {
+		sFBGlyphTable[y][x].state = FBGS_INVALIDATED;
 	}
 }
 
@@ -128,7 +144,8 @@ void fb_clear_row(u32 y) {
 	u32 x;
 
 	for (x = 0; x < FB_GLYPH_TABLE_WIDTH; x++) {
-		sFBGlyphTable[y][x].state = FBGS_INVALIDATED;
+		fb_render_glyph(x * 7, y * 9, sGlyphs[0]);
+		sFBGlyphTable[y][x].state = FBGS_CLEAR;
 	}
 }
 

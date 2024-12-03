@@ -12,3 +12,16 @@ s32 read_nonneg_decimal_int(const char **input) {
 
 	return num;
 }
+
+s32 read_decimal_int(const char **input) {
+	if (**input == '-') {
+		(*input)++;
+		return -read_nonneg_decimal_int(input);
+	}
+
+	if (**input == '+') {
+		(*input)++;
+	}
+
+	return read_nonneg_decimal_int(input);
+}

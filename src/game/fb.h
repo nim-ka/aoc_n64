@@ -29,6 +29,8 @@ extern void fb_print_str(u32 x, u32 y, const char *str);
 extern void fb_print_byte_str(u32 x, u32 y, u8 *str, u32 len);
 
 extern void fb_init(void);
+extern void fb_invalidate(void);
+extern void fb_invalidate_row(u32 y);
 extern void fb_clear(void);
 extern void fb_clear_row(u32 y);
 extern void fb_display(void);

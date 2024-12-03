@@ -4,6 +4,9 @@
 #include "aoc.h"
 #include "utils.h"
 
+#define AOC_DAY9_WIDTH 500
+#define AOC_DAY9_HEIGHT 500
+
 static s32 sKnots[10][2];
 
 const char *aoc_day9(const char *input, s32 isPart2) {
@@ -11,7 +14,7 @@ const char *aoc_day9(const char *input, s32 isPart2) {
 	s32 i;
 	s32 *const tail = sKnots[numKnots - 1];
 
-	s32 (*tailPoses)[2] = (s32 (*)[2]) gAocSharedMem;
+	s32 *tailPoses = (s32 *) gAocSharedMem;
 	s32 numTailPoses = 0;
 
 	for (i = 0; i < numKnots; i++) {
@@ -57,6 +60,8 @@ const char *aoc_day9(const char *input, s32 isPart2) {
 			s32 lastX;
 			s32 lastY;
 
+			s32 enc;
+
 			for (i = 0; i < numKnots; i++) {
 				s32 curX = sKnots[i][0];
 				s32 curY = sKnots[i][1];
@@ -77,16 +82,11 @@ const char *aoc_day9(const char *input, s32 isPart2) {
 				lastY = sKnots[i][1] += dirY;
 			}
 
-			for (i = numTailPoses - 1; i >= 0; i--) {
-				if (tailPoses[i][0] == tail[0] && tailPoses[i][1] == tail[1]) {
-					break;
-				}
-			}
+			enc = (tail[0] + AOC_DAY9_WIDTH / 2) + (tail[1] + AOC_DAY9_HEIGHT / 2) * AOC_DAY9_WIDTH;
 
-			if (i < 0) {
-				tailPoses[numTailPoses][0] = tail[0];
-				tailPoses[numTailPoses][1] = tail[1];
+			if (!tailPoses[enc]) {
 				numTailPoses++;
+				tailPoses[enc] = 1;
 			}
 		}
 

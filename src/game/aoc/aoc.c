@@ -145,6 +145,8 @@ void aoc_main(void) {
 
 		bzero(gAocSharedMem, AOC_SHARED_MEM_SIZE);
 
+		fb_clear();
+
 		__osDisableInt();
 		start = osGetTime();
 		sAocResult = func(input, sAocIsPart2);
@@ -161,9 +163,13 @@ void aoc_main(void) {
 		sprintf(sAocMemStr, "INPUT LOCATED AT RAM %08X", (u32) input);
 	}
 
-	if (sAocResult != NULL) {
+	if (sAocExecuted) {
 		fb_set_color(FB_RGB(255, 255, 255));
-		fb_print_str(0, 0, sAocResult);
+
+		if (sAocResult != NULL) {
+			fb_print_str(0, 0, sAocResult);
+		}
+
 		fb_print_str(0, 24, sAocTimeStr);
 		fb_print_str(0, 25, sAocMemStr);
 	}
